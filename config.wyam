@@ -7,11 +7,12 @@ System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalizat
 Settings[Keys.Host] = "mahapps.com";
 Settings[Keys.LinksUseHttps] = true;
 Settings[Keys.LinkLowercase] = false;
-//Settings[Keys.LinkRoot] = "mahapps.metro.docs.wyam";
 
 Settings[DocsKeys.Title] = "MahApps.Metro";
 Settings[DocsKeys.Logo] = "./assets/img/mahapps.metro.logo.png";
 Settings[DocsKeys.BaseEditUrl] = "https://github.com/MahApps/mahapps.com/tree/master/input/";
-Settings[DocsKeys.SourceFiles] = "../src/src/**/{!bin,!obj,!packages,!*.Tests,!*.Build,!*.Samples,!Microsoft.Windows.Shell,}/**/*.cs";
+Settings[DocsKeys.ValidateRelativeLinks] = false;
+Settings[DocsKeys.ValidateAbsoluteLinks] = false;
+Settings[DocsKeys.ValidateLinksAsError] = false; 
 
 // Add any pipeline customizations here

@@ -4,6 +4,6 @@ config.wyam.packages.xml
 wwwroot
 output
 tools
-src
+mahapps
 Wyam
 packages

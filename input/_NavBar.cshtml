@@ -1,0 +1,20 @@
+@{
+    List<Tuple<string, string>> topLevelPages = new List<Tuple<string, string>>
+    {
+        Tuple.Create("Blog", Context.GetLink("blog")),
+        Tuple.Create("Documentation", Context.GetLink("docs"))
+    };
+
+    if(Documents[Docs.Api].Any())
+    {
+        topLevelPages.Add(Tuple.Create("API", Context.GetLink(Context.DirectoryPath(DocsKeys.ApiPath))));
+    }
+
+    topLevelPages.Add(Tuple.Create("<i class=\"fa fa-github\"></i> Source", "https://github.com/MahApps/MahApps.Metro"));
+
+    foreach(Tuple<string, string> topLevelPage in topLevelPages)
+    {
+        string active = Context.GetLink(Document).StartsWith(topLevelPage.Item2) ? "active" : null;
+        <li class="@active"><a href="@topLevelPage.Item2">@Html.Raw(topLevelPage.Item1)</a></li>
+    }
+}
