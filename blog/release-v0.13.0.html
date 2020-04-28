@@ -63,6 +63,7 @@
                                     <li><a href="/about">About This Project</a></li>
         <li><a href="/docs">Docs</a></li>
         <li class="active"><a href="/blog">Blog</a></li>
+        <li><a href="/api">API</a></li>
  
                         </ul>       
                     </div>
@@ -148,27 +149,27 @@
 
 
 <h1 id="notes">Notes</h1>
-<p>The 0.13 release of MahApps.Metro marks a very important change in the <code>MetroWindow</code> infrastructure along with several other fixes and improvements.</p>
+<p>The 0.13 release of MahApps.Metro marks a very important change in the <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> infrastructure along with several other fixes and improvements.</p>
 <p>We've also updated the <a href="http://www.nuget.org/packages/MahApps.Metro.Resources/">MahApps.Metro.Resources NuGet package</a> with the <a href="http://modernuiicons.com/">latest icons</a>.</p>
 <h1 id="features">Features</h1>
 <h2 id="custom-themes">Custom themes</h2>
 <p>MahApps.Metro now allows to define custom themes for the application. We've rewritten the <code>ThemeManager</code> for this (don't worry, your old code should still work, but most old methods are now marked as <code>Obsolete</code>)</p>
 <p>To add a theme, use the new <code>AddAppTheme</code> theme method.</p>
-<h2 id="completely-rewritten-borderlesswindowbehavior">Completely rewritten <code>BorderlessWindowBehavior</code></h2>
-<p>The <code>BorderlessWindowBehavior</code> has been completely rewritten, to fix a number of issues that have accumulated over time.</p>
+<h2 id="completely-rewritten-borderlesswindowbehavior">Completely rewritten <code><a href="/api/MahApps.Metro.Behaviors/BorderlessWindowBehavior">BorderlessWindowBehavior</a></code></h2>
+<p>The <code><a href="/api/MahApps.Metro.Behaviors/BorderlessWindowBehavior">BorderlessWindowBehavior</a></code> has been completely rewritten, to fix a number of issues that have accumulated over time.</p>
 <p>For a complete list of fixes, see PR #1156</p>
 <h2 id="auto-closing-flyouts">Auto-closing flyouts</h2>
 <p>Flyouts now have an option to be automatically closed when the user clicks outside of the flyout.
 We renamed the property <code>IsPinnable</code> (that had no use) to <code>IsPinned</code> for this.
 <code>IsPinned</code> is <code>true</code> by default and, if set to false, enables the auto-closing feature.</p>
 <h2 id="rangeslider">RangeSlider</h2>
-<p>The <code>RangeSlider</code> control has been completely rewritten because it was unusably broken before.</p>
+<p>The <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> control has been completely rewritten because it was unusably broken before.</p>
 <p>See PR #1055 for more info.</p>
 <h2 id="titlebar-enhancements">Titlebar enhancements</h2>
 <ul>
 <li>The titlebar now supports vector icons</li>
 <li>Added <code>LeftWindowCommands</code>
-This means that the normal <code>WindowCommands</code> property is now obsolete and is called <code>RightWindowCommands</code></li>
+This means that the normal <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> property is now obsolete and is called <code>RightWindowCommands</code></li>
 <li>The minimize/maximize/close button can now be styled</li>
 <li>Added ShowWindowCommandsOnTop property for window buttons #1098 (thanks @100GPing100)</li>
 </ul>
@@ -176,8 +177,8 @@ This means that the normal <code>WindowCommands</code> property is now obsolete 
 <ul>
 <li>Added properties to change the font size of a tile #864 #1013</li>
 <li>Added support for <code>ToggleButton</code>s in the window commands #954</li>
-<li>Replace existing <code>RangeSlider</code> by new <code>RangeSlider</code> - #885 - see PR #920 / #1055</li>
-<li><code>Flyout</code>s' IsPinnable property doesn't seem to do anything - #866 - #1000</li>
+<li>Replace existing <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> by new <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> - #885 - see PR #920 / #1055</li>
+<li><code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>s' IsPinnable property doesn't seem to do anything - #866 - #1000</li>
 <li>Tile Font size - #864 -&gt; #1013 (@100GPing100)</li>
 <li>Update FlatSlider.xaml #858 (thanks @HansHuang)</li>
 <li>Auto-close flyout #962 - #1000 (thanks @100GPing100)</li>
@@ -189,7 +190,7 @@ This means that the normal <code>WindowCommands</code> property is now obsolete 
 <h1 id="fixes">Fixes</h1>
 <ul>
 <li>Fixed the external dialog not being cleaned up propely and crahsing the next dialog #994 #996</li>
-<li>Fixed various <code>MetroWindow</code> issues with multiple monitors #1099 #1136</li>
+<li>Fixed various <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> issues with multiple monitors #1099 #1136</li>
 <li>Fixed an <code>OverflowException</code> in the clean window #897</li>
 <li>Fixed issues with the airspace decorator #1077 #961</li>
 <li>Support <code>TextOptions.TextFormattingMode="Display"</code> #889</li>
@@ -201,9 +202,9 @@ This means that the normal <code>WindowCommands</code> property is now obsolete 
 <li>Fixed an <code>InvalidOperationException</code> occuring in the <code>GlowWindow</code> #1044</li>
 <li>Fixed various issues with the dialogs #1050</li>
 <li>Fixed a warning in the flyout's style #955</li>
-<li>Fixed <code>MetroProgressBar</code> and <code>ProgressRing</code> issue Perfomance GPU" #812</li>
-<li>Fixed <code>FlipView</code> HideBanner uses height, which is often NaN, should probably be ActualHeight instead #1053</li>
-<li>Fixed the <code>Tile</code> static constructor. #1131 (thanks @maw136)</li>
+<li>Fixed <code><a href="/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></code> and <code><a href="/api/MahApps.Metro.Controls/ProgressRing">ProgressRing</a></code> issue Perfomance GPU" #812</li>
+<li>Fixed <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> HideBanner uses height, which is often NaN, should probably be ActualHeight instead #1053</li>
+<li>Fixed the <code><a href="/api/MahApps.Metro.Controls/Tile">Tile</a></code> static constructor. #1131 (thanks @maw136)</li>
 <li>Fixed after an upgrade to 0.11, title bar icon would have silver background instead of blue (accent). - #922</li>
 <li>Fixed GroupBox issue on flyout with the theme set to accent #1067 PR #1126 (thanks @Tide)</li>
 </ul>

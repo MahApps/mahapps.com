@@ -1,0 +1,1742 @@
+﻿<!DOCTYPE html><html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <title>MahApps.Metro - API - MetroWindow Class</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        
+    </head>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
+
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                    </div>
+            
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/about">About This Project</a></li>
+        <li><a href="/docs">Docs</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li class="active"><a href="/api">API</a></li>
+ 
+                        </ul>       
+                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#Summary">Summary</a></p>
+<p><a href="#Syntax">Syntax</a></p>
+<p><a href="#Attributes">Attributes</a></p>
+<p><a href="#Constructors">Constructors</a></p>
+<p><a href="#Events">Events</a></p>
+<p><a href="#fields">Fields</a></p>
+<p><a href="#Properties">Properties</a></p>
+<p><a href="#Methods">Methods</a></p>
+<p><a href="#ExtensionMethods">Extension Methods</a></p>
+<hr class="infobar-hidden">
+</div>
+
+                </section>
+                <section class="sidebar">    
+                                     
+                    	
+	    <script src="/assets/js/lunr.min.js"></script>
+    <script src="/assets/js/searchIndex.js"></script>
+    <div class="sidebar-form">
+        <div class="input-group">
+            <input type="text" name="search" id="search" class="form-control" placeholder="Search Types...">
+            <span class="input-group-btn">
+                <button class="btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+    <div id="search-results">
+    </div>
+    <script>
+        function runSearch(query){
+            $("#search-results").empty();			
+            if( query.length < 2 ){
+                return;
+            }			
+            var results = searchModule.search("*" + query + "*");
+            var listHtml = "<ul class='sidebar-menu'>";	
+            listHtml += "<li class='header'>Type Results</li>";	
+            if(results.length == 0 ){
+                listHtml += "<li>No results found</li>";
+            } else {					
+                for(var i = 0; i < results.length; ++i){
+                    var res = results[i];
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
+                }				
+            }
+            listHtml += "</ul>";				
+            $("#search-results").append(listHtml);
+        }
+
+        $(document).ready(function(){
+            $("#search").on('input propertychange paste', function() {
+                runSearch($("#search").val());
+            });
+        });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
+    </script>
+	
+    <hr>
+
+                    <ul class="sidebar-menu">
+                        
+			<li class="header">Namespace</li>
+		<li><a href="/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></li>
+		<li role="separator" class="divider"></li>
+			<li class="header">Class Types</li>
+				<li><a href="/api/MahApps.Metro.Controls/Badged">Badged</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/BaseMetroTabControl">BaseMetroTabControl</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/CheckBoxHelper">CheckBoxHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ClipBorder">ClipBorder</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ClosingWindowEventHandlerArgs">Closing<wbr>Window<wbr>Event<wbr>Handler<wbr>Args</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ComboBoxHelper">ComboBoxHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ContentControlEx">ContentControlEx</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ControlsHelper">ControlsHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/CustomValidationPopup">Custom<wbr>Validation<wbr>Popup</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/DataGridHelper">DataGridHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/DataGridNumericUpDownColumn">Data<wbr>Grid<wbr>Numeric<wbr>Up<wbr>Down<wbr>Column</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/DatePickerHelper">DatePickerHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/DropDownButton">DropDownButton</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ExpanderHelper">ExpanderHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/Extensions">Extensions</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/FlipViewItem">FlipViewItem</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/FlyoutAutomationPeer">FlyoutAutomationPeer</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/FontIcon">FontIcon</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/GridLengthAnimation">GridLengthAnimation</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuGlyphItem">Hamburger<wbr>Menu<wbr>Glyph<wbr>Item</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuHeaderItem">Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuIconItem">Hamburger<wbr>Menu<wbr>Icon<wbr>Item</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuImageItem">Hamburger<wbr>Menu<wbr>Image<wbr>Item</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuItem">HamburgerMenuItem</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuItemBase">Hamburger<wbr>Menu<wbr>Item<wbr>Base</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuItemCollection">Hamburger<wbr>Menu<wbr>Item<wbr>Collection</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedEventArgs">Hamburger<wbr>Menu<wbr>Item<wbr>Invoked<wbr>Event<wbr>Args</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuItemStyleSelector">Hamburger<wbr>Menu<wbr>Item<wbr>Style<wbr>Selector</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuSeparatorItem">Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HeaderedControlHelper">Headered<wbr>Control<wbr>Helper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HotKey">HotKey</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/HotKeyBox">HotKeyBox</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IconElement">IconElement</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ItemClickEventArgs">ItemClickEventArgs</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ItemHelper">ItemHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/LayoutInvalidationCatcher">Layout<wbr>Invalidation<wbr>Catcher</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MahAppsCommands">MahAppsCommands</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroAnimatedSingleRowTabControl">Metro<wbr>Animated<wbr>Single<wbr>Row<wbr>Tab<wbr>Control</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroAnimatedTabControl">Metro<wbr>Animated<wbr>Tab<wbr>Control</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroContentControl">MetroContentControl</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroHeader">MetroHeader</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroHeaderAutomationPeer">Metro<wbr>Header<wbr>Automation<wbr>Peer</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroNavigationWindow">Metro<wbr>Navigation<wbr>Window</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroTabControl">MetroTabControl</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroTabItem">MetroTabItem</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroThumb">MetroThumb</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroThumbContentControl">Metro<wbr>Thumb<wbr>Content<wbr>Control</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroThumbContentControlAutomationPeer">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Automation<wbr>Peer</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroThumbContentControlDragCompletedEventArgs">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Drag<wbr>Completed<wbr>Event<wbr>Args</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MetroThumbContentControlDragStartedEventArgs">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Drag<wbr>Started<wbr>Event<wbr>Args</a></li>
+				<li class="selected"><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MultiFrameImage">MultiFrameImage</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MultiSelectorHelper">MultiSelectorHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventArgs">Numeric<wbr>Up<wbr>Down<wbr>Changed<wbr>Routed<wbr>Event<wbr>Args</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/PasswordBoxHelper">PasswordBoxHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/Pivot">Pivot</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/PivotItem">PivotItem</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/Planerator">Planerator</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ProgressRing">ProgressRing</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper">RadioButtonHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeParameterChangedEventArgs">Range<wbr>Parameter<wbr>Changed<wbr>Event<wbr>Args</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSelectionChangedEventArgs">Range<wbr>Selection<wbr>Changed<wbr>Event<wbr>Args</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSliderAutoTooltipValues">Range<wbr>Slider<wbr>Auto<wbr>Tooltip<wbr>Values</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RevealImage">RevealImage</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ScrollViewerHelper">ScrollViewerHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ScrollViewerOffsetMediator">Scroll<wbr>Viewer<wbr>Offset<wbr>Mediator</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/SliderHelper">SliderHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/Spelling">Spelling</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/SplitView">SplitView</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/SplitViewPaneClosingEventArgs">Split<wbr>View<wbr>Pane<wbr>Closing<wbr>Event<wbr>Args</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/SplitViewTemplateSettings">Split<wbr>View<wbr>Template<wbr>Settings</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TabControlHelper">TabControlHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TextBoxHelper">TextBoxHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/Tile">Tile</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePicker">TimePicker</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase">TimePickerBase</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBaseSelectionChangedEventArgs_1">Time<wbr>Picker<wbr>Base<wbr>Selection<wbr>Changed<wbr>Event<wbr>Args<wbr>&lt;T&gt;<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ToggleButtonHelper">ToggleButtonHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ToggleSwitch">ToggleSwitch</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ToggleSwitchAutomationPeer">Toggle<wbr>Switch<wbr>Automation<wbr>Peer</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TransitioningContentControl">Transitioning<wbr>Content<wbr>Control</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TreeHelper">TreeHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TreeViewItemHelper">TreeViewItemHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/Underline">Underline</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/Utils">Utils</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ValidationHelper">ValidationHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/VisibilityHelper">VisibilityHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/WinApiHelper">WinApiHelper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/WindowCommandsItem">WindowCommandsItem</a></li>
+			<li class="header">Enum Types</li>
+				<li><a href="/api/MahApps.Metro.Controls/ButtonsAlignment">ButtonsAlignment</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/FlyoutTheme">FlyoutTheme</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MouseWheelChange">MouseWheelChange</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MouseWheelState">MouseWheelState</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/MultiFrameImageMode">MultiFrameImageMode</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/NavigationButtonsPosition">Navigation<wbr>Buttons<wbr>Position</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/NumericInput">NumericInput</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/OverlayBehavior">OverlayBehavior</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/Position">Position</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeParameterChangeType">Range<wbr>Parameter<wbr>Change<wbr>Type</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/SplitViewDisplayMode">SplitViewDisplayMode</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/SplitViewPanePlacement">Split<wbr>View<wbr>Pane<wbr>Placement</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePartVisibility">TimePartVisibility</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerFormat">TimePickerFormat</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TransitionType">TransitionType</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/UnderlinedType">UnderlinedType</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">Window<wbr>Commands<wbr>Overlay<wbr>Behavior</a></li>
+			<li class="header">Interface Types</li>
+				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuHeaderItem">I<wbr>Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuItem">IHamburgerMenuItem</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuSeparatorItem">I<wbr>Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IMetroThumb">IMetroThumb</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IWindowPlacementSettings">I<wbr>Window<wbr>Placement<wbr>Settings</a></li>
+			<li class="header">Delegate Types</li>
+				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedRoutedEventHandler">Hamburger<wbr>Menu<wbr>Item<wbr>Invoked<wbr>Routed<wbr>Event<wbr>Handler</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/ItemClickRoutedEventHandler">Item<wbr>Click<wbr>Routed<wbr>Event<wbr>Handler</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventHandler">Numeric<wbr>Up<wbr>Down<wbr>Changed<wbr>Routed<wbr>Event<wbr>Handler</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeParameterChangedEventHandler">Range<wbr>Parameter<wbr>Changed<wbr>Event<wbr>Handler</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSelectionChangedEventHandler">Range<wbr>Selection<wbr>Changed<wbr>Event<wbr>Handler</a></li>
+
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+<section class="content-header">
+	<h1>MetroWindow <small>Class</small></h1>
+</section>
+<section class="content">
+	
+	
+		<h1 id="Summary">Summary</h1>
+	<div class="lead">
+    An extended, metrofied Window class.
+    </div>
+
+		<div class="panel panel-default">
+  			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-6">
+						<dl class="dl-horizontal">		
+
+								<dt>Namespace</dt>
+								<dd><a href="/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></dd>
+											
+							
+								<dt>Base Types</dt>
+								<dd>
+									<ul class="list-unstyled">										
+											<li>Window</li>								
+									</ul>
+								</dd>				
+							
+								<dt>Derived Types</dt>
+								<dd>
+									<ul class="list-unstyled">
+											<li><a href="/api/MahApps.Metro.Controls/MetroNavigationWindow">Metro<wbr>Navigation<wbr>Window</a></li>								
+									</ul>
+								</dd>			
+							
+						</dl>
+					</div>		
+					<div class="col-md-6">
+						<div class="mermaid">
+							graph BT
+	Type--&gt;Base0["Window"]
+	Type["MetroWindow"]
+class Type type-node
+	Derived0["MetroNavigationWindow"]--&gt;Type
+	click Derived0 "/api/MahApps.Metro.Controls/MetroNavigationWindow"
+
+						</div>
+					</div>
+				</div>
+  			</div>
+		</div>
+
+	<h1 id="Syntax">Syntax</h1>
+	<pre><code>[TemplatePart(Name = PART_Icon, Type = typeof(UIElement))]
+[TemplatePart(Name = PART_TitleBar, Type = typeof(UIElement))]
+[TemplatePart(Name = PART_WindowTitleBackground, Type = typeof(UIElement))]
+[TemplatePart(Name = PART_WindowTitleThumb, Type = typeof(Thumb))]
+[TemplatePart(Name = PART_FlyoutModalDragMoveThumb, Type = typeof(Thumb))]
+[TemplatePart(Name = PART_LeftWindowCommands, Type = typeof(ContentPresenter))]
+[TemplatePart(Name = PART_RightWindowCommands, Type = typeof(ContentPresenter))]
+[TemplatePart(Name = PART_WindowButtonCommands, Type = typeof(ContentPresenter))]
+[TemplatePart(Name = PART_OverlayBox, Type = typeof(Grid))]
+[TemplatePart(Name = PART_MetroActiveDialogContainer, Type = typeof(Grid))]
+[TemplatePart(Name = PART_MetroInactiveDialogsContainer, Type = typeof(Grid))]
+[TemplatePart(Name = PART_FlyoutModal, Type = typeof(Rectangle))]
+public class MetroWindow : Window</code></pre>
+
+
+
+	<h1 id="Attributes">Attributes</h1>
+	<div class="box">
+		<div class="box-body no-padding table-responsive">
+			<table class="table table-striped table-hover two-cols">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+					<tbody><tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+			</tbody></table>
+		</div>
+	</div>	
+
+
+
+
+			<h1 id="Constructors">Constructors</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover two-cols">
+						<thead>
+							<tr>
+								<th>Name</th>
+									<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/E24FD66B">MetroWindow<wbr>()<wbr></a></td>
+									<td>
+    Initializes a new instance of the MahApps.Metro.Controls.MetroWindow class.
+    </td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+
+			<h1 id="Events">Events</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover three-cols">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Type</th>
+								<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/683C0236">FlyoutsStatusChanged</a></td>
+								<td>RoutedEventHandler</td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/2C68EDF1">Window<wbr>Transition<wbr>Completed</a></td>
+								<td>RoutedEventHandler</td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+
+			<h1 id="fields">Fields</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover three-cols">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Constant Value</th>
+								<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/C3CA80AF">Flyout<wbr>Overlay<wbr>Brush<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/E5B7B5B2">FlyoutsProperty</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/FC3D1562">Flyouts<wbr>Status<wbr>Changed<wbr>Event</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0F5D55F5">GlowBrushProperty</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/00838FCF">Icon<wbr>Bitmap<wbr>Scaling<wbr>Mode<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/5CD4BF7E">IconEdgeModeProperty</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/3B92FA30">Icon<wbr>Overlay<wbr>Behavior<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/5DCA2837">Icon<wbr>Scaling<wbr>Mode<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/90525802">IconTemplateProperty</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/6A8FA959">Ignore<wbr>Taskbar<wbr>On<wbr>Maximize<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div>
+    Identifies the <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroWindow/6A65DF08">IgnoreTaskbarOnMaximize</a></code> dependency property.
+    </div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0B7F51C0">Is<wbr>Any<wbr>Dialog<wbr>Open<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div>
+    Identifies the <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroWindow/2445257E">IsAnyDialogOpen</a></code> dependency property.
+    </div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/3306430A">Is<wbr>Any<wbr>Dialog<wbr>Open<wbr>Property<wbr>Key</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/48785343">Is<wbr>Close<wbr>Button<wbr>Enabled<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0574C3B8">Is<wbr>Close<wbr>Button<wbr>Enabled<wbr>With<wbr>Dialog<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div>
+    Identifies the <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroWindow/945D1229">IsCloseButtonEnabledWithDialog</a></code> dependency property.
+    </div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/E20028FD">Is<wbr>Close<wbr>Button<wbr>Enabled<wbr>With<wbr>Dialog<wbr>Property<wbr>Key</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/C10741DF">Is<wbr>Max<wbr>Restore<wbr>Button<wbr>Enabled<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/CE1DFA1E">Is<wbr>Min<wbr>Button<wbr>Enabled<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/8BFF4679">Is<wbr>Window<wbr>Draggable<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/7BDFA5BB">Keep<wbr>Border<wbr>On<wbr>Maximize<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div>
+    <code class="cs">DependencyProperty</code> for <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroWindow/0727ACA0">KeepBorderOnMaximize</a></code>.
+    </div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/5868EBD0">Left<wbr>Window<wbr>Commands<wbr>Overlay<wbr>Behavior<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/788C8FB4">Left<wbr>Window<wbr>Commands<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/904E8202">Metro<wbr>Dialog<wbr>Options<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/6B68EB3C">Non<wbr>Active<wbr>Border<wbr>Brush<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/43F3CCC0">Non<wbr>Active<wbr>Glow<wbr>Brush<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/BC90C19B">Non<wbr>Active<wbr>Window<wbr>Title<wbr>Brush<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0F6CA6C3">OverlayBrushProperty</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/12596377">Overlay<wbr>Fade<wbr>In<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div>
+    Identifies the <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroWindow/0A7F26A1">OverlayFadeIn</a></code> dependency property.
+    </div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/B70AC47B">Overlay<wbr>Fade<wbr>Out<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div>
+    Identifies the <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroWindow/E122A5C8">OverlayFadeOut</a></code> dependency property.
+    </div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/CC1FBD74">Overlay<wbr>Opacity<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/D83D519E">Override<wbr>Default<wbr>Window<wbr>Commands<wbr>Brush<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/BEE4D089">Resize<wbr>Border<wbr>Thickness<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div>
+    <code class="cs">DependencyProperty</code> for <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroWindow/5B476D91">ResizeBorderThickness</a></code>.
+    </div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/944EBAAC">Right<wbr>Window<wbr>Commands<wbr>Overlay<wbr>Behavior<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/13CABC15">Right<wbr>Window<wbr>Commands<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/6C807037">Save<wbr>Window<wbr>Position<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/AF563D87">Show<wbr>Close<wbr>Button<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0B8220E8">Show<wbr>Dialogs<wbr>Over<wbr>Title<wbr>Bar<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/CCE2E306">Show<wbr>Icon<wbr>On<wbr>Title<wbr>Bar<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/68ADE896">Show<wbr>Max<wbr>Restore<wbr>Button<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/76EC1922">Show<wbr>Min<wbr>Button<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/F674ED19">Show<wbr>System<wbr>Menu<wbr>On<wbr>Right<wbr>Click<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/1B6B2E0E">Show<wbr>System<wbr>Menu<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/BD1CC641">ShowTitleBarProperty</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/352918BE">Title<wbr>Alignment<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/2D881354">Title<wbr>Bar<wbr>Height<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/1B136809">Title<wbr>Character<wbr>Casing<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/B3F5BF89">Title<wbr>Foreground<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/6C6A3CA4">Title<wbr>Template<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/B419A60B">Try<wbr>To<wbr>Be<wbr>Flicker<wbr>Free<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div>
+    <code class="cs">DependencyProperty</code> for <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroWindow/C1FAE2BB">TryToBeFlickerFree</a></code>.
+    </div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/2B999178">Use<wbr>None<wbr>Window<wbr>Style<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/2A57259E">Window<wbr>Button<wbr>Commands<wbr>Overlay<wbr>Behavior<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/A4901E5C">Window<wbr>Button<wbr>Commands<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/39C89E26">Window<wbr>Placement<wbr>Settings<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/DDB29F20">Window<wbr>Title<wbr>Brush<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/EC81E2E0">Window<wbr>Transition<wbr>Completed<wbr>Event</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/89B1783E">Window<wbr>Transitions<wbr>Enabled<wbr>Property</a></td>
+								<td></td>
+								<td>
+									<div></div>
+											<div><small><em>static</em></small></div>
+								</td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+
+			<h1 id="Properties">Properties</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover three-cols">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Value</th>
+								<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/728DF039">CriticalHandle</a></td>
+								<td>IntPtr</td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/E5770C7F">FlyoutOverlayBrush</a></td>
+								<td>Brush</td>
+								<td>
+									<div>
+    Gets or sets the brush used for the Flyouts overlay.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/C9BB025B">Flyouts</a></td>
+								<td><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></td>
+								<td>
+									<div>
+    Gets/sets the FlyoutsControl that hosts the window's flyouts.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/18F63E8E">GlowBrush</a></td>
+								<td>Brush</td>
+								<td>
+									<div>
+    Gets/sets the brush used for the Window's glow.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/C652B5BC">Icon<wbr>Bitmap<wbr>Scaling<wbr>Mode</a></td>
+								<td>BitmapScalingMode</td>
+								<td>
+									<div>
+    Gets/sets bitmap scaling mode of the titlebar icon.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0C2A0253">IconEdgeMode</a></td>
+								<td>EdgeMode</td>
+								<td>
+									<div>
+    Gets/sets edge mode of the titlebar icon.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/4B222C9C">IconOverlayBehavior</a></td>
+								<td><a href="/api/MahApps.Metro.Controls/OverlayBehavior">OverlayBehavior</a></td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/337EBE12">IconScalingMode</a></td>
+								<td><a href="/api/MahApps.Metro.Controls/MultiFrameImageMode">MultiFrameImageMode</a></td>
+								<td>
+									<div>
+    Gets/sets icon scaling mode of the titlebar.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/99DC2D14">IconTemplate</a></td>
+								<td>DataTemplate</td>
+								<td>
+									<div>
+    Gets/sets the icon content template to show a custom icon.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/6A65DF08">Ignore<wbr>Taskbar<wbr>On<wbr>Maximize</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Defines if the Taskbar should be ignored when maximizing a Window.
+    This only works with WindowStyle = None.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/2445257E">IsAnyDialogOpen</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets whether one or more dialogs are shown.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/FBED4D14">IsCloseButtonEnabled</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets/sets if the close button is enabled.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/945D1229">Is<wbr>Close<wbr>Button<wbr>Enabled<wbr>With<wbr>Dialog</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets or sets whether if the close button should be enabled or not if a dialog is shown.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/7CDAA4D5">Is<wbr>Max<wbr>Restore<wbr>Button<wbr>Enabled</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets/sets if the max/restore button is enabled.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0DF25155">IsMinButtonEnabled</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets/sets if the min button is enabled.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/75BB0250">IsWindowDraggable</a></td>
+								<td>bool</td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0727ACA0">KeepBorderOnMaximize</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets/sets if the border thickness value should be kept on maximize
+    if the MaxHeight/MaxWidth of the window is less than the monitor resolution.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0D19787F">LeftWindowCommands</a></td>
+								<td><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></td>
+								<td>
+									<div>
+    Gets/sets the left window commands that hosts the user commands.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/2E36779D">Left<wbr>Window<wbr>Commands<wbr>Overlay<wbr>Behavior</a></td>
+								<td><a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">Window<wbr>Commands<wbr>Overlay<wbr>Behavior</a></td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/B8557E53">LogicalChildren</a></td>
+								<td>IEnumerator</td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/9914CA18">MetroDialogOptions</a></td>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/MetroDialogSettings">MetroDialogSettings</a></td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/167BAAF1">NonActiveBorderBrush</a></td>
+								<td>Brush</td>
+								<td>
+									<div>
+    Gets/sets the brush used for the Window's non-active border.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/1FF44022">NonActiveGlowBrush</a></td>
+								<td>Brush</td>
+								<td>
+									<div>
+    Gets/sets the brush used for the Window's non-active glow.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/4EBC9436">Non<wbr>Active<wbr>Window<wbr>Title<wbr>Brush</a></td>
+								<td>Brush</td>
+								<td>
+									<div>
+    Gets/sets the brush used for the Window's non-active title bar.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/9636BF02">OverlayBrush</a></td>
+								<td>Brush</td>
+								<td>
+									<div>
+    Gets/sets the brush used for the dialog overlay.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0A7F26A1">OverlayFadeIn</a></td>
+								<td>Storyboard</td>
+								<td>
+									<div>
+    Gets or sets the overlay fade in storyboard.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/E122A5C8">OverlayFadeOut</a></td>
+								<td>Storyboard</td>
+								<td>
+									<div>
+    Gets or sets the overlay fade out storyboard.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0E115623">OverlayOpacity</a></td>
+								<td>double</td>
+								<td>
+									<div>
+    Gets/sets the opacity used for the dialog overlay.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/FA6A4486">Override<wbr>Default<wbr>Window<wbr>Commands<wbr>Brush</a></td>
+								<td>Brush</td>
+								<td>
+									<div>
+    Allows easy handling of window commands brush. Theme is also applied based on this brush.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/5B476D91">Resize<wbr>Border<wbr>Thickness</a></td>
+								<td>Thickness</td>
+								<td>
+									<div>
+    Gets or sets resize border thickness. This enables animation, styling, binding, etc...
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/675F509E">RightWindowCommands</a></td>
+								<td><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></td>
+								<td>
+									<div>
+    Gets/sets the right window commands that hosts the user commands.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/8365703B">Right<wbr>Window<wbr>Commands<wbr>Overlay<wbr>Behavior</a></td>
+								<td><a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">Window<wbr>Commands<wbr>Overlay<wbr>Behavior</a></td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/524B0013">SaveWindowPosition</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets/sets whether the window will save it's position between loads.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/9B876699">ShowCloseButton</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets or sets whether if the close button is visible.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/EBCAFB8F">Show<wbr>Dialogs<wbr>Over<wbr>Title<wbr>Bar</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Get/sets whether dialogs show over the title bar.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/F8510C60">ShowIconOnTitleBar</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Get/sets whether the titlebar icon is visible or not.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/217A82B9">ShowMaxRestoreButton</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets or sets whether if the maximize/restore button is visible and the maximize/restore system menu is enabled.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/B48CF00A">ShowMinButton</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets or sets whether if the minimize button is visible and the minimize system menu is enabled.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0A6F5369">ShowSystemMenu</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets or sets a value that indicates whether the system menu should popup with left mouse click on the window icon.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/BF4C88B2">Show<wbr>System<wbr>Menu<wbr>On<wbr>Right<wbr>Click</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets or sets a value that indicates whether the system menu should popup with right mouse click if the mouse position is on title bar or on the entire window if it has no title bar (and no title bar height).
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/2E3D4C64">ShowTitleBar</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets/sets whether the TitleBar is visible or not.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/7D1C9EAF">TitleAlignment</a></td>
+								<td>HorizontalAlignment</td>
+								<td>
+									<div>
+    Gets/sets the title horizontal alignment.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/109F5933">TitleBarHeight</a></td>
+								<td>int</td>
+								<td>
+									<div>
+    Gets/sets the TitleBar's height.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/E5EECD60">TitleCharacterCasing</a></td>
+								<td>CharacterCasing</td>
+								<td>
+									<div>
+    Character casing of the title
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0CC585D1">TitleForeground</a></td>
+								<td>Brush</td>
+								<td>
+									<div>
+    Gets/sets the brush used for the titlebar's foreground.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/94F9E714">TitleTemplate</a></td>
+								<td>DataTemplate</td>
+								<td>
+									<div>
+    Gets/sets the title content template to show a custom title.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/C1FAE2BB">TryToBeFlickerFree</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets or sets wether the resizing of the window should be tried in a way that does not cause flicker/jitter, especially when resizing from the left side.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/482B0ABE">UseNoneWindowStyle</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets/sets whether the WindowStyle is None or not.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/412AB501">WindowButtonCommands</a></td>
+								<td><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></td>
+								<td>
+									<div>
+    Gets/sets the window button commands that hosts the min/max/close commands.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/F0037E52">Window<wbr>Button<wbr>Commands<wbr>Overlay<wbr>Behavior</a></td>
+								<td><a href="/api/MahApps.Metro.Controls/OverlayBehavior">OverlayBehavior</a></td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/1F0A6322">Window<wbr>Placement<wbr>Settings</a></td>
+								<td><a href="/api/MahApps.Metro.Controls/IWindowPlacementSettings">I<wbr>Window<wbr>Placement<wbr>Settings</a></td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/D8DBA4FF">WindowTitleBrush</a></td>
+								<td>Brush</td>
+								<td>
+									<div>
+    Gets/sets the brush used for the Window's title bar.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/EC0DBD28">Window<wbr>Transitions<wbr>Enabled</a></td>
+								<td>bool</td>
+								<td>
+									<div>
+    Gets/sets whether the window's entrance transition animation is enabled.
+    </div>
+								</td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+
+			<h1 id="Methods">Methods</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover three-cols">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Value</th>
+								<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/0085814F">Get<wbr>Window<wbr>Placement<wbr>Settings<wbr>()<wbr></a></td>
+								<td><a href="/api/MahApps.Metro.Controls/IWindowPlacementSettings">I<wbr>Window<wbr>Placement<wbr>Settings</a></td>
+								<td>
+									<div>
+    Gets the window placement settings (can be overwritten).
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/64D25EBE">HideOverlay<wbr>()<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/918C5552">HideOverlayAsync<wbr>()<wbr></a></td>
+								<td>Task</td>
+								<td>
+									<div>
+    Begins to hide the MetroWindow's overlay effect.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/2E126C0A">IsOverlayVisible<wbr>()<wbr></a></td>
+								<td>bool</td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/88241D88">OnApplyTemplate<wbr>()<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/DBC02DF5">OnClosing<wbr>(CancelEventArgs)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/2416312E">ResetStoredFocus<wbr>()<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+    Clears the stored element which would get the focus after closing a dialog.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/5E528060">ShowOverlay<wbr>()<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/266A31CC">ShowOverlayAsync<wbr>()<wbr></a></td>
+								<td>Task</td>
+								<td>
+									<div>
+    Begins to show the MetroWindow's overlay effect.
+    </div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow/49081CDF">StoreFocus<wbr>(IInputElement)<wbr></a></td>
+								<td>void</td>
+								<td>
+									<div>
+    Stores the given element, or the last focused element via FocusManager, for restoring the focus after closing a dialog.
+    </div>
+								</td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+
+
+			<h1 id="ExtensionMethods">Extension Methods</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover three-cols">
+						<thead>
+							<tr>
+								<th>Name</th>
+								<th>Value</th>
+								<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/5160A8A3">Get<wbr>Current<wbr>Dialog<wbr>Async<wbr>&lt;TDialog&gt;<wbr><wbr>()<wbr></a></td>
+								<td>Task<wbr>&lt;TDialog&gt;<wbr></td>
+								<td>
+									<div>
+    Gets the current shown dialog in async way.
+    </div>
+										<div><small><em>From <a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager">DialogManager</a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/F35E5CAA">HideMetroDialogAsync<wbr>(BaseMetroDialog, <wbr>MetroDialogSettings)<wbr></a></td>
+								<td>Task</td>
+								<td>
+									<div>
+    Hides a visible Metro Dialog instance.
+    </div>
+										<div><small><em>From <a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager">DialogManager</a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/573D3CAB">ShowInputAsync<wbr>(string, <wbr>string, <wbr>MetroDialogSettings)<wbr></a></td>
+								<td>Task<wbr>&lt;string&gt;<wbr></td>
+								<td>
+									<div>
+    Creates a InputDialog inside of the current window.
+    </div>
+										<div><small><em>From <a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager">DialogManager</a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/02010D4E">ShowLoginAsync<wbr>(string, <wbr>string, <wbr>LoginDialogSettings)<wbr></a></td>
+								<td>Task<wbr>&lt;<a href="/api/MahApps.Metro.Controls.Dialogs/LoginDialogData">LoginDialogData</a>&gt;<wbr></td>
+								<td>
+									<div>
+    Creates a LoginDialog inside of the current window.
+    </div>
+										<div><small><em>From <a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager">DialogManager</a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/68C773A8">ShowMessageAsync<wbr>(string, <wbr>string, <wbr>MessageDialogStyle, <wbr>MetroDialogSettings)<wbr></a></td>
+								<td>Task<wbr>&lt;<a href="/api/MahApps.Metro.Controls.Dialogs/MessageDialogResult">MessageDialogResult</a>&gt;<wbr></td>
+								<td>
+									<div>
+    Creates a MessageDialog inside of the current window.
+    </div>
+										<div><small><em>From <a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager">DialogManager</a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/EFF86D15">ShowMetroDialogAsync<wbr>(BaseMetroDialog, <wbr>MetroDialogSettings)<wbr></a></td>
+								<td>Task</td>
+								<td>
+									<div>
+    Adds a Metro Dialog instance to the specified window and makes it visible asynchronously.
+    If you want to wait until the user has closed the dialog, use <code class="cs"><a href="/api/MahApps.Metro.Controls.Dialogs/BaseMetroDialog/48B8045F">WaitUntilUnloadedAsync()</a></code>
+    <p>You have to close the resulting dialog yourself with <code class="cs"><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/F35E5CAA">HideMetroDialogAsync(MetroWindow, BaseMetroDialog, MetroDialogSettings)</a></code>.</p>
+    </div>
+										<div><small><em>From <a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager">DialogManager</a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/4AEB8DBE">ShowMetroDialogAsync<wbr>&lt;TDialog&gt;<wbr><wbr>(<wbr>Metro<wbr>Dialog<wbr>Settings)<wbr></a></td>
+								<td>Task<wbr>&lt;TDialog&gt;<wbr></td>
+								<td>
+									<div>
+    Adds a Metro Dialog instance of the given type to the specified window and makes it visible asynchronously.
+    If you want to wait until the user has closed the dialog, use <code class="cs"><a href="/api/MahApps.Metro.Controls.Dialogs/BaseMetroDialog/48B8045F">WaitUntilUnloadedAsync()</a></code>
+    <p>You have to close the resulting dialog yourself with <code class="cs"><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/F35E5CAA">HideMetroDialogAsync(MetroWindow, BaseMetroDialog, MetroDialogSettings)</a></code>.</p>
+    </div>
+										<div><small><em>From <a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager">DialogManager</a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/C9715656">Show<wbr>Modal<wbr>Input<wbr>External<wbr>(string, <wbr>string, <wbr>MetroDialogSettings)<wbr></a></td>
+								<td>string</td>
+								<td>
+									<div>
+    Creates a InputDialog outside of the current window.
+    </div>
+										<div><small><em>From <a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager">DialogManager</a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/527C24F7">Show<wbr>Modal<wbr>Login<wbr>External<wbr>(string, <wbr>string, <wbr>LoginDialogSettings)<wbr></a></td>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/LoginDialogData">LoginDialogData</a></td>
+								<td>
+									<div>
+    Creates a LoginDialog outside of the current window.
+    </div>
+										<div><small><em>From <a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager">DialogManager</a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/8D8A1048">Show<wbr>Modal<wbr>Message<wbr>External<wbr>(string, <wbr>string, <wbr>MessageDialogStyle, <wbr>MetroDialogSettings)<wbr></a></td>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/MessageDialogResult">MessageDialogResult</a></td>
+								<td>
+									<div>
+    Creates a MessageDialog ouside of the current window.
+    </div>
+										<div><small><em>From <a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager">DialogManager</a></em></small></div>
+								</td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager/9BE6F844">ShowProgressAsync<wbr>(string, <wbr>string, <wbr>bool, <wbr>MetroDialogSettings)<wbr></a></td>
+								<td>Task<wbr>&lt;<a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController">Progress<wbr>Dialog<wbr>Controller</a>&gt;<wbr></td>
+								<td>
+									<div>
+    Creates a ProgressDialog inside of the current window.
+    </div>
+										<div><small><em>From <a href="/api/MahApps.Metro.Controls.Dialogs/DialogManager">DialogManager</a></em></small></div>
+								</td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+
+	
+</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
+        </div>
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
+                Generated by <a href="https://wyam.io">Wyam</a>
+            </footer>
+        </div>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
+            $(document).ready(function() {
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
+            });
+        </script>
+    
+</body></html>

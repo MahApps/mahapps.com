@@ -63,6 +63,7 @@
                                     <li><a href="/about">About This Project</a></li>
         <li><a href="/docs">Docs</a></li>
         <li class="active"><a href="/blog">Blog</a></li>
+        <li><a href="/api">API</a></li>
  
                         </ul>       
                     </div>
@@ -149,22 +150,22 @@
 <h1 id="features-changes">Features / Changes</h1>
 <ul>
 <li>The Glow (window) should not be clickable #1829</li>
-<li>Add a tooltip text converter to <code>RangeSlider</code> for lower and upper value tooltip #1833 (@Alkalinee)</li>
+<li>Add a tooltip text converter to <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> for lower and upper value tooltip #1833 (@Alkalinee)</li>
 <li>Changable Margin of ContentPresenter in <code>MetroListBoxItem</code> #1892 (@ye4241)</li>
 <li>LoginDialog Password preview feature #1873 #1546 (@bitbeans, @djengineerllc)</li>
 <li><code>WaitUntilUnloadedAsync</code> for custom dialogs #1910 #1910 (@IsNull)</li>
-<li>New <code>Culture</code> dependency property for <code>NumericUpDown</code> #1874 (@panastas91)</li>
-<li><code>WindowCommands</code> height span now the entire height of the title bar #1902 (@Dotnetifier)</li>
+<li>New <code>Culture</code> dependency property for <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> #1874 (@panastas91)</li>
+<li><code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> height span now the entire height of the title bar #1902 (@Dotnetifier)</li>
 <li>Add support for initial password in login dialog #1915 (@Stoom)</li>
 <li>The <code>FontSize</code> in Dialogs is now changeable #1941</li>
 <li>Add mechanism for easy access of a dialog from a view model #1943 (@ButchersBoy)
 <ul>
 <li>Use attached property in Window XAML: <code>Dialog:DialogParticipation.Register="{Binding}"</code></li>
-<li>And then <code>IDialogCoordinator</code> / <code>DialogCoordinator.Instance</code> to launch dialogs from inside a VM</li>
+<li>And then <code><a href="/api/MahApps.Metro.Controls.Dialogs/IDialogCoordinator">IDialogCoordinator</a></code> / <code>DialogCoordinator.Instance</code> to launch dialogs from inside a VM</li>
 <li>See: <a href="http://dragablz.net/2015/05/29/using-mahapps-dialog-boxes-in-a-mvvm-setup/">http://dragablz.net/2015/05/29/using-mahapps-dialog-boxes-in-a-mvvm-setup/</a></li>
 </ul>
 </li>
-<li><code>ToggleSwitch</code> improvements and fixes #1945
+<li><code><a href="/api/MahApps.Metro.Controls/ToggleSwitch">ToggleSwitch</a></code> improvements and fixes #1945
 <ul>
 <li>new dependency property <code>ToggleSwitchButtonStyle</code> and style key <code>MetroToggleSwitchButton</code></li>
 <li><code>BorderThickness</code> and <code>BorderBrush</code> for toggle button style now customizable</li>
@@ -182,7 +183,7 @@
 </li>
 <li>new dependency property <code>ThumbIndicatorWidth</code></li>
 <li><code>Validation.ErrorTemplate</code> support #1917</li>
-<li>Keyboard focus if the <code>ToggleSwitch</code> itself or the toggle button was clicked</li>
+<li>Keyboard focus if the <code><a href="/api/MahApps.Metro.Controls/ToggleSwitch">ToggleSwitch</a></code> itself or the toggle button was clicked</li>
 <li>Fixed on/off label binding issue #1867</li>
 <li>introduce commands for mvvm usage #1464
 <ul>
@@ -192,7 +193,7 @@
 </li>
 </ul>
 </li>
-<li>New <code>ComboBoxHelper</code> attached properties <code>MaxLength</code> and <code>CharacterCasing</code> #1949 #1948</li>
+<li>New <code><a href="/api/MahApps.Metro.Controls/ComboBoxHelper">ComboBoxHelper</a></code> attached properties <code>MaxLength</code> and <code>CharacterCasing</code> #1949 #1948</li>
 <li>DropDownButton improvements #1952 #1574
 <ul>
 <li>new <code>ButtonStyle</code> dependency property and new style key <code>ButtonDropDownStyle</code> for the default</li>
@@ -203,8 +204,8 @@
 </ul>
 </li>
 <li>Watermark on <code>ComboBox</code> where <code>IsEditable="False"</code> #1958 #1953</li>
-<li>New <code>SelectAllOnFocus</code> dependency property for <code>NumericUpDown</code> (with default to true like ComboBox does)</li>
-<li>Possiblity to define the width of the <code>NumericUpDown</code> up and down buttons #1962 (@Prophetebe)</li>
+<li>New <code>SelectAllOnFocus</code> dependency property for <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> (with default to true like ComboBox does)</li>
+<li>Possiblity to define the width of the <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> up and down buttons #1962 (@Prophetebe)</li>
 <li>SplitButton improvements #1977
 <ul>
 <li>new <code>ButtonStyle</code>, <code>ButtonArrowStyle</code> dependency properties and new style keys <code>ButtonSplitStyle</code>, <code>ButtonSplitArrowStyle</code></li>
@@ -218,12 +219,12 @@
 <li>Expander improvements #1988
 <ul>
 <li>Styling fixes (margin, padding, border thickness)</li>
-<li>new <code>ExpanderHelper</code> with
+<li>new <code><a href="/api/MahApps.Metro.Controls/ExpanderHelper">ExpanderHelper</a></code> with
 <ul>
 <li>4 new attached dependency properties <code>HeaderUpStyle</code>, <code>HeaderDownStyle</code> and <code>HeaderLeftStyle</code>, <code>HeaderRightStyle</code>. So it's now possible to create your own header toggle styles without rewriting the <code>Expander</code> style.</li>
 </ul>
 </li>
-<li>Better handling with <code>BorderThickness</code> property, the <code>Expander</code> uses now the new value converter <code>ThicknessBindingConverter</code>, so setting the <code>BorderThickness</code> is much better than before.</li>
+<li>Better handling with <code>BorderThickness</code> property, the <code>Expander</code> uses now the new value converter <code><a href="/api/MahApps.Metro.Converters/ThicknessBindingConverter">ThicknessBindingConverter</a></code>, so setting the <code>BorderThickness</code> is much better than before.</li>
 <li>Click on Expander header support #1291 (just do the default expander behavior)</li>
 <li>For <code>GroupBox</code>
 <ul>
@@ -235,11 +236,11 @@
 </li>
 <li>Support for multiple dialogs #1974</li>
 <li>Improved <code>DataGrid</code> row and cell color styling #2004</li>
-<li>New attached dependency property <code>DisabledVisualElementVisibility</code> for <code>TextBox</code>, <code>PasswordBox</code>, <code>RichTextBox</code> and <code>NumericUpDown</code>, this makes it easier to hide this element if we don't want/need it in special cases (inside other controls or using in a DataGrid).</li>
-<li>Add Minimum, Maximum properties to <code>ProgressDialogController</code> #2013 #1702</li>
-<li>New <code>ButtonsAlignment</code> (attached) property to have possibility to set <code>NumericUpDown</code> (<code>TextBox</code>) buttons on the left side #2024 (@QuantumDeveloper)</li>
+<li>New attached dependency property <code>DisabledVisualElementVisibility</code> for <code>TextBox</code>, <code>PasswordBox</code>, <code>RichTextBox</code> and <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code>, this makes it easier to hide this element if we don't want/need it in special cases (inside other controls or using in a DataGrid).</li>
+<li>Add Minimum, Maximum properties to <code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController">ProgressDialogController</a></code> #2013 #1702</li>
+<li>New <code><a href="/api/MahApps.Metro.Controls/ButtonsAlignment">ButtonsAlignment</a></code> (attached) property to have possibility to set <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> (<code>TextBox</code>) buttons on the left side #2024 (@QuantumDeveloper)</li>
 <li>Support for <code>CancellationToken</code> to cancel dialogs #2022 #2018 (@thoemmi)</li>
-<li>Changed default value of <code>ProgressRing.IsActive</code> to <code>true</code> #2029</li>
+<li>Changed default value of <code><a href="/api/MahApps.Metro.Controls/ProgressRing/3C8D999D">ProgressRing.IsActive</a></code> to <code>true</code> #2029</li>
 <li><code>MetroDialogs</code> fixes and changes #2032 #1149
 <ul>
 <li><code>DialogSettings</code> property is now public</li>
@@ -255,11 +256,11 @@
 </li>
 <li>SelectAllOnFocus for input and login dialogs #1750</li>
 <li>New <code>MetroValidationPopup</code> style and new <code>CloseOnMouseLeftButtonDown</code> dependency property #2058 #1469</li>
-<li>Progress bar in <code>ProgressDialog</code> is not set to Indetermined by default anymore, must be set explicitly by calling <code>ProgressDialogController.SetIndeterminate()</code> #2097</li>
-<li>Added <code>Closed</code> event to <code>ProgressDialogController</code> #2097</li>
+<li>Progress bar in <code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialog">ProgressDialog</a></code> is not set to Indetermined by default anymore, must be set explicitly by calling <code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController/2B806126">ProgressDialogController.SetIndeterminate()</a></code> #2097</li>
+<li>Added <code>Closed</code> event to <code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController">ProgressDialogController</a></code> #2097</li>
 <li>Catch <code>ConfigurationErrorsException</code> if the user.config file is corrupt #2112 (@Remolutionary)</li>
 <li>Only apply SizeToContent workaround when necessary #2116 (@tgjones)</li>
-<li><code>Canceled</code> event (and <code>IsCanceled</code> property) for <code>ProgressDialogController</code> #2150 (@bigworld12)</li>
+<li><code>Canceled</code> event (and <code>IsCanceled</code> property) for <code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController">ProgressDialogController</a></code> #2150 (@bigworld12)</li>
 <li>New attached property <code>Controls:ControlsHelper.ContentCharacterCasing</code> for ContentControl, DropDownButton and in the future for WindowCommands
 <ul>
 <li>Fixes #1701: DropdownButton with all UpperCase label</li>
@@ -275,50 +276,50 @@
 </li>
 <li><code>StatusBar</code>'s background color now matches the title bar #2173 #2174 (@thoemmi)</li>
 <li>Change <code>Slider</code>value on MouseWheel event. #2171 (@xxMUROxx)</li>
-<li>New <code>MetroThumb</code> in order to be better in Touch environment #1853 (@ycaoyang)</li>
-<li><code>NumericUpDown</code> with Integer only option #2065 (@feinstein)</li>
+<li>New <code><a href="/api/MahApps.Metro.Controls/MetroThumb">MetroThumb</a></code> in order to be better in Touch environment #1853 (@ycaoyang)</li>
+<li><code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> with Integer only option #2065 (@feinstein)</li>
 <li><code>CornerRadius</code> for <code>ComboBox</code> #2207</li>
-<li>Font related dependency properties for <code>DataGridNumericUpDownColumn</code> #2205
+<li>Font related dependency properties for <code><a href="/api/MahApps.Metro.Controls/DataGridNumericUpDownColumn">DataGridNumericUpDownColumn</a></code> #2205
 <ul>
 <li>FontFamily, FontSize, FontStyle, FontWeight</li>
 <li>Foreground, which will override the <code>DataCell</code> foreground inheritence</li>
 </ul>
 </li>
-<li>New <code>ContentControlEx</code> to reduce some boilerplate XAML code
+<li>New <code><a href="/api/MahApps.Metro.Controls/ContentControlEx">ContentControlEx</a></code> to reduce some boilerplate XAML code
 <ul>
-<li>Used for all possible <code>ContentCharacterCasing</code> usage (<code>Button</code>, <code>GroupBox</code>, <code>Expander</code>, <code>ListView</code> columns, <code>DataGrid</code> columns, <code>DropDownButton</code>, <code>SplitButton</code>, <code>WindowCommands</code>, <code>TabItem</code>)</li>
+<li>Used for all possible <code>ContentCharacterCasing</code> usage (<code>Button</code>, <code>GroupBox</code>, <code>Expander</code>, <code>ListView</code> columns, <code>DataGrid</code> columns, <code><a href="/api/MahApps.Metro.Controls/DropDownButton">DropDownButton</a></code>, <code><a href="/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></code>, <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code>, <code>TabItem</code>)</li>
 </ul>
 </li>
-<li>Copy command for the message text in <code>MessageDialog</code> #2223 (@akinyooa)</li>
-<li>New option to hide username on <code>LoginDialog</code> #2230 (@mgnslndh)</li>
+<li>Copy command for the message text in <code><a href="/api/MahApps.Metro.Controls.Dialogs/MessageDialog">MessageDialog</a></code> #2223 (@akinyooa)</li>
+<li>New option to hide username on <code><a href="/api/MahApps.Metro.Controls.Dialogs/LoginDialog">LoginDialog</a></code> #2230 (@mgnslndh)</li>
 <li>Use a <code>Thumb</code> for Window DragMove #2226</li>
 <li><code>ComboBox</code> style respects textbox helper button content property #2264 (@ButchersBoy)</li>
-<li>Show <code>Tile</code> as disabled #2263 #2262 (@xxMUROxx)</li>
-<li>New dependency property <code>CloseButtonIsCancel</code> for <code>Flyout</code> close button #2256 (@BlythMeister)</li>
+<li>Show <code><a href="/api/MahApps.Metro.Controls/Tile">Tile</a></code> as disabled #2263 #2262 (@xxMUROxx)</li>
+<li>New dependency property <code>CloseButtonIsCancel</code> for <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> close button #2256 (@BlythMeister)</li>
 <li>New property <code>DefaultButtonFocus</code> for default focused button in MessageDialog #2265 (@BlythMeister)</li>
-<li><code>UseFloatingWatermark</code> for <code>NumericUpDown</code> #2202 #2245 (@xxMUROxx)</li>
-<li>Set Opacity to .55 if <code>SplitButton </code>/<code>DropDownButton</code> is disabled #2272 (@p76984275)</li>
+<li><code>UseFloatingWatermark</code> for <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> #2202 #2245 (@xxMUROxx)</li>
+<li>Set Opacity to .55 if <code><a href="/api/MahApps.Metro.Controls/SplitButton">SplitButton</a> </code>/<code><a href="/api/MahApps.Metro.Controls/DropDownButton">DropDownButton</a></code> is disabled #2272 (@p76984275)</li>
 </ul>
 <h1 id="bugfixes">Bugfixes</h1>
 <ul>
 <li>Fixed resizing cursors #1830</li>
 <li>Fixed external dialog flickering #1845 #1859</li>
-<li>Fixed a <code>MetroProgressBar</code> performance issue #1855 #1860 (@zandrei007)</li>
+<li>Fixed a <code><a href="/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></code> performance issue #1855 #1860 (@zandrei007)</li>
 <li>Fixed Win32Exception <code>Invalid window handle</code> thrown when <code>IgnoreTaskbarOnMaximize</code> bound to a true value #1880 #1883</li>
 <li>Fixed flickering glow window borders (on resizing) #1864</li>
 <li>Fixed exception in Visual Studio Designer with CustomDialog #1850 (@marcpiechura)</li>
-<li>Fixed <code>NumericUpDown</code> <code>IsReadonly</code> issue #1840 (@xxMUROxx)</li>
+<li>Fixed <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> <code>IsReadonly</code> issue #1840 (@xxMUROxx)</li>
 <li>Fixed <code>ThemeManager</code> issue if resource source case in <code>App.xaml</code> does not match #1759 (@sickboy)</li>
 <li>Fixed validation popup location flicker #1925 #1922</li>
 <li>Fixed fullscreen using window <code>FlowDirection="RightToLeft"</code> #1927 #1924</li>
-<li>Fixed possible <code>System.NullReferenceException</code> for <code>HandleTheme</code> in <code>BaseMetroDialog</code> #1933 #1931</li>
+<li>Fixed possible <code>System.NullReferenceException</code> for <code>HandleTheme</code> in <code><a href="/api/MahApps.Metro.Controls.Dialogs/BaseMetroDialog">BaseMetroDialog</a></code> #1933 #1931</li>
 <li>Fixed blurred arrows in <code>TreeView</code> #1934 #1907</li>
 <li>Fixed ResizeGrip usage by setting the WindowChrome ResizeGripDirection #1937 #1832</li>
 <li>Fixed wrong overlapping window button commands with <code>ShowInTaskbar=False</code> #1940 #1912</li>
-<li>Fixed <code>IsReadOnly</code> usage/binding for <code>NumericUpDown</code> (and <code>TextBox</code>...) #1942 #1914</li>
-<li>Fixed <code>ToggleSwitch</code> validation shows red border but doesn't show error text #1917 #1945</li>
-<li>Fixed MVVM Binding for <code>OnLabel</code>/<code>OffLabel</code> at <code>ToggleSwitch</code> #1867 #1945</li>
-<li>Fixed focus problem with <code>NumericUpDown</code> #1903 #1959</li>
+<li>Fixed <code>IsReadOnly</code> usage/binding for <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> (and <code>TextBox</code>...) #1942 #1914</li>
+<li>Fixed <code><a href="/api/MahApps.Metro.Controls/ToggleSwitch">ToggleSwitch</a></code> validation shows red border but doesn't show error text #1917 #1945</li>
+<li>Fixed MVVM Binding for <code>OnLabel</code>/<code>OffLabel</code> at <code><a href="/api/MahApps.Metro.Controls/ToggleSwitch">ToggleSwitch</a></code> #1867 #1945</li>
+<li>Fixed focus problem with <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> #1903 #1959</li>
 <li>Fixed JIT Compiler encountered an internal limitation #1919 #1971</li>
 <li>Fixed access keys in <code>CheckBox</code>, <code>RadioButton</code>, and <code>GroupBox</code> #1979</li>
 <li>Fixed close Message dialog when pressing <strong>Enter</strong> or <strong>Esc</strong> #1976 #1980</li>
@@ -328,44 +329,44 @@
 <li>Fixed NumericUpDown for runtime changes to StringFormat and Culture properties #2001</li>
 <li>Fixed <code>DataGrid</code> row conditional foreground #1939 (@spaccabit)</li>
 <li>Fixed overriding <code>DataGridRow</code> style (e.g. row selection) #1876, #1492, #1243, #809</li>
-<li>Fixed <code>DataGridNumericUpDownColumn</code> styling #1878</li>
+<li>Fixed <code><a href="/api/MahApps.Metro.Controls/DataGridNumericUpDownColumn">DataGridNumericUpDownColumn</a></code> styling #1878</li>
 <li>Fixed missing <code>DataGridRow</code> validation #1930</li>
-<li>Fixed System.Windows.Media.Animation warnings with <code>MetroProgressBar</code> #2012</li>
-<li>Fixed an issue with <code>RangeSlider</code> with binding and values between ticks #2006 (@drayde)</li>
+<li>Fixed System.Windows.Media.Animation warnings with <code><a href="/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></code> #2012</li>
+<li>Fixed an issue with <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> with binding and values between ticks #2006 (@drayde)</li>
 <li>Fixed <code>ScrollBarHelper.VerticalScrollBarOnLeftSide</code> usage #2025</li>
-<li>Fixed not updating <code>Pivot</code>'s header selected item when modify the Selected-Pivot-Item by code #2010 (@ycaoyang)</li>
-<li>Fixed <code>ProgressDialog</code> cannot find the AccentColorBrush resources #1149</li>
-<li>Fixed using TextBoxHelper.ClearTextButton on a <code>NumericUpDown</code> won't rise its value changed event #2031</li>
+<li>Fixed not updating <code><a href="/api/MahApps.Metro.Controls/Pivot">Pivot</a></code>'s header selected item when modify the Selected-Pivot-Item by code #2010 (@ycaoyang)</li>
+<li>Fixed <code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialog">ProgressDialog</a></code> cannot find the AccentColorBrush resources #1149</li>
+<li>Fixed using TextBoxHelper.ClearTextButton on a <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> won't rise its value changed event #2031</li>
 <li>Fixed <code>MetroCircleToggleButtonStyle</code> BorderBrush not using TemplateBinding #1573</li>
 <li>Fixed databound <code>TreeViewItem</code> does not respond to changes when inside MahApps window. #2038</li>
 <li>Fixed TreeView usage with large data #1896 #2041</li>
 <li>Fixed ValidationError popup shows only first char of the error string #1926</li>
 <li>Fixed usage of <code>TextmarkHelper.Watermark</code> with <code>Caliburn.Micro</code> #1059</li>
 <li>Fixed not changable background color of a checkbox or radio button #1906</li>
-<li>Fixed <code>Padding</code> usage for <code>MetroTabItem</code>: How to increase the spacing between Tab Items? #2074</li>
+<li>Fixed <code>Padding</code> usage for <code><a href="/api/MahApps.Metro.Controls/MetroTabItem">MetroTabItem</a></code>: How to increase the spacing between Tab Items? #2074</li>
 <li>Fixed obj ref null exception if there is no Window Theme at runtime. #2087 (@ButchersBoy)</li>
 <li>Fixed border for tiles #2063 (@bigworld12)</li>
-<li>Fixed ReadOnly, TabIndex, TabStop and manually input stuff for <code>NumericUpDown</code> #1818</li>
-<li>Fixed Watermark/Text Alignment of <code>DatePicker</code> and <code>NumericUpDown</code> controls #1683</li>
+<li>Fixed ReadOnly, TabIndex, TabStop and manually input stuff for <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> #1818</li>
+<li>Fixed Watermark/Text Alignment of <code>DatePicker</code> and <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> controls #1683</li>
 <li>Fixed missing Glow border corners #2143 #2118</li>
 <li>Fixed incorrect restore location after Aero Snap #2144 (@tgjones)</li>
 <li>Removed unneeded MessageDialogStyle param from IDialogCoordinator.ShowLoginAsync method #2146 (@acejordin)</li>
-<li>Fixed <code>RangeSlider</code> memory leak #2064</li>
-<li>Fixed closing a <code>MetroTabItem</code> added from a child #1278</li>
+<li>Fixed <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> memory leak #2064</li>
+<li>Fixed closing a <code><a href="/api/MahApps.Metro.Controls/MetroTabItem">MetroTabItem</a></code> added from a child #1278</li>
 <li>Fixed nasty bug when using <code>OverrideDefaultWindowCommandsBrush</code> #2086</li>
 <li>Fixed <code>ProgressBar</code> ignoring 'IsIndeterminate' value #2180 #2184</li>
 <li>Fixed <code>WindowCommands.ShowSeparators="False"</code> is ignored #2188 #2195</li>
 <li>Fixed missing <code>ContentCharacterCasing</code> for <code>ToggleButton</code> #2197</li>
 <li>Fixed <code>ComboBox</code> watermark padding issue with <code>IsEditable</code> states #2210</li>
 <li>Fixed missing <code>ContentCharacterCasing</code> for <code>TabItem</code> #2209</li>
-<li>Fixed style inheritence of <code>MetroAnimatedTabControl</code> style #2219</li>
-<li>Fixed <code>NumericUpDown</code> culture problem #2149 #2199 (@fredericoregateiro)</li>
+<li>Fixed style inheritence of <code><a href="/api/MahApps.Metro.Controls/MetroAnimatedTabControl">MetroAnimatedTabControl</a></code> style #2219</li>
+<li>Fixed <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> culture problem #2149 #2199 (@fredericoregateiro)</li>
 <li>Fixed floating watermarks #2236 #2225 (@Dotnetifier)</li>
 <li>Fixed not draggable Window when Flyout is open #1821 #1635 #2226</li>
-<li>Fixed <code>AvalonDock</code> anchorables could not be dragged inside <code>MetroWindow</code> #2036 #2226</li>
+<li>Fixed <code>AvalonDock</code> anchorables could not be dragged inside <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> #2036 #2226</li>
 <li>Fixed System menu present everywhere when fullscreen is toggled on #1849</li>
-<li>Fixed not possible to format <code>NumericUpDown</code> value as hexidecimal #1375 #2245 (@xxMUROxx)</li>
-<li>Fixed <code>NumericUpDown</code> when setting maximum in code behind #1885 #2245 (@xxMUROxx)</li>
+<li>Fixed not possible to format <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> value as hexidecimal #1375 #2245 (@xxMUROxx)</li>
+<li>Fixed <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> when setting maximum in code behind #1885 #2245 (@xxMUROxx)</li>
 </ul>
 
 

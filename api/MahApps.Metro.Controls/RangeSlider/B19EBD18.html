@@ -1,0 +1,403 @@
+﻿<!DOCTYPE html><html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <title>MahApps.Metro - API - RangeSlider.UpperValue Property</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        
+    </head>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
+
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                    </div>
+            
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/about">About This Project</a></li>
+        <li><a href="/docs">Docs</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li class="active"><a href="/api">API</a></li>
+ 
+                        </ul>       
+                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#Summary">Summary</a></p>
+<p><a href="#Syntax">Syntax</a></p>
+<p><a href="#Attributes">Attributes</a></p>
+<p><a href="#Value">Value</a></p>
+<hr class="infobar-hidden">
+</div>
+
+                </section>
+                <section class="sidebar">    
+                                     
+                    	
+	    <script src="/assets/js/lunr.min.js"></script>
+    <script src="/assets/js/searchIndex.js"></script>
+    <div class="sidebar-form">
+        <div class="input-group">
+            <input type="text" name="search" id="search" class="form-control" placeholder="Search Types...">
+            <span class="input-group-btn">
+                <button class="btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+    <div id="search-results">
+    </div>
+    <script>
+        function runSearch(query){
+            $("#search-results").empty();			
+            if( query.length < 2 ){
+                return;
+            }			
+            var results = searchModule.search("*" + query + "*");
+            var listHtml = "<ul class='sidebar-menu'>";	
+            listHtml += "<li class='header'>Type Results</li>";	
+            if(results.length == 0 ){
+                listHtml += "<li>No results found</li>";
+            } else {					
+                for(var i = 0; i < results.length; ++i){
+                    var res = results[i];
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
+                }				
+            }
+            listHtml += "</ul>";				
+            $("#search-results").append(listHtml);
+        }
+
+        $(document).ready(function(){
+            $("#search").on('input propertychange paste', function() {
+                runSearch($("#search").val());
+            });
+        });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
+    </script>
+	
+    <hr>
+
+                    <ul class="sidebar-menu">
+                        
+			<li class="header">Namespace</li>
+		<li><a href="/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></li>
+		<li class="header">Type</li>
+		<li><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></li>
+		<li role="separator" class="divider"></li>
+			<li class="header">Constructors</li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/98C062C6">RangeSlider<wbr>()<wbr></a></li>
+			<li class="header">Field Members</li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/31DAA65B">Auto<wbr>Tool<wbr>Tip<wbr>Lower<wbr>Value<wbr>Template<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/144C97A0">Auto<wbr>Tool<wbr>Tip<wbr>Placement<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/4D57EB4F">Auto<wbr>Tool<wbr>Tip<wbr>Precision<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/E4F8AF88">Auto<wbr>Tool<wbr>Tip<wbr>Range<wbr>Values<wbr>Template<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/647594C8">Auto<wbr>Tool<wbr>Tip<wbr>Upper<wbr>Value<wbr>Template<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/0379BC68">Central<wbr>Thumb<wbr>Drag<wbr>Completed<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/428326D8">Central<wbr>Thumb<wbr>Drag<wbr>Delta<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/FA175D36">Central<wbr>Thumb<wbr>Drag<wbr>Started<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/E3D49936">ExtendedModeProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/A9111EF3">IntervalProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/7FE52D56">Is<wbr>Move<wbr>To<wbr>Point<wbr>Enabled<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/D2749285">Is<wbr>Selection<wbr>Range<wbr>Enabled<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/78069379">Is<wbr>Snap<wbr>To<wbr>Tick<wbr>Enabled<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/76FC66D5">Lower<wbr>Thumb<wbr>Drag<wbr>Completed<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/3B752B71">Lower<wbr>Thumb<wbr>Drag<wbr>Delta<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/612B7E9C">Lower<wbr>Thumb<wbr>Drag<wbr>Started<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/A3F28CB7">Lower<wbr>Value<wbr>Changed<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/B3FEC05A">LowerValueProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/2A83AFBC">MinRangeProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/7A324E3E">Min<wbr>Range<wbr>Width<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/A06FAC2C">MoveAllBack</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/A110F58C">MoveAllForward</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/C1701D6F">MoveBack</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/713CDCB4">MoveForward</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/1E934910">Move<wbr>Whole<wbr>Range<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/75E14168">OrientationProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/43A204A3">Range<wbr>Selection<wbr>Changed<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/7B1236C4">SelectionEndProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/8CF7D053">Selection<wbr>Start<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/9D40ADA1">Tick<wbr>Frequency<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/F800564F">Tick<wbr>Placement<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/FDFCF478">TicksProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/2C78C354">Upper<wbr>Thumb<wbr>Drag<wbr>Completed<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/1B30C34F">Upper<wbr>Thumb<wbr>Drag<wbr>Delta<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/34844C0F">Upper<wbr>Thumb<wbr>Drag<wbr>Started<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/73C1A556">Upper<wbr>Value<wbr>Changed<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/9BE84AA0">UpperValueProperty</a></li>
+			<li class="header">Event Members</li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/77A02B56">Central<wbr>Thumb<wbr>Drag<wbr>Completed</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/5BFEA8DC">Central<wbr>Thumb<wbr>Drag<wbr>Delta</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/F82623BD">Central<wbr>Thumb<wbr>Drag<wbr>Started</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/9A392B62">Lower<wbr>Thumb<wbr>Drag<wbr>Completed</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/3930ADB4">LowerThumbDragDelta</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/6FA83496">Lower<wbr>Thumb<wbr>Drag<wbr>Started</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/845B9828">LowerValueChanged</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/FB5988D7">Range<wbr>Selection<wbr>Changed</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/7DC219E4">Upper<wbr>Thumb<wbr>Drag<wbr>Completed</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/D512E281">UpperThumbDragDelta</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/24609FB1">Upper<wbr>Thumb<wbr>Drag<wbr>Started</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/9A10B3AD">UpperValueChanged</a></li>
+			<li class="header">Property Members</li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/6F42F189">Auto<wbr>Tool<wbr>Tip<wbr>Lower<wbr>Value<wbr>Template</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/F7570A56">AutoToolTipPlacement</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/0FAC2153">AutoToolTipPrecision</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/2C6376BF">Auto<wbr>Tool<wbr>Tip<wbr>Range<wbr>Values<wbr>Template</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/47547B73">Auto<wbr>Tool<wbr>Tip<wbr>Upper<wbr>Value<wbr>Template</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/1F70C8AF">ExtendedMode</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/9530A203">Interval</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/2B66E7D1">IsMoveToPointEnabled</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/4523B4D0">Is<wbr>Selection<wbr>Range<wbr>Enabled</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/0EDACCA9">IsSnapToTickEnabled</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/2AB0BABA">LowerValue</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/11501C8C">MinRange</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/E8565C59">MinRangeWidth</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/E4693AFD">MovableRange</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/FF66CC84">MoveWholeRange</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/67BADD1C">Orientation</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/5C138AEB">SelectionEnd</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/9013C74F">SelectionStart</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/EB669364">TickFrequency</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/F6AB370A">TickPlacement</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/089CCEBA">Ticks</a></li>
+				<li class="selected"><a href="/api/MahApps.Metro.Controls/RangeSlider/B19EBD18">UpperValue</a></li>
+			<li class="header">Method Members</li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/BF49D0A3">MoveSelection<wbr>(bool)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/B4945AA4">OnApplyTemplate<wbr>()<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/33782279">OnMaximumChanged<wbr>(double, <wbr>double)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/991DAA37">OnMinimumChanged<wbr>(double, <wbr>double)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RangeSlider/8D292D3E">ResetSelection<wbr>(bool)<wbr></a></li>
+
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+<section class="content-header">
+			<h3><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a>.</h3>
+	<h1>UpperValue <small>Property</small></h1>
+</section>
+<section class="content">
+	
+	
+		<h1 id="Summary">Summary</h1>
+	<div class="lead">
+    Get/sets the end of the range selection.
+    </div>
+
+		<div class="panel panel-default">
+  			<div class="panel-body">
+				<dl class="dl-horizontal">	
+						
+						<dt>Namespace</dt>
+						<dd><a href="/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></dd>
+					
+						<dt>Containing Type</dt>
+						<dd><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></dd>		
+					
+				</dl>
+  			</div>
+		</div>
+
+	<h1 id="Syntax">Syntax</h1>
+	<pre><code>[Bindable(true), Category("Common")]
+public double UpperValue { get; set; }</code></pre>
+
+
+
+	<h1 id="Attributes">Attributes</h1>
+	<div class="box">
+		<div class="box-body no-padding table-responsive">
+			<table class="table table-striped table-hover two-cols">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+					<tbody><tr>
+						<td>Bindable</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Category</td>
+						<td></td>
+					</tr>
+			</tbody></table>
+		</div>
+	</div>	
+
+
+	<h1 id="Value">Value</h1>
+	<div class="box">
+		<div class="box-body no-padding table-responsive">
+			<table class="table table-striped table-hover two-cols">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody><tr>
+					<td>double</td>
+					<td></td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>	
+
+
+	
+</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
+        </div>
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
+                Generated by <a href="https://wyam.io">Wyam</a>
+            </footer>
+        </div>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
+            $(document).ready(function() {
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
+            });
+        </script>
+    
+</body></html>

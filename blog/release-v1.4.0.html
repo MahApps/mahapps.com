@@ -63,6 +63,7 @@
                                     <li><a href="/about">About This Project</a></li>
         <li><a href="/docs">Docs</a></li>
         <li class="active"><a href="/blog">Blog</a></li>
+        <li><a href="/api">API</a></li>
  
                         </ul>       
                     </div>
@@ -150,7 +151,7 @@
 <ul>
 <li><p>Don't focus flyout on close <a href="https://github.com/MahApps/MahApps.Metro/pull/2671">#2671</a> (@ButchersBoy) This hack was introduced with <a href="https://github.com/MahApps/MahApps.Metro/pull/1805">#1805</a> which was noticed by manual testing.</p>
 </li>
-<li><p>Don't focus the <code>FlyoutsControl</code></p>
+<li><p>Don't focus the <code><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></code></p>
 </li>
 <li><p>Fix another <code>TopMost</code> issue: If the window is top most and you switch to another window the top most will be gone.</p>
 </li>
@@ -158,7 +159,7 @@
 </li>
 <li><p>Icon scaling <a href="https://github.com/MahApps/MahApps.Metro/pull/2667">#2667</a> (@thoemmi)</p>
 <ul>
-<li>New property <code>IconScalingMode</code> to MetroWindow. It's forwarded to <code>MultiFrameImage.MultiFrameImageMode</code> to set the icon scaling.
+<li>New property <code>IconScalingMode</code> to MetroWindow. It's forwarded to <code><a href="/api/MahApps.Metro.Controls/MultiFrameImage/311E8CC5">MultiFrameImage.MultiFrameImageMode</a></code> to set the icon scaling.
 <ul>
 <li><code>MultiFrameImageMode.ScaleDownLargerFrame</code><br>
 It takes the smallest frame which from the icon which has equal or larger size as the window's icon template. The frame is scaled down it's larger.<br>
@@ -170,24 +171,24 @@ It takes the largest frame from the window which has equal or smaller size than 
 </li>
 </ul>
 </li>
-<li><p>Changes for <code>DateTimePicker</code> and <code>TimePicker</code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2710">#2710</a></p>
+<li><p>Changes for <code><a href="/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></code> and <code><a href="/api/MahApps.Metro.Controls/TimePicker">TimePicker</a></code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2710">#2710</a></p>
 <ul>
 <li>Change <code>DateTimePicker.SelectedDate</code> to <code>BindsTwoWayByDefault</code>. The reason is that we do not have to use Mode=TwoWay explicit, and DatePicker.SelectedDate has BindsTwoWayByDefault too.</li>
 <li>[Fix] Issue where Binding issues on DateTimePicker/TimePicker are shown on the output window</li>
 <li>[Fix] Issue where Hour 0 is not shown when using 24h clock</li>
 <li>Fix issue where clearing text does not immediately set value to <code>null</code> but <code>00:00:00</code> and <code>0001.01.01 00.00.00</code> respectively</li>
-<li>Change icon for <code>TimePicker</code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2700">#2700</a> (@p76984275)</li>
-<li>Hide <code>DateTimePicker</code> and <code>TimePicker</code> on lost focus. Fix also Shift+Tab focus moving.</li>
+<li>Change icon for <code><a href="/api/MahApps.Metro.Controls/TimePicker">TimePicker</a></code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2700">#2700</a> (@p76984275)</li>
+<li>Hide <code><a href="/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></code> and <code><a href="/api/MahApps.Metro.Controls/TimePicker">TimePicker</a></code> on lost focus. Fix also Shift+Tab focus moving.</li>
 </ul>
 </li>
-<li><p>New <code>SplitView</code> and <code>HamburgerMenu</code> control <a href="https://github.com/MahApps/MahApps.Metro/pull/2704">#2704</a></p>
+<li><p>New <code><a href="/api/MahApps.Metro.Controls/SplitView">SplitView</a></code> and <code><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></code> control <a href="https://github.com/MahApps/MahApps.Metro/pull/2704">#2704</a></p>
 <ul>
-<li>The <code>SplitView</code> source comes from the <code>UniversalWPF</code> <a href="https://github.com/dotMorten/UniversalWPF">GitHub repo</a> (from @dotMorten) with some changes from @Evangelink and @punker76.</li>
-<li>The <code>HamburgerMenu</code> source comes from the <code>UWPCommunityToolkit</code> <a href="https://github.com/Microsoft/UWPCommunityToolkit">GitHub repo</a>.<br>
+<li>The <code><a href="/api/MahApps.Metro.Controls/SplitView">SplitView</a></code> source comes from the <code>UniversalWPF</code> <a href="https://github.com/dotMorten/UniversalWPF">GitHub repo</a> (from @dotMorten) with some changes from @Evangelink and @punker76.</li>
+<li>The <code><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></code> source comes from the <code>UWPCommunityToolkit</code> <a href="https://github.com/Microsoft/UWPCommunityToolkit">GitHub repo</a>.<br>
 <img src="https://cloud.githubusercontent.com/assets/658431/19662268/0fbc2870-9a37-11e6-8591-3192e9cb220a.png" class="img-fluid" alt="2016-10-24_22h06_08"></li>
 </ul>
 </li>
-<li><p>New dependency properties for <code>MetroWindow</code> to set the brush and opacity for the overlay if a dialog is shown.</p>
+<li><p>New dependency properties for <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> to set the brush and opacity for the overlay if a dialog is shown.</p>
 <ul>
 <li><code>OverlayBrush</code> sets the brush used for the dialog overlay.</li>
 <li><code>OverlayOpacity</code> sets the opacity used for the dialog overlay (0 = disabled, 1 = full overlay).</li>
@@ -195,7 +196,7 @@ It takes the largest frame from the window which has equal or smaller size than 
 </li>
 <li><p>The <code>TextBox</code>'s with the styles <code>MetroButtonTextBox</code> and <code>SearchMetroTextBox</code> can now use the button also if <code>IsReadOnly="True"</code> (only if the button command is set)</p>
 </li>
-<li><p>New <code>AutoWatermark</code> attached property at <code>TextBoxHelper</code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2722">#2722</a> (@xxMUROxx) which is able to get the <code>DisplayAttribute</code> from the bound property in following cases:</p>
+<li><p>New <code>AutoWatermark</code> attached property at <code><a href="/api/MahApps.Metro.Controls/TextBoxHelper">TextBoxHelper</a></code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2722">#2722</a> (@xxMUROxx) which is able to get the <code>DisplayAttribute</code> from the bound property in following cases:</p>
 <ul>
 <li>Binding that is <strong>supported</strong>
 <ul>
@@ -210,13 +211,13 @@ It takes the largest frame from the window which has equal or smaller size than 
 <li><code>"{Binding Path=CollectionProperty[0]}"</code></li>
 </ul>
 </li>
-<li>This property is available for <code>TextBox</code>, <code>ComboBox</code>, <code>NumericUpDown</code>, <code>DatePicker</code>, <code>TimePicker</code> and <code>DateTimePicker</code></li>
+<li>This property is available for <code>TextBox</code>, <code>ComboBox</code>, <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code>, <code>DatePicker</code>, <code><a href="/api/MahApps.Metro.Controls/TimePicker">TimePicker</a></code> and <code><a href="/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></code></li>
 </ul>
 </li>
-<li><p><code>Flyout</code> changes for better <code>Margin</code> usage</p>
+<li><p><code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> changes for better <code>Margin</code> usage</p>
 <ul>
-<li>This changes affects only users who used the sample from the source which shows how to use the <code>FlyoutsControl</code> actual width and a <code>Margin</code> for the <code>Flyout</code></li>
-<li>It's now possible to work without the actual width and use only the <code>Margin</code> or <code>HorizontalContentAlignemnt</code> for Left/Right and <code>VerticalContentAnlignment</code> for Top/Bottom <code>Flyout</code>.
+<li>This changes affects only users who used the sample from the source which shows how to use the <code><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></code> actual width and a <code>Margin</code> for the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code></li>
+<li>It's now possible to work without the actual width and use only the <code>Margin</code> or <code>HorizontalContentAlignemnt</code> for Left/Right and <code>VerticalContentAnlignment</code> for Top/Bottom <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>.
 <ul>
 <li><code>Margin="200 30 0 0"</code> and <code>Position="Right"</code> Flyout with left an top Margin</li>
 <li><code>HorizontalContentAlignment="Stretch"</code> and <code>Position="Right"</code> Flyout which covers the whole window</li>
@@ -282,9 +283,9 @@ It takes the largest frame from the window which has equal or smaller size than 
   &lt;/TextBox&gt;
 </code></pre>
 </li>
-<li><p><code>CustomDialog</code> improvements <a href="https://github.com/MahApps/MahApps.Metro/pull/2775">#2775</a></p>
+<li><p><code><a href="/api/MahApps.Metro.Controls.Dialogs/CustomDialog">CustomDialog</a></code> improvements <a href="https://github.com/MahApps/MahApps.Metro/pull/2775">#2775</a></p>
 <ul>
-<li>New overloaded generic method <code>ShowMetroDialogAsync</code> to create and show custom dialogs (self created dialogs which are inherited from <code>CustomDialog</code>)</li>
+<li>New overloaded generic method <code>ShowMetroDialogAsync</code> to create and show custom dialogs (self created dialogs which are inherited from <code><a href="/api/MahApps.Metro.Controls.Dialogs/CustomDialog">CustomDialog</a></code>)</li>
 </ul>
 <pre><code class="language-csharp">  // create and show a new custom dialog of the given type with the default dialog settings
   var customBaseMetroDialog = await this.ShowMetroDialogAsync&lt;CustomBaseMetroDialog&gt;();
@@ -306,7 +307,7 @@ It takes the largest frame from the window which has equal or smaller size than 
 <ul>
 <li>It's now also possible to configure the dialog settings at the custom dialogs class itself.</li>
 </ul>
-<pre><code class="language-csharp">  protected override MetroDialogSettings ConfigureSettings(MetroDialogSettings settings)
+<pre><code class="language-csharp">  protected override <a href="/api/MahApps.Metro.Controls.Dialogs/MetroDialogSettings">MetroDialogSettings</a> ConfigureSettings(MetroDialogSettings settings)
   {
   	return new MyCustomDialogSettings();
   }
@@ -335,7 +336,7 @@ It takes the largest frame from the window which has equal or smaller size than 
   	using MahApps.Metro.Controls;
   	using MahApps.Metro.Controls.Dialogs;
 
-  	public partial class CustomBaseMetroDialog : CustomDialog
+  	public partial class CustomBaseMetroDialog : <a href="/api/MahApps.Metro.Controls.Dialogs/CustomDialog">CustomDialog</a>
   	{
   		public CustomBaseMetroDialog()
   		{
@@ -347,7 +348,7 @@ It takes the largest frame from the window which has equal or smaller size than 
   			InitializeComponent();
   		}
 
-  		public CustomBaseMetroDialog(MetroWindow parentWindow, MetroDialogSettings settings) : base(parentWindow, settings)
+  		public CustomBaseMetroDialog(MetroWindow parentWindow, <a href="/api/MahApps.Metro.Controls.Dialogs/MetroDialogSettings">MetroDialogSettings</a> settings) : base(parentWindow, settings)
   		{
   			InitializeComponent();
   		}

@@ -1,21 +1,19 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - Quick Start</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/assets/css/theme/theme.css" rel="stylesheet" />
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet" />
+        <link href="/assets/css/override.css" rel="stylesheet">
         <script src="/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>        
         <script src="/assets/js/app.min.js"></script>         
@@ -65,6 +63,7 @@
                                     <li><a href="/about">About This Project</a></li>
         <li class="active"><a href="/docs">Docs</a></li>
         <li><a href="/blog">Blog</a></li>
+        <li><a href="/api">API</a></li>
  
                         </ul>       
                     </div>
@@ -142,50 +141,50 @@
 <pre><code class="language-powershell">PM&gt; Install-Package MahApps.Metro
 </code></pre>
 <p>If you want to use the pre-release packages of MahApps.Metro (these have the latest code and newest features), you need to enable <strong>Include Prerelease</strong> in the GUI:</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/include_prerelease.png" class="img-fluid" alt="" /></p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/include_prerelease.png" class="img-fluid" alt=""></p>
 <p>or use the Package Manager Console:</p>
 <pre><code class="language-powershell">PM&gt; Install-Package MahApps.Metro -Pre
 </code></pre>
 <h3 id="styling">Styling the Window</h3>
 <p>There's two ways you can style your Window using MahApps.Metro:</p>
 <ul>
-<li>You can use the included <code>MetroWindow</code> control or,</li>
+<li>You can use the included <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> control or,</li>
 <li>Design your own window</li>
 </ul>
-<p>For now we'll use <code>MetroWindow</code>, as this approach will work for a good percentage of apps and is the quickest and easiest way to get going. If you want to learn about rolling your own window, check out <a href="advanced-guide.html">the guide</a>.</p>
+<p>For now we'll use <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code>, as this approach will work for a good percentage of apps and is the quickest and easiest way to get going. If you want to learn about rolling your own window, check out <a href="advanced-guide.html">the guide</a>.</p>
 <h4 id="using-the-metrowindow-control">Using the MetroWindow Control</h4>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/01_UnstyledWindow.png" class="img-fluid" alt="" /></p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/01_UnstyledWindow.png" class="img-fluid" alt=""></p>
 <h4 id="modifying-the-xaml-file">Modifying the XAML file</h4>
 <p>After installing MahApps.Metro:</p>
 <ul>
 <li>open up <code>MainWindow.xaml</code></li>
-<li>add this attribute inside the opening Window tag. (It's how you reference other namespaces in XAML):<br />
-<code>xmlns:Controls=&quot;clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro&quot;</code><br />
-or<br />
-<code>xmlns:Controls=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;</code></li>
+<li>add this attribute inside the opening Window tag. (It's how you reference other namespaces in XAML):<br>
+<code>xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"</code><br>
+or<br>
+<code>xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"</code></li>
 <li>change <code>&lt;Window ...</code> tag to <code>&lt;Controls:MetroWindow ...</code> (remember to change the closing tag too!)</li>
 </ul>
 <p>You should have something like this (don't copy and paste this):</p>
-<pre><code class="language-xml">&lt;Controls:MetroWindow x:Class=&quot;WpfApplication.MainWindow&quot;
-                      xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-                      xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-                      xmlns:Controls=&quot;clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro&quot;
-                      Title=&quot;MainWindow&quot;
-                      Height=&quot;600&quot;
-                      Width=&quot;800&quot;&gt;
+<pre><code class="language-xml">&lt;Controls:MetroWindow x:Class="WpfApplication.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      Title="MainWindow"
+                      Height="600"
+                      Width="800"&gt;
 
   &lt;!-- your content --&gt;
 
 &lt;/Controls:MetroWindow&gt;
 </code></pre>
 <h4 id="modifying-the-codebehind-file">Modifying the CodeBehind File</h4>
-<p>You'll also need to modify the <code>MainWindow.xaml.cs</code> file  so that the base class for <code>MainWindow</code> matches the <code>MetroWindow</code> class of the XAML file.</p>
+<p>You'll also need to modify the <code>MainWindow.xaml.cs</code> file  so that the base class for <code>MainWindow</code> matches the <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> class of the XAML file.</p>
 <pre><code class="language-csharp">// To access MetroWindow, add the following reference
 using MahApps.Metro.Controls;
 
 namespace WpfApplication
 {
-  public partial class MainWindow : MetroWindow
+  public partial class MainWindow : <a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a>
   {
     public MainWindow()
     {
@@ -207,43 +206,43 @@ namespace WpfApplication
 }
 </code></pre>
 <p>The end result will look something like this:</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/02_PartiallyStyledWindow.png" class="img-fluid" alt="" /></p>
-<hr />
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/02_PartiallyStyledWindow.png" class="img-fluid" alt=""></p>
+<hr>
 <h4 id="using-built-in-styles">Using Built-In Styles</h4>
 <p>All of MahApp.Metro's resources are contained within separate resource dictionaries. In order for most of the controls to adopt the MahApps.Metro theme, you will need to add the ResourceDictionaries to your <code>App.xaml</code>.</p>
 <p><strong>App.xaml (v2.0.0 and newer)</strong></p>
-<pre><code class="language-xml">&lt;Application x:Class=&quot;WpfApplication.App&quot;
-             xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-             StartupUri=&quot;MainWindow.xaml&quot;&gt;
+<pre><code class="language-xml">&lt;Application x:Class="WpfApplication.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml"&gt;
   &lt;Application.Resources&gt;
     &lt;ResourceDictionary&gt;
       &lt;ResourceDictionary.MergedDictionaries&gt;
         &lt;!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! --&gt;
-        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
-        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml&quot; /&gt;
+        &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" /&gt;
+        &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" /&gt;
         &lt;!-- Accent and AppTheme setting --&gt;
-        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml&quot; /&gt;
+        &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" /&gt;
       &lt;/ResourceDictionary.MergedDictionaries&gt;
     &lt;/ResourceDictionary&gt;
   &lt;/Application.Resources&gt;
 &lt;/Application&gt;
 </code></pre>
 <p><strong>App.xaml (v1.6.5 and older)</strong></p>
-<pre><code class="language-xml">&lt;Application x:Class=&quot;WpfApplication.App&quot;
-             xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-             StartupUri=&quot;MainWindow.xaml&quot;&gt;
+<pre><code class="language-xml">&lt;Application x:Class="WpfApplication.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="MainWindow.xaml"&gt;
   &lt;Application.Resources&gt;
     &lt;ResourceDictionary&gt;
       &lt;ResourceDictionary.MergedDictionaries&gt;
         &lt;!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! --&gt;
-        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
-        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml&quot; /&gt;
-        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml&quot; /&gt;
+        &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" /&gt;
+        &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" /&gt;
+        &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" /&gt;
         &lt;!-- Accent and AppTheme setting --&gt;
-        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml&quot; /&gt;
-        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml&quot; /&gt;
+        &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" /&gt;
+        &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" /&gt;
       &lt;/ResourceDictionary.MergedDictionaries&gt;
     &lt;/ResourceDictionary&gt;
   &lt;/Application.Resources&gt;
@@ -253,41 +252,41 @@ namespace WpfApplication
 <p>Make sure that all file names are Case Sensitive!</p>
 </blockquote>
 <p>The end result will look something like this. If you want to know more about how the control works, more information can be found below.</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/03_StyledWindow.png" class="img-fluid" alt="" /></p>
-<hr />
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/03_StyledWindow.png" class="img-fluid" alt=""></p>
+<hr>
 <h3 id="explanation">What's a MetroWindow?</h3>
-<p>The default <code>MetroWindow</code> is made up of a few components:</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/04_ExplainedStyledWindow.png" class="img-fluid" alt="" /></p>
+<p>The default <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> is made up of a few components:</p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/04_ExplainedStyledWindow.png" class="img-fluid" alt=""></p>
 <p>If you don't like the elements that are labelled, fear not, they're all optional.</p>
 <ul>
-<li>The titlebar is what sets <code>MetroWindow</code> apart from rolling your own. <code>ShowTitleBar=&quot;True|False&quot;</code></li>
-<li>The resize grip is not the <em>only</em> way to resize a <code>MetroWindow</code> - all edges and corners can be gripped, but given a <code>MetroWindow</code> doesn't have a noticeable window &quot;chrome&quot; like an aero window, the resize grip can help reassure users.</li>
+<li>The titlebar is what sets <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> apart from rolling your own. <code>ShowTitleBar="True|False"</code></li>
+<li>The resize grip is not the <em>only</em> way to resize a <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> - all edges and corners can be gripped, but given a <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> doesn't have a noticeable window "chrome" like an aero window, the resize grip can help reassure users.</li>
 <li>Instead of using static images, the icons for minimize/maximize/close are a font called <strong>Marlett</strong>. To explain why this is so requires a walk down memory lane, or at least a visit to <a href="https://en.wikipedia.org/wiki/Marlett">the Wikipedia article</a> about it.</li>
-<li>You can even hide the icons on the title bar by setting the <code>ShowIconOnTitleBar=&quot;True|False&quot;</code></li>
+<li>You can even hide the icons on the title bar by setting the <code>ShowIconOnTitleBar="True|False"</code></li>
 </ul>
 <h3 id="customization">Customization</h3>
 <h4 id="windowbuttoncommands">WindowButtonCommands</h4>
-<p><code>WindowButtonCommands</code> are the minimize, maximize/restore, and close buttons. You can hide the buttons with <code>ShowMinButton=&quot;True|False&quot;</code>, <code>ShowMaxRestoreButton=&quot;True|False&quot;</code> and <code>ShowCloseButton=&quot;True|False&quot;</code>.</p>
-<p>The visibility of the minimize and maximize/restore buttons are also effected by the <code>ResizeMode</code>. If <code>ResizeMode=&quot;NoResize&quot;</code> the buttons are collapsed. If <code>ResizeMode=&quot;CanMinimize&quot;</code> the maximize/restore button is collapsed.</p>
+<p><code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> are the minimize, maximize/restore, and close buttons. You can hide the buttons with <code>ShowMinButton="True|False"</code>, <code>ShowMaxRestoreButton="True|False"</code> and <code>ShowCloseButton="True|False"</code>.</p>
+<p>The visibility of the minimize and maximize/restore buttons are also effected by the <code>ResizeMode</code>. If <code>ResizeMode="NoResize"</code> the buttons are collapsed. If <code>ResizeMode="CanMinimize"</code> the maximize/restore button is collapsed.</p>
 <h4 id="windowcommands">(Left-/Right-) WindowCommands</h4>
 <p>You can add your own controls to <code>LeftWindowsCommands</code> or <code>RightWindowsCommands</code> - by default, buttons have a style automatically applied to them to make them fit in with the rest of the <code>WindowsCommands</code>. As of 0.9, you are no longer limited to just buttons, but any control. Be aware, you're responsible for styling anything other than buttons.</p>
-<p>Including this within the <code>&lt;MetroWindow&gt; ... &lt;/MetroWindow&gt;</code> tag:</p>
-<pre><code class="language-xml">&lt;Controls:MetroWindow x:Class=&quot;MahAppsMetroSample.MainWindow&quot;
-                      xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-                      xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-                      xmlns:Controls=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
-                      xmlns:iconPacks=&quot;http://metro.mahapps.com/winfx/xaml/iconpacks&quot;
-                      Title=&quot;MahApps.Metro.Sample&quot;
-                      GlowBrush=&quot;{DynamicResource AccentColorBrush}&quot;
-                      WindowStartupLocation=&quot;CenterScreen&quot;&gt;
+<p>Including this within the <code>&lt;<a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a>&gt; ... &lt;/MetroWindow&gt;</code> tag:</p>
+<pre><code class="language-xml">&lt;Controls:MetroWindow x:Class="MahAppsMetroSample.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                      Title="MahApps.Metro.Sample"
+                      GlowBrush="{DynamicResource AccentColorBrush}"
+                      WindowStartupLocation="CenterScreen"&gt;
 
   &lt;Controls:MetroWindow.RightWindowCommands&gt;
     &lt;Controls:WindowCommands&gt;
-      &lt;Button Content=&quot;settings&quot; /&gt;
+      &lt;Button Content="settings" /&gt;
       &lt;Button&gt;
-        &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
-          &lt;iconPacks:PackIconModern Width=&quot;24&quot; Height=&quot;24&quot; Kind=&quot;FoodCupcake&quot; /&gt;
-            &lt;TextBlock Margin=&quot;4 0 0 0&quot; VerticalAlignment=&quot;Center&quot; Text=&quot;deploy cupcakes&quot; /&gt;
+        &lt;StackPanel Orientation="Horizontal"&gt;
+          &lt;iconPacks:PackIconModern Width="24" Height="24" Kind="FoodCupcake" /&gt;
+            &lt;TextBlock Margin="4 0 0 0" VerticalAlignment="Center" Text="deploy cupcakes" /&gt;
         &lt;/StackPanel&gt;
       &lt;/Button&gt;
     &lt;/Controls:WindowCommands&gt;
@@ -302,8 +301,8 @@ namespace WpfApplication
 <p>Make sure to include the <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">MahApps.Metro.IconPacks</a> to get the cupcake.</p>
 </blockquote>
 <p>Produces this window titlebar:</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/05_WindowCommands.png" class="img-fluid" alt="" /></p>
-<p>The foreground (link) colour of <code>(Left-/Right-) WindowCommands</code> will always be white, <em>unless</em> the titlebar is disabled, in which case it will be the reverse of whatever theme you have selected. For example, using the White/Light theme, the foreground colour will be black.</p>
+<p><img src="%7B%7Bsite.baseurl%7D%7D/images/05_WindowCommands.png" class="img-fluid" alt=""></p>
+<p>The foreground (link) colour of <code>(Left-/Right-) <a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> will always be white, <em>unless</em> the titlebar is disabled, in which case it will be the reverse of whatever theme you have selected. For example, using the White/Light theme, the foreground colour will be black.</p>
 <h3 id="moreinfo">What's Next?</h3>
 <p>For extended documentation, take a look at the <a href="%7B%7Bsite.baseurl%7D%7D/controls/">Controls</a> page</p>
 
@@ -392,5 +391,5 @@ namespace WpfApplication
                 }, 500);
             });
         </script>
-    </body>
-</html>
+    
+</body></html>

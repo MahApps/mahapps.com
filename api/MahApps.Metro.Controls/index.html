@@ -1,0 +1,990 @@
+﻿<!DOCTYPE html><html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <title>MahApps.Metro - API - MahApps.Metro.Controls Namespace</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        
+    </head>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
+
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                    </div>
+            
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/about">About This Project</a></li>
+        <li><a href="/docs">Docs</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li class="active"><a href="/api">API</a></li>
+ 
+                        </ul>       
+                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#ClassTypes">Class Types</a></p>
+<p><a href="#EnumTypes">Enum Types</a></p>
+<p><a href="#InterfaceTypes">Interface Types</a></p>
+<p><a href="#DelegateTypes">Delegate Types</a></p>
+<p><a href="#Namespaces">Namespaces</a></p>
+<hr class="infobar-hidden">
+</div>
+
+                </section>
+                <section class="sidebar">    
+                                     
+                    	
+	    <script src="/assets/js/lunr.min.js"></script>
+    <script src="/assets/js/searchIndex.js"></script>
+    <div class="sidebar-form">
+        <div class="input-group">
+            <input type="text" name="search" id="search" class="form-control" placeholder="Search Types...">
+            <span class="input-group-btn">
+                <button class="btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+    <div id="search-results">
+    </div>
+    <script>
+        function runSearch(query){
+            $("#search-results").empty();			
+            if( query.length < 2 ){
+                return;
+            }			
+            var results = searchModule.search("*" + query + "*");
+            var listHtml = "<ul class='sidebar-menu'>";	
+            listHtml += "<li class='header'>Type Results</li>";	
+            if(results.length == 0 ){
+                listHtml += "<li>No results found</li>";
+            } else {					
+                for(var i = 0; i < results.length; ++i){
+                    var res = results[i];
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
+                }				
+            }
+            listHtml += "</ul>";				
+            $("#search-results").append(listHtml);
+        }
+
+        $(document).ready(function(){
+            $("#search").on('input propertychange paste', function() {
+                runSearch($("#search").val());
+            });
+        });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
+    </script>
+	
+    <hr>
+
+                    <ul class="sidebar-menu">
+                        
+	<li class="header">Namespaces</li>   
+			<li><a href="/api/global">global</a></li>
+
+				<li class="treeview active">
+				<a href="/api/MahApps">MahApps</a> <a href="#" class="expand"></a>
+				<ul class="treeview-menu">
+			
+				<li class="treeview active">
+				<a href="/api/MahApps.Metro">MahApps<wbr>.Metro</a> <a href="#" class="expand"></a>
+				<ul class="treeview-menu">
+						<li><a href="/api/MahApps.Metro.Actions">MahApps<wbr>.Metro<wbr>.Actions</a></li>
+			<li><a href="/api/MahApps.Metro.Behaviors">MahApps<wbr>.Metro<wbr>.Behaviors</a></li>
+
+				<li class="treeview active selected">
+				<a href="/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a> <a href="#" class="expand"></a>
+				<ul class="treeview-menu">
+						<li><a href="/api/MahApps.Metro.Controls.Dialogs">MahApps<wbr>.Metro<wbr>.Controls<wbr>.Dialogs</a></li>
+</ul></li>			<li><a href="/api/MahApps.Metro.Converters">MahApps<wbr>.Metro<wbr>.Converters</a></li>
+			<li><a href="/api/MahApps.Metro.Markup">MahApps<wbr>.Metro<wbr>.Markup</a></li>
+			<li><a href="/api/MahApps.Metro.Theming">MahApps<wbr>.Metro<wbr>.Theming</a></li>
+</ul></li></ul></li>      
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+<section class="content-header">
+	<h1>MahApps<wbr>.Metro<wbr>.Controls <small>Namespace</small></h1>
+</section>
+<section class="content">
+	
+	
+	
+
+
+			<h1 id="ClassTypes">Class Types</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover two-cols">
+						<thead>
+							<tr>
+								<th>Class</th>
+									<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/api/MahApps.Metro.Controls/Badged">Badged</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/BaseMetroTabControl">BaseMetroTabControl</a></td>
+									<td>
+    A base class for every MetroTabControl (Pivot).
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/CheckBoxHelper">CheckBoxHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ClipBorder">ClipBorder</a></td>
+									<td>
+    Represents a border whose contents are clipped within the bounds
+    of the border. The border may have rounded corners.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ClosingWindowEventHandlerArgs">Closing<wbr>Window<wbr>Event<wbr>Handler<wbr>Args</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ComboBoxHelper">ComboBoxHelper</a></td>
+									<td>
+    A helper class that provides various attached properties for the <code class="cs">ComboBox</code> control.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ContentControlEx">ContentControlEx</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ControlsHelper">ControlsHelper</a></td>
+									<td>
+    A helper class that provides various controls.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/CustomValidationPopup">Custom<wbr>Validation<wbr>Popup</a></td>
+									<td>
+    This custom popup is used by the validation error template.
+    It provides some additional nice features:
+        - repositioning if host-window size or location changed
+        - repositioning if host-window gets maximized and vice versa
+        - it's only topmost if the host-window is activated
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/DataGridHelper">DataGridHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/DataGridNumericUpDownColumn">Data<wbr>Grid<wbr>Numeric<wbr>Up<wbr>Down<wbr>Column</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/DatePickerHelper">DatePickerHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></td>
+									<td>
+        Represents a control that allows the user to select a date and a time.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/DropDownButton">DropDownButton</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ExpanderHelper">ExpanderHelper</a></td>
+									<td>
+    A helper class that provides various attached properties for the Expander control.
+    <code class="cs">Expander</code>
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/Extensions">Extensions</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></td>
+									<td>
+    A control that imitate a slide show with back/forward buttons.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/FlipViewItem">FlipViewItem</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></td>
+									<td>
+    A sliding panel control that is hosted in a MetroWindow via a FlyoutsControl.
+    <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code>
+    
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/FlyoutAutomationPeer">FlyoutAutomationPeer</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></td>
+									<td>
+    A FlyoutsControl is for displaying flyouts in a MetroWindow.
+    <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code>
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/FontIcon">FontIcon</a></td>
+									<td>
+    Represents an icon that uses a glyph from the specified font.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/GridLengthAnimation">GridLengthAnimation</a></td>
+									<td>
+        A special animation used to animates the length of a <code class="cs">Grid</code>.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></td>
+									<td>
+    The HamburgerMenu is based on a SplitView control. By default it contains a HamburgerButton and a ListView to display menu items.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenuGlyphItem">Hamburger<wbr>Menu<wbr>Glyph<wbr>Item</a></td>
+									<td>
+    The HamburgerMenuGlyphItem provides a glyph based implementation for HamburgerMenu entries.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenuHeaderItem">Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenuIconItem">Hamburger<wbr>Menu<wbr>Icon<wbr>Item</a></td>
+									<td>
+    The HamburgerMenuIconItem provides an icon based implementation for HamburgerMenu entries.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenuImageItem">Hamburger<wbr>Menu<wbr>Image<wbr>Item</a></td>
+									<td>
+    The HamburgerMenuImageItem provides an image based implementation for HamburgerMenu entries.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenuItem">HamburgerMenuItem</a></td>
+									<td>
+    The HamburgerMenuItem provides an implementation for HamburgerMenu entries.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenuItemBase">Hamburger<wbr>Menu<wbr>Item<wbr>Base</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenuItemCollection">Hamburger<wbr>Menu<wbr>Item<wbr>Collection</a></td>
+									<td>
+    The HamburgerMenuItemCollection provides typed collection of HamburgerMenuItemBase.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedEventArgs">Hamburger<wbr>Menu<wbr>Item<wbr>Invoked<wbr>Event<wbr>Args</a></td>
+									<td>
+    EventArgs used for the <code class="cs"><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></code> ItemInvoked event.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenuItemStyleSelector">Hamburger<wbr>Menu<wbr>Item<wbr>Style<wbr>Selector</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenuSeparatorItem">Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></td>
+									<td>
+    The HamburgerMenuSeparatorItem provides an separator based implementation for HamburgerMenu entries.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HeaderedControlHelper">Headered<wbr>Control<wbr>Helper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HotKey">HotKey</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/HotKeyBox">HotKeyBox</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/IconElement">IconElement</a></td>
+									<td>
+    Represents the base class for an icon UI element.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ItemClickEventArgs">ItemClickEventArgs</a></td>
+									<td>
+    EventArgs used for the <code class="cs"><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></code> ItemClick and OptionsItemClick event.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ItemHelper">ItemHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/LayoutInvalidationCatcher">Layout<wbr>Invalidation<wbr>Catcher</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MahAppsCommands">MahAppsCommands</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroAnimatedSingleRowTabControl">Metro<wbr>Animated<wbr>Single<wbr>Row<wbr>Tab<wbr>Control</a></td>
+									<td>
+    A MetroTabControl (Pivot) that wraps TabItem/MetroTabItem headers on a single row.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroAnimatedTabControl">Metro<wbr>Animated<wbr>Tab<wbr>Control</a></td>
+									<td>
+    A MetroTabControl (Pivot) that uses a TransitioningContentControl to animate the contents of a TabItem/MetroTabItem.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroContentControl">MetroContentControl</a></td>
+									<td>
+    Originally from http://xamlcoder.com/blog/2010/11/04/creating-a-metro-ui-style-control/
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroHeader">MetroHeader</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroHeaderAutomationPeer">Metro<wbr>Header<wbr>Automation<wbr>Peer</a></td>
+									<td>
+    The MetroHeaderAutomationPeer class exposes the <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroHeader">MetroHeader</a></code> type to UI Automation.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroNavigationWindow">Metro<wbr>Navigation<wbr>Window</a></td>
+									<td>
+    A reimplementation of NavigationWindow based on MetroWindow.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></td>
+									<td>
+    A metrofied ProgressBar.
+    <code class="cs">ProgressBar</code>
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroTabControl">MetroTabControl</a></td>
+									<td>
+    A standard MetroTabControl (Pivot).
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroTabItem">MetroTabItem</a></td>
+									<td>
+    An extended TabItem with a metro style.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroThumb">MetroThumb</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroThumbContentControl">Metro<wbr>Thumb<wbr>Content<wbr>Control</a></td>
+									<td>
+    The MetroThumbContentControl control can be used for titles or something else and enables basic drag movement functionality.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroThumbContentControlAutomationPeer">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Automation<wbr>Peer</a></td>
+									<td>
+    The MetroThumbContentControlAutomationPeer class exposes the <code class="cs"><a href="/api/MahApps.Metro.Controls/MetroThumbContentControl">MetroThumbContentControl</a></code> type to UI Automation.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroThumbContentControlDragCompletedEventArgs">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Drag<wbr>Completed<wbr>Event<wbr>Args</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroThumbContentControlDragStartedEventArgs">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Drag<wbr>Started<wbr>Event<wbr>Args</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></td>
+									<td>
+    An extended, metrofied Window class.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MultiFrameImage">MultiFrameImage</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MultiSelectorHelper">MultiSelectorHelper</a></td>
+									<td>
+    Defines a helper class for selected items binding on collections with multiselector elements
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></td>
+									<td>
+        Represents a Windows spin box (also known as an up-down control) that displays numeric values.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventArgs">Numeric<wbr>Up<wbr>Down<wbr>Changed<wbr>Routed<wbr>Event<wbr>Args</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/PasswordBoxHelper">PasswordBoxHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/Pivot">Pivot</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/PivotItem">PivotItem</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/Planerator">Planerator</a></td>
+									<td>
+      Based on Greg Schechter's Planerator
+      http://blogs.msdn.com/b/greg_schechter/archive/2007/10/26/enter-the-planerator-dead-simple-3d-in-wpf-with-a-stupid-name.aspx
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ProgressRing">ProgressRing</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/RadioButtonHelper">RadioButtonHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/RangeParameterChangedEventArgs">Range<wbr>Parameter<wbr>Changed<wbr>Event<wbr>Args</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/RangeSelectionChangedEventArgs">Range<wbr>Selection<wbr>Changed<wbr>Event<wbr>Args</a></td>
+									<td>
+    Event arguments created for the RangeSlider's SelectionChanged event.
+    <code class="cs"><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code>
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></td>
+									<td>
+    A slider control with the ability to select a range between two values.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/RangeSliderAutoTooltipValues">Range<wbr>Slider<wbr>Auto<wbr>Tooltip<wbr>Values</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/RevealImage">RevealImage</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ScrollViewerHelper">ScrollViewerHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ScrollViewerOffsetMediator">Scroll<wbr>Viewer<wbr>Offset<wbr>Mediator</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/SliderHelper">SliderHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/Spelling">Spelling</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/SplitView">SplitView</a></td>
+									<td>
+        Represents a container with two views; one view for the main content and another view that is typically used for
+        navigation commands.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/SplitViewPaneClosingEventArgs">Split<wbr>View<wbr>Pane<wbr>Closing<wbr>Event<wbr>Args</a></td>
+									<td>
+        Provides event data for the <code class="cs"><a href="/api/MahApps.Metro.Controls/SplitView/EE308854">PaneClosing</a></code> event.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/SplitViewTemplateSettings">Split<wbr>View<wbr>Template<wbr>Settings</a></td>
+									<td>
+        Provides calculated values that can be referenced as TemplatedParent sources when defining templates for a
+        <code class="cs"><a href="/api/MahApps.Metro.Controls/SplitView">SplitView</a></code>.
+        Not intended for general use.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/TabControlHelper">TabControlHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/TextBoxHelper">TextBoxHelper</a></td>
+									<td>
+    A helper class that provides various attached properties for the TextBox control.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/Tile">Tile</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/TimePicker">TimePicker</a></td>
+									<td>
+        Represents a control that allows the user to select a time.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/TimePickerBase">TimePickerBase</a></td>
+									<td>
+        Represents a base-class for time picking.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/TimePickerBaseSelectionChangedEventArgs_1">Time<wbr>Picker<wbr>Base<wbr>Selection<wbr>Changed<wbr>Event<wbr>Args</a><wbr>&lt;<a href="/api/MahApps.Metro.Controls/TimePickerBaseSelectionChangedEventArgs_1#typeparam-T">T</a>&gt;<wbr></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ToggleButtonHelper">ToggleButtonHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ToggleSwitch">ToggleSwitch</a></td>
+									<td>
+    A control that allows the user to toggle between two states: One represents true; The other represents false.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ToggleSwitchAutomationPeer">Toggle<wbr>Switch<wbr>Automation<wbr>Peer</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/TransitioningContentControl">Transitioning<wbr>Content<wbr>Control</a></td>
+									<td>
+    A ContentControl that animates content as it loads and unloads.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/TreeHelper">TreeHelper</a></td>
+									<td>
+    Helper methods for UI-related tasks.
+    This class was obtained from Philip Sumi (a fellow WPF Disciples blog)
+    http://www.hardcodet.net/uploads/2009/06/UIHelper.cs
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/TreeViewItemHelper">TreeViewItemHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/Underline">Underline</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/Utils">Utils</a></td>
+									<td>
+    A few very useful extension methods
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ValidationHelper">ValidationHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/VisibilityHelper">VisibilityHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/WinApiHelper">WinApiHelper</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/WindowCommandsItem">WindowCommandsItem</a></td>
+									<td></td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+
+			<h1 id="EnumTypes">Enum Types</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover two-cols">
+						<thead>
+							<tr>
+								<th>Enum</th>
+									<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/api/MahApps.Metro.Controls/ButtonsAlignment">ButtonsAlignment</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/FlyoutTheme">FlyoutTheme</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MouseWheelChange">MouseWheelChange</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MouseWheelState">MouseWheelState</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/MultiFrameImageMode">MultiFrameImageMode</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/NavigationButtonsPosition">Navigation<wbr>Buttons<wbr>Position</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/NumericInput">NumericInput</a></td>
+									<td>
+    Enum NumericInput which indicates what input is allowed for NumericUpdDown.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/OverlayBehavior">OverlayBehavior</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/Position">Position</a></td>
+									<td>
+    An Enum representing different positions, such as Left or Right.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/RangeParameterChangeType">Range<wbr>Parameter<wbr>Change<wbr>Type</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/SplitViewDisplayMode">SplitViewDisplayMode</a></td>
+									<td>
+        Constants that specify how the pane is shown in a <code class="cs"><a href="/api/MahApps.Metro.Controls/SplitView">SplitView</a></code>.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/SplitViewPanePlacement">Split<wbr>View<wbr>Pane<wbr>Placement</a></td>
+									<td>
+        Constants that specify whether the pane is set to the left or to the right of the content in a
+        <code class="cs"><a href="/api/MahApps.Metro.Controls/SplitView">SplitView</a></code>.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/TimePartVisibility">TimePartVisibility</a></td>
+									<td>
+    Defines the visibility for time-parts that are visible for the <code class="cs"><a href="/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></code>. 
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/TimePickerFormat">TimePickerFormat</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/TransitionType">TransitionType</a></td>
+									<td>
+    enumeration for the different transition types
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/UnderlinedType">UnderlinedType</a></td>
+									<td>
+    Specifies the underline position of a TabControl.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">Window<wbr>Commands<wbr>Overlay<wbr>Behavior</a></td>
+									<td></td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+
+			<h1 id="InterfaceTypes">Interface Types</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover two-cols">
+						<thead>
+							<tr>
+								<th>Interface</th>
+									<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/api/MahApps.Metro.Controls/IHamburgerMenuHeaderItem">I<wbr>Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/IHamburgerMenuItem">IHamburgerMenuItem</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/IHamburgerMenuSeparatorItem">I<wbr>Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/IMetroThumb">IMetroThumb</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/IWindowPlacementSettings">I<wbr>Window<wbr>Placement<wbr>Settings</a></td>
+									<td></td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+
+			<h1 id="DelegateTypes">Delegate Types</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover two-cols">
+						<thead>
+							<tr>
+								<th>Delegate</th>
+									<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedRoutedEventHandler">Hamburger<wbr>Menu<wbr>Item<wbr>Invoked<wbr>Routed<wbr>Event<wbr>Handler</a></td>
+									<td>
+    RoutedEventHandler used for the <code class="cs"><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></code> ItemInvoked event.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/ItemClickRoutedEventHandler">Item<wbr>Click<wbr>Routed<wbr>Event<wbr>Handler</a></td>
+									<td>
+    RoutedEventHandler used for the <code class="cs"><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></code> ItemClick and OptionsItemClick event.
+    </td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventHandler">Numeric<wbr>Up<wbr>Down<wbr>Changed<wbr>Routed<wbr>Event<wbr>Handler</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/RangeParameterChangedEventHandler">Range<wbr>Parameter<wbr>Changed<wbr>Event<wbr>Handler</a></td>
+									<td></td>
+							</tr>
+							<tr>
+								<td><a href="/api/MahApps.Metro.Controls/RangeSelectionChangedEventHandler">Range<wbr>Selection<wbr>Changed<wbr>Event<wbr>Handler</a></td>
+									<td></td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+
+			<h1 id="Namespaces">Namespaces</h1>
+			<div class="box">
+				<div class="box-body no-padding table-responsive">
+					<table class="table table-striped table-hover two-cols">
+						<thead>
+							<tr>
+								<th>Namespace</th>
+									<th>Summary</th>
+							</tr>
+						</thead>
+							<tbody><tr>
+								<td><a href="/api/MahApps.Metro.Controls.Dialogs">MahApps<wbr>.Metro<wbr>.Controls<wbr>.Dialogs</a></td>
+									<td></td>
+							</tr>
+					</tbody></table>
+				</div>
+			</div>
+		
+	
+</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
+        </div>
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
+                Generated by <a href="https://wyam.io">Wyam</a>
+            </footer>
+        </div>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
+            $(document).ready(function() {
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
+            });
+        </script>
+    
+</body></html>
