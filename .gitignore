@@ -1,4 +1,9 @@
-_site/
-.sass-cache/
-.jekyll-cache/
-.jekyll-metadata
+config.wyam.dll
+config.wyam.hash
+config.wyam.packages.xml
+wwwroot
+output
+tools
+src
+Wyam
+packages

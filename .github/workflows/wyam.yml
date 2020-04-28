@@ -1,0 +1,34 @@
+name: Wyam
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        submodules: true
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 2.1.805
+    - name: Build Blog with Cake Action
+      uses: ecampidoglio/cake-action@v1.1.1
+      with:
+        # The name of the task to execute. Note that this argument must be supported by the script.
+        target: CIBuild
+        # The verbosity level with which to run the script. Valid values are: Quiet, Minimal, Normal, Verbose or Diagnostic.
+        #verbosity: # optional, default is Normal
+    - name: Deploy to GitHub Pages
+      uses: Cecilapp/GitHub-Pages-deploy@master
+      env:
+        EMAIL: ${{ secrets.MY_GITHUB_EMAIL }}
+        GH_TOKEN: ${{ secrets.MY_GITHUB_ACTIONS_TOKEN }}
+        CNAME: mahapps.com
+        BUILD_DIR: ./output
