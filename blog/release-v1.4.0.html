@@ -1,0 +1,488 @@
+﻿<!DOCTYPE html><html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <title>MahApps.Metro - Release 1.4.0</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        
+    </head>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
+
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                    </div>
+            
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/about">About This Project</a></li>
+        <li><a href="/docs">Docs</a></li>
+        <li class="active"><a href="/blog">Blog</a></li>
+ 
+                        </ul>       
+                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/blog/release-v1.4.0.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#features-changes-fixes">Features / Changes / Fixes</a></p>
+<p><a href="#closed-issues-pull-requests">Closed Issues / Pull Requests</a></p>
+<hr class="infobar-hidden">
+</div>
+
+                </section>
+                <section class="sidebar">    
+                                     
+                    
+
+                    <ul class="sidebar-menu">
+                        
+
+        <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
+            <li><a href="/blog/general">general</a></li>
+            <li><a href="/blog/Release">Release</a></li>
+    
+    <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
+        <li><a href="/blog/archive/2017/04">April, 2017</a></li>
+        <li><a href="/blog/archive/2017/02">February, 2017</a></li>
+        <li><a href="/blog/archive/2017/01">January, 2017</a></li>
+        <li><a href="/blog/archive/2016/12">December, 2016</a></li>
+        <li><a href="/blog/archive/2016/09">September, 2016</a></li>
+        <li><a href="/blog/archive/2016/01">January, 2016</a></li>
+        <li><a href="/blog/archive/2015/12">December, 2015</a></li>
+        <li><a href="/blog/archive/2015/03">March, 2015</a></li>
+        <li><a href="/blog/archive/2015/02">February, 2015</a></li>
+        <li><a href="/blog/archive/2014/12">December, 2014</a></li>
+        <li><a href="/blog/archive/2014/08">August, 2014</a></li>
+        <li><a href="/blog/archive/2014/04">April, 2014</a></li>
+        <li><a href="/blog/archive/2014/03">March, 2014</a></li>
+        <li><a href="/blog/archive/2014/02">February, 2014</a></li>
+        <li><a href="/blog/archive/2014/01">January, 2014</a></li>
+        <li><a href="/blog/archive/2013/11">November, 2013</a></li>
+        <li><a href="/blog/archive/2013/03">March, 2013</a></li>
+    
+        <li class="header"><i class="fa fa-user"></i> Authors</li>    
+            <li><a href="/blog/author/flagbug">flagbug</a></li>
+            <li><a href="/blog/author/punker76">punker76</a></li>
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+		<section class="content-header">
+			<h1>Release 1.4.0</h1>
+		</section>
+	<section class="content">
+		
+
+
+
+<dl class="dl-horizontal" style="margin-bottom: 12px;">
+    <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Friday, December 23, 2016</dd>
+        <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/blog/Release">Release</a></dd>
+            <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/blog/author/punker76">punker76</a></dd>
+</dl>
+
+
+<h1 id="features-changes-fixes">Features / Changes / Fixes</h1>
+<ul>
+<li><p>Don't focus flyout on close <a href="https://github.com/MahApps/MahApps.Metro/pull/2671">#2671</a> (@ButchersBoy) This hack was introduced with <a href="https://github.com/MahApps/MahApps.Metro/pull/1805">#1805</a> which was noticed by manual testing.</p>
+</li>
+<li><p>Don't focus the <code>FlyoutsControl</code></p>
+</li>
+<li><p>Fix another <code>TopMost</code> issue: If the window is top most and you switch to another window the top most will be gone.</p>
+</li>
+<li><p>Change icon for TimePicker <a href="https://github.com/MahApps/MahApps.Metro/pull/2700">#2700</a> (@p76984275)</p>
+</li>
+<li><p>Icon scaling <a href="https://github.com/MahApps/MahApps.Metro/pull/2667">#2667</a> (@thoemmi)</p>
+<ul>
+<li>New property <code>IconScalingMode</code> to MetroWindow. It's forwarded to <code>MultiFrameImage.MultiFrameImageMode</code> to set the icon scaling.
+<ul>
+<li><code>MultiFrameImageMode.ScaleDownLargerFrame</code><br>
+It takes the smallest frame which from the icon which has equal or larger size as the window's icon template. The frame is scaled down it's larger.<br>
+<img src="https://cloud.githubusercontent.com/assets/73690/11567498/8f05e644-99e7-11e5-9a50-b4dcec0a683e.png" class="img-fluid" alt="image"></li>
+<li><code>MultiFrameImageMode.NoScaleSmallerFrame</code><br>
+It takes the largest frame from the window which has equal or smaller size than the window's icon template. The frame is rendered centered if it's smaller.<br>
+<img src="https://cloud.githubusercontent.com/assets/73690/11567646/3bb8e1fc-99e8-11e5-90f5-682d3d87527d.png" class="img-fluid" alt="image"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Changes for <code>DateTimePicker</code> and <code>TimePicker</code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2710">#2710</a></p>
+<ul>
+<li>Change <code>DateTimePicker.SelectedDate</code> to <code>BindsTwoWayByDefault</code>. The reason is that we do not have to use Mode=TwoWay explicit, and DatePicker.SelectedDate has BindsTwoWayByDefault too.</li>
+<li>[Fix] Issue where Binding issues on DateTimePicker/TimePicker are shown on the output window</li>
+<li>[Fix] Issue where Hour 0 is not shown when using 24h clock</li>
+<li>Fix issue where clearing text does not immediately set value to <code>null</code> but <code>00:00:00</code> and <code>0001.01.01 00.00.00</code> respectively</li>
+<li>Change icon for <code>TimePicker</code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2700">#2700</a> (@p76984275)</li>
+<li>Hide <code>DateTimePicker</code> and <code>TimePicker</code> on lost focus. Fix also Shift+Tab focus moving.</li>
+</ul>
+</li>
+<li><p>New <code>SplitView</code> and <code>HamburgerMenu</code> control <a href="https://github.com/MahApps/MahApps.Metro/pull/2704">#2704</a></p>
+<ul>
+<li>The <code>SplitView</code> source comes from the <code>UniversalWPF</code> <a href="https://github.com/dotMorten/UniversalWPF">GitHub repo</a> (from @dotMorten) with some changes from @Evangelink and @punker76.</li>
+<li>The <code>HamburgerMenu</code> source comes from the <code>UWPCommunityToolkit</code> <a href="https://github.com/Microsoft/UWPCommunityToolkit">GitHub repo</a>.<br>
+<img src="https://cloud.githubusercontent.com/assets/658431/19662268/0fbc2870-9a37-11e6-8591-3192e9cb220a.png" class="img-fluid" alt="2016-10-24_22h06_08"></li>
+</ul>
+</li>
+<li><p>New dependency properties for <code>MetroWindow</code> to set the brush and opacity for the overlay if a dialog is shown.</p>
+<ul>
+<li><code>OverlayBrush</code> sets the brush used for the dialog overlay.</li>
+<li><code>OverlayOpacity</code> sets the opacity used for the dialog overlay (0 = disabled, 1 = full overlay).</li>
+</ul>
+</li>
+<li><p>The <code>TextBox</code>'s with the styles <code>MetroButtonTextBox</code> and <code>SearchMetroTextBox</code> can now use the button also if <code>IsReadOnly="True"</code> (only if the button command is set)</p>
+</li>
+<li><p>New <code>AutoWatermark</code> attached property at <code>TextBoxHelper</code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2722">#2722</a> (@xxMUROxx) which is able to get the <code>DisplayAttribute</code> from the bound property in following cases:</p>
+<ul>
+<li>Binding that is <strong>supported</strong>
+<ul>
+<li><code>"{Binding Path=Property}"</code></li>
+<li><code>"{Binding Path=Property.SubProperty}"</code></li>
+<li><code>"{Binding Path=CollectionProperty}"</code></li>
+<li><code>"{Binding Path=CollectionProperty[0].SubProperty}"</code></li>
+</ul>
+</li>
+<li>Binding that is <strong>not supported</strong>
+<ul>
+<li><code>"{Binding Path=CollectionProperty[0]}"</code></li>
+</ul>
+</li>
+<li>This property is available for <code>TextBox</code>, <code>ComboBox</code>, <code>NumericUpDown</code>, <code>DatePicker</code>, <code>TimePicker</code> and <code>DateTimePicker</code></li>
+</ul>
+</li>
+<li><p><code>Flyout</code> changes for better <code>Margin</code> usage</p>
+<ul>
+<li>This changes affects only users who used the sample from the source which shows how to use the <code>FlyoutsControl</code> actual width and a <code>Margin</code> for the <code>Flyout</code></li>
+<li>It's now possible to work without the actual width and use only the <code>Margin</code> or <code>HorizontalContentAlignemnt</code> for Left/Right and <code>VerticalContentAnlignment</code> for Top/Bottom <code>Flyout</code>.
+<ul>
+<li><code>Margin="200 30 0 0"</code> and <code>Position="Right"</code> Flyout with left an top Margin</li>
+<li><code>HorizontalContentAlignment="Stretch"</code> and <code>Position="Right"</code> Flyout which covers the whole window</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Changed style names (and changes, see <a href="https://github.com/MahApps/MahApps.Metro/issues/2767">#2767</a>) for</p>
+<ul>
+<li>Default <code>Button</code> (<code>ButtonBase</code>) -&gt; <code>MahApps.Metro.Styles.MetroButton</code></li>
+<li>Default <code>ToggleButton</code> -&gt; <code>MahApps.Metro.Styles.MetroToggleButton</code></li>
+</ul>
+</li>
+<li><p>Fixed <code>Expander</code> closing animation and make it possible to change both animations (expand and collapse). <a href="https://github.com/MahApps/MahApps.Metro/pull/2769">#2769</a> (@	Alkalinee)</p>
+</li>
+<li><p>Updated <code>TabControl</code> and <code>TabItem</code> style for VS <a href="https://github.com/MahApps/MahApps.Metro/pull/2768">#2768</a></p>
+<ul>
+<li>Handle TabStripPlacement</li>
+<li>Default close button action (no closing event yet)</li>
+</ul>
+</li>
+<li><p><code>TextBox</code> ContextMenu changes <a href="https://github.com/MahApps/MahApps.Metro/pull/2772">#2772</a>, <a href="https://github.com/MahApps/MahApps.Metro/pull/2758">#2758</a> by @Deadpikle</p>
+<ul>
+<li>If you want to use the default context menu items cut, copy and paste you must do nothing</li>
+<li>If you want to use your own context menu items without the default items you must do this</li>
+</ul>
+<pre><code class="language-xaml">  &lt;TextBox Text="Yeahh"&gt;
+  	&lt;TextBox.ContextMenu&gt;
+  		&lt;ContextMenu&gt;
+  			&lt;MenuItem Header="This is only a Test-Item" /&gt;
+  		&lt;/ContextMenu&gt;
+  	&lt;/TextBox.ContextMenu&gt;
+  &lt;/TextBox&gt;
+</code></pre>
+<ul>
+<li>If you want to use your own context menu items with the spell checker items then you must do this</li>
+</ul>
+<pre><code class="language-xaml">  &lt;TextBox Margin="{StaticResource ControlMargin}"
+  		Controls:TextBoxHelper.IsSpellCheckContextMenuEnabled="True"
+  		Text="Enabled"&gt;
+  	&lt;TextBox.ContextMenu&gt;
+  		&lt;ContextMenu&gt;
+  			&lt;MenuItem Header="This is only a Test-Item" /&gt;
+  		&lt;/ContextMenu&gt;
+  	&lt;/TextBox.ContextMenu&gt;
+  &lt;/TextBox&gt;
+</code></pre>
+<ul>
+<li>If you want to use your own context menu items with the deafult items then you must do this</li>
+</ul>
+<pre><code class="language-xaml">  &lt;TextBox Controls:TextBoxHelper.ClearTextButton="True"
+  		Controls:TextBoxHelper.UseFloatingWatermark="True"
+  		Controls:TextBoxHelper.Watermark="Watermark"&gt;
+  	&lt;TextBox.ContextMenu&gt;
+  		&lt;ContextMenu&gt;
+  			&lt;MenuItem Header="Custom Item" /&gt;
+  			&lt;Separator /&gt;
+  			&lt;MenuItem Style="{DynamicResource MetroMenuItem}" Command="ApplicationCommands.Cut" /&gt;
+  			&lt;MenuItem Style="{DynamicResource MetroMenuItem}" Command="ApplicationCommands.Copy" /&gt;
+  			&lt;MenuItem Style="{DynamicResource MetroMenuItem}" Command="ApplicationCommands.Paste" /&gt;
+  		&lt;/ContextMenu&gt;
+  	&lt;/TextBox.ContextMenu&gt;
+  &lt;/TextBox&gt;
+</code></pre>
+</li>
+<li><p><code>CustomDialog</code> improvements <a href="https://github.com/MahApps/MahApps.Metro/pull/2775">#2775</a></p>
+<ul>
+<li>New overloaded generic method <code>ShowMetroDialogAsync</code> to create and show custom dialogs (self created dialogs which are inherited from <code>CustomDialog</code>)</li>
+</ul>
+<pre><code class="language-csharp">  // create and show a new custom dialog of the given type with the default dialog settings
+  var customBaseMetroDialog = await this.ShowMetroDialogAsync&lt;CustomBaseMetroDialog&gt;();
+
+  // create and show a new custom dialog of the given type with own settings
+  var customBaseMetroDialog = await this.ShowMetroDialogAsync&lt;CustomBaseMetroDialog&gt;(this.metroDialogSettings);
+</code></pre>
+<ul>
+<li>Better handling for dialogs settings also with the already available <code>ShowMetroDialogAsync</code> method</li>
+</ul>
+<pre><code class="language-csharp">  // create and show custom dialog with default settings
+  await this.ShowMetroDialogAsync(new CustomBaseMetroDialog());
+
+  // create and show custom dialog with own settings
+  await this.ShowMetroDialogAsync(new CustomBaseMetroDialog(this.metroDialogSettings));
+  // or
+  await this.ShowMetroDialogAsync(new CustomBaseMetroDialog(this, this.metroDialogSettings));
+</code></pre>
+<ul>
+<li>It's now also possible to configure the dialog settings at the custom dialogs class itself.</li>
+</ul>
+<pre><code class="language-csharp">  protected override MetroDialogSettings ConfigureSettings(MetroDialogSettings settings)
+  {
+  	return new MyCustomDialogSettings();
+  }
+</code></pre>
+<ul>
+<li>Here is the source for the given samples</li>
+</ul>
+<pre><code class="language-xaml">  &lt;dialogs:CustomDialog x:Class="ShowMetroDialogAsyncIssue.CustomBaseMetroDialog"
+  	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+  	xmlns:dialogs="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+  	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+  	mc:Ignorable="d" 
+  	d:DesignHeight="300" d:DesignWidth="300"
+  	Title="CustomBaseMetroDialog"&gt;
+  	&lt;StackPanel&gt;
+  		&lt;TextBlock Text="This is a custom dialog based on BaseMetroDialog" /&gt;
+  		&lt;Button Click="Close_OnClick"&gt;Close&lt;/Button&gt;
+  	&lt;/StackPanel&gt;
+  &lt;/dialogs:CustomDialog&gt;
+</code></pre>
+<pre><code class="language-csharp">  namespace ShowMetroDialogAsyncIssue
+  {
+  	using System.Windows;
+  	using MahApps.Metro.Controls;
+  	using MahApps.Metro.Controls.Dialogs;
+
+  	public partial class CustomBaseMetroDialog : CustomDialog
+  	{
+  		public CustomBaseMetroDialog()
+  		{
+  			InitializeComponent();
+  		}
+
+  		public CustomBaseMetroDialog(MetroDialogSettings settings) : base(settings)
+  		{
+  			InitializeComponent();
+  		}
+
+  		public CustomBaseMetroDialog(MetroWindow parentWindow, MetroDialogSettings settings) : base(parentWindow, settings)
+  		{
+  			InitializeComponent();
+  		}
+
+  		private void Close_OnClick(object sender, RoutedEventArgs e)
+  		{
+  			(this.OwningWindow ?? (MetroWindow)Application.Current.MainWindow).HideMetroDialogAsync(this);
+  		}
+  	}
+  }
+</code></pre>
+</li>
+</ul>
+<h1 id="closed-issues-pull-requests">Closed Issues / Pull Requests</h1>
+<ul>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2674">#2674</a>, <a href="https://github.com/MahApps/MahApps.Metro/pull/2671">#2671</a> Null Reference Exception in BorderlessWindowBehavior.TopMostChangeNotifierOnValueChanged (@mikeasage)</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/pull/2671">#2671</a> Proposal - Dont focus flyout on close</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2699">#2699</a> [Suggestion] TimePicker &amp; DateTimePicker Icon</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2480">#2480</a> Windows 10 SplitView</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2715">#2715</a> Center mouse click crashes applications on some PCs with an Arithmetic Overflow Exception</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/1709">#1709</a> Disable transparency or hide controls in background</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2497">#2497</a> Custom dialog background and foreground</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2720">#2720</a> DateTimePicker does not hides for Date Change</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2713">#2713</a> Weird animation on combobox with only one item</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2746">#2746</a> WindowCommands - Toggle Button And Button Access Key Not Underlined When Pressing Alt</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2744">#2744</a> Flyout IsPinned = False/True</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2737">#2737</a> Design for textbox</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2678">#2678</a> SearchMetroTextBox style, IsReadOnly</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2435">#2435</a> BackgroundToForegroundConverter returning color may be changed in some accents?</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2712">#2712</a> TextBox "Auto" Watermark-text</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2694">#2694</a> Maximized Window is "Always on Top" when IgnoreTaskbarOnMaximize=True. Window remains "Always on Top" on Restore</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2734">#2734</a> Mahapps UI is locked in Dialog Window after re-login</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2338">#2338</a> Impossible to toggle the visibility of TitleBar with UseNoneWindowStyle!</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/pull/2750">#2750</a> Fix for FlipView : Navigation's button visibility and Transition update</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2216">#2216</a> Flyout with a margin does not slide out properly</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2752">#2752</a> Unable to change the MessageDialog highlighted button</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2687">#2687</a> Implement SecureStrng into LoginDialogData and ShowLoginDialog</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2756">#2756</a> Flyout Position top element focus inhibited by title bar</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2755">#2755</a> MetroAnimatedTabControl first tab font not changing</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2760">#2760</a> DatePicker SelectionBackground doesn't match accent color</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2766">#2766</a> Flyout - Strange issue with a listview</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2767">#2767</a> Button Border not Transparent when Focused.</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2346">#2346</a> TabControl with VS style</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2090">#2090</a> VS TabItem</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/1890">#1890</a> How do i use the CloseCommand in StandardTabControl with VS Style</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2261">#2261</a> ComboBox context menu.</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/pull/2774">#2774</a> Fix DataGridRowHeader HorizontalAlignment</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/issues/2735">#2735</a> MetroWindow.ShowMetroDialogAsync odd behaviour with provided DialogSettings</li>
+</ul>
+
+
+	</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
+        </div>
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
+                Generated by <a href="https://wyam.io">Wyam</a>
+            </footer>
+        </div>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
+            $(document).ready(function() {
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
+            });
+        </script>
+    
+</body></html>

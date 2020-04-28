@@ -1,0 +1,480 @@
+﻿<!DOCTYPE html><html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <title>MahApps.Metro - Release 1.3.0</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        
+    </head>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
+
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                    </div>
+            
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/about">About This Project</a></li>
+        <li><a href="/docs">Docs</a></li>
+        <li class="active"><a href="/blog">Blog</a></li>
+ 
+                        </ul>       
+                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/blog/release-v1.3.0.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#features-changes-and-fixes">Features / Changes (and Fixes)</a></p>
+<p><a href="#closed-issues">Closed Issues</a></p>
+<hr class="infobar-hidden">
+</div>
+
+                </section>
+                <section class="sidebar">    
+                                     
+                    
+
+                    <ul class="sidebar-menu">
+                        
+
+        <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
+            <li><a href="/blog/general">general</a></li>
+            <li><a href="/blog/Release">Release</a></li>
+    
+    <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
+        <li><a href="/blog/archive/2017/04">April, 2017</a></li>
+        <li><a href="/blog/archive/2017/02">February, 2017</a></li>
+        <li><a href="/blog/archive/2017/01">January, 2017</a></li>
+        <li><a href="/blog/archive/2016/12">December, 2016</a></li>
+        <li><a href="/blog/archive/2016/09">September, 2016</a></li>
+        <li><a href="/blog/archive/2016/01">January, 2016</a></li>
+        <li><a href="/blog/archive/2015/12">December, 2015</a></li>
+        <li><a href="/blog/archive/2015/03">March, 2015</a></li>
+        <li><a href="/blog/archive/2015/02">February, 2015</a></li>
+        <li><a href="/blog/archive/2014/12">December, 2014</a></li>
+        <li><a href="/blog/archive/2014/08">August, 2014</a></li>
+        <li><a href="/blog/archive/2014/04">April, 2014</a></li>
+        <li><a href="/blog/archive/2014/03">March, 2014</a></li>
+        <li><a href="/blog/archive/2014/02">February, 2014</a></li>
+        <li><a href="/blog/archive/2014/01">January, 2014</a></li>
+        <li><a href="/blog/archive/2013/11">November, 2013</a></li>
+        <li><a href="/blog/archive/2013/03">March, 2013</a></li>
+    
+        <li class="header"><i class="fa fa-user"></i> Authors</li>    
+            <li><a href="/blog/author/flagbug">flagbug</a></li>
+            <li><a href="/blog/author/punker76">punker76</a></li>
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+		<section class="content-header">
+			<h1>Release 1.3.0</h1>
+		</section>
+	<section class="content">
+		
+
+
+
+<dl class="dl-horizontal" style="margin-bottom: 12px;">
+    <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
+    <dd>Friday, September 23, 2016</dd>
+        <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
+        <dd><a href="/blog/Release">Release</a></dd>
+            <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
+        <dd><a href="/blog/author/punker76">punker76</a></dd>
+</dl>
+
+
+<h1 id="features-changes-and-fixes">Features / Changes (and Fixes)</h1>
+<ul>
+<li>Switched from Ms-PL to MIT license #2646</li>
+<li>New <code>DateTimePicker</code> and <code>TimePicker</code> controls #2299 #2510 (@xxMUROxx)</li>
+<li>New Hotkey control <code>HotKeyBox</code> #2322 (@thoemmi)</li>
+<li>New 'Remember' CheckBox in <code>LoginDialog</code> #2308 #2305 (@manekovskiy)</li>
+<li>New <code>IconPacks</code> for MahApps: <code>PackIconMaterial</code>, <code>PackIconModern</code>, <code>PackIconFontAwesome</code> and <code>PackIconEntypo</code> #2328 availabe at <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">MahApps.Metro.IconPacks</a><br>
+<code>&lt;iconPacks:PackIconMaterial Kind="EmoticonCool" Height="32" Width="32" /&gt;</code><br>
+<code>&lt;iconPacks:PackIconModern Kind="Cupcake" Height="24" Width="24" /&gt;</code><br>
+<code>&lt;iconPacks:PackIconFontAwesome Kind="FontAwesome" Height="16" Width="16" /&gt;</code><br>
+<code>&lt;iconPacks:PackIconEntypo Kind="ThumbsUp" /&gt;</code></li>
+<li>New <code>Auto Close</code> feature for <code>Flyout</code> #2228 #1710 (@Sikta)
+<ul>
+<li>Enable this by set <code>IsAutoCloseEnabled</code> to true</li>
+<li>Time changable by <code>AutoCloseInterval</code> (default 5000 ms)</li>
+</ul>
+</li>
+<li>Fix <code>PasswordBoxBindingBehavior</code> and <code>IsWaitingForData</code> #2355
+<ul>
+<li>Fixed: Behaviors in <code>StylizedBehaviors</code> should be detached on unload</li>
+<li>Fixed: <code>PasswordBoxBindingBehavior</code>, it doesn't work e.g. in TabControl TabItems</li>
+<li><code>IsWaitingForData</code> for <code>MetroButtonTextBox</code>, <code>MetroPasswordBox</code>, <code>MetroButtonPasswordBox</code>, <code>MetroButtonRevealedPasswordBox</code></li>
+<li>PackIconMaterial <code>Eye</code> and ClearTextButton feature for <code>MetroButtonRevealedPasswordBox</code></li>
+</ul>
+</li>
+<li>Added <code>ContentStringFormat</code> TemplateBinding to ToolTip #2359 (@nrpog) #2363</li>
+<li><code>ControlsHelper.ButtonWidth</code> for <code>ComboBox</code> and other stuff #2365
+<ul>
+<li>set <code>ChromelessButtonStyle</code> Padding to 0</li>
+<li>new dependency property <code>ButtonContentTemplate</code> in <code>TextBoxHelper</code></li>
+<li>fix width of ClearText button if height change, e.g. for floating watermark</li>
+<li>fix background state colors (<code>IsPressed</code>, <code>IsMouseOver</code>)</li>
+<li>new own sytle <code>MetroComboBoxDropDownToggleButtonStyle</code> for <code>ComboBox</code> toggle button</li>
+</ul>
+</li>
+<li>Added <code>EllipseDiameterScale</code> to <code>ProgressRing</code> #2204 #2382 (@petvetbr)</li>
+<li><code>WindowButtonCommands</code> enhancements #2378
+<ul>
+<li>use ContentPresenter to show the WindowButtonCommands, so it's now possible easier to change the min/max/close button styles</li>
+<li>enable changing min/max/restore/close button tooltip</li>
+<li>new Win10 style/template: <code>MahApps.Metro.Styles.WindowButtonCommands.Win10</code> and <code>MahApps.Metro.Templates.WindowButtonCommands.Win10</code><br>
+<img src="https://cloud.githubusercontent.com/assets/658431/15323811/0393ac9c-1c44-11e6-86ce-0a7416bd2621.png" class="img-fluid" alt="2016-05-17_15h27_28"><br>
+<img src="https://cloud.githubusercontent.com/assets/658431/15323816/074fd6c6-1c44-11e6-8894-39a0d61b9a08.png" class="img-fluid" alt="2016-05-17_15h27_40"></li>
+</ul>
+</li>
+<li>Minor Automation API support for <code>Flyouts</code> and <code>NumericUpDown</code> #2381 #2166 (@petvetbr)</li>
+<li>Dialog font sizes setting implementation #2380 #2383 (@petvetbr, @punker76)
+<ul>
+<li>changable via <code>DialogTitleFontSize</code> and <code>DialogMessageFontSize</code></li>
+</ul>
+</li>
+<li>New attached dependency property <code>TextButton</code> in TextBoxHelper which handles the visibility of the button in <code>MetroButtonPasswordBox</code> and <code>MetroButtonTextBox</code>styles #2387</li>
+<li>Win10 <code>ToggleSwitch</code> and <code>ToggleSwitchButton</code> #2410
+<ul>
+<li><code>ToggleSwitch</code> is now inherited from <code>HeaderedContentControl</code></li>
+<li>new dependency property <code>HeaderFontFamily</code> for <code>ToggleSwitch</code></li>
+<li>new Win10 and Metro styles
+<ul>
+<li><code>MahApps.Metro.Styles.ToggleSwitchButton.Win10</code>, <code>MahApps.Metro.Styles.ToggleSwitch.Win10</code></li>
+<li><code>MahApps.Metro.Styles.ToggleSwitchButton</code>, <code>MahApps.Metro.Styles.ToggleSwitch</code></li>
+</ul>
+</li>
+<li>new Win10 font family and size keys
+<ul>
+<li><code>ToggleSwitchFontFamily.Win10</code>, <code>ToggleSwitchHeaderFontFamily.Win10</code></li>
+<li><code>ToggleSwitchFontSize.Win10</code>, <code>ToggleSwitchHeaderFontSize.Win10</code></li>
+</ul>
+</li>
+<li>fixed broken <code>IsPressed</code> state</li>
+<li>new brushes for the Win10 styles<br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.PressedBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.OffBorderBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.OffMouseOverBorderBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.OffDisabledBorderBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.OffSwitchBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchDisabledBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchMouseOverBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorMouseOverBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorCheckedBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorPressedBrush.Win10</code><br>
+<code>MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorDisabledBrush.Win10</code></li>
+<li>new brush and color keys for all accent colors: <code>AccentBaseColor</code> and <code>AccentBaseColorBrush</code> (full color)</li>
+</ul>
+</li>
+<li><code>Flyout</code> changes
+<ul>
+<li>SetFlyoutOpenAction is now obsolete</li>
+<li>new/update template names BackButton, BackHeaderText</li>
+<li>new <code>CloseCommandParameter</code> dependency property</li>
+</ul>
+</li>
+<li><code>FlipView</code> changes
+<ul>
+<li><code>MouseOverGlowEnabled</code> is now obsolete, use <code>MouseHoverBorderEnabled</code> instead</li>
+<li>new <code>MouseHoverBorderBrush</code> and <code>MouseHoverBorderThickness</code> dependency property</li>
+</ul>
+</li>
+<li>New dependency property <code>CircularNavigation</code> for the <code>FlipView</code> #2389</li>
+<li><code>BindsTwoWayByDefault</code> removed from <code>IsActiveProperty</code> of <code>ProgressRing</code> #2438 (@xxMUROxx)</li>
+<li>Fix Flyout theme usage in <code>Caliburn.Micro</code> sample</li>
+<li>New dependency properties for <code>Tile</code> control: <code>HorizontalTitleAlignment</code> and <code>VerticalTitleAlignment</code> #2293</li>
+<li>New attached dependency properties <code>TextBoxHelper.ButtonFontSize</code> #2345 Also add a new font size <code>ClearTextButtonFontSize</code> (default to 16) for all 'ClearText' buttons</li>
+<li>Added a <code>MetroFlatToggleButton</code> style like MetroFlatButton #2481 (@Koopakiller)</li>
+<li>New <code>MetroThumbContentControl</code> for <code>MetroWindow</code> title #2487
+<ul>
+<li>It's now possible again to have title templates with clickable controls</li>
+<li>Replaced <code>TitleCaps</code> with <code>TitleCharacterCasing</code> (marked as obsolete). Now title can be <code>Upper</code>, <code>Lower</code> or <code>Normal</code></li>
+<li>Add new styles <code>MahApps.Metro.Styles.ContentControlEx</code> and <code>MahApps.Metro.Styles.MetroThumbContentControl</code></li>
+</ul>
+</li>
+<li><code>Flyout</code> improvement caused by #2485 #2523
+<ul>
+<li>use <code>ContentControlEx</code> for header, so it's now possible to use <code>ControlsHelper</code> attached properties <code>ContentCharacterCasing</code>, <code>HeaderFontSize</code>, <code>HeaderFontWeight</code> and <code>HeaderFontStretch</code></li>
+<li>new attached property <code>ControlsHelper.HeaderMargin</code> to handle the Margin from Flyout side</li>
+</ul>
+</li>
+<li>New dependency property <code>ShowDialogsOverTitleBar</code> for `MetroWindow? which allows showing title bar while showing dialogs (fixes #2109) #2534 (@Deadpikle)</li>
+<li>Store/Restore focused element methods which will be used automatically with dialogs (but can be also used explicit) #2532</li>
+<li>Added new methods <code>ShowModalInputExternal</code>, <code>ShowModalLoginExternal</code> and <code>ShowModalMessageExternal</code>. #2518 (@adeniltonbs)</li>
+<li>New brush keys <code>NonActiveWindowTitleColorBrush</code> and <code>NonActiveBorderColorBrush</code></li>
+<li>Add IsNavigationEnabled Property in FlipView #2563 (@yoker)</li>
+<li>Another SplitButton and DropDownButton fixes #2572
+<ul>
+<li>change SplitButton to Selector to get access to SelectedValuePath and SelectedValue</li>
+<li>fixed Popup alignmentand close Popup on button click</li>
+<li>add ItemsPanel template binding</li>
+<li>add 2 new dependency properties <code>ArrowMouseOverBrush</code>, <code>ArrowPressedBrush</code></li>
+<li>enable Items usage (for SplitButton and DropDownButton)</li>
+<li>add new dependency properties <code>ContentTemplate</code>, <code>ContentTemplateSelector</code> and <code>ContentStringFormat</code> for DropDownButton, if this proeprties are empty DropDownButton will be use the ItemXYZ properties</li>
+<li>add <code>protected virtual void SetContextMenuPlacementTarget(ContextMenu contextMenu)</code> to DropDownButton</li>
+</ul>
+</li>
+<li>Glow activation/resizing/dpi fixes #2581
+<ul>
+<li>mouse activation bug if the MetroWindow uses a Glow</li>
+<li>resizing/cursor bug on higher DPI</li>
+<li>the glow can come on top if the main app has a second window and the user minimize and restore the main app again</li>
+<li>the window doesn't zoom in vertical height if the user double clicks on the top Glow</li>
+</ul>
+</li>
+<li>Introduce new styles for circle button and circle toggle button which removes the non removable inner margin.
+<ul>
+<li><code>MahApps.Metro.Styles.MetroCircleButtonStyle</code></li>
+<li><code>MahApps.Metro.Styles.MetroCircleToggleButtonStyle</code></li>
+<li><code>MahApps.Metro.Styles.MetroCircleFocusVisual</code></li>
+</ul>
+</li>
+</ul>
+<h1 id="closed-issues">Closed Issues</h1>
+<ul>
+<li>#2003 "VisualButton" That makes working with the XAML icons easier</li>
+<li>#2114 Icon color not changing on theme change (as #1029)</li>
+<li>#2275 Embed Material Design Icons (in addition to Modern UI Icons)?</li>
+<li>#1710 New "Auto Close" feature for Flyouts</li>
+<li>#2354 TextBoxHelper.ButtonClicked should pass ButtonCommandParameter to ButtonCommand.CanExecute</li>
+<li>#2343 Win8MetroPasswordBox Preview does not work with Tabcontrol (item &gt; 1)</li>
+<li>#2352 Can't set ComboBox buttons width with ControlsHelper.ButtonWidth</li>
+<li>#2370 Pasting over selection in NumericUpDown doesn't work #2371 (@michaelprewecki)</li>
+<li>#1901 ThemeChanging causing app crash</li>
+<li>#1439 ComboBox in Toolbar closes if Scrollbar track/button is clicked</li>
+<li>#1972 Changing Close button icon</li>
+<li>#2166 Controls Do not get distinct automation ID's</li>
+<li>#2204 Progress ring dot scaling seems to be wrong (1.1.2)?</li>
+<li>#2380 Missing FontSize Property for ProgressDialog/ShowProgressAsync</li>
+<li>#2385 ButtonCommandMetroTextBox text displaid over icon.</li>
+<li>#2220 Why in the MetroButtonTextBox the visibility of PART_ClearText is not managed as the MetroTextBox?</li>
+<li>#2311 ComboBox won't toggle closed in ribbon</li>
+<li>#2396 ShowMetroDialogAsync does not raise DialogManager.DialogOpened event.</li>
+<li>#2402 Window Command ItemSource Binding</li>
+<li>#2403 NumericUpDown HasDecimals Is Broken. #2404 (@feinstein)</li>
+<li>#2415 ToggleSwitch "Click" event not triggered #2421</li>
+<li>#2413 Focusable (Selectable) Text in MessageDialog</li>
+<li>#2409 MetroWindow can be closed while a modal dialog is shown</li>
+<li>#2348 Thumb height of slider control</li>
+<li>#2340 How to change Datagrid Header Background using our custom style and based on MetroColumnHeader?</li>
+<li>#2390 PasswordBox CapsLockIndicator is not refreshed when host window is inactive</li>
+<li>#2416 WPF inside WF, Cannot close Flyouts and FlyView doesn't select</li>
+<li>#2432 Modal Flyouts Window Not Dragable</li>
+<li>#2333 FlipView SelectedIndex resetting bug</li>
+<li>#2214 Is there a way to control the "PART_GlowBorder" thickness in FlipView?</li>
+<li>#2126 FlipView.HideControlButtons() does not disable arrow keys.</li>
+<li>#2395 MahApps.Metro resource icons cannot be used repeatedly</li>
+<li>#2389 Circular FlipView</li>
+<li>#2056 ToggleButton foreground color when selected</li>
+<li>#1823 Cannot fully programatically maximize window.</li>
+<li>#2414 Focus is lost after a dialog is closed</li>
+<li>#2332 Calendar ignores IsTodayHighlighted property</li>
+<li>#2420 ShowmessageAsync Cancellation Exception #2454 (@MatthewKinsman)</li>
+<li>#2293 Align Tile Title</li>
+<li>#2459 MetroDialogSettings not being propagated to ProgressDialog by DialogManager</li>
+<li>#2462 Should a click on a MetroTabItems close button really clear the buttons Command and CommandParameter properties?</li>
+<li>#2345 Can't edit TextBoxHelper.ClearTextButton properties</li>
+<li>#2474 right to left DatePicker</li>
+<li>#2476 MetroWindow OnClosing exception (.Net 4.0)</li>
+<li>#2339 The Glow border does not follow the window is is used the UseNoneWindowStyle property!</li>
+<li>#2477 Create a custom Thumb for the title DragMove</li>
+<li>#2449 Visual bug while using RightWindowCommands</li>
+<li>#2495 Default for ControlsHelper.HeaderFontSizeProperty should be SystemFonts.MessageFontSize</li>
+<li>#2479 DefaultButtonFocus Not Working As Expected PR #2505</li>
+<li>#2514 NumericUpDown UseFloatingWatermark Issue</li>
+<li>#2485 Hiding close button and title leaves blank space in top-positioned flyouts #2485</li>
+<li>#2531 Setting TitleFontSize &amp; CountFontSize in Tile is no longer working</li>
+<li>#2109 Size of MahApps Dialog background..</li>
+<li>#2538 Focus Message Dialog from flyout</li>
+<li>#2537 Bad contrast in ProgressDialog's progress bar</li>
+<li>#2532 ProgressDialog close causes loss of focus on child control</li>
+<li>#2486 DateTimePicker right click menu appearance</li>
+<li>#2524 DatePicker and DateTimePicker UseFloatingWatermark don't work</li>
+<li>#2269 Make Controls:TextBoxHelper.UseFloatingWatermark="True" work for DatePicker</li>
+<li>#2525 System.Windows.Media.Animation.DoubleAnimation' cannot use default origin value of 'Infinity</li>
+<li>#2552 How to hide flyout title</li>
+<li>#2556 Interact with DialogController from Background Thread (@xxMUROxx)</li>
+<li>#2473 Cannot use DialogCoordinator from background threads.</li>
+<li>#2551 Feature Request: NonActiveWindowTitleColorBrush</li>
+<li>#2542 NumericUpDown SelectAllOnFocus doesn't work</li>
+<li>#2148 MetroProgressBar orientation does not work (@petvetbr) #2379</li>
+<li>#2492 MetroProgressBar / IsIndeterminate / Animation Warning 6</li>
+<li>#2504 DataGrid causes lag when switching content PR #2570</li>
+<li>#2374 SplitButton: Add SelectedValuePath and SelectedValue property</li>
+<li>#2540 Popup in SplitButton is aligned wrong</li>
+<li>#2457 Splitbutton Popup doesn't close</li>
+<li>#2215 SplitButton does not respect GroupStyle</li>
+<li>#2185 SplitButton IsPressed trigger won't change Foreground</li>
+<li>#2360 SplitButton Items</li>
+<li>#2078 Fill DropDownButton items without Binding</li>
+<li>#2051 DropDownButton and SplitButton doesn't works</li>
+<li>#2224 DropDownButton uses ItemTemplate template binding twice</li>
+<li>#2569 DropDownButton popup placement</li>
+<li>#2574 SplitButton Popup Doesn't Close After Alt+Tab (@Deadpikle) #2621</li>
+<li>#2498 Vertical space for Title still being taken up even though Title is blank</li>
+<li>#2577 Window Resizing Erroneously Acts Deferred</li>
+<li>#2279 Corner resize issues with GlowBrush enabled</li>
+<li>#2591 Weird MetroProgressBar animation with IsIndeterminate=true</li>
+<li>#1191 Missing style for RepeatButton</li>
+<li>#2584 ComboBox UseFloatingWatermark Issue</li>
+<li>#2598 DatePickerTextBoxBehavior NullReferenceException</li>
+<li>#2611 SliderHelper.EnableMouseWheel is working only once when using TabControl</li>
+<li>#2618 IgnoreTaskbarOnMaximize stopped working after windows 10 anniversary update. (@igorushi, @punker76)</li>
+<li>#2635 Showing any Window before Main Window causes Left and Right window commands not work properly.</li>
+<li>#2656 Flyout problem with ActualWidth</li>
+</ul>
+
+
+	</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
+        </div>
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
+                Generated by <a href="https://wyam.io">Wyam</a>
+            </footer>
+        </div>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
+            $(document).ready(function() {
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
+            });
+        </script>
+    
+</body></html>
