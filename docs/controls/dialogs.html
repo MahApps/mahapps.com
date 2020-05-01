@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html><html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <title>MahApps.Metro - Dialogs</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        
+    </head>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
+
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                    </div>
+            
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/blog">Blog</a></li>
+        <li class="active"><a href="/docs">Documentation</a></li>
+        <li><a href="/api">API</a></li>
+        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
+ 
+                        </ul>       
+                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/dialogs.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"></div>
+
+                </section>
+                <section class="sidebar">    
+                                     
+                    
+
+                    <ul class="sidebar-menu">
+                        
+
+                <li class="treeview active">
+                    <a href="/docs/controls">Controls</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/controls/metrowindow">MetroWindow</a></li>
+                <li><a href="/docs/controls/badgedcontrol">Badged Control</a></li>
+                <li class="selected"><a href="/docs/controls/dialogs">Dialogs</a></li>
+                <li><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
+                <li><a href="/docs/controls/flipview">FlipView</a></li>
+                <li><a href="/docs/controls/flyouts">Flyouts</a></li>
+                <li><a href="/docs/controls/metroprogressbar">MetroProgressBar</a></li>
+                <li><a href="/docs/controls/numericupdown">NumericUpDown</a></li>
+                <li><a href="/docs/controls/progressring">ProgressRing</a></li>
+                <li><a href="/docs/controls/rangeslider">RangeSlider</a></li>
+                <li><a href="/docs/controls/splitbutton">SplitButton</a></li>
+                <li><a href="/docs/controls/tile">Tile</a></li>
+                <li><a href="/docs/controls/toggleswitch">ToggleSwitch</a></li>
+                <li><a href="/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/styles">Styles</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/styles/buttons">Buttons</a></li>
+                <li><a href="/docs/styles/contextmenu">ContextMenu</a></li>
+                <li><a href="/docs/styles/datagrid">Data Grid</a></li>
+                <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
+                <li><a href="/docs/styles/slider">Slider</a></li>
+                <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
+                <li><a href="/docs/styles/textbox">TextBox - MahApps.Metro</a></li>
+                <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/guides">Guides</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/guides/quick-start">Quick Start</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="/docs/usage">Usage</a></li>
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+		<section class="content-header">
+			<h1>Dialogs</h1>
+		</section>
+	<section class="content">
+		<p>Since the built-in WPF dialogs are unstyleable, we had to create our own implementation. You will find our dialogs within the MahApps.Metro.Controls.Dialogs namespace.</p>
+<img src="{{site.baseurl}}/images/dialog.png" style="width: 800px;">
+<p>All dialogs in MahApps.Metro are called asynchronously.<br>
+If you're on .NET 4.5 you have the luck of using the <code>async</code> keyword,
+if you're stuck with .NET 4.0, you'll have to use continuations when using the dialogs.<br>
+This tutorial uses .NET 4.5.<br>
+If you really want to use <code>async/await</code> with .NET 4.0 (and MahApps.Metro v1.6.5), you can install <a href="https://www.nuget.org/packages/microsoft.bcl.async">Microsoft Async</a></p>
+<h3 id="message-dialog">Message dialog</h3>
+<p>Simple message dialogs can be displayed with the <code>ShowMessageAsync</code> method. It is an extension method for <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code>, so call it from your window class.</p>
+<pre><code class="language-c#">await this.ShowMessageAsync("This is the title", "Some message");
+</code></pre>
+<p>There are additional optional parameters for simple buttons, such as <code>Ok</code> and <code>Cancel</code> and settings for the color theme and animation options.</p>
+<h3 id="progress-dialog">Progress dialog</h3>
+<p>There is a built-in dialog that displays a progress bar at the bottom of the dialog. Call it like this:</p>
+<pre><code class="language-c#">var controller = await this.ShowProgressAsync("Please wait...", "Progress message");
+</code></pre>
+<p>This method returns a <code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController">ProgressDialogController</a></code> object that exposes the <code>SetProgress</code> method, use it to set the current progress.</p>
+<p>A picture of the progress dialog in the demo:</p>
+<img src="{{site.baseurl}}/images/progressdialog.png" style="width: 800px;">
+<h3 id="support-for-viewmodels">Support for viewmodels</h3>
+<p>You can open dialogs from your viewmodel by using the <code><a href="/api/MahApps.Metro.Controls.Dialogs/IDialogCoordinator">IDialogCoordinator</a></code>.</p>
+<p>Add the following code to your <code>Window.xaml</code> or <code>UserControl.xaml</code>:</p>
+<pre><code class="language-xaml">&lt;UserControl x:Class=="...
+xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+Dialog:DialogParticipation.Register="{Binding}"&gt;
+</code></pre>
+<p>Your code behind in the <code>Window.xaml.cs</code> or <code>UserControl.xaml.cs</code>  should look like this:</p>
+<pre><code class="language-cs">using MahApps.Metro.Controls.Dialogs;
+
+namespace EXAMPLE
+{
+    public class USERCONTROL : UserControl
+    {
+        // Here we create the viewmodel with the current <a href="/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator">DialogCoordinator</a> instance 
+        VIEWMODEL vm = new VIEWMODEL(DialogCoordinator.Instance);
+
+        public USERCONTROL()
+        {
+            InitializeComponent();
+            DataContext = vm;
+        }
+    }
+}
+</code></pre>
+<p>Last but not least, your viewmodel:</p>
+<pre><code class="language-cs">using MahApps.Metro.Controls.Dialogs;
+
+namespace EXAMPLE
+{
+    public class VIEWMODEL : ViewModelBase
+    {
+        // Variable
+        private <a href="/api/MahApps.Metro.Controls.Dialogs/IDialogCoordinator">IDialogCoordinator</a> dialogCoordinator;
+
+        // Constructor
+        public VIEWMODEL (IDialogCoordinator instance)
+        {                    
+            dialogCoordinator = instance;
+        }
+
+        // Methods
+        private void FooMessage()
+        {
+            await dialogCoordinator.ShowMessageAsync(this, "HEADER","MESSAGE");
+        }
+        
+        private void FooProgress()
+        {
+            // Show...
+            <a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController">ProgressDialogController</a> controller = await dialogCoordinator.ShowProgressAsync(this, "HEADER", "MESSAGE");
+            controller.SetIndeterminate();
+            
+            // Do your work... 
+             
+            // Close...
+            await controller.CloseAsync();
+        }
+        
+        // Actions... (ICommands for your view)
+    }
+}
+</code></pre>
+
+	</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
+        </div>
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
+                Generated by <a href="https://wyam.io">Wyam</a>
+            </footer>
+        </div>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
+            $(document).ready(function() {
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
+            });
+        </script>
+    
+</body></html>

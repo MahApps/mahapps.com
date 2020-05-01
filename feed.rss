@@ -5,8 +5,537 @@
 		<link>https://mahapps.com/</link>
 		<description />
 		<copyright>2020</copyright>
-		<pubDate>Fri, 01 May 2020 11:54:54 GMT</pubDate>
-		<lastBuildDate>Fri, 01 May 2020 11:54:54 GMT</lastBuildDate>
+		<pubDate>Fri, 01 May 2020 13:31:36 GMT</pubDate>
+		<lastBuildDate>Fri, 01 May 2020 13:31:36 GMT</lastBuildDate>
+		<item>
+			<title>Release 1.6.5</title>
+			<link>https://mahapps.com/blog/release-v1.6.5</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.4...1.6.5"&gt;1 commit&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=33&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>punker76</author>
+			<guid>https://mahapps.com/blog/release-v1.6.5</guid>
+			<pubDate>Tue, 19 Jun 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.4...1.6.5"&gt;1 commit&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=33&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bug&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3272"&gt;&lt;strong&gt;#3272&lt;/strong&gt;&lt;/a&gt; Wrong FileVersion and AssemblyVersion for v1.6.4&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Release 1.6.4</title>
+			<link>https://mahapps.com/blog/release-v1.6.4</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.3...1.6.4"&gt;2 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=32&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>punker76</author>
+			<guid>https://mahapps.com/blog/release-v1.6.4</guid>
+			<pubDate>Mon, 14 May 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.3...1.6.4"&gt;2 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=32&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bug&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3249"&gt;&lt;strong&gt;#3249&lt;/strong&gt;&lt;/a&gt; (GH-3248) fix thumb in FlatSlider&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;when ShowTitleBar is False&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3240"&gt;&lt;strong&gt;#3240&lt;/strong&gt;&lt;/a&gt; Fix for Track's height in FlatSlider style&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3238"&gt;&lt;strong&gt;#3238&lt;/strong&gt;&lt;/a&gt; FlatSlider height not working&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Release 1.6.3</title>
+			<link>https://mahapps.com/blog/release-v1.6.3</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.2...1.6.3"&gt;7 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=31&amp;amp;state=closed"&gt;3 issues&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>punker76</author>
+			<guid>https://mahapps.com/blog/release-v1.6.3</guid>
+			<pubDate>Fri, 11 May 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.2...1.6.3"&gt;7 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=31&amp;amp;state=closed"&gt;3 issues&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bugs&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3244"&gt;&lt;strong&gt;#3244&lt;/strong&gt;&lt;/a&gt; RightWindowCommands no more visible when ShowTitleBar is False&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3240"&gt;&lt;strong&gt;#3240&lt;/strong&gt;&lt;/a&gt; Fix for Track's height in FlatSlider style&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3238"&gt;&lt;strong&gt;#3238&lt;/strong&gt;&lt;/a&gt; FlatSlider height not working&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Release 1.6.2</title>
+			<link>https://mahapps.com/blog/release-v1.6.2</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.1...1.6.2"&gt;29 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=30&amp;amp;state=closed"&gt;7 issues&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>punker76</author>
+			<guid>https://mahapps.com/blog/release-v1.6.2</guid>
+			<pubDate>Mon, 30 Apr 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.1...1.6.2"&gt;29 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=30&amp;amp;state=closed"&gt;7 issues&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bugs&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3231"&gt;&lt;strong&gt;#3231&lt;/strong&gt;&lt;/a&gt; (GH-3227) Fix for ThemeManager: dynamic accents only work once&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3230"&gt;&lt;strong&gt;#3230&lt;/strong&gt;&lt;/a&gt; (GH-3212) Fix Background hit testing for inactive ProgressRing&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3227"&gt;&lt;strong&gt;#3227&lt;/strong&gt;&lt;/a&gt; ThemeManager: dynamic accents only work once&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3225"&gt;&lt;strong&gt;#3225&lt;/strong&gt;&lt;/a&gt; (GH-3192) Fix setting ShowTitleBar&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3212"&gt;&lt;strong&gt;#3212&lt;/strong&gt;&lt;/a&gt; ProgressRing does not collapse if IsActive=&amp;quot;False&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3192"&gt;&lt;strong&gt;#3192&lt;/strong&gt;&lt;/a&gt; Wrong behavior with ShowTitleBar=&amp;quot;False&amp;quot; in XAML control metrowindow settings&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Release 1.6.1</title>
+			<link>https://mahapps.com/blog/release-v1.6.1</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.0...1.6.1"&gt;4 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=29&amp;amp;state=closed"&gt;2 issues&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>punker76</author>
+			<guid>https://mahapps.com/blog/release-v1.6.1</guid>
+			<pubDate>Tue, 13 Mar 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.0...1.6.1"&gt;4 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=29&amp;amp;state=closed"&gt;2 issues&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Bugs&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3202"&gt;&lt;strong&gt;#3202&lt;/strong&gt;&lt;/a&gt; NU1602 Build Warning in 1.6.0&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3193"&gt;&lt;strong&gt;#3193&lt;/strong&gt;&lt;/a&gt; Fixing branch name for appveyor badges&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="where-to-get-it"&gt;Where to get it&lt;/h3&gt;
+&lt;p&gt;You can download this release from &lt;a href="https://github.com/MahApps/MahApps.Metro/releases/1.6.1"&gt;MahApps.Metro&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Release 1.6.0</title>
+			<link>https://mahapps.com/blog/release-v1.6.0</link>
+			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.5.0...1.6.0"&gt;362 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=24&amp;amp;state=closed"&gt;153 issues&lt;/a&gt; being closed.&lt;/p&gt;</description>
+			<author>punker76</author>
+			<guid>https://mahapps.com/blog/release-v1.6.0</guid>
+			<pubDate>Thu, 15 Feb 2018 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.5.0...1.6.0"&gt;362 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=24&amp;amp;state=closed"&gt;153 issues&lt;/a&gt; being closed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Features / Changes / Improvements (most interesting)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New: &lt;code&gt;MahApps.Metro.Styles.MetroWatermarkTextBlock&lt;/code&gt; style to make it easier to set custom properties like &lt;code&gt;FontFamily&lt;/code&gt; or &lt;code&gt;FontSize&lt;/code&gt; for all Watermarks.&lt;/li&gt;
+&lt;li&gt;New: Replacing &lt;code&gt;WindowChrome&lt;/code&gt; and related things with reference to &lt;code&gt;ControlzEx&lt;/code&gt; &lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3021"&gt;#3021&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;NumericUpDown&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;New: &lt;code&gt;SnapToMultipleOfInterval&lt;/code&gt; property for &lt;code&gt;NumericUpDown&lt;/code&gt; which indicates if the &lt;code&gt;NumericUpDown&lt;/code&gt; should round the value to the nearest possible interval when the focus moves to another element. &lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2952"&gt;#2952&lt;/a&gt; &lt;a href="https://github.com/xxMUROxx"&gt;&amp;#64;xxMUROxx&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;NumericInputMode&lt;/code&gt; property with the new flag enumeration &lt;code&gt;NumericInput&lt;/code&gt; (default is &lt;code&gt;NumericInput.All&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Mark &lt;code&gt;HasDecimals&lt;/code&gt; as obsolete&lt;/li&gt;
+&lt;li&gt;Block scientific input if only numbers allowed&lt;/li&gt;
+&lt;li&gt;Fix: &lt;code&gt;NumericUpDown&lt;/code&gt;, &lt;code&gt;HotKeyBox&lt;/code&gt; and &lt;code&gt;TimerPickerBase&lt;/code&gt; doesn't focus for the first time when the FocusManager will be used.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New: Changing popup border thickness and padding for &lt;code&gt;ComboBox&lt;/code&gt; via resource keys
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ComboBoxBorderThemeThickness&lt;/code&gt; (default 1)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ComboBoxPopupBorderThemeThickness&lt;/code&gt; (default 1)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ComboBoxPopupBorderThemePadding&lt;/code&gt; (default 1)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New: Changing the header padding for &lt;code&gt;GroupBox&lt;/code&gt; and &lt;code&gt;Expander&lt;/code&gt; via resource keys
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;GroupBoxHeaderThemePadding&lt;/code&gt; (default 4)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ExpanderHeaderThemePadding&lt;/code&gt; (default 2)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ExpanderToggleButtonEllipseThemeSize&lt;/code&gt; (default 18)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;Badged&lt;/code&gt; control has now a different look when disabled. thx &lt;a href="https://github.com/xxMUROxx"&gt;&amp;#64;xxMUROxx&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;New brush for light and dark themes: &lt;code&gt;MahApps.Metro.Brushes.Badged.DisabledBackgroundBrush&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Watermark&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;TextBoxHelper.Watermark&lt;/code&gt; for &lt;code&gt;HotKeyBox&lt;/code&gt; instead own DependencyProperty (marked as obsolete).&lt;/li&gt;
+&lt;li&gt;Allow &lt;code&gt;TextBoxHelper.AutoWatermark&lt;/code&gt; for &lt;code&gt;HotKey&lt;/code&gt; DependencyProperty of &lt;code&gt;HotKeyBox&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;TextBoxHelper.WatermarkTrimming&lt;/code&gt; attached property to set the text trimming behavior to employ when (floating) watermark overflows the content area. thx to &lt;a href="https://github.com/amkuchta"&gt;&amp;#64;amkuchta&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;TextBoxHelper.WatermarkWrapping&lt;/code&gt; attached property (only for &lt;code&gt;TextBox&lt;/code&gt;) to set how the watermark should wrap text. Default is binded to &lt;code&gt;TextWrapping&lt;/code&gt; property. thx to &lt;a href="https://github.com/amkuchta"&gt;&amp;#64;amkuchta&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;VS Theme&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;New: &lt;code&gt;StandardGroupBox&lt;/code&gt; style&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;StandardExpander&lt;/code&gt; style&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TabControlHelper&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;New: &lt;code&gt;TabControlHelper.CloseButtonEnabled&lt;/code&gt; attached property to show / hide the close button (default is true).&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;TabControlHelper.CloseTabCommand&lt;/code&gt; attached property which executes if the &lt;code&gt;TabItem&lt;/code&gt; will be closed.&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;TabControlHelper.CloseTabCommandParameter&lt;/code&gt; attached property which will be passed to the &lt;code&gt;CloseTabCommand&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New: Add &lt;code&gt;TextBoxHelper.ButtonsAlignment&lt;/code&gt; support for &lt;code&gt;PasswordBox&lt;/code&gt; styles &lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3074"&gt;#3074&lt;/a&gt; &lt;a href="https://github.com/waleswood"&gt;&amp;#64;waleswood&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;MetroHeader&lt;/code&gt; control which can contains any other content and can display a header on top of this content.&lt;br /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/31484999-a22c6650-af32-11e7-95e1-17f3aa3987b6.png" class="img-fluid" alt="2017-10-11_15h58_35" /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/31485003-a52f7db0-af32-11e7-8963-b13b0da95b85.png" class="img-fluid" alt="2017-10-11_16h04_32" /&gt;
+&lt;pre&gt;&lt;code&gt;  &amp;lt;Controls:MetroHeader Margin=&amp;quot;2&amp;quot; Header=&amp;quot;TextBox Header&amp;quot;&amp;gt;
+      &amp;lt;Controls:MetroHeader.HeaderTemplate&amp;gt;
+          &amp;lt;DataTemplate&amp;gt;
+              &amp;lt;StackPanel VerticalAlignment=&amp;quot;Center&amp;quot; Orientation=&amp;quot;Horizontal&amp;quot;&amp;gt;
+                  &amp;lt;iconPacks:PackIconMaterial VerticalAlignment=&amp;quot;Center&amp;quot; Kind=&amp;quot;FaceProfile&amp;quot; /&amp;gt;
+                  &amp;lt;TextBlock Margin=&amp;quot;2 0 0 0&amp;quot;
+                             VerticalAlignment=&amp;quot;Center&amp;quot;
+                             Text=&amp;quot;{Binding}&amp;quot; /&amp;gt;
+              &amp;lt;/StackPanel&amp;gt;
+          &amp;lt;/DataTemplate&amp;gt;
+      &amp;lt;/Controls:MetroHeader.HeaderTemplate&amp;gt;
+      &amp;lt;TextBox Text=&amp;quot;Enabled&amp;quot; /&amp;gt;
+  &amp;lt;/Controls:MetroHeader&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;ScrollViewerHelper&lt;/code&gt; class
+&lt;ul&gt;
+&lt;li&gt;New: &lt;code&gt;IsHorizontalScrollWheelEnabled&lt;/code&gt; attached property. If it's set to true and a horizontal &lt;code&gt;ScrollBar&lt;/code&gt; is visible then the mouse wheel scrolls to left and right.&lt;/li&gt;
+&lt;li&gt;Change: &lt;code&gt;VerticalScrollBarOnLeftSide&lt;/code&gt; attached property from &lt;code&gt;ScrollBarHelper&lt;/code&gt; to &lt;code&gt;ScrollViewerHelper&lt;/code&gt;. ScrollBarHelper is now marked as obsolete.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New: Use &lt;code&gt;FlatButtonForegroundBrush&lt;/code&gt; in the new &lt;code&gt;MahApps.Metro.Styles.FlatButtonFocusVisualStyle&lt;/code&gt; which is used now for &lt;code&gt;MetroFlatButton&lt;/code&gt; and &lt;code&gt;MetroFlatToggleButton&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;PasswordBoxHelper&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;New: &lt;code&gt;RevealButtonContent&lt;/code&gt; and &lt;code&gt;RevealButtonContentTemplate&lt;/code&gt; attached properties&lt;/li&gt;
+&lt;li&gt;Set the &lt;code&gt;DefaultRevealButtonIcon&lt;/code&gt; ContentControl to &lt;code&gt;RevealButtonContent&lt;/code&gt; attached property&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Change: Use the original Win 10 close button style
+&lt;ul&gt;
+&lt;li&gt;New: &lt;code&gt;MahApps.Metro.Styles.WindowButton.Close.Light.Win10&lt;/code&gt; and &lt;code&gt;MahApps.Metro.Styles.WindowButton.Close.Dark.Win10&lt;/code&gt; styles&lt;br /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/34455670-56baa624-ed84-11e7-92b2-e7c195f42df4.png" class="img-fluid" alt="2017-12-30_17h03_11" /&gt;&lt;br /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/34455671-5811a2d4-ed84-11e7-8119-d3480edd1f2b.png" class="img-fluid" alt="2017-12-30_17h04_19" /&gt;&lt;br /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/34455672-595e9084-ed84-11e7-8695-cfd712304bc1.png" class="img-fluid" alt="2017-12-30_17h04_25" /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;ItemHelper&lt;/code&gt; class with some &lt;code&gt;Brush&lt;/code&gt;  attached properties for mouse interaction. These properties can be used with &lt;code&gt;HamburgerMenuItem&lt;/code&gt;, &lt;code&gt;ListBoxItem&lt;/code&gt;, &lt;code&gt;ListViewItem&lt;/code&gt;, &lt;code&gt;TreeViewItem&lt;/code&gt; and &lt;code&gt;ComboBoxItem&lt;/code&gt;.
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;ItemHelper.ActiveSelectionBackgroundBrush&lt;/code&gt; default &lt;code&gt;AccentColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ItemHelper.ActiveSelectionForegroundBrush&lt;/code&gt; default &lt;code&gt;AccentSelectedColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ItemHelper.DisabledBackgroundBrush&lt;/code&gt; default &lt;code&gt;x:Null&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ItemHelper.DisabledForegroundBrush&lt;/code&gt; default &lt;code&gt;GrayNormalBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ItemHelper.DisabledSelectedBackgroundBrush&lt;/code&gt; default &lt;code&gt;GrayBrush7&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ItemHelper.DisabledSelectedForegroundBrush&lt;/code&gt; default &lt;code&gt;AccentSelectedColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ItemHelper.HoverBackgroundBrush&lt;/code&gt; default &lt;code&gt;AccentColorBrush3&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ItemHelper.HoverSelectedBackgroundBrush&lt;/code&gt; default &lt;code&gt;AccentColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ItemHelper.SelectedBackgroundBrush&lt;/code&gt; default &lt;code&gt;AccentColorBrush2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ItemHelper.SelectedForegroundBrush&lt;/code&gt; default &lt;code&gt;AccentSelectedColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;ToggleSwitch&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;New: &lt;code&gt;ContentPadding&lt;/code&gt; dependency property to change the padding of the inner content in an easy way.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HamburgerMenu&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Renaming (internal used styles):
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;HamburgerListBoxItemStyle&lt;/code&gt; -&amp;gt; &lt;code&gt;HamburgerMenuItemStyle&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HamburgerListBoxStyle&lt;/code&gt; -&amp;gt; &lt;code&gt;HamburgerMenuListStyle&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Revert back to &lt;code&gt;UWPCommunityToolkit&lt;/code&gt; style (update template to keep options visible)
+&lt;ul&gt;
+&lt;li&gt;Move template to &lt;code&gt;HamburgerMenuTemplate&lt;/code&gt; resource dictionary&lt;/li&gt;
+&lt;li&gt;Add margins&lt;/li&gt;
+&lt;li&gt;Vertically stretch the menu items of the hamburger menu&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Change inner ListBox scrolling (to CanContentScroll)&lt;/li&gt;
+&lt;li&gt;New: Add &lt;code&gt;ItemContainerStyle&lt;/code&gt; and &lt;code&gt;OptionsItemContainerStyle&lt;/code&gt; properties. This makes it easier to change the inner styles for the items (and option items)&lt;/li&gt;
+&lt;li&gt;MinHeight of the menu items should be &lt;code&gt;0&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Change: &lt;code&gt;HamburgerMenuImageItem&lt;/code&gt;: Downgrade thumbnail property from &lt;code&gt;BitmapImage&lt;/code&gt; to subclass &lt;code&gt;ImageSource&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;New: Introduce &lt;code&gt;ItemInvoked&lt;/code&gt; event (as an alternative to &lt;code&gt;ItemClick&lt;/code&gt; and &lt;code&gt;OptionsItemClick&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;SelectionIndicator&lt;/code&gt; (rectangle) which can be enabled with the new &lt;code&gt;ShowSelectionIndicator&lt;/code&gt; dependency property
+&lt;ul&gt;
+&lt;li&gt;New: resource key &lt;code&gt;HamburgerMenuSelectionIndicatorThemeWidth&lt;/code&gt; default &lt;code&gt;6&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;New: resource key &lt;code&gt;HamburgerMenuSelectionIndicatorThemeHeight&lt;/code&gt; default &lt;code&gt;24&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Improved item &lt;code&gt;FocusVisualStyle&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Add new (readonly) &lt;code&gt;ItemFocusVisualStyle&lt;/code&gt; dependency property which will be re-created if one of these properties are changed: &lt;code&gt;OpenPaneLength&lt;/code&gt;, &lt;code&gt;CompactPaneLength&lt;/code&gt; and &lt;code&gt;IsPaneOpen&lt;/code&gt;. Default template is &lt;code&gt;HamburgerMenuItemFocusVisualTemplate&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;This FocusVisualStyle can be override at the &lt;code&gt;HamburgerMenuItem&lt;/code&gt; style by setting the &lt;code&gt;FocusVisualStyle&lt;/code&gt; property.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Change: Reorganize Hamburger sample: shows now Default style, Creators Update style and a sample with the MaterialDesignInXaml Ripple control&lt;/li&gt;
+&lt;li&gt;Fix: Set a selected Item only if there is no content set&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;HamburgerMenu&lt;/code&gt; resources to Control styles to allow style manipulation and fix binding expression infos&lt;/li&gt;
+&lt;li&gt;Fix: &lt;code&gt;PanePlacement&lt;/code&gt; handling for right aligned&lt;/li&gt;
+&lt;li&gt;New: Add &lt;code&gt;ToolTip&lt;/code&gt; &lt;code&gt;DependencyProperty&lt;/code&gt; for &lt;code&gt;HamburgerMenuItem&lt;/code&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/35100389-f6e49e9e-fc5b-11e7-9691-f65f0a044faa.gif" class="img-fluid" alt="mahapps_hamburger_right" /&gt;&lt;br /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/34588589-18930f0c-f1ae-11e7-8ee1-e526de4a7a57.gif" class="img-fluid" alt="mahapps_hamburger" /&gt;&lt;br /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/34677971-1620523e-f492-11e7-8d50-9ff2c4c25c86.png" class="img-fluid" alt="2018-01-08_16h34_14" /&gt;&lt;br /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/34677972-16425fbe-f492-11e7-9d4d-2ff4912b3ffc.png" class="img-fluid" alt="2018-01-08_16h34_19" /&gt;&lt;br /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/34677973-166ea7fe-f492-11e7-83ae-7c4d863f3007.png" class="img-fluid" alt="2018-01-08_16h34_22" /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;Dialogs&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;New: Create new style for Dialogs &lt;code&gt;MahApps.Metro.Styles.MetroDialog&lt;/code&gt; and set this as default&lt;/li&gt;
+&lt;li&gt;Add &lt;code&gt;BaseMetroDialog&lt;/code&gt; resources to Control styles to allow easier dialog style manipulation&lt;/li&gt;
+&lt;li&gt;Fix: Do not load all MahApps styles in code behind again (this is not necessary anymore, since it's now at Style level too)&lt;/li&gt;
+&lt;li&gt;Fix: Inverted Dialogs theme (the background wasn't correct)&lt;/li&gt;
+&lt;li&gt;New: Add &lt;code&gt;ProgressDialogController.SetProgressBarForegroundBrush(Brush)&lt;/code&gt; so that you can customize a progress dialog's progress bar foreground Brush.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;MetroWindow&lt;/code&gt; (&lt;code&gt;Dialogs&lt;/code&gt;)
+&lt;ul&gt;
+&lt;li&gt;Add a new (readonly) &lt;code&gt;IsAnyDialogOpen&lt;/code&gt; dependency property. This property will be updated if a dialog is shown or not.&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;OwnerCanCloseWithDialog&lt;/code&gt; property at &lt;code&gt;MetroDialogSettings&lt;/code&gt; which can be used to handle how the owner of the dialog can be closed.&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;IsCloseButtonEnabledWithDialog&lt;/code&gt; property at &lt;code&gt;MetroWindow&lt;/code&gt; which indicates if the close button should be enabled or not if a dialog is shown.&lt;/li&gt;
+&lt;li&gt;The &lt;code&gt;HandleOverlayOnHide&lt;/code&gt; and &lt;code&gt;HandleOverlayOnShow&lt;/code&gt; methods sets the &lt;code&gt;IsCloseButtonEnabledWithDialogPropertyKey&lt;/code&gt; and restores focus if needed&lt;/li&gt;
+&lt;li&gt;New: &lt;code&gt;OverlayFadeIn&lt;/code&gt; and &lt;code&gt;OverlayFadeOut&lt;/code&gt; properties to set/override the overlay fade in/out Storyboards which are used for the &lt;code&gt;Dialogs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Fix: Fade in and out animation was wrong if no duration exists&lt;/li&gt;
+&lt;li&gt;Fix: &lt;code&gt;HideMetroDialogAsync&lt;/code&gt; fails sometimes to close dialog (async call order)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New: Win10 &lt;code&gt;Slider&lt;/code&gt; style: &lt;code&gt;MahApps.Metro.Styles.Slider.Win10&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Control template: &lt;code&gt;MahApps.Metro.Styles.Slider.HorizontalTemplate.Win10&lt;/code&gt;, &lt;code&gt;MahApps.Metro.Styles.Slider.VerticalTemplate.Win10&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;RepeatButton: &lt;code&gt;MahApps.Metro.Styles.Slider.HorizontalTrack.Win10&lt;/code&gt;, &lt;code&gt;MahApps.Metro.Styles.Slider.VerticalTrack.Win10&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Thumb: &lt;code&gt;MahApps.Metro.Styles.Slider.Thumb.Win10&lt;/code&gt;&lt;br /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/35197687-4a54262e-fee3-11e7-8904-ac75a81f9a4e.png" class="img-fluid" alt="2018-01-21_19h23_50" /&gt;&lt;br /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/35197690-4ff3c29c-fee3-11e7-8e20-e7d9667be9cf.gif" class="img-fluid" alt="mahapps_slider_win10" /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New: Normal &lt;code&gt;Slider&lt;/code&gt; style: &lt;code&gt;MahApps.Metro.Styles.Slider&lt;/code&gt; (mark old as obsolete)
+&lt;ul&gt;
+&lt;li&gt;Control template: &lt;code&gt;MahApps.Metro.Styles.Slider.HorizontalTemplate&lt;/code&gt;, &lt;code&gt;MahApps.Metro.Styles.Slider.VerticalTemplate&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;RepeatButton: &lt;code&gt;MahApps.Metro.Styles.Slider.HorizontalTrack&lt;/code&gt;, &lt;code&gt;MahApps.Metro.Styles.Slider.VerticalTrack&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Thumb: &lt;code&gt;MahApps.Metro.Styles.Slider.Thumb&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New: Win10 &lt;code&gt;RangeSlider&lt;/code&gt; style: &lt;code&gt;MahApps.Metro.Styles.RangeSlider.Win10&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Control template: &lt;code&gt;MahApps.Metro.Styles.RangeSlider.HorizontalTemplate.Win10&lt;/code&gt;, &lt;code&gt;MahApps.Metro.Styles.RangeSlider.VerticalTemplate.Win10&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;RepeatButton: &lt;code&gt;MahApps.Metro.Styles.Slider.HorizontalTrack.Win10&lt;/code&gt;, &lt;code&gt;MahApps.Metro.Styles.Slider.VerticalTrack.Win10&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Thumb: &lt;code&gt;MahApps.Metro.Styles.Slider.Thumb.Win10&lt;/code&gt;, &lt;code&gt;MahApps.Metro.Styles.RangeSlider.HorizontalMiddleThumb.Win10&lt;/code&gt;, &lt;code&gt;MahApps.Metro.Styles.RangeSlider.VerticalMiddleThumb.Win10&lt;/code&gt;&lt;br /&gt;
+&lt;img src="https://user-images.githubusercontent.com/658431/35279353-2f289c5c-004d-11e8-89fb-1b7c60e58ebb.gif" class="img-fluid" alt="mahapps_rangeslider_win10" /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;New: Normal &lt;code&gt;RangeSlider&lt;/code&gt; style: &lt;code&gt;MahApps.Metro.Styles.RangeSlider&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Use &lt;code&gt;SliderHelper&lt;/code&gt; brush properties also for &lt;code&gt;RangeSlider&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Thump styles for the middle part: &lt;code&gt;MahApps.Metro.Styles.RangeSlider.HorizontalMiddleThumb&lt;/code&gt;, &lt;code&gt;MahApps.Metro.Styles.RangeSlider.VerticalMiddleThumb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Use &lt;code&gt;MetroThumb&lt;/code&gt; instead &lt;code&gt;Thumb&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Set &lt;code&gt;ReservedSpace&lt;/code&gt; for all &lt;code&gt;TickBar&lt;/code&gt; controls instead &lt;code&gt;Margin&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper&lt;/code&gt;: Add new attached properties for all possible &lt;code&gt;Brushes&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;Allow &lt;code&gt;SliderHelper.EnableMouseWheel&lt;/code&gt; and &lt;code&gt;SliderHelper.ChangeValueBy&lt;/code&gt; for &lt;code&gt;RangeSlider&lt;/code&gt; too.&lt;/li&gt;
+&lt;li&gt;Default Win10 &lt;code&gt;Slider&lt;/code&gt; brushes
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.ThumbFillBrush&lt;/code&gt; default &lt;code&gt;AccentBaseColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.ThumbFillHoverBrush&lt;/code&gt; default &lt;code&gt;GrayBrush3&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.ThumbFillPressedBrush&lt;/code&gt; default &lt;code&gt;AccentBaseColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.ThumbFillDisabledBrush&lt;/code&gt; default &lt;code&gt;GrayBrush1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackFillBrush&lt;/code&gt; default &lt;code&gt;GrayBrush2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackFillHoverBrush&lt;/code&gt; default &lt;code&gt;AccentBaseColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackFillPressedBrush&lt;/code&gt; default &lt;code&gt;GrayBrush6&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackFillDisabledBrush&lt;/code&gt; default &lt;code&gt;GrayBrush3&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackValueFillBrush&lt;/code&gt; default &lt;code&gt;AccentBaseColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackValueFillHoverBrush&lt;/code&gt; default &lt;code&gt;GrayBrush6&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackValueFillPressedBrush&lt;/code&gt; default &lt;code&gt;GrayBrush6&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackValueFillDisabledBrush&lt;/code&gt; default &lt;code&gt;GrayBrush6&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Default &lt;code&gt;Slider&lt;/code&gt; brushes
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.ThumbFillBrush&lt;/code&gt; default &lt;code&gt;GrayBrush2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.ThumbFillHoverBrush&lt;/code&gt; default &lt;code&gt;GrayBrush3&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.ThumbFillPressedBrush&lt;/code&gt; default &lt;code&gt;AccentColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.ThumbFillDisabledBrush&lt;/code&gt; default &lt;code&gt;GrayBrush5&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackFillBrush&lt;/code&gt; default &lt;code&gt;GrayBrush3&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackFillHoverBrush&lt;/code&gt; default &lt;code&gt;AccentColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackFillPressedBrush&lt;/code&gt; default &lt;code&gt;GrayBrush2&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackFillDisabledBrush&lt;/code&gt; default &lt;code&gt;GrayBrush3&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackValueFillBrush&lt;/code&gt; default &lt;code&gt;AccentColorBrush&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackValueFillHoverBrush&lt;/code&gt; default &lt;code&gt;GrayBrush6&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackValueFillPressedBrush&lt;/code&gt; default &lt;code&gt;GrayBrush6&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;SliderHelper.TrackValueFillDisabledBrush&lt;/code&gt; default &lt;code&gt;GrayBrush6&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DatePicker&lt;/code&gt;
+&lt;ul&gt;
+&lt;li&gt;New: Add new dependency property &lt;code&gt;ControlsHelper.IsReadOnly&lt;/code&gt;. This property sets the &lt;code&gt;IsReadOnly&lt;/code&gt; property on the inner &lt;code&gt;TextBox&lt;/code&gt; and the &lt;code&gt;IsEnabled&lt;/code&gt; on the inner popup button.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Strong naming&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;MahApps will no longer be strong-named beginning with this version. &lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3029"&gt;#3029&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Why?&lt;/p&gt;
+&lt;p&gt;Strong-named assemblies are only useful in some rare scenarios. If you need strong-named assembly then you can compile the source by yourself ore use the &lt;a href="https://github.com/dsplaisted/strongnamer"&gt;Strong Namer&lt;/a&gt; from Daniel Plaisted &amp;#64;dsplaisted or &lt;a href="https://github.com/brutaldev/StrongNameSigner"&gt;Strong-Name Signer&lt;/a&gt; from Werner van Deventer &amp;#64;brutaldev.&lt;/p&gt;
+&lt;p&gt;More informations about the reason of this decision can be found here:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.pedrolamas.com/2016/03/01/still-strong-naming-your-assemblies-you-do-know-its-2016-right/"&gt;Still Strong-Naming your Assemblies? You do know it’s 2016, right?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.pedrolamas.com/2016/02/23/xaml-behaviors-uwp-managed-1-1-0/"&gt;XAML Behaviors UWP Managed 1.1.0&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://docs.microsoft.com/en-us/dotnet/framework/app-domains/strong-named-assemblies"&gt;Strong-Named Assemblies&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Commits without PRs/Issues&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/79744525ee288f18e2d4086b245a431b2c764d48"&gt;69afa65e&lt;/a&gt; Adopt &lt;code&gt;SpellCheck.IsEnabled&lt;/code&gt; changes from &lt;code&gt;MaterialDesignInXamlToolkit&lt;/code&gt; &amp;#64;ButchersBoy &lt;a href="https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/pull/650"&gt;#650&lt;/a&gt; Removes the extra hidden classes and enables flexible style changes, it's more WPF now.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/15bbe66ddd781b9f9326ea663e22513b925111bd"&gt;15bbe66d&lt;/a&gt; Inherit FontFamily and FontSize for &lt;code&gt;CalendarDayButton&lt;/code&gt; and &lt;code&gt;CalendarButton&lt;/code&gt; from &lt;code&gt;Calendar&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/2c97fd4e14a295b6d00a24043609d475686b41d9"&gt;2c97fd4e&lt;/a&gt; Fix: Brushes for &lt;code&gt;MetroProgressBar&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/5c4471c3a4922294662815d02ca005d9ed06d3d9"&gt;5c4471c3&lt;/a&gt; Use DynamicResource for all brushes and freeze it too.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/8c0f893f45748b558afd6557caa8883a779ffb7e"&gt;8c0f893f&lt;/a&gt; Fix: &lt;code&gt;MetroProgressBar&lt;/code&gt; does not work inside ControlTemplate&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/c900c5bd1e8c91a1a8f25a002b0853e100feb787"&gt;c900c5bd&lt;/a&gt; Check for RootVisual in &lt;code&gt;GlowWindowBehavior&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/ad16dc308f678f48286334e9ebe95b185c3c5e8d"&gt;ad16dc30&lt;/a&gt; &lt;code&gt;ResizeBorderThickness&lt;/code&gt; must also be set to 0 on maximize&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/6943cc92f6490d29ac39a0f0e73cab5b493e378a"&gt;6943cc92&lt;/a&gt; Use &lt;code&gt;PropertyChangeNotifier&lt;/code&gt; from &lt;code&gt;ControlzEx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/7ea7a7c7603c09dad458ece2178bb5679747ddc0"&gt;7ea7a7c7&lt;/a&gt; Removing trigger for &lt;code&gt;ResizeBorderThickness&lt;/code&gt; as it's handled by &lt;code&gt;ControlzEx&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/44c236374c2393f70338b4bdcc28050e9e7e03f4"&gt;44c23637&lt;/a&gt; Fix possible System.Windows.Data warning for &lt;code&gt;ComboBoxItem&lt;/code&gt;, if a &lt;code&gt;ComboBox&lt;/code&gt; is inside a &lt;code&gt;ContentControl&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/edc346793730dd9e71d5c5271e3710e8a227ba58"&gt;edc34679&lt;/a&gt; &lt;code&gt;FlipView&lt;/code&gt;: Bind &lt;code&gt;ItemStringFormat&lt;/code&gt; to &lt;code&gt;ContentStringFormat&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/2c1c692bc583121ef90c8beb0eecb56f06e9e4e5"&gt;2c1c692b&lt;/a&gt; Fix not updating the text of &lt;code&gt;TimePicker&lt;/code&gt; and &lt;code&gt;DateTimePicker&lt;/code&gt; after changing the culture&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/e54aaaf1f97daedef2a4bb6361629a4939ad3bd3"&gt;e54aaaf1&lt;/a&gt; Use &lt;code&gt;DialogTitleFontSize&lt;/code&gt; and &lt;code&gt;DialogMessageFontSize&lt;/code&gt; via DynamicResource at the base MetroDialog style&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/9071379b5e17f05a3b41262998858497990b258f"&gt;9071379b&lt;/a&gt; Closing main demo was wrong (TaskCanceledException)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/4253d89fad1b009e95cf3cf48c87aa766993c4d7"&gt;4253d89f&lt;/a&gt; Set &lt;code&gt;HorizontalScrollBarVisibility&lt;/code&gt; and &lt;code&gt;VerticalScrollBarVisibility&lt;/code&gt; for &lt;code&gt;HotKeyBox&lt;/code&gt; and &lt;code&gt;NumericUpdDown&lt;/code&gt; to Hidden, cause the inner TextBox has this as default too&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/commit/713cb69b783daccfebcff6b5a31488f620a5c21a"&gt;713cb69b&lt;/a&gt; &lt;code&gt;Slider&lt;/code&gt;: remove linear gradient brush from horizontal and vertical track value style. &lt;code&gt;RangeSlider&lt;/code&gt;: fix margin of the middle thumb.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Bugs&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3185"&gt;&lt;strong&gt;#3185&lt;/strong&gt;&lt;/a&gt; Fix for (GH-3039) NumericUpDown&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3181"&gt;&lt;strong&gt;#3181&lt;/strong&gt;&lt;/a&gt; Reorganize the Sliders and Progress examples with some fixes...&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3176"&gt;&lt;strong&gt;#3176&lt;/strong&gt;&lt;/a&gt; (GH-3175) MetroWindow: use BorderThickness as Margin for inner window content&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3175"&gt;&lt;strong&gt;#3175&lt;/strong&gt;&lt;/a&gt; Window contents cut off by 1px&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3171"&gt;&lt;strong&gt;#3171&lt;/strong&gt;&lt;/a&gt; NumericUpdOwn LostFocus text validation&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3168"&gt;&lt;strong&gt;#3168&lt;/strong&gt;&lt;/a&gt; NumericUpDown.StringFormat not working via Code behind&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3166"&gt;&lt;strong&gt;#3166&lt;/strong&gt;&lt;/a&gt; Bug On NumericUpDown&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3162"&gt;&lt;strong&gt;#3162&lt;/strong&gt;&lt;/a&gt; WIP MetroWindow: OverlayFadeIn / OverlayFadeOut&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3161"&gt;&lt;strong&gt;#3161&lt;/strong&gt;&lt;/a&gt; HamburgerMenu: correct PanePlacement handling&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3160"&gt;&lt;strong&gt;#3160&lt;/strong&gt;&lt;/a&gt; Fix not focusing custom controls via FocusManager&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3159"&gt;&lt;strong&gt;#3159&lt;/strong&gt;&lt;/a&gt; MetroThumbContentControl: Catch possible exception and trace it&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3156"&gt;&lt;strong&gt;#3156&lt;/strong&gt;&lt;/a&gt; Fixed issue #3155 &amp;quot;GridViewColumnHeader uses twice the padding&amp;quot;!&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3155"&gt;&lt;strong&gt;#3155&lt;/strong&gt;&lt;/a&gt; GridViewColumnHeader uses twice the padding&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3152"&gt;&lt;strong&gt;#3152&lt;/strong&gt;&lt;/a&gt; Fix overriding (Metro)TabItem controltemplate/style&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3150"&gt;&lt;strong&gt;#3150&lt;/strong&gt;&lt;/a&gt; Templated MetroDialog alignment&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3148"&gt;&lt;strong&gt;#3148&lt;/strong&gt;&lt;/a&gt; Fix loaded content at HamburgerMenu&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3146"&gt;&lt;strong&gt;#3146&lt;/strong&gt;&lt;/a&gt; Fix for WindowsSettingBehaviour and possible AssociatedObject Nullreference&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3145"&gt;&lt;strong&gt;#3145&lt;/strong&gt;&lt;/a&gt; Fix for #3143 Flyout's header not binding to XmlProvider&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3143"&gt;&lt;strong&gt;#3143&lt;/strong&gt;&lt;/a&gt; Flyout's header not binding to XmlProvider&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3142"&gt;&lt;strong&gt;#3142&lt;/strong&gt;&lt;/a&gt; Fix Dialogs Resource handling&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3140"&gt;&lt;strong&gt;#3140&lt;/strong&gt;&lt;/a&gt; System.InvalidOperationException: Ten element Visual nie jest połączony z PresentationSource.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3131"&gt;&lt;strong&gt;#3131&lt;/strong&gt;&lt;/a&gt; WindowSettings.SaveWindowState ConfigurationErrorsException&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3129"&gt;&lt;strong&gt;#3129&lt;/strong&gt;&lt;/a&gt; Override MetroTabItem controltemplate with close button&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3126"&gt;&lt;strong&gt;#3126&lt;/strong&gt;&lt;/a&gt; Fix MultiFrameImage: frame selection in NoScaleSmallerFrame mode&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3121"&gt;&lt;strong&gt;#3121&lt;/strong&gt;&lt;/a&gt; (#3101) Fix disabled Foreground for MahApps.Metro.Styles.MetroCircleButtonStyle&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3120"&gt;&lt;strong&gt;#3120&lt;/strong&gt;&lt;/a&gt; (#3109) Fix NullReferenceException when using Flyout with theme&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3119"&gt;&lt;strong&gt;#3119&lt;/strong&gt;&lt;/a&gt; (#3118) Fix for dark theme FlatButton FocusVisualStyle Foreground&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3118"&gt;&lt;strong&gt;#3118&lt;/strong&gt;&lt;/a&gt; Fix for dark theme flat button FocusVisualStyle&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3110"&gt;&lt;strong&gt;#3110&lt;/strong&gt;&lt;/a&gt; Fixes 3107.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3109"&gt;&lt;strong&gt;#3109&lt;/strong&gt;&lt;/a&gt; NullReferenceException When using Flyout With Theme&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3107"&gt;&lt;strong&gt;#3107&lt;/strong&gt;&lt;/a&gt; Object reference not set to an instance of an object.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3106"&gt;&lt;strong&gt;#3106&lt;/strong&gt;&lt;/a&gt; HamburgerMenu control: still just a demo?&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3104"&gt;&lt;strong&gt;#3104&lt;/strong&gt;&lt;/a&gt; SplitView  doesn't work with Caliburn.Micro ActivateItem(xxx)&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3101"&gt;&lt;strong&gt;#3101&lt;/strong&gt;&lt;/a&gt; MetroCircleButtonStyle not fading inner icon when button is disabled&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3091"&gt;&lt;strong&gt;#3091&lt;/strong&gt;&lt;/a&gt; Fix #3010 IsTabStop for HamburgerMenu&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3090"&gt;&lt;strong&gt;#3090&lt;/strong&gt;&lt;/a&gt; Fix NumericUpDown Issue #3086&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3089"&gt;&lt;strong&gt;#3089&lt;/strong&gt;&lt;/a&gt; Setting HamburgerMenu.SelectedIndex or Item cause the lost of its content&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3086"&gt;&lt;strong&gt;#3086&lt;/strong&gt;&lt;/a&gt; NumericUpDown CornerRadius Border issue.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3082"&gt;&lt;strong&gt;#3082&lt;/strong&gt;&lt;/a&gt; Fix wrong caret index for revealed PasswordBox&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3079"&gt;&lt;strong&gt;#3079&lt;/strong&gt;&lt;/a&gt; Incorporate Grey Color Into BaseLight &amp;amp; BaseDark&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3078"&gt;&lt;strong&gt;#3078&lt;/strong&gt;&lt;/a&gt; Not All &amp;quot;Grey&amp;quot; Values Are Set in BaseLight/BaseDark&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3076"&gt;&lt;strong&gt;#3076&lt;/strong&gt;&lt;/a&gt; Fix for Floating watermak field doesn't fit according to floating watermark FontSize&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3068"&gt;&lt;strong&gt;#3068&lt;/strong&gt;&lt;/a&gt; AutoWatermark attached property has no effect on HotKeyBox&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3067"&gt;&lt;strong&gt;#3067&lt;/strong&gt;&lt;/a&gt; Right aligned floating Watermark goes behind clear button&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3066"&gt;&lt;strong&gt;#3066&lt;/strong&gt;&lt;/a&gt; Don't catch TextChangedEvent in NumericUpDown&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3060"&gt;&lt;strong&gt;#3060&lt;/strong&gt;&lt;/a&gt; Fix for TextBox GPU memory leak&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3054"&gt;&lt;strong&gt;#3054&lt;/strong&gt;&lt;/a&gt; WindowsSettingBehaviour broken after using ControlzEx&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3050"&gt;&lt;strong&gt;#3050&lt;/strong&gt;&lt;/a&gt; Allow TimePicker to parse times with an AM/PM.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3049"&gt;&lt;strong&gt;#3049&lt;/strong&gt;&lt;/a&gt; TimePicker fails to parse times with an AM/PM.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3046"&gt;&lt;strong&gt;#3046&lt;/strong&gt;&lt;/a&gt; Update TextBoxHelper.cs&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3045"&gt;&lt;strong&gt;#3045&lt;/strong&gt;&lt;/a&gt; Clicking on the &amp;quot;X&amp;quot; button added by TextBoxHelper.ClearTextButton does not clear the databinding target&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3043"&gt;&lt;strong&gt;#3043&lt;/strong&gt;&lt;/a&gt; Width parse error&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3042"&gt;&lt;strong&gt;#3042&lt;/strong&gt;&lt;/a&gt; NumericUpDown Focus doesn't work if set through FocusManager&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3039"&gt;&lt;strong&gt;#3039&lt;/strong&gt;&lt;/a&gt; NumericUpDown&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3038"&gt;&lt;strong&gt;#3038&lt;/strong&gt;&lt;/a&gt; Update from Version 0.13.1 to a higher one&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3034"&gt;&lt;strong&gt;#3034&lt;/strong&gt;&lt;/a&gt; GlowBrush=&amp;quot;&amp;quot; is causing a ComponentModel Exception in UpdateCore&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3031"&gt;&lt;strong&gt;#3031&lt;/strong&gt;&lt;/a&gt; NumericUpDown do not fire at certain conditions&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3028"&gt;&lt;strong&gt;#3028&lt;/strong&gt;&lt;/a&gt; SaveWindowPosition causes application to crash&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3026"&gt;&lt;strong&gt;#3026&lt;/strong&gt;&lt;/a&gt; NumericUpDown didn't update when lost focus, StringFormat  has no effect to the content string&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3025"&gt;&lt;strong&gt;#3025&lt;/strong&gt;&lt;/a&gt; ComboBox popup border thickness problem&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3023"&gt;&lt;strong&gt;#3023&lt;/strong&gt;&lt;/a&gt; Custom Dialog Theme Issue&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3022"&gt;&lt;strong&gt;#3022&lt;/strong&gt;&lt;/a&gt; HideMetroDialogAsync sometimes fails to close dialog&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3017"&gt;&lt;strong&gt;#3017&lt;/strong&gt;&lt;/a&gt; SplitButton with custom ItemTemplate - Source change does not always update layout&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3013"&gt;&lt;strong&gt;#3013&lt;/strong&gt;&lt;/a&gt; ListView (ListBox) - Undeletable Top Padding&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3010"&gt;&lt;strong&gt;#3010&lt;/strong&gt;&lt;/a&gt; HamburgerMenu ignores Focusable and IsHitTestVisible properties&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3009"&gt;&lt;strong&gt;#3009&lt;/strong&gt;&lt;/a&gt; Floating Watermak field doesn't fit according FontSize&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3001"&gt;&lt;strong&gt;#3001&lt;/strong&gt;&lt;/a&gt; DatePicker padding do not work&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3000"&gt;&lt;strong&gt;#3000&lt;/strong&gt;&lt;/a&gt; Empty Watermark leaves blank border on date time controls&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2999"&gt;&lt;strong&gt;#2999&lt;/strong&gt;&lt;/a&gt; Using OrdinalIgnoreCase instead of InvariantCultureIgnoreCase in ThemeManager&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2997"&gt;&lt;strong&gt;#2997&lt;/strong&gt;&lt;/a&gt; [Fix] WPF-BindingLeak: Bind to property of non INotifyPropertyChanged without using BindingMode.OneTime&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2996"&gt;&lt;strong&gt;#2996&lt;/strong&gt;&lt;/a&gt; Mahapps window steals focus&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2992"&gt;&lt;strong&gt;#2992&lt;/strong&gt;&lt;/a&gt; Fixing a few issues in ThemeManager&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2991"&gt;&lt;strong&gt;#2991&lt;/strong&gt;&lt;/a&gt; Enable LayoutTransform and RenderTransform on MetroWindow&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2990"&gt;&lt;strong&gt;#2990&lt;/strong&gt;&lt;/a&gt; TextBox memory leak&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2985"&gt;&lt;strong&gt;#2985&lt;/strong&gt;&lt;/a&gt; TimePicker 24hour format selection&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2983"&gt;&lt;strong&gt;#2983&lt;/strong&gt;&lt;/a&gt; NumericUpDown Internal Text Doesn't Update When Expected&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2972"&gt;&lt;strong&gt;#2972&lt;/strong&gt;&lt;/a&gt; ThemeManager.ChangeAppStyle from separate thread doesn't take effect every 4th time&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2966"&gt;&lt;strong&gt;#2966&lt;/strong&gt;&lt;/a&gt; [Only visual] PasswordBox bug&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2963"&gt;&lt;strong&gt;#2963&lt;/strong&gt;&lt;/a&gt; WindowCommands with ItemTemplateSelector not working&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2962"&gt;&lt;strong&gt;#2962&lt;/strong&gt;&lt;/a&gt; MetroStatusBar Style and Prism RegionManager&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2958"&gt;&lt;strong&gt;#2958&lt;/strong&gt;&lt;/a&gt; NumericUpDown: If HasDecimals is set to false and StringFormat was bound, HasDecimals will be set to true after unloading and loading the control&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2956"&gt;&lt;strong&gt;#2956&lt;/strong&gt;&lt;/a&gt; property ToolTip of ProgressRing does not work&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2954"&gt;&lt;strong&gt;#2954&lt;/strong&gt;&lt;/a&gt; add contentstringformat to contentpresenter in controls.radiobutton.xaml&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2953"&gt;&lt;strong&gt;#2953&lt;/strong&gt;&lt;/a&gt; Can't run MahApps 1.5.0 Caliburn Demos on VS2015&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2951"&gt;&lt;strong&gt;#2951&lt;/strong&gt;&lt;/a&gt; Window with showactivated=false and sizetocontent=WidthAndHeight is activated in Mahapps.Metro v1.5&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2938"&gt;&lt;strong&gt;#2938&lt;/strong&gt;&lt;/a&gt; DataGridNumericUpDownColumn StringFormat binding&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2937"&gt;&lt;strong&gt;#2937&lt;/strong&gt;&lt;/a&gt; Fuzzy button outline&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2933"&gt;&lt;strong&gt;#2933&lt;/strong&gt;&lt;/a&gt; Hamburguer menu issue&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2926"&gt;&lt;strong&gt;#2926&lt;/strong&gt;&lt;/a&gt; IsPaneOpen property in Hamburger Menu is not properly set after opening/closing pane&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2813"&gt;&lt;strong&gt;#2813&lt;/strong&gt;&lt;/a&gt; ControlTemplate and Style are not applied to the CustomDialog&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2806"&gt;&lt;strong&gt;#2806&lt;/strong&gt;&lt;/a&gt; Async Content Dialog is not always blocked&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2753"&gt;&lt;strong&gt;#2753&lt;/strong&gt;&lt;/a&gt; Race condition in ShowMetroDialogAsync/HideMetroDialogAsync&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2745"&gt;&lt;strong&gt;#2745&lt;/strong&gt;&lt;/a&gt; Why change App Style in Flyout if the theme Adapt is chosen?&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2731"&gt;&lt;strong&gt;#2731&lt;/strong&gt;&lt;/a&gt; Keep BorderThickness on maximize if necessary&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2622"&gt;&lt;strong&gt;#2622&lt;/strong&gt;&lt;/a&gt; DateTimePicker - Format&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2468"&gt;&lt;strong&gt;#2468&lt;/strong&gt;&lt;/a&gt; DialogCoordinator.ShowMessageAsync Button Accent&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2463"&gt;&lt;strong&gt;#2463&lt;/strong&gt;&lt;/a&gt; [accessibility] Dialogs and screen reader&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/1678"&gt;&lt;strong&gt;#1678&lt;/strong&gt;&lt;/a&gt; Pivot control does not work with BaseDark style&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Features&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3178"&gt;&lt;strong&gt;#3178&lt;/strong&gt;&lt;/a&gt; Add ability to set progress dialog progress bar brush color&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3177"&gt;&lt;strong&gt;#3177&lt;/strong&gt;&lt;/a&gt; HamburgerMenuItem ToolTip Implementation&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3170"&gt;&lt;strong&gt;#3170&lt;/strong&gt;&lt;/a&gt; DatePicker IsReadOnly&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3165"&gt;&lt;strong&gt;#3165&lt;/strong&gt;&lt;/a&gt; Add new Win10 Slider style&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3158"&gt;&lt;strong&gt;#3158&lt;/strong&gt;&lt;/a&gt; NumericUpDown: Add a new property to handle the allowed numeric input&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3153"&gt;&lt;strong&gt;#3153&lt;/strong&gt;&lt;/a&gt; WIP Handle CloseButton together with ShowDialogsOverTitleBar&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3151"&gt;&lt;strong&gt;#3151&lt;/strong&gt;&lt;/a&gt; New IsAnyDialogVisible dependency property for MetroWindow&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3149"&gt;&lt;strong&gt;#3149&lt;/strong&gt;&lt;/a&gt; Add FlyoutAutomationPeer for better CodedUI support&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3147"&gt;&lt;strong&gt;#3147&lt;/strong&gt;&lt;/a&gt; Add basic MetroDialog AutomationPeers&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3134"&gt;&lt;strong&gt;#3134&lt;/strong&gt;&lt;/a&gt; HamburgerMenu and Item selection/hover brush improvements&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3133"&gt;&lt;strong&gt;#3133&lt;/strong&gt;&lt;/a&gt; Use the original Win 10 close button style&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3122"&gt;&lt;strong&gt;#3122&lt;/strong&gt;&lt;/a&gt; (#3105) Allow to change the RevealButton Icon in the PasswordBox&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3087"&gt;&lt;strong&gt;#3087&lt;/strong&gt;&lt;/a&gt; New ScrollViewerHelper class with IsHorizontalScrollWheelEnabled&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3077"&gt;&lt;strong&gt;#3077&lt;/strong&gt;&lt;/a&gt; Add new MetroHeader control&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3074"&gt;&lt;strong&gt;#3074&lt;/strong&gt;&lt;/a&gt; add &amp;quot;PasswordBox&amp;quot; support &amp;quot;ButtonsAlignment&amp;quot;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3073"&gt;&lt;strong&gt;#3073&lt;/strong&gt;&lt;/a&gt; VS Theme TabItem enhancements&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3072"&gt;&lt;strong&gt;#3072&lt;/strong&gt;&lt;/a&gt; Add missing VS StandardExpander style&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3071"&gt;&lt;strong&gt;#3071&lt;/strong&gt;&lt;/a&gt; Add missing VS GroupBox style&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3069"&gt;&lt;strong&gt;#3069&lt;/strong&gt;&lt;/a&gt; Watermark fixes and improvements&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3021"&gt;&lt;strong&gt;#3021&lt;/strong&gt;&lt;/a&gt; Replacing WindowChrome and related things with reference to ControlzEx&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/3014"&gt;&lt;strong&gt;#3014&lt;/strong&gt;&lt;/a&gt; Resolved #2619&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2975"&gt;&lt;strong&gt;#2975&lt;/strong&gt;&lt;/a&gt; Creators Hamburger Menu&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2935"&gt;&lt;strong&gt;#2935&lt;/strong&gt;&lt;/a&gt; It is now possibile to set FontFamily to DateTimePicker.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2930"&gt;&lt;strong&gt;#2930&lt;/strong&gt;&lt;/a&gt; DisplayFormat in DateTimePicker and TimePicker&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2467"&gt;&lt;strong&gt;#2467&lt;/strong&gt;&lt;/a&gt; Added Canceled Result To MessageDialogResut&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2423"&gt;&lt;strong&gt;#2423&lt;/strong&gt;&lt;/a&gt; Added the habilitiy to block the use of the scientific notation 'e'.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Feature Requests&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3169"&gt;&lt;strong&gt;#3169&lt;/strong&gt;&lt;/a&gt; HamburgerMenuIconItem ToolTip&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3105"&gt;&lt;strong&gt;#3105&lt;/strong&gt;&lt;/a&gt; [Enhancement] Allow to change the Reveal Icon in the PasswordBox&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3100"&gt;&lt;strong&gt;#3100&lt;/strong&gt;&lt;/a&gt; HorizontalAlignment of BaseMetroDialog content&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3084"&gt;&lt;strong&gt;#3084&lt;/strong&gt;&lt;/a&gt; MetroAnimatedSingleRowTabControl Scrollbar issue&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/3070"&gt;&lt;strong&gt;#3070&lt;/strong&gt;&lt;/a&gt; VS GroupBox style&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2979"&gt;&lt;strong&gt;#2979&lt;/strong&gt;&lt;/a&gt; [Request]Win 10 Fluent Design Hamburger Menu&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2977"&gt;&lt;strong&gt;#2977&lt;/strong&gt;&lt;/a&gt; Badge must have a different look when disabled&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2952"&gt;&lt;strong&gt;#2952&lt;/strong&gt;&lt;/a&gt; NumericUpDown snap to interval&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2931"&gt;&lt;strong&gt;#2931&lt;/strong&gt;&lt;/a&gt; [Request]Win 10 Creators Update Hamburger Menu&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2889"&gt;&lt;strong&gt;#2889&lt;/strong&gt;&lt;/a&gt; [Feature Request] Watermark Wrapping&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2884"&gt;&lt;strong&gt;#2884&lt;/strong&gt;&lt;/a&gt; [Feature Request] Watermark Trimming&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2882"&gt;&lt;strong&gt;#2882&lt;/strong&gt;&lt;/a&gt; Titlebar Close command does not work with ShowDialogsOverTitleBar=False&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2879"&gt;&lt;strong&gt;#2879&lt;/strong&gt;&lt;/a&gt; [Feature request] Ticks property for the RangeSlider&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2825"&gt;&lt;strong&gt;#2825&lt;/strong&gt;&lt;/a&gt; Shorten Dialog Show/Hide animation duration&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2527"&gt;&lt;strong&gt;#2527&lt;/strong&gt;&lt;/a&gt; Coded UI Testing in not working Properly on this UI&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2491"&gt;&lt;strong&gt;#2491&lt;/strong&gt;&lt;/a&gt; Question: Changing font style for watermark&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/2422"&gt;&lt;strong&gt;#2422&lt;/strong&gt;&lt;/a&gt; Added the habilitiy to block the use of the scientific notation 'e' on NumericUpDown.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/1731"&gt;&lt;strong&gt;#1731&lt;/strong&gt;&lt;/a&gt; VS Theme TabItem Question&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/MahApps/MahApps.Metro/issues/957"&gt;&lt;strong&gt;#957&lt;/strong&gt;&lt;/a&gt; Expander icon in VS theme&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="where-to-get-it"&gt;Where to get it&lt;/h3&gt;
+&lt;p&gt;You can download this release from &lt;a href="https://github.com/MahApps/MahApps.Metro/releases/1.6.0"&gt;MahApps.Metro&lt;/a&gt;&lt;/p&gt;
+</content:encoded>
+		</item>
 		<item>
 			<title>Release 1.5.0</title>
 			<link>https://mahapps.com/blog/release-v1.5.0</link>
@@ -1099,245 +1628,6 @@ It's now possible to set &lt;code&gt;FocusedElement&lt;/code&gt; and &lt;code&gt
 &lt;li&gt;Fixed wrong WindowPlacement saving with Border snaps #1811 #1814&lt;/li&gt;
 &lt;li&gt;Fixed color disappearing for DataGrid selection #1728 #1816&lt;/li&gt;
 &lt;li&gt;Fixed FocusVisualStyle in Flyouts (surround Flyout content with AdornerDecorator) &lt;a href="https://github.com/MahApps/MahApps.Metro/commit/dc58b92f815484de8866d4af608fad22b699047d"&gt;SHA&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Release 1.0.0</title>
-			<link>https://mahapps.com/blog/release-v1.0.0</link>
-			<description>&lt;p&gt;This is the first stable release of MahApps.Metro.&lt;/p&gt;</description>
-			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.0.0</guid>
-			<pubDate>Tue, 02 Dec 2014 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h1 id="notes"&gt;Notes&lt;/h1&gt;
-&lt;p&gt;This is the first stable release of MahApps.Metro.&lt;/p&gt;
-&lt;p&gt;We removed everything marked as obsolete and made some API changes, but from now on MahApps.Metro follows Semantic Versioning, at least API wise. Please note that minor visual changes can still occur if there's a need for them.&lt;/p&gt;
-&lt;p&gt;A migration guide for the breaking changes is available here: &lt;a href="https://github.com/MahApps/MahApps.Metro/blob/master/docs/v1.0-Migration-Guide.md"&gt;https://github.com/MahApps/MahApps.Metro/blob/master/docs/v1.0-Migration-Guide.md&lt;/a&gt;&lt;/p&gt;
-&lt;h1 id="features"&gt;Features&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Added a StatusBar and StatusBarItem style #1558&lt;/li&gt;
-&lt;li&gt;Added the &lt;code&gt;TitleVisibility&lt;/code&gt; and &lt;code&gt;CloseButtonVisibility&lt;/code&gt; properties to the flyouts to control the visibility of the header.&lt;/li&gt;
-&lt;li&gt;Added the &lt;code&gt;ButtonHelper.PreserveTextCase&lt;/code&gt; attached property to control the automatic upper and lower casing of certain buttons. #1622&lt;/li&gt;
-&lt;li&gt;If an .ico file contains multiple icon sizes, &lt;code&gt;MetroWindow&lt;/code&gt; now automatically selects the optimal icon size. #1242 #1628&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;ShowMetroDialogAsync&lt;/code&gt; now accepts &lt;code&gt;MetroDialogSettings&lt;/code&gt; as argument so custom dialogs derived from the &lt;code&gt;CustomDialog&lt;/code&gt; class can have a fade-in and fade-out animation&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;ToggleSwitch&lt;/code&gt; control can now be dragged with the mouse to change the enabled state #1652 #1595&lt;/li&gt;
-&lt;li&gt;The &lt;code&gt;CleanWindow&lt;/code&gt;'s close button now has a red background when hovering with the mouse.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id="changes"&gt;Changes&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;The &lt;code&gt;IsOpenChangedEvent&lt;/code&gt; of the &lt;code&gt;Flyout&lt;/code&gt; control is now a routed event&lt;/li&gt;
-&lt;li&gt;The animation of the &lt;code&gt;Flyout&lt;/code&gt; control matches the Windows 8 flyout behavior more closely #1460&lt;/li&gt;
-&lt;li&gt;Changed the event names of the 'NumericUpDown' control control #1518&lt;/li&gt;
-&lt;li&gt;Split up the &lt;code&gt;ControlsHelper&lt;/code&gt; class into multiple more granular helper classes #1520 #1582&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;SimpleDialog&lt;/code&gt; has been renamed to &lt;code&gt;CustomDialog&lt;/code&gt; #1613&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;BaseMetroDialog&lt;/code&gt; now inherits from &lt;code&gt;ContentControl&lt;/code&gt; instead of &lt;code&gt;Control&lt;/code&gt;.
-The &lt;code&gt;DialogBody&lt;/code&gt; property has effectively been replaced by the &lt;code&gt;Content&lt;/code&gt; property. #1615&lt;/li&gt;
-&lt;li&gt;All elements in the titlebar now use the &lt;code&gt;IdealForegroundBrush&lt;/code&gt; for a better contrast to the accent color. #1611&lt;/li&gt;
-&lt;li&gt;The text in dialog buttons isn't lowercase by default anymore.&lt;/li&gt;
-&lt;li&gt;Eliminated the need to pass the owning &lt;code&gt;BaseMetroTabControl&lt;/code&gt; to &lt;code&gt;MetroTabItem&lt;/code&gt; #1624&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;TextBoxHelper&lt;/code&gt; is now written with an uppercase &lt;code&gt;B&lt;/code&gt; to match &lt;code&gt;TextBox&lt;/code&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id="bugfixes"&gt;Bugfixes&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Fixed the &lt;code&gt;TabItem&lt;/code&gt; close button requiring MahApps.Metro.Resources #1524&lt;/li&gt;
-&lt;li&gt;Fixed the ClearType partially not working #1537&lt;/li&gt;
-&lt;li&gt;Fixed flyouts closing when clicking on a formatting element #1487 #1508&lt;/li&gt;
-&lt;li&gt;Fixed potential deadlocks when unloading the AppDomain #1584&lt;/li&gt;
-&lt;li&gt;Fixed bad Combobox behaviour (Popup dropdown height) with new items #1521&lt;/li&gt;
-&lt;li&gt;Fixed not showing window commands and buttons if a flyout is open by default #1627&lt;/li&gt;
-&lt;li&gt;Fixed closing a tab doesn't work under specific circumstances #1639&lt;/li&gt;
-&lt;li&gt;Fixed the &lt;code&gt;ToggleSwitch&lt;/code&gt; control not respecting the height and width properties. #1652 #1466&lt;/li&gt;
-&lt;li&gt;Fixed &lt;code&gt;MetroProgressBar&lt;/code&gt; System.Windows.Media.Animation Warning 6 #1664&lt;/li&gt;
-&lt;li&gt;Fixed opening animation of dynamically created flyouts #1665 #1655&lt;/li&gt;
-&lt;li&gt;Fixed &lt;code&gt;WindowSettings&lt;/code&gt; SaveWindowPosition saves to position 0,0 if window not shown #1671 #1672&lt;/li&gt;
-&lt;li&gt;Fixed memory leak and exception with dynamically created Flyouts (mostly happens with Caliburn) #1681&lt;/li&gt;
-&lt;li&gt;Fixed the focus border not showing up for message dialog buttons #1679 #1684&lt;/li&gt;
-&lt;li&gt;Fixed the automatic focus for dialogs #1679 #1684&lt;/li&gt;
-&lt;li&gt;Fixed blurry contextmenu/menu and menu items #1674 #1685&lt;/li&gt;
-&lt;/ul&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Release 0.14.0</title>
-			<link>https://mahapps.com/blog/release-v0.14.0</link>
-			<description>&lt;p&gt;We're nearly ready to release version 1.0 of MahApps.Metro, so this may be the last unstable release.&lt;/p&gt;</description>
-			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v0.14.0</guid>
-			<pubDate>Tue, 19 Aug 2014 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h1 id="notes"&gt;Notes&lt;/h1&gt;
-&lt;p&gt;We're nearly ready to release version 1.0 of MahApps.Metro, so this may be the last unstable release.&lt;/p&gt;
-&lt;p&gt;There are no known breaking changes in this release, but we had to deprecate some things, particularly around the titlebar overlay behavior.&lt;/p&gt;
-&lt;p&gt;Please note that everything that is know deprecated will be removed in the 1.0 release, so you should prepare your applications soon.&lt;/p&gt;
-&lt;p&gt;Since we're following semantic versioning, we promise to not break anything from version 1.0 to 2.0.&lt;/p&gt;
-&lt;h1 id="features"&gt;Features&lt;/h1&gt;
-&lt;h2 id="metrowindow-now-indicates-whether-its-active-or-not"&gt;MetroWindow now indicates whether it's active or not&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;MetroWindow&lt;/code&gt; now has the &lt;code&gt;NonActiveWindowTitleBrush&lt;/code&gt; property that sets the window brush for an inactive window.&lt;/p&gt;
-&lt;p&gt;See PR #1320&lt;/p&gt;
-&lt;h2 id="fine-grained-control-over-the-titlebar-element-overlay-behavior"&gt;Fine grained control over the titlebar element overlay behavior&lt;/h2&gt;
-&lt;p&gt;The overlay behavior of the elements of the window titlebar can now be controlled individually.&lt;/p&gt;
-&lt;p&gt;There are is now an enum with four values:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;Never&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;OverlayFlyout&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;OverlayHiddenTitleBar&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Always&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;For more info, see PR #1427.&lt;/p&gt;
-&lt;h2 id="underlined-tabcontrol"&gt;Underlined TabControl&lt;/h2&gt;
-&lt;p&gt;Added the attached property &lt;code&gt;ControlsHelper.IsUnderlined=&amp;quot;True&amp;quot;&lt;/code&gt; for the &lt;code&gt;TabControl&lt;/code&gt; control that adds an underline.&lt;/p&gt;
-&lt;p&gt;See PR #1425 for reference.&lt;/p&gt;
-&lt;h2 id="custom-scrollbar-width-and-height"&gt;Custom ScrollBar width and height&lt;/h2&gt;
-&lt;p&gt;The default ScrollBar width and height can now be set manually.&lt;/p&gt;
-&lt;p&gt;See PR #1387for more infos.&lt;/p&gt;
-&lt;h2 id="direct-flatbutton-style"&gt;Direct FlatButton style&lt;/h2&gt;
-&lt;p&gt;Previously you had to include the &lt;code&gt;FlatButton&lt;/code&gt; resource dictionary to add a &lt;code&gt;FlatButton&lt;/code&gt;.
-Now you can just set it at style of a button.&lt;/p&gt;
-&lt;h2 id="metrowindow-icon-edgemode"&gt;MetroWindow icon EdgeMode&lt;/h2&gt;
-&lt;p&gt;It is now possible to set the &lt;code&gt;EdgeMode&lt;/code&gt; of the window icon.&lt;/p&gt;
-&lt;h1 id="changes"&gt;Changes&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;The &lt;code&gt;DropDownButton&lt;/code&gt; now works less like a &lt;code&gt;SplitButton&lt;/code&gt; #1442 #1459&lt;/li&gt;
-&lt;li&gt;Made a disabled Textbox, RichTextbox and PasswordBox a bit more visible #1410 #1420&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id="fixes"&gt;Fixes&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Don't focus window titlebar elements #1472 #1475&lt;/li&gt;
-&lt;li&gt;Fixed selection with SelectionUnit=CellOrRowHeader #1452&lt;/li&gt;
-&lt;li&gt;Fixed treeview style to allow custom styling #1444 #1450&lt;/li&gt;
-&lt;li&gt;Fixed the &lt;code&gt;Flyout&lt;/code&gt;control opening again when clicking on a control under the overlay #1411 #1428&lt;/li&gt;
-&lt;li&gt;Better coloring for blackout days #1133 #1426&lt;/li&gt;
-&lt;li&gt;Fixed the MetroWindow GlowBrush remaining visible when hiding window #1422 #1403 #1424&lt;/li&gt;
-&lt;li&gt;Enable text wrapping in ToggleSwitch Header #1415&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;TextboxHelper.Watermark&lt;/code&gt; should respect padding #1247&lt;/li&gt;
-&lt;li&gt;Fixed a blurry border on the &lt;code&gt;MetroButton&lt;/code&gt; and &lt;code&gt;MetroToggleButton&lt;/code&gt; style&lt;/li&gt;
-&lt;li&gt;Fix the &lt;code&gt;ComboBox&lt;/code&gt; `CanContentScroll usage&lt;/li&gt;
-&lt;li&gt;Fixed the &lt;code&gt;ComboBox&lt;/code&gt;virtualization #1132 #1394&lt;/li&gt;
-&lt;li&gt;Fixed DataGrid cell padding not being applied #977 #1393&lt;/li&gt;
-&lt;li&gt;Fixed various DataGrid issues #1381&lt;/li&gt;
-&lt;li&gt;Fixed a Flyout problem with width bound to ancestors ActualWidth&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;There are some more fixes, for a detailed list look into the commit log.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Release 0.13.1</title>
-			<link>https://mahapps.com/blog/release-v0.13.1</link>
-			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v0.13.1</guid>
-			<pubDate>Fri, 11 Apr 2014 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h1 id="fixes"&gt;Fixes&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Fixed an issue with the accent color in dialogs #1270 #1277&lt;/li&gt;
-&lt;li&gt;The .NET 4.5 assembly in the previous release wasn't signed&lt;/li&gt;
-&lt;/ul&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Release 0.13.0</title>
-			<link>https://mahapps.com/blog/release-v0.13.0</link>
-			<description>&lt;p&gt;The 0.13 release of MahApps.Metro marks a very important change in the &lt;code&gt;MetroWindow&lt;/code&gt; infrastructure along with several other fixes and improvements.&lt;/p&gt;</description>
-			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v0.13.0</guid>
-			<pubDate>Thu, 10 Apr 2014 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h1 id="notes"&gt;Notes&lt;/h1&gt;
-&lt;p&gt;The 0.13 release of MahApps.Metro marks a very important change in the &lt;code&gt;MetroWindow&lt;/code&gt; infrastructure along with several other fixes and improvements.&lt;/p&gt;
-&lt;p&gt;We've also updated the &lt;a href="http://www.nuget.org/packages/MahApps.Metro.Resources/"&gt;MahApps.Metro.Resources NuGet package&lt;/a&gt; with the &lt;a href="http://modernuiicons.com/"&gt;latest icons&lt;/a&gt;.&lt;/p&gt;
-&lt;h1 id="features"&gt;Features&lt;/h1&gt;
-&lt;h2 id="custom-themes"&gt;Custom themes&lt;/h2&gt;
-&lt;p&gt;MahApps.Metro now allows to define custom themes for the application. We've rewritten the &lt;code&gt;ThemeManager&lt;/code&gt; for this (don't worry, your old code should still work, but most old methods are now marked as &lt;code&gt;Obsolete&lt;/code&gt;)&lt;/p&gt;
-&lt;p&gt;To add a theme, use the new &lt;code&gt;AddAppTheme&lt;/code&gt; theme method.&lt;/p&gt;
-&lt;h2 id="completely-rewritten-borderlesswindowbehavior"&gt;Completely rewritten &lt;code&gt;BorderlessWindowBehavior&lt;/code&gt;&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;BorderlessWindowBehavior&lt;/code&gt; has been completely rewritten, to fix a number of issues that have accumulated over time.&lt;/p&gt;
-&lt;p&gt;For a complete list of fixes, see PR #1156&lt;/p&gt;
-&lt;h2 id="auto-closing-flyouts"&gt;Auto-closing flyouts&lt;/h2&gt;
-&lt;p&gt;Flyouts now have an option to be automatically closed when the user clicks outside of the flyout.
-We renamed the property &lt;code&gt;IsPinnable&lt;/code&gt; (that had no use) to &lt;code&gt;IsPinned&lt;/code&gt; for this.
-&lt;code&gt;IsPinned&lt;/code&gt; is &lt;code&gt;true&lt;/code&gt; by default and, if set to false, enables the auto-closing feature.&lt;/p&gt;
-&lt;h2 id="rangeslider"&gt;RangeSlider&lt;/h2&gt;
-&lt;p&gt;The &lt;code&gt;RangeSlider&lt;/code&gt; control has been completely rewritten because it was unusably broken before.&lt;/p&gt;
-&lt;p&gt;See PR #1055 for more info.&lt;/p&gt;
-&lt;h2 id="titlebar-enhancements"&gt;Titlebar enhancements&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;The titlebar now supports vector icons&lt;/li&gt;
-&lt;li&gt;Added &lt;code&gt;LeftWindowCommands&lt;/code&gt;
-This means that the normal &lt;code&gt;WindowCommands&lt;/code&gt; property is now obsolete and is called &lt;code&gt;RightWindowCommands&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;The minimize/maximize/close button can now be styled&lt;/li&gt;
-&lt;li&gt;Added ShowWindowCommandsOnTop property for window buttons #1098 (thanks &amp;#64;100GPing100)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id="others"&gt;Others&lt;/h2&gt;
-&lt;ul&gt;
-&lt;li&gt;Added properties to change the font size of a tile #864 #1013&lt;/li&gt;
-&lt;li&gt;Added support for &lt;code&gt;ToggleButton&lt;/code&gt;s in the window commands #954&lt;/li&gt;
-&lt;li&gt;Replace existing &lt;code&gt;RangeSlider&lt;/code&gt; by new &lt;code&gt;RangeSlider&lt;/code&gt; - #885 - see PR #920 / #1055&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;Flyout&lt;/code&gt;s' IsPinnable property doesn't seem to do anything - #866 - #1000&lt;/li&gt;
-&lt;li&gt;Tile Font size - #864 -&amp;gt; #1013 (&amp;#64;100GPing100)&lt;/li&gt;
-&lt;li&gt;Update FlatSlider.xaml #858 (thanks &amp;#64;HansHuang)&lt;/li&gt;
-&lt;li&gt;Auto-close flyout #962 - #1000 (thanks &amp;#64;100GPing100)&lt;/li&gt;
-&lt;li&gt;Added the border to the visual studio styles. - #904 ( &amp;#64;punker76 ) PR #1140&lt;/li&gt;
-&lt;li&gt;Added &lt;code&gt;ButtonCommandMetroPasswordBox&lt;/code&gt; ( &amp;#64;punker76 ) #993 PR #1097&lt;/li&gt;
-&lt;li&gt;Independently control dialog show/hide animation #1168 (&amp;#64;Savvkin)&lt;/li&gt;
-&lt;li&gt;The expander control now has a disabled look #1266 #1267&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h1 id="fixes"&gt;Fixes&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Fixed the external dialog not being cleaned up propely and crahsing the next dialog #994 #996&lt;/li&gt;
-&lt;li&gt;Fixed various &lt;code&gt;MetroWindow&lt;/code&gt; issues with multiple monitors #1099 #1136&lt;/li&gt;
-&lt;li&gt;Fixed an &lt;code&gt;OverflowException&lt;/code&gt; in the clean window #897&lt;/li&gt;
-&lt;li&gt;Fixed issues with the airspace decorator #1077 #961&lt;/li&gt;
-&lt;li&gt;Support &lt;code&gt;TextOptions.TextFormattingMode=&amp;quot;Display&amp;quot;&lt;/code&gt; #889&lt;/li&gt;
-&lt;li&gt;Removed the unintended &lt;code&gt;FocusVisualStyle&lt;/code&gt; from the window command buttons #833 #1012&lt;/li&gt;
-&lt;li&gt;Fixed an &lt;code&gt;OverflowException&lt;/code&gt; that could occur with multiple monitors #624 #1014&lt;/li&gt;
-&lt;li&gt;Fixed various issues with the glow border #933 #936&lt;/li&gt;
-&lt;li&gt;Fixed an &lt;code&gt;InvalidOperationException&lt;/code&gt; occuring if a dialog was opened after an external dialog #994 #996&lt;/li&gt;
-&lt;li&gt;Fixed the &lt;code&gt;FlatSlider&lt;/code&gt; ignoring custom dimensions #858&lt;/li&gt;
-&lt;li&gt;Fixed an &lt;code&gt;InvalidOperationException&lt;/code&gt; occuring in the &lt;code&gt;GlowWindow&lt;/code&gt; #1044&lt;/li&gt;
-&lt;li&gt;Fixed various issues with the dialogs #1050&lt;/li&gt;
-&lt;li&gt;Fixed a warning in the flyout's style #955&lt;/li&gt;
-&lt;li&gt;Fixed &lt;code&gt;MetroProgressBar&lt;/code&gt; and &lt;code&gt;ProgressRing&lt;/code&gt; issue Perfomance GPU&amp;quot; #812&lt;/li&gt;
-&lt;li&gt;Fixed &lt;code&gt;FlipView&lt;/code&gt; HideBanner uses height, which is often NaN, should probably be ActualHeight instead #1053&lt;/li&gt;
-&lt;li&gt;Fixed the &lt;code&gt;Tile&lt;/code&gt; static constructor. #1131 (thanks &amp;#64;maw136)&lt;/li&gt;
-&lt;li&gt;Fixed after an upgrade to 0.11, title bar icon would have silver background instead of blue (accent). - #922&lt;/li&gt;
-&lt;li&gt;Fixed GroupBox issue on flyout with the theme set to accent #1067 PR #1126 (thanks &amp;#64;Tide)&lt;/li&gt;
-&lt;/ul&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>New website URL</title>
-			<link>https://mahapps.com/blog/new-site-url</link>
-			<description>&lt;p&gt;From now on, the Mahapps.Metro documentation site lives at &lt;a href="http://mahapps.com"&gt;http://mahapps.com&lt;/a&gt;, instead of &lt;a href="http://mahapps.com/MahApps.Metro"&gt;http://mahapps.com/MahApps.Metro&lt;/a&gt;&lt;/p&gt;</description>
-			<author>punker76</author>
-			<guid>https://mahapps.com/blog/new-site-url</guid>
-			<pubDate>Thu, 27 Mar 2014 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;p&gt;From now on, the Mahapps.Metro documentation site lives at &lt;a href="http://mahapps.com"&gt;http://mahapps.com&lt;/a&gt;, instead of &lt;a href="http://mahapps.com/MahApps.Metro"&gt;http://mahapps.com/MahApps.Metro&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;This means less typing for everyone!&lt;/p&gt;
-&lt;p&gt;The old links should still work and redirect to the top level domain.&lt;/p&gt;
-</content:encoded>
-		</item>
-		<item>
-			<title>Release 0.12.1</title>
-			<link>https://mahapps.com/blog/release-v0.12.1</link>
-			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v0.12.1</guid>
-			<pubDate>Sat, 01 Feb 2014 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h1 id="fixes"&gt;Fixes&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Fixed various bugs with the themed Flyouts (#947 #949):
-&lt;ul&gt;
-&lt;li&gt;A dark &lt;code&gt;Flyout&lt;/code&gt; doesn't have dark window commands anymore&lt;/li&gt;
-&lt;li&gt;Only the topmost &lt;code&gt;Flyout&lt;/code&gt; changes the WindowCommands, if it is closed, the WindowCommands adapt to the underlying Flyout&lt;/li&gt;
-&lt;li&gt;Theme changes are respected properly&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Flyouts respect the template margin #867 #974&lt;/li&gt;
-&lt;li&gt;Fixed an &lt;code&gt;OverflowException&lt;/code&gt; in the &lt;code&gt;CleanWindowStyle&lt;/code&gt; #897 #903&lt;/li&gt;
-&lt;li&gt;Fixed various bugs for the &lt;code&gt;NumericUpDown&lt;/code&gt; control: #952 #953
-&lt;ul&gt;
-&lt;li&gt;Fix for NumericUpDown exception raised when trying to enter a number in scientific notation&lt;/li&gt;
-&lt;li&gt;Fixed a problem with too early speedup&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;Improved the performance for theme changes, they should now work instantly.&lt;/li&gt;
-&lt;li&gt;Fixed an issue with the &lt;code&gt;WindowCommands&lt;/code&gt; of a &lt;code&gt;CleanWindow&lt;/code&gt;, they were white and therefore invisible when a &lt;code&gt;BorderlessWindowBehavior&lt;/code&gt; was attached.&lt;/li&gt;
 &lt;/ul&gt;
 </content:encoded>
 		</item>
