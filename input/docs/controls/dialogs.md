@@ -3,29 +3,31 @@ Title: Dialogs
 
 Since the built-in WPF dialogs are unstyleable, we had to create our own implementation. You will find our dialogs within the MahApps.Metro.Controls.Dialogs namespace.
 
-<img src="{{site.baseurl}}/images/dialog.png" style="width: 800px;"/>
+All dialogs in MahApps.Metro are called asynchronously. This means that you can use the `async / await` keywords to use the methods and call the dialogs.
 
-All dialogs in MahApps.Metro are called asynchronously.  
-If you're on .NET 4.5 you have the luck of using the `async` keyword, 
-if you're stuck with .NET 4.0, you'll have to use continuations when using the dialogs.  
-This tutorial uses .NET 4.5.  
-If you really want to use `async/await` with .NET 4.0 (and MahApps.Metro v1.6.5), you can install [Microsoft Async](https://www.nuget.org/packages/microsoft.bcl.async)
-
-### Message dialog
+# Message Dialog
 
 Simple message dialogs can be displayed with the `ShowMessageAsync` method. It is an extension method for `MetroWindow`, so call it from your window class.
 
-```c#
-await this.ShowMessageAsync("This is the title", "Some message");
+```csharp
+private async void OnButtonClick(object sender, RoutedEventArgs e)
+{
+  await this.ShowMessageAsync("This is the title", "Some message");
+}
 ```
-    
-There are additional optional parameters for simple buttons, such as `Ok` and `Cancel` and settings for the color theme and animation options.
 
-### Progress dialog
+# Input Dialog
+
+![](images/dialog.png)
+
+# Login Dialog
+
+
+# Progress Dialog
 
 There is a built-in dialog that displays a progress bar at the bottom of the dialog. Call it like this:
 
-```c#
+```csharp
 var controller = await this.ShowProgressAsync("Please wait...", "Progress message");
 ```
     
@@ -33,75 +35,96 @@ This method returns a `ProgressDialogController` object that exposes the `SetPro
 
 A picture of the progress dialog in the demo:
 
-<img src="{{site.baseurl}}/images/progressdialog.png" style="width: 800px;"/>
+![](images/progressdialog.png)
 
-### Support for viewmodels
+# Support MVVM with the DialogCoordinator
 
-You can open dialogs from your viewmodel by using the `IDialogCoordinator`.
+You can open dialogs from your ViewModel by using the `DialogCoordinator`.
 
-Add the following code to your `Window.xaml` or `UserControl.xaml`:
-```xaml
-<UserControl x:Class=="...
-xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-Dialog:DialogParticipation.Register="{Binding}">
+There’s a couple of simple things you have to do:
+
+1. Use the `DialogParticipation.Register` attached property in your Window to register your ViewModel with the dialog sub-system.
+
+Assuming your View’s DataContext is set to the ViewModel from where you want to launch the dialog, add these attributes:
+
+```xml
+<mah:MetroWindow x:Class="SimpleApp.MainWindow"
+                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                 Dialog:DialogParticipation.Register="{Binding}">
+
+</mah:MetroWindow>
 ```
 
-Your code behind in the `Window.xaml.cs` or `UserControl.xaml.cs`  should look like this:
-```cs
+2. Grab & use the `DialogCoordinator` to open dialogs.
+
+You can instantiate `DialogCoordinator` directly, or, good citizens will probably want to inject in the interface `IDialogCoordinator` into their ViewModel.  This will play nicely with TDD, and is agnostic to whatever DI framework you may be using.
+
+Without a DI framework you could just do something like this:
+
+```csharp
+using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 
-namespace EXAMPLE
+namespace SimpleApp
 {
-    public class USERCONTROL : UserControl
+    public class MainWindow : MetroWindow
     {
-        // Here we create the viewmodel with the current DialogCoordinator instance 
-        VIEWMODEL vm = new VIEWMODEL(DialogCoordinator.Instance);
-
-        public USERCONTROL()
+        public MyMetroWindow()
         {
-            InitializeComponent();
-            DataContext = vm;
+            this.InitializeComponent();
+
+            // Set the DataContext for your View
+            this.DataContext = new MainWindowViewModel(DialogCoordinator.Instance);
         }
     }
 }
 ```
 
-Last but not least, your viewmodel:
-```cs
+Opening up a dialog from your ViewModel is now easy, using the IDialogCoordinator instance.  To most methods the first parameter named “context” will typically be your ViewModel.  This is how the coordinator will match the ViewModel to the window (with what was registered in step 1) and display the dialog.  If you have multiple windows open, the dialog will display on the correct window.  Show your dialog from inside your ViewModel just like this:
+
+```csharp
 using MahApps.Metro.Controls.Dialogs;
 
-namespace EXAMPLE
+namespace SimpleApp
 {
-    public class VIEWMODEL : ViewModelBase
+    public class MainWindowViewModel
     {
-        // Variable
+        // The DialogCoordinator
         private IDialogCoordinator dialogCoordinator;
 
-        // Constructor
-        public VIEWMODEL (IDialogCoordinator instance)
+        public MainWindowViewModel(IDialogCoordinator instance)
         {                    
-            dialogCoordinator = instance;
+            this.dialogCoordinator = instance;
         }
 
-        // Methods
-        private void FooMessage()
+        // Simple method which can be used on a Button
+        public async void FooMessage()
         {
-            await dialogCoordinator.ShowMessageAsync(this, "HEADER","MESSAGE");
+            await this.dialogCoordinator.ShowMessageAsync(this, "Message Title", "Bar");
         }
         
-        private void FooProgress()
+        public async void FooProgress()
         {
             // Show...
-            ProgressDialogController controller = await dialogCoordinator.ShowProgressAsync(this, "HEADER", "MESSAGE");
+            ProgressDialogController controller = await this.dialogCoordinator.ShowProgressAsync(this, "Wait", "Waiting for the Answer to the Ultimate Question of Life, The Universe, and Everything...");
+
             controller.SetIndeterminate();
             
             // Do your work... 
+            var result = await Task.Run(...);
              
             // Close...
             await controller.CloseAsync();
         }
-        
-        // Actions... (ICommands for your view)
     }
 }
 ```
+
+# MetroDialogSettings
+
+# LoginDialogSettings
+
+# Color Scheme
+
+# Custom Dialogs
