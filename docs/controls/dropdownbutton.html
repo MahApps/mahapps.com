@@ -149,36 +149,43 @@
 			<h1>DropDownButton</h1>
 		</section>
 	<section class="content">
-		<p><img src="%7B%7Bsite.baseurl%7D%7D/images/dropDownButton_1.png" class="img-fluid" alt=""></p>
-<p>This control almost the same as <code><a href="/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></code> with few differences:
-It has no <code>SelectedItem</code> and <code>SelectedIndex</code> properties and also has no <code>SelectionChanged</code> event.
-The content of the button also doesn't change, it's static. The Dropdownlist is a context menu instead of Listbox in <code><a href="/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></code>.
-Inj all other aspects it's identical to SplitButton.</p>
-<h3 id="example">Example</h3>
-<pre><code class="language-xml">&lt;Controls:DropDownButton 
-    VerticalContentAlignment="Center"
-    Width="120"
-    Content="Test"
-    DisplayMemberPath="Title"
-    Icon="{DynamicResource appbar_music}"
-    ItemsSource="{Binding Albums}"&gt;
-&lt;/Controls:DropDownButton&gt;
+		<p><img src="images/dropDownButton_1.png" class="img-fluid" alt=""></p>
+<p>This control is almost the same as the <a href="SplitButton">SplitButton</a> with few differences:</p>
+<ul>
+<li>It has no <code>SelectedItem</code> and <code>SelectedIndex</code> properties and also has no <code>SelectionChanged</code> event.</li>
+<li>The content of the button also doesn't change, it's static.</li>
+<li>The Dropdownlist is a context menu instead of Listbox in <code><a href="/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></code>.</li>
+</ul>
+<p>In all other aspects it's identical to <a href="SplitButton">SplitButton</a>.</p>
+<pre><code class="language-xml">&lt;mah:DropDownButton Margin="5"
+                    Command="{Binding ArtistsDropDownCommand}"
+                    Content="Artists"
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding Source={x:Static models:SampleData.Artists}}"&gt;
+    &lt;mah:DropDownButton.Icon&gt;
+        &lt;iconPacks:PackIconMaterial Margin="6" Kind="Artist" /&gt;
+    &lt;/mah:DropDownButton.Icon&gt;
+&lt;/mah:DropDownButton&gt;
 </code></pre>
-<p>Result:<br>
-<img src="%7B%7Bsite.baseurl%7D%7D/images/dropDownButton_2.png" class="img-fluid" alt=""></p>
-<p>Internally, the items are stored in a ContextMenu that is executed when the button is clicked.
-Therefore, if you want to do something when an item is clicked, you have to define a command that
-is attached to the item.</p>
+<p><img src="images/dropDownButton_2.png" class="img-fluid" alt=""></p>
+<p>Internally, the items are stored in a ContextMenu that is executed when the button is clicked. If you want to do something when an item is clicked, you have to define a command that is attached to the item.</p>
 <p>One way of doing this is setting the <code>ItemContainerStyle</code>:</p>
-<pre><code class="language-XML">&lt;Controls:DropDownButton.ItemContainerStyle&gt;
-    &lt;Style TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}"&gt;
-        &lt;Setter Property="Header" Value="{Binding Title}"/&gt;
-        &lt;Setter Property="Command" Value="{Binding DataContext.SetAlbumCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}"/&gt;
-        &lt;Setter Property="CommandParameter" Value="{Binding }"/&gt;
-    &lt;/Style&gt;
-&lt;/Controls:DropDownButton.ItemContainerStyle&gt;
+<pre><code class="language-xml">&lt;mah:DropDownButton Margin="5"
+                    Content="Genres"
+                    DisplayMemberPath="Name"
+                    ItemsSource="{Binding Source={x:Static models:SampleData.Genres}}"&gt;
+    &lt;mah:DropDownButton.ItemContainerStyle&gt;
+        &lt;Style BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}"&gt;
+          &lt;Setter Property="Command" Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:DropDownButton}}, Path=DataContext.GenreDropDownMenuItemCommand}" /&gt;
+          &lt;Setter Property="CommandParameter" Value="{Binding Name}" /&gt;
+        &lt;/Style&gt;
+    &lt;/mah:DropDownButton.ItemContainerStyle&gt;
+    &lt;mah:DropDownButton.Icon&gt;
+        &lt;iconPacks:PackIconMaterial Margin="6" Kind="Audiobook" /&gt;
+    &lt;/mah:DropDownButton.Icon&gt;
+&lt;/mah:DropDownButton&gt;
 </code></pre>
-<p binding="">Each <code>MenuItem</code> has one item from the <code>ItemsSource</code> as DataContext, which we can access here. Therefore, <code>{Binding Title}</code> will use the title from the current <code>Album</code> object. To break out of the current <code>DataContext</code> and call the command from our original ViewModel, we need to reference it in some way. Here, we search for a <code>UserControl</code> above the current item in the visual tree. The command gets the current album as parameter (via , which gives the current <code>Album</code> as it is the <code>DataContext</code> of the <code>MenuItem</code>).</p>
+<p>Each <code>MenuItem</code> has one item from the <code>ItemsSource</code> as DataContext, which we can access here. Therefore, <code>{Binding Name}</code> will show the name of the genre. To break out of the current <code>DataContext</code> and call the command from our original ViewModel, we need to reference it in some way. Here, we search for the <code><a href="/api/MahApps.Metro.Controls/DropDownButton">DropDownButton</a></code>.</p>
 
 	</section>
                 

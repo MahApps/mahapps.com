@@ -1,21 +1,19 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - Badged Control</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/assets/css/theme/theme.css" rel="stylesheet" />
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet" />
+        <link href="/assets/css/override.css" rel="stylesheet">
         <script src="/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>        
         <script src="/assets/js/app.min.js"></script>         
@@ -80,7 +78,9 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/badgedcontrol.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#properties">Properties</a></p>
+<hr class="infobar-hidden">
+</div>
 
                 </section>
                 <section class="sidebar">    
@@ -151,22 +151,81 @@
 			<h1>Badged Control</h1>
 		</section>
 	<section class="content">
-		<p>Renders a badge overlay on a control.</p>
-<p>Examples:</p>
-<pre><code class="language-xml">&lt;Controls:Badged Badge=&quot;{Binding Path=BadgeValue}&quot;&gt;
+		<p>The <code><a href="/api/MahApps.Metro.Controls/Badged">Badged</a></code> control renders a badge overlay on a given control.</p>
+<pre><code class="language-xml">&lt;mah:Badged Badge="42"&gt;
   &lt;!-- Control to wrap goes here --&gt;
-  &lt;Button Content=&quot;Notifications&quot; /&gt;
-&lt;/Controls:Badged&gt;
+  &lt;Button Content="Notifications" /&gt;
+&lt;/mah:Badged&gt;
 </code></pre>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/badged-control-button.png" class="img-fluid" alt="" /></p>
-<pre><code class="language-xml">&lt;Controls:Badged Badge=&quot;{Binding Path=BadgeValue}&quot; BadgePlacementMode=&quot;BottomRight&quot;&gt;
+<p><img src="images/badged-control-button.png" class="img-fluid" alt=""></p>
+<p>The badge location can be set by the <code>BadgePlacementMode</code> property. The values are:</p>
+<pre><code class="language-csharp">public enum BadgePlacementMode
+{
+    TopLeft,
+    Top,
+    TopRight,
+    Right,
+    BottomRight,
+    Bottom,
+    BottomLeft,
+    Left
+}
+</code></pre>
+<pre><code class="language-xml">&lt;mah:Badged Badge="{Binding Path=BadgeValue}" BadgePlacementMode="BottomRight"&gt;
   &lt;!-- Control to wrap goes here --&gt;
   &lt;Button&gt;
-    &lt;iconPacks:PackIconFontAwesome Kind=&quot;CommentOutline&quot;/&gt;
+    &lt;iconPacks:PackIconFontAwesome Kind="CommentOutline"/&gt;
   &lt;/Button&gt;
-&lt;/Controls:Badged&gt;
+&lt;/mah:Badged&gt;
 </code></pre>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/badged-control-button-icon.png" class="img-fluid" alt="" /></p>
+<p><img src="images/badged-control-button-icon.png" class="img-fluid" alt=""></p>
+<h1 id="properties">Properties</h1>
+<table class="table">
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Badge</td>
+<td>object</td>
+<td>Gets or sets the Badge content to display.</td>
+</tr>
+<tr>
+<td>BadgeBackground</td>
+<td>Brush</td>
+<td>Gets or sets the background brush for the Badge.</td>
+</tr>
+<tr>
+<td>BadgeForeground</td>
+<td>Brush</td>
+<td>Gets or sets the foreground brush for the Badge.</td>
+</tr>
+<tr>
+<td>BadgePlacementMode</td>
+<td>BadgePlacementMode</td>
+<td>Gets or sets the placement of the Badge relative to its content.</td>
+</tr>
+<tr>
+<td>BadgeMargin</td>
+<td>Thickness</td>
+<td>Gets or sets a margin which can be used to make minor adjustments to the placement of the Badge.</td>
+</tr>
+<tr>
+<td>IsBadgeSet</td>
+<td>bool (readonly)</td>
+<td>Indicates whether the Badge has content to display.</td>
+</tr>
+<tr>
+<td>BadgeChanged</td>
+<td>RoutedEvent</td>
+<td>Occurs if the Badge property was changed.</td>
+</tr>
+</tbody>
+</table>
 
 	</section>
                 
@@ -253,5 +312,5 @@
                 }, 500);
             });
         </script>
-    </body>
-</html>
+    
+</body></html>

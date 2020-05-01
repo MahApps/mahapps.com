@@ -78,7 +78,17 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/dialogs.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#message-dialog">Message Dialog</a></p>
+<p><a href="#input-dialog">Input Dialog</a></p>
+<p><a href="#login-dialog">Login Dialog</a></p>
+<p><a href="#progress-dialog">Progress Dialog</a></p>
+<p><a href="#support-mvvm-with-the-dialogcoordinator">Support MVVM with the DialogCoordinator</a></p>
+<p><a href="#metrodialogsettings">MetroDialogSettings</a></p>
+<p><a href="#logindialogsettings">LoginDialogSettings</a></p>
+<p><a href="#color-scheme">Color Scheme</a></p>
+<p><a href="#custom-dialogs">Custom Dialogs</a></p>
+<hr class="infobar-hidden">
+</div>
 
                 </section>
                 <section class="sidebar">    
@@ -150,87 +160,101 @@
 		</section>
 	<section class="content">
 		<p>Since the built-in WPF dialogs are unstyleable, we had to create our own implementation. You will find our dialogs within the MahApps.Metro.Controls.Dialogs namespace.</p>
-<img src="{{site.baseurl}}/images/dialog.png" style="width: 800px;">
-<p>All dialogs in MahApps.Metro are called asynchronously.<br>
-If you're on .NET 4.5 you have the luck of using the <code>async</code> keyword,
-if you're stuck with .NET 4.0, you'll have to use continuations when using the dialogs.<br>
-This tutorial uses .NET 4.5.<br>
-If you really want to use <code>async/await</code> with .NET 4.0 (and MahApps.Metro v1.6.5), you can install <a href="https://www.nuget.org/packages/microsoft.bcl.async">Microsoft Async</a></p>
-<h3 id="message-dialog">Message dialog</h3>
+<p>All dialogs in MahApps.Metro are called asynchronously. This means that you can use the <code>async / await</code> keywords to use the methods and call the dialogs.</p>
+<h1 id="message-dialog">Message Dialog</h1>
 <p>Simple message dialogs can be displayed with the <code>ShowMessageAsync</code> method. It is an extension method for <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code>, so call it from your window class.</p>
-<pre><code class="language-c#">await this.ShowMessageAsync("This is the title", "Some message");
+<pre><code class="language-csharp">private async void OnButtonClick(object sender, RoutedEventArgs e)
+{
+  await this.ShowMessageAsync("This is the title", "Some message");
+}
 </code></pre>
-<p>There are additional optional parameters for simple buttons, such as <code>Ok</code> and <code>Cancel</code> and settings for the color theme and animation options.</p>
-<h3 id="progress-dialog">Progress dialog</h3>
+<h1 id="input-dialog">Input Dialog</h1>
+<p><img src="images/dialog.png" class="img-fluid" alt=""></p>
+<h1 id="login-dialog">Login Dialog</h1>
+<h1 id="progress-dialog">Progress Dialog</h1>
 <p>There is a built-in dialog that displays a progress bar at the bottom of the dialog. Call it like this:</p>
-<pre><code class="language-c#">var controller = await this.ShowProgressAsync("Please wait...", "Progress message");
+<pre><code class="language-csharp">var controller = await this.ShowProgressAsync("Please wait...", "Progress message");
 </code></pre>
 <p>This method returns a <code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController">ProgressDialogController</a></code> object that exposes the <code>SetProgress</code> method, use it to set the current progress.</p>
 <p>A picture of the progress dialog in the demo:</p>
-<img src="{{site.baseurl}}/images/progressdialog.png" style="width: 800px;">
-<h3 id="support-for-viewmodels">Support for viewmodels</h3>
-<p>You can open dialogs from your viewmodel by using the <code><a href="/api/MahApps.Metro.Controls.Dialogs/IDialogCoordinator">IDialogCoordinator</a></code>.</p>
-<p>Add the following code to your <code>Window.xaml</code> or <code>UserControl.xaml</code>:</p>
-<pre><code class="language-xaml">&lt;UserControl x:Class=="...
-xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-Dialog:DialogParticipation.Register="{Binding}"&gt;
+<p><img src="images/progressdialog.png" class="img-fluid" alt=""></p>
+<h1 id="support-mvvm-with-the-dialogcoordinator">Support MVVM with the DialogCoordinator</h1>
+<p>You can open dialogs from your ViewModel by using the <code><a href="/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator">DialogCoordinator</a></code>.</p>
+<p>There’s a couple of simple things you have to do:</p>
+<ol>
+<li>Use the <code>DialogParticipation.Register</code> attached property in your Window to register your ViewModel with the dialog sub-system.</li>
+</ol>
+<p>Assuming your View’s DataContext is set to the ViewModel from where you want to launch the dialog, add these attributes:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow x:Class="SimpleApp.MainWindow"
+                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                 xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
+                 Dialog:DialogParticipation.Register="{Binding}"&gt;
+
+&lt;/mah:MetroWindow&gt;
 </code></pre>
-<p>Your code behind in the <code>Window.xaml.cs</code> or <code>UserControl.xaml.cs</code>  should look like this:</p>
-<pre><code class="language-cs">using MahApps.Metro.Controls.Dialogs;
+<ol start="2">
+<li>Grab &amp; use the <code><a href="/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator">DialogCoordinator</a></code> to open dialogs.</li>
+</ol>
+<p>You can instantiate <code><a href="/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator">DialogCoordinator</a></code> directly, or, good citizens will probably want to inject in the interface <code><a href="/api/MahApps.Metro.Controls.Dialogs/IDialogCoordinator">IDialogCoordinator</a></code> into their ViewModel.  This will play nicely with TDD, and is agnostic to whatever DI framework you may be using.</p>
+<p>Without a DI framework you could just do something like this:</p>
+<pre><code class="language-csharp">using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 
-namespace EXAMPLE
+namespace SimpleApp
 {
-    public class USERCONTROL : UserControl
+    public class MainWindow : <a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a>
     {
-        // Here we create the viewmodel with the current <a href="/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator">DialogCoordinator</a> instance 
-        VIEWMODEL vm = new VIEWMODEL(DialogCoordinator.Instance);
-
-        public USERCONTROL()
+        public MyMetroWindow()
         {
-            InitializeComponent();
-            DataContext = vm;
+            this.InitializeComponent();
+
+            // Set the DataContext for your View
+            this.DataContext = new MainWindowViewModel(DialogCoordinator.Instance);
         }
     }
 }
 </code></pre>
-<p>Last but not least, your viewmodel:</p>
-<pre><code class="language-cs">using MahApps.Metro.Controls.Dialogs;
+<p>Opening up a dialog from your ViewModel is now easy, using the IDialogCoordinator instance.  To most methods the first parameter named “context” will typically be your ViewModel.  This is how the coordinator will match the ViewModel to the window (with what was registered in step 1) and display the dialog.  If you have multiple windows open, the dialog will display on the correct window.  Show your dialog from inside your ViewModel just like this:</p>
+<pre><code class="language-csharp">using MahApps.Metro.Controls.Dialogs;
 
-namespace EXAMPLE
+namespace SimpleApp
 {
-    public class VIEWMODEL : ViewModelBase
+    public class MainWindowViewModel
     {
-        // Variable
+        // The <a href="/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator">DialogCoordinator</a>
         private <a href="/api/MahApps.Metro.Controls.Dialogs/IDialogCoordinator">IDialogCoordinator</a> dialogCoordinator;
 
-        // Constructor
-        public VIEWMODEL (IDialogCoordinator instance)
+        public MainWindowViewModel(IDialogCoordinator instance)
         {                    
-            dialogCoordinator = instance;
+            this.dialogCoordinator = instance;
         }
 
-        // Methods
-        private void FooMessage()
+        // Simple method which can be used on a Button
+        public async void FooMessage()
         {
-            await dialogCoordinator.ShowMessageAsync(this, "HEADER","MESSAGE");
+            await this.dialogCoordinator.ShowMessageAsync(this, "Message Title", "Bar");
         }
         
-        private void FooProgress()
+        public async void FooProgress()
         {
             // Show...
-            <a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController">ProgressDialogController</a> controller = await dialogCoordinator.ShowProgressAsync(this, "HEADER", "MESSAGE");
+            <a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController">ProgressDialogController</a> controller = await this.dialogCoordinator.ShowProgressAsync(this, "Wait", "Waiting for the Answer to the Ultimate Question of Life, The Universe, and Everything...");
+
             controller.SetIndeterminate();
             
             // Do your work... 
+            var result = await Task.Run(...);
              
             // Close...
             await controller.CloseAsync();
         }
-        
-        // Actions... (ICommands for your view)
     }
 }
 </code></pre>
+<h1 id="metrodialogsettings">MetroDialogSettings</h1>
+<h1 id="logindialogsettings">LoginDialogSettings</h1>
+<h1 id="color-scheme">Color Scheme</h1>
+<h1 id="custom-dialogs">Custom Dialogs</h1>
 
 	</section>
                 
