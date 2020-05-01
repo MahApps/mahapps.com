@@ -10,7 +10,7 @@ If you don't know how to start with this one then you can go to the [Quick Start
 
 The `MetroWindow` can be used with different borders. You can change it by using the `BorderBrush`, `GlowBrush` and `BorderThickness`.
 
-## Normal Border
+# Normal Border
 
 ```xml
 <Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
@@ -31,7 +31,7 @@ The `MetroWindow` can be used with different borders. You can change it by using
 
 ![MetroWindow with Border](images/metrowindow_border.png)
 
-## Glow Border
+# Glow Border
 
 ```xml
 <Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
@@ -51,7 +51,7 @@ The `MetroWindow` can be used with different borders. You can change it by using
 
 ![MetroWindow with Glow](images/metrowindow_glow.png)
 
-## Only Shadow
+# Only Shadow
 
 ```xml
 <Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
