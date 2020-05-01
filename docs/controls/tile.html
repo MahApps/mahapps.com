@@ -149,18 +149,18 @@
 			<h1>Tile</h1>
 		</section>
 	<section class="content">
-		<p>The <code><a href="/api/MahApps.Metro.Controls/Tile">Tile</a></code> is exactly as it sounds. It is a rectangular control whose sole purpose is to mimick a tile from Window 8/WinRT's Start Screen.</p>
-<p><img src="https://www.bleepstatic.com/tutorials/windows-8/introduction-start-screen/windows-8-start-screen.jpg" class="img-fluid" alt="img"></p>
-<h3 id="how-to-use-the-tile">How to use the <code><a href="/api/MahApps.Metro.Controls/Tile">Tile</a></code></h3>
-<p>The following XAML will initialize a <code><a href="/api/MahApps.Metro.Controls/Tile">Tile</a></code> control with its <code>Title</code> set to <code>"Hello!"</code> and its <code>Count</code> set to <code>1</code>.</p>
-<pre><code class="language-xml">&lt;controls:Tile Title="Hello!" 
-               Width="100"
-               Height="100" 
-               Count="1" /&gt;
+		<p>The <code><a href="/api/MahApps.Metro.Controls/Tile">Tile</a></code> is exactly as it sounds. It is a rectangular control whose sole purpose is to mimick a tile from Window 8 / WinRT's / Windows 10 Start Screen.</p>
+<pre><code class="language-xml">&lt;Controls:Tile Title="Mail"
+               Margin="3"
+               Controls:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}"
+               Background="Teal"
+               HorizontalTitleAlignment="Right"&gt;
+    &lt;iconPacks:PackIconModern Width="40"
+                              Height="40"
+                              Kind="Email" /&gt;
+&lt;/Controls:Tile&gt;
 </code></pre>
-<h3 id="in-the-wild">In the wild</h3>
-<p>Here are some screenshots of the <code><a href="/api/MahApps.Metro.Controls/Tile">Tile</a></code> in action.</p>
-<p><img src="https://github-camo.global.ssl.fastly.net/4793fa88b9041fb4a1bba21aa2140ee7d0f32b3c/687474703a2f2f7777772e6e63756265642e6e65742f7a2f706963732f6d6168617070732f54696c65436f6e74656e74436f6c6f72732e706e67" class="img-fluid" alt="img2"></p>
+<p><img src="images/tiles.png" class="img-fluid" alt=""></p>
 
 	</section>
                 

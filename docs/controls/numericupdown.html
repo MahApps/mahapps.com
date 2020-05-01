@@ -1,21 +1,19 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - NumericUpDown</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/assets/css/theme/theme.css" rel="stylesheet" />
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet" />
+        <link href="/assets/css/override.css" rel="stylesheet">
         <script src="/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>        
         <script src="/assets/js/app.min.js"></script>         
@@ -80,7 +78,18 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/numericupdown.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#speedup">SpeedUp</a></p>
+<p><a href="#hasdecimals">HasDecimals</a></p>
+<p><a href="#interceptarrowkeys">InterceptArrowKeys</a></p>
+<p><a href="#interceptmousewheel">InterceptMouseWheel</a></p>
+<p><a href="#interceptmanualenter">InterceptManualEnter</a></p>
+<p><a href="#minimum-maximum">Minimum / Maximum</a></p>
+<p><a href="#hideupdownbuttons">HideUpDownButtons</a></p>
+<p><a href="#stringformat">StringFormat</a></p>
+<p><a href="#example">Example</a></p>
+<p><a href="#custom-styling">Custom Styling</a></p>
+<hr class="infobar-hidden">
+</div>
 
                 </section>
                 <section class="sidebar">    
@@ -151,57 +160,54 @@
 			<h1>NumericUpDown</h1>
 		</section>
 	<section class="content">
-		<p>The NumericUpDown control is used to increase or decrease a numeric value.</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/numeric_up_down.png" class="img-fluid" alt="" /></p>
-<p>If you press the  <code>+</code> button the value of the NumericUpDown control increases by the value set in <code>Interval</code>. Pressing <code>-</code> decreases the value.
-If you press and hold <code>+</code> or <code>-</code> then value keeps increasing, decreasing respectively.</p>
-<h3 id="speedup">SpeedUp</h3>
+		<p>The <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> control can be used to increase or decrease a numeric value.</p>
+<p><img src="images/numeric_up_down.png" class="img-fluid" alt=""></p>
+<p>If you press the <code>+</code> button the value of the <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> control increases by the value set in <code>Interval</code>. Pressing <code>-</code> decreases the value.</p>
+<p>If you press and hold <code>+</code> or <code>-</code> then value keeps increasing, decreasing respectively.</p>
+<h1 id="speedup">SpeedUp</h1>
 <p>If you press and hold <code>+</code> or <code>-</code> for some longe time then the <code>Value</code> increases or decreases much faster. If this behaviour is not desired you can turn this off by setting <code>Speedup=false</code>. The default value is <code>true</code>.</p>
-<h3 id="hasdecimals">HasDecimals</h3>
+<h1 id="hasdecimals">HasDecimals</h1>
 <p>Controls whether the NumericUpDown should show the decimal separator and decimal digits.</p>
-<h3 id="interceptarrowkeys">InterceptArrowKeys</h3>
+<h1 id="interceptarrowkeys">InterceptArrowKeys</h1>
 <p>You can also increase or decrease the <code>Value</code> using <code>Arrow Up</code> or <code>Arrow Down</code>. You can enable this behaviour if you set <code>InterceptArrowKeys=true</code>. By default this behaviour is enabled. The default value is <code>true</code>.</p>
-<h3 id="interceptmousewheel">InterceptMouseWheel</h3>
+<h1 id="interceptmousewheel">InterceptMouseWheel</h1>
 <p>Like with InterceptArrowKeys you can change the <code>Value</code> by using the mouse wheel. Scrolling up will increase <code>Value</code> by <code>Interval</code>, scrolling down decrease, respectively. The default value is <code>true</code>.</p>
-<h3 id="interceptmanualenter">InterceptManualEnter</h3>
+<h1 id="interceptmanualenter">InterceptManualEnter</h1>
 <p>Like with InterceptArrowKeys you can change the <code>Value</code> by focusing the control and typing with the keyboard. The default value is <code>true</code>.</p>
-<h3 id="minimum-maximum">Minimum / Maximum</h3>
+<h1 id="minimum-maximum">Minimum / Maximum</h1>
 <p>By specifying a value for <code>Minimum</code> or <code>Maximum</code> you can set the range for legal values.</p>
-<h3 id="hideupdownbuttons">HideUpDownButtons</h3>
+<h1 id="hideupdownbuttons">HideUpDownButtons</h1>
 <p>If you want you can hide the Up/Down Buttons. Then you are not able to click up/down to increase/decrease the value. But you can interact with the arrow keys, mouse wheel and entering values Manual.</p>
 <ul>
-<li>HideUpDownButtons = false: <img src="%7B%7Bsite.baseurl%7D%7D/images/numeric_up_down.png" class="img-fluid" alt="" /></li>
-<li>HideUpDownButtons = true: <img src="%7B%7Bsite.baseurl%7D%7D/images/numeric_up_down_hiddenUpDown.png" class="img-fluid" alt="" /></li>
+<li>HideUpDownButtons = false: <img src="images/numeric_up_down.png" class="img-fluid" alt=""></li>
+<li>HideUpDownButtons = true: <img src="images/numeric_up_down_hiddenUpDown.png" class="img-fluid" alt=""></li>
 </ul>
-<h3 id="stringformat">StringFormat</h3>
+<h1 id="stringformat">StringFormat</h1>
 <p>You can also set the <code>StringFormat</code> to format the number of the Value that is displayed in the control.</p>
 <p>e.g.</p>
 <ul>
 <li>C2</li>
 <li>N4</li>
 <li>E1</li>
-<li>&quot;{0:N2} psc&quot;</li>
+<li>"{0:N2} psc"</li>
 </ul>
-<h2 id="example">Example</h2>
+<h1 id="example">Example</h1>
 <p>Following line will provide a NumericUpDown that allows numers from 0 to 1000. Furthermore by pressing <code>+</code> the value gets increased by 5. The value will be shown as currency with two decimal places:</p>
-<pre><code class="language-xml">&lt;mah:NumericUpDown Minimum=&quot;0&quot;
-                        Maximum=&quot;10000&quot;
-                        Interval=&quot;5&quot;
-                        StringFormat=&quot;C2&quot; /&gt;
+<pre><code class="language-xml">&lt;mah:NumericUpDown Minimum="0"
+                   Maximum="10000"
+                   Interval="100"
+                   StringFormat="C2" /&gt;
 </code></pre>
-<p>Namespace is <code>xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;</code>.</p>
-<h2 id="custom-styling">Custom Styling</h2>
-<h3 id="want-to-hide-up-down-buttons-if-control-is-readonly">Want to hide Up-Down Buttons if control is readonly?</h3>
+<h1 id="custom-styling">Custom Styling</h1>
 <p>If you want to hide the Up-Down Buttons if the control is readonly then you can add following Style to your application</p>
-<pre><code class="language-xml">&lt;Style TargetType=&quot;{x:Type mah:NumericUpDown}&quot; BasedOn=&quot;{StaticResource {x:Type mah:NumericUpDown}}&quot;&gt;
+<pre><code class="language-xml">&lt;Style TargetType="{x:Type mah:NumericUpDown}" BasedOn="{StaticResource {x:Type mah:NumericUpDown}}"&gt;
   &lt;Style.Triggers&gt;
-    &lt;Trigger Property=&quot;IsReadOnly&quot; Value=&quot;True&quot;&gt;
-      &lt;Setter Property=&quot;HideUpDownButtons&quot; Value=&quot;True&quot; /&gt;
+    &lt;Trigger Property="IsReadOnly" Value="True"&gt;
+      &lt;Setter Property="HideUpDownButtons" Value="True" /&gt;
     &lt;/Trigger&gt;
   &lt;/Style.Triggers&gt;
 &lt;/Style&gt;
 </code></pre>
-<p>Namespace is <code>xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;</code>.</p>
 
 	</section>
                 
@@ -288,5 +294,5 @@ If you press and hold <code>+</code> or <code>-</code> then value keeps increasi
                 }, 500);
             });
         </script>
-    </body>
-</html>
+    
+</body></html>

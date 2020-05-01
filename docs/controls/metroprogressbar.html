@@ -149,10 +149,20 @@
 			<h1>MetroProgressBar</h1>
 		</section>
 	<section class="content">
-		<p><code><a href="/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></code> is an alternative and simpler style. Instead of creating a normal <code>ProgressBar</code> use:</p>
-<pre><code class="language-xml">&lt;Controls:MetroProgressBar /&gt;
+		<p>The <code><a href="/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></code> is an alternative progress bar with a different indeterminate style. Instead of creating a normal <code>ProgressBar</code> use:</p>
+<pre><code class="language-xml">&lt;mah:MetroProgressBar Width="250"
+                      Margin="4"
+                      Maximum="100"
+                      Minimum="0"
+                      Value="42" /&gt;
+</code></pre>
+<p>or</p>
+<pre><code class="language-xml">&lt;mah:MetroProgressBar Width="250"
+                      Margin="4"
+                      IsIndeterminate="True" /&gt;
 </code></pre>
 <p>Its indeterminate state looks like a <code><a href="/api/MahApps.Metro.Controls/ProgressRing">ProgressRing</a></code> but not circular.</p>
+<p><img src="images/metroprogressbar.png" class="img-fluid" alt=""></p>
 
 	</section>
                 

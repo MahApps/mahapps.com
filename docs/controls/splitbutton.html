@@ -149,10 +149,8 @@
 			<h1>SplitButton</h1>
 		</section>
 	<section class="content">
-		<p><img src="%7B%7Bsite.baseurl%7D%7D/images/splitButton_1.png" class="img-fluid" alt=""></p>
-<p>This controls is like button with dropdownlist, but content of the button changed when selected item changed.</p>
-<h3 id="events">Events</h3>
-<p>SplitButton has SelectionChanged and Click events</p>
+		<p><img src="images/splitButton_1.png" class="img-fluid" alt=""></p>
+<p>The <code><a href="/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></code> controls is like a button with a drop down list, but the content of the button will be changed when selected item is changed.</p>
 <h3 id="selecteditem-and-selectedindex">SelectedItem and SelectedIndex</h3>
 <p>This properties usage is just like in Listbox or ComboBox. When one of this properties changed, Content of the button will also changed.</p>
 <h3 id="binding-to-observablecollection-or-dictionary">Binding to <code>ObservableCollection</code> or <code>Dictionary</code></h3>
@@ -164,23 +162,20 @@ In case you bind simple types like an enum or integer, you don<code>t need to us
 <h3 id="button-commands">Button commands</h3>
 <p>You can use button commands for SplitButton</p>
 <h3 id="icon-property">Icon property</h3>
-<p>You can add separate icon to SplitButton to display it independently from its content.
-It could be bitmap image or vector icon.
-<code>Icon="{DynamicResource appbar_alert}"</code></p>
-<h3 id="example">Example</h3>
-<pre><code class="language-xml">&lt;Controls:SplitButton 
-    Icon="{DynamicResource appbar_alert}"
-    HorizontalContentAlignment="Left"
-    HorizontalAlignment="Center"
-    VerticalContentAlignment="Center"
-    Width="120"
-    SelectedIndex="2"
-    ItemsSource="{Binding Albums}"
-    DisplayMemberPath="Title"
-    VerticalAlignment="Center" /&gt;
+<p>You can add separate icon to SplitButton to display it independently from its content.</p>
+<pre><code class="language-xml">&lt;mah:SplitButton Margin="5"
+                 HorizontalContentAlignment="Left"
+                 Command="{Binding ArtistsDropDownCommand}"
+                 DisplayMemberPath="Name"
+                 ItemsSource="{Binding Source={x:Static models:SampleData.Artists}}"
+                 SelectedIndex="2"
+                 SelectionChanged="SplitButton_OnSelectionChanged"&gt;
+    &lt;mah:SplitButton.Icon&gt;
+        &lt;iconPacks:PackIconMaterial Margin="6" Kind="Audiobook" /&gt;
+    &lt;/mah:SplitButton.Icon&gt;
+&lt;/mah:SplitButton&gt;
 </code></pre>
-<p>result will be:<br>
-<img src="%7B%7Bsite.baseurl%7D%7D/images/splitButton_2.png" class="img-fluid" alt=""></p>
+<p><img src="images/splitButton_2.png" class="img-fluid" alt=""></p>
 
 	</section>
                 

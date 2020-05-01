@@ -1,21 +1,19 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - ProgressRing</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/assets/css/theme/theme.css" rel="stylesheet" />
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet" />
+        <link href="/assets/css/override.css" rel="stylesheet">
         <script src="/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>        
         <script src="/assets/js/app.min.js"></script>         
@@ -151,14 +149,11 @@
 			<h1>ProgressRing</h1>
 		</section>
 	<section class="content">
-		<p>The Progress Ring control is styled after a similar control in Windows 8 to indicate activity rather than a percentage of progress completed.</p>
-<p><code>&lt;Controls:ProgressRing IsActive=&quot;True&quot; /&gt;</code></p>
-<p><code>IsActive</code> can easily be bound to a viewmodel property.</p>
-<p><code>&lt;Controls:ProgressRing IsActive=&quot;{Binding IsActive}&quot; /&gt;</code></p>
-<p>Override <code>Foreground</code> if you wish to change the colour.</p>
-<pre><code class="language-xml">&lt;Controls:ProgressRing Foreground=&quot;{DynamicResource AccentColorBrush}&quot;/&gt;
+		<p>The <code><a href="/api/MahApps.Metro.Controls/ProgressRing">ProgressRing</a></code> control is styled after a similar control in Windows 8 to indicate activity rather than a percentage of progress completed.</p>
+<pre><code class="language-xml">&lt;mah:ProgressRing Foreground="{DynamicResource AccentColorBrush}"
+                  IsActive="True" /&gt;
 </code></pre>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/progress_ring.gif" class="img-fluid" alt="" /></p>
+<p><img src="images/progress_ring.gif" class="img-fluid" alt=""></p>
 
 	</section>
                 
@@ -245,5 +240,5 @@
                 }, 500);
             });
         </script>
-    </body>
-</html>
+    
+</body></html>

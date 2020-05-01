@@ -78,7 +78,9 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/rangeslider.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#properties">Properties</a></p>
+<hr class="infobar-hidden">
+</div>
 
                 </section>
                 <section class="sidebar">    
@@ -149,48 +151,46 @@
 			<h1>RangeSlider</h1>
 		</section>
 	<section class="content">
-		<p><img src="%7B%7Bsite.baseurl%7D%7D/images/range_slider.PNG" class="img-fluid" alt=""></p>
-<p>Taken from the <a href="https://avaloncontrolslib.codeplex.com/">Avalon Controls Library</a> (MS-PL) <a href="https://github.com/jogibear9988/avaloncontrolslib">GitHub fork</a>, <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> lets you select a range of values with a slider, rather than a single value.</p>
-<p>This control was updated to have more features</p>
-<h3 id="events">Events</h3>
-<p>More events was added:
-DragStared/DragDelta/DragCompleted for Lower/Central/Upper thumbs
-Events for lower/upper value changed
-OldValues parameters in event args for rangeChanged event</p>
-<h3 id="orientation">Orientation</h3>
-<p>Now range slider support vertical orientation</p>
-<h3 id="movetopoint">MoveToPoint</h3>
-<p><code>IsMoveToPointEnabled</code> feature work like in Slider</p>
-<h3 id="smallchangelargechange">SmallChange/LargeChange</h3>
-<p>when <code>IsMoveToPointEnabled = False</code> thumbs will move on the value you set in Small/LargeChange</p>
-<h3 id="interval">Interval</h3>
-<p>This property will set interval between changing values when using Small/Larnge change.</p>
-<h3 id="issnaptotickenabled">IsSnapToTickEnabled</h3>
-<p>If set to true, thumbs will snap to ticks like in standard Slider.</p>
-<h3 id="tickbars-and-tickplacement">TickBars and Tickplacement</h3>
-<p>Range Slider receive support for displaying/hiding ticks and change its ticks width according to minimum and maximum values changed</p>
-<h3 id="extendedmode">ExtendedMode</h3>
-<p>If it set <code>ExtendedMode = False</code> you <strong>cannot</strong> do any manipulations <strong>inside</strong> range except moving thumbs closer/farther to each other with mouse, but if it enabled you <strong>can</strong> use MoveToPoint or Small/Large change <strong>inside</strong> range by clicking <strong>Left mouse button + left or right control button</strong> to move left thumb and <strong>Right mouse button + left or right control button to move right thumb inside range</strong>. If Extended mode = true you also can without problems move whole range by clicking leftmouse button</p>
-<h3 id="movewholerange">MoveWholeRange</h3>
-<p>This property will let you move whole range when using MoveToPoint or Small/Large change (working also inside range)</p>
-<h3 id="minrangewidth">MinRangeWidth</h3>
-<p>Sets minimum width of <strong>central</strong> Thumb. It can be in range <strong>from 0 to range_slider_width/2</strong>.</p>
-<h3 id="autotooltipplacement-and-autotooltipprecision">AutoToolTipPlacement and AutotoolTipPrecision</h3>
-<p><code>AutoToolTipPlacement</code> will display tooltip, which will move with Thumb and display current value. Implemented for left/central/right thumbs.</p>
-<p><code>AutotoolTipPrecision</code> set the number of digits, which will be shown after dot in autotooltip.</p>
-<h3 id="small-example">Small Example</h3>
-<pre><code class="language-xml">	&lt;Сontrols:RangeSlider Style="{StaticResource RangeSliderCameraCommonStyle}" 
-            Minimum="{Binding Path=MinValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-            Maximum="{Binding Path=MaxValue, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}"
-            LowerValue="{Binding Path=CurrentMinValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            UpperValue="{Binding Path=CurrentMaxValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-            LowerValueChanged="OnLowerValueChanged" UpperValueChanged="OnUpperValueChanged"
-            LowerThumbDragStarted="OnLowerDragStarted"
-            LowerThumbDragCompleted="OnLowerDragCompleted"
-            UpperThumbDragStarted="OnUpperDragStarted" 
-            UpperThumbDragCompleted="OnUpperDragCompleted" 
-            AutoToolTipPlacement="TopLeft" AutoToolTipPrecision="2" MoveWholeRange="True"
-            IsSnapToTickEnabled="True" IsMoveToPointEnabled="True" ExtendedMode="True"&gt;&lt;/Сontrols:RangeSlider&gt;
+		<p>The <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> control was taken from the <a href="https://avaloncontrolslib.codeplex.com/">Avalon Controls Library</a> (MS-PL) <a href="https://github.com/jogibear9988/avaloncontrolslib">GitHub fork</a>. It lets you select a range of values with a slider and 2 range bars, rather than a single value.</p>
+<p><img src="images/rangeslider.png" class="img-fluid" alt=""></p>
+<h1 id="properties">Properties</h1>
+<ul>
+<li>Orientation: RangeSlider support vertical orientation</li>
+<li><code>IsMoveToPointEnabled</code> feature work like for Slider</li>
+<li>SmallChange / LargeChange: when <code>IsMoveToPointEnabled = False</code> thumbs will move on the value you set in Small / LargeChange</li>
+<li><code>Interval</code>: This property will set interval between changing values when using Small / Larnge change.</li>
+<li><code>IsSnapToTickEnabled</code>:  If set to true, thumbs will snap to ticks like in standard Slider.</li>
+<li>TickBars and Tickplacement: RangeSlider receive support for displaying / hiding ticks and change its ticks width according to minimum and maximum values changed</li>
+<li><code>ExtendedMode</code>: If it set <code>ExtendedMode = False</code> you <strong>cannot</strong> do any manipulations <strong>inside</strong> range except moving thumbs closer/farther to each other with mouse, but if it enabled you <strong>can</strong> use MoveToPoint or Small/Large change <strong>inside</strong> range by clicking <strong>Left mouse button + left or right control button</strong> to move left thumb and <strong>Right mouse button + left or right control button to move right thumb inside range</strong>. If Extended mode = true you also can without problems move whole range by clicking leftmouse button</li>
+<li><code>MoveWholeRange</code>: This property will let you move whole range when using MoveToPoint or Small/Large change (working also inside range)</li>
+<li><code>MinRangeWidth</code>: Sets minimum width of <strong>central</strong> Thumb. It can be in range <strong>from 0 to range_slider_width/2</strong>.</li>
+<li><code>AutoToolTipPlacement</code> will display tooltip, which will move with Thumb and display current value. Implemented for left/central/right thumbs.</li>
+<li><code>AutotoolTipPrecision</code> set the number of digits, which will be shown after dot in autotooltip.</li>
+</ul>
+<pre><code class="language-xml">&lt;mah:RangeSlider Width="200"
+                 Margin="4"
+                 mah:SliderHelper.ChangeValueBy="LargeChange"
+                 mah:SliderHelper.EnableMouseWheel="MouseHover"
+                 AutoToolTipPlacement="TopLeft"
+                 LargeChange="10"
+                 LowerValue="40"
+                 Maximum="100"
+                 Minimum="0"
+                 Orientation="Horizontal"
+                 SmallChange="1"
+                 Style="{DynamicResource MahApps.Styles.RangeSlider.Win10}"
+                 UpperValue="60"&gt;
+  &lt;mah:RangeSlider.AutoToolTipRangeValuesTemplate&gt;
+    &lt;DataTemplate DataType="mah:RangeSliderAutoTooltipValues"&gt;
+      &lt;UniformGrid Columns="2" Rows="2"&gt;
+        &lt;TextBlock HorizontalAlignment="Right" Text="From:" /&gt;
+        &lt;TextBlock HorizontalAlignment="Right" Text="{Binding LowerValue, StringFormat='{}{0:N2}'}" /&gt;
+        &lt;TextBlock HorizontalAlignment="Right" Text="To:" /&gt;
+        &lt;TextBlock HorizontalAlignment="Right" Text="{Binding UpperValue, StringFormat='{}{0:N2}'}" /&gt;
+      &lt;/UniformGrid&gt;
+    &lt;/DataTemplate&gt;
+  &lt;/mah:RangeSlider.AutoToolTipRangeValuesTemplate&gt;
+&lt;/mah:RangeSlider&gt;
 </code></pre>
 
 	</section>
