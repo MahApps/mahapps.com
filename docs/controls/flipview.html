@@ -78,7 +78,12 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/flipview.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#getting-started">Getting started</a></p>
+<p><a href="#the-banner">The Banner</a></p>
+<p><a href="#control-buttons">Control Buttons</a></p>
+<p><a href="#automated-scrolling-batteries-not-included">Automated scrolling (batteries not included)</a></p>
+<hr class="infobar-hidden">
+</div>
 
                 </section>
                 <section class="sidebar">    
@@ -149,21 +154,22 @@
 			<h1>FlipView</h1>
 		</section>
 	<section class="content">
-		<p>The <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> acts as a news banner for your metro applications. It is inspired by Windows 8/WinRT's control of the same name. However, ours was written from the ground-up to support the MahApps.Metro infrastructure.</p>
-<h3 id="getting-started">Getting started</h3>
-<p>The <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> is syntatically similar to the regular <code>TabControl</code> (<code>Selector</code>) control. Place your content inside of it's <code>Items</code> property and it will allow the user to <em>flip</em> through them.</p>
-<p>The following code was taken from our <a href="https://github.com/MahApps/MahApps.Metro/tree/master/samples/MetroDemo">MetroDemo</a>.</p>
-<pre><code class="language-xml">&lt;Controls:FlipView x:Name="FlipViewTest"
-                   Foreground="{DynamicResource WhiteBrush}"
-                   Height="200"
-                   SelectionChanged="FlipView_SelectionChanged"&gt;
-    &lt;Controls:FlipView.Items&gt;
+		<p>The <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> acts as a news banner for your applications. It is inspired by Windows 8 / WinRT's control of the same name. However, ours was written from the ground-up to support the MahApps.Metro infrastructure.</p>
+<h1 id="getting-started">Getting started</h1>
+<p>The <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> control works similar to the regular <code>TabControl</code> (<code>Selector</code>) control. Place your content inside of it's <code>Items</code> property and it will allow to <em>flip</em> through them.</p>
+<p>The following code was taken from our main <a href="https://github.com/MahApps/MahApps.Metro">MetroDemo</a>.</p>
+<pre><code class="language-xml">&lt;mah:FlipView x:Name="FlipView1st"
+              Height="200"
+              Margin="0 0 5 0"
+              Foreground="{DynamicResource MahApps.Brushes.ThemeBackground}"
+              SelectionChanged="FlipView_SelectionChanged"&gt;
+    &lt;mah:FlipView.Items&gt;
         &lt;Grid Background="#2E8DEF"&gt;
             &lt;iconPacks:PackIconModern Width="60"
                                       Height="60"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"
-                                      Kind="Cupcake" /&gt;
+                                      Kind="FoodCupcake" /&gt;
         &lt;/Grid&gt;
         &lt;Grid Background="#00A600"&gt;
             &lt;iconPacks:PackIconModern Width="60"
@@ -179,14 +185,13 @@
                                       VerticalAlignment="Center"
                                       Kind="ChessHorse" /&gt;
         &lt;/Grid&gt;
-    &lt;/Controls:FlipView.Items&gt;
-&lt;/Controls:FlipView&gt;
+    &lt;/mah:FlipView.Items&gt;
+&lt;/mah:FlipView&gt;
 </code></pre>
-<p>The above code produces the following result.</p>
-<p><img src="https://user-images.githubusercontent.com/658431/29912993-f366ae1a-8e33-11e7-8073-d43e499775b3.png" class="img-fluid" alt="flipview"></p>
-<h3 id="the-banner">The Banner</h3>
-<p>The banner on the bottom of the FlipView can be shown and hidden using the <code>IsBannerEnabled</code> property. You may change the banner text using the <code>BannerText</code> property. We use that in code behind to change the banner based on the selected item.</p>
-<pre><code class="language-c#">private void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+<p><img src="images/flipview.png" class="img-fluid" alt="flipview"></p>
+<h1 id="the-banner">The Banner</h1>
+<p>The banner on the bottom of the <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> can be shown and hidden using the <code>IsBannerEnabled</code> property. You may change the banner text using the <code>BannerText</code> property. We use that in code behind to change the banner based on the selected item.</p>
+<pre><code class="language-csharp">private void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 {
     var flipview = ((FlipView)sender);
     switch (flipview.SelectedIndex)
@@ -203,11 +208,11 @@
     }
 }
 </code></pre>
-<h3 id="the-control-buttons">The Control Buttons</h3>
+<h1 id="control-buttons">Control Buttons</h1>
 <p>The <em>control buttons</em> (the next and previous buttons) allow the user to flip through the items using their mouse. The buttons can be disabled by calling <code>HideControlButtons</code> and renabled by calling <code>ShowControlButtons</code>.</p>
 <p>The user can also flip through the items using the arrows on their keyboard.</p>
-<h3 id="automated-scrolling-batteries-not-included">Automated scrolling (batteries not included)</h3>
-<p>Disabling the control buttons is useful when you want to provide an automated scrolling experience. This can be implemented by using a timer and by incrementing <code>SelectedIndex</code> by <code>1</code> until the index is equal to <code>Items.Length - 1</code>. At that point, you would reset <code>SelectedIndex</code> to <code>0</code>.</p>
+<h1 id="automated-scrolling-batteries-not-included">Automated scrolling (batteries not included)</h1>
+<p>Disabling the control buttons is useful when you want to provide an automated scrolling experience. This can be implemented by using a timer and by incrementing <code>SelectedIndex</code>.</p>
 
 	</section>
                 

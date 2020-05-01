@@ -78,7 +78,10 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/flyouts.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#themed-flyouts">Themed Flyouts</a></p>
+<p><a href="#overlay-behavior">Overlay Behavior</a></p>
+<hr class="infobar-hidden">
+</div>
 
                 </section>
                 <section class="sidebar">    
@@ -149,61 +152,100 @@
 			<h1>Flyouts</h1>
 		</section>
 	<section class="content">
-		<p>A flyout is an overlay for a window that has custom content.</p>
-<img src="{{site.baseurl}}/images/flyout-demo-dark.png" style="width: 800px;">
-<p>Add the following code to your <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code>:</p>
-<pre><code class="language-xml">&lt;Controls:MetroWindow.Flyouts&gt;
-    &lt;Controls:FlyoutsControl&gt;
-        
-    &lt;/Controls:FlyoutsControl&gt;
-&lt;/Controls:MetroWindow.Flyouts&gt;
+		<p>A <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> is an overlay for a window that can have custom content.</p>
+<p>To use the flyouts, they must be defined within the <code><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></code>. This control is then assigned to the <code>Flyouts</code> property of the <a href="MetroWindow">MetroWindow</a>.</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow.Flyouts&gt;
+    &lt;mah:FlyoutsControl&gt;
+      &lt;mah:Flyout x:Name="firstFlyout" Header="Flyout" Position="Right" Width="200"&gt;
+          &lt;!-- Your custom content here --&gt;
+      &lt;/mah:Flyout&gt;
+
+      &lt;mah:Flyout Header="Second Flyout" IsOpen="{Binding IsSecondFlyoutOpen}" Position="Right" Width="300"&gt;
+          &lt;!-- Your custom content here --&gt;
+      &lt;/mah:Flyout&gt;
+    &lt;/mah:FlyoutsControl&gt;
+&lt;/mah:MetroWindow.Flyouts&gt;
 </code></pre>
-<p>This is the container for the flyouts.
-Inside this container add the following:</p>
-<pre><code class="language-xml">&lt;Controls:Flyout Header="Flyout" Position="Right" Width="200"&gt;
-    &lt;!-- Your custom content here --&gt;
-&lt;/Controls:Flyout&gt;
+<p>This creates 2 flyouts with a header, sliding out from the right side of the window.</p>
+<p>To open a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> set the <code>IsOpen</code> property to <code>true</code> or use a property on your ModelView at the DataContext of the window.</p>
+<p>The <code><a href="/api/MahApps.Metro.Controls/Position">Position</a></code> property can have these values</p>
+<pre><code class="language-csharp">public enum <a href="/api/MahApps.Metro.Controls/Position">Position</a>
+{
+  Left,
+  Right,
+  Top,
+  Bottom
+}
 </code></pre>
-<p>This creates a flyout with a header, sliding out from the right side of the window and has a width of 200.</p>
-<p>The <code><a href="/api/MahApps.Metro.Controls/Position">Position</a></code> property can have the values</p>
-<pre><code>    Left,
-    Right,
-    Top,
-    Bottom
+<p><img src="images/flyout-demo-dark.png" class="img-fluid" alt=""></p>
+<h1 id="themed-flyouts">Themed Flyouts</h1>
+<p>Flyouts can have various themes, assignable through the <code>Theme</code> property, those are:</p>
+<pre><code class="language-csharp">public enum <a href="/api/MahApps.Metro.Controls/FlyoutTheme">FlyoutTheme</a>
+{
+  /// &lt;summary&gt;
+  /// Adapts the Flyout's theme to the theme of its host window.
+  /// &lt;/summary&gt;
+  Adapt,
+
+  /// &lt;summary&gt;
+  /// Adapts the Flyout's theme to the theme of its host window, but inverted.
+  /// This theme can only be applied if the host window's theme abides the "Dark" and "Light" affix convention.
+  /// (see &lt;see cref="ThemeManager.GetInverseTheme"/&gt; for more infos.
+  /// &lt;/summary&gt;
+  Inverse,
+
+  /// &lt;summary&gt;
+  /// The dark theme. This is the default theme.
+  /// &lt;/summary&gt;
+  Dark,
+  Light,
+
+  /// &lt;summary&gt;
+  /// The flyouts theme will match the host window's accent color.
+  /// &lt;/summary&gt;
+  Accent
+}
 </code></pre>
-<h3 id="themed-flyouts">Themed flyouts</h3>
-<p>As of version 0.12, flyouts can have various themes, assignable through the <code>Theme</code> property, those are:</p>
-<pre><code>    Adapt,
-    Inverse,
-    Dark,
-    Light,
-    Accent
+<p><img src="images/flyout-demo-accent.png" class="img-fluid" alt=""></p>
+<h1 id="overlay-behavior">Overlay Behavior</h1>
+<p>With the overlay behaviors you can set visibility of the <code>Icon</code>, <code>LeftWindowCommands</code>, <code>RightWindowCommands</code> and the <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> when a Flyout will be shown.</p>
+<p>The <code>LeftWindowCommands</code>, <code>RightWindowCommands</code> and the <code>Icon</code> will never be shown over an opened Flyout.</p>
+<pre><code class="language-csharp">[Flags]
+public enum <a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">WindowCommandsOverlayBehavior</a>
+{
+  /// &lt;summary&gt;
+  /// Doesn't overlay a hidden TitleBar.
+  /// &lt;/summary&gt;
+  Never = 0,
+
+  /// &lt;summary&gt;
+  /// Overlays a hidden TitleBar.
+  /// &lt;/summary&gt;
+  HiddenTitleBar = 1 &lt;&lt; 0
+}
 </code></pre>
-<ul>
-<li><code>Adapt</code> adapts the flyout theme to the host window's theme.</li>
-<li><code>Inverse</code> has the inverse theme of the host window's theme.</li>
-<li><code>Dark</code> will always be the dark theme, this is also the default value.</li>
-<li><code>Light</code> will always be the light theme.</li>
-<li><code>Accent</code> adapts the flyout theme to the host window's theme, it looks like this for the blue theme:</li>
-</ul>
-<img src="{{site.baseurl}}/images/flyout-demo-accent.png" style="width: 800px;">
-<h3 id="windowcommandsoverlaybehaviorn">WindowCommandsOverlayBehaviorn</h3>
-<p><code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> has overlay properties for <code>LeftWindowCommands</code>, <code>RightWindowCommands</code>, <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> and the <code>Icon</code> to handle the topmost status, even if a flyout is shown.</p>
-<pre><code>public <a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">WindowCommandsOverlayBehavior</a> LeftWindowCommandsOverlayBehavior
-public <a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">WindowCommandsOverlayBehavior</a> RightWindowCommandsOverlayBehavior
-public <a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">WindowCommandsOverlayBehavior</a> WindowButtonCommandsOverlayBehavior
-public <a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">WindowCommandsOverlayBehavior</a> IconOverlayBehavior
+<p>The <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> (Min, Max/Restore and Close Buttons) can be handled by these values.</p>
+<pre><code class="language-csharp">[Flags]
+public enum <a href="/api/MahApps.Metro.Controls/OverlayBehavior">OverlayBehavior</a>
+{
+  /// &lt;summary&gt;
+  /// Doesn't overlay Flyouts nor a hidden TitleBar.
+  /// &lt;/summary&gt;
+  Never = 0,
+
+  /// &lt;summary&gt;
+  /// Overlays opened &lt;see cref="Flyout"/&gt; controls.
+  /// &lt;/summary&gt;
+  Flyouts = 1 &lt;&lt; 0,
+
+  /// &lt;summary&gt;
+  /// Overlays a hidden TitleBar.
+  /// &lt;/summary&gt;
+  HiddenTitleBar = 1 &lt;&lt; 1,
+
+  Always = ~(-1 &lt;&lt; 2)
+}
 </code></pre>
-<p>These are the values for <code><a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">WindowCommandsOverlayBehavior</a></code></p>
-<pre><code>Never // Doesn't overlay flyouts nor a hidden TitleBar.
-Flyouts // Overlays opened <a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a> controls.
-HiddenTitleBar // // Overlays a hidden TitleBar.
-Always
-</code></pre>
-<p>WindowCommandsOverlayBehavior.Always<br>
-<img src="%7B%7Bsite.baseurl%7D%7D/images/WindowCommandsOverlayBehavior_Always.png" class="img-fluid" alt=""></p>
-<p>WindowCommandsOverlayBehavior.Never<br>
-<img src="%7B%7Bsite.baseurl%7D%7D/images/WindowCommandsOverlayBehavior_Never.png" class="img-fluid" alt=""></p>
 
 	</section>
                 
