@@ -6,11 +6,11 @@ The `MetroWindow` is the main entry point of `MahApps` and replaces the normal `
 
 If you don't know how to start with this one then you can go to the [Quick Start](/docs/guides/quick-start) section.  
 
-## Window borders
+# Window borders
 
 The `MetroWindow` can be used with different borders. You can change it by using the `BorderBrush`, `GlowBrush` and `BorderThickness`.
 
-### Normal Border
+## Normal Border
 
 ```xml
 <Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
@@ -31,7 +31,7 @@ The `MetroWindow` can be used with different borders. You can change it by using
 
 ![MetroWindow with Border](images/metrowindow_border.png)
 
-### Glow
+## Glow Border
 
 ```xml
 <Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
@@ -51,7 +51,7 @@ The `MetroWindow` can be used with different borders. You can change it by using
 
 ![MetroWindow with Glow](images/metrowindow_glow.png)
 
-### Only Shadow
+## Only Shadow
 
 ```xml
 <Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
@@ -74,7 +74,7 @@ The `MetroWindow` can be used with different borders. You can change it by using
 
 ![MetroWindow with Shadow](images/metrowindow_shadow.png)
 
-## Properties
+# Properties
 
 One property not detailed is the `SaveWindowPosition="True|False"` (default `False`) option. Setting this property to `True` will mean on next launch, it will automatically be positioned and sized to what it was on exit. This is designed to improve UX and speed development as its one of those "plumbing" UI things that is done regularly.  
 
