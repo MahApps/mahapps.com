@@ -1,81 +1,120 @@
 Title: Flyouts
 ---
 
-A flyout is an overlay for a window that has custom content.
+A `Flyout` is an overlay for a window that can have custom content.
 
-<img src="{{site.baseurl}}/images/flyout-demo-dark.png" style="width: 800px;"/>
-
-Add the following code to your `MetroWindow`:
+To use the flyouts, they must be defined within the `FlyoutsControl`. This control is then assigned to the `Flyouts` property of the [MetroWindow](MetroWindow).
 
 ```xml
-<Controls:MetroWindow.Flyouts>
-    <Controls:FlyoutsControl>
-        
-    </Controls:FlyoutsControl>
-</Controls:MetroWindow.Flyouts>
+<mah:MetroWindow.Flyouts>
+    <mah:FlyoutsControl>
+      <mah:Flyout x:Name="firstFlyout" Header="Flyout" Position="Right" Width="200">
+          <!-- Your custom content here -->
+      </mah:Flyout>
+
+      <mah:Flyout Header="Second Flyout" IsOpen="{Binding IsSecondFlyoutOpen}" Position="Right" Width="300">
+          <!-- Your custom content here -->
+      </mah:Flyout>
+    </mah:FlyoutsControl>
+</mah:MetroWindow.Flyouts>
 ```
 
-This is the container for the flyouts.
-Inside this container add the following:
+This creates 2 flyouts with a header, sliding out from the right side of the window.
 
-```xml
-<Controls:Flyout Header="Flyout" Position="Right" Width="200">
-    <!-- Your custom content here -->
-</Controls:Flyout>
+To open a `Flyout` set the `IsOpen` property to `true` or use a property on your ModelView at the DataContext of the window.
+
+The `Position` property can have these values
+
+```csharp
+public enum Position
+{
+  Left,
+  Right,
+  Top,
+  Bottom
+}
 ```
 
-This creates a flyout with a header, sliding out from the right side of the window and has a width of 200.
+![](images/flyout-demo-dark.png)
 
-The `Position` property can have the values
 
-```
-    Left,
-    Right,
-    Top,
-    Bottom
-```
+# Themed Flyouts
 
-### Themed flyouts
-As of version 0.12, flyouts can have various themes, assignable through the `Theme` property, those are:
+Flyouts can have various themes, assignable through the `Theme` property, those are:
 
-```
-    Adapt,
-    Inverse,
-    Dark,
-    Light,
-    Accent
-```
+```csharp
+public enum FlyoutTheme
+{
+  /// <summary>
+  /// Adapts the Flyout's theme to the theme of its host window.
+  /// </summary>
+  Adapt,
 
-- `Adapt` adapts the flyout theme to the host window's theme.  
-- `Inverse` has the inverse theme of the host window's theme.  
-- `Dark` will always be the dark theme, this is also the default value.  
-- `Light` will always be the light theme.  
-- `Accent` adapts the flyout theme to the host window's theme, it looks like this for the blue theme:
+  /// <summary>
+  /// Adapts the Flyout's theme to the theme of its host window, but inverted.
+  /// This theme can only be applied if the host window's theme abides the "Dark" and "Light" affix convention.
+  /// (see <see cref="ThemeManager.GetInverseTheme"/> for more infos.
+  /// </summary>
+  Inverse,
 
-<img src="{{site.baseurl}}/images/flyout-demo-accent.png" style="width: 800px;"/>
+  /// <summary>
+  /// The dark theme. This is the default theme.
+  /// </summary>
+  Dark,
+  Light,
 
-### WindowCommandsOverlayBehaviorn
-
-`MetroWindow` has overlay properties for `LeftWindowCommands`, `RightWindowCommands`, `WindowButtonCommands` and the `Icon` to handle the topmost status, even if a flyout is shown.
-
-```
-public WindowCommandsOverlayBehavior LeftWindowCommandsOverlayBehavior
-public WindowCommandsOverlayBehavior RightWindowCommandsOverlayBehavior
-public WindowCommandsOverlayBehavior WindowButtonCommandsOverlayBehavior
-public WindowCommandsOverlayBehavior IconOverlayBehavior
+  /// <summary>
+  /// The flyouts theme will match the host window's accent color.
+  /// </summary>
+  Accent
+}
 ```
 
-These are the values for `WindowCommandsOverlayBehavior`
+![](images/flyout-demo-accent.png)
 
+# Overlay Behavior
+
+With the overlay behaviors you can set visibility of the `Icon`, `LeftWindowCommands`, `RightWindowCommands` and the `WindowButtonCommands` when a Flyout will be shown.
+
+The `LeftWindowCommands`, `RightWindowCommands` and the `Icon` will never be shown over an opened Flyout.
+
+```csharp
+[Flags]
+public enum WindowCommandsOverlayBehavior
+{
+  /// <summary>
+  /// Doesn't overlay a hidden TitleBar.
+  /// </summary>
+  Never = 0,
+
+  /// <summary>
+  /// Overlays a hidden TitleBar.
+  /// </summary>
+  HiddenTitleBar = 1 << 0
+}
 ```
-Never // Doesn't overlay flyouts nor a hidden TitleBar.
-Flyouts // Overlays opened Flyout controls.
-HiddenTitleBar // // Overlays a hidden TitleBar.
-Always
+
+The `WindowButtonCommands` (Min, Max/Restore and Close Buttons) can be handled by these values.
+
+```csharp
+[Flags]
+public enum OverlayBehavior
+{
+  /// <summary>
+  /// Doesn't overlay Flyouts nor a hidden TitleBar.
+  /// </summary>
+  Never = 0,
+
+  /// <summary>
+  /// Overlays opened <see cref="Flyout"/> controls.
+  /// </summary>
+  Flyouts = 1 << 0,
+
+  /// <summary>
+  /// Overlays a hidden TitleBar.
+  /// </summary>
+  HiddenTitleBar = 1 << 1,
+
+  Always = ~(-1 << 2)
+}
 ```
-
-WindowCommandsOverlayBehavior.Always  
-![]({{site.baseurl}}/images/WindowCommandsOverlayBehavior_Always.png)
-
-WindowCommandsOverlayBehavior.Never  
-![]({{site.baseurl}}/images/WindowCommandsOverlayBehavior_Never.png)
