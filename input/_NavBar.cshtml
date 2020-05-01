@@ -4,12 +4,10 @@
         Tuple.Create("Blog", Context.GetLink("blog")),
         Tuple.Create("Documentation", Context.GetLink("docs"))
     };
-
     if(Documents[Docs.Api].Any())
     {
         topLevelPages.Add(Tuple.Create("API", Context.GetLink(Context.DirectoryPath(DocsKeys.ApiPath))));
     }
-
     topLevelPages.Add(Tuple.Create("<i class=\"fa fa-github\"></i> Source", "https://github.com/MahApps/MahApps.Metro"));
 
     foreach(Tuple<string, string> topLevelPage in topLevelPages)
