@@ -1,14 +1,47 @@
 Title: ToggleSwitch
 ---
 
-The `ToggleSwitch` control originally appeared in Windows Phone 7, but has made its way into Windows 8. The MahApps.Metro version of this control uses the Windows Phone 7 code (ported), but the Windows 8 visuals.
+The `ToggleSwitch` control originally appeared in Windows Phone 7, but has made its way into Windows 8 and 10.  
+The MahApps.Metro version of this control uses the Windows 10 visuals (from Win SDK 10.0.18362).
+The function is very similar to a CheckBox, but easier to differentiate and easier to use with touch interfaces.
 
-The function is very similar to that of a checkbox, but easier to differentiate and easier to use with touch interfaces. Basically though, it can be thought of as a pretty `CheckBox`:
+It represents a switch that can be toggled between two states.
 
-`<Controls:ToggleSwitch Header="WiFi rest state" />`
+Use a ToggleSwitch control to let the user switch an option between on and off states. Use the `IsOn` property to determine the state of the switch. Handle the `Toggled` event to respond to changes in the state.
 
-![]({{site.baseurl}}/images/09_toggleswitch.png)  
+![](images/toggleswitch.png)
 
-You can bind to/set `IsChecked` to switch between the two states.  You can change the *on* and *off* labels by setting 
+## Example
 
-`<Controls:ToggleSwitch OnLabel="Yes" OffLabel="No" />`
+This example shows how to set the `Header`, `OnContent`, and `OffContent` properties of a toggle switch. The Toggled event is handled to turn a [ProgressRing](ProgressRing) control on or off.
+
+```xml
+<StackPanel Orientation="Horizontal">
+  <mah:ToggleSwitch Header="Toggle Switch Sample"
+                    OffContent="Do work"
+                    OnContent="Working"
+                    Toggled="ToggleSwitch_Toggled" />
+
+  <mah:ProgressRing x:Name="progress" />
+</StackPanel>
+```
+
+```csharp
+private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+{
+    ToggleSwitch toggleSwitch = sender as ToggleSwitch;
+    if (toggleSwitch != null)
+    {
+        if (toggleSwitch.IsOn == true)
+        {
+            progress.IsActive = true;
+            progress.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            progress.IsActive = false;
+            progress.Visibility = Visibility.Collapsed;
+        }
+    }
+}
+```
