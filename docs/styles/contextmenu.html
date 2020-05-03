@@ -123,7 +123,7 @@
                 <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
                 <li><a href="/docs/styles/slider">Slider</a></li>
                 <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
-                <li><a href="/docs/styles/textbox">TextBox - MahApps.Metro</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
                 <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
 
                     </ul>
@@ -153,15 +153,14 @@
 			<h1>ContextMenu</h1>
 		</section>
 	<section class="content">
-		<h3 id="contextmenu-without-compositecollection">ContextMenu without CompositeCollection</h3>
-<p>You can use the ContextMenu as you are familiar with it:</p>
+		<p>You can use the ContextMenu as you are familiar with it:</p>
 <pre><code class="language-xml">&lt;ContextMenu&gt;
   &lt;MenuItem Command=&quot;ApplicationCommands.New&quot; /&gt;
   &lt;MenuItem Command=&quot;ApplicationCommands.Delete&quot; /&gt;
   &lt;MenuItem Command=&quot;ApplicationCommands.Print&quot; /&gt;
 &lt;/ContextMenu&gt;
 </code></pre>
-<h3 id="contextmenu-with-compositecollection">ContextMenu with CompositeCollection</h3>
+<h2 id="contextmenu-with-compositecollection">ContextMenu with CompositeCollection</h2>
 <p>If you want to use a part of the ContextMenu which is declared as resource and is shared you have to use a <code>CompositeCollection</code> as follwos:</p>
 <pre><code class="language-xml">&lt;CompositeCollection x:Key=&quot;ContextMenuBase&quot;
                      x:Shared=&quot;False&quot;&gt;
@@ -182,18 +181,15 @@
   &lt;/ContextMenu.ItemsSource&gt;
 &lt;/ContextMenu&gt;
 </code></pre>
-<p>When you run the application you get a lot of binding errors:</p>
-<blockquote class="blockquote">
-<p>System.Windows.Data Error: 4 : Cannot find source for binding with reference 'RelativeSource FindAncestor, AncestorType='System.Windows.Controls.ItemsControl', AncestorLevel='1''. BindingExpression:Path=VerticalContentAlignment; DataItem=null; target element is 'MenuItem' (Name=''); target property is 'VerticalContentAlignment' (type 'VerticalAlignment')</p>
-</blockquote>
-<p>This is a known issue in WPF and a workaround is to create a custom <code>MenuItem</code> style:</p>
+<p>When you run the application it could be that you will get a lot of binding errors like this:</p>
+<div class="alert alert-danger"><p>System.Windows.Data Error: 4 : Cannot find source for binding with reference 'RelativeSource FindAncestor, AncestorType='System.Windows.Controls.ItemsControl', AncestorLevel='1''. BindingExpression:Path=VerticalContentAlignment; DataItem=null; target element is 'MenuItem' (Name=''); target property is 'VerticalContentAlignment' (type 'VerticalAlignment')</p>
+</div>
+<p>This is a known issue in WPF and can be fixed with this workaround:</p>
 <pre><code class="language-xml">&lt;Style TargetType=&quot;{x:Type MenuItem}&quot;
-       BasedOn=&quot;{StaticResource MetroMenuItem}&quot;&gt;
-  &lt;Setter Property=&quot;HorizontalContentAlignment&quot;
-          Value=&quot;Left&quot; /&gt;
-  &lt;Setter Property=&quot;VerticalContentAlignment&quot;
-          Value=&quot;Center&quot; /&gt;
-  &lt;/Style&gt;
+       BasedOn=&quot;{StaticResource {x:Type MenuItem}}&quot;&gt;
+  &lt;Setter Property=&quot;HorizontalContentAlignment&quot; Value=&quot;Left&quot; /&gt;
+  &lt;Setter Property=&quot;VerticalContentAlignment&quot; Value=&quot;Center&quot; /&gt;
+&lt;/Style&gt;
 </code></pre>
 <p>The drawback is that you loose the ability to contol the content-alignment of the MenuItem by setting the content-alignment properties on a <code>ContextMenu</code>.</p>
 

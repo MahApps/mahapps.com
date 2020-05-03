@@ -121,7 +121,7 @@
                 <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
                 <li><a href="/docs/styles/slider">Slider</a></li>
                 <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
-                <li><a href="/docs/styles/textbox">TextBox - MahApps.Metro</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
                 <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
 
                     </ul>
@@ -151,67 +151,50 @@
 			<h1>Data Grid</h1>
 		</section>
 	<section class="content">
-		<h3 id="introduction">Introduction</h3>
-<p>Table of Contents</p>
-<ol>
-<li><a href="#start">Getting Started</a></li>
-<li><a href="#alt">Alternative Style</a></li>
-<li><a href="#updown">Numeric UpDown Column</a></li>
-<li><a href="#checkbox">Metro Style Data Grid Checkbox</a></li>
-</ol>
-<p>The DataGrid is a control that ships with .NET 4.0 by default and provides support for filtering, grouping, sorting and other standard features that you would expect of a DataGrid.</p>
-<p>MahApps.Metro uses the default DataGrid control but applies a style to it by default. It also contains a <code>Checkbox</code> style for <code>DataGridCheckBoxColumn</code> as well as a custom <code>DataGridNumberNumericUpDownColumn</code>.</p>
-<h3 id="start">Getting Started</h3>
-<p>In order for the style to be applied, you will have to include references to the <code>Styles/Controls</code> resource dictionary in your <code>App.xaml</code> and the namespace <code>xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"</code> in the window you are using. Instructions on how to do this can be found in the <a href="https://mahapps.com/guides/quick-start.html">Quick Start Guide</a>.</p>
+		<p>The <code>DataGrid</code> is a control that ships with .NET by default and provides support for filtering, grouping, sorting and other standard features that you would expect of a <code>DataGrid</code>.</p>
+<p>MahApps.Metro adds styles for a <code>Checkbox</code> on <code>DataGridCheckBoxColumn</code> and a custom <code>DataGridNumberNumericUpDownColumn</code>.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>In order for the style to be applied, you will have to include references to the styles and controls resource dictionary in your <code>App.xaml</code> and the namespace <code>xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"</code> in the window you are using. Instructions on how to do this can be found in the <a href="/docs/guides/quick-start">Quick Start Guide</a>.</p>
 <p>After including the references, any <code>DataGrid</code> that you place in XAML will follow the style displayed above.</p>
-<pre><code class="language-xml">&lt;DataGrid ItemsSource="{Binding People}"&gt;
-
-&lt;/DataGrid&gt;
+<pre><code class="language-xml">&lt;DataGrid ItemsSource="{Binding People}" /&gt;
 </code></pre>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/default_datagrid_style.png" class="img-fluid" alt=""></p>
-<h3 id="alt">Alternative Style</h3>
+<p><img src="images/default_datagrid_style.png" class="img-fluid" alt=""></p>
+<h2 id="alternative-style">Alternative Style</h2>
 <p>MahApps.Metro also provides an alternative style, <code>AzureDataGrid</code> that attempts to mimic the DataGrid found on Microsoft Azure. To use it instead of the default style, simple set the DataGrid's <code>Style</code> property to <code>{StaticResource AzureDataGrid</code>. As usual, make sure that you have your references defined.</p>
-<pre><code class="language-xml">&lt;DataGrid ItemsSource="{Binding People}" Margin="10,20,10,0"
-                  AutoGenerateColumns="True"
-                  Style="{StaticResource AzureDataGrid}"&gt;
-
-&lt;/DataGrid&gt;     
+<pre><code class="language-xml">&lt;DataGrid ItemsSource="{Binding People}" Style="{StaticResource AzureDataGrid}" /&gt;
 </code></pre>
 <p>The <code>AzureDataGrid</code> style will look something like this:</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/azure_datagrid_style.png" class="img-fluid" alt=""></p>
-<h3 id="updown">DataGrid Numeric Updown Control</h3>
+<p><img src="images/azure_datagrid_style.png" class="img-fluid" alt=""></p>
+<h2 id="datagrid-numericupdown-control">DataGrid NumericUpdown Control</h2>
 <p>In addition to styling the DataGrid, MahApps.Metro also provides a control that allows users to add a <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> as one of their <code>DataGrid</code>'s columns. To add the custom column to your <code>DataGrid</code>, add <code><a href="/api/MahApps.Metro.Controls/DataGridNumericUpDownColumn">DataGridNumericUpDownColumn</a></code> under the MahApps namespace to your <code>DataGrid.Columns</code> properties. Be sure to set <code>AutoGenerateColumns</code> to <code>False</code> if you have not already done so.</p>
 <pre><code class="language-xml">&lt;DataGrid ItemsSource="{Binding Path=Albums}"
-                  Grid.Row="0"
-                  AutoGenerateColumns="False"&gt;
-            &lt;DataGrid.Columns&gt;
-                &lt;DataGridTextColumn Header="Genre"
-                                    Binding="{Binding Genre.Name}" /&gt;
-                &lt;controls:DataGridNumericUpDownColumn Header="Price"
-                                                      Binding="{Binding Price}"
-                                                      StringFormat="C"
-                                                      Minimum="0" /&gt;
-            &lt;/DataGrid.Columns&gt;
-        &lt;/DataGrid&gt;
+          AutoGenerateColumns="False"&gt;
+  &lt;DataGrid.Columns&gt;
+    &lt;DataGridTextColumn Header="Genre"
+                        Binding="{Binding Genre.Name}" /&gt;
+    &lt;controls:DataGridNumericUpDownColumn Header="Price"
+                                          Binding="{Binding Price}"
+                                          StringFormat="C"
+                                          Minimum="0" /&gt;
+  &lt;/DataGrid.Columns&gt;
+&lt;/DataGrid&gt;
 </code></pre>
 <p>The end result will look something like this:</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/datagrid_numeric_up_down.png" class="img-fluid" alt=""></p>
-<h3 id="checkbox">DataGrid Checkbox</h3>
+<p><img src="images/datagrid_numeric_up_down.png" class="img-fluid" alt=""></p>
+<h2 id="datagrid-checkbox">DataGrid Checkbox</h2>
 <p>Lastly, MahApps.Metro provides an <code>ElementStyle</code> for the <code>DataGridCheckBoxColumn</code>. In order to apply the style, you will have to set the <code>ElementStyle</code> property of the <code>DataGridCheckBoxColumn</code> to <code>{DynamicResource MetroDataGridCheckBox}</code> as shown in the code sample below.</p>
 <pre><code class="language-xml">&lt;DataGrid ItemsSource="{Binding Path=Albums}"
-                  Grid.Row="0"
-                  AutoGenerateColumns="False"&gt;
-            &lt;DataGrid.Columns&gt;
-                &lt;DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                                        EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
-                                        Header="IsSelected"
-                                        Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}"
-                                        /&gt;
-            &lt;/DataGrid.Columns&gt;
-        &lt;/DataGrid&gt;
+          AutoGenerateColumns="False"&gt;
+  &lt;DataGrid.Columns&gt;
+    &lt;DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            Header="IsSelected"
+                            Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}" /&gt;
+  &lt;/DataGrid.Columns&gt;
+&lt;/DataGrid&gt;
 </code></pre>
 <p>The end result will look something like this:</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/datagrid_checkbox.png" class="img-fluid" alt=""></p>
+<p><img src="images/datagrid_checkbox.png" class="img-fluid" alt=""></p>
 
 	</section>
                 

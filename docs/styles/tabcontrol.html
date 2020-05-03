@@ -121,7 +121,7 @@
                 <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
                 <li><a href="/docs/styles/slider">Slider</a></li>
                 <li class="selected"><a href="/docs/styles/tabcontrol">TabControl</a></li>
-                <li><a href="/docs/styles/textbox">TextBox - MahApps.Metro</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
                 <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
 
                     </ul>
@@ -151,22 +151,26 @@
 			<h1>TabControl</h1>
 		</section>
 	<section class="content">
-		<p>There are three included tab styles - <code>AnimatedTabControl</code>, <code>SingleRowAnimatedTabControl</code> and the default <code>TabControl</code>.
-The default <code>TabControl</code> style is included in <code>Controls.xaml</code>, but the other two require specific referencing (make sure to do this <em>after</em> a reference to <code>Controls.xaml</code>)</p>
-<h3 id="default-look">Default look</h3>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/default_tab_control.png" class="img-fluid" alt=""></p>
+		<p>There are three included tab styles</p>
+<ul>
+<li>Default <code>TabControl</code> style</li>
+<li><code>AnimatedTabControl</code> style</li>
+<li><code>SingleRowAnimatedTabControl</code> style</li>
+</ul>
+<p>The default <code>TabControl</code> style is included in <code>Controls.xaml</code>, but the other two require specific referencing (make sure to do this <em>after</em> a reference to <code>Controls.xaml</code>)</p>
+<h2 id="default">Default</h2>
+<p><img src="images/default_tab_control.png" class="img-fluid" alt=""></p>
 <p>This shows the three states - selected/active tab, hover and inactive.</p>
-<h3 id="animatedtabcontrol">AnimatedTabControl</h3>
+<h2 id="animatedtabcontrol">AnimatedTabControl</h2>
 <pre><code class="language-xml">&lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" /&gt;
 </code></pre>
 <p>Functioning just like the regular <code>TabControl</code>, except it animates every tab change by wrapping everything in a <code><a href="/api/MahApps.Metro.Controls/MetroContentControl">MetroContentControl</a></code>.</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/animatedtabcontrol.gif" class="img-fluid" alt=""></p>
-<h3 id="animatedsinglerowtabcontrol">AnimatedSingleRowTabControl</h3>
+<h2 id="animatedsinglerowtabcontrol">AnimatedSingleRowTabControl</h2>
 <pre><code class="language-xml">&lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" /&gt;
 </code></pre>
 <p><code>AnimatedSingleRowTabControl</code> functions exactly the same as the <code>AnimatedTabControl</code> except the tabs will only appear on a single line rather than wrapping.
 Instead of wrapping, arrows (left/right) are presented.</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/singlerow_tab_control.png" class="img-fluid" alt=""></p>
+<p><img src="images/singlerow_tab_control.png" class="img-fluid" alt=""></p>
 
 	</section>
                 

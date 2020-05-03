@@ -123,7 +123,7 @@
                 <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
                 <li><a href="/docs/styles/slider">Slider</a></li>
                 <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
-                <li><a href="/docs/styles/textbox">TextBox - MahApps.Metro</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
                 <li class="selected"><a href="/docs/styles/togglebutton">ToggleButton</a></li>
 
                     </ul>
@@ -153,14 +153,13 @@
 			<h1>ToggleButton</h1>
 		</section>
 	<section class="content">
-		<h3 id="introduction">Introduction</h3>
-<p>There are two kinds of styles for ToggleButtons available in MahApps.Metro.</p>
+		<p>There are two kinds of styles for ToggleButtons available in MahApps.Metro.</p>
 <p>The default style, available just by placing a <code>ToggleButton</code> control in XAML looks like the default MahApps.Metro button.</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/toggle-button-normal.png" class="img-fluid" alt="" /></p>
 <pre><code class="language-xml">  &lt;Grid&gt;
       &lt;ToggleButton/&gt;
   &lt;/Grid&gt;
 </code></pre>
+<p><img src="images/toggle-button-normal.png" class="img-fluid" alt="" /></p>
 <p>Another style, <code>MetroCircleToggleButtonStyle</code> is available by setting the ToggleButton's style to <code>MetroCircleToggleButtonStyle</code>. This style changes the button's background to <code>AccentColorBrush</code> when it is checked. To modify this behaviour, you will have to edit a copy of the control template using Blend.</p>
 <pre><code class="language-xml">  &lt;ToggleButton Width=&quot;50&quot;
                 Height=&quot;50&quot;
@@ -168,64 +167,8 @@
                 Style=&quot;{DynamicResource MetroCircleToggleButtonStyle}&quot;&gt;
   &lt;/ToggleButton&gt;
 </code></pre>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/toggle-button-circle.png" class="img-fluid" alt="" /></p>
-<h3 id="using-glyphs-within-a-circle-toggle-button">Using Glyphs Within a Circle Toggle Button</h3>
-<p>In order to use glyphs, you will have to add a reference to <code>Icons.xaml</code>.</p>
-<pre><code class="language-xml">&lt;UserControl.Resources&gt;
-    &lt;ResourceDictionary&gt;
-        &lt;ResourceDictionary.MergedDictionaries&gt;
-            &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro.Resources;component/Icons.xaml&quot; /&gt;
-        &lt;/ResourceDictionary.MergedDictionaries&gt;
-    &lt;/ResourceDictionary&gt;
-&lt;/UserControl.Resources&gt;
-</code></pre>
-<p>You can then include the icon you want using the following steps:</p>
-<ol>
-<li>
-<pre><code> Nest a `Rectangle` within the `ToggleButton`
-</code></pre>
-</li>
-<li>
-<pre><code> Set it's fill to the color you want the icon to have
-</code></pre>
-</li>
-<li>
-<pre><code> Set `Rectangle.OpacityMask` to contain a `VisualBrush` with a Visual using the icon's value as a reference.
-</code></pre>
-</li>
-</ol>
-<p>For example:</p>
-<pre><code class="language-xml">&lt;ToggleButton Width=&quot;50&quot;
-              Height=&quot;50&quot;
-              Margin=&quot;0, 10, 0, 0&quot;
-              Style=&quot;{DynamicResource MetroCircleToggleButtonStyle}&quot;&gt;
-    &lt;Rectangle Width=&quot;20&quot;
-               Height=&quot;20&quot;
-               Fill=&quot;{DynamicResource BlackBrush}&quot;&gt;
-        &lt;Rectangle.OpacityMask&gt;
-            &lt;VisualBrush Stretch=&quot;Fill&quot;
-                         Visual=&quot;{DynamicResource appbar_city}&quot;/&gt;
-        &lt;/Rectangle.OpacityMask&gt;
-    &lt;/Rectangle&gt;
-&lt;/ToggleButton&gt;
-</code></pre>
-<h3 id="syncing-checked-state-of-togglebutton-with-foreground">Syncing Checked State of ToggleButton with Foreground</h3>
-<p>By default, any icon you set will retain the same color you set it to even if the ToggleButton is checked. To alter this, you can bind your content's color to the ToggleButton's Foreground property which changes to white by default when it is checked.</p>
-<p>An example of how to do the binding can be found below:</p>
-<pre><code class="language-xml">&lt;ToggleButton Width=&quot;50&quot;
-              Height=&quot;50&quot;
-              Margin=&quot;0, 10, 0, 0&quot;
-              Style=&quot;{DynamicResource MetroCircleToggleButtonStyle}&quot;&gt;
-    &lt;Rectangle Width=&quot;20&quot;
-               Height=&quot;20&quot;
-               Fill=&quot;{Binding Path=Foreground, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ToggleButton}}}&quot;&gt;
-        &lt;Rectangle.OpacityMask&gt;
-            &lt;VisualBrush Stretch=&quot;Fill&quot;
-                         Visual=&quot;{DynamicResource appbar_city}&quot;/&gt;
-        &lt;/Rectangle.OpacityMask&gt;
-    &lt;/Rectangle&gt;
-&lt;/ToggleButton&gt;
-</code></pre>
+<p><img src="images/toggle-button-circle.png" class="img-fluid" alt="" /></p>
+<h2 id="using-icons-within-a-circle-togglebutton">Using Icons within a Circle ToggleButton</h2>
 
 	</section>
                 

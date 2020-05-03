@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
-        <title>MahApps.Metro - TextBox - MahApps.Metro</title>
+        <title>MahApps.Metro - TextBox</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
         <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
         <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
@@ -123,7 +123,7 @@
                 <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
                 <li><a href="/docs/styles/slider">Slider</a></li>
                 <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
-                <li class="selected"><a href="/docs/styles/textbox">TextBox - MahApps.Metro</a></li>
+                <li class="selected"><a href="/docs/styles/textbox">TextBox</a></li>
                 <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
 
                     </ul>
@@ -150,21 +150,21 @@
 
 
 		<section class="content-header">
-			<h1>TextBox - MahApps.Metro</h1>
+			<h1>TextBox</h1>
 		</section>
 	<section class="content">
 		<p>There is just the one style in this library for <code>TextBox</code>, however it does have a special attached property for creating 'watermarked' textboxes and for added a 'clear' button.</p>
-<h3 id="watermark">Watermark</h3>
+<h2 id="watermark">Watermark</h2>
 <p>A <strong>watermark</strong> - in the context of textboxes - refers to text that appears in the textbox <em>before</em> the user has focused or entered any text. This is often an alternative to providing a label next to your textbox - for example, a search box would have a watermark with the text 'enter search terms' to indicate it's purpose.</p>
 <p><code>&lt;TextBox Controls:TextBoxHelper.Watermark=&quot;This is a textbox&quot; /&gt;</code></p>
 <p>Will produce a textbox that looks like the below image. The three states are <em>unfocused</em> (with no user text provided), focused, and unfocused (with user text provided).</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/10_textboxstates.png" class="img-fluid" alt="" /></p>
-<h3 id="clear-button">Clear button</h3>
+<p><img src="images/10_textboxstates.png" class="img-fluid" alt="" /></p>
+<h2 id="clear-button">Clear button</h2>
 <p>Like the watermark, a simple attached property adds in the functionality</p>
 <p><code>&lt;TextBox Controls:TextBoxHelper.ClearTextButton=&quot;True&quot; /&gt;</code></p>
 <p>Which will give you</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/11_textboxclearstates.png" class="img-fluid" alt="" /></p>
-<h3 id="why-attached-properties">Why Attached Properties?</h3>
+<p><img src="images/11_textboxclearstates.png" class="img-fluid" alt="" /></p>
+<h2 id="why-attached-properties">Why Attached Properties?</h2>
 <p>Rather than deriving from TextBox and adding another class to this library, this behaviour is implemented as an Attached Property.</p>
 <p>This avoids the overhead of providing styles for another control, and makes it easy to &quot;opt in&quot; to this behaviour in your application.</p>
 

@@ -1,21 +1,19 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - Buttons</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/assets/css/theme/theme.css" rel="stylesheet" />
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet" />
+        <link href="/assets/css/override.css" rel="stylesheet">
         <script src="/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>        
         <script src="/assets/js/app.min.js"></script>         
@@ -82,7 +80,13 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/styles/buttons.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#default">Default</a></p>
+<p><a href="#circle">Circle</a></p>
+<p><a href="#square">Square</a></p>
+<p><a href="#accented-square">Accented Square</a></p>
+<p><a href="#flat">Flat</a></p>
+<hr class="infobar-hidden">
+</div>
 
                 </section>
                 <section class="sidebar">    
@@ -123,7 +127,7 @@
                 <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
                 <li><a href="/docs/styles/slider">Slider</a></li>
                 <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
-                <li><a href="/docs/styles/textbox">TextBox - MahApps.Metro</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
                 <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
 
                     </ul>
@@ -153,26 +157,26 @@
 			<h1>Buttons</h1>
 		</section>
 	<section class="content">
-		<h3 id="default-look">Default look</h3>
-<p>This just replaces the standard button when you drop in the library, nothing fancy to activate it.<br />
-<img src="%7B%7Bsite.baseurl%7D%7D/images/08_RegularButton.png" class="img-fluid" alt="" /></p>
-<h3 id="metrocirclebutton">MetroCircleButton</h3>
-<p>&quot;Standard&quot; circle button, designed for icons.<br />
-Add the following to a button to apply this style: <code>Style=&quot;{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}&quot;</code></p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/07_CircleButtons.png" class="img-fluid" alt="" /></p>
-<h3 id="squarebutton">SquareButton</h3>
+		<h1 id="default">Default</h1>
+<p>This just replaces the standard button when you drop in the library, nothing fancy to activate it.<br>
+<img src="images/08_RegularButton.png" class="img-fluid" alt=""></p>
+<h1 id="circle">Circle</h1>
+<p>"Standard" circle button, designed for icons.<br>
+Add the following to a button to apply this style: <code>Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"</code></p>
+<p><img src="images/07_CircleButtons.png" class="img-fluid" alt=""></p>
+<h1 id="square">Square</h1>
 <p>Another WP7 styled button, this time just for text. Like all the buttons here, has normal, clicked, and hover states.</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/square-button.png" class="img-fluid" alt="" /></p>
-<p>Add the following to a button to apply this style: <code>Style=&quot;{DynamicResource SquareButtonStyle}&quot;</code></p>
-<h3 id="accentedsquarebutton">AccentedSquareButton</h3>
+<p><img src="images/square-button.png" class="img-fluid" alt=""></p>
+<p>Add the following to a button to apply this style: <code>Style="{DynamicResource SquareButtonStyle}"</code></p>
+<h1 id="accented-square">Accented Square</h1>
 <p>A slightly modified version of <code>SquareButton</code> that has the current accent color as background color.</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/accent-square-button.png" class="img-fluid" alt="" /></p>
-<p>Add the following to a button to apply this style: <code>Style=&quot;{StaticResource AccentedSquareButtonStyle}&quot;</code></p>
-<h3 id="flatbutton">FlatButton</h3>
+<p><img src="images/accent-square-button.png" class="img-fluid" alt=""></p>
+<p>Add the following to a button to apply this style: <code>Style="{StaticResource AccentedSquareButtonStyle}"</code></p>
+<h1 id="flat">Flat</h1>
 <p>This sort of button can be found when you're making a call on Windows Phone - all of the controls (hang up, keypad, etc) are 'flat buttons'.</p>
-<p><img src="%7B%7Bsite.baseurl%7D%7D/images/flatbutton.png" class="img-fluid" alt="" /></p>
-<p>Flat button lives in<br />
-<code>&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml&quot; /&gt;</code></p>
+<p><img src="images/flatbutton.png" class="img-fluid" alt=""></p>
+<p>Flat button lives in<br>
+<code>&lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" /&gt;</code></p>
 <p>You'll need to import that as well to use it.</p>
 
 	</section>
@@ -298,5 +302,5 @@ Add the following to a button to apply this style: <code>Style=&quot;{DynamicRes
                 }, 500);
             });
         </script>
-    </body>
-</html>
+    
+</body></html>
