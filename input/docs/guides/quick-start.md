@@ -50,7 +50,7 @@ All resources of `MahApp.Metro` are located within separate resource dictionarie
 ```
 
 :::{.alert .alert-info}
-**NOTE**  
+***NOTE***  
 Make sure that all resource file names are Case Sensitive!
 :::
 
@@ -143,6 +143,11 @@ The visibility of the Min and Max / Restore buttons are also effected by the `Re
 4. Show a resize grip on the right bottom corner for better resizing.
 
 ![](images/metrowindowext.png)
+
+:::{.alert .alert-info}
+***Note***  
+Make sure to include the [MahApps.Metro.IconPacks](https://github.com/MahApps/MahApps.Metro.IconPacks) to get the cupcake icon.
+:::
 
 ```xml
 <mah:MetroWindow x:Class="SampleApp.MainWindow"
