@@ -50,7 +50,7 @@ All resources of `MahApp.Metro` are located within separate resource dictionarie
 ```
 
 :::{.alert .alert-info}
-***NOTE***  
+***Note***  
 Make sure that all resource file names are Case Sensitive!
 :::
 
