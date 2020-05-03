@@ -1,8 +1,6 @@
 Title: ContextMenu
 ---
 
-### ContextMenu without CompositeCollection
-
 You can use the ContextMenu as you are familiar with it:
 
 ```xml
@@ -13,7 +11,7 @@ You can use the ContextMenu as you are familiar with it:
 </ContextMenu>
 ```
 
-### ContextMenu with CompositeCollection
+## ContextMenu with CompositeCollection
 
 If you want to use a part of the ContextMenu which is declared as resource and is shared you have to use a `CompositeCollection` as follwos:
 
@@ -38,20 +36,20 @@ If you want to use a part of the ContextMenu which is declared as resource and i
 </ContextMenu>
 ```
 
-When you run the application you get a lot of binding errors:
+When you run the application it could be that you will get a lot of binding errors like this:
 
-> System.Windows.Data Error: 4 : Cannot find source for binding with reference 'RelativeSource FindAncestor, AncestorType='System.Windows.Controls.ItemsControl', AncestorLevel='1''. BindingExpression:Path=VerticalContentAlignment; DataItem=null; target element is 'MenuItem' (Name=''); target property is 'VerticalContentAlignment' (type 'VerticalAlignment')
+:::{.alert .alert-danger}
+System.Windows.Data Error: 4 : Cannot find source for binding with reference 'RelativeSource FindAncestor, AncestorType='System.Windows.Controls.ItemsControl', AncestorLevel='1''. BindingExpression:Path=VerticalContentAlignment; DataItem=null; target element is 'MenuItem' (Name=''); target property is 'VerticalContentAlignment' (type 'VerticalAlignment')
+:::
 
-This is a known issue in WPF and a workaround is to create a custom `MenuItem` style:
+This is a known issue in WPF and can be fixed with this workaround:
 
 ```xml
 <Style TargetType="{x:Type MenuItem}"
-       BasedOn="{StaticResource MetroMenuItem}">
-  <Setter Property="HorizontalContentAlignment"
-          Value="Left" />
-  <Setter Property="VerticalContentAlignment"
-          Value="Center" />
-  </Style>
+       BasedOn="{StaticResource {x:Type MenuItem}}">
+  <Setter Property="HorizontalContentAlignment" Value="Left" />
+  <Setter Property="VerticalContentAlignment" Value="Center" />
+</Style>
 ```
 
 The drawback is that you loose the ability to contol the content-alignment of the MenuItem by setting the content-alignment properties on a `ContextMenu`.
