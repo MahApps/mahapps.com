@@ -1,16 +1,21 @@
 Title: TabControl
 ---
 
-There are three included tab styles - `AnimatedTabControl`, `SingleRowAnimatedTabControl` and the default `TabControl`. 
+There are three included tab styles
+
+- Default `TabControl` style 
+- `AnimatedTabControl` style
+- `SingleRowAnimatedTabControl` style
+
 The default `TabControl` style is included in `Controls.xaml`, but the other two require specific referencing (make sure to do this *after* a reference to `Controls.xaml`)
 
-### Default look
+## Default
 
-![]({{site.baseurl}}/images/default_tab_control.png)  
+![](images/default_tab_control.png)  
 
 This shows the three states - selected/active tab, hover and inactive.
 
-### AnimatedTabControl
+## AnimatedTabControl
 
 ```xml
 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
@@ -18,9 +23,7 @@ This shows the three states - selected/active tab, hover and inactive.
 
 Functioning just like the regular `TabControl`, except it animates every tab change by wrapping everything in a `MetroContentControl`.
 
-![]({{site.baseurl}}/images/animatedtabcontrol.gif)
-
-### AnimatedSingleRowTabControl
+## AnimatedSingleRowTabControl
 
 ```xml
 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
@@ -29,4 +32,4 @@ Functioning just like the regular `TabControl`, except it animates every tab cha
 `AnimatedSingleRowTabControl` functions exactly the same as the `AnimatedTabControl` except the tabs will only appear on a single line rather than wrapping. 
 Instead of wrapping, arrows (left/right) are presented.
 
-![]({{site.baseurl}}/images/singlerow_tab_control.png)
+![](images/singlerow_tab_control.png)
