@@ -1,8 +1,8 @@
 Title: ProgressBar
 ---
 
-The `MahApps.Metro` `ProgressBar` is like the built-in progress bar but, of course, restyled.
+The `ProgressBar` is like the built-in progress bar but, of course, restyled.
 
-![]({{site.baseurl}}/images/progressbar.png)
+![](images/progressbar.png)
 
 The upper two bars are the `ProgressBar` with different progress states. The third bar has `IsIndeterminate` set to `True`
