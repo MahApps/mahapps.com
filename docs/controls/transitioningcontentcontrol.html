@@ -151,21 +151,96 @@
 			<h1>TransitioningContentControl</h1>
 		</section>
 	<section class="content">
-		<p>Taken from Silverlight (specifically <a href="https://github.com/jenspettersson/WPF-Controls">this</a> port), <code><a href="/api/MahApps.Metro.Controls/TransitioningContentControl">TransitioningContentControl</a></code> is great for switching content smoothly around.
-At it's core, <code><a href="/api/MahApps.Metro.Controls/TransitioningContentControl">TransitioningContentControl</a></code> is a <code>ContentControl</code>, so only one child element can be displayed at a time.
-When you change the content, an animation is played switching the two.</p>
-<p><code>&lt;Controls:TransitioningContentControl x:Name="transitioning" Width="150" Height="50" Transition="DownTransition" /&gt;</code></p>
+		<p>The <code><a href="/api/MahApps.Metro.Controls/TransitioningContentControl">TransitioningContentControl</a></code> was taken from Silverlight (specifically <a href="https://github.com/jenspettersson/WPF-Controls">this</a> port), it's great for switching content smoothly around.<br>
+At it's core, <code><a href="/api/MahApps.Metro.Controls/TransitioningContentControl">TransitioningContentControl</a></code> is a <code>ContentControl</code>, so only one child element can be displayed at a time. When you change the content, an animation is played switching the old content to the new one.</p>
+<pre><code class="language-xml">&lt;mah:TransitioningContentControl x:Name="transitioningControl"
+                                 Width="250"
+                                 Height="250"
+                                 Content="First"
+                                 Transition="Left" /&gt;
+</code></pre>
 <p>Built in there are several transitions:</p>
-<ul>
-<li>Default</li>
-<li>Down</li>
-<li>Up</li>
-<li>Right</li>
-<li>Left</li>
-<li>RightReplace</li>
-<li>LeftReplace</li>
-<li>Custom</li>
-</ul>
+<pre><code class="language-csharp">public enum <a href="/api/MahApps.Metro.Controls/TransitionType">TransitionType</a>
+{
+  /// &lt;summary&gt;
+  /// Use the VisualState DefaultTransition
+  /// &lt;/summary&gt;
+  Default,
+
+  /// &lt;summary&gt;
+  /// Use the VisualState Normal
+  /// &lt;/summary&gt;
+  Normal,
+
+  /// &lt;summary&gt;
+  /// Use the VisualState UpTransition
+  /// &lt;/summary&gt;
+  Up,
+
+  /// &lt;summary&gt;
+  /// Use the VisualState DownTransition
+  /// &lt;/summary&gt;
+  Down,
+
+  /// &lt;summary&gt;
+  /// Use the VisualState RightTransition
+  /// &lt;/summary&gt;
+  Right,
+
+  /// &lt;summary&gt;
+  /// Use the VisualState RightReplaceTransition
+  /// &lt;/summary&gt;
+  RightReplace,
+
+  /// &lt;summary&gt;
+  /// Use the VisualState LeftTransition
+  /// &lt;/summary&gt;
+  Left,
+
+  /// &lt;summary&gt;
+  /// Use the VisualState LeftReplaceTransition
+  /// &lt;/summary&gt;
+  LeftReplace,
+
+  /// &lt;summary&gt;
+  /// Use a custom VisualState, the name must be set using CustomVisualStatesName property
+  /// &lt;/summary&gt;
+  Custom
+}
+</code></pre>
+<h2 id="custom-transition">Custom Transition</h2>
+<p>It's possible to use a custom transition if the given ones are not enough.</p>
+<pre><code class="language-xml">&lt;mah:TransitioningContentControl x:Name="customTransitioning"
+                                 Width="250"
+                                 Height="50"
+                                 Content="First"
+                                 CustomVisualStatesName="CustomTransition"
+                                 Transition="Custom"&gt;
+    &lt;mah:TransitioningContentControl.CustomVisualStates&gt;
+        &lt;VisualState x:Name="CustomTransition"&gt;
+            &lt;Storyboard&gt;
+                &lt;DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                               Storyboard.TargetName="CurrentContentPresentationSite"
+                                               Storyboard.TargetProperty="(UIElement.Opacity)"&gt;
+                    &lt;SplineDoubleKeyFrame KeyTime="00:00:00" Value="0" /&gt;
+                    &lt;SplineDoubleKeyFrame KeyTime="00:00:00.5" Value="0" /&gt;
+                    &lt;EasingDoubleKeyFrame KeyTime="00:00:01" Value="1"&gt;
+                        &lt;EasingDoubleKeyFrame.EasingFunction&gt;
+                            &lt;SineEase /&gt;
+                        &lt;/EasingDoubleKeyFrame.EasingFunction&gt;
+                    &lt;/EasingDoubleKeyFrame&gt;
+                &lt;/DoubleAnimationUsingKeyFrames&gt;
+                &lt;DoubleAnimationUsingKeyFrames BeginTime="00:00:00"
+                                               Storyboard.TargetName="PreviousContentPresentationSite"
+                                               Storyboard.TargetProperty="(UIElement.Opacity)"&gt;
+                    &lt;SplineDoubleKeyFrame KeyTime="00:00:00" Value="1" /&gt;
+                    &lt;SplineDoubleKeyFrame KeyTime="00:00:00.5" Value="0" /&gt;
+                &lt;/DoubleAnimationUsingKeyFrames&gt;
+            &lt;/Storyboard&gt;
+        &lt;/VisualState&gt;
+    &lt;/mah:TransitioningContentControl.CustomVisualStates&gt;
+&lt;/mah:TransitioningContentControl&gt;
+</code></pre>
 
 	</section>
                 
