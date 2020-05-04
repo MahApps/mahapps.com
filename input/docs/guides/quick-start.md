@@ -1,5 +1,7 @@
 Order: 10
 Title: Quick Start
+Description: How to start with MahApps.Metro
+RedirectFrom: guides/quick-start.html
 ---
 
 This guide will introduce you to how `MahApps.Metro` works and how to incorporate it into your app.
