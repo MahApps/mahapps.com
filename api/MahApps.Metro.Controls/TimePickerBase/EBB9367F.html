@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html><html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <title>MahApps.Metro - API - TimePickerBase.FocusElementAfterIsDropDownOpenChanged() Method</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/assets/js/clipboard.min.js"></script>
+
+    </head>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
+
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                    </div>
+            
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/blog">Blog</a></li>
+        <li><a href="/docs">Documentation</a></li>
+        <li class="active"><a href="/api">API</a></li>
+        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
+ 
+                        </ul>       
+                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#Summary">Summary</a></p>
+<p><a href="#Syntax">Syntax</a></p>
+<p><a href="#ReturnValue">Return Value</a></p>
+<hr class="infobar-hidden">
+</div>
+
+                </section>
+                <section class="sidebar">    
+                                     
+                    	
+	    <script src="/assets/js/lunr.min.js"></script>
+    <script src="/assets/js/searchIndex.js"></script>
+    <div class="sidebar-form">
+        <div class="input-group">
+            <input type="text" name="search" id="search" class="form-control" placeholder="Search Types...">
+            <span class="input-group-btn">
+                <button class="btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+    <div id="search-results">
+    </div>
+    <script>
+        function runSearch(query){
+            $("#search-results").empty();			
+            if( query.length < 2 ){
+                return;
+            }			
+            var results = searchModule.search("*" + query + "*");
+            var listHtml = "<ul class='sidebar-menu'>";	
+            listHtml += "<li class='header'>Type Results</li>";	
+            if(results.length == 0 ){
+                listHtml += "<li>No results found</li>";
+            } else {					
+                for(var i = 0; i < results.length; ++i){
+                    var res = results[i];
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
+                }				
+            }
+            listHtml += "</ul>";				
+            $("#search-results").append(listHtml);
+        }
+
+        $(document).ready(function(){
+            $("#search").on('input propertychange paste', function() {
+                runSearch($("#search").val());
+            });
+        });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
+    </script>
+	
+    <hr>
+
+                    <ul class="sidebar-menu">
+                        
+			<li class="header">Namespace</li>
+		<li><a href="/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></li>
+		<li class="header">Type</li>
+		<li><a href="/api/MahApps.Metro.Controls/TimePickerBase">TimePickerBase</a></li>
+		<li role="separator" class="divider"></li>
+			<li class="header">Constructors</li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/3E737D55">TimePickerBase<wbr>()<wbr></a></li>
+			<li class="header">Field Members</li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/1D075B22">CultureProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/863FFD44">Hand<wbr>Visibility<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/28F56743">hourInput</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/8AB3A4FB">Hours<wbr>Item<wbr>String<wbr>Format<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/B86563B4">IntervalOf10</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/379109C4">IntervalOf15</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/F33BDC60">IntervalOf5</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/C99847E9">Is<wbr>Clock<wbr>Visible<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/DBE21AAB">Is<wbr>Date<wbr>Picker<wbr>Visible<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/8B6223C9">Is<wbr>Drop<wbr>Down<wbr>Open<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/733759FA">IsReadOnlyProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/A3E665EB">Minutes<wbr>Item<wbr>String<wbr>Format<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/4555F163">original<wbr>Selected<wbr>Date<wbr>Time</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/12C77AA9">Picker<wbr>Visibility<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/639D5CB4">Seconds<wbr>Item<wbr>String<wbr>Format<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/C5B12416">Selected<wbr>Date<wbr>Time<wbr>Changed<wbr>Event</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/6C703E28">Selected<wbr>Date<wbr>Time<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/47E275AA">Selected<wbr>Time<wbr>Format<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/DD2A80A5">SourceHoursProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/03022E64">Source<wbr>Minutes<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/868652E5">Source<wbr>Seconds<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/3154A265">textBox</a></li>
+			<li class="header">Property Members</li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/EE9BDCAE">Culture</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/D996CF8A">HandVisibility</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/F718DC62">Hours<wbr>Item<wbr>String<wbr>Format</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/01277DE2">IsClockVisible</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/CF79504B">IsDatePickerVisible</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/691AC29F">IsDropDownOpen</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/BEC5F3F8">IsMilitaryTime</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/A2B08B6E">IsReadOnly</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/000E6648">Minutes<wbr>Item<wbr>String<wbr>Format</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/6F8E76E4">PickerVisibility</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/C71F82DF">Seconds<wbr>Item<wbr>String<wbr>Format</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/6DA73C47">SelectedDateTime</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/10D003CA">SelectedTimeFormat</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/C394C164">SourceHours</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/9F5E238C">SourceMinutes</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/DA1D9E03">SourceSeconds</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/D2FA3351">SpecificCultureInfo</a></li>
+			<li class="header">Method Members</li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/4D0F1E6F">ApplyCulture<wbr>()<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/A0DEB0D6">Clock<wbr>Selected<wbr>Time<wbr>Changed<wbr>()<wbr></a></li>
+				<li class="selected"><a href="/api/MahApps.Metro.Controls/TimePickerBase/EBB9367F">Focus<wbr>Element<wbr>After<wbr>Is<wbr>Drop<wbr>Down<wbr>Open<wbr>Changed<wbr>()<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/8C9B7858">GetBinding<wbr>(<wbr>Dependency<wbr>Property, <wbr>BindingMode)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/7B67FB0F">Get<wbr>Selected<wbr>Time<wbr>From<wbr>G<wbr>U<wbr>I<wbr>()<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/B2B934BA">GetValueForTextBox<wbr>()<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/5C5D4E0A">OnApplyTemplate<wbr>()<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/5478F83E">OnPopUpClosed<wbr>()<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/EB126997">OnPopUpOpened<wbr>()<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/015BB3DB">On<wbr>Selected<wbr>Date<wbr>Time<wbr>Changed<wbr>(DateTime?, <wbr>DateTime?)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/EEF10351">Raise<wbr>Selected<wbr>Date<wbr>Time<wbr>Changed<wbr>Event<wbr>(DateTime?, <wbr>DateTime?)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/A86E0581">Set<wbr>Default<wbr>Time<wbr>Of<wbr>Day<wbr>Values<wbr>()<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/9FB138C7">SetSelectedDateTime<wbr>()<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/205920E1">WriteValueToTextBox<wbr>()<wbr></a></li>
+			<li class="header">Event Members</li>
+				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase/FC444A22">Selected<wbr>Date<wbr>Time<wbr>Changed</a></li>
+
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+<section class="content-header">
+			<h3><a href="/api/MahApps.Metro.Controls/TimePickerBase">TimePickerBase</a>.</h3>
+	<h1>Focus<wbr>Element<wbr>After<wbr>Is<wbr>Drop<wbr>Down<wbr>Open<wbr>Changed<wbr>()<wbr> <small>Method</small></h1>
+</section>
+<section class="content">
+	
+	
+		<h1 id="Summary">Summary</h1>
+	<div class="lead">
+    This method is invoked when the <code class="cs"><a href="/api/MahApps.Metro.Controls/TimePickerBase/8B6223C9">IsDropDownOpenProperty</a></code> changes.
+    </div>
+
+		<div class="panel panel-default">
+  			<div class="panel-body">	
+				<dl class="dl-horizontal">	
+						
+						<dt>Namespace</dt>
+						<dd><a href="/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></dd>
+					
+						<dt>Containing Type</dt>
+						<dd><a href="/api/MahApps.Metro.Controls/TimePickerBase">TimePickerBase</a></dd>		
+					
+				</dl>
+  			</div>
+		</div>
+
+	<h1 id="Syntax">Syntax</h1>
+	<pre><code>protected virtual void FocusElementAfterIsDropDownOpenChanged()</code></pre>
+
+
+
+
+
+
+	<h1 id="ReturnValue">Return Value</h1>
+	<div class="box">
+		<div class="box-body no-padding table-responsive">
+			<table class="table table-striped table-hover two-cols">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody><tr>
+					<td>void</td>
+					<td></td>
+				</tr>
+			</tbody></table>
+		</div>
+	</div>	
+
+
+	
+</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
+        </div>
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
+                <p class="text-muted">
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
+    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
+    Generated by <a href="http://wyam.io">Wyam</a>
+</p>
+
+<script>
+	anchors.options.placement = 'left';
+	anchors.add();
+</script>
+
+<script>
+	var snippets = document.querySelectorAll('pre > code');
+	[].forEach.call(snippets, function (snippet) {
+	  snippet.insertAdjacentHTML(
+	    'beforebegin',
+	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
+	  );
+	});
+	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+	  container: document.getElementById('modal'),
+	  target: function (trigger) {
+	    return trigger.nextElementSibling;
+	  },
+	});
+	clipboardSnippets.on('success', function (e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		e.clearSelection();
+		// showTooltip(e.trigger, 'Copied!');
+	});
+	clipboardSnippets.on('error', function (e) {
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
+		// showTooltip(e.trigger, fallbackMessage(e.action));
+	});
+</script>
+            </footer>
+        </div>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
+            $(document).ready(function() {
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
+            });
+        </script>
+    
+</body></html>
