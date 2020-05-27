@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
-        <title>MahApps.Metro - Dialogs</title>
+        <title>MahApps.Metro - Progress Dialog</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
         <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
         <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
@@ -79,18 +79,8 @@
             <aside class="main-sidebar ">
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
-        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/dialogs.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#message-dialog">Message Dialog</a></p>
-<p><a href="#input-dialog">Input Dialog</a></p>
-<p><a href="#login-dialog">Login Dialog</a></p>
-<p><a href="#progress-dialog">Progress Dialog</a></p>
-<p><a href="#support-mvvm-with-the-dialogcoordinator">Support MVVM with the DialogCoordinator</a></p>
-<p><a href="#metrodialogsettings">MetroDialogSettings</a></p>
-<p><a href="#logindialogsettings">LoginDialogSettings</a></p>
-<p><a href="#color-scheme">Color Scheme</a></p>
-<p><a href="#custom-dialogs">Custom Dialogs</a></p>
-<hr class="infobar-hidden">
-</div>
+        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/dialogs/progress-dialogs.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"></div>
 
                 </section>
                 <section class="sidebar">    
@@ -100,13 +90,12 @@
                     <ul class="sidebar-menu">
                         
 
-                <li class="treeview active">
+                <li class="treeview">
                     <a href="/docs/controls">Controls</a> <a href="#" class="expand"></a>
                     <ul class="treeview-menu">
                         
                 <li><a href="/docs/controls/metrowindow">MetroWindow</a></li>
                 <li><a href="/docs/controls/badgedcontrol">Badged Control</a></li>
-                <li class="selected"><a href="/docs/controls/dialogs">Dialogs</a></li>
                 <li><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
                 <li><a href="/docs/controls/flipview">FlipView</a></li>
                 <li><a href="/docs/controls/flyouts">Flyouts</a></li>
@@ -136,6 +125,20 @@
 
                     </ul>
                 </li>
+                <li class="treeview active">
+                    <a href="/docs/dialogs">Dialogs</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/dialogs/message-dialog">Message Dialog</a></li>
+                <li><a href="/docs/dialogs/input-dialog">Input Dialog</a></li>
+                <li><a href="/docs/dialogs/login-dialogs">Login Dialog</a></li>
+                <li class="selected"><a href="/docs/dialogs/progress-dialogs">Progress Dialog</a></li>
+                <li><a href="/docs/dialogs/mvvm-dialog">MVVM</a></li>
+                <li><a href="/docs/dialogs/custom-dialogs">Custom Dialogs</a></li>
+                <li><a href="/docs/dialogs/dialogsettings">Dialogsettings</a></li>
+
+                    </ul>
+                </li>
                 <li class="treeview">
                     <a href="/docs/guides">Guides</a> <a href="#" class="expand"></a>
                     <ul class="treeview-menu">
@@ -159,105 +162,15 @@
 
 
 		<section class="content-header">
-			<h1>Dialogs</h1>
+			<h1>Progress Dialog</h1>
 		</section>
 	<section class="content">
-		<p>Since the built-in WPF dialogs are unstyleable, we had to create our own implementation. You will find our dialogs within the MahApps.Metro.Controls.Dialogs namespace.</p>
-<p>All dialogs in MahApps.Metro are called asynchronously. This means that you can use the <code>async / await</code> keywords to use the methods and call the dialogs.</p>
-<h1 id="message-dialog">Message Dialog</h1>
-<p>Simple message dialogs can be displayed with the <code>ShowMessageAsync</code> method. It is an extension method for <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code>, so call it from your window class.</p>
-<pre><code class="language-csharp">private async void OnButtonClick(object sender, RoutedEventArgs e)
-{
-  await this.ShowMessageAsync("This is the title", "Some message");
-}
-</code></pre>
-<h1 id="input-dialog">Input Dialog</h1>
-<p><img src="images/dialog.png" class="img-fluid" alt=""></p>
-<h1 id="login-dialog">Login Dialog</h1>
-<h1 id="progress-dialog">Progress Dialog</h1>
-<p>There is a built-in dialog that displays a progress bar at the bottom of the dialog. Call it like this:</p>
+		<p>There is a built-in dialog that displays a progress bar at the bottom of the dialog. Call it like this:</p>
 <pre><code class="language-csharp">var controller = await this.ShowProgressAsync("Please wait...", "Progress message");
 </code></pre>
 <p>This method returns a <code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController">ProgressDialogController</a></code> object that exposes the <code>SetProgress</code> method, use it to set the current progress.</p>
 <p>A picture of the progress dialog in the demo:</p>
 <p><img src="images/progressdialog.png" class="img-fluid" alt=""></p>
-<h1 id="support-mvvm-with-the-dialogcoordinator">Support MVVM with the DialogCoordinator</h1>
-<p>You can open dialogs from your ViewModel by using the <code><a href="/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator">DialogCoordinator</a></code>.</p>
-<p>There’s a couple of simple things you have to do:</p>
-<ol>
-<li>Use the <code>DialogParticipation.Register</code> attached property in your Window to register your ViewModel with the dialog sub-system.</li>
-</ol>
-<p>Assuming your View’s DataContext is set to the ViewModel from where you want to launch the dialog, add these attributes:</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow x:Class="SimpleApp.MainWindow"
-                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                 xmlns:Dialog="clr-namespace:MahApps.Metro.Controls.Dialogs;assembly=MahApps.Metro"
-                 Dialog:DialogParticipation.Register="{Binding}"&gt;
-
-&lt;/mah:MetroWindow&gt;
-</code></pre>
-<ol start="2">
-<li>Grab &amp; use the <code><a href="/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator">DialogCoordinator</a></code> to open dialogs.</li>
-</ol>
-<p>You can instantiate <code><a href="/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator">DialogCoordinator</a></code> directly, or, good citizens will probably want to inject in the interface <code><a href="/api/MahApps.Metro.Controls.Dialogs/IDialogCoordinator">IDialogCoordinator</a></code> into their ViewModel.  This will play nicely with TDD, and is agnostic to whatever DI framework you may be using.</p>
-<p>Without a DI framework you could just do something like this:</p>
-<pre><code class="language-csharp">using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
-
-namespace SimpleApp
-{
-    public class MainWindow : <a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a>
-    {
-        public MainWindow()
-        {
-            this.InitializeComponent();
-
-            // Set the DataContext for your View
-            this.DataContext = new MainWindowViewModel(DialogCoordinator.Instance);
-        }
-    }
-}
-</code></pre>
-<p>Opening up a dialog from your ViewModel is now easy, using the IDialogCoordinator instance.  To most methods the first parameter named “context” will typically be your ViewModel.  This is how the coordinator will match the ViewModel to the window (with what was registered in step 1) and display the dialog.  If you have multiple windows open, the dialog will display on the correct window.  Show your dialog from inside your ViewModel just like this:</p>
-<pre><code class="language-csharp">using MahApps.Metro.Controls.Dialogs;
-
-namespace SimpleApp
-{
-    public class MainWindowViewModel
-    {
-        // The <a href="/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator">DialogCoordinator</a>
-        private <a href="/api/MahApps.Metro.Controls.Dialogs/IDialogCoordinator">IDialogCoordinator</a> dialogCoordinator;
-
-        public MainWindowViewModel(IDialogCoordinator instance)
-        {                    
-            this.dialogCoordinator = instance;
-        }
-
-        // Simple method which can be used on a Button
-        public async void FooMessage()
-        {
-            await this.dialogCoordinator.ShowMessageAsync(this, "Message Title", "Bar");
-        }
-        
-        public async void FooProgress()
-        {
-            // Show...
-            <a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController">ProgressDialogController</a> controller = await this.dialogCoordinator.ShowProgressAsync(this, "Wait", "Waiting for the Answer to the Ultimate Question of Life, The Universe, and Everything...");
-
-            controller.SetIndeterminate();
-            
-            // Do your work... 
-            var result = await Task.Run(...);
-             
-            // Close...
-            await controller.CloseAsync();
-        }
-    }
-}
-</code></pre>
-<h1 id="metrodialogsettings">MetroDialogSettings</h1>
-<h1 id="logindialogsettings">LoginDialogSettings</h1>
-<h1 id="color-scheme">Color Scheme</h1>
-<h1 id="custom-dialogs">Custom Dialogs</h1>
 
 	</section>
                 
