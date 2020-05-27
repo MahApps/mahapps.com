@@ -1,43 +1,7 @@
-Title: Dialogs
+Order: 60
+Title: MVVM
+Description: Use Dialogs together with MVVM
 ---
-
-Since the built-in WPF dialogs are unstyleable, we had to create our own implementation. You will find our dialogs within the MahApps.Metro.Controls.Dialogs namespace.
-
-All dialogs in MahApps.Metro are called asynchronously. This means that you can use the `async / await` keywords to use the methods and call the dialogs.
-
-# Message Dialog
-
-Simple message dialogs can be displayed with the `ShowMessageAsync` method. It is an extension method for `MetroWindow`, so call it from your window class.
-
-```csharp
-private async void OnButtonClick(object sender, RoutedEventArgs e)
-{
-  await this.ShowMessageAsync("This is the title", "Some message");
-}
-```
-
-# Input Dialog
-
-![](images/dialog.png)
-
-# Login Dialog
-
-
-# Progress Dialog
-
-There is a built-in dialog that displays a progress bar at the bottom of the dialog. Call it like this:
-
-```csharp
-var controller = await this.ShowProgressAsync("Please wait...", "Progress message");
-```
-    
-This method returns a `ProgressDialogController` object that exposes the `SetProgress` method, use it to set the current progress.
-
-A picture of the progress dialog in the demo:
-
-![](images/progressdialog.png)
-
-# Support MVVM with the DialogCoordinator
 
 You can open dialogs from your ViewModel by using the `DialogCoordinator`.
 
@@ -120,11 +84,3 @@ namespace SimpleApp
     }
 }
 ```
-
-# MetroDialogSettings
-
-# LoginDialogSettings
-
-# Color Scheme
-
-# Custom Dialogs
