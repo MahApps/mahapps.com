@@ -70,7 +70,7 @@ namespace SimpleApp
 {
     public class MainWindow : MetroWindow
     {
-        public MyMetroWindow()
+        public MainWindow()
         {
             this.InitializeComponent();
 
