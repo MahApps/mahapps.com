@@ -43,7 +43,7 @@ All resources of `MahApp.Metro` are located within separate resource dictionarie
         <!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! -->
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
-        <!-- Accent and AppTheme setting -->
+        <!-- Theme setting -->
         <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
