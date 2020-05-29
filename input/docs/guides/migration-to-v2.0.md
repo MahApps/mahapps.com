@@ -677,6 +677,7 @@ Final naming convention is:
 | AzureDataGrid                            | MahApps.Styles.DataGrid.Azure            | Controls.DataGrid.xaml                   |
 | MetroDatePicker                          | MahApps.Styles.DatePicker                | Controls.DatePicker.xaml                 |
 | MetroDatePickerTextBox                   | MahApps.Styles.DatePickerTextBox         | Controls.DatePicker.xaml                 |
+|                                          | MahApps.Styles.DatePickerTextBox.TimePickerBase | Controls.DatePicker.xaml                 |
 | ExpanderBaseHeaderStyle                  | MahApps.Styles.ToggleButton.ExpanderHeader.Base | Controls.Expander.xaml                   |
 | ExpanderRightHeaderStyle                 | MahApps.Styles.ToggleButton.ExpanderHeader.Right | Controls.Expander.xaml                   |
 | ExpanderUpHeaderStyle                    | MahApps.Styles.ToggleButton.ExpanderHeader.Up | Controls.Expander.xaml                   |
