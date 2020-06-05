@@ -1,9 +1,10 @@
 Title: Flyouts
+Description: An overlay control that can slide and render custom contents
 ---
 
-A `Flyout` is an overlay for a window that can have custom content.
+A `Flyout` is an overlay for the [MetroWindow](MetroWindow) that can render custom contents. It has the ability to slide in and out from any side of the window.
 
-To use the flyouts, they must be defined within the `FlyoutsControl`. This control is then assigned to the `Flyouts` property of the [MetroWindow](MetroWindow).
+It is strongly recommended to use the `Flyouts` within the `FlyoutsControl`. This control should be assigned to the `Flyouts` property of the [MetroWindow](MetroWindow).
 
 ```xml
 <mah:MetroWindow.Flyouts>

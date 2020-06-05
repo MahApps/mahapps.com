@@ -1,11 +1,14 @@
 Title: FlipView
+Description: A control with swipe navigation
 ---
 
-The `FlipView` acts as a news banner for your applications. It is inspired by Windows 8 / WinRT's control of the same name. However, ours was written from the ground-up to support the MahApps.Metro infrastructure. 
+The `FlipView` control behaves like an ItemsControl and shows items one by one on swipe gesture. Also navigation buttons will be available to navigate using mouse.
 
-# Getting started
+It is inspired by Windows 8 / WinRT's control of the same name. However, ours was written from the ground-up to support the `MahApps.Metro` infrastructure. 
 
-The `FlipView` control works similar to the regular `TabControl` (`Selector`) control. Place your content inside of it's `Items` property and it will allow to *flip* through them.
+## Getting started
+
+The `FlipView` control works similar to the regular `Selector` (`ItemsControl`) control. Place your content inside of it's `Items` property and it will allow to *flip* through them.
 
 The following code was taken from our main [MetroDemo](https://github.com/MahApps/MahApps.Metro).
 
@@ -43,7 +46,7 @@ The following code was taken from our main [MetroDemo](https://github.com/MahApp
 
 ![flipview](images/flipview.png)
 
-# The Banner
+## The Banner
 
 The banner on the bottom of the `FlipView` can be shown and hidden using the `IsBannerEnabled` property. You may change the banner text using the `BannerText` property. We use that in code behind to change the banner based on the selected item.
 
@@ -66,12 +69,12 @@ private void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs 
 }
 ```
 
-# Control Buttons
+## The Control Buttons
 
 The *control buttons* (the next and previous buttons) allow the user to flip through the items using their mouse. The buttons can be disabled by calling `HideControlButtons` and renabled by calling `ShowControlButtons`.
 
 The user can also flip through the items using the arrows on their keyboard.
 
-# Automated scrolling (batteries not included)
+## Automated scrolling (batteries not included)
 
 Disabling the control buttons is useful when you want to provide an automated scrolling experience. This can be implemented by using a timer and by incrementing `SelectedIndex`.

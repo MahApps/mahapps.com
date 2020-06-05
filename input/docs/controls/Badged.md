@@ -1,4 +1,5 @@
 Title: Badged Control
+Description: If you need to show a badge over a control then this is the right control
 ---
 
 The `Badged` control renders a badge overlay on a given control.
