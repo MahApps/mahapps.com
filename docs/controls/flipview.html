@@ -80,12 +80,7 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/flipview.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#getting-started">Getting started</a></p>
-<p><a href="#the-banner">The Banner</a></p>
-<p><a href="#control-buttons">Control Buttons</a></p>
-<p><a href="#automated-scrolling-batteries-not-included">Automated scrolling (batteries not included)</a></p>
-<hr class="infobar-hidden">
-</div>
+    <div id="infobar-headings"></div>
 
                 </section>
                 <section class="sidebar">    
@@ -100,16 +95,20 @@
                     <ul class="treeview-menu">
                         
                 <li><a href="/docs/controls/metrowindow">MetroWindow</a></li>
-                <li><a href="/docs/controls/badgedcontrol">Badged Control</a></li>
+                <li><a href="/docs/controls/Badged">Badged Control</a></li>
+                <li><a href="/docs/controls/ContentControlEx">ContentControlEx</a></li>
+                <li><a href="/docs/controls/DateTimePicker">DateTimePicker</a></li>
                 <li><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
                 <li class="selected"><a href="/docs/controls/flipview">FlipView</a></li>
                 <li><a href="/docs/controls/flyouts">Flyouts</a></li>
+                <li><a href="/docs/controls/FontIcon">FontIcon</a></li>
                 <li><a href="/docs/controls/metroprogressbar">MetroProgressBar</a></li>
                 <li><a href="/docs/controls/numericupdown">NumericUpDown</a></li>
                 <li><a href="/docs/controls/progressring">ProgressRing</a></li>
                 <li><a href="/docs/controls/rangeslider">RangeSlider</a></li>
                 <li><a href="/docs/controls/splitbutton">SplitButton</a></li>
                 <li><a href="/docs/controls/tile">Tile</a></li>
+                <li><a href="/docs/controls/TimePicker">TimePicker</a></li>
                 <li><a href="/docs/controls/toggleswitch">ToggleSwitch</a></li>
                 <li><a href="/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
 
@@ -179,9 +178,10 @@
 			<h1>FlipView</h1>
 		</section>
 	<section class="content">
-		<p>The <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> acts as a news banner for your applications. It is inspired by Windows 8 / WinRT's control of the same name. However, ours was written from the ground-up to support the MahApps.Metro infrastructure.</p>
-<h1 id="getting-started">Getting started</h1>
-<p>The <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> control works similar to the regular <code>TabControl</code> (<code>Selector</code>) control. Place your content inside of it's <code>Items</code> property and it will allow to <em>flip</em> through them.</p>
+		<p>The <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> control behaves like an ItemsControl and shows items one by one on swipe gesture. Also navigation buttons will be available to navigate using mouse.</p>
+<p>It is inspired by Windows 8 / WinRT's control of the same name. However, ours was written from the ground-up to support the <code>MahApps.Metro</code> infrastructure.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>The <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> control works similar to the regular <code>Selector</code> (<code>ItemsControl</code>) control. Place your content inside of it's <code>Items</code> property and it will allow to <em>flip</em> through them.</p>
 <p>The following code was taken from our main <a href="https://github.com/MahApps/MahApps.Metro">MetroDemo</a>.</p>
 <pre><code class="language-xml">&lt;mah:FlipView x:Name="FlipView1st"
               Height="200"
@@ -214,7 +214,7 @@
 &lt;/mah:FlipView&gt;
 </code></pre>
 <p><img src="images/flipview.png" class="img-fluid" alt="flipview"></p>
-<h1 id="the-banner">The Banner</h1>
+<h2 id="the-banner">The Banner</h2>
 <p>The banner on the bottom of the <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> can be shown and hidden using the <code>IsBannerEnabled</code> property. You may change the banner text using the <code>BannerText</code> property. We use that in code behind to change the banner based on the selected item.</p>
 <pre><code class="language-csharp">private void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 {
@@ -233,10 +233,10 @@
     }
 }
 </code></pre>
-<h1 id="control-buttons">Control Buttons</h1>
+<h2 id="the-control-buttons">The Control Buttons</h2>
 <p>The <em>control buttons</em> (the next and previous buttons) allow the user to flip through the items using their mouse. The buttons can be disabled by calling <code>HideControlButtons</code> and renabled by calling <code>ShowControlButtons</code>.</p>
 <p>The user can also flip through the items using the arrows on their keyboard.</p>
-<h1 id="automated-scrolling-batteries-not-included">Automated scrolling (batteries not included)</h1>
+<h2 id="automated-scrolling-batteries-not-included">Automated scrolling (batteries not included)</h2>
 <p>Disabling the control buttons is useful when you want to provide an automated scrolling experience. This can be implemented by using a timer and by incrementing <code>SelectedIndex</code>.</p>
 
 	</section>
