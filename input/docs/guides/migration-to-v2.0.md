@@ -76,35 +76,6 @@ Final naming convention is:
 + an optional specifier which gives more context (e.g. `Slider` for `MahApps.Styles.Thumb` which helps understanding that this thumb style is for the context of a slider)
 + an optional category (e.g. `Metro`, `Flat`, `Square`, `Win10`, ...)
 
-### Deleted Brushes
-
-| Key                                      |
-|------------------------------------------|
-| ComboBoxPopupBrush                       |
-| MenuItemDisabledBrush                    |
-| CheckBoxBackgroundBrush                  |
-| WhiteColorBrush                          |
-| BlackColorBrush                          |
-| LabelTextBrush                           |
-| DisabledWhiteBrush                       |
-| TextBoxMouseOverInnerBorderBrush         |
-| ButtonMouseOverInnerBorderBrush          |
-| ComboBoxMouseOverInnerBorderBrush        |
-| DarkIdealForegroundDisabledBrush         |
-| MahApps.Metro.Brushes.ToggleSwitchButton.PressedBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.OffBorderBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.OffMouseOverBorderBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.OffDisabledBorderBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.OffSwitchBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchDisabledBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchMouseOverBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorMouseOverBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorCheckedBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorPressedBrush.Win10 |
-| MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorDisabledBrush.Win10 |
-
 ### Renamed and new Colors
 
 | Old Key                     | New Key                                  |
@@ -526,6 +497,35 @@ Final naming convention is:
 |                                          | MahApps.Brushes.ToggleSwitch.KnobFillOnPressed |
 |                                          | MahApps.Brushes.ToggleSwitch.KnobFillOnDisabled |
 
+### Deleted Brushes
+
+| Key                                      |
+|------------------------------------------|
+| ComboBoxPopupBrush                       |
+| MenuItemDisabledBrush                    |
+| CheckBoxBackgroundBrush                  |
+| WhiteColorBrush                          |
+| BlackColorBrush                          |
+| LabelTextBrush                           |
+| DisabledWhiteBrush                       |
+| TextBoxMouseOverInnerBorderBrush         |
+| ButtonMouseOverInnerBorderBrush          |
+| ComboBoxMouseOverInnerBorderBrush        |
+| DarkIdealForegroundDisabledBrush         |
+| MahApps.Metro.Brushes.ToggleSwitchButton.PressedBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.OffBorderBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.OffMouseOverBorderBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.OffDisabledBorderBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.OffSwitchBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchDisabledBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.OnSwitchMouseOverBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorMouseOverBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorCheckedBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorPressedBrush.Win10 |
+| MahApps.Metro.Brushes.ToggleSwitchButton.ThumbIndicatorDisabledBrush.Win10 |
+
 ## List of deleted, renamed and new fonts
 
 | Old Key                            | New Key                                  |
@@ -655,10 +655,13 @@ Final naming convention is:
 | MenuScrollButton                         | MahApps.Styles.RepeatButton.MenuScroll   | Controls.MenuItem.xaml                   |
 | MetroDataGridCheckBox                    | MahApps.Styles.CheckBox.DataGrid         | Controls.DataGrid.xaml                   |
 |                                          | MahApps.Styles.CheckBox.DataGrid.Win10   | Controls.DataGrid.xaml                   |
+|                                          | MahApps.Styles.ComboBox.DataGrid         | Controls.DataGrid.xaml                   |
 |                                          | MahApps.Styles.ComboBox.DataGrid.Editing | Controls.DataGrid.xaml                   |
+|                                          | MahApps.Styles.TextBlock.DataGrid        | Controls.DataGrid.xaml                   |
+|                                          | MahApps.Styles.Hyperlink.DataGrid        | Controls.DataGrid.xaml                   |
 |                                          | MahApps.Styles.TextBox.DataGrid.Editing  | Controls.DataGrid.xaml                   |
-|                                          | MahApps.Styles.NumericUpDown.DataGridColumn | Controls.DataGrid.xaml                   |
-|                                          | MahApps.Styles.NumericUpDown.DataGridColumnEditing | Controls.DataGrid.xaml                   |
+|                                          | MahApps.Styles.NumericUpDown.DataGrid    | Controls.DataGrid.xaml                   |
+|                                          | MahApps.Styles.NumericUpDown.DataGrid.Editing | Controls.DataGrid.xaml                   |
 | MetroColumnHeaderGripperStyle            | MahApps.Styles.Thumb.ColumnHeaderGripper | Controls.DataGrid.xaml                   |
 | MetroRowHeaderGripperStyle               | MahApps.Styles.Thumb.RowHeaderGripper    | Controls.DataGrid.xaml                   |
 | MetroDataGridColumnHeader                | MahApps.Styles.DataGridColumnHeader      | Controls.DataGrid.xaml                   |
@@ -687,6 +690,7 @@ Final naming convention is:
 | MetroExpanderCollapseStoryboard          | MahApps.Storyboard.Expander.Collapse     | Controls.Expander.xaml                   |
 | MetroExpander                            | MahApps.Styles.Expander                  | Controls.Expander.xaml                   |
 | MetroGroupBox                            | MahApps.Styles.GroupBox                  | Controls.GroupBox.xaml                   |
+|                                          | MahApps.Styles.Hyperlink                 | Controls.Hyperlink.xaml                  |
 | MetroLabel                               | MahApps.Styles.Label                     | Controls.Label.xaml                      |
 | MetroListBox                             | MahApps.Styles.ListBox                   | Controls.ListBox.xaml                    |
 | VirtualisedMetroListBox                  | MahApps.Styles.ListBox.Virtualized       | Controls.ListBox.xaml                    |
