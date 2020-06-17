@@ -567,14 +567,22 @@ Final naming convention is:
 | ToggleSwitchFontSize.Win10       | -- deleted --                         |
 | ToggleSwitchHeaderFontSize.Win10 | -- deleted --                         |
 
-## List of renamed sizes
+## List of renamed and new sizes
 
-| Old Key                              | New Key                                  |
-|--------------------------------------|------------------------------------------|
-| MetroScrollBarHeight                 | MahApps.Sizes.ScrollBar.Height           |
-| MetroScrollBarWidth                  | MahApps.Sizes.ScrollBar.Width            |
-| HorizontalScrollBarRepeatButtonWidth | MahApps.Sizes.ScrollBar.HorizontalRepeatButton.Width |
-| VerticalScrollBarRepeatButtonHeight  | MahApps.Sizes.ScrollBar.VerticalRepeatButton.Height |
+| Old Key                              | New Key                                  | Resource Dictionary      |
+|--------------------------------------|------------------------------------------|--------------------------|
+| MetroScrollBarHeight                 | MahApps.Sizes.ScrollBar.Height           | Controls.Scrollbars.xaml |
+| MetroScrollBarWidth                  | MahApps.Sizes.ScrollBar.Width            | Controls.Scrollbars.xaml |
+| HorizontalScrollBarRepeatButtonWidth | MahApps.Sizes.ScrollBar.HorizontalRepeatButton.Width | Controls.Scrollbars.xaml |
+| VerticalScrollBarRepeatButtonHeight  | MahApps.Sizes.ScrollBar.VerticalRepeatButton.Height | Controls.Scrollbars.xaml |
+| HorizontalThumbHeight                | MahApps.Sizes.Slider.HorizontalThumb.Height | Controls.Slider.xaml     |
+| HorizontalThumbWidth                 | MahApps.Sizes.Slider.HorizontalThumb.Width | Controls.Slider.xaml     |
+| VerticalThumbWidth                   | MahApps.Sizes.Slider.VerticalThumb.Width | Controls.Slider.xaml     |
+| VerticalThumbHeight                  | MahApps.Sizes.Slider.VerticalThumb.Height | Controls.Slider.xaml     |
+| GroupBoxHeaderThemeFontSize          | MahApps.Sizes.GroupBox.HeaderThemeFont   | VS/GroupBox.xaml         |
+| ProgressBarMinHeight                 | MahApps.Sizes.ProgressBar.MinHeight      | MetroProgressBar.xaml    |
+|                                      | MahApps.Sizes.Slider.Flat.Horizontal.MinHeight | Controls.FlatSlider.xaml |
+|                                      | MahApps.Sizes.Slider.Flat.Vertical.MinWidth | Controls.FlatSlider.xaml |
 
 ## Styles and Templates
 
@@ -726,10 +734,6 @@ Final naming convention is:
 | MetroScrollBar                           | MahApps.Styles.ScrollBar                 | Controls.Scrollbars.xaml                 |
 | MetroScrollViewer                        | MahApps.Styles.ScrollViewer              | Controls.Scrollbars.xaml                 |
 | DropShadowBrush                          | DropShadowBrush                          | Controls.Shadows.xaml                    |
-| HorizontalThumbHeight                    | MahApps.Sizes.Slider.HorizontalThumb.Height | Controls.Slider.xaml                     |
-| HorizontalThumbWidth                     | MahApps.Sizes.Slider.HorizontalThumb.Width | Controls.Slider.xaml                     |
-| VerticalThumbWidth                       | MahApps.Sizes.Slider.VerticalThumb.Width | Controls.Slider.xaml                     |
-| VerticalThumbHeight                      | MahApps.Sizes.Slider.VerticalThumb.Height | Controls.Slider.xaml                     |
 | MahApps.Metro.Styles.Slider.Thumb        | MahApps.Styles.Thumb.Slider              | Controls.Slider.xaml                     |
 | MahApps.Metro.Styles.Slider.HorizontalTrack | MahApps.Styles.RepeatButton.Slider.HorizontalTrack | Controls.Slider.xaml                     |
 | MahApps.Metro.Styles.Slider.HorizontalTrackValue | MahApps.Styles.RepeatButton.Slider.HorizontalTrackValue | Controls.Slider.xaml                     |
@@ -811,10 +815,6 @@ Final naming convention is:
 |                                          | MahApps.Storyboard.ExitGotFocus.DatePickerTextBox | Controls.Shared.xaml                     |
 |                                          | MahApps.Storyboard.EnterHasText.DatePickerTextBox | Controls.Shared.xaml                     |
 |                                          | MahApps.Storyboard.ExitHasText.DatePickerTextBox | Controls.Shared.xaml                     |
-| MetroScrollBarHeight                     | MahApps.Sizes.ScrollBar.Height           | Controls.Scrollbars.xaml                 |
-| MetroScrollBarWidth                      | MahApps.Sizes.ScrollBar.Width            | Controls.Scrollbars.xaml                 |
-| HorizontalScrollBarRepeatButtonWidth     | MahApps.Sizes.ScrollBar.HorizontalRepeatButton.Width | Controls.Scrollbars.xaml                 |
-| VerticalScrollBarRepeatButtonHeight      | MahApps.Sizes.ScrollBar.VerticalRepeatButton.Height | Controls.Scrollbars.xaml                 |
 | MetroValidationPopup                     | MahApps.Styles.CustomValidationPopup     | Controls.ValidationError.xaml            |
 | ValidationErrorTemplate                  | MahApps.Templates.ValidationError        | Controls.ValidationError.xaml            |
 | FlatButton.xaml                          |                                          | Controls.FlatButton.xaml                 |
@@ -866,7 +866,6 @@ Final naming convention is:
 | MetroExpanderExpandStoryboard            | MahApps.Storyboard.Expander.Expand.VS    | VS/Expander.xaml                         |
 | MetroExpanderCollapseStoryboard          | MahApps.Storyboard.Expander.Collapse.VS  | VS/Expander.xaml                         |
 | StandardExpander                         | MahApps.Styles.Expander.VisualStudio     | VS/Expander.xaml                         |
-| GroupBoxHeaderThemeFontSize              | MahApps.Sizes.GroupBox.HeaderThemeFont   | VS/GroupBox.xaml                         |
 | StandardGroupBox                         | MahApps.Styles.GroupBox.VisualStudio     | VS/GroupBox.xaml                         |
 | StandardListBox                          | MahApps.Styles.ListBox.VisualStudio      | VS/ListBox.xaml                          |
 |                                          | MahApps.Styles.ListBoxItem.VisualStudio  | VS/ListBox.xaml                          |
@@ -928,7 +927,6 @@ Final naming convention is:
 | HorizontalMetroAnimatedSingleRowTabControl | MahApps.Templates.MetroAnimatedSingleRowTabControl.Horizontal | MetroAnimatedSingleRowTabControl.xaml |
 | VerticalMetroAnimatedSingleRowTabControl | MahApps.Templates.MetroAnimatedSingleRowTabControl.Vertical | MetroAnimatedSingleRowTabControl.xaml |
 | MahApps.Metro.Styles.MetroHeader         | MahApps.Styles.MetroHeader               | MetroHeader.xaml                      |
-| ProgressBarMinHeight                     | MahApps.Sizes.ProgressBar.MinHeight      | MetroProgressBar.xaml                 |
 | MahApps.Metro.Styles.MetroProgressBar    | MahApps.Styles.MetroProgressBar          | MetroProgressBar.xaml                 |
 |                                          | MahApps.Templates.MetroTabControl.KeepVisualTreeInMemory | MetroTabControl.xaml                  |
 |                                          | MahApps.Templates.MetroTabControl.DoNotKeepVisualTreeInMemory | MetroTabControl.xaml                  |
