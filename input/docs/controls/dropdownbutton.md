@@ -4,13 +4,13 @@ Description: A Button with a drop down menu
 
 ![](images/dropDownButton_1.png)  
 
-This control is almost the same as the [SplitButton](SplitButton) with few differences:
+This control is almost the same as the [SplitButton](splitbutton) with few differences:
 
 - It has no `SelectedItem` and `SelectedIndex` properties and also has no `SelectionChanged` event.
 - The content of the button also doesn't change, it's static.
 - The Dropdownlist is a context menu instead of Listbox in `SplitButton`.
 
-In all other aspects it's identical to [SplitButton](SplitButton).
+In all other aspects it's identical to [SplitButton](splitbutton).
 
 ```xml
 <mah:DropDownButton Margin="5"
