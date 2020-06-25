@@ -232,7 +232,6 @@ Please note that you should have a look at <a href="https://github.com/MahApps/M
 <pre><code class="language-xml">&lt;ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:markup="clr-namespace:MahApps.Metro.Markup;assembly=MahApps.Metro"
-                    xmlns:markupWithAssembly="clr-namespace:MahApps.Metro.Markup;assembly=MahApps.Metro"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -747,6 +746,9 @@ Please note that you should have a look at <a href="https://github.com/MahApps/M
 
 &lt;/ResourceDictionary&gt;
 </code></pre>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+It's necessary to use the <code>StaticResource</code> extension from MahApps with the following namespace <code>xmlns:markup="clr-namespace:MahApps.Metro.Markup;assembly=MahApps.Metro"</code></p>
+</div>
 <p>In order to use this custom theme, you need to add it to the <code>ThemeManager</code>.</p>
 <pre><code class="language-csharp">using ControlzEx.Theming;
 
@@ -770,6 +772,9 @@ public partial class SampleApp : Application
     }
 }
 </code></pre>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+If the application also want to use a dark Theme then it's necessary to create it too, e.g. <code>Dark.Accent1.xaml</code></p>
+</div>
 <h3 id="sample">Sample</h3>
 <p>It is also possible to create a runtime resource dictionary by using a specific color.</p>
 <pre><code class="language-csharp">using ControlzEx.Theming;
