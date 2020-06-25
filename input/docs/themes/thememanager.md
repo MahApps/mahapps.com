@@ -75,7 +75,6 @@ Here is a sample for a light theme. In order to work correctly with the Thememan
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:markup="clr-namespace:MahApps.Metro.Markup;assembly=MahApps.Metro"
-                    xmlns:markupWithAssembly="clr-namespace:MahApps.Metro.Markup;assembly=MahApps.Metro"
                     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                     xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
@@ -591,6 +590,11 @@ Here is a sample for a light theme. In order to work correctly with the Thememan
 </ResourceDictionary>
 ```
 
+:::{.alert .alert-info}
+***Note***  
+It's necessary to use the `StaticResource` extension from MahApps with the following namespace `xmlns:markup="clr-namespace:MahApps.Metro.Markup;assembly=MahApps.Metro"`
+:::
+
 In order to use this custom theme, you need to add it to the `ThemeManager`.
 
 ```csharp
@@ -616,6 +620,12 @@ public partial class SampleApp : Application
     }
 }
 ```
+
+:::{.alert .alert-info}
+***Note***  
+If the application also want to use a dark Theme then it's necessary to create it too, e.g. `Dark.Accent1.xaml`
+:::
+
 
 ### Sample
 
