@@ -1,4 +1,5 @@
 Title: Slider
+Description: The Slider styles
 ---
 
 This control has several styles in MahApps.Metro:

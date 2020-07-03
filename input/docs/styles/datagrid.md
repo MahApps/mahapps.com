@@ -1,4 +1,5 @@
-Title: Data Grid
+Title: DataGrid
+Description: The DataGrid styles
 ---
 
 The `DataGrid` is a control that ships with .NET by default and provides support for filtering, grouping, sorting and other standard features that you would expect of a `DataGrid`.

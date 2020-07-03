@@ -1,4 +1,5 @@
-Title: ContextMenu
+Title: Menus
+Description: The Menu styles
 ---
 
 You can use the ContextMenu as you are familiar with it:

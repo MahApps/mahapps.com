@@ -1,4 +1,5 @@
 Title: TextBox
+Description: The TextBox styles
 ---
 
 There is just the one style in this library for `TextBox`, however it does have a special attached property for creating 'watermarked' textboxes and for added a 'clear' button.

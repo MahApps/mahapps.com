@@ -1,4 +1,5 @@
 Title: TabControl
+Description: The TabControl styles
 ---
 
 There are three included tab styles

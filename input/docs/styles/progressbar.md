@@ -1,4 +1,5 @@
 Title: ProgressBar
+Description: The ProgressBar style
 ---
 
 The `ProgressBar` is like the built-in progress bar but, of course, restyled.
