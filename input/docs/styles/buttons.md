@@ -36,6 +36,6 @@ This sort of button can be found when you're making a call on Windows Phone - al
 ![](images/flatbutton.png) 
 
 Flat button lives in   
-`<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />`
+`<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.FlatButton.xaml" />`
 
 You'll need to import that as well to use it.
