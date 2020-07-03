@@ -6,7 +6,7 @@ System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalizat
 
 Settings[Keys.Host] = "mahapps.com";
 Settings[Keys.LinksUseHttps] = true;
-Settings[Keys.LinkLowercase] = true;
+Settings[Keys.UseCache] = true;
 
 Settings[DocsKeys.Title] = "MahApps.Metro";
 Settings[DocsKeys.Logo] = "./assets/img/mahapps.metro.logo.png";
