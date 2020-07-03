@@ -15,7 +15,7 @@ If you want to base your custom style on that style, you need to add `BasedOn="{
 ![](images/slider_cube.png) 
 
 To use that style you need to load resource dictionary
-`<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatSlider.xaml" />`
+`<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.FlatSlider.xaml" />`
 and explicitly set the style of the `Slider` to `Style="{DynamicResource FlatSlider}"`
 
 This style could be dynamically changed to:
