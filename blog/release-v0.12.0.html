@@ -9,7 +9,7 @@
         <title>MahApps.Metro - Release 0.12.0</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
         <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/assets/css/adminlte/adminlte.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
         <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -97,7 +97,7 @@
 
         <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
             <li><a href="/blog/general">general</a></li>
-            <li><a href="/blog/release">Release</a></li>
+            <li><a href="/blog/Release">Release</a></li>
     
     <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
         <li><a href="/blog/archive/2018/06">June, 2018</a></li>
@@ -150,7 +150,7 @@
     <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
     <dd>Thursday, January 16, 2014</dd>
         <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
-        <dd><a href="/blog/release">Release</a></dd>
+        <dd><a href="/blog/Release">Release</a></dd>
             <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
         <dd><a href="/blog/author/punker76">punker76</a></dd>
 </dl>
@@ -163,7 +163,7 @@ We try to break things now rather than later, when we release version 1.0 (which
 <p>A quick overview:</p>
 <ul>
 <li><code>ProgressIndicator</code> is now removed, as it wasn't working as expected.
-Use <code><a href="/api/mahapps.metro.controls/metroprogressbar">MetroProgressBar</a></code> with <code>IsIndeterminate = True</code> instead, which should give a much smoother experience.</li>
+Use <code><a href="/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></code> with <code>IsIndeterminate = True</code> instead, which should give a much smoother experience.</li>
 <li>Like <code>ProgressIndicator</code>, <code>MetroImage</code> has been removed because it was broken.
 A better alternative is to use a simple <code>Rectangle</code>, as described <a href="http://mahapps.com/MahApps.Metro/guides/icons-and-resources.html">here</a></li>
 <li>For the same reasons, the <code>Panorama</code> control has been removed.
@@ -172,22 +172,22 @@ you can always submit a pull request with a better Panorama, but beware, it most
 </ul>
 <p>Upcoming changes:</p>
 <ul>
-<li>The <code><a href="/api/mahapps.metro.controls/rangeslider">RangeSlider</a></code> control is currently being rewritten, so expect some breaking changes here.</li>
+<li>The <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> control is currently being rewritten, so expect some breaking changes here.</li>
 </ul>
 <h1 id="features">Features</h1>
 <h2 id="dialog-system">Dialog system</h2>
 <p>The dialog system has been overhauled for better extensibility.</p>
 <p>The <code>SimpleDialog</code> class now allows to create a custom dialog.</p>
-<p><code><a href="/api/mahapps.metro.controls.dialogs/progressdialog">ProgressDialog</a></code> is a dialog that displays progress (duh!) inspired by Github for Windows.
-<code><a href="/api/mahapps.metro.controls.dialogs/inputdialog">InputDialog</a></code> works like the <code><a href="/api/mahapps.metro.controls.dialogs/messagedialog">MessageDialog</a></code> but allows the user to input text.</p>
+<p><code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialog">ProgressDialog</a></code> is a dialog that displays progress (duh!) inspired by Github for Windows.
+<code><a href="/api/MahApps.Metro.Controls.Dialogs/InputDialog">InputDialog</a></code> works like the <code><a href="/api/MahApps.Metro.Controls.Dialogs/MessageDialog">MessageDialog</a></code> but allows the user to input text.</p>
 <p>For reference, see PR #785 , #860 and #901 .</p>
 <h2 id="modal-flyouts">Modal Flyouts</h2>
 <p>Just like modal dialogs, Flyouts can now be made modal by setting the <code>IsModal = true</code>.
 Thanks @grokys for this feature!</p>
 <p>For reference, see PR #824</p>
 <h2 id="themed-flyouts">Themed Flyouts</h2>
-<p>A Flyout can now have a theme, just like <code><a href="/api/mahapps.metro.controls/metrowindow">MetroWindow</a></code></p>
-<p>There are four different theme states, indicated by the <code><a href="/api/mahapps.metro.controls/flyouttheme">FlyoutTheme</a></code> enum:</p>
+<p>A Flyout can now have a theme, just like <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code></p>
+<p>There are four different theme states, indicated by the <code><a href="/api/MahApps.Metro.Controls/FlyoutTheme">FlyoutTheme</a></code> enum:</p>
 <ul>
 <li><code>FlyoutTheme.Adapt</code>: The flyout will use the theme if the host window</li>
 <li><code>FlyoutTheme.Inverse</code>: The flyout will use the inverse theme of the host window</li>
@@ -202,7 +202,7 @@ Thanks @grokys for this feature!</p>
 Thanks @Icehunter for this feature!</p>
 <p>For reference, see PR #834</p>
 <h2 id="numericupdown">NumericUpDown</h2>
-<p>Implemented a <code><a href="/api/mahapps.metro.controls/numericupdown">NumericUpDown</a></code> control, inspired by the <a href="https://github.com/timheuer/callisto/wiki/NumericUpDown">Callisto</a> style.
+<p>Implemented a <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> control, inspired by the <a href="https://github.com/timheuer/callisto/wiki/NumericUpDown">Callisto</a> style.
 Thanks @xxMUROxx for this feature!</p>
 <h2 id="new-icons">New icons</h2>
 <p>Two new icons have been added to Mahapps.Metro.Resources:</p>
@@ -212,10 +212,10 @@ Thanks @xxMUROxx for this feature!</p>
 </ul>
 <p>For reference, see PR #887</p>
 <h2 id="metronavigationwindow">MetroNavigationWindow</h2>
-<p>Implemented a <code><a href="/api/mahapps.metro.controls/metronavigationwindow">MetroNavigationWindow</a></code>. This is the re-implementation of <a href="http://msdn.microsoft.com/en-us/library/System.Windows.Navigation.NavigationWindow.aspx">System.Windows.Navigation.NavigationWindow</a> in a Metro-style</p>
+<p>Implemented a <code><a href="/api/MahApps.Metro.Controls/MetroNavigationWindow">MetroNavigationWindow</a></code>. This is the re-implementation of <a href="http://msdn.microsoft.com/en-us/library/System.Windows.Navigation.NavigationWindow.aspx">System.Windows.Navigation.NavigationWindow</a> in a Metro-style</p>
 <p>For reference, see PR #801</p>
-<h2 id="contenttemplateselector-support-for-transitioningcontentcontrol">ContentTemplateSelector support for <code><a href="/api/mahapps.metro.controls/transitioningcontentcontrol">TransitioningContentControl</a></code>.</h2>
-<p>You can now provide a <code>ContentTemplateSelector</code> for the <code><a href="/api/mahapps.metro.controls/transitioningcontentcontrol">TransitioningContentControl</a></code>.</p>
+<h2 id="contenttemplateselector-support-for-transitioningcontentcontrol">ContentTemplateSelector support for <code><a href="/api/MahApps.Metro.Controls/TransitioningContentControl">TransitioningContentControl</a></code>.</h2>
+<p>You can now provide a <code>ContentTemplateSelector</code> for the <code><a href="/api/MahApps.Metro.Controls/TransitioningContentControl">TransitioningContentControl</a></code>.</p>
 <h2 id="added-accentedsquarebutton-and-idealforegroundcolor-key">Added AccentedSquareButton and IdealForegroundColor key</h2>
 <ul>
 <li>Added an AccentedSquareButton. It looks like the SquareButton except that its Background is the current Accent.</li>

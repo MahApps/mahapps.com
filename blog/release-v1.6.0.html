@@ -9,7 +9,7 @@
         <title>MahApps.Metro - Release 1.6.0</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
         <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/assets/css/adminlte/adminlte.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
         <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -92,7 +92,7 @@
 
         <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
             <li><a href="/blog/general">general</a></li>
-            <li><a href="/blog/release">Release</a></li>
+            <li><a href="/blog/Release">Release</a></li>
     
     <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
         <li><a href="/blog/archive/2018/06">June, 2018</a></li>
@@ -145,7 +145,7 @@
     <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
     <dd>Thursday, February 15, 2018</dd>
         <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
-        <dd><a href="/blog/release">Release</a></dd>
+        <dd><a href="/blog/Release">Release</a></dd>
             <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
         <dd><a href="/blog/author/punker76">punker76</a></dd>
 </dl>
@@ -156,13 +156,13 @@
 <ul>
 <li>New: <code>MahApps.Metro.Styles.MetroWatermarkTextBlock</code> style to make it easier to set custom properties like <code>FontFamily</code> or <code>FontSize</code> for all Watermarks.</li>
 <li>New: Replacing <code>WindowChrome</code> and related things with reference to <code>ControlzEx</code> <a href="https://github.com/MahApps/MahApps.Metro/pull/3021">#3021</a></li>
-<li><code><a href="/api/mahapps.metro.controls/numericupdown">NumericUpDown</a></code>
+<li><code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code>
 <ul>
-<li>New: <code>SnapToMultipleOfInterval</code> property for <code><a href="/api/mahapps.metro.controls/numericupdown">NumericUpDown</a></code> which indicates if the <code><a href="/api/mahapps.metro.controls/numericupdown">NumericUpDown</a></code> should round the value to the nearest possible interval when the focus moves to another element. <a href="https://github.com/MahApps/MahApps.Metro/issues/2952">#2952</a> <a href="https://github.com/xxMUROxx">@xxMUROxx</a></li>
-<li>New: <code>NumericInputMode</code> property with the new flag enumeration <code><a href="/api/mahapps.metro.controls/numericinput">NumericInput</a></code> (default is <code>NumericInput.All</code>)</li>
+<li>New: <code>SnapToMultipleOfInterval</code> property for <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> which indicates if the <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> should round the value to the nearest possible interval when the focus moves to another element. <a href="https://github.com/MahApps/MahApps.Metro/issues/2952">#2952</a> <a href="https://github.com/xxMUROxx">@xxMUROxx</a></li>
+<li>New: <code>NumericInputMode</code> property with the new flag enumeration <code><a href="/api/MahApps.Metro.Controls/NumericInput">NumericInput</a></code> (default is <code>NumericInput.All</code>)</li>
 <li>Mark <code>HasDecimals</code> as obsolete</li>
 <li>Block scientific input if only numbers allowed</li>
-<li>Fix: <code><a href="/api/mahapps.metro.controls/numericupdown">NumericUpDown</a></code>, <code><a href="/api/mahapps.metro.controls/hotkeybox">HotKeyBox</a></code> and <code>TimerPickerBase</code> doesn't focus for the first time when the FocusManager will be used.</li>
+<li>Fix: <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code>, <code><a href="/api/MahApps.Metro.Controls/HotKeyBox">HotKeyBox</a></code> and <code>TimerPickerBase</code> doesn't focus for the first time when the FocusManager will be used.</li>
 </ul>
 </li>
 <li>New: Changing popup border thickness and padding for <code>ComboBox</code> via resource keys
@@ -179,15 +179,15 @@
 <li><code>ExpanderToggleButtonEllipseThemeSize</code> (default 18)</li>
 </ul>
 </li>
-<li>New: <code><a href="/api/mahapps.metro.controls/badged">Badged</a></code> control has now a different look when disabled. thx <a href="https://github.com/xxMUROxx">@xxMUROxx</a>
+<li>New: <code><a href="/api/MahApps.Metro.Controls/Badged">Badged</a></code> control has now a different look when disabled. thx <a href="https://github.com/xxMUROxx">@xxMUROxx</a>
 <ul>
 <li>New brush for light and dark themes: <code>MahApps.Metro.Brushes.Badged.DisabledBackgroundBrush</code></li>
 </ul>
 </li>
 <li><code>Watermark</code>
 <ul>
-<li>Use <code>TextBoxHelper.Watermark</code> for <code><a href="/api/mahapps.metro.controls/hotkeybox">HotKeyBox</a></code> instead own DependencyProperty (marked as obsolete).</li>
-<li>Allow <code>TextBoxHelper.AutoWatermark</code> for <code><a href="/api/mahapps.metro.controls/hotkey">HotKey</a></code> DependencyProperty of <code><a href="/api/mahapps.metro.controls/hotkeybox">HotKeyBox</a></code>.</li>
+<li>Use <code>TextBoxHelper.Watermark</code> for <code><a href="/api/MahApps.Metro.Controls/HotKeyBox">HotKeyBox</a></code> instead own DependencyProperty (marked as obsolete).</li>
+<li>Allow <code>TextBoxHelper.AutoWatermark</code> for <code><a href="/api/MahApps.Metro.Controls/HotKey">HotKey</a></code> DependencyProperty of <code><a href="/api/MahApps.Metro.Controls/HotKeyBox">HotKeyBox</a></code>.</li>
 <li>New: <code>TextBoxHelper.WatermarkTrimming</code> attached property to set the text trimming behavior to employ when (floating) watermark overflows the content area. thx to <a href="https://github.com/amkuchta">@amkuchta</a></li>
 <li>New: <code>TextBoxHelper.WatermarkWrapping</code> attached property (only for <code>TextBox</code>) to set how the watermark should wrap text. Default is binded to <code>TextWrapping</code> property. thx to <a href="https://github.com/amkuchta">@amkuchta</a></li>
 </ul>
@@ -198,7 +198,7 @@
 <li>New: <code>StandardExpander</code> style</li>
 </ul>
 </li>
-<li><code><a href="/api/mahapps.metro.controls/tabcontrolhelper">TabControlHelper</a></code>
+<li><code><a href="/api/MahApps.Metro.Controls/TabControlHelper">TabControlHelper</a></code>
 <ul>
 <li>New: <code>TabControlHelper.CloseButtonEnabled</code> attached property to show / hide the close button (default is true).</li>
 <li>New: <code>TabControlHelper.CloseTabCommand</code> attached property which executes if the <code>TabItem</code> will be closed.</li>
@@ -206,7 +206,7 @@
 </ul>
 </li>
 <li>New: Add <code>TextBoxHelper.ButtonsAlignment</code> support for <code>PasswordBox</code> styles <a href="https://github.com/MahApps/MahApps.Metro/pull/3074">#3074</a> <a href="https://github.com/waleswood">@waleswood</a></li>
-<li>New: <code><a href="/api/mahapps.metro.controls/metroheader">MetroHeader</a></code> control which can contains any other content and can display a header on top of this content.<br>
+<li>New: <code><a href="/api/MahApps.Metro.Controls/MetroHeader">MetroHeader</a></code> control which can contains any other content and can display a header on top of this content.<br>
 <img src="https://user-images.githubusercontent.com/658431/31484999-a22c6650-af32-11e7-95e1-17f3aa3987b6.png" class="img-fluid" alt="2017-10-11_15h58_35">
 <img src="https://user-images.githubusercontent.com/658431/31485003-a52f7db0-af32-11e7-8963-b13b0da95b85.png" class="img-fluid" alt="2017-10-11_16h04_32">
 <pre><code>  &lt;Controls:MetroHeader Margin="2" Header="TextBox Header"&gt;
@@ -224,14 +224,14 @@
   &lt;/Controls:MetroHeader&gt;
 </code></pre>
 </li>
-<li>New: <code><a href="/api/mahapps.metro.controls/scrollviewerhelper">ScrollViewerHelper</a></code> class
+<li>New: <code><a href="/api/MahApps.Metro.Controls/ScrollViewerHelper">ScrollViewerHelper</a></code> class
 <ul>
 <li>New: <code>IsHorizontalScrollWheelEnabled</code> attached property. If it's set to true and a horizontal <code>ScrollBar</code> is visible then the mouse wheel scrolls to left and right.</li>
-<li>Change: <code>VerticalScrollBarOnLeftSide</code> attached property from <code>ScrollBarHelper</code> to <code><a href="/api/mahapps.metro.controls/scrollviewerhelper">ScrollViewerHelper</a></code>. ScrollBarHelper is now marked as obsolete.</li>
+<li>Change: <code>VerticalScrollBarOnLeftSide</code> attached property from <code>ScrollBarHelper</code> to <code><a href="/api/MahApps.Metro.Controls/ScrollViewerHelper">ScrollViewerHelper</a></code>. ScrollBarHelper is now marked as obsolete.</li>
 </ul>
 </li>
 <li>New: Use <code>FlatButtonForegroundBrush</code> in the new <code>MahApps.Metro.Styles.FlatButtonFocusVisualStyle</code> which is used now for <code>MetroFlatButton</code> and <code>MetroFlatToggleButton</code></li>
-<li><code><a href="/api/mahapps.metro.controls/passwordboxhelper">PasswordBoxHelper</a></code>
+<li><code><a href="/api/MahApps.Metro.Controls/PasswordBoxHelper">PasswordBoxHelper</a></code>
 <ul>
 <li>New: <code>RevealButtonContent</code> and <code>RevealButtonContentTemplate</code> attached properties</li>
 <li>Set the <code>DefaultRevealButtonIcon</code> ContentControl to <code>RevealButtonContent</code> attached property</li>
@@ -245,7 +245,7 @@
 <img src="https://user-images.githubusercontent.com/658431/34455672-595e9084-ed84-11e7-8695-cfd712304bc1.png" class="img-fluid" alt="2017-12-30_17h04_25"></li>
 </ul>
 </li>
-<li>New: <code><a href="/api/mahapps.metro.controls/itemhelper">ItemHelper</a></code> class with some <code>Brush</code>  attached properties for mouse interaction. These properties can be used with <code><a href="/api/mahapps.metro.controls/hamburgermenuitem">HamburgerMenuItem</a></code>, <code>ListBoxItem</code>, <code>ListViewItem</code>, <code>TreeViewItem</code> and <code>ComboBoxItem</code>.
+<li>New: <code><a href="/api/MahApps.Metro.Controls/ItemHelper">ItemHelper</a></code> class with some <code>Brush</code>  attached properties for mouse interaction. These properties can be used with <code><a href="/api/MahApps.Metro.Controls/HamburgerMenuItem">HamburgerMenuItem</a></code>, <code>ListBoxItem</code>, <code>ListViewItem</code>, <code>TreeViewItem</code> and <code>ComboBoxItem</code>.
 <ul>
 <li><code>ItemHelper.ActiveSelectionBackgroundBrush</code> default <code>AccentColorBrush</code></li>
 <li><code>ItemHelper.ActiveSelectionForegroundBrush</code> default <code>AccentSelectedColorBrush</code></li>
@@ -259,12 +259,12 @@
 <li><code>ItemHelper.SelectedForegroundBrush</code> default <code>AccentSelectedColorBrush</code></li>
 </ul>
 </li>
-<li><code><a href="/api/mahapps.metro.controls/toggleswitch">ToggleSwitch</a></code>
+<li><code><a href="/api/MahApps.Metro.Controls/ToggleSwitch">ToggleSwitch</a></code>
 <ul>
 <li>New: <code>ContentPadding</code> dependency property to change the padding of the inner content in an easy way.</li>
 </ul>
 </li>
-<li><code><a href="/api/mahapps.metro.controls/hamburgermenu">HamburgerMenu</a></code>
+<li><code><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></code>
 <ul>
 <li>Renaming (internal used styles):
 <ul>
@@ -282,7 +282,7 @@
 <li>Change inner ListBox scrolling (to CanContentScroll)</li>
 <li>New: Add <code>ItemContainerStyle</code> and <code>OptionsItemContainerStyle</code> properties. This makes it easier to change the inner styles for the items (and option items)</li>
 <li>MinHeight of the menu items should be <code>0</code></li>
-<li>Change: <code><a href="/api/mahapps.metro.controls/hamburgermenuimageitem">HamburgerMenuImageItem</a></code>: Downgrade thumbnail property from <code>BitmapImage</code> to subclass <code>ImageSource</code></li>
+<li>Change: <code><a href="/api/MahApps.Metro.Controls/HamburgerMenuImageItem">HamburgerMenuImageItem</a></code>: Downgrade thumbnail property from <code>BitmapImage</code> to subclass <code>ImageSource</code></li>
 <li>New: Introduce <code>ItemInvoked</code> event (as an alternative to <code>ItemClick</code> and <code>OptionsItemClick</code>)</li>
 <li>New: <code>SelectionIndicator</code> (rectangle) which can be enabled with the new <code>ShowSelectionIndicator</code> dependency property
 <ul>
@@ -293,14 +293,14 @@
 <li>Improved item <code>FocusVisualStyle</code>
 <ul>
 <li>Add new (readonly) <code>ItemFocusVisualStyle</code> dependency property which will be re-created if one of these properties are changed: <code>OpenPaneLength</code>, <code>CompactPaneLength</code> and <code>IsPaneOpen</code>. Default template is <code>HamburgerMenuItemFocusVisualTemplate</code>.</li>
-<li>This FocusVisualStyle can be override at the <code><a href="/api/mahapps.metro.controls/hamburgermenuitem">HamburgerMenuItem</a></code> style by setting the <code>FocusVisualStyle</code> property.</li>
+<li>This FocusVisualStyle can be override at the <code><a href="/api/MahApps.Metro.Controls/HamburgerMenuItem">HamburgerMenuItem</a></code> style by setting the <code>FocusVisualStyle</code> property.</li>
 </ul>
 </li>
 <li>Change: Reorganize Hamburger sample: shows now Default style, Creators Update style and a sample with the MaterialDesignInXaml Ripple control</li>
 <li>Fix: Set a selected Item only if there is no content set</li>
-<li>Add <code><a href="/api/mahapps.metro.controls/hamburgermenu">HamburgerMenu</a></code> resources to Control styles to allow style manipulation and fix binding expression infos</li>
+<li>Add <code><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></code> resources to Control styles to allow style manipulation and fix binding expression infos</li>
 <li>Fix: <code>PanePlacement</code> handling for right aligned</li>
-<li>New: Add <code>ToolTip</code> <code>DependencyProperty</code> for <code><a href="/api/mahapps.metro.controls/hamburgermenuitem">HamburgerMenuItem</a></code>
+<li>New: Add <code>ToolTip</code> <code>DependencyProperty</code> for <code><a href="/api/MahApps.Metro.Controls/HamburgerMenuItem">HamburgerMenuItem</a></code>
 <img src="https://user-images.githubusercontent.com/658431/35100389-f6e49e9e-fc5b-11e7-9691-f65f0a044faa.gif" class="img-fluid" alt="mahapps_hamburger_right"><br>
 <img src="https://user-images.githubusercontent.com/658431/34588589-18930f0c-f1ae-11e7-8ee1-e526de4a7a57.gif" class="img-fluid" alt="mahapps_hamburger"><br>
 <img src="https://user-images.githubusercontent.com/658431/34677971-1620523e-f492-11e7-8d50-9ff2c4c25c86.png" class="img-fluid" alt="2018-01-08_16h34_14"><br>
@@ -311,17 +311,17 @@
 <li><code>Dialogs</code>
 <ul>
 <li>New: Create new style for Dialogs <code>MahApps.Metro.Styles.MetroDialog</code> and set this as default</li>
-<li>Add <code><a href="/api/mahapps.metro.controls.dialogs/basemetrodialog">BaseMetroDialog</a></code> resources to Control styles to allow easier dialog style manipulation</li>
+<li>Add <code><a href="/api/MahApps.Metro.Controls.Dialogs/BaseMetroDialog">BaseMetroDialog</a></code> resources to Control styles to allow easier dialog style manipulation</li>
 <li>Fix: Do not load all MahApps styles in code behind again (this is not necessary anymore, since it's now at Style level too)</li>
 <li>Fix: Inverted Dialogs theme (the background wasn't correct)</li>
-<li>New: Add <code><a href="/api/mahapps.metro.controls.dialogs/progressdialogcontroller/ac24d875">ProgressDialogController.SetProgressBarForegroundBrush(Brush)</a></code> so that you can customize a progress dialog's progress bar foreground Brush.</li>
+<li>New: Add <code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController/AC24D875">ProgressDialogController.SetProgressBarForegroundBrush(Brush)</a></code> so that you can customize a progress dialog's progress bar foreground Brush.</li>
 </ul>
 </li>
-<li><code><a href="/api/mahapps.metro.controls/metrowindow">MetroWindow</a></code> (<code>Dialogs</code>)
+<li><code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> (<code>Dialogs</code>)
 <ul>
 <li>Add a new (readonly) <code>IsAnyDialogOpen</code> dependency property. This property will be updated if a dialog is shown or not.</li>
-<li>New: <code>OwnerCanCloseWithDialog</code> property at <code><a href="/api/mahapps.metro.controls.dialogs/metrodialogsettings">MetroDialogSettings</a></code> which can be used to handle how the owner of the dialog can be closed.</li>
-<li>New: <code>IsCloseButtonEnabledWithDialog</code> property at <code><a href="/api/mahapps.metro.controls/metrowindow">MetroWindow</a></code> which indicates if the close button should be enabled or not if a dialog is shown.</li>
+<li>New: <code>OwnerCanCloseWithDialog</code> property at <code><a href="/api/MahApps.Metro.Controls.Dialogs/MetroDialogSettings">MetroDialogSettings</a></code> which can be used to handle how the owner of the dialog can be closed.</li>
+<li>New: <code>IsCloseButtonEnabledWithDialog</code> property at <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> which indicates if the close button should be enabled or not if a dialog is shown.</li>
 <li>The <code>HandleOverlayOnHide</code> and <code>HandleOverlayOnShow</code> methods sets the <code>IsCloseButtonEnabledWithDialogPropertyKey</code> and restores focus if needed</li>
 <li>New: <code>OverlayFadeIn</code> and <code>OverlayFadeOut</code> properties to set/override the overlay fade in/out Storyboards which are used for the <code>Dialogs</code></li>
 <li>Fix: Fade in and out animation was wrong if no duration exists</li>
@@ -344,7 +344,7 @@
 <li>Thumb: <code>MahApps.Metro.Styles.Slider.Thumb</code></li>
 </ul>
 </li>
-<li>New: Win10 <code><a href="/api/mahapps.metro.controls/rangeslider">RangeSlider</a></code> style: <code>MahApps.Metro.Styles.RangeSlider.Win10</code>
+<li>New: Win10 <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> style: <code>MahApps.Metro.Styles.RangeSlider.Win10</code>
 <ul>
 <li>Control template: <code>MahApps.Metro.Styles.RangeSlider.HorizontalTemplate.Win10</code>, <code>MahApps.Metro.Styles.RangeSlider.VerticalTemplate.Win10</code></li>
 <li>RepeatButton: <code>MahApps.Metro.Styles.Slider.HorizontalTrack.Win10</code>, <code>MahApps.Metro.Styles.Slider.VerticalTrack.Win10</code></li>
@@ -352,17 +352,17 @@
 <img src="https://user-images.githubusercontent.com/658431/35279353-2f289c5c-004d-11e8-89fb-1b7c60e58ebb.gif" class="img-fluid" alt="mahapps_rangeslider_win10"></li>
 </ul>
 </li>
-<li>New: Normal <code><a href="/api/mahapps.metro.controls/rangeslider">RangeSlider</a></code> style: <code>MahApps.Metro.Styles.RangeSlider</code>
+<li>New: Normal <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> style: <code>MahApps.Metro.Styles.RangeSlider</code>
 <ul>
-<li>Use <code><a href="/api/mahapps.metro.controls/sliderhelper">SliderHelper</a></code> brush properties also for <code><a href="/api/mahapps.metro.controls/rangeslider">RangeSlider</a></code></li>
+<li>Use <code><a href="/api/MahApps.Metro.Controls/SliderHelper">SliderHelper</a></code> brush properties also for <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code></li>
 <li>Thump styles for the middle part: <code>MahApps.Metro.Styles.RangeSlider.HorizontalMiddleThumb</code>, <code>MahApps.Metro.Styles.RangeSlider.VerticalMiddleThumb</code></li>
-<li>Use <code><a href="/api/mahapps.metro.controls/metrothumb">MetroThumb</a></code> instead <code>Thumb</code></li>
+<li>Use <code><a href="/api/MahApps.Metro.Controls/MetroThumb">MetroThumb</a></code> instead <code>Thumb</code></li>
 <li>Set <code>ReservedSpace</code> for all <code>TickBar</code> controls instead <code>Margin</code></li>
 </ul>
 </li>
-<li><code><a href="/api/mahapps.metro.controls/sliderhelper">SliderHelper</a></code>: Add new attached properties for all possible <code>Brushes</code>
+<li><code><a href="/api/MahApps.Metro.Controls/SliderHelper">SliderHelper</a></code>: Add new attached properties for all possible <code>Brushes</code>
 <ul>
-<li>Allow <code>SliderHelper.EnableMouseWheel</code> and <code>SliderHelper.ChangeValueBy</code> for <code><a href="/api/mahapps.metro.controls/rangeslider">RangeSlider</a></code> too.</li>
+<li>Allow <code>SliderHelper.EnableMouseWheel</code> and <code>SliderHelper.ChangeValueBy</code> for <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> too.</li>
 <li>Default Win10 <code>Slider</code> brushes
 <ul>
 <li><code>SliderHelper.ThumbFillBrush</code> default <code>AccentBaseColorBrush</code></li>
@@ -417,20 +417,20 @@
 <ul>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/79744525ee288f18e2d4086b245a431b2c764d48">69afa65e</a> Adopt <code>SpellCheck.IsEnabled</code> changes from <code>MaterialDesignInXamlToolkit</code> @ButchersBoy <a href="https://github.com/ButchersBoy/MaterialDesignInXamlToolkit/pull/650">#650</a> Removes the extra hidden classes and enables flexible style changes, it's more WPF now.</li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/15bbe66ddd781b9f9326ea663e22513b925111bd">15bbe66d</a> Inherit FontFamily and FontSize for <code>CalendarDayButton</code> and <code>CalendarButton</code> from <code>Calendar</code>.</li>
-<li><a href="https://github.com/MahApps/MahApps.Metro/commit/2c97fd4e14a295b6d00a24043609d475686b41d9">2c97fd4e</a> Fix: Brushes for <code><a href="/api/mahapps.metro.controls/metroprogressbar">MetroProgressBar</a></code></li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/commit/2c97fd4e14a295b6d00a24043609d475686b41d9">2c97fd4e</a> Fix: Brushes for <code><a href="/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></code></li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/5c4471c3a4922294662815d02ca005d9ed06d3d9">5c4471c3</a> Use DynamicResource for all brushes and freeze it too.</li>
-<li><a href="https://github.com/MahApps/MahApps.Metro/commit/8c0f893f45748b558afd6557caa8883a779ffb7e">8c0f893f</a> Fix: <code><a href="/api/mahapps.metro.controls/metroprogressbar">MetroProgressBar</a></code> does not work inside ControlTemplate</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/commit/8c0f893f45748b558afd6557caa8883a779ffb7e">8c0f893f</a> Fix: <code><a href="/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></code> does not work inside ControlTemplate</li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/c900c5bd1e8c91a1a8f25a002b0853e100feb787">c900c5bd</a> Check for RootVisual in <code>GlowWindowBehavior</code></li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/ad16dc308f678f48286334e9ebe95b185c3c5e8d">ad16dc30</a> <code>ResizeBorderThickness</code> must also be set to 0 on maximize</li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/6943cc92f6490d29ac39a0f0e73cab5b493e378a">6943cc92</a> Use <code>PropertyChangeNotifier</code> from <code>ControlzEx</code></li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/7ea7a7c7603c09dad458ece2178bb5679747ddc0">7ea7a7c7</a> Removing trigger for <code>ResizeBorderThickness</code> as it's handled by <code>ControlzEx</code></li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/44c236374c2393f70338b4bdcc28050e9e7e03f4">44c23637</a> Fix possible System.Windows.Data warning for <code>ComboBoxItem</code>, if a <code>ComboBox</code> is inside a <code>ContentControl</code>.</li>
-<li><a href="https://github.com/MahApps/MahApps.Metro/commit/edc346793730dd9e71d5c5271e3710e8a227ba58">edc34679</a> <code><a href="/api/mahapps.metro.controls/flipview">FlipView</a></code>: Bind <code>ItemStringFormat</code> to <code>ContentStringFormat</code></li>
-<li><a href="https://github.com/MahApps/MahApps.Metro/commit/2c1c692bc583121ef90c8beb0eecb56f06e9e4e5">2c1c692b</a> Fix not updating the text of <code><a href="/api/mahapps.metro.controls/timepicker">TimePicker</a></code> and <code><a href="/api/mahapps.metro.controls/datetimepicker">DateTimePicker</a></code> after changing the culture</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/commit/edc346793730dd9e71d5c5271e3710e8a227ba58">edc34679</a> <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code>: Bind <code>ItemStringFormat</code> to <code>ContentStringFormat</code></li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/commit/2c1c692bc583121ef90c8beb0eecb56f06e9e4e5">2c1c692b</a> Fix not updating the text of <code><a href="/api/MahApps.Metro.Controls/TimePicker">TimePicker</a></code> and <code><a href="/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></code> after changing the culture</li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/e54aaaf1f97daedef2a4bb6361629a4939ad3bd3">e54aaaf1</a> Use <code>DialogTitleFontSize</code> and <code>DialogMessageFontSize</code> via DynamicResource at the base MetroDialog style</li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/9071379b5e17f05a3b41262998858497990b258f">9071379b</a> Closing main demo was wrong (TaskCanceledException)</li>
-<li><a href="https://github.com/MahApps/MahApps.Metro/commit/4253d89fad1b009e95cf3cf48c87aa766993c4d7">4253d89f</a> Set <code>HorizontalScrollBarVisibility</code> and <code>VerticalScrollBarVisibility</code> for <code><a href="/api/mahapps.metro.controls/hotkeybox">HotKeyBox</a></code> and <code>NumericUpdDown</code> to Hidden, cause the inner TextBox has this as default too</li>
-<li><a href="https://github.com/MahApps/MahApps.Metro/commit/713cb69b783daccfebcff6b5a31488f620a5c21a">713cb69b</a> <code>Slider</code>: remove linear gradient brush from horizontal and vertical track value style. <code><a href="/api/mahapps.metro.controls/rangeslider">RangeSlider</a></code>: fix margin of the middle thumb.</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/commit/4253d89fad1b009e95cf3cf48c87aa766993c4d7">4253d89f</a> Set <code>HorizontalScrollBarVisibility</code> and <code>VerticalScrollBarVisibility</code> for <code><a href="/api/MahApps.Metro.Controls/HotKeyBox">HotKeyBox</a></code> and <code>NumericUpdDown</code> to Hidden, cause the inner TextBox has this as default too</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/commit/713cb69b783daccfebcff6b5a31488f620a5c21a">713cb69b</a> <code>Slider</code>: remove linear gradient brush from horizontal and vertical track value style. <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code>: fix margin of the middle thumb.</li>
 </ul>
 <p><strong>Bugs</strong></p>
 <ul>

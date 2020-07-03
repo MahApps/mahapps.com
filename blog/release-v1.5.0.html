@@ -9,7 +9,7 @@
         <title>MahApps.Metro - Release 1.5.0</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
         <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/assets/css/adminlte/adminlte.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
         <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -95,7 +95,7 @@
 
         <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
             <li><a href="/blog/general">general</a></li>
-            <li><a href="/blog/release">Release</a></li>
+            <li><a href="/blog/Release">Release</a></li>
     
     <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
         <li><a href="/blog/archive/2018/06">June, 2018</a></li>
@@ -148,7 +148,7 @@
     <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
     <dd>Thursday, April 13, 2017</dd>
         <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
-        <dd><a href="/blog/release">Release</a></dd>
+        <dd><a href="/blog/Release">Release</a></dd>
             <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
         <dd><a href="/blog/author/punker76">punker76</a></dd>
 </dl>
@@ -157,13 +157,13 @@
 <h1 id="features-changes-fixes">Features / Changes / Fixes</h1>
 <ul>
 <li>If a dialog is shown in a window other than the MainWindow, <code>OwningWindow</code> will be used if available to detect the theme. <a href="https://github.com/MahApps/MahApps.Metro/pull/2840">#2840</a></li>
-<li>Fixed an issue for <code><a href="/api/mahapps.metro.controls/datetimepicker">DateTimePicker</a></code> when the time is cleared if a date is selected. <a href="https://github.com/MahApps/MahApps.Metro/pull/2837">#2837</a></li>
-<li><code><a href="/api/mahapps.metro.controls/hamburgermenu">HamburgerMenu</a></code> changes and improvements
+<li>Fixed an issue for <code><a href="/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></code> when the time is cleared if a date is selected. <a href="https://github.com/MahApps/MahApps.Metro/pull/2837">#2837</a></li>
+<li><code><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></code> changes and improvements
 <ul>
-<li>New <code><a href="/api/mahapps.metro.controls/hamburgermenuiconitem">HamburgerMenuIconItem</a></code> helper class which can be used to put any object icon to the menu item.</li>
+<li>New <code><a href="/api/MahApps.Metro.Controls/HamburgerMenuIconItem">HamburgerMenuIconItem</a></code> helper class which can be used to put any object icon to the menu item.</li>
 <li>Fixed tab order and keyboard selection.</li>
 <li><code>ItemCommand</code> and <code>OptionsItemCommand</code></li>
-<li><code>Command</code> for <code><a href="/api/mahapps.metro.controls/hamburgermenuitem">HamburgerMenuItem</a></code></li>
+<li><code>Command</code> for <code><a href="/api/MahApps.Metro.Controls/HamburgerMenuItem">HamburgerMenuItem</a></code></li>
 <li>New property <code>PaneForeground</code> for HamburgerMenu and Splitview and new Foreground/Background brushes <code>MahApps.Metro.HamburgerMenu.PaneBackgroundBrush</code>, <code>MahApps.Metro.HamburgerMenu.PaneForegroundBrush</code></li>
 <li>Update scroll behavior to match with the UWPCommunityToolkit (see UWP Toolkit Issue <a href="https://github.com/Microsoft/UWPCommunityToolkit/issues/954">#954</a>).
 <ul>
@@ -172,7 +172,7 @@
 </ul>
 </li>
 <li>Add <code>HamburgerVisibility</code> property <a href="https://github.com/Microsoft/UWPCommunityToolkit/pull/1020">UWPCommunityToolkit #1020</a></li>
-<li>Set <code>Content</code> for <code><a href="/api/mahapps.metro.controls/hamburgermenu">HamburgerMenu</a></code> only if one of the inner ListBox controls has a selected item.</li>
+<li>Set <code>Content</code> for <code><a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></code> only if one of the inner ListBox controls has a selected item.</li>
 <li>New <code>HamburgerMenuHeaderTemplate</code> property to set a header right of the HamburgerMenu button. <a href="https://github.com/SilverDragon135">@SilverDragon135</a> <a href="https://github.com/MahApps/MahApps.Metro/pull/2917">#2917</a></li>
 <li>Implement the interface <code>ICommandSource</code> and handle Command binding change to hook or unhook command executable.<br>
 <img src="https://cloud.githubusercontent.com/assets/658431/25019804/3f0822d8-208c-11e7-939c-72be28092a0e.gif" class="img-fluid" alt="mahapps_hamburgermenu_commands"></li>
@@ -182,18 +182,18 @@
 <li>If <code>ShowInTaskbar = false</code>, when double click on the title bar of a minimized window, the window will be restored instead of maximized. <a href="https://github.com/MahApps/MahApps.Metro/pull/2854">#2854</a> <a href="https://github.com/hausenism">@hausenism</a></li>
 <li>Fix WindowCommands tab stop bug <a href="https://github.com/MahApps/MahApps.Metro/pull/2858">#2858</a> <a href="https://github.com/neilt6">@neilt6</a></li>
 <li>Don't overwrite cancellation for window close event <a href="https://github.com/MahApps/MahApps.Metro/pull/2868">#2868</a> <a href="https://github.com/batzen">@batzen</a></li>
-<li>Expose close button margin for <code><a href="/api/mahapps.metro.controls/metrotabitem">MetroTabItem</a></code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2803">#2803</a></li>
-<li>New <code><a href="/api/mahapps.metro.controls/badged">Badged</a></code> control. Thx to <a href="https://github.com/ButchersBoy">@ButchersBoy</a><br>
+<li>Expose close button margin for <code><a href="/api/MahApps.Metro.Controls/MetroTabItem">MetroTabItem</a></code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2803">#2803</a></li>
+<li>New <code><a href="/api/MahApps.Metro.Controls/Badged">Badged</a></code> control. Thx to <a href="https://github.com/ButchersBoy">@ButchersBoy</a><br>
 <img src="https://cloud.githubusercontent.com/assets/658431/23340345/d7dc4c86-fc34-11e6-838b-1ebee9381c7d.png" class="img-fluid" alt="image"></li>
-<li>The <code>ControlsHelper.CornerRadius</code> can now used for <code><a href="/api/mahapps.metro.controls/splitbutton">SplitButton</a></code> and <code><a href="/api/mahapps.metro.controls/dropdownbutton">DropDownButton</a></code>.</li>
-<li>New underline types for <code>TabControl</code> and <code><a href="/api/mahapps.metro.controls/metrotabcontrol">MetroTabControl</a></code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2902">#2902</a>
+<li>The <code>ControlsHelper.CornerRadius</code> can now used for <code><a href="/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></code> and <code><a href="/api/MahApps.Metro.Controls/DropDownButton">DropDownButton</a></code>.</li>
+<li>New underline types for <code>TabControl</code> and <code><a href="/api/MahApps.Metro.Controls/MetroTabControl">MetroTabControl</a></code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2902">#2902</a>
 <ul>
-<li>Adds a new <code>Underlined</code> attached property to <code><a href="/api/mahapps.metro.controls/tabcontrolhelper">TabControlHelper</a></code> which controls the type of the underline type. The old <code>IsUnderlined</code> property is now obsolete.</li>
+<li>Adds a new <code>Underlined</code> attached property to <code><a href="/api/MahApps.Metro.Controls/TabControlHelper">TabControlHelper</a></code> which controls the type of the underline type. The old <code>IsUnderlined</code> property is now obsolete.</li>
 </ul>
 <pre><code>/// &lt;summary&gt;
 /// Specifies the underline position of a TabControl.
 /// &lt;/summary&gt;
-public enum <a href="/api/mahapps.metro.controls/underlinedtype">UnderlinedType</a>
+public enum <a href="/api/MahApps.Metro.Controls/UnderlinedType">UnderlinedType</a>
 {
     None, // nothing
     TabItems, // the old behavior with `IsUnderlined="True"`
@@ -210,7 +210,7 @@ TabControlHelper.UnderlineMouseOverBrush
 TabControlHelper.UnderlineMouseOverSelectedBrush
 </code></pre>
 <img src="https://cloud.githubusercontent.com/assets/658431/24204520/0e6f3cbc-0f19-11e7-8a2b-f40752918a96.gif" class="img-fluid" alt="mahapps_newunderline4"></li>
-<li>New underline types also for <code>AnimatedTabControl</code> and <code>AnimatedSingleRowTabControl</code> styles and for <code><a href="/api/mahapps.metro.controls/metroanimatedtabcontrol">MetroAnimatedTabControl</a></code> and <code><a href="/api/mahapps.metro.controls/metroanimatedsinglerowtabcontrol">MetroAnimatedSingleRowTabControl</a></code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2905">#2905</a></li>
+<li>New underline types also for <code>AnimatedTabControl</code> and <code>AnimatedSingleRowTabControl</code> styles and for <code><a href="/api/MahApps.Metro.Controls/MetroAnimatedTabControl">MetroAnimatedTabControl</a></code> and <code><a href="/api/MahApps.Metro.Controls/MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a></code> <a href="https://github.com/MahApps/MahApps.Metro/pull/2905">#2905</a></li>
 <li>Fix / improve <code>AnimatedSingleRowTabControl</code> styles
 <ul>
 <li>Fix template changing (doesn't works if TabStripPlacement was changed)</li>
@@ -227,22 +227,22 @@ TabControlHelper.UnderlineMouseOverSelectedBrush
 </ul>
 </li>
 <li>Fix SnapsToDevicePixels usage for <code>CheckBox</code></li>
-<li><code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> changes and improvements
+<li><code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> changes and improvements
 <ul>
-<li>Fix <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> modal usage. All title bar commands are now hidden if a <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> is modal.</li>
-<li>Fix background and foreground usage of controls in a <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> if user changes theme on the fly. <a href="https://github.com/MahApps/MahApps.Metro/issues/2337">#2337</a> The <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> has a different background, so we should override some background and foreground brushes and colors.</li>
-<li>Change <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> from <code>ContentControl</code> to <code>HeaderedContentControl</code> which has the correct properties for headers.</li>
-<li>Enable <code>Border</code> for <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code></li>
+<li>Fix <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> modal usage. All title bar commands are now hidden if a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> is modal.</li>
+<li>Fix background and foreground usage of controls in a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> if user changes theme on the fly. <a href="https://github.com/MahApps/MahApps.Metro/issues/2337">#2337</a> The <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> has a different background, so we should override some background and foreground brushes and colors.</li>
+<li>Change <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> from <code>ContentControl</code> to <code>HeaderedContentControl</code> which has the correct properties for headers.</li>
+<li>Enable <code>Border</code> for <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code></li>
 </ul>
 </li>
 <li>Use <code>GrayBrush7</code> and <code>WhiteBrush</code> for menu <code>Separator</code> instead fixed colors.</li>
-<li>Fix BindingExpression at <code><a href="/api/mahapps.metro.controls/dropdownbutton">DropDownButton</a></code>. Don't set <code>ItemTemplate</code>to <code>ContentTemplate</code>, <code>ItemTemplateSelector</code> to <code>ContentTemplateSelector</code> and <code>ItemStringFormat</code> to <code>ContentStringFormat</code>. This breaks the whole usage of the content stuff and shows a BindingExpression path error. <a href="https://github.com/MahApps/MahApps.Metro/issues/2883">#2883</a></li>
-<li>New <code>UsernameCharacterCasing</code> property for <code><a href="/api/mahapps.metro.controls.dialogs/logindialogsettings">LoginDialogSettings</a></code> <a href="https://github.com/MahApps/MahApps.Metro/issues/2683">#2683</a></li>
-<li>Fix <code>SelectionChanged</code> event of <code><a href="/api/mahapps.metro.controls/splitbutton">SplitButton</a></code> which fires now only once.</li>
-<li>Add <code>TransitionCompleted</code> event to <code><a href="/api/mahapps.metro.controls/metrocontentcontrol">MetroContentControl</a></code> and <code>WindowTransitionCompleted</code> event to <code><a href="/api/mahapps.metro.controls/metrowindow">MetroWindow</a></code> which will be fired after the loaded Storyboard is completed.</li>
-<li>Add new <code>WatermarkAlignment</code> attached property to <code><a href="/api/mahapps.metro.controls/textboxhelper">TextBoxHelper</a></code> which indicates the horizontal alignment of the watermark (incl. floating watermark).<br>
+<li>Fix BindingExpression at <code><a href="/api/MahApps.Metro.Controls/DropDownButton">DropDownButton</a></code>. Don't set <code>ItemTemplate</code>to <code>ContentTemplate</code>, <code>ItemTemplateSelector</code> to <code>ContentTemplateSelector</code> and <code>ItemStringFormat</code> to <code>ContentStringFormat</code>. This breaks the whole usage of the content stuff and shows a BindingExpression path error. <a href="https://github.com/MahApps/MahApps.Metro/issues/2883">#2883</a></li>
+<li>New <code>UsernameCharacterCasing</code> property for <code><a href="/api/MahApps.Metro.Controls.Dialogs/LoginDialogSettings">LoginDialogSettings</a></code> <a href="https://github.com/MahApps/MahApps.Metro/issues/2683">#2683</a></li>
+<li>Fix <code>SelectionChanged</code> event of <code><a href="/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></code> which fires now only once.</li>
+<li>Add <code>TransitionCompleted</code> event to <code><a href="/api/MahApps.Metro.Controls/MetroContentControl">MetroContentControl</a></code> and <code>WindowTransitionCompleted</code> event to <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> which will be fired after the loaded Storyboard is completed.</li>
+<li>Add new <code>WatermarkAlignment</code> attached property to <code><a href="/api/MahApps.Metro.Controls/TextBoxHelper">TextBoxHelper</a></code> which indicates the horizontal alignment of the watermark (incl. floating watermark).<br>
 <img src="https://cloud.githubusercontent.com/assets/658431/25019759/14a50b28-208c-11e7-93cb-406fe8b65b7c.gif" class="img-fluid" alt="mahapps_watermark"></li>
-<li>Add new <code><a href="/api/mahapps.metro.controls/datagridhelper">DataGridHelper</a></code> with <code>EnableCellEditAssist</code> attached property which enabled direct editing for CheckBox and ComboBox cells. (default to false) Thx to <a href="https://github.com/ButchersBoy">@ButchersBoy</a> (taken from <a href="https://github.com/ButchersBoy/MaterialDesignInXamlToolkit">MaterialDesignInXamlToolkit</a>)</li>
+<li>Add new <code><a href="/api/MahApps.Metro.Controls/DataGridHelper">DataGridHelper</a></code> with <code>EnableCellEditAssist</code> attached property which enabled direct editing for CheckBox and ComboBox cells. (default to false) Thx to <a href="https://github.com/ButchersBoy">@ButchersBoy</a> (taken from <a href="https://github.com/ButchersBoy/MaterialDesignInXamlToolkit">MaterialDesignInXamlToolkit</a>)</li>
 </ul>
 <h1 id="closed-issues">Closed Issues</h1>
 <ul>
