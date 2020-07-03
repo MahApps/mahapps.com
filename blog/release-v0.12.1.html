@@ -9,7 +9,7 @@
         <title>MahApps.Metro - Release 0.12.1</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
         <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/adminlte.css" rel="stylesheet">
         <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -94,7 +94,7 @@
 
         <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
             <li><a href="/blog/general">general</a></li>
-            <li><a href="/blog/Release">Release</a></li>
+            <li><a href="/blog/release">Release</a></li>
     
     <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
         <li><a href="/blog/archive/2018/06">June, 2018</a></li>
@@ -147,7 +147,7 @@
     <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
     <dd>Saturday, February 1, 2014</dd>
         <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
-        <dd><a href="/blog/Release">Release</a></dd>
+        <dd><a href="/blog/release">Release</a></dd>
             <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
         <dd><a href="/blog/author/punker76">punker76</a></dd>
 </dl>
@@ -157,21 +157,21 @@
 <ul>
 <li>Fixed various bugs with the themed Flyouts (#947 #949):
 <ul>
-<li>A dark <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> doesn't have dark window commands anymore</li>
-<li>Only the topmost <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> changes the WindowCommands, if it is closed, the WindowCommands adapt to the underlying Flyout</li>
+<li>A dark <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> doesn't have dark window commands anymore</li>
+<li>Only the topmost <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> changes the WindowCommands, if it is closed, the WindowCommands adapt to the underlying Flyout</li>
 <li>Theme changes are respected properly</li>
 </ul>
 </li>
 <li>Flyouts respect the template margin #867 #974</li>
 <li>Fixed an <code>OverflowException</code> in the <code>CleanWindowStyle</code> #897 #903</li>
-<li>Fixed various bugs for the <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> control: #952 #953
+<li>Fixed various bugs for the <code><a href="/api/mahapps.metro.controls/numericupdown">NumericUpDown</a></code> control: #952 #953
 <ul>
 <li>Fix for NumericUpDown exception raised when trying to enter a number in scientific notation</li>
 <li>Fixed a problem with too early speedup</li>
 </ul>
 </li>
 <li>Improved the performance for theme changes, they should now work instantly.</li>
-<li>Fixed an issue with the <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> of a <code>CleanWindow</code>, they were white and therefore invisible when a <code><a href="/api/MahApps.Metro.Behaviors/BorderlessWindowBehavior">BorderlessWindowBehavior</a></code> was attached.</li>
+<li>Fixed an issue with the <code><a href="/api/mahapps.metro.controls/windowcommands">WindowCommands</a></code> of a <code>CleanWindow</code>, they were white and therefore invisible when a <code><a href="/api/mahapps.metro.behaviors/borderlesswindowbehavior">BorderlessWindowBehavior</a></code> was attached.</li>
 </ul>
 
 

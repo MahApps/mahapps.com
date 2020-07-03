@@ -9,7 +9,7 @@
         <title>MahApps.Metro - Release 1.4.2</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
         <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/adminlte.css" rel="stylesheet">
         <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -95,7 +95,7 @@
 
         <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
             <li><a href="/blog/general">general</a></li>
-            <li><a href="/blog/Release">Release</a></li>
+            <li><a href="/blog/release">Release</a></li>
     
     <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
         <li><a href="/blog/archive/2018/06">June, 2018</a></li>
@@ -148,7 +148,7 @@
     <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
     <dd>Monday, January 30, 2017</dd>
         <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
-        <dd><a href="/blog/Release">Release</a></dd>
+        <dd><a href="/blog/release">Release</a></dd>
             <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
         <dd><a href="/blog/author/punker76">punker76</a></dd>
 </dl>
@@ -156,7 +156,7 @@
 
 <h1 id="changes-fixes">Changes / Fixes</h1>
 <ul>
-<li><a href="https://github.com/MahApps/MahApps.Metro/pull/2814">#2814</a> Correct display of media buttons in <code><a href="/api/MahApps.Metro.Controls/HotKeyBox">HotKeyBox</a></code> (thx @thoemmi)</li>
+<li><a href="https://github.com/MahApps/MahApps.Metro/pull/2814">#2814</a> Correct display of media buttons in <code><a href="/api/mahapps.metro.controls/hotkeybox">HotKeyBox</a></code> (thx @thoemmi)</li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/7fcc6b770c77f483eb038705b252cfa7624a343f">7fcc6b7</a> Fix breaking changes for obsolete properties <code>ButtonHelper.PreserveTextCase</code>, <code>ButtonHelper.CornerRadius</code> and <code>ControlsHelper.ButtonWidth</code></li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/commit/a1d199dd599fa9f46838d6449599b36c7035f76e">a1d199d</a> Fix binding to Content of HamburgerMenu</li>
 <li><a href="https://github.com/MahApps/MahApps.Metro/pull/2799">#2799</a> DateTimePicker SelectedDate issue (thx @xxMUROxx)
@@ -164,7 +164,7 @@
 <li>Fix issue where <code>SelectedDate</code> is set to the <code>DisplayDate</code> if the <code>SelectedDate</code> is <code>DateTime.MinValue</code>. This issue appears when binding to a property of DateTime and the date is <code>DateTime.MinValue</code>.</li>
 </ul>
 </li>
-<li>Z-Order was wrong if <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> is ignoring the Taskbar and maximized. This fix and the main Taskbar z-Order issue only happens with Windows 10 anniversary update 1607. Hopefully fixed in the future. <a href="https://github.com/MahApps/MahApps.Metro/issues/2780">#2780</a></li>
+<li>Z-Order was wrong if <code><a href="/api/mahapps.metro.controls/metrowindow">MetroWindow</a></code> is ignoring the Taskbar and maximized. This fix and the main Taskbar z-Order issue only happens with Windows 10 anniversary update 1607. Hopefully fixed in the future. <a href="https://github.com/MahApps/MahApps.Metro/issues/2780">#2780</a></li>
 <li>Use internal GetPhysicalCursorPos instead GetCursorPos (tested with remote desktop and different DPI) <a href="https://github.com/MahApps/MahApps.Metro/issues/2748">#2748</a></li>
 </ul>
 <h1 id="closed-issues">Closed Issues</h1>

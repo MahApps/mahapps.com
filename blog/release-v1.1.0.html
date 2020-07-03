@@ -9,7 +9,7 @@
         <title>MahApps.Metro - Release 1.1.0</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
         <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/adminlte.css" rel="stylesheet">
         <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -96,7 +96,7 @@
 
         <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
             <li><a href="/blog/general">general</a></li>
-            <li><a href="/blog/Release">Release</a></li>
+            <li><a href="/blog/release">Release</a></li>
     
     <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
         <li><a href="/blog/archive/2018/06">June, 2018</a></li>
@@ -149,7 +149,7 @@
     <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
     <dd>Tuesday, February 24, 2015</dd>
         <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
-        <dd><a href="/blog/Release">Release</a></dd>
+        <dd><a href="/blog/release">Release</a></dd>
             <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
         <dd><a href="/blog/author/punker76">punker76</a></dd>
 </dl>
@@ -160,23 +160,23 @@
 <li>It's now possible to get an opened dialog from a MetroWindow #1739</li>
 <li>Allow the user to disable the window dragging #1669</li>
 <li>Dialogs can now use the <code>ColorScheme = MetroDialogColorScheme.Inverted</code></li>
-<li>Add <code>MouseOverGlowEnabled</code> to <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code></li>
+<li>Add <code>MouseOverGlowEnabled</code> to <code><a href="/api/mahapps.metro.controls/flipview">FlipView</a></code></li>
 <li>Back/Forward Buttons now enabled/disabled instead visible/or not</li>
-<li><code>AreAnimationsEnabled</code> property for <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> to show the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> directly or with animation</li>
-<li><code>MaximumBodyHeight</code> for <code><a href="/api/MahApps.Metro.Controls.Dialogs/MetroDialogSettings">MetroDialogSettings</a></code>, so we can get a <code>ScrollViewer</code> for tall dialog content</li>
-<li><code>IsMinButtonEnabled</code>, <code>IsMaxRestoreButtonEnabled</code> and <code>IsCloseButtonEnabled</code> to enable/disable the window buttons at <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> @romerod #1562</li>
-<li><code>IdealForegroundDisabledBrush</code> to set the foreground for disabled window buttons at <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> #1581</li>
-<li><code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> animates now on minimize/maximize/restore window action (limited by ignoring the taskbar) #1756</li>
+<li><code>AreAnimationsEnabled</code> property for <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> to show the <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> directly or with animation</li>
+<li><code>MaximumBodyHeight</code> for <code><a href="/api/mahapps.metro.controls.dialogs/metrodialogsettings">MetroDialogSettings</a></code>, so we can get a <code>ScrollViewer</code> for tall dialog content</li>
+<li><code>IsMinButtonEnabled</code>, <code>IsMaxRestoreButtonEnabled</code> and <code>IsCloseButtonEnabled</code> to enable/disable the window buttons at <code><a href="/api/mahapps.metro.controls/windowbuttoncommands">WindowButtonCommands</a></code> @romerod #1562</li>
+<li><code>IdealForegroundDisabledBrush</code> to set the foreground for disabled window buttons at <code><a href="/api/mahapps.metro.controls/windowbuttoncommands">WindowButtonCommands</a></code> #1581</li>
+<li><code><a href="/api/mahapps.metro.controls/metrowindow">MetroWindow</a></code> animates now on minimize/maximize/restore window action (limited by ignoring the taskbar) #1756</li>
 <li>It's now possible to put the MahApps styles only in a window and the main app will remain unaffected (all buttons and commands will be styled as good as well.) #1777</li>
 <li>The underline position is based on <code>TabstripPlacement</code> property of <code>TabControl</code>. (<code>ControlsHelper.IsUnderlined</code>) #1737 #1478</li>
 <li>It's now possible to upgrade the <code>WindowPlacementSettings</code> on version change (minor breaking change) #1787 #1736</li>
-<li>New property <code>ShowSeparators</code> for WindowCommands, so it's possible to hide the <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> seperators</li>
-<li><code><a href="/api/MahApps.Metro.Controls/MetroTabItem">MetroTabItem</a></code> now supports the <code>TabControlHelper.IsUnderlined</code> attached property #1795 #1796</li>
+<li>New property <code>ShowSeparators</code> for WindowCommands, so it's possible to hide the <code><a href="/api/mahapps.metro.controls/windowcommands">WindowCommands</a></code> seperators</li>
+<li><code><a href="/api/mahapps.metro.controls/metrotabitem">MetroTabItem</a></code> now supports the <code>TabControlHelper.IsUnderlined</code> attached property #1795 #1796</li>
 <li>Flyout focus enhancement #1805<br>
 It's now possible to set <code>FocusedElement</code> and <code>AllowFocusElement</code> to enable focusing mechanism
 <ul>
-<li>If <code>AllowFocusElement</code> is set to <code>True</code> the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> tries to focus the first focusable element, if there is no focusable element, it tries to focus an element in the header section.</li>
-<li>If <code>FocusedElement</code> is set the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> focus this element.</li>
+<li>If <code>AllowFocusElement</code> is set to <code>True</code> the <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> tries to focus the first focusable element, if there is no focusable element, it tries to focus an element in the header section.</li>
+<li>If <code>FocusedElement</code> is set the <code><a href="/api/mahapps.metro.controls/flyout">Flyout</a></code> focus this element.</li>
 </ul>
 </li>
 <li>Better default CapsLock icon for <code>PasswordBox</code> <a href="https://github.com/MahApps/MahApps.Metro/commit/709abc49abb575017a8bb660bc129656172824b5">SHA</a></li>
@@ -192,13 +192,13 @@ It's now possible to set <code>FocusedElement</code> and <code>AllowFocusElement
 <ul>
 <li>Fixed maximize button path only displays partially when using SaveWindowPosition #1580 #1693</li>
 <li>Fixed background of ComboBox #1713</li>
-<li>Use <code>UseLayoutRounding</code> for <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> for better pixel stuff <a href="https://github.com/MahApps/MahApps.Metro/commit/b3c19573ba52847aa42fe1c0ff3ef064e8d9ba17">SHA</a></li>
+<li>Use <code>UseLayoutRounding</code> for <code><a href="/api/mahapps.metro.controls/metrowindow">MetroWindow</a></code> for better pixel stuff <a href="https://github.com/MahApps/MahApps.Metro/commit/b3c19573ba52847aa42fe1c0ff3ef064e8d9ba17">SHA</a></li>
 <li>Fixed ideal foreground for some color styles #1748
 <img src="https://camo.githubusercontent.com/9df3efb07f02b8d95a471a493762433fa8eb442c/687474703a2f2f6673312e64697265637475706c6f61642e6e65742f696d616765732f3135303131312f79766a356e3333352e706e67" class="img-fluid" alt=""></li>
 <li>Fixed disabled window buttons foreground (and add <code>IdealForegroundDisabledBrush</code> to handle this) #1581</li>
 <li>Fixed wrong max/restore button tool tip when maximized <a href="https://github.com/MahApps/MahApps.Metro/commit/4a1a8f91c6588c034a6e5ef3fac64e4eacce6845">SHA</a></li>
 <li>Fixed wrong window size while moving maximized window between monitors #1275</li>
-<li>Fixed the cursor of the button in the <code><a href="/api/MahApps.Metro.Controls.Dialogs/ProgressDialog">ProgressDialog</a></code> #1763</li>
+<li>Fixed the cursor of the button in the <code><a href="/api/mahapps.metro.controls.dialogs/progressdialog">ProgressDialog</a></code> #1763</li>
 <li>Fixed text wrapping for MessageDialog Message #1776 #1766</li>
 <li>Fixed missing behavior when toggle <code>UseNoneWindowStyle</code> <a href="https://github.com/MahApps/MahApps.Metro/commit/c1d36f5eb4b22cea92383c256f4c1102141696ce">SHA</a></li>
 <li>Fixed foreground color of WindowComands and WindowButtonCommands #1788 #1503</li>

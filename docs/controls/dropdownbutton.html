@@ -9,7 +9,7 @@
         <title>MahApps.Metro - DropDownButton</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
         <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/adminlte.css" rel="stylesheet">
         <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -95,22 +95,37 @@
                     <ul class="treeview-menu">
                         
                 <li><a href="/docs/controls/metrowindow">MetroWindow</a></li>
-                <li><a href="/docs/controls/Badged">Badged Control</a></li>
-                <li><a href="/docs/controls/ContentControlEx">ContentControlEx</a></li>
-                <li><a href="/docs/controls/DateTimePicker">DateTimePicker</a></li>
+                <li><a href="/docs/controls/badged">Badged Control</a></li>
+                <li><a href="/docs/controls/contentcontrolex">ContentControlEx</a></li>
+                <li><a href="/docs/controls/customvalidationpopup">CustomValidationPopup</a></li>
+                <li><a href="/docs/controls/datetimepicker">DateTimePicker</a></li>
                 <li class="selected"><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
                 <li><a href="/docs/controls/flipview">FlipView</a></li>
                 <li><a href="/docs/controls/flyouts">Flyouts</a></li>
-                <li><a href="/docs/controls/FontIcon">FontIcon</a></li>
+                <li><a href="/docs/controls/fonticon">FontIcon</a></li>
+                <li><a href="/docs/controls/hamburgermenu">HamburgerMenu</a></li>
+                <li><a href="/docs/controls/hotkeybox">HotKeyBox</a></li>
+                <li><a href="/docs/controls/metroanimatedsinglerowtabcontrol">MetroAnimatedSingleRowTabControl</a></li>
+                <li><a href="/docs/controls/metroanimatedtabcontrol">MetroAnimatedTabControl</a></li>
+                <li><a href="/docs/controls/metrocontentcontrol">MetroContentControl</a></li>
+                <li><a href="/docs/controls/metroheader">MetroHeader</a></li>
+                <li><a href="/docs/controls/metronavigationwindow">MetroNavigationWindow</a></li>
                 <li><a href="/docs/controls/metroprogressbar">MetroProgressBar</a></li>
+                <li><a href="/docs/controls/metrotabcontrol">MetroTabControl</a></li>
+                <li><a href="/docs/controls/metrotabitem">MetroTabItem</a></li>
+                <li><a href="/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a></li>
+                <li><a href="/docs/controls/multiframeimage">MultiFrameImage</a></li>
                 <li><a href="/docs/controls/numericupdown">NumericUpDown</a></li>
                 <li><a href="/docs/controls/progressring">ProgressRing</a></li>
                 <li><a href="/docs/controls/rangeslider">RangeSlider</a></li>
                 <li><a href="/docs/controls/splitbutton">SplitButton</a></li>
+                <li><a href="/docs/controls/splitview">SplitView</a></li>
                 <li><a href="/docs/controls/tile">Tile</a></li>
-                <li><a href="/docs/controls/TimePicker">TimePicker</a></li>
+                <li><a href="/docs/controls/timepicker">TimePicker</a></li>
                 <li><a href="/docs/controls/toggleswitch">ToggleSwitch</a></li>
                 <li><a href="/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
+                <li><a href="/docs/controls/windowbuttoncommands">WindowButtonCommands</a></li>
+                <li><a href="/docs/controls/windowcommands">WindowCommands</a></li>
 
                     </ul>
                 </li>
@@ -183,7 +198,7 @@
 <ul>
 <li>It has no <code>SelectedItem</code> and <code>SelectedIndex</code> properties and also has no <code>SelectionChanged</code> event.</li>
 <li>The content of the button also doesn't change, it's static.</li>
-<li>The Dropdownlist is a context menu instead of Listbox in <code><a href="/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></code>.</li>
+<li>The Dropdownlist is a context menu instead of Listbox in <code><a href="/api/mahapps.metro.controls/splitbutton">SplitButton</a></code>.</li>
 </ul>
 <p>In all other aspects it's identical to <a href="splitbutton">SplitButton</a>.</p>
 <pre><code class="language-xml">&lt;mah:DropDownButton Margin="5"
@@ -214,7 +229,7 @@
     &lt;/mah:DropDownButton.Icon&gt;
 &lt;/mah:DropDownButton&gt;
 </code></pre>
-<p>Each <code>MenuItem</code> has one item from the <code>ItemsSource</code> as DataContext, which we can access here. Therefore, <code>{Binding Name}</code> will show the name of the genre. To break out of the current <code>DataContext</code> and call the command from our original ViewModel, we need to reference it in some way. Here, we search for the <code><a href="/api/MahApps.Metro.Controls/DropDownButton">DropDownButton</a></code>.</p>
+<p>Each <code>MenuItem</code> has one item from the <code>ItemsSource</code> as DataContext, which we can access here. Therefore, <code>{Binding Name}</code> will show the name of the genre. To break out of the current <code>DataContext</code> and call the command from our original ViewModel, we need to reference it in some way. Here, we search for the <code><a href="/api/mahapps.metro.controls/dropdownbutton">DropDownButton</a></code>.</p>
 
 	</section>
                 
