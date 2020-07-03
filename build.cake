@@ -48,7 +48,6 @@ Task("Build")
         {
           Recipe = "Docs",
           Theme = "Samson",
-          CleanOutputPath = true,
           UpdatePackages = false,
           UseGlobalSources = false,
           UseLocalPackages = true,
