@@ -81,6 +81,7 @@
                     	
 	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#Summary">Summary</a></p>
 <p><a href="#Syntax">Syntax</a></p>
+<p><a href="#Remarks">Remarks</a></p>
 <p><a href="#Attributes">Attributes</a></p>
 <p><a href="#Value">Value</a></p>
 <hr class="infobar-hidden">
@@ -150,6 +151,7 @@
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/3681F6CB">Buttons<wbr>Alignment<wbr>Property</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/BA9C3C41">Change<wbr>Value<wbr>On<wbr>Text<wbr>Changed<wbr>Property</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/6074D23B">CultureProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/F1787DEC">Decimal<wbr>Point<wbr>Correction<wbr>Property</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/F34FF269">DelayChangedEvent</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/579CE43F">DelayProperty</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/87E43194">Hide<wbr>Up<wbr>Down<wbr>Buttons<wbr>Property</a></li>
@@ -187,6 +189,7 @@
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/E920F612">ButtonsAlignment</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/4D6632EB">Change<wbr>Value<wbr>On<wbr>Text<wbr>Changed</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/651FD830">Culture</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/B3156BFB">Decimal<wbr>Point<wbr>Correction</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/B822B184">Delay</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/89AF8862">HideUpDownButtons</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDown/8A1B5FB8">InterceptArrowKeys</a></li>
@@ -241,10 +244,7 @@
 	
 		<h1 id="Summary">Summary</h1>
 	<div class="lead">
-        Gets or sets a value indicating whether the control must have the focus in order to change values using the mouse wheel.
-    <remarks>
-        If the value is true then the value changes when the mouse wheel is over the control. If the value is false then the value changes only if the control has the focus. If <see cref="P:MahApps.Metro.Controls.NumericUpDown.InterceptMouseWheel"> is set to "false" then this property has no effect.
-    </see></remarks>
+    Gets or sets a value indicating whether the control must have the focus in order to change values using the mouse wheel.
     </div>
 
 		<div class="panel panel-default">
@@ -267,6 +267,12 @@
 public bool TrackMouseWheelWhenMouseOver { get; set; }</code></pre>
 
 
+	<h1 id="Remarks">Remarks</h1>
+	<div>
+    If the value is true then the value changes when the mouse wheel is over the control. <br>
+    If the value is false then the value changes only if the control has the focus. <br>
+    If <code class="cs"><a href="/api/MahApps.Metro.Controls/NumericUpDown/DDA31B66">InterceptMouseWheel</a></code> is set to "false" then this property has no effect.
+    </div>
 
 	<h1 id="Attributes">Attributes</h1>
 	<div class="box">

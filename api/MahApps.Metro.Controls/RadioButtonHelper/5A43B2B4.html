@@ -1,0 +1,424 @@
+﻿<!DOCTYPE html><html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <title>MahApps.Metro - API - RadioButtonHelper.OuterEllipseFillPointerOverProperty Field</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/assets/js/clipboard.min.js"></script>
+
+    </head>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
+
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                    </div>
+            
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/blog">Blog</a></li>
+        <li><a href="/docs">Documentation</a></li>
+        <li class="active"><a href="/api">API</a></li>
+        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
+ 
+                        </ul>       
+                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#Syntax">Syntax</a></p>
+<hr class="infobar-hidden">
+</div>
+
+                </section>
+                <section class="sidebar">    
+                                     
+                    	
+	    <script src="/assets/js/lunr.min.js"></script>
+    <script src="/assets/js/searchIndex.js"></script>
+    <div class="sidebar-form">
+        <div class="input-group">
+            <input type="text" name="search" id="search" class="form-control" placeholder="Search Types...">
+            <span class="input-group-btn">
+                <button class="btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </div>
+    <div id="search-results">
+    </div>
+    <script>
+        function runSearch(query){
+            $("#search-results").empty();			
+            if( query.length < 2 ){
+                return;
+            }			
+            var results = searchModule.search("*" + query + "*");
+            var listHtml = "<ul class='sidebar-menu'>";	
+            listHtml += "<li class='header'>Type Results</li>";	
+            if(results.length == 0 ){
+                listHtml += "<li>No results found</li>";
+            } else {					
+                for(var i = 0; i < results.length; ++i){
+                    var res = results[i];
+                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
+                }				
+            }
+            listHtml += "</ul>";				
+            $("#search-results").append(listHtml);
+        }
+
+        $(document).ready(function(){
+            $("#search").on('input propertychange paste', function() {
+                runSearch($("#search").val());
+            });
+        });
+
+        function htmlEscape(html) {
+            return document.createElement('div')
+                .appendChild(document.createTextNode(html))
+                .parentNode
+                .innerHTML;
+        }
+    </script>
+	
+    <hr>
+
+                    <ul class="sidebar-menu">
+                        
+			<li class="header">Namespace</li>
+		<li><a href="/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></li>
+		<li class="header">Type</li>
+		<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper">RadioButtonHelper</a></li>
+		<li role="separator" class="divider"></li>
+			<li class="header">Field Members</li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/EAEE7C23">Background<wbr>Disabled<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/0B83813D">Background<wbr>Pointer<wbr>Over<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/A45BB86F">Background<wbr>Pressed<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/706A4BA3">Border<wbr>Brush<wbr>Disabled<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/ED46572A">Border<wbr>Brush<wbr>Pointer<wbr>Over<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/310A5B3D">Border<wbr>Brush<wbr>Pressed<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/1E19F86E">Check<wbr>Glyph<wbr>Fill<wbr>Disabled<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/0968643E">Check<wbr>Glyph<wbr>Fill<wbr>Pointer<wbr>Over<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/C4F72E59">Check<wbr>Glyph<wbr>Fill<wbr>Pressed<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/5A6EE5BC">Check<wbr>Glyph<wbr>Fill<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/73E400E2">Check<wbr>Glyph<wbr>Stroke<wbr>Disabled<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/28D51F6C">Check<wbr>Glyph<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/9A69AF72">Check<wbr>Glyph<wbr>Stroke<wbr>Pressed<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/25479708">Check<wbr>Glyph<wbr>Stroke<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/63AC055D">Foreground<wbr>Disabled<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/6547F338">Foreground<wbr>Pointer<wbr>Over<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/A96F86A7">Foreground<wbr>Pressed<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/8FAE9887">Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Disabled<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/00E38324">Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pointer<wbr>Over<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/C2533C5A">Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pressed<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/3D8E03E9">Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/67905FDF">Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Disabled<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/2E2EB7C7">Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/FFAA4EF5">Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pressed<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/DB0D2182">Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/0D3F8C15">Outer<wbr>Ellipse<wbr>Fill<wbr>Disabled<wbr>Property</a></li>
+				<li class="selected"><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/5A43B2B4">Outer<wbr>Ellipse<wbr>Fill<wbr>Pointer<wbr>Over<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/0E4A239C">Outer<wbr>Ellipse<wbr>Fill<wbr>Pressed<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/6A7B0C4B">Outer<wbr>Ellipse<wbr>Fill<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/685BE251">Outer<wbr>Ellipse<wbr>Stroke<wbr>Disabled<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/29A83551">Outer<wbr>Ellipse<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/625C6AF6">Outer<wbr>Ellipse<wbr>Stroke<wbr>Pressed<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/D4620CBA">Outer<wbr>Ellipse<wbr>Stroke<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/85C8D7B8">Radio<wbr>Check<wbr>Size<wbr>Property</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/9271343A">RadioSizeProperty</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/0D3C4743">Radio<wbr>Stroke<wbr>Thickness<wbr>Property</a></li>
+			<li class="header">Method Members</li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/C57F9D7B">Get<wbr>Background<wbr>Disabled<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/E882FA72">Get<wbr>Background<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/75A8C3F9">GetBackgroundPressed<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/7C5B0ACF">Get<wbr>Border<wbr>Brush<wbr>Disabled<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/82A0F627">Get<wbr>Border<wbr>Brush<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/89265965">Get<wbr>Border<wbr>Brush<wbr>Pressed<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/CFCD9135">GetCheckGlyphFill<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/AD923EEB">Get<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Disabled<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/13673190">Get<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/7A5133E5">Get<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Pressed<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/BBA140D7">GetCheckGlyphStroke<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/63704404">Get<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Disabled<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/FAD598D7">Get<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/39B5C14A">Get<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Pressed<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/ABBBEF7E">Get<wbr>Foreground<wbr>Disabled<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/9D662E21">Get<wbr>Foreground<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/B2D5508B">GetForegroundPressed<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/AF74A958">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/590EB307">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Disabled<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/7886016C">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/BB835D0B">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pressed<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/0CAC0000">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/38672D8D">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Disabled<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/48499C86">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/A00EFDF0">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pressed<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/3658A8B8">GetOuterEllipseFill<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/11E6E9DC">Get<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Disabled<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/D59B910F">Get<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/911D7CEA">Get<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Pressed<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/BD115B92">Get<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/25135C1B">Get<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Disabled<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/A58433FE">Get<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/EA9D2188">Get<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Pressed<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/29F5CE83">GetRadioCheckSize<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/4A6F5E0B">GetRadioSize<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/E21B038D">Get<wbr>Radio<wbr>Stroke<wbr>Thickness<wbr>(UIElement)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/5F219304">Set<wbr>Background<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/562F6A04">Set<wbr>Background<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/3822820E">SetBackgroundPressed<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/22EC36D3">Set<wbr>Border<wbr>Brush<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/E62AAB80">Set<wbr>Border<wbr>Brush<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/D9B19DA6">Set<wbr>Border<wbr>Brush<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/621560A6">SetCheckGlyphFill<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/2EDFFC86">Set<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/499D6B06">Set<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/6E928869">Set<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/7B7D3130">SetCheckGlyphStroke<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/4EFEC5C4">Set<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/C0CB269D">Set<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/479E31E2">Set<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/92AB05ED">Set<wbr>Foreground<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/1C6C1D45">Set<wbr>Foreground<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/3EDAADFB">SetForegroundPressed<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/80024B1C">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/32BA6CD2">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/AFCBD2FB">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/98A7BA27">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/F9D3AADF">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/54626A1F">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/D2960A17">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/6D5264F6">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/9BAD7B87">SetOuterEllipseFill<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/6425F2E0">Set<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/09B18D72">Set<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/B4124961">Set<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/2A3DF530">Set<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/CD243B93">Set<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/C09C875F">Set<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/33385E74">Set<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/35385ED4">SetRadioCheckSize<wbr>(UIElement, <wbr>double)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/FD5B015D">SetRadioSize<wbr>(UIElement, <wbr>double)<wbr></a></li>
+				<li><a href="/api/MahApps.Metro.Controls/RadioButtonHelper/ED18D6F0">Set<wbr>Radio<wbr>Stroke<wbr>Thickness<wbr>(UIElement, <wbr>double)<wbr></a></li>
+
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+<section class="content-header">
+			<h3><a href="/api/MahApps.Metro.Controls/RadioButtonHelper">RadioButtonHelper</a>.</h3>
+	<h1>Outer<wbr>Ellipse<wbr>Fill<wbr>Pointer<wbr>Over<wbr>Property <small>Field</small></h1>
+</section>
+<section class="content">
+	
+	
+	
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<dl class="dl-horizontal">				
+
+						<dt>Namespace</dt>
+						<dd><a href="/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></dd>
+					
+						<dt>Containing Type</dt>
+						<dd><a href="/api/MahApps.Metro.Controls/RadioButtonHelper">RadioButtonHelper</a></dd>		
+				</dl>
+			</div>
+		</div>
+
+	<h1 id="Syntax">Syntax</h1>
+	<pre><code>public static readonly DependencyProperty OuterEllipseFillPointerOverProperty</code></pre>
+
+
+
+
+
+
+
+	
+</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
+        </div>
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
+                <p class="text-muted">
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
+    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
+    Generated by <a href="http://wyam.io">Wyam</a>
+</p>
+
+<script>
+	anchors.options.placement = 'left';
+	anchors.add();
+</script>
+
+<script>
+	var snippets = document.querySelectorAll('pre > code');
+	[].forEach.call(snippets, function (snippet) {
+	  snippet.insertAdjacentHTML(
+	    'beforebegin',
+	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
+	  );
+	});
+	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+	  container: document.getElementById('modal'),
+	  target: function (trigger) {
+	    return trigger.nextElementSibling;
+	  },
+	});
+	clipboardSnippets.on('success', function (e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		e.clearSelection();
+		// showTooltip(e.trigger, 'Copied!');
+	});
+	clipboardSnippets.on('error', function (e) {
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
+		// showTooltip(e.trigger, fallbackMessage(e.action));
+	});
+</script>
+            </footer>
+        </div>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
+            $(document).ready(function() {
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
+            });
+        </script>
+    
+</body></html>
