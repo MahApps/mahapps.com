@@ -1,21 +1,19 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - HamburgerMenu</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/assets/css/theme/theme.css" rel="stylesheet" />
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet" />
+        <link href="/assets/css/override.css" rel="stylesheet">
         <script src="/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>        
         <script src="/assets/js/app.min.js"></script>         
@@ -82,7 +80,13 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/HamburgerMenu.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#example">Example</a></p>
+<p><a href="#example-code">Example Code</a></p>
+<p><a href="#properties">Properties</a></p>
+<p><a href="#events">Events</a></p>
+<p><a href="#more-samples">More Samples</a></p>
+<hr class="infobar-hidden">
+</div>
 
                 </section>
                 <section class="sidebar">    
@@ -228,7 +232,180 @@
 			<h1>HamburgerMenu</h1>
 		</section>
 	<section class="content">
-		<p><em>cooming soon</em></p>
+		<p>The HamburgerMenu control provides an easy-to-use, side-bar menu which users can show or hide by using a Hamburger button. By tapping the icon, it opens up a side menu with a selection of options or additional pages.</p>
+<p>The 3-line Hamburger menu icon, allows developers to pack more features into their apps or navigation. The tiny icon takes up a minimal amount of screen real estate and creates a clean, minimalist look.</p>
+<p>Developers can place menu specific content, navigation, images, text or custom controls.</p>
+<h1 id="example">Example</h1>
+<p><img src="images/hamburgermenu.gif" class="img-fluid" alt="HamburgerMenu"></p>
+<h1 id="example-code">Example Code</h1>
+<p>This sample demonstrates how to add custom menu items to the HamburgerMenu control.</p>
+<pre><code class="language-xml">&lt;Controls:MetroWindow ...
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"&gt;
+
+    &lt;Controls:HamburgerMenu x:Name="HamburgerMenuControl"
+                            DisplayMode="CompactOverlay"
+                            HamburgerWidth="48"
+                            ItemInvoked="HamburgerMenuControl_OnItemInvoked"
+                            ItemTemplate="{StaticResource HamburgerMenuItem}"
+                            OptionsItemTemplate="{StaticResource HamburgerOptionsMenuItem}"&gt;
+        &lt;!--  Header  --&gt;
+        &lt;Controls:HamburgerMenu.HamburgerMenuHeaderTemplate&gt;
+            &lt;DataTemplate&gt;
+                &lt;TextBlock HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           FontSize="16"
+                           Foreground="White"
+                           Text="Pictures" /&gt;
+            &lt;/DataTemplate&gt;
+        &lt;/Controls:HamburgerMenu.HamburgerMenuHeaderTemplate&gt;
+
+        &lt;!--  Items  --&gt;
+        &lt;Controls:HamburgerMenu.ItemsSource&gt;
+            &lt;Controls:HamburgerMenuItemCollection&gt;
+                &lt;Controls:HamburgerMenuGlyphItem Glyph="/Assets/Photos/BigFourSummerHeat.png" Label="Big four summer heat" /&gt;
+                &lt;Controls:HamburgerMenuGlyphItem Glyph="/Assets/Photos/BisonBadlandsChillin.png" Label="Bison badlands Chillin" /&gt;
+                &lt;Controls:HamburgerMenuGlyphItem Glyph="/Assets/Photos/GiantSlabInOregon.png" Label="Giant slab in Oregon" /&gt;
+                &lt;Controls:HamburgerMenuGlyphItem Glyph="/Assets/Photos/LakeAnnMushroom.png" Label="Lake Ann Mushroom" /&gt;
+            &lt;/Controls:HamburgerMenuItemCollection&gt;
+        &lt;/Controls:HamburgerMenu.ItemsSource&gt;
+
+        &lt;!--  Options  --&gt;
+        &lt;Controls:HamburgerMenu.OptionsItemsSource&gt;
+            &lt;Controls:HamburgerMenuItemCollection&gt;
+
+                &lt;Controls:HamburgerMenuIconItem Label="About"&gt;
+                    &lt;Controls:HamburgerMenuIconItem.Icon&gt;
+                        &lt;iconPacks:PackIconMaterial Width="22"
+                                                    Height="22"
+                                                    HorizontalAlignment="Center"
+                                                    VerticalAlignment="Center"
+                                                    Kind="Help" /&gt;
+                    &lt;/Controls:HamburgerMenuIconItem.Icon&gt;
+                    &lt;Controls:HamburgerMenuIconItem.Tag&gt;
+                        &lt;TextBlock HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="28"
+                                   FontWeight="Bold"&gt;
+                            About
+                        &lt;/TextBlock&gt;
+                    &lt;/Controls:HamburgerMenuIconItem.Tag&gt;
+                &lt;/Controls:HamburgerMenuIconItem&gt;
+
+            &lt;/Controls:HamburgerMenuItemCollection&gt;
+        &lt;/Controls:HamburgerMenu.OptionsItemsSource&gt;
+
+        &lt;!--  Content  --&gt;
+        &lt;Controls:HamburgerMenu.ContentTemplate&gt;
+            &lt;DataTemplate&gt;
+                &lt;Grid x:Name="ContentGrid"&gt;
+                    &lt;Grid.RowDefinitions&gt;
+                        &lt;RowDefinition Height="48" /&gt;
+                        &lt;RowDefinition /&gt;
+                    &lt;/Grid.RowDefinitions&gt;
+                    &lt;Border Grid.Row="0"
+                            Margin="-1 0 -1 0"
+                            Background="#7A7A7A"&gt;
+                        &lt;TextBlock x:Name="Header"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   FontSize="24"
+                                   Foreground="White"
+                                   Text="{Binding Label}" /&gt;
+                    &lt;/Border&gt;
+                    &lt;Controls:TransitioningContentControl Grid.Row="1"
+                                                          Content="{Binding}"
+                                                          RestartTransitionOnContentChange="True"
+                                                          Transition="Default"&gt;
+
+                        &lt;Controls:TransitioningContentControl.Resources&gt;
+                            &lt;DataTemplate DataType="{x:Type Controls:HamburgerMenuGlyphItem}"&gt;
+                                &lt;Image Source="{Binding Glyph, Mode=OneWay, Converter={converters:NullToUnsetValueConverter}}" /&gt;
+                            &lt;/DataTemplate&gt;
+
+                            &lt;DataTemplate DataType="{x:Type Controls:HamburgerMenuIconItem}"&gt;
+                                &lt;ContentControl Content="{Binding Tag, Mode=OneWay}"
+                                                Focusable="True"
+                                                IsTabStop="False" /&gt;
+                            &lt;/DataTemplate&gt;
+                        &lt;/Controls:TransitioningContentControl.Resources&gt;
+
+                    &lt;/Controls:TransitioningContentControl&gt;
+                &lt;/Grid&gt;
+            &lt;/DataTemplate&gt;
+        &lt;/Controls:HamburgerMenu.ContentTemplate&gt;
+    &lt;/Controls:HamburgerMenu&gt;
+
+&lt;/Controls:MetroWindow&gt;
+</code></pre>
+<p>In order to render the items like in the sample above, you need to declare DataTemplate for both item types.</p>
+<pre><code class="language-xml">&lt;Controls:MetroWindow.Resources&gt;
+    &lt;ResourceDictionary&gt;
+
+        &lt;!--  This is the template for all menu items. In this sample we use the glyph items.  --&gt;
+        &lt;DataTemplate x:Key="HamburgerMenuItem" DataType="{x:Type Controls:HamburgerMenuGlyphItem}"&gt;
+            &lt;DockPanel Height="48" LastChildFill="True"&gt;
+                &lt;Grid x:Name="IconPart"
+                      Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=CompactPaneLength}"
+                      DockPanel.Dock="Left"&gt;
+                    &lt;Image Margin="12"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Source="{Binding Glyph}" /&gt;
+                &lt;/Grid&gt;
+                &lt;TextBlock x:Name="TextPart"
+                           VerticalAlignment="Center"
+                           FontSize="16"
+                           Text="{Binding Label}" /&gt;
+            &lt;/DockPanel&gt;
+            &lt;DataTemplate.Triggers&gt;
+                &lt;DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=PanePlacement}" Value="Right"&gt;
+                    &lt;Setter TargetName="IconPart" Property="DockPanel.Dock" Value="Right" /&gt;
+                    &lt;Setter TargetName="TextPart" Property="Margin" Value="8 0 0 0" /&gt;
+                &lt;/DataTrigger&gt;
+            &lt;/DataTemplate.Triggers&gt;
+        &lt;/DataTemplate&gt;
+
+        &lt;!--  This is the template for the option menu item  --&gt;
+        &lt;DataTemplate x:Key="HamburgerOptionsMenuItem" DataType="{x:Type Controls:HamburgerMenuIconItem}"&gt;
+            &lt;DockPanel Height="48" LastChildFill="True"&gt;
+                &lt;ContentControl x:Name="IconPart"
+                                Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=CompactPaneLength}"
+                                Content="{Binding Icon}"
+                                DockPanel.Dock="Left"
+                                Focusable="False"
+                                IsTabStop="False" /&gt;
+                &lt;TextBlock x:Name="TextPart"
+                           VerticalAlignment="Center"
+                           FontSize="16"
+                           Text="{Binding Label}" /&gt;
+            &lt;/DockPanel&gt;
+            &lt;DataTemplate.Triggers&gt;
+                &lt;DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=PanePlacement}" Value="Right"&gt;
+                    &lt;Setter TargetName="IconPart" Property="DockPanel.Dock" Value="Right" /&gt;
+                    &lt;Setter TargetName="TextPart" Property="Margin" Value="8 0 0 0" /&gt;
+                &lt;/DataTrigger&gt;
+            &lt;/DataTemplate.Triggers&gt;
+        &lt;/DataTemplate&gt;
+
+    &lt;/ResourceDictionary&gt;
+&lt;/Controls:MetroWindow.Resources&gt;
+</code></pre>
+<p>You can navigate to the items by using the following code.</p>
+<pre><code class="language-csharp">private void HamburgerMenuControl_OnItemInvoked(object sender, <a href="/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedEventArgs">HamburgerMenuItemInvokedEventArgs</a> e)
+{
+    this.HamburgerMenuControl.Content = e.InvokedItem;
+
+    if (!e.IsItemOptions &amp;&amp; this.HamburgerMenuControl.IsPaneOpen)
+    {
+        // close the menu if a item was selected
+        // this.HamburgerMenuControl.IsPaneOpen = false;
+    }
+}
+</code></pre>
+<h1 id="properties">Properties</h1>
+<h1 id="events">Events</h1>
+<h1 id="more-samples">More Samples</h1>
 
 	</section>
                 
@@ -353,5 +530,5 @@
                 }, 500);
             });
         </script>
-    </body>
-</html>
+    
+</body></html>
