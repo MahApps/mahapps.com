@@ -21,6 +21,14 @@ This sample demonstrates how to add custom menu items to the HamburgerMenu contr
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
                       xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
+  <Controls:MetroWindow.Resources>
+    <ResourceDictionary>
+
+      <!--  Place for the DataTemplates for the menu items (see below)  -->
+
+    </ResourceDictionary>
+  </Controls:MetroWindow.Resources>
+
   <Controls:HamburgerMenu x:Name="HamburgerMenuControl"
                           DisplayMode="CompactOverlay"
                           HamburgerWidth="48"
