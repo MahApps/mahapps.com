@@ -28,7 +28,7 @@ jobs:
         # The verbosity level with which to run the script. Valid values are: Quiet, Minimal, Normal, Verbose or Diagnostic.
         #verbosity: # optional, default is Normal
     - name: Deploy to GitHub Pages
-      if: success() && ${{ github.event_name != 'pull_request' }}
+      if: success() && github.event_name != 'pull_request'
       uses: Cecilapp/GitHub-Pages-deploy@master
       env:
         EMAIL: ${{ secrets.MY_GITHUB_EMAIL }}
