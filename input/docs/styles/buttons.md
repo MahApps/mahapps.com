@@ -9,7 +9,7 @@ This just replaces the standard button when you drop in the library, nothing fan
 # Circle
 
 "Standard" circle button, designed for icons.  
-Add the following to a button to apply this style: `Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"`  
+Add the following to a button to apply this style: `Style="{DynamicResource MahApps.Styles.Button.Circle}"`  
 
 ![](images/07_CircleButtons.png)
 
@@ -19,7 +19,7 @@ Another WP7 styled button, this time just for text. Like all the buttons here, h
 
 ![](images/square-button.png)
 
-Add the following to a button to apply this style: `Style="{DynamicResource SquareButtonStyle}"`
+Add the following to a button to apply this style: `Style="{DynamicResource MahApps.Styles.Button.Square}"`
 
 # Accented Square
 
@@ -27,7 +27,7 @@ A slightly modified version of `SquareButton` that has the current accent color 
 
 ![](images/accent-square-button.png)
 
-Add the following to a button to apply this style: `Style="{StaticResource AccentedSquareButtonStyle}"`
+Add the following to a button to apply this style: `Style="{StaticResource MahApps.Styles.Button.Square.Accent}"`
 
 # Flat
 
