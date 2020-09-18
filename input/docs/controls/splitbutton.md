@@ -13,7 +13,7 @@ This properties usage is just like in Listbox or ComboBox. When one of this prop
 
 To correctly bind an `ObservableCollection` or a `Dictionary` to `SplitButton`, you need to use `ItemsSource` and `DisplayMemberPath`
 For ex, `ItemsSource="{Binding Albums}" DisplayMemberPath="Title"`
-In case you bind simple types like an enum or integer, you don`t need to use `DisplayMemberPath` property, only `ItemsSource`.
+In case you bind simple types like an enum or integer, you don't need to use `DisplayMemberPath` property, only `ItemsSource`.
 
 ### Orientation
 
