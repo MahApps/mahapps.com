@@ -1,5 +1,6 @@
 Title: Text
 Description: The Text control styles
+
 ---
 
-_cooming soon_
+_Coming soon_

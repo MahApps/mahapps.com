@@ -1,5 +1,6 @@
 Title: DatePicker
 Description: The DatePicker styles
+
 ---
 
-_cooming soon_
+_Coming soon_

@@ -1,5 +1,6 @@
 Title: Expander
 Description: The Expander styles
+
 ---
 
-_cooming soon_
+_Coming soon_

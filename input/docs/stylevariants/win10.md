@@ -1,5 +1,6 @@
 Title: Win 10 (UWP)
 Description: The Win 10 (UWP) style
+
 ---
 
-_cooming soon_
+_Coming soon_

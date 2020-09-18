@@ -1,5 +1,6 @@
 Title: CheckBox
 Description: The CheckBox styles
+
 ---
 
-_cooming soon_
+_Coming soon_

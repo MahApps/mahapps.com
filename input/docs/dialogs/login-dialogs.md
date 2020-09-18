@@ -1,6 +1,7 @@
 Order: 40
 Title: Login Dialog
-Description: Dialog for login scenarios. 
+Description: Dialog for login scenarios.
+
 ---
 
-_cooming soon_
+_Coming soon_

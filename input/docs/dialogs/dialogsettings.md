@@ -1,6 +1,7 @@
 Order: 80
 Title: Dialogsettings
 Description: Customize Dialogs with the Dialogsettings
+
 ---
 
-_cooming soon_
+_Coming soon_

@@ -1,5 +1,6 @@
 Title: Visual Studio
 Description: The Visual Studio style
+
 ---
 
-_cooming soon_
+_Coming soon_

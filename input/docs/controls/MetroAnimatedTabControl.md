@@ -1,5 +1,6 @@
 Title: MetroAnimatedTabControl
 Description: An animated MetroTabControl
+
 ---
 
-_cooming soon_
+_Coming soon_

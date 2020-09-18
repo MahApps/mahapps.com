@@ -1,5 +1,6 @@
 Title: ScrollBar
 Description: The ScrollBar and ScrollViewer styles
+
 ---
 
-_cooming soon_
+_Coming soon_

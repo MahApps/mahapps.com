@@ -1,5 +1,6 @@
 Title: MetroHeader
 Description: A HeaderedContentControl
+
 ---
 
-_cooming soon_
+_Coming soon_

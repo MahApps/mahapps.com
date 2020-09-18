@@ -1,5 +1,6 @@
 Title: GridSplitter
 Description: The GridSplitter style
+
 ---
 
-_cooming soon_
+_Coming soon_

@@ -1,5 +1,6 @@
 Title: Calendar
 Description: The Calendar styles
+
 ---
 
-_cooming soon_
+_Coming soon_

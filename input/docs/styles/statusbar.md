@@ -1,5 +1,6 @@
 Title: StatusBar
 Description: The StatusBar styles
+
 ---
 
-_cooming soon_
+_Coming soon_
