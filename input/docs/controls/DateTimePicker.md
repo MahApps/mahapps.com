@@ -2,4 +2,4 @@ Title: DateTimePicker
 Description: DateTimePicker control
 ---
 
-_cooming soon_
+_Coming soon_
