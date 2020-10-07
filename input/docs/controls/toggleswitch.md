@@ -13,7 +13,7 @@ Use a ToggleSwitch control to let the user switch an option between on and off s
 
 ## Example
 
-This example shows how to set the `Header`, `OnContent`, and `OffContent` properties of a toggle switch. The Toggled event is handled to turn a [ProgressRing](ProgressRing) control on or off.
+This example shows how to set the `Header`, `OnContent`, and `OffContent` properties of a toggle switch. The Toggled event is handled to turn a [ProgressRing](progressring) control on or off.
 
 ```xml
 <StackPanel Orientation="Horizontal">
