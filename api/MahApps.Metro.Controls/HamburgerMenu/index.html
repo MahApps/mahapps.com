@@ -169,7 +169,6 @@
 				<li><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/FlipViewItem">FlipViewItem</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/FlyoutAutomationPeer">FlyoutAutomationPeer</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/FontIcon">FontIcon</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/GridLengthAnimation">GridLengthAnimation</a></li>
@@ -197,14 +196,12 @@
 				<li><a href="/api/MahApps.Metro.Controls/MetroAnimatedTabControl">Metro<wbr>Animated<wbr>Tab<wbr>Control</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/MetroContentControl">MetroContentControl</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/MetroHeader">MetroHeader</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/MetroHeaderAutomationPeer">Metro<wbr>Header<wbr>Automation<wbr>Peer</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/MetroNavigationWindow">Metro<wbr>Navigation<wbr>Window</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/MetroTabControl">MetroTabControl</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/MetroTabItem">MetroTabItem</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/MetroThumb">MetroThumb</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/MetroThumbContentControl">Metro<wbr>Thumb<wbr>Content<wbr>Control</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/MetroThumbContentControlAutomationPeer">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Automation<wbr>Peer</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/MetroThumbContentControlDragCompletedEventArgs">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Drag<wbr>Completed<wbr>Event<wbr>Args</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/MetroThumbContentControlDragStartedEventArgs">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Drag<wbr>Started<wbr>Event<wbr>Args</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></li>
@@ -237,7 +234,6 @@
 				<li><a href="/api/MahApps.Metro.Controls/TimePickerBase">TimePickerBase</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/ToggleButtonHelper">ToggleButtonHelper</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/ToggleSwitch">ToggleSwitch</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/ToggleSwitchAutomationPeer">Toggle<wbr>Switch<wbr>Automation<wbr>Peer</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/TransitioningContentControl">Transitioning<wbr>Content<wbr>Control</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/TreeHelper">TreeHelper</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/TreeViewItemHelper">TreeViewItemHelper</a></li>
@@ -338,16 +334,16 @@ class Type type-node
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>[StyleTypedProperty(Property = nameof(ResizeThumbStyle), StyleTargetType = typeof(MetroThumb))]
+	<pre><code>[TemplatePart(Name = "HamburgerButton", Type = typeof(Button))]
+[TemplatePart(Name = "ButtonsListView", Type = typeof(ListBox))]
+[TemplatePart(Name = "OptionsListView", Type = typeof(ListBox))]
+[StyleTypedProperty(Property = nameof(ResizeThumbStyle), StyleTargetType = typeof(MetroThumb))]
 [StyleTypedProperty(Property = nameof(ItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
 [StyleTypedProperty(Property = nameof(HeaderItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
 [StyleTypedProperty(Property = nameof(SeparatorItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
 [StyleTypedProperty(Property = nameof(ItemFocusVisualStyle), StyleTargetType = typeof(Control))]
-[StyleTypedProperty(Property = nameof(OptionsItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
-[TemplatePart(Name = "HamburgerButton", Type = typeof(Button))]
-[TemplatePart(Name = "ButtonsListView", Type = typeof(ListBox))]
-[TemplatePart(Name = "OptionsListView", Type = typeof(ListBox))]
 [StyleTypedProperty(Property = nameof(HamburgerButtonStyle), StyleTargetType = typeof(Button))]
+[StyleTypedProperty(Property = nameof(OptionsItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
 public class HamburgerMenu : ContentControl</code></pre>
 
 
@@ -363,30 +359,6 @@ public class HamburgerMenu : ContentControl</code></pre>
 					</tr>
 				</thead>
 					<tbody><tr>
-						<td>StyleTypedProperty</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>StyleTypedProperty</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>StyleTypedProperty</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>StyleTypedProperty</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>StyleTypedProperty</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>StyleTypedProperty</td>
-						<td></td>
-					</tr>
-					<tr>
 						<td>TemplatePart</td>
 						<td></td>
 					</tr>
@@ -396,6 +368,30 @@ public class HamburgerMenu : ContentControl</code></pre>
 					</tr>
 					<tr>
 						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>StyleTypedProperty</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>StyleTypedProperty</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>StyleTypedProperty</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>StyleTypedProperty</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>StyleTypedProperty</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>StyleTypedProperty</td>
 						<td></td>
 					</tr>
 					<tr>
@@ -655,14 +651,6 @@ public class HamburgerMenu : ContentControl</code></pre>
 							</tr>
 							<tr>
 								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenu/C7ADCBD2">Item<wbr>Focus<wbr>Visual<wbr>Style<wbr>Property</a></td>
-								<td></td>
-								<td>
-									<div>Identifies the <code class="cs"><a href="/api/MahApps.Metro.Controls/HamburgerMenu/BF61A022">ItemFocusVisualStyle</a></code> dependency property.</div>
-											<div><small><em>static</em></small></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/api/MahApps.Metro.Controls/HamburgerMenu/C2B42231">Item<wbr>Focus<wbr>Visual<wbr>Style<wbr>Property<wbr>Key</a></td>
 								<td></td>
 								<td>
 									<div>Identifies the <code class="cs"><a href="/api/MahApps.Metro.Controls/HamburgerMenu/BF61A022">ItemFocusVisualStyle</a></code> dependency property.</div>
