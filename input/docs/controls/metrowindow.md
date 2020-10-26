@@ -4,13 +4,15 @@ Title: MetroWindow
 
 The `MetroWindow` is the main entry point of `MahApps` and replaces the normal `Window` to get the `MahApps` styles and themes to be work.  
 
-If you don't know how to start with this one then you can go to the [Quick Start](/docs/guides/quick-start) section.  
+If you don't know how to start with this then you can read the [Quick Start](/docs/guides/quick-start) section.  
 
 # Window borders
 
-The `MetroWindow` can be used with different borders. You can change it by using the `BorderBrush`, `GlowBrush` and `BorderThickness`.
+The `MetroWindow` can be used with different borders. You can change the behavior by using the `BorderBrush`, `GlowBrush` and `BorderThickness` properties.
 
 # Normal Border
+
+A window with a normal border can be achieved by using the `BorderBrush` and `BorderThickness` property.
 
 ```xml
 <Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
@@ -21,7 +23,7 @@ The `MetroWindow` can be used with different borders. You can change it by using
                       Height="200"
                       Width="600"
 
-                      BorderBrush="{DynamicResource AccentColorBrush}"
+                      BorderBrush="{DynamicResource MahApps.Brushes.Accent}"
                       BorderThickness="1"
 
                       WindowStartupLocation="CenterScreen">
@@ -33,6 +35,8 @@ The `MetroWindow` can be used with different borders. You can change it by using
 
 # Glow Border
 
+A window with a border glow effect can be achieved with the `GlowBrush` property.
+
 ```xml
 <Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -42,7 +46,7 @@ The `MetroWindow` can be used with different borders. You can change it by using
                       Height="200"
                       Width="600"
 
-                      GlowBrush="{DynamicResource AccentColorBrush}"
+                      GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
 
                       WindowStartupLocation="CenterScreen">
 
@@ -53,6 +57,8 @@ The `MetroWindow` can be used with different borders. You can change it by using
 
 # Only Shadow
 
+The window can also used without a border to get only a shadow arround it.
+
 ```xml
 <Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -62,7 +68,7 @@ The `MetroWindow` can be used with different borders. You can change it by using
                       Height="200"
                       Width="600"
 
-                      BorderThickness="0" 
+                      BorderThickness="0"
                       GlowBrush="Black"
                       ResizeMode="CanResizeWithGrip"
 
