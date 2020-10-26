@@ -334,7 +334,8 @@ class Type type-node
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>[TemplatePart(Name = "HamburgerButton", Type = typeof(Button))]
+	<pre><code>[StyleTypedProperty(Property = nameof(OptionsItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
+[TemplatePart(Name = "HamburgerButton", Type = typeof(Button))]
 [TemplatePart(Name = "ButtonsListView", Type = typeof(ListBox))]
 [TemplatePart(Name = "OptionsListView", Type = typeof(ListBox))]
 [StyleTypedProperty(Property = nameof(ResizeThumbStyle), StyleTargetType = typeof(MetroThumb))]
@@ -343,7 +344,6 @@ class Type type-node
 [StyleTypedProperty(Property = nameof(SeparatorItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
 [StyleTypedProperty(Property = nameof(ItemFocusVisualStyle), StyleTargetType = typeof(Control))]
 [StyleTypedProperty(Property = nameof(HamburgerButtonStyle), StyleTargetType = typeof(Button))]
-[StyleTypedProperty(Property = nameof(OptionsItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
 public class HamburgerMenu : ContentControl</code></pre>
 
 
@@ -359,19 +359,19 @@ public class HamburgerMenu : ContentControl</code></pre>
 					</tr>
 				</thead>
 					<tbody><tr>
-						<td>TemplatePart</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>TemplatePart</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>TemplatePart</td>
-						<td></td>
-					</tr>
-					<tr>
 						<td>StyleTypedProperty</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
 						<td></td>
 					</tr>
 					<tr>
