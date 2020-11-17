@@ -14,7 +14,7 @@ You can use the ContextMenu as you are familiar with it:
 
 ## ContextMenu with CompositeCollection
 
-If you want to use a part of the ContextMenu which is declared as resource and is shared you have to use a `CompositeCollection` as follwos:
+If you want to use a part of the ContextMenu which is declared as resource and is shared you have to use a `CompositeCollection` as follows:
 
 ```xml
 <CompositeCollection x:Key="ContextMenuBase"
