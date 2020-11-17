@@ -1,4 +1,5 @@
 Title: ColorPicker
+Description: The documentation for the ColorPicker, ColorCanvas, ColorPallette and ColorEyeDropper
 ---
 **On this page**
 <!-- Start Document Outline -->
@@ -23,7 +24,7 @@ Title: ColorPicker
 
 The `ColorPicker`-Controls can be used to select any `System.Windows.Media.Color` (in the following lines called `Color`). There are four different controls available to select the a `Color`:
 
-| Control           | Usecase                                  |
+| Control           | Use case                                  |
 |-------------------|------------------------------------------|
 | `ColorCanvas`     | Select a `Color` by specifying its [ARGB](https://en.wikipedia.org/wiki/RGB_color_model) or [AHSV](https://en.wikipedia.org/wiki/HSL_and_HSV) channels |
 | `ColorPalette`    | Select a `Color` from predefined colors presented in a special `ListBox` |
@@ -81,18 +82,18 @@ The `ColorCanvas` lets the user select a `Color` by either manipulating the ARGB
 ## The user interface
 ![](images/ColorPicker_ColorCanvas_Numbered.png)
 
-| #  | Description                              |
-|----|------------------------------------------|
-| 01 | red color channel from 0 to 255          |
-| 02 | green color channel from 0 to 255        |
-| 03 | blue color channel from 0 to 255         |
-| 04 | hue channel from 0° to 360°              |
-| 05 | saturation channel from 0% to 100%       |
-| 06 | value channel from 0% to 100 %           |
-| 07 | alpha channel from 0 to 255              |
-| 08 | the color name or html-notation          |
-| 09 | a `ColorEyeDropper` to select a color from the screen |
-| 10 | select the saturation by moving the cross-hair from horizontally and the value by moving the cross-hair vertically |
+| No. | Description                              |
+|-----|------------------------------------------|
+| 01  | red color channel from 0 to 255          |
+| 02  | green color channel from 0 to 255        |
+| 03  | blue color channel from 0 to 255         |
+| 04  | hue channel from 0° to 360°              |
+| 05  | saturation channel from 0% to 100%       |
+| 06  | value channel from 0% to 100 %           |
+| 07  | alpha channel from 0 to 255              |
+| 08  | the color name or html-notation          |
+| 09  | a `ColorEyeDropper` to select a color from the screen |
+| 10  | select the saturation by moving the cross-hair from horizontally and the value by moving the cross-hair vertically |
 
 ## Properties
 Use the following properties to handle the color selection 
@@ -149,6 +150,7 @@ You can override the following `Resources` to modify the appearance of the `Colo
 ```xaml
 <!-- make sure to add the right namespace -->
 <!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+
 <mah:ColorCanvas x:Name="ColorCanvasExample"
                  SelectedColor="Blue"
                  DefaultColor="Transparent"
