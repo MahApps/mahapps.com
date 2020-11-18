@@ -160,3 +160,69 @@ You can override the following `Resources` to modify the appearance of the `Colo
                  LabelRedChannel="Red" />
 ```
 
+# ColorPalette
+The `ColorPalette` can be used to present the user a swatch of predefined colors. As this control is derived from `System.Windows.Controls.ListBox` you can use all functionality know from the `ListBox`-Control
+
+## The user interface
+
+![](images/ColorPicker_ColorPalette_Numbered.png)
+
+| No | Description                              |
+|----|------------------------------------------|
+| 01 | The header of the `ColorPalette`         |
+| 02 | Displays the available colors            |
+| 03 | The currently selected color is highlighted |
+
+## Properties
+The available colors can be either added directly to the `Items`-property or by binding to the `ItemsSource`-property. The selection can be handled by binding to `SelectedValue`, `SelectedItem` or `SelectedIndex`. 
+
+In addition to this the `ColorPalette` provides the following properties.
+
+| Property             | Type                       | Description                              |
+|----------------------|----------------------------|------------------------------------------|
+| Header               | `object`                     | Gets or sets the header content          |
+| HeaderTemplate       | `DataTemplate`               | Gets or sets the header template         |
+| ColorNamesDictionary | `Dictionary<Color?, string>` | Gets or sets the `Dictionary<Color?, string>` used to get or set the ColorName [(see also)](#colornamesdictionary-and-colorhelper) |
+
+## DynamicResources
+| Key                                      | Type         | Description                              |
+|------------------------------------------|--------------|------------------------------------------|
+| `MahApps.Sizes.ColorListBox.ItemWidth`     | `double`       | overrides the width of the items         |
+| `MahApps.Sizes.ColorListBox.ItemHeight`    | `double`       | overrides the height of the items        |
+| `MahApps.Brushes.Tile.Small`               | `Brush`        | overrides the checkered Brush which is visible if the color is transparent |
+| `MahApps.Styles.ListBoxItem.ColorPaletteItem` | `Style`        | overrides the `Style` of the items       |
+| `MahApps.Templates.ColorPaletteItem`       | `DataTemplate` | overrides the `DataTemplate` of the items |
+
+## Example
+The below example shows how to use the `ColorPalette` via setting the `ItemsSource` to a build in `ColorPalette`. 
+
+> Note: MahApps provides [build in color palettes](#build-in-color-palettes)
+
+```xaml
+<!-- make sure to add the right namespace -->
+<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+
+<mah:ColorPalette Header="An Example Palette" 
+                  ItemsSource="{x:Static mah:BuildInColorPalettes.WpfColorsPalette}" />
+``` 
+
+The second example shows how to add colors directly in `XAML`
+
+```xaml
+<!-- make sure to add the right namespace -->
+<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+
+<mah:ColorPalette Header="A second Example Palette" >
+    <Color>Red</Color>
+    <Color>Green</Color>
+    <Color>Blue</Color>
+</mah:ColorPalette>
+```
+
+## Build in color palettes 
+MahApps provides the following build in ColorPalettes:
+- WpfColorsPalette (all colors in `Sytem.Windows.Media.Colors`)
+- StandardColorsPalette (the primary colors)
+- RecentColors (used to store the recently selected colors)
+
+All build in `ColorPalettes` are internally an `ObservableCollection`, so you modify them to your needs.
