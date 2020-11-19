@@ -226,3 +226,43 @@ MahApps provides the following build in ColorPalettes:
 - RecentColors (used to store the recently selected colors)
 
 All build in `ColorPalettes` are internally an `ObservableCollection`, so you modify them to your needs.
+
+# ColorEyeDropper
+The `ColorEyeDropper` lets the user select a `Color` with the mouse directly from anywhere on the screen, even outside of your `Application`. As this control is derived from `System.Windows.Controls.Button` you can use all functionality know from the `Button`-Control.
+
+## The user interface
+If the user presses the left mouse button on the `ColorEyeDropper` the cursor will change to an eye-dropper symbol and a preview popup will appear. Now the user needs to keep the mouse pressed while dragging the mouse to the desired pixel. A magnifier with a cross hair helps getting the exact pixel position. As soon as the user releases the left mouse button the `SelectedColor`-property will get updated. 
+
+![](images/ColorPicker_ColorEyeDropper_Numbered.png)
+
+| No | Description                              |
+|----|------------------------------------------|
+| 01 | The `Button` to start the `ColorEyeDropper` |
+| 02 | The cursor while selecting a color       |
+| 03 | A preview of the selected color          |
+| 04 | A magnifier with a cross hair            |
+
+**See it in action:**
+![](images/ColorPicker_ColorEyeDropper_Running.png)
+
+## Properties
+In addition to all known `Button`-properties the `ColorEyeDropper` supports the properties listed below.
+
+| Property                    | Type         | Description                              |
+|-----------------------------|--------------|------------------------------------------|
+| SelectedColor               | `Color?`       | Gets or sets the selected color          |
+| PreviewImageOuterPixelCount | `int`          | Gets or sets how many pixels the preview magnifier should render around the curent mouse position. The default is 2 |
+| EyeDropperCursor            | `Cursor`       | Gets or sets the `Cursor` when in selection mode |
+| PreviewContentTemplate      | `DataTemplate` | Gets or sets the `DataTemplate` of the preview `Popup` |
+
+## DynamicResources
+For this control there is no `DynamicResource` which can be overridden beside the know ones.
+
+## Example
+```xaml
+<!-- make sure to add the right namespace -->
+<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+
+<mah:ColorEyeDropper Content="This is my EyeDropper"
+                     SelectedColor="{Binding Path=MyColorToBind}" />
+```
