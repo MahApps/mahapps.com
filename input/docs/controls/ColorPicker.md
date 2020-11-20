@@ -266,3 +266,48 @@ For this control there is no `DynamicResource` which can be overridden beside th
 <mah:ColorEyeDropper Content="This is my EyeDropper"
                      SelectedColor="{Binding Path=MyColorToBind}" />
 ```
+
+If you want to modify the preview template please take a look to the below example. It shows how to make a circular magnifier with the preview color shown in the outer circle.
+
+![](images/ColorPicker_ColorEyeDropper_CustomPreviewTemplate.png)
+
+> Note: the `DataTemplate` should be designed for this `DataType`:  `MahApps.Metro.Controls.ColorEyePreviewData`
+
+```xaml
+<!-- make sure to add the right namespace -->
+<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+<!-- xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" -->
+
+<mah:ColorEyeDropper Content="{iconPacks:Material Kind=Eyedropper}"
+                     SelectedColor="{DynamicResource MahApps.Colors.AccentBase}">
+    <mah:ColorEyeDropper.PreviewContentTemplate>
+        <DataTemplate DataType="{x:Type mah:ColorEyePreviewData}">
+            <Border Width="62"
+                    Height="62"
+                    Padding="0"
+                    BorderBrush="{Binding PreviewBrush}"
+                    BorderThickness="5"
+                    CornerRadius="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight, Converter={mah:SizeToCornerRadiusConverter}}">
+                <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Grid.Clip>
+                        <EllipseGeometry Center="25,25"
+                                         RadiusX="25"
+                                         RadiusY="25" />
+                    </Grid.Clip>
+                    <Image x:Name="PART_PreviewImage"
+                           Width="50"
+                           Height="50"
+                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                           Source="{Binding PreviewImage}" />
+                    <Path Stroke="{Binding PreviewBrush, Converter={x:Static mah:BackgroundToForegroundConverter.Instance}}" StrokeThickness="1">
+                        <Path.Data>
+                            <PathGeometry po:Freeze="true" Figures=" m 0 25 20 0  m 5 5 0 20  m 5 -25 20 0  m -25 -25 0 20 m -5 0 H20 H30 V30 H20 z" />
+                        </Path.Data>
+                    </Path>
+                </Grid>
+            </Border>
+        </DataTemplate>
+    </mah:ColorEyeDropper.PreviewContentTemplate>
+</mah:ColorEyeDropper>
+```
+
