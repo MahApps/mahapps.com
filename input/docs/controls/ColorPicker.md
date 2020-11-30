@@ -16,6 +16,23 @@ Description: The documentation for the ColorPicker, ColorCanvas, ColorPallette a
 	* [Events](#events)
 	* [DynamicResources](#dynamicresources)
 	* [Example](#example)
+* [ColorPalette](#colorpalette)
+	* [The user interface](#the-user-interface-1)
+	* [Properties](#properties-1)
+	* [DynamicResources](#dynamicresources-1)
+	* [Example](#example-1)
+	* [Build in color palettes](#build-in-color-palettes)
+* [ColorEyeDropper](#coloreyedropper)
+	* [The user interface](#the-user-interface-2)
+	* [Properties](#properties-2)
+	* [Events](#events-1)
+	* [DynamicResources](#dynamicresources-2)
+	* [Example](#example-2)
+* [ColorPicker](#colorpicker)
+	* [The user interface](#the-user-interface-3)
+	* [Events](#events-2)
+	* [DynamicResources](#dynamicresources-3)
+	* [Example](#example-3)
 
 <!-- End Document Outline -->
 ---
@@ -255,8 +272,15 @@ In addition to all known `Button`-properties the `ColorEyeDropper` supports the 
 | EyeDropperCursor            | `Cursor`       | Gets or sets the `Cursor` when in selection mode |
 | PreviewContentTemplate      | `DataTemplate` | Gets or sets the `DataTemplate` of the preview `Popup` |
 
+## Events
+You can use all events known from a default `Button` and the one listed below. 
+
+| Event                | Description                            |
+|----------------------|----------------------------------------|
+| SelectedColorChanged | occurs when the SelectedColor changed |
+
 ## DynamicResources
-For this control there is no `DynamicResource` which can be overridden beside the know ones.
+For this control there is no `DynamicResource` which can be overridden beside the know ones for the other `Buttons`.
 
 ## Example
 ```xaml
@@ -310,4 +334,159 @@ If you want to modify the preview template please take a look to the below examp
     </mah:ColorEyeDropper.PreviewContentTemplate>
 </mah:ColorEyeDropper>
 ```
+
+# ColorPicker
+This control lets the user select a `Color` in a `ComboBox`-like control. The user can either select a `Color` from a predefined [`ColorPalette`](#colorpalette) or select a custom one in a [`ColorCanvas`](#colorcanvas)
+
+## The user interface
+![](images/ColorPicker_Opened_Numbered.png)
+
+| No | Description                              |
+|----|------------------------------------------|
+| 01 | Press the arrow to open or close the drop down |
+| 02 | Select between the predefined colors tab and the advanced tab |
+| 03 | Displays the selected color              |
+| 04 | Optional: Shows a floating watermark     |
+Use the following properties to handle the color selection 
+
+| Property                 | Type                         | Description                              |
+|--------------------------|------------------------------|------------------------------------------|
+| SelectedColor            | `Color?`                     | Gets or sets the selected color          |
+| DefaultColor             | `Color?`                     | Gets or sets the default color if the `SelectedColor` is `null` |
+| SelectedHSVColor         | `HSVColor`                   | Gets the selected color as `HSVColor`    |
+| ColorName                | `string`                     | Gets or sets the name of the selected color [(see also)](#colornamesdictionary-and-colorhelper) |
+| ColorNamesDictionary     | `Dictionary<Color?, string>` | Gets or sets the `Dictionary<Color?, string>` used to get or set the `ColorName` [(see also)](#colornamesdictionary-and-colorhelper) |
+| A                        | `byte`                       | Gets or sets the alpha channel           |
+| R                        | `byte`                       | Gets or sets the red channel             |
+| G                        | `byte`                       | Gets or sets the green channel           |
+| B                        | `byte`                       | Gets or sets the blue-channel            |
+| Hue                      | `double`                     | Gets or sets the hue channel             |
+| Saturation               | `double`                     | Gets or sets the Saturation-channel      |
+| Value                    | `double`                     | Gets or sets the Value-channel           |
+| AddToRecentColorsTrigger | `AddToRecentColorsTrigger`   | Gets or sets the [`AddToRecentColorsTrigger`](#addtorecentcolorstrigger) |
+
+Use the following properties to translate the user interface
+
+| Property                       | Type           | Description                              |
+|--------------------------------|----------------|------------------------------------------|
+| LabelAlphaChannel              | `string`       | Gets or sets the `Label` for the alpha-channel |
+| LabelRedChannel                | `string`       | Gets or sets the `Label` for the red-channel |
+| LabelGreenChannel              | `string`       | Gets or sets the `Label` for the green-channel |
+| LabelBlueChannel               | `string`       | Gets or sets the `Label` for the blue-channel |
+| LabelHueChannel                | `string`       | Gets or sets the `Label` for the hue-channel |
+| LabelSaturationChannel         | `string`       | Gets or sets the `Label` for the saturation-channel |
+| LabelValueChannel              | `string`       | Gets or sets the `Label` for the value-channel |
+| LabelColorPreview              | `string`       | Gets or sets the `Label` for the preview field |
+| LabelColorName                 | `string`       | Gets or sets the `Label` for the color name |
+| ColorPalettesTabHeader         | `object`       | Gets or sets the `Header` of the `ColorPalettes`-tab |
+| ColorPalettesTabHeaderTemplate | `DataTemplate` | Gets or sets the `DataTemplate` for the `Header` of the `ColorPalettes`-tab |
+| AdvancedTabHeader              | `object`       | Gets or sets the `Header` of the `ColorCanvas`-tab |
+| AdvancedTabHeaderTemplate      | `DataTemplate` | Gets or sets the `DataTemplate` for the `Header` of the `ColorCanvas`-tab |
+
+If you want to control the appearance of the `DropDown` you can adjust these properties 
+
+| Property                       | Type           | Description                              |
+|--------------------------------|----------------|------------------------------------------|
+| DropDownHeight                 | `double`       | Gets or sets the height of the `DropDown` |
+| DropDownWidth                  | `double`       | Gets or sets the width of the `DropDown` |
+| IsDropDownOpen                 | `bool`         | Gets or sets whether the `DropDown` is open |
+| IsAdvancedTabVisible           | `bool`         | Gets or sets whether the advanced tab is visible |
+| IsColorPalettesTabVisible      | `bool`         | Gets or sets whether the standard tab is visible |
+| TabControlStyle                | `Style`        | Gets or sets the `Style` for the `TabControl` inside the `DropDown` |
+| TabItemStyle                   | `Style`        | Gets or sets the `Style` for the `TabItems` inside the `DropDown` |
+
+The `ColorPicker` can hold up to five different [`ColorPalettes`](#colorpalette) which can be controlled by the following properties. As the properties repeat for all five `ColorPalettes` we use <b>[###ColorPalette]</b> as a placeholder. In your code please replace it with one of these names: 
+ - StandardColorPalette
+ - AvailableColorPalette
+ - RecentColorPalette
+ - CustomColorPalette01
+ - CustomColorPalette02
+ 
+ | Property                        | Type           | Description                              |
+|---------------------------------|----------------|------------------------------------------|
+| <b>[###ColorPalette]</b>Header         | `object`       | Gets or sets the header content of the `ColorPalette` |
+| <b>[###ColorPalette]</b>HeaderTemplate | `DataTemplate` | Gets or sets the header content template of the `ColorPalette` |
+| <b>[###ColorPalette]</b>ItemsSource    | `IEnumerable`  | Gets or sets the `ItemsSource` of the `ColorPalette` |
+| <b>[###ColorPalette]</b>Style          | `Style`        | Gets or sets the `Style` of the `ColorPalette` |
+| Is<b>[###ColorPalette]</b>Visible      | `bool`         | Gets or sets whether the `ColorPalette` is visible |
+
+The `RecentColorPalette` is a special `ColorPalette` which is used to store the recent selected colors. To control the behavior of this `ColorPalette`.
+
+| Property                 | Type   | Description                              |
+|--------------------------|--------|------------------------------------------|
+| AddToRecentColorsTrigger | `Enum` | Gets or sets the trigger when the `RecentColorsPalette` should be updated. Possible values are `Never`, `ColorPickerClosed` or `SelectedColorChanged`. The default is `ColorPickerClosed` |
+| MaximumRecentColorsCount | `int`  | This is an attached property which gets or sets the maximum number of recent color items. If the number stored in the `RecentColorPalette` exceeds this value the oldest entries will be removed. |
+
+## Events
+| Event                | Description                              |
+|----------------------|------------------------------------------|
+| DropDownOpened       | occurs when the `DropDown` opened        |
+| DropDownClosed       | occurs when the `DropDown` closed        |
+| SelectedColorChanged | occurs when the `SelectedColor`-Property changed |
+
+## DynamicResources
+You can override the following `Resources` to modify the appearance of the `ColorPicker` further.
+
+| Key                                      | Type           | Description                              |
+|------------------------------------------|----------------|------------------------------------------|
+| `MahApps.Templates.ColorPickerContent.ColorAndName` | `DataTemplate` | overrides the default `DataTemplate` for the `SelectedColorTemplate`-Property |
+| `MahApps.Brushes.Tile`                     | `Brush`          | overrides the checkered Brush which is visible if the color is transparent |
+| `MahApps.Styles.ColorPalette.ColorPickerDropDown` | `Style`          | overrides the `Style` for the `ColorPalettes` inside the `DropDown` |
+| `MahApps.Styles.TabControl.ColorPicker`    | `Style`        | overrides the `Style` for the `TabControl` inside the `DropDown` |
+| `MahApps.Styles.ToggleButton.ColorPickerDropDown` | `Style`        | overrides the `Style` for the `ColorPicker`-`ToggleButton` |
+
+## Example
+
+```xaml
+<!-- make sure to add the right namespace -->
+<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+
+<mah:ColorPicker SelectedColor="{Binding myColor}" 
+                 mah:TextBoxHelper.ClearTextButton="True"
+                 mah:TextBoxHelper.UseFloatingWatermark="True"
+                 mah:TextBoxHelper.Watermark="Select a color"
+                 AddToRecentColorsTrigger="SelectedColorChanged" />
+```
+
+The following example shows how the `SelectedColorChanged`-Event can be used to create a custom theme. 
+
+```xaml
+<!-- make sure to add the right namespace -->
+<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+
+<mah:ColorPicker SelectedColorChanged="ColorPicker_SelectedColorChanged"
+                 mah:TextBoxHelper.ClearTextButton="True"
+                 mah:TextBoxHelper.UseFloatingWatermark="True"
+                 mah:TextBoxHelper.Watermark="Select a color"
+                 AddToRecentColorsTrigger="SelectedColorChanged" />
+```
+
+we handle the event in the code behind section:
+
+```c#
+// Make sure you have addes these usings into your usings section
+using ControlzEx.Theming;
+using System.Windows;
+using System.Windows.Media;
+
+private void ColorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+{
+    if (e.NewValue.HasValue)
+    {
+        Theme newTheme = new Theme(name: "CustomTheme",
+                                   displayName: "CustomTheme",
+                                   baseColorScheme: "Light",
+                                   colorScheme: "CustomAccent",
+                                   primaryAccentColor: e.NewValue.Value,
+                                   showcaseBrush: new SolidColorBrush(e.NewValue.Value),
+                                   isRuntimeGenerated: true,
+                                   isHighContrast: false);
+
+        ThemeManager.Current.ChangeTheme(Application.Current, newTheme);
+    }
+}
+```
+
+See it in action:
+![](images/ColorPicker_ThemeExample.png)
 
