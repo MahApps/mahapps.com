@@ -6,7 +6,7 @@ Description: The documentation for the ColorPicker, ColorCanvas, ColorPallette a
 
 * [Introduction](#introduction)
 * [ColorNamesDictionary and ColorHelper](#colornamesdictionary-and-colorhelper)
-	* [Looking up a colors name](#looking-up-a-colors-name)
+	* [Looking up a color name](#looking-up-a-color-name)
 	* [Getting a color from a given name](#getting-a-color-from-a-given-name)
 	* [How to provide custom color names](#how-to-provide-custom-color-names)
 	* [Provide translations for a language of your choice](#provide-translations-for-a-language-of-your-choice)
@@ -45,7 +45,7 @@ Description: The documentation for the ColorPicker, ColorCanvas, ColorPallette a
 
 # Introduction
 
-The `ColorPicker`-Controls can be used to select any `System.Windows.Media.Color` (in the following lines called `Color`). There are four different controls available to select a `Color`:
+The `ColorPicker`-Controls can be used to select any `System.Windows.Media.Color` (in this document simply called `Color`). There are four different controls available to select a `Color`:
 
 | Control           | Use case                                  |
 |-------------------|------------------------------------------|
@@ -100,24 +100,24 @@ You can help providing translations to the build in dictionary. Currently implem
 To do so we recommend using the [ResXManager](https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager) and please read [this guide](https://github.com/MahApps/MahApps.Metro/wiki/Contributing)
 
 # ColorCanvas
-The `ColorCanvas` lets the user select a `Color` by either manipulating the ARGB-Values, manipulating the HSV-Values, entering the color name or HTML-notation or picking a color from the screen
+The `ColorCanvas` lets the user select a `Color` by either manipulating the ARGB-Values, manipulating the HSV-Values, entering the color name or HTML-notation or picking a color from the screen.
 
 ## The user interface
 ![](images/ColorPicker_ColorCanvas_Numbered.png)
 
 | No. | Description                              |
 |-----|------------------------------------------|
-| 01  | red color channel from 0 to 255          |
-| 02  | green color channel from 0 to 255        |
-| 03  | blue color channel from 0 to 255         |
-| 04  | hue channel from 0° to 360°              |
-| 05  | saturation channel from 0% to 100%       |
-| 06  | value channel from 0% to 100 %           |
-| 07  | alpha channel from 0 to 255              |
-| 08  | the color name or html-notation          |
-| 09  | a `ColorEyeDropper` to select a color from the screen |
-| 10  | select the saturation by moving the cross-hair from horizontally and the value by moving the cross-hair vertically |
-| 11 | a preview of the selected color | 
+| 01  | Red color channel from 0 to 255          |
+| 02  | Green color channel from 0 to 255        |
+| 03  | Blue color channel from 0 to 255         |
+| 04  | Hue channel from 0° to 360°              |
+| 05  | Saturation channel from 0% to 100%       |
+| 06  | Value channel from 0% to 100 %           |
+| 07  | Alpha channel from 0 to 255              |
+| 08  | The color name or html-notation          |
+| 09  | A [`ColorEyeDropper`](#coloreyedropper) to select a color from the screen |
+| 10  | Select the saturation by moving the cross-hair from horizontally and the value by moving the cross-hair vertically |
+| 11 | A preview of the selected color | 
 
 ## Properties
 Use the following properties to handle the color selection 
@@ -227,6 +227,7 @@ You can use these attached helper:
 | `MahApps.Brushes.Tile.Small`               | `Brush`        | Overrides the checkered Brush which is visible if the color is transparent |
 | `MahApps.Styles.ListBoxItem.ColorPaletteItem` | `Style`        | Overrides the `Style` of the items       |
 | `MahApps.Templates.ColorPaletteItem`       | `DataTemplate` | Overrides the `DataTemplate` of the items |
+| `MahApps.Styles.ColorPalette` | `Style`        | Overrides the default `Style` for the `ColorPalette` |
 
 ## Example
 The below example shows how to use the `ColorPalette` via setting the `ItemsSource` to a build in `ColorPalette`. 
@@ -461,7 +462,6 @@ You can override the following `Resources` to modify the appearance of the `Colo
 |------------------------------------------|----------------|------------------------------------------|
 | `MahApps.Templates.ColorPickerContent.ColorAndName` | `DataTemplate` | Overrides the default `DataTemplate` for the `SelectedColorTemplate`-Property |
 | `MahApps.Brushes.Tile`                   | `Brush`        | Overrides the checkered Brush which is visible if the color is transparent |
-| `MahApps.Styles.ColorPalette.ColorPickerDropDown` | `Style`        | Overrides the `Style` for the `ColorPalettes` inside the `DropDown` |
 | `MahApps.Styles.TabControl.ColorPicker`  | `Style`        | Overrides the `Style` for the `TabControl` inside the `DropDown` |
 | `MahApps.Styles.ToggleButton.ColorPickerDropDown` | `Style`        | Overrides the `Style` for the `ColorPicker`-`ToggleButton` |
 | `MahApps.Styles.ColorPalette.ColorPickerDropDown` | `Style`        | Overrides the `Style` for the `ColorPicker`-[`ColorPalette`](#colorpalette) |
