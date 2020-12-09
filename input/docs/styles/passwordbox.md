@@ -2,4 +2,4 @@ Title: PasswordBox
 Description: The PasswordBox styles
 ---
 
-_cooming soon_
+_coming soon_

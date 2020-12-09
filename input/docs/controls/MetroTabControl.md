@@ -2,4 +2,4 @@ Title: MetroTabControl
 Description: A TabControl with some extra properties
 ---
 
-_cooming soon_
+_coming soon_

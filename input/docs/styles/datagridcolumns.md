@@ -2,4 +2,4 @@ Title: DataGrid Columns
 Description: The DataGrid Column styles
 ---
 
-_cooming soon_
+_coming soon_

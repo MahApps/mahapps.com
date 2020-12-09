@@ -2,4 +2,4 @@ Title: ToolBar
 Description: The ToolBar styles
 ---
 
-_cooming soon_
+_coming soon_

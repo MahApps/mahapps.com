@@ -3,4 +3,4 @@ Title: Login Dialog
 Description: Dialog for login scenarios. 
 ---
 
-_cooming soon_
+_coming soon_

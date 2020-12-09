@@ -2,4 +2,4 @@ Title: SplitView
 Description: The SplitView control
 ---
 
-_cooming soon_
+_coming soon_

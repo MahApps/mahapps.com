@@ -2,4 +2,4 @@ Title: GroupBox
 Description: The GroupBox style
 ---
 
-_cooming soon_
+_coming soon_

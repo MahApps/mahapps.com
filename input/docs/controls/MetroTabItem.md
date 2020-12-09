@@ -2,4 +2,4 @@ Title: MetroTabItem
 Description: A TabItem with some extra properties
 ---
 
-_cooming soon_
+_coming soon_

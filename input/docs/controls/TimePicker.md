@@ -2,4 +2,4 @@ Title: TimePicker
 Description: TimePicker control
 ---
 
-_cooming soon_
+_coming soon_

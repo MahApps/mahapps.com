@@ -3,4 +3,4 @@ Title: Dialogsettings
 Description: Customize Dialogs with the Dialogsettings
 ---
 
-_cooming soon_
+_coming soon_

@@ -2,4 +2,4 @@ Title: MetroNavigationWindow
 Description: A navigation window
 ---
 
-_cooming soon_
+_coming soon_
