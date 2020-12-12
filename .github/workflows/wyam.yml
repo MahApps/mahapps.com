@@ -30,7 +30,8 @@ jobs:
       if: success() && github.event_name != 'pull_request'
       uses: Cecilapp/GitHub-Pages-deploy@master
       env:
-        EMAIL: ${{ secrets.MY_GITHUB_EMAIL }}
-        GH_TOKEN: ${{ secrets.MY_GITHUB_ACTIONS_TOKEN }}
-        CNAME: mahapps.com
-        BUILD_DIR: ./output
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        email: ${{ secrets.MY_GITHUB_EMAIL }}
+        cname: mahapps.com
+        build_dir: ./output
