@@ -80,9 +80,7 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/Badged.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#properties">Properties</a></p>
-<hr class="infobar-hidden">
-</div>
+    <div id="infobar-headings"></div>
 
                 </section>
                 <section class="sidebar">    
@@ -229,41 +227,33 @@
 			<h1>Badged Control</h1>
 		</section>
 	<section class="content">
-		<p>The <code><a href="/api/MahApps.Metro.Controls/Badged">Badged</a></code> control renders a badge overlay on a given control.</p>
+		<p>The <code><a href="/api/MahApps.Metro.Controls/Badged">Badged</a></code> control renders a badge overlay on a given control.
+The badge location can be set by the <code>BadgePlacementMode</code> property.</p>
+<h2 id="examples">Examples</h2>
 <pre><code class="language-xml">&lt;mah:Badged Badge="42"&gt;
   &lt;!-- Control to wrap goes here --&gt;
   &lt;Button Content="Notifications" /&gt;
 &lt;/mah:Badged&gt;
 </code></pre>
 <p><img src="images/badged-control-button.png" class="img-fluid" alt=""></p>
-<p>The badge location can be set by the <code>BadgePlacementMode</code> property. The values are:</p>
-<pre><code class="language-csharp">public enum BadgePlacementMode
-{
-    TopLeft,
-    Top,
-    TopRight,
-    Right,
-    BottomRight,
-    Bottom,
-    BottomLeft,
-    Left
-}
-</code></pre>
 <pre><code class="language-xml">&lt;mah:Badged Badge="{Binding Path=BadgeValue}" BadgePlacementMode="BottomRight"&gt;
   &lt;!-- Control to wrap goes here --&gt;
   &lt;Button&gt;
-    &lt;iconPacks:PackIconFontAwesome Kind="CommentOutline"/&gt;
+    &lt;iconPacks:PackIconFontAwesome Kind="CommentOutline" /&gt;
   &lt;/Button&gt;
 &lt;/mah:Badged&gt;
 </code></pre>
 <p><img src="images/badged-control-button-icon.png" class="img-fluid" alt=""></p>
-<h1 id="properties">Properties</h1>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+The <code>IconPacks</code> control in the samples can be found <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">here</a>.</p>
+</div>
+<h2 id="properties">Properties</h2>
 <table class="table">
 <thead>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th></th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
@@ -301,6 +291,60 @@
 <td>BadgeChanged</td>
 <td>RoutedEvent</td>
 <td>Occurs if the Badge property was changed.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="badgeplacementmode-enum">BadgePlacementMode enum</h2>
+<p>Specifies the position of the badge.</p>
+<h3 id="fields">Fields</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Value</th>
+<th></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TopLeft</td>
+<td>0</td>
+<td>Shows the badge on the top left corner.</td>
+</tr>
+<tr>
+<td>Top</td>
+<td>1</td>
+<td>Shows the badge on top.</td>
+</tr>
+<tr>
+<td>TopRight</td>
+<td>2</td>
+<td>Shows the badge on the top right corner.</td>
+</tr>
+<tr>
+<td>Right</td>
+<td>3</td>
+<td>Shows the bage on the right side.</td>
+</tr>
+<tr>
+<td>BottomRight</td>
+<td>4</td>
+<td>Shows the badge on the bottom right corner.</td>
+</tr>
+<tr>
+<td>Bottom</td>
+<td>5</td>
+<td>Shows the badge on bottom.</td>
+</tr>
+<tr>
+<td>BottomLeft</td>
+<td>6</td>
+<td>Shows the  badge on the bottom left corner.</td>
+</tr>
+<tr>
+<td>Left</td>
+<td>7</td>
+<td>Shows the badge on the left side.</td>
 </tr>
 </tbody>
 </table>
