@@ -80,10 +80,7 @@
                 <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/flyouts.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#themed-flyouts">Themed Flyouts</a></p>
-<p><a href="#overlay-behavior">Overlay Behavior</a></p>
-<hr class="infobar-hidden">
-</div>
+    <div id="infobar-headings"></div>
 
                 </section>
                 <section class="sidebar">    
@@ -230,100 +227,189 @@
 			<h1>Flyouts</h1>
 		</section>
 	<section class="content">
-		<p>A <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> is an overlay for the <a href="MetroWindow">MetroWindow</a> that can render custom contents. It has the ability to slide in and out from any side of the window.</p>
-<p>It is strongly recommended to use the <code>Flyouts</code> within the <code><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></code>. This control should be assigned to the <code>Flyouts</code> property of the <a href="MetroWindow">MetroWindow</a>.</p>
+		<p>A <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> is an overlay for the <a href="metrowindow">MetroWindow</a> that can render custom contents.
+It's derived from <code>HeaderedContentControl</code> and has the ability to slide in and out from any side of the window.</p>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+It's strongly recommended to use any <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> within the <code><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></code>.</p>
+</div>
+<h2 id="flyoutscontrol">FlyoutsControl</h2>
+<p>The <code><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></code> is an <code>ItemsControl</code> which contains all <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> items for one <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code>. It must be assigned to the <code>Flyouts</code> property of the <a href="metrowindow">MetroWindow</a>.</p>
+<h2 id="example">Example</h2>
+<p>The following Xaml code creates two <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> controls with a header and the position on the right side of the window.
+To open or close a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> set the <code>IsOpen</code> property or use a property on your ModelView at the DataContext of the window.</p>
 <pre><code class="language-xml">&lt;mah:MetroWindow.Flyouts&gt;
     &lt;mah:FlyoutsControl&gt;
-      &lt;mah:Flyout x:Name="firstFlyout" Header="Flyout" Position="Right" Width="200"&gt;
-          &lt;!-- Your custom content here --&gt;
+      &lt;mah:Flyout x:Name="FirstFlyout" Header="Settings" Position="Right" Width="250"&gt;
+          &lt;!-- The content goes here --&gt;
       &lt;/mah:Flyout&gt;
 
-      &lt;mah:Flyout Header="Second Flyout" IsOpen="{Binding IsSecondFlyoutOpen}" Position="Right" Width="300"&gt;
-          &lt;!-- Your custom content here --&gt;
+      &lt;mah:Flyout Header="About" IsOpen="{Binding IsAboutFlyoutOpen}" Position="Right" Width="300"&gt;
+          &lt;!-- The content goes here --&gt;
       &lt;/mah:Flyout&gt;
     &lt;/mah:FlyoutsControl&gt;
 &lt;/mah:MetroWindow.Flyouts&gt;
 </code></pre>
-<p>This creates 2 flyouts with a header, sliding out from the right side of the window.</p>
-<p>To open a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> set the <code>IsOpen</code> property to <code>true</code> or use a property on your ModelView at the DataContext of the window.</p>
-<p>The <code><a href="/api/MahApps.Metro.Controls/Position">Position</a></code> property can have these values</p>
-<pre><code class="language-csharp">public enum <a href="/api/MahApps.Metro.Controls/Position">Position</a>
-{
-  Left,
-  Right,
-  Top,
-  Bottom
-}
-</code></pre>
 <p><img src="images/flyout-demo-dark.png" class="img-fluid" alt=""></p>
-<h1 id="themed-flyouts">Themed Flyouts</h1>
-<p>Flyouts can have various themes, assignable through the <code>Theme</code> property, those are:</p>
-<pre><code class="language-csharp">public enum <a href="/api/MahApps.Metro.Controls/FlyoutTheme">FlyoutTheme</a>
-{
-  /// &lt;summary&gt;
-  /// Adapts the Flyout's theme to the theme of its host window.
-  /// &lt;/summary&gt;
-  Adapt,
-
-  /// &lt;summary&gt;
-  /// Adapts the Flyout's theme to the theme of its host window, but inverted.
-  /// This theme can only be applied if the host window's theme abides the "Dark" and "Light" affix convention.
-  /// (see &lt;see cref="ThemeManager.GetInverseTheme"/&gt; for more infos.
-  /// &lt;/summary&gt;
-  Inverse,
-
-  /// &lt;summary&gt;
-  /// The dark theme. This is the default theme.
-  /// &lt;/summary&gt;
-  Dark,
-  Light,
-
-  /// &lt;summary&gt;
-  /// The flyouts theme will match the host window's accent color.
-  /// &lt;/summary&gt;
-  Accent
-}
-</code></pre>
+<h2 id="position-enum">Position enum</h2>
+<p>Specifies the position fo the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Value</th>
+<th></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left</td>
+<td>0</td>
+<td>Shows the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> on the left side.</td>
+</tr>
+<tr>
+<td>Right</td>
+<td>1</td>
+<td>Shows the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> on the right side.</td>
+</tr>
+<tr>
+<td>Top</td>
+<td>2</td>
+<td>Shows the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> on the top.</td>
+</tr>
+<tr>
+<td>Bottom</td>
+<td>3</td>
+<td>Shows the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> on the bottom.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="flyouttheme-enum">FlyoutTheme enum</h2>
+<p>Specifies how a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> is being themed.</p>
+<h3 id="fields">Fields</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Value</th>
+<th></th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Adapt</td>
+<td>0</td>
+<td>Adapts the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> theme to the theme of the host window or application.</td>
+</tr>
+<tr>
+<td>Inverse</td>
+<td>1</td>
+<td>Adapts the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> theme to the theme of the host window or application, but inverted. This theme can only be applied if the host window's theme abides the <code>Dark</code> and <code>Light</code> affix convention.</td>
+</tr>
+<tr>
+<td>Dark</td>
+<td>2</td>
+<td>Use the dark theme for the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>. This is the default theme.</td>
+</tr>
+<tr>
+<td>Light</td>
+<td>3</td>
+<td>Use the light theme for the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>.</td>
+</tr>
+<tr>
+<td>Accent</td>
+<td>4</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> theme will match the host window's accent color. This option needs more action by the user, such as using the correct Foreground for the controls inside the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>.</td>
+</tr>
+</tbody>
+</table>
 <p><img src="images/flyout-demo-accent.png" class="img-fluid" alt=""></p>
-<h1 id="overlay-behavior">Overlay Behavior</h1>
-<p>With the overlay behaviors you can set visibility of the <code>Icon</code>, <code>LeftWindowCommands</code>, <code>RightWindowCommands</code> and the <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> when a Flyout will be shown.</p>
-<p>The <code>LeftWindowCommands</code>, <code>RightWindowCommands</code> and the <code>Icon</code> will never be shown over an opened Flyout.</p>
-<pre><code class="language-csharp">[Flags]
-public enum <a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">WindowCommandsOverlayBehavior</a>
-{
-  /// &lt;summary&gt;
-  /// Doesn't overlay a hidden TitleBar.
-  /// &lt;/summary&gt;
-  Never = 0,
-
-  /// &lt;summary&gt;
-  /// Overlays a hidden TitleBar.
-  /// &lt;/summary&gt;
-  HiddenTitleBar = 1 &lt;&lt; 0
-}
-</code></pre>
-<p>The <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> (Min, Max/Restore and Close Buttons) can be handled by these values.</p>
-<pre><code class="language-csharp">[Flags]
-public enum <a href="/api/MahApps.Metro.Controls/OverlayBehavior">OverlayBehavior</a>
-{
-  /// &lt;summary&gt;
-  /// Doesn't overlay Flyouts nor a hidden TitleBar.
-  /// &lt;/summary&gt;
-  Never = 0,
-
-  /// &lt;summary&gt;
-  /// Overlays opened &lt;see cref="Flyout"/&gt; controls.
-  /// &lt;/summary&gt;
-  Flyouts = 1 &lt;&lt; 0,
-
-  /// &lt;summary&gt;
-  /// Overlays a hidden TitleBar.
-  /// &lt;/summary&gt;
-  HiddenTitleBar = 1 &lt;&lt; 1,
-
-  Always = ~(-1 &lt;&lt; 2)
-}
-</code></pre>
+<h2 id="overlay-behavior">Overlay Behavior</h2>
+<p>The overlay behavior properties of the <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> sets the visibility of the <code>Icon</code>, <code>LeftWindowCommands</code>, <code>RightWindowCommands</code> and <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> when a Flyout is shown.</p>
+<h3 id="metrowindow-properties">MetroWindow Properties</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LeftWindowCommandsOverlayBehavior</td>
+<td>WindowCommandsOverlayBehavior</td>
+<td>Gets or sets the overlay behavior for the <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> on the left side of the title bar.</td>
+</tr>
+<tr>
+<td>RightWindowCommandsOverlayBehavior</td>
+<td>WindowCommandsOverlayBehavior</td>
+<td>Gets or sets the overlay behavior for the <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> on the right side of the title bar.</td>
+</tr>
+<tr>
+<td>WindowButtonCommandsOverlayBehavior</td>
+<td>OverlayBehavior</td>
+<td>Gets or sets the overlay behavior for the <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> (Min / Max / Restore / Close) on the title bar.</td>
+</tr>
+<tr>
+<td>IconOverlayBehavior</td>
+<td>OverlayBehavior</td>
+<td>Gets or sets the overlay behavior for the icon on the title bar.</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+The <code>LeftWindowCommands</code>, <code>RightWindowCommands</code> and the <code>Icon</code> will never be shown over an opened <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>.</p>
+</div>
+<h2 id="windowcommandsoverlaybehavior-enum">WindowCommandsOverlayBehavior enum</h2>
+<p>Specifies the visibility of the <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code>.</p>
+<h3 id="fields-1">Fields</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Never</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> will never be shown over a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> or hidden title bar.</td>
+</tr>
+<tr>
+<td>HiddenTitleBar</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> will be shown even if a title bar is hidden.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="overlaybehavior-enum">OverlayBehavior enum</h2>
+<p>Specifies the visibility of the <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> (Min, Max/Restore and Close Buttons) and the <code>Icon</code>.</p>
+<h3 id="fields-2">Fields</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Never</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> or the icon will never be shown over a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> or hidden title bar.</td>
+</tr>
+<tr>
+<td>Flyouts</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> or the icon overlays all opened <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>.</td>
+</tr>
+<tr>
+<td>HiddenTitleBar</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> or the icon will be shown even if a title bar is hidden.</td>
+</tr>
+<tr>
+<td>Always</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> or the icon will always be shown.</td>
+</tr>
+</tbody>
+</table>
 
 	</section>
                 
