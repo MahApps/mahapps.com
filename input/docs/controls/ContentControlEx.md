@@ -19,7 +19,7 @@ The `ContentCharacterCasing` property works only for `string` content type.
 
 ## CharacterCasing Enum
 
-Specifies the case of characters in a `ContentControlEy` or `TextBox` control.
+Specifies the case of characters in a `ContentControlEx` or `TextBox` control.
 
 [Official documentation](https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.charactercasing) 
 
