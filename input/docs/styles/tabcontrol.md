@@ -8,7 +8,7 @@ There are three included tab styles
 - `AnimatedTabControl` style
 - `SingleRowAnimatedTabControl` style
 
-The default `TabControl` style is included in `Controls.xaml`, but the other two require specific referencing (make sure to do this *after* a reference to `Controls.xaml`)
+All styles are included by default and can be set by using the desired style.
 
 ## Default
 
@@ -19,7 +19,7 @@ This shows the three states - selected/active tab, hover and inactive.
 ## AnimatedTabControl
 
 ```xml
-<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" />
+<TabControl Style="{DynamicResource MahApps.Styles.TabControl.Animated}">
 ```
 
 Functioning just like the regular `TabControl`, except it animates every tab change by wrapping everything in a `MetroContentControl`.
@@ -27,7 +27,7 @@ Functioning just like the regular `TabControl`, except it animates every tab cha
 ## AnimatedSingleRowTabControl
 
 ```xml
-<ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" />
+<TabControl Style="{DynamicResource MahApps.Styles.TabControl.AnimatedSingleRow}">
 ```
 
 `AnimatedSingleRowTabControl` functions exactly the same as the `AnimatedTabControl` except the tabs will only appear on a single line rather than wrapping. 
