@@ -233,16 +233,16 @@
 <li><code>AnimatedTabControl</code> style</li>
 <li><code>SingleRowAnimatedTabControl</code> style</li>
 </ul>
-<p>The default <code>TabControl</code> style is included in <code>Controls.xaml</code>, but the other two require specific referencing (make sure to do this <em>after</em> a reference to <code>Controls.xaml</code>)</p>
+<p>All styles are included by default and can be set by using the desired style.</p>
 <h2 id="default">Default</h2>
 <p><img src="images/default_tab_control.png" class="img-fluid" alt=""></p>
 <p>This shows the three states - selected/active tab, hover and inactive.</p>
 <h2 id="animatedtabcontrol">AnimatedTabControl</h2>
-<pre><code class="language-xml">&lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedTabControl.xaml" /&gt;
+<pre><code class="language-xml">&lt;TabControl Style="{DynamicResource MahApps.Styles.TabControl.Animated}"&gt;
 </code></pre>
 <p>Functioning just like the regular <code>TabControl</code>, except it animates every tab change by wrapping everything in a <code><a href="/api/MahApps.Metro.Controls/MetroContentControl">MetroContentControl</a></code>.</p>
 <h2 id="animatedsinglerowtabcontrol">AnimatedSingleRowTabControl</h2>
-<pre><code class="language-xml">&lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.AnimatedSingleRowTabControl.xaml" /&gt;
+<pre><code class="language-xml">&lt;TabControl Style="{DynamicResource MahApps.Styles.TabControl.AnimatedSingleRow}"&gt;
 </code></pre>
 <p><code>AnimatedSingleRowTabControl</code> functions exactly the same as the <code>AnimatedTabControl</code> except the tabs will only appear on a single line rather than wrapping.
 Instead of wrapping, arrows (left/right) are presented.</p>
