@@ -2,10 +2,10 @@
 // TOOLS / ADDINS
 ///////////////////////////////////////////////////////////////////////////////
 
-#tool nuget:?package=Wyam
+#tool nuget:?package=Wyam&version=2.2.9
 
-#addin nuget:?package=Cake.Figlet
-#addin nuget:?package=Cake.Wyam
+#addin nuget:?package=Cake.Figlet&version=1.4.0
+#addin nuget:?package=Cake.Wyam&version=2.2.9
 
 ///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS
