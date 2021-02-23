@@ -4,7 +4,7 @@
 	<title>MahApps.Metro</title>
 	<link rel="self" href="https://mahapps.com/" />
 	<rights>2021</rights>
-	<updated>2021-01-04T12:58:30Z</updated>
+	<updated>2021-02-23T22:17:37Z</updated>
 	<entry>
 		<id>https://mahapps.com/blog/release-v1.6.5</id>
 		<title>Release 1.6.5</title>
@@ -1304,6 +1304,20 @@ It takes the largest frame from the window which has equal or smaller size than 
 </content>
 	</entry>
 	<entry>
+		<id>https://mahapps.com/blog/release-v1.2.2</id>
+		<title>Release 1.2.2</title>
+		<author>
+			<name>punker76</name>
+		</author>
+		<link href="https://mahapps.com/blog/release-v1.2.2" />
+		<updated>2016-01-12T00:00:00Z</updated>
+		<content>&lt;h1 id="bugfixes"&gt;Bugfixes&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed strong sign assembly stuff&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+	</entry>
+	<entry>
 		<id>https://mahapps.com/blog/release-v1.2.1</id>
 		<title>Release 1.2.1</title>
 		<author>
@@ -1315,20 +1329,6 @@ It takes the largest frame from the window which has equal or smaller size than 
 &lt;ul&gt;
 &lt;li&gt;Fixed hidden focus for TextBox control (and other input controls) #2296 #2304&lt;/li&gt;
 &lt;li&gt;Fixed not working &lt;code&gt;TextBoxHelper.SelectAllOnFocus=&amp;quot;True&amp;quot;&lt;/code&gt; #2307 (&amp;#64;sachokFoX)&lt;/li&gt;
-&lt;/ul&gt;
-</content>
-	</entry>
-	<entry>
-		<id>https://mahapps.com/blog/release-v1.2.2</id>
-		<title>Release 1.2.2</title>
-		<author>
-			<name>punker76</name>
-		</author>
-		<link href="https://mahapps.com/blog/release-v1.2.2" />
-		<updated>2016-01-12T00:00:00Z</updated>
-		<content>&lt;h1 id="bugfixes"&gt;Bugfixes&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Fixed strong sign assembly stuff&lt;/li&gt;
 &lt;/ul&gt;
 </content>
 	</entry>
