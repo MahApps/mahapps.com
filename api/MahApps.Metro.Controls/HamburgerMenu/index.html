@@ -148,6 +148,14 @@
 			<li class="header">Namespace</li>
 		<li><a href="/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></li>
 		<li role="separator" class="divider"></li>
+			<li class="header">Interface Types</li>
+				<li><a href="/api/MahApps.Metro.Controls/IDataGridColumnStylesHelper">I<wbr>Data<wbr>Grid<wbr>Column<wbr>Styles<wbr>Helper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuHeaderItem">I<wbr>Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuItem">IHamburgerMenuItem</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuItemBase">I<wbr>Hamburger<wbr>Menu<wbr>Item<wbr>Base</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuSeparatorItem">I<wbr>Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IMetroThumb">IMetroThumb</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IWindowPlacementSettings">I<wbr>Window<wbr>Placement<wbr>Settings</a></li>
 			<li class="header">Class Types</li>
 				<li><a href="/api/MahApps.Metro.Controls/Badged">Badged</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/BaseMetroTabControl">BaseMetroTabControl</a></li>
@@ -268,14 +276,6 @@
 				<li><a href="/api/MahApps.Metro.Controls/TransitionType">TransitionType</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/UnderlinedType">UnderlinedType</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">Window<wbr>Commands<wbr>Overlay<wbr>Behavior</a></li>
-			<li class="header">Interface Types</li>
-				<li><a href="/api/MahApps.Metro.Controls/IDataGridColumnStylesHelper">I<wbr>Data<wbr>Grid<wbr>Column<wbr>Styles<wbr>Helper</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuHeaderItem">I<wbr>Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuItem">IHamburgerMenuItem</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuItemBase">I<wbr>Hamburger<wbr>Menu<wbr>Item<wbr>Base</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuSeparatorItem">I<wbr>Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IMetroThumb">IMetroThumb</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IWindowPlacementSettings">I<wbr>Window<wbr>Placement<wbr>Settings</a></li>
 
 
                     </ul>
@@ -334,11 +334,11 @@ class Type type-node
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>[StyleTypedProperty(Property = nameof(HamburgerButtonStyle), StyleTargetType = typeof(Button))]
-[TemplatePart(Name = "HamburgerButton", Type = typeof(Button))]
+	<pre><code>[TemplatePart(Name = "HamburgerButton", Type = typeof(Button))]
 [TemplatePart(Name = "ButtonsListView", Type = typeof(ListBox))]
 [TemplatePart(Name = "OptionsListView", Type = typeof(ListBox))]
 [StyleTypedProperty(Property = nameof(OptionsItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
+[StyleTypedProperty(Property = nameof(HamburgerButtonStyle), StyleTargetType = typeof(Button))]
 [StyleTypedProperty(Property = nameof(ResizeThumbStyle), StyleTargetType = typeof(MetroThumb))]
 [StyleTypedProperty(Property = nameof(ItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
 [StyleTypedProperty(Property = nameof(HeaderItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
@@ -359,19 +359,19 @@ public class HamburgerMenu : ContentControl</code></pre>
 					</tr>
 				</thead>
 					<tbody><tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
 						<td>StyleTypedProperty</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>TemplatePart</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>TemplatePart</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>TemplatePart</td>
 						<td></td>
 					</tr>
 					<tr>
