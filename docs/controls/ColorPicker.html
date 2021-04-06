@@ -291,7 +291,7 @@
 <!-- End Document Outline -->
 <hr>
 <h1 id="introduction">Introduction</h1>
-<p>The <code>ColorPicker</code> controls can be used to select any <code>System.Windows.Media.Color</code> (in this document simply called <code>Color</code>). There are four different controls available to select a <code>Color</code>.</p>
+<p>The <code><a href="/api/MahApps.Metro.Controls/ColorPicker">ColorPicker</a></code> controls can be used to select any <code>System.Windows.Media.Color</code> (in this document simply called <code>Color</code>). There are four different controls available to select a <code>Color</code>.</p>
 <table class="table">
 <thead>
 <tr>
@@ -342,7 +342,7 @@ Color? myColor = MahApps.Metro.Controls.ColorHelper.ColorFromString("#FF000000",
 If you set the second parameter to 'null' the default dictionary will be used.</p>
 </div>
 <h2 id="how-to-provide-custom-color-names">How to provide custom color names</h2>
-<p>You can change the build in dictionary via <code>MahApps.Metro.Controls.ColorHelper.ColorNamesDictionary</code> by adding, removing or changing any color name. You can also create your own <code>Dictionary&lt;Color?, string&gt;</code> anywhere in your <code>Model</code> or <code>ViewModel</code> to provide your own color names. That way you can use also different dictionaries for different <code>ColorPicker</code>.</p>
+<p>You can change the build in dictionary via <code>MahApps.Metro.Controls.ColorHelper.ColorNamesDictionary</code> by adding, removing or changing any color name. You can also create your own <code>Dictionary&lt;Color?, string&gt;</code> anywhere in your <code>Model</code> or <code>ViewModel</code> to provide your own color names. That way you can use also different dictionaries for different <code><a href="/api/MahApps.Metro.Controls/ColorPicker">ColorPicker</a></code>.</p>
 <h3 id="example">Example</h3>
 <pre><code class="language-csharp">Dictionary&lt;Color?, string&gt; myColorNames = new Dictionary&lt;Color?, string&gt;()
 {
@@ -360,7 +360,7 @@ If you set the second parameter to 'null' the default dictionary will be used.</
 <p>You can help providing translations to the build in dictionary.</p>
 <p>We recommend using the <a href="https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager">ResXManager</a>.</p>
 <h1 id="colorcanvas">ColorCanvas</h1>
-<p>The <code>ColorCanvas</code> control lets the user select a <code>Color</code> by the following options:</p>
+<p>The <code><a href="/api/MahApps.Metro.Controls/ColorCanvas">ColorCanvas</a></code> control lets the user select a <code>Color</code> by the following options:</p>
 <ul>
 <li>Changing the ARGB-Values</li>
 <li>Changing the HSV-Values</li>
@@ -446,7 +446,7 @@ If you set the second parameter to 'null' the default dictionary will be used.</
 <tr>
 <td>SelectedHSVColor</td>
 <td>HSVColor</td>
-<td>Gets the selected color as <code>HSVColor</code></td>
+<td>Gets the selected color as <code><a href="/api/MahApps.Metro.Controls/HSVColor">HSVColor</a></code></td>
 </tr>
 <tr>
 <td>ColorName</td>
@@ -556,7 +556,7 @@ If you set the second parameter to 'null' the default dictionary will be used.</
 </tbody>
 </table>
 <h2 id="dynamicresources">DynamicResources</h2>
-<p>You can override the following <code>Resources</code> to modify the appearance of the <code>ColorCanvas</code> further.</p>
+<p>You can override the following <code>Resources</code> to modify the appearance of the <code><a href="/api/MahApps.Metro.Controls/ColorCanvas">ColorCanvas</a></code> further.</p>
 <table class="table">
 <thead>
 <tr>
@@ -594,7 +594,7 @@ If you set the second parameter to 'null' the default dictionary will be used.</
 <tr>
 <td>MahApps.Styles.ColorEyeDropper.ColorCanvas</td>
 <td>Style</td>
-<td>Overrides the Style of the <code>ColorEyeDropper</code></td>
+<td>Overrides the Style of the <code><a href="/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a></code></td>
 </tr>
 </tbody>
 </table>
@@ -611,7 +611,7 @@ If you set the second parameter to 'null' the default dictionary will be used.</
                  LabelRedChannel="Red" /&gt;
 </code></pre>
 <h1 id="colorpalette">ColorPalette</h1>
-<p>The <code>ColorPalette</code> control can be used to present the user a swatch of predefined colors. As this control is derived from <code>System.Windows.Controls.ListBox</code> you can use all functionality know from the <code>ListBox</code> control.</p>
+<p>The <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code> control can be used to present the user a swatch of predefined colors. As this control is derived from <code>System.Windows.Controls.ListBox</code> you can use all functionality know from the <code>ListBox</code> control.</p>
 <h2 id="the-user-interface-1">The user interface</h2>
 <p><img src="images/ColorPicker_ColorPalette_Numbered.png" class="img-fluid" alt=""></p>
 <table class="table">
@@ -624,7 +624,7 @@ If you set the second parameter to 'null' the default dictionary will be used.</
 <tbody>
 <tr>
 <td>01</td>
-<td>The header of the <code>ColorPalette</code></td>
+<td>The header of the <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code></td>
 </tr>
 <tr>
 <td>02</td>
@@ -638,7 +638,7 @@ If you set the second parameter to 'null' the default dictionary will be used.</
 </table>
 <h2 id="properties-1">Properties</h2>
 <p>The available colors can be either added directly to the <code>Items</code> or by binding to the <code>ItemsSource</code>. The selection can be handled by binding to <code>SelectedValue</code>, <code>SelectedItem</code> or <code>SelectedIndex</code>.</p>
-<p>In addition to this the <code>ColorPalette</code> provides the following properties.</p>
+<p>In addition to this the <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code> provides the following properties.</p>
 <table class="table">
 <thead>
 <tr>
@@ -703,12 +703,12 @@ If you set the second parameter to 'null' the default dictionary will be used.</
 <tr>
 <td>MahApps.Styles.ColorPalette</td>
 <td>Style</td>
-<td>Overrides the default <code>Style</code> for the <code>ColorPalette</code></td>
+<td>Overrides the default <code>Style</code> for the <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code></td>
 </tr>
 </tbody>
 </table>
 <h2 id="example-2">Example</h2>
-<p>The below example shows how to use the <code>ColorPalette</code> via setting the <code>ItemsSource</code> to a build in <code>ColorPalette</code>.</p>
+<p>The below example shows how to use the <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code> via setting the <code>ItemsSource</code> to a build in <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code>.</p>
 <pre><code class="language-xml">&lt;!-- make sure to add the right namespace --&gt;
 &lt;!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" --&gt;
 
@@ -737,9 +737,9 @@ MahApps provides <a href="#build-in-color-palettes">build in color palettes</a><
 </ul>
 <p>All build in <code>ColorPalettes</code> are internally an <code>ObservableCollection</code>, so you can modify them to your needs.</p>
 <h1 id="coloreyedropper">ColorEyeDropper</h1>
-<p>The <code>ColorEyeDropper</code> control lets the user select a <code>Color</code> with the mouse directly from anywhere on the screen, even outside of your <code>Application</code>. As this control is derived from <code>System.Windows.Controls.Button</code> you can use all functionality know from the <code>Button</code> control.</p>
+<p>The <code><a href="/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a></code> control lets the user select a <code>Color</code> with the mouse directly from anywhere on the screen, even outside of your <code>Application</code>. As this control is derived from <code>System.Windows.Controls.Button</code> you can use all functionality know from the <code>Button</code> control.</p>
 <h2 id="the-user-interface-2">The user interface</h2>
-<p>If the user presses the left mouse button on the <code>ColorEyeDropper</code> the cursor will change to an eye-dropper symbol and a preview popup will appear. Now the user needs to keep the mouse pressed while dragging the mouse to the desired pixel. A magnifier with a cross hair helps getting the exact pixel position. As soon as the user releases the left mouse button the <code>SelectedColor</code> will get updated.</p>
+<p>If the user presses the left mouse button on the <code><a href="/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a></code> the cursor will change to an eye-dropper symbol and a preview popup will appear. Now the user needs to keep the mouse pressed while dragging the mouse to the desired pixel. A magnifier with a cross hair helps getting the exact pixel position. As soon as the user releases the left mouse button the <code>SelectedColor</code> will get updated.</p>
 <p><img src="images/ColorPicker_ColorEyeDropper_Numbered.png" class="img-fluid" alt=""></p>
 <table class="table">
 <thead>
@@ -751,7 +751,7 @@ MahApps provides <a href="#build-in-color-palettes">build in color palettes</a><
 <tbody>
 <tr>
 <td>01</td>
-<td>The <code>Button</code> to start the <code>ColorEyeDropper</code></td>
+<td>The <code>Button</code> to start the <code><a href="/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a></code></td>
 </tr>
 <tr>
 <td>02</td>
@@ -920,7 +920,7 @@ The <code>DataTemplate</code> should be designed for this <code>DataType</code>:
 <tr>
 <td>SelectedHSVColor</td>
 <td>HSVColor</td>
-<td>Gets the selected color as <code>HSVColor</code></td>
+<td>Gets the selected color as <code><a href="/api/MahApps.Metro.Controls/HSVColor">HSVColor</a></code></td>
 </tr>
 <tr>
 <td>ColorName</td>
@@ -1030,12 +1030,12 @@ The <code>DataTemplate</code> should be designed for this <code>DataType</code>:
 <tr>
 <td>AdvancedTabHeader</td>
 <td>object</td>
-<td>Gets or sets the <code>Header</code> of the <code>ColorCanvas</code>-tab</td>
+<td>Gets or sets the <code>Header</code> of the <code><a href="/api/MahApps.Metro.Controls/ColorCanvas">ColorCanvas</a></code>-tab</td>
 </tr>
 <tr>
 <td>AdvancedTabHeaderTemplate</td>
 <td>DataTemplate</td>
-<td>Gets or sets the <code>DataTemplate</code> for the <code>Header</code> of the <code>ColorCanvas</code>-tab</td>
+<td>Gets or sets the <code>DataTemplate</code> for the <code>Header</code> of the <code><a href="/api/MahApps.Metro.Controls/ColorCanvas">ColorCanvas</a></code>-tab</td>
 </tr>
 <tr>
 <td>DropDownHeight</td>
@@ -1074,7 +1074,7 @@ The <code>DataTemplate</code> should be designed for this <code>DataType</code>:
 </tr>
 </tbody>
 </table>
-<p>The <code>ColorPicker</code> can hold up to five different <a href="#colorpalette"><code>ColorPalettes</code></a> which can be controlled by the following properties. As the properties repeat for all five <code>ColorPalettes</code> we use <b>[###ColorPalette]</b> as a placeholder. In your code please replace it with one of these names:</p>
+<p>The <code><a href="/api/MahApps.Metro.Controls/ColorPicker">ColorPicker</a></code> can hold up to five different <a href="#colorpalette"><code>ColorPalettes</code></a> which can be controlled by the following properties. As the properties repeat for all five <code>ColorPalettes</code> we use <b>[###ColorPalette]</b> as a placeholder. In your code please replace it with one of these names:</p>
 <ul>
 <li>StandardColorPalette</li>
 <li>AvailableColorPalette</li>
@@ -1094,31 +1094,31 @@ The <code>DataTemplate</code> should be designed for this <code>DataType</code>:
 <tr>
 <td><b>[###ColorPalette]</b>Header</td>
 <td>object</td>
-<td>Gets or sets the header content of the <code>ColorPalette</code></td>
+<td>Gets or sets the header content of the <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code></td>
 </tr>
 <tr>
 <td><b>[###ColorPalette]</b>HeaderTemplate</td>
 <td>DataTemplate</td>
-<td>Gets or sets the header content template of the <code>ColorPalette</code></td>
+<td>Gets or sets the header content template of the <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code></td>
 </tr>
 <tr>
 <td><b>[###ColorPalette]</b>ItemsSource</td>
 <td>IEnumerable</td>
-<td>Gets or sets the <code>ItemsSource</code> of the <code>ColorPalette</code></td>
+<td>Gets or sets the <code>ItemsSource</code> of the <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code></td>
 </tr>
 <tr>
 <td><b>[###ColorPalette]</b>Style</td>
 <td>Style</td>
-<td>Gets or sets the <code>Style</code> of the <code>ColorPalette</code></td>
+<td>Gets or sets the <code>Style</code> of the <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code></td>
 </tr>
 <tr>
 <td>Is<b>[###ColorPalette]</b>Visible</td>
 <td>bool</td>
-<td>Gets or sets whether the <code>ColorPalette</code> is visible</td>
+<td>Gets or sets whether the <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code> is visible</td>
 </tr>
 </tbody>
 </table>
-<p>The <code>RecentColorPalette</code> is a special <code>ColorPalette</code> which is used to store the recent selected colors. To control the behavior of this <code>ColorPalette</code> you can use these two properties.</p>
+<p>The <code>RecentColorPalette</code> is a special <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code> which is used to store the recent selected colors. To control the behavior of this <code><a href="/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></code> you can use these two properties.</p>
 <table class="table">
 <thead>
 <tr>
@@ -1191,12 +1191,12 @@ The <code>DataTemplate</code> should be designed for this <code>DataType</code>:
 <tr>
 <td>MahApps.Styles.ToggleButton.ColorPickerDropDown</td>
 <td>Style</td>
-<td>Overrides the <code>Style</code> for the <code>ColorPicker</code>-<code>ToggleButton</code></td>
+<td>Overrides the <code>Style</code> for the <code><a href="/api/MahApps.Metro.Controls/ColorPicker">ColorPicker</a></code>-<code>ToggleButton</code></td>
 </tr>
 <tr>
 <td>MahApps.Styles.ColorPalette.ColorPickerDropDown</td>
 <td>Style</td>
-<td>Overrides the <code>Style</code> for the <code>ColorPicker</code>-<a href="#colorpalette"><code>ColorPalette</code></a></td>
+<td>Overrides the <code>Style</code> for the <code><a href="/api/MahApps.Metro.Controls/ColorPicker">ColorPicker</a></code>-<a href="#colorpalette"><code>ColorPalette</code></a></td>
 </tr>
 </tbody>
 </table>

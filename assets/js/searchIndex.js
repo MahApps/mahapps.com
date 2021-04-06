@@ -39,34 +39,6 @@ var searchModule = function() {
     a(
         {
             id:0,
-            title:"Extensions",
-            content:"Extensions",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/Extensions',
-            title:"Extensions",
-            description:""
-        }
-    );
-    a(
-        {
-            id:1,
-            title:"WindowButtonCommands",
-            content:"WindowButtonCommands",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/WindowButtonCommands',
-            title:"WindowButtonCommands",
-            description:""
-        }
-    );
-    a(
-        {
-            id:2,
             title:"MetroAnimatedTabControl",
             content:"MetroAnimatedTabControl",
             description:'',
@@ -80,553 +52,133 @@ var searchModule = function() {
     );
     a(
         {
-            id:3,
-            title:"ClosingWindowEventHandlerArgs",
-            content:"ClosingWindowEventHandlerArgs",
+            id:1,
+            title:"MarkupConverter",
+            content:"MarkupConverter",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/ClosingWindowEventHandlerArgs',
-            title:"ClosingWindowEventHandlerArgs",
+            url:'/api/MahApps.Metro.Converters/MarkupConverter',
+            title:"MarkupConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:2,
+            title:"RangeSliderAutoTooltipValues",
+            content:"RangeSliderAutoTooltipValues",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/RangeSliderAutoTooltipValues',
+            title:"RangeSliderAutoTooltipValues",
+            description:""
+        }
+    );
+    a(
+        {
+            id:3,
+            title:"HamburgerMenuHeaderItem",
+            content:"HamburgerMenuHeaderItem",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HamburgerMenuHeaderItem',
+            title:"HamburgerMenuHeaderItem",
             description:""
         }
     );
     a(
         {
             id:4,
-            title:"TiltBehavior",
-            content:"TiltBehavior",
+            title:"DialogManager",
+            content:"DialogManager",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Behaviors/TiltBehavior',
-            title:"TiltBehavior",
+            url:'/api/MahApps.Metro.Controls.Dialogs/DialogManager',
+            title:"DialogManager",
             description:""
         }
     );
     a(
         {
             id:5,
-            title:"DataGridHelper",
-            content:"DataGridHelper",
+            title:"AddToRecentColorsTrigger",
+            content:"AddToRecentColorsTrigger",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/DataGridHelper',
-            title:"DataGridHelper",
+            url:'/api/MahApps.Metro.Controls/AddToRecentColorsTrigger',
+            title:"AddToRecentColorsTrigger",
             description:""
         }
     );
     a(
         {
             id:6,
-            title:"SplitViewTemplateSettings",
-            content:"SplitViewTemplateSettings",
+            title:"LoginDialogData",
+            content:"LoginDialogData",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/SplitViewTemplateSettings',
-            title:"SplitViewTemplateSettings",
+            url:'/api/MahApps.Metro.Controls.Dialogs/LoginDialogData',
+            title:"LoginDialogData",
             description:""
         }
     );
     a(
         {
             id:7,
-            title:"BorderlessWindowBehavior",
-            content:"BorderlessWindowBehavior",
+            title:"HamburgerMenuIconItem",
+            content:"HamburgerMenuIconItem",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Behaviors/BorderlessWindowBehavior',
-            title:"BorderlessWindowBehavior",
+            url:'/api/MahApps.Metro.Controls/HamburgerMenuIconItem',
+            title:"HamburgerMenuIconItem",
             description:""
         }
     );
     a(
         {
             id:8,
-            title:"MarkupMultiConverter",
-            content:"MarkupMultiConverter",
+            title:"CustomValidationPopup",
+            content:"CustomValidationPopup",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Converters/MarkupMultiConverter',
-            title:"MarkupMultiConverter",
+            url:'/api/MahApps.Metro.Controls/CustomValidationPopup',
+            title:"CustomValidationPopup",
             description:""
         }
     );
     a(
         {
             id:9,
-            title:"MetroDialogColorScheme",
-            content:"MetroDialogColorScheme",
+            title:"PercentageToGridLengthConverter",
+            content:"PercentageToGridLengthConverter",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls.Dialogs/MetroDialogColorScheme',
-            title:"MetroDialogColorScheme",
+            url:'/api/MahApps.Metro.Converters/PercentageToGridLengthConverter',
+            title:"PercentageToGridLengthConverter",
             description:""
         }
     );
     a(
         {
             id:10,
-            title:"RadiusType",
-            content:"RadiusType",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/RadiusType',
-            title:"RadiusType",
-            description:""
-        }
-    );
-    a(
-        {
-            id:11,
-            title:"StylizedBehaviors",
-            content:"StylizedBehaviors",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Behaviors/StylizedBehaviors',
-            title:"StylizedBehaviors",
-            description:""
-        }
-    );
-    a(
-        {
-            id:12,
-            title:"ComboBoxHelper",
-            content:"ComboBoxHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/ComboBoxHelper',
-            title:"ComboBoxHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:13,
-            title:"FlipViewItem",
-            content:"FlipViewItem",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/FlipViewItem',
-            title:"FlipViewItem",
-            description:""
-        }
-    );
-    a(
-        {
-            id:14,
-            title:"WindowsSettingBehavior",
-            content:"WindowsSettingBehavior",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Behaviors/WindowsSettingBehavior',
-            title:"WindowsSettingBehavior",
-            description:""
-        }
-    );
-    a(
-        {
-            id:15,
-            title:"BooleanBoxes",
-            content:"BooleanBoxes",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.ValueBoxes/BooleanBoxes',
-            title:"BooleanBoxes",
-            description:""
-        }
-    );
-    a(
-        {
-            id:16,
-            title:"GridLengthAnimation",
-            content:"GridLengthAnimation",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/GridLengthAnimation',
-            title:"GridLengthAnimation",
-            description:""
-        }
-    );
-    a(
-        {
-            id:17,
-            title:"TabControlSelectFirstVisibleTabBehavior",
-            content:"TabControlSelectFirstVisibleTabBehavior",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Behaviors/TabControlSelectFirstVisibleTabBehavior',
-            title:"TabControlSelectFirstVisibleTabBehavior",
-            description:""
-        }
-    );
-    a(
-        {
-            id:18,
-            title:"SplitViewPaneClosingEventArgs",
-            content:"SplitViewPaneClosingEventArgs",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/SplitViewPaneClosingEventArgs',
-            title:"SplitViewPaneClosingEventArgs",
-            description:""
-        }
-    );
-    a(
-        {
-            id:19,
-            title:"Tile",
-            content:"Tile",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/Tile',
-            title:"Tile",
-            description:""
-        }
-    );
-    a(
-        {
-            id:20,
-            title:"StylizedBehaviorCollection",
-            content:"StylizedBehaviorCollection",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Behaviors/StylizedBehaviorCollection',
-            title:"StylizedBehaviorCollection",
-            description:""
-        }
-    );
-    a(
-        {
-            id:21,
-            title:"RangeSlider",
-            content:"RangeSlider",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/RangeSlider',
-            title:"RangeSlider",
-            description:""
-        }
-    );
-    a(
-        {
-            id:22,
-            title:"ThicknessToDoubleConverter",
-            content:"ThicknessToDoubleConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/ThicknessToDoubleConverter',
-            title:"ThicknessToDoubleConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:23,
-            title:"ControlsHelper",
-            content:"ControlsHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/ControlsHelper',
-            title:"ControlsHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:24,
-            title:"Pivot",
-            content:"Pivot",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/Pivot',
-            title:"Pivot",
-            description:""
-        }
-    );
-    a(
-        {
-            id:25,
-            title:"IHamburgerMenuItem",
-            content:"IHamburgerMenuItem",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/IHamburgerMenuItem',
-            title:"IHamburgerMenuItem",
-            description:""
-        }
-    );
-    a(
-        {
-            id:26,
-            title:"ToLowerConverter",
-            content:"ToLowerConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/ToLowerConverter',
-            title:"ToLowerConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:27,
-            title:"Utils",
-            content:"Utils",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/Utils',
-            title:"Utils",
-            description:""
-        }
-    );
-    a(
-        {
-            id:28,
-            title:"MultiSelectorHelper",
-            content:"MultiSelectorHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MultiSelectorHelper',
-            title:"MultiSelectorHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:29,
-            title:"SplitView",
-            content:"SplitView",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/SplitView',
-            title:"SplitView",
-            description:""
-        }
-    );
-    a(
-        {
-            id:30,
-            title:"ItemHelper",
-            content:"ItemHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/ItemHelper',
-            title:"ItemHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:31,
-            title:"TransitionType",
-            content:"TransitionType",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/TransitionType',
-            title:"TransitionType",
-            description:""
-        }
-    );
-    a(
-        {
-            id:32,
-            title:"VisibilityHelper",
-            content:"VisibilityHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/VisibilityHelper',
-            title:"VisibilityHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:33,
-            title:"MetroHeaderAutomationPeer",
-            content:"MetroHeaderAutomationPeer",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Automation.Peers/MetroHeaderAutomationPeer',
-            title:"MetroHeaderAutomationPeer",
-            description:""
-        }
-    );
-    a(
-        {
-            id:34,
-            title:"DialogParticipation",
-            content:"DialogParticipation",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/DialogParticipation',
-            title:"DialogParticipation",
-            description:""
-        }
-    );
-    a(
-        {
-            id:35,
-            title:"ProgressDialogController",
-            content:"ProgressDialogController",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController',
-            title:"ProgressDialogController",
-            description:""
-        }
-    );
-    a(
-        {
-            id:36,
-            title:"BaseMetroTabControl",
-            content:"BaseMetroTabControl",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/BaseMetroTabControl',
-            title:"BaseMetroTabControl",
-            description:""
-        }
-    );
-    a(
-        {
-            id:37,
-            title:"MetroTabControl",
-            content:"MetroTabControl",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MetroTabControl',
-            title:"MetroTabControl",
-            description:""
-        }
-    );
-    a(
-        {
-            id:38,
-            title:"Position",
-            content:"Position",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/Position',
-            title:"Position",
-            description:""
-        }
-    );
-    a(
-        {
-            id:39,
-            title:"CloseTabItemAction",
-            content:"CloseTabItemAction",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Actions/CloseTabItemAction',
-            title:"CloseTabItemAction",
-            description:""
-        }
-    );
-    a(
-        {
-            id:40,
-            title:"TextBoxHelper",
-            content:"TextBoxHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/TextBoxHelper',
-            title:"TextBoxHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:41,
-            title:"StringToVisibilityConverter",
-            content:"StringToVisibilityConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/StringToVisibilityConverter',
-            title:"StringToVisibilityConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:42,
             title:"NavigationButtonsPosition",
             content:"NavigationButtonsPosition",
             description:'',
@@ -640,77 +192,581 @@ var searchModule = function() {
     );
     a(
         {
-            id:43,
-            title:"CheckBoxHelper",
-            content:"CheckBoxHelper",
+            id:11,
+            title:"ToUpperConverter",
+            content:"ToUpperConverter",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/CheckBoxHelper',
-            title:"CheckBoxHelper",
+            url:'/api/MahApps.Metro.Converters/ToUpperConverter',
+            title:"ToUpperConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:12,
+            title:"BaseMetroTabControl TabItemClosingEventHandler",
+            content:"BaseMetroTabControl TabItemClosingEventHandler",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/TabItemClosingEventHandler',
+            title:"BaseMetroTabControl.TabItemClosingEventHandler",
+            description:""
+        }
+    );
+    a(
+        {
+            id:13,
+            title:"MouseWheelChange",
+            content:"MouseWheelChange",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MouseWheelChange',
+            title:"MouseWheelChange",
+            description:""
+        }
+    );
+    a(
+        {
+            id:14,
+            title:"IHamburgerMenuHeaderItem",
+            content:"IHamburgerMenuHeaderItem",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/IHamburgerMenuHeaderItem',
+            title:"IHamburgerMenuHeaderItem",
+            description:""
+        }
+    );
+    a(
+        {
+            id:15,
+            title:"Badged",
+            content:"Badged",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/Badged',
+            title:"Badged",
+            description:""
+        }
+    );
+    a(
+        {
+            id:16,
+            title:"MathDivideConverter",
+            content:"MathDivideConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/MathDivideConverter',
+            title:"MathDivideConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:17,
+            title:"ColorPickerBase",
+            content:"ColorPickerBase",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ColorPickerBase',
+            title:"ColorPickerBase",
+            description:""
+        }
+    );
+    a(
+        {
+            id:18,
+            title:"TiltBehavior",
+            content:"TiltBehavior",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Behaviors/TiltBehavior',
+            title:"TiltBehavior",
+            description:""
+        }
+    );
+    a(
+        {
+            id:19,
+            title:"MetroDialogAutomationPeer",
+            content:"MetroDialogAutomationPeer",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Automation.Peers/MetroDialogAutomationPeer',
+            title:"MetroDialogAutomationPeer",
+            description:""
+        }
+    );
+    a(
+        {
+            id:20,
+            title:"ColorToNameConverter",
+            content:"ColorToNameConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/ColorToNameConverter',
+            title:"ColorToNameConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:21,
+            title:"ComboBoxHelper",
+            content:"ComboBoxHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ComboBoxHelper',
+            title:"ComboBoxHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:22,
+            title:"MathSubtractConverter",
+            content:"MathSubtractConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/MathSubtractConverter',
+            title:"MathSubtractConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:23,
+            title:"DataGridHelper",
+            content:"DataGridHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/DataGridHelper',
+            title:"DataGridHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:24,
+            title:"HSVColor",
+            content:"HSVColor",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HSVColor',
+            title:"HSVColor",
+            description:""
+        }
+    );
+    a(
+        {
+            id:25,
+            title:"Utils",
+            content:"Utils",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/Utils',
+            title:"Utils",
+            description:""
+        }
+    );
+    a(
+        {
+            id:26,
+            title:"DropDownButton",
+            content:"DropDownButton",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/DropDownButton',
+            title:"DropDownButton",
+            description:""
+        }
+    );
+    a(
+        {
+            id:27,
+            title:"ClosingWindowEventHandlerArgs",
+            content:"ClosingWindowEventHandlerArgs",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ClosingWindowEventHandlerArgs',
+            title:"ClosingWindowEventHandlerArgs",
+            description:""
+        }
+    );
+    a(
+        {
+            id:28,
+            title:"PasswordBoxBindingBehavior",
+            content:"PasswordBoxBindingBehavior",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Behaviors/PasswordBoxBindingBehavior',
+            title:"PasswordBoxBindingBehavior",
+            description:""
+        }
+    );
+    a(
+        {
+            id:29,
+            title:"WindowCommandsItem",
+            content:"WindowCommandsItem",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/WindowCommandsItem',
+            title:"WindowCommandsItem",
+            description:""
+        }
+    );
+    a(
+        {
+            id:30,
+            title:"MetroThumbContentControlDragCompletedEventArgs",
+            content:"MetroThumbContentControlDragCompletedEventArgs",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MetroThumbContentControlDragCompletedEventArgs',
+            title:"MetroThumbContentControlDragCompletedEventArgs",
+            description:""
+        }
+    );
+    a(
+        {
+            id:31,
+            title:"HamburgerMenuItemBase",
+            content:"HamburgerMenuItemBase",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HamburgerMenuItemBase',
+            title:"HamburgerMenuItemBase",
+            description:""
+        }
+    );
+    a(
+        {
+            id:32,
+            title:"CornerRadiusFilterConverter",
+            content:"CornerRadiusFilterConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/CornerRadiusFilterConverter',
+            title:"CornerRadiusFilterConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:33,
+            title:"BaseMetroDialog",
+            content:"BaseMetroDialog",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/BaseMetroDialog',
+            title:"BaseMetroDialog",
+            description:""
+        }
+    );
+    a(
+        {
+            id:34,
+            title:"GridLengthAnimation",
+            content:"GridLengthAnimation",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/GridLengthAnimation',
+            title:"GridLengthAnimation",
+            description:""
+        }
+    );
+    a(
+        {
+            id:35,
+            title:"ColorHelper",
+            content:"ColorHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ColorHelper',
+            title:"ColorHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:36,
+            title:"MarkupMultiConverter",
+            content:"MarkupMultiConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/MarkupMultiConverter',
+            title:"MarkupMultiConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:37,
+            title:"ProgressDialog",
+            content:"ProgressDialog",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/ProgressDialog',
+            title:"ProgressDialog",
+            description:""
+        }
+    );
+    a(
+        {
+            id:38,
+            title:"ColorToSolidColorBrushConverter",
+            content:"ColorToSolidColorBrushConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/ColorToSolidColorBrushConverter',
+            title:"ColorToSolidColorBrushConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:39,
+            title:"VisibilityHelper",
+            content:"VisibilityHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/VisibilityHelper',
+            title:"VisibilityHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:40,
+            title:"Tile",
+            content:"Tile",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/Tile',
+            title:"Tile",
+            description:""
+        }
+    );
+    a(
+        {
+            id:41,
+            title:"NumericUpDown",
+            content:"NumericUpDown",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/NumericUpDown',
+            title:"NumericUpDown",
+            description:""
+        }
+    );
+    a(
+        {
+            id:42,
+            title:"IDialogCoordinator",
+            content:"IDialogCoordinator",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/IDialogCoordinator',
+            title:"IDialogCoordinator",
+            description:""
+        }
+    );
+    a(
+        {
+            id:43,
+            title:"NavigationIndexPlacement",
+            content:"NavigationIndexPlacement",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/NavigationIndexPlacement',
+            title:"NavigationIndexPlacement",
             description:""
         }
     );
     a(
         {
             id:44,
-            title:"SplitViewPanePlacement",
-            content:"SplitViewPanePlacement",
+            title:"RangeSelectionChangedEventHandler",
+            content:"RangeSelectionChangedEventHandler",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/SplitViewPanePlacement',
-            title:"SplitViewPanePlacement",
+            url:'/api/MahApps.Metro.Controls/RangeSelectionChangedEventHandler_1',
+            title:"RangeSelectionChangedEventHandler<T>",
             description:""
         }
     );
     a(
         {
             id:45,
-            title:"IHamburgerMenuItemBase",
-            content:"IHamburgerMenuItemBase",
+            title:"ToLowerConverter",
+            content:"ToLowerConverter",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/IHamburgerMenuItemBase',
-            title:"IHamburgerMenuItemBase",
+            url:'/api/MahApps.Metro.Converters/ToLowerConverter',
+            title:"ToLowerConverter",
             description:""
         }
     );
     a(
         {
             id:46,
-            title:"HamburgerMenuSeparatorItem",
-            content:"HamburgerMenuSeparatorItem",
+            title:"BaseMetroTabControl",
+            content:"BaseMetroTabControl",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenuSeparatorItem',
-            title:"HamburgerMenuSeparatorItem",
+            url:'/api/MahApps.Metro.Controls/BaseMetroTabControl',
+            title:"BaseMetroTabControl",
             description:""
         }
     );
     a(
         {
             id:47,
-            title:"ItemClickEventArgs",
-            content:"ItemClickEventArgs",
+            title:"MetroThumb",
+            content:"MetroThumb",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/ItemClickEventArgs',
-            title:"ItemClickEventArgs",
+            url:'/api/MahApps.Metro.Controls/MetroThumb',
+            title:"MetroThumb",
             description:""
         }
     );
     a(
         {
             id:48,
+            title:"ColorCanvas",
+            content:"ColorCanvas",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ColorCanvas',
+            title:"ColorCanvas",
+            description:""
+        }
+    );
+    a(
+        {
+            id:49,
+            title:"MultiSelectorHelper",
+            content:"MultiSelectorHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MultiSelectorHelper',
+            title:"MultiSelectorHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:50,
+            title:"SizeToCornerRadiusConverter",
+            content:"SizeToCornerRadiusConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/SizeToCornerRadiusConverter',
+            title:"SizeToCornerRadiusConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:51,
+            title:"NumericUpDownChangedRoutedEventArgs",
+            content:"NumericUpDownChangedRoutedEventArgs",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventArgs',
+            title:"NumericUpDownChangedRoutedEventArgs",
+            description:""
+        }
+    );
+    a(
+        {
+            id:52,
             title:"WindowButtonCommands ClosingWindowEventHandler",
             content:"WindowButtonCommands ClosingWindowEventHandler",
             description:'',
@@ -724,133 +780,21 @@ var searchModule = function() {
     );
     a(
         {
-            id:49,
-            title:"ThicknessSideType",
-            content:"ThicknessSideType",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/ThicknessSideType',
-            title:"ThicknessSideType",
-            description:""
-        }
-    );
-    a(
-        {
-            id:50,
-            title:"MahAppsLibraryThemeProvider",
-            content:"MahAppsLibraryThemeProvider",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Theming/MahAppsLibraryThemeProvider',
-            title:"MahAppsLibraryThemeProvider",
-            description:""
-        }
-    );
-    a(
-        {
-            id:51,
-            title:"MessageDialog",
-            content:"MessageDialog",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/MessageDialog',
-            title:"MessageDialog",
-            description:""
-        }
-    );
-    a(
-        {
-            id:52,
-            title:"MetroTabItem",
-            content:"MetroTabItem",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MetroTabItem',
-            title:"MetroTabItem",
-            description:""
-        }
-    );
-    a(
-        {
             id:53,
-            title:"MetroThumbContentControlDragStartedEventArgs",
-            content:"MetroThumbContentControlDragStartedEventArgs",
+            title:"CustomDialog",
+            content:"CustomDialog",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/MetroThumbContentControlDragStartedEventArgs',
-            title:"MetroThumbContentControlDragStartedEventArgs",
+            url:'/api/MahApps.Metro.Controls.Dialogs/CustomDialog',
+            title:"CustomDialog",
             description:""
         }
     );
     a(
         {
             id:54,
-            title:"MultiFrameImage",
-            content:"MultiFrameImage",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MultiFrameImage',
-            title:"MultiFrameImage",
-            description:""
-        }
-    );
-    a(
-        {
-            id:55,
-            title:"StaticResourceExtension",
-            content:"StaticResourceExtension",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Markup/StaticResourceExtension',
-            title:"StaticResourceExtension",
-            description:""
-        }
-    );
-    a(
-        {
-            id:56,
-            title:"ContentControlEx",
-            content:"ContentControlEx",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/ContentControlEx',
-            title:"ContentControlEx",
-            description:""
-        }
-    );
-    a(
-        {
-            id:57,
-            title:"DecimalPointCorrectionMode",
-            content:"DecimalPointCorrectionMode",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/DecimalPointCorrectionMode',
-            title:"DecimalPointCorrectionMode",
-            description:""
-        }
-    );
-    a(
-        {
-            id:58,
             title:"FlyoutsControl",
             content:"FlyoutsControl",
             description:'',
@@ -864,71 +808,127 @@ var searchModule = function() {
     );
     a(
         {
-            id:59,
-            title:"MultiFrameImageMode",
-            content:"MultiFrameImageMode",
+            id:55,
+            title:"StylizedBehaviorCollection",
+            content:"StylizedBehaviorCollection",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/MultiFrameImageMode',
-            title:"MultiFrameImageMode",
+            url:'/api/MahApps.Metro.Behaviors/StylizedBehaviorCollection',
+            title:"StylizedBehaviorCollection",
+            description:""
+        }
+    );
+    a(
+        {
+            id:56,
+            title:"DataGridNumericUpDownColumn",
+            content:"DataGridNumericUpDownColumn",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/DataGridNumericUpDownColumn',
+            title:"DataGridNumericUpDownColumn",
+            description:""
+        }
+    );
+    a(
+        {
+            id:57,
+            title:"DateTimePicker",
+            content:"DateTimePicker",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/DateTimePicker',
+            title:"DateTimePicker",
+            description:""
+        }
+    );
+    a(
+        {
+            id:58,
+            title:"MahAppsException",
+            content:"MahAppsException",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro/MahAppsException',
+            title:"MahAppsException",
+            description:""
+        }
+    );
+    a(
+        {
+            id:59,
+            title:"MessageDialog",
+            content:"MessageDialog",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/MessageDialog',
+            title:"MessageDialog",
             description:""
         }
     );
     a(
         {
             id:60,
-            title:"TimePickerFormat",
-            content:"TimePickerFormat",
+            title:"TabControlSelectFirstVisibleTabBehavior",
+            content:"TabControlSelectFirstVisibleTabBehavior",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/TimePickerFormat',
-            title:"TimePickerFormat",
+            url:'/api/MahApps.Metro.Behaviors/TabControlSelectFirstVisibleTabBehavior',
+            title:"TabControlSelectFirstVisibleTabBehavior",
             description:""
         }
     );
     a(
         {
             id:61,
-            title:"ScrollViewerHelper",
-            content:"ScrollViewerHelper",
+            title:"Position",
+            content:"Position",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/ScrollViewerHelper',
-            title:"ScrollViewerHelper",
+            url:'/api/MahApps.Metro.Controls/Position',
+            title:"Position",
             description:""
         }
     );
     a(
         {
             id:62,
-            title:"ProgressRing",
-            content:"ProgressRing",
+            title:"HotKeyBox",
+            content:"HotKeyBox",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/ProgressRing',
-            title:"ProgressRing",
+            url:'/api/MahApps.Metro.Controls/HotKeyBox',
+            title:"HotKeyBox",
             description:""
         }
     );
     a(
         {
             id:63,
-            title:"DatePickerHelper",
-            content:"DatePickerHelper",
+            title:"TreeViewItemExtensions",
+            content:"TreeViewItemExtensions",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/DatePickerHelper',
-            title:"DatePickerHelper",
+            url:'/api/MahApps.Metro.Converters/TreeViewItemExtensions',
+            title:"TreeViewItemExtensions",
             description:""
         }
     );
@@ -949,48 +949,76 @@ var searchModule = function() {
     a(
         {
             id:65,
-            title:"DialogManager",
-            content:"DialogManager",
+            title:"TransitionType",
+            content:"TransitionType",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls.Dialogs/DialogManager',
-            title:"DialogManager",
+            url:'/api/MahApps.Metro.Controls/TransitionType',
+            title:"TransitionType",
             description:""
         }
     );
     a(
         {
             id:66,
-            title:"MetroTabItemCloseButtonWidthConverter",
-            content:"MetroTabItemCloseButtonWidthConverter",
+            title:"MathMultiplyConverter",
+            content:"MathMultiplyConverter",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Converters/MetroTabItemCloseButtonWidthConverter',
-            title:"MetroTabItemCloseButtonWidthConverter",
+            url:'/api/MahApps.Metro.Converters/MathMultiplyConverter',
+            title:"MathMultiplyConverter",
             description:""
         }
     );
     a(
         {
             id:67,
-            title:"NumericUpDownChangedRoutedEventHandler",
-            content:"NumericUpDownChangedRoutedEventHandler",
+            title:"CommandTriggerAction",
+            content:"CommandTriggerAction",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventHandler',
-            title:"NumericUpDownChangedRoutedEventHandler",
+            url:'/api/MahApps.Metro.Actions/CommandTriggerAction',
+            title:"CommandTriggerAction",
             description:""
         }
     );
     a(
         {
             id:68,
+            title:"SliderHelper",
+            content:"SliderHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/SliderHelper',
+            title:"SliderHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:69,
+            title:"IHamburgerMenuSeparatorItem",
+            content:"IHamburgerMenuSeparatorItem",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/IHamburgerMenuSeparatorItem',
+            title:"IHamburgerMenuSeparatorItem",
+            description:""
+        }
+    );
+    a(
+        {
+            id:70,
             title:"PasswordBoxHelper",
             content:"PasswordBoxHelper",
             description:'',
@@ -1004,21 +1032,49 @@ var searchModule = function() {
     );
     a(
         {
-            id:69,
-            title:"WindowCommandsItem",
-            content:"WindowCommandsItem",
+            id:71,
+            title:"Spelling",
+            content:"Spelling",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/WindowCommandsItem',
-            title:"WindowCommandsItem",
+            url:'/api/MahApps.Metro.Controls/Spelling',
+            title:"Spelling",
             description:""
         }
     );
     a(
         {
-            id:70,
+            id:72,
+            title:"ToggleButtonHelper",
+            content:"ToggleButtonHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ToggleButtonHelper',
+            title:"ToggleButtonHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:73,
+            title:"HamburgerMenuSeparatorItem",
+            content:"HamburgerMenuSeparatorItem",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HamburgerMenuSeparatorItem',
+            title:"HamburgerMenuSeparatorItem",
+            description:""
+        }
+    );
+    a(
+        {
+            id:74,
             title:"Planerator",
             content:"Planerator",
             description:'',
@@ -1032,21 +1088,21 @@ var searchModule = function() {
     );
     a(
         {
-            id:71,
-            title:"ThicknessBindingConverter",
-            content:"ThicknessBindingConverter",
+            id:75,
+            title:"MahAppsLibraryThemeProvider",
+            content:"MahAppsLibraryThemeProvider",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Converters/ThicknessBindingConverter',
-            title:"ThicknessBindingConverter",
+            url:'/api/MahApps.Metro.Theming/MahAppsLibraryThemeProvider',
+            title:"MahAppsLibraryThemeProvider",
             description:""
         }
     );
     a(
         {
-            id:72,
+            id:76,
             title:"MetroContentControl",
             content:"MetroContentControl",
             description:'',
@@ -1060,105 +1116,63 @@ var searchModule = function() {
     );
     a(
         {
-            id:73,
-            title:"FlyoutTheme",
-            content:"FlyoutTheme",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/FlyoutTheme',
-            title:"FlyoutTheme",
-            description:""
-        }
-    );
-    a(
-        {
-            id:74,
-            title:"MathOperation",
-            content:"MathOperation",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/MathOperation',
-            title:"MathOperation",
-            description:""
-        }
-    );
-    a(
-        {
-            id:75,
-            title:"ValidationHelper",
-            content:"ValidationHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/ValidationHelper',
-            title:"ValidationHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:76,
-            title:"TransitioningContentControl",
-            content:"TransitioningContentControl",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/TransitioningContentControl',
-            title:"TransitioningContentControl",
-            description:""
-        }
-    );
-    a(
-        {
             id:77,
-            title:"MetroThumbContentControl",
-            content:"MetroThumbContentControl",
+            title:"ColorChannelType",
+            content:"ColorChannelType",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/MetroThumbContentControl',
-            title:"MetroThumbContentControl",
+            url:'/api/MahApps.Metro.Converters/ColorChannelType',
+            title:"ColorChannelType",
             description:""
         }
     );
     a(
         {
             id:78,
-            title:"TreeViewMarginConverter",
-            content:"TreeViewMarginConverter",
+            title:"WindowCommandsOverlayBehavior",
+            content:"WindowCommandsOverlayBehavior",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Converters/TreeViewMarginConverter',
-            title:"TreeViewMarginConverter",
+            url:'/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior',
+            title:"WindowCommandsOverlayBehavior",
             description:""
         }
     );
     a(
         {
             id:79,
-            title:"ToggleSwitchAutomationPeer",
-            content:"ToggleSwitchAutomationPeer",
+            title:"WinApiHelper",
+            content:"WinApiHelper",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Automation.Peers/ToggleSwitchAutomationPeer',
-            title:"ToggleSwitchAutomationPeer",
+            url:'/api/MahApps.Metro.Controls/WinApiHelper',
+            title:"WinApiHelper",
             description:""
         }
     );
     a(
         {
             id:80,
+            title:"ColorEyePreviewData",
+            content:"ColorEyePreviewData",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ColorEyePreviewData',
+            title:"ColorEyePreviewData",
+            description:""
+        }
+    );
+    a(
+        {
+            id:81,
             title:"TimePicker",
             content:"TimePicker",
             description:'',
@@ -1172,127 +1186,113 @@ var searchModule = function() {
     );
     a(
         {
-            id:81,
-            title:"DatePickerTextBoxBehavior",
-            content:"DatePickerTextBoxBehavior",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Behaviors/DatePickerTextBoxBehavior',
-            title:"DatePickerTextBoxBehavior",
-            description:""
-        }
-    );
-    a(
-        {
             id:82,
-            title:"IDataGridColumnStylesHelper",
-            content:"IDataGridColumnStylesHelper",
+            title:"DataGridColumnStylesHelperExtension",
+            content:"DataGridColumnStylesHelperExtension",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/IDataGridColumnStylesHelper',
-            title:"IDataGridColumnStylesHelper",
+            url:'/api/MahApps.Metro.Controls/DataGridColumnStylesHelperExtension',
+            title:"DataGridColumnStylesHelperExtension",
             description:""
         }
     );
     a(
         {
             id:83,
-            title:"ToggleSwitch",
-            content:"ToggleSwitch",
+            title:"ScrollViewerOffsetMediator",
+            content:"ScrollViewerOffsetMediator",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/ToggleSwitch',
-            title:"ToggleSwitch",
+            url:'/api/MahApps.Metro.Controls/ScrollViewerOffsetMediator',
+            title:"ScrollViewerOffsetMediator",
             description:""
         }
     );
     a(
         {
             id:84,
-            title:"RangeSelectionChangedEventHandler",
-            content:"RangeSelectionChangedEventHandler",
+            title:"MultiFrameImageMode",
+            content:"MultiFrameImageMode",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/RangeSelectionChangedEventHandler_1',
-            title:"RangeSelectionChangedEventHandler<T>",
+            url:'/api/MahApps.Metro.Controls/MultiFrameImageMode',
+            title:"MultiFrameImageMode",
             description:""
         }
     );
     a(
         {
             id:85,
-            title:"ItemClickRoutedEventHandler",
-            content:"ItemClickRoutedEventHandler",
+            title:"PivotItem",
+            content:"PivotItem",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/ItemClickRoutedEventHandler',
-            title:"ItemClickRoutedEventHandler",
+            url:'/api/MahApps.Metro.Controls/PivotItem',
+            title:"PivotItem",
             description:""
         }
     );
     a(
         {
             id:86,
-            title:"HamburgerMenuItemInvokedRoutedEventHandler",
-            content:"HamburgerMenuItemInvokedRoutedEventHandler",
+            title:"ControlsHelper",
+            content:"ControlsHelper",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedRoutedEventHandler',
-            title:"HamburgerMenuItemInvokedRoutedEventHandler",
+            url:'/api/MahApps.Metro.Controls/ControlsHelper',
+            title:"ControlsHelper",
             description:""
         }
     );
     a(
         {
             id:87,
-            title:"HamburgerMenuHeaderItem",
-            content:"HamburgerMenuHeaderItem",
+            title:"MultiFrameImage",
+            content:"MultiFrameImage",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenuHeaderItem',
-            title:"HamburgerMenuHeaderItem",
+            url:'/api/MahApps.Metro.Controls/MultiFrameImage',
+            title:"MultiFrameImage",
             description:""
         }
     );
     a(
         {
             id:88,
-            title:"LayoutInvalidationCatcher",
-            content:"LayoutInvalidationCatcher",
+            title:"IsNullConverter",
+            content:"IsNullConverter",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/LayoutInvalidationCatcher',
-            title:"LayoutInvalidationCatcher",
+            url:'/api/MahApps.Metro.Converters/IsNullConverter',
+            title:"IsNullConverter",
             description:""
         }
     );
     a(
         {
             id:89,
-            title:"SliderHelper",
-            content:"SliderHelper",
+            title:"OverlayBehavior",
+            content:"OverlayBehavior",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/SliderHelper',
-            title:"SliderHelper",
+            url:'/api/MahApps.Metro.Controls/OverlayBehavior',
+            title:"OverlayBehavior",
             description:""
         }
     );
@@ -1313,412 +1313,20 @@ var searchModule = function() {
     a(
         {
             id:91,
-            title:"ToggleButtonHelper",
-            content:"ToggleButtonHelper",
+            title:"FlyoutTheme",
+            content:"FlyoutTheme",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/ToggleButtonHelper',
-            title:"ToggleButtonHelper",
+            url:'/api/MahApps.Metro.Controls/FlyoutTheme',
+            title:"FlyoutTheme",
             description:""
         }
     );
     a(
         {
             id:92,
-            title:"IHamburgerMenuSeparatorItem",
-            content:"IHamburgerMenuSeparatorItem",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/IHamburgerMenuSeparatorItem',
-            title:"IHamburgerMenuSeparatorItem",
-            description:""
-        }
-    );
-    a(
-        {
-            id:93,
-            title:"HamburgerMenuIconItem",
-            content:"HamburgerMenuIconItem",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenuIconItem',
-            title:"HamburgerMenuIconItem",
-            description:""
-        }
-    );
-    a(
-        {
-            id:94,
-            title:"MetroThumb",
-            content:"MetroThumb",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MetroThumb',
-            title:"MetroThumb",
-            description:""
-        }
-    );
-    a(
-        {
-            id:95,
-            title:"ExpanderHelper",
-            content:"ExpanderHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/ExpanderHelper',
-            title:"ExpanderHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:96,
-            title:"TabControlHelper",
-            content:"TabControlHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/TabControlHelper',
-            title:"TabControlHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:97,
-            title:"HeaderedControlHelper",
-            content:"HeaderedControlHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HeaderedControlHelper',
-            title:"HeaderedControlHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:98,
-            title:"MetroDialogAutomationPeer",
-            content:"MetroDialogAutomationPeer",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Automation.Peers/MetroDialogAutomationPeer',
-            title:"MetroDialogAutomationPeer",
-            description:""
-        }
-    );
-    a(
-        {
-            id:99,
-            title:"BaseMetroTabControl TabItemClosingEventHandler",
-            content:"BaseMetroTabControl TabItemClosingEventHandler",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/TabItemClosingEventHandler',
-            title:"BaseMetroTabControl.TabItemClosingEventHandler",
-            description:""
-        }
-    );
-    a(
-        {
-            id:100,
-            title:"MathConverter",
-            content:"MathConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/MathConverter',
-            title:"MathConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:101,
-            title:"ClipBorder",
-            content:"ClipBorder",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/ClipBorder',
-            title:"ClipBorder",
-            description:""
-        }
-    );
-    a(
-        {
-            id:102,
-            title:"DataGridNumericUpDownColumn",
-            content:"DataGridNumericUpDownColumn",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/DataGridNumericUpDownColumn',
-            title:"DataGridNumericUpDownColumn",
-            description:""
-        }
-    );
-    a(
-        {
-            id:103,
-            title:"HamburgerMenuListBox",
-            content:"HamburgerMenuListBox",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenuListBox',
-            title:"HamburgerMenuListBox",
-            description:""
-        }
-    );
-    a(
-        {
-            id:104,
-            title:"MahAppsException",
-            content:"MahAppsException",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro/MahAppsException',
-            title:"MahAppsException",
-            description:""
-        }
-    );
-    a(
-        {
-            id:105,
-            title:"SizeToCornerRadiusConverter",
-            content:"SizeToCornerRadiusConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/SizeToCornerRadiusConverter',
-            title:"SizeToCornerRadiusConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:106,
-            title:"HamburgerMenu",
-            content:"HamburgerMenu",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenu',
-            title:"HamburgerMenu",
-            description:""
-        }
-    );
-    a(
-        {
-            id:107,
-            title:"MetroWindow FlyoutStatusChangedRoutedEventArgs",
-            content:"MetroWindow FlyoutStatusChangedRoutedEventArgs",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/FlyoutStatusChangedRoutedEventArgs',
-            title:"MetroWindow.FlyoutStatusChangedRoutedEventArgs",
-            description:""
-        }
-    );
-    a(
-        {
-            id:108,
-            title:"IMetroThumb",
-            content:"IMetroThumb",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/IMetroThumb',
-            title:"IMetroThumb",
-            description:""
-        }
-    );
-    a(
-        {
-            id:109,
-            title:"ResizeModeMinMaxButtonVisibilityConverter",
-            content:"ResizeModeMinMaxButtonVisibilityConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/ResizeModeMinMaxButtonVisibilityConverter',
-            title:"ResizeModeMinMaxButtonVisibilityConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:110,
-            title:"WindowCommandsOverlayBehavior",
-            content:"WindowCommandsOverlayBehavior",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior',
-            title:"WindowCommandsOverlayBehavior",
-            description:""
-        }
-    );
-    a(
-        {
-            id:111,
-            title:"NumericUpDown",
-            content:"NumericUpDown",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/NumericUpDown',
-            title:"NumericUpDown",
-            description:""
-        }
-    );
-    a(
-        {
-            id:112,
-            title:"ClockDegreeConverter",
-            content:"ClockDegreeConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/ClockDegreeConverter',
-            title:"ClockDegreeConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:113,
-            title:"RangeSliderAutoTooltipValues",
-            content:"RangeSliderAutoTooltipValues",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/RangeSliderAutoTooltipValues',
-            title:"RangeSliderAutoTooltipValues",
-            description:""
-        }
-    );
-    a(
-        {
-            id:114,
-            title:"RevealImage",
-            content:"RevealImage",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/RevealImage',
-            title:"RevealImage",
-            description:""
-        }
-    );
-    a(
-        {
-            id:115,
-            title:"MetroHeader",
-            content:"MetroHeader",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MetroHeader',
-            title:"MetroHeader",
-            description:""
-        }
-    );
-    a(
-        {
-            id:116,
-            title:"HamburgerMenuGlyphItem",
-            content:"HamburgerMenuGlyphItem",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenuGlyphItem',
-            title:"HamburgerMenuGlyphItem",
-            description:""
-        }
-    );
-    a(
-        {
-            id:117,
-            title:"HamburgerMenuImageItem",
-            content:"HamburgerMenuImageItem",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenuImageItem',
-            title:"HamburgerMenuImageItem",
-            description:""
-        }
-    );
-    a(
-        {
-            id:118,
-            title:"MetroWindow",
-            content:"MetroWindow",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MetroWindow',
-            title:"MetroWindow",
-            description:""
-        }
-    );
-    a(
-        {
-            id:119,
-            title:"HamburgerMenuItem",
-            content:"HamburgerMenuItem",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenuItem',
-            title:"HamburgerMenuItem",
-            description:""
-        }
-    );
-    a(
-        {
-            id:120,
             title:"MetroThumbContentControlAutomationPeer",
             content:"MetroThumbContentControlAutomationPeer",
             description:'',
@@ -1732,945 +1340,21 @@ var searchModule = function() {
     );
     a(
         {
-            id:121,
-            title:"Badged",
-            content:"Badged",
+            id:93,
+            title:"MetroWindow FlyoutStatusChangedRoutedEventArgs",
+            content:"MetroWindow FlyoutStatusChangedRoutedEventArgs",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/Badged',
-            title:"Badged",
+            url:'/api/MahApps.Metro.Controls/FlyoutStatusChangedRoutedEventArgs',
+            title:"MetroWindow.FlyoutStatusChangedRoutedEventArgs",
             description:""
         }
     );
     a(
         {
-            id:122,
-            title:"MouseWheelState",
-            content:"MouseWheelState",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MouseWheelState',
-            title:"MouseWheelState",
-            description:""
-        }
-    );
-    a(
-        {
-            id:123,
-            title:"BackgroundToForegroundConverter",
-            content:"BackgroundToForegroundConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/BackgroundToForegroundConverter',
-            title:"BackgroundToForegroundConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:124,
-            title:"LoginDialogSettings",
-            content:"LoginDialogSettings",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/LoginDialogSettings',
-            title:"LoginDialogSettings",
-            description:""
-        }
-    );
-    a(
-        {
-            id:125,
-            title:"DataGridColumnStylesHelperExtension",
-            content:"DataGridColumnStylesHelperExtension",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/DataGridColumnStylesHelperExtension',
-            title:"DataGridColumnStylesHelperExtension",
-            description:""
-        }
-    );
-    a(
-        {
-            id:126,
-            title:"ProgressDialog",
-            content:"ProgressDialog",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/ProgressDialog',
-            title:"ProgressDialog",
-            description:""
-        }
-    );
-    a(
-        {
-            id:127,
-            title:"LoginDialog",
-            content:"LoginDialog",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/LoginDialog',
-            title:"LoginDialog",
-            description:""
-        }
-    );
-    a(
-        {
-            id:128,
-            title:"IWindowPlacementSettings",
-            content:"IWindowPlacementSettings",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/IWindowPlacementSettings',
-            title:"IWindowPlacementSettings",
-            description:""
-        }
-    );
-    a(
-        {
-            id:129,
-            title:"ButtonsAlignment",
-            content:"ButtonsAlignment",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/ButtonsAlignment',
-            title:"ButtonsAlignment",
-            description:""
-        }
-    );
-    a(
-        {
-            id:130,
-            title:"MetroWindowAutomationPeer",
-            content:"MetroWindowAutomationPeer",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Automation.Peers/MetroWindowAutomationPeer',
-            title:"MetroWindowAutomationPeer",
-            description:""
-        }
-    );
-    a(
-        {
-            id:131,
-            title:"LoginDialogData",
-            content:"LoginDialogData",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/LoginDialogData',
-            title:"LoginDialogData",
-            description:""
-        }
-    );
-    a(
-        {
-            id:132,
-            title:"TreeViewItemHelper",
-            content:"TreeViewItemHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/TreeViewItemHelper',
-            title:"TreeViewItemHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:133,
-            title:"FontIcon",
-            content:"FontIcon",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/FontIcon',
-            title:"FontIcon",
-            description:""
-        }
-    );
-    a(
-        {
-            id:134,
-            title:"HamburgerMenuItemBase",
-            content:"HamburgerMenuItemBase",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenuItemBase',
-            title:"HamburgerMenuItemBase",
-            description:""
-        }
-    );
-    a(
-        {
-            id:135,
-            title:"MahAppsCommands",
-            content:"MahAppsCommands",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MahAppsCommands',
-            title:"MahAppsCommands",
-            description:""
-        }
-    );
-    a(
-        {
-            id:136,
-            title:"IconElement",
-            content:"IconElement",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/IconElement',
-            title:"IconElement",
-            description:""
-        }
-    );
-    a(
-        {
-            id:137,
-            title:"DateTimePicker",
-            content:"DateTimePicker",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/DateTimePicker',
-            title:"DateTimePicker",
-            description:""
-        }
-    );
-    a(
-        {
-            id:138,
-            title:"MetroDialogSettings",
-            content:"MetroDialogSettings",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/MetroDialogSettings',
-            title:"MetroDialogSettings",
-            description:""
-        }
-    );
-    a(
-        {
-            id:139,
-            title:"FontSizeOffsetConverter",
-            content:"FontSizeOffsetConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/FontSizeOffsetConverter',
-            title:"FontSizeOffsetConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:140,
-            title:"HotKeyBox",
-            content:"HotKeyBox",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HotKeyBox',
-            title:"HotKeyBox",
-            description:""
-        }
-    );
-    a(
-        {
-            id:141,
-            title:"ToUpperConverter",
-            content:"ToUpperConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/ToUpperConverter',
-            title:"ToUpperConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:142,
-            title:"TreeViewItemExtensions",
-            content:"TreeViewItemExtensions",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/TreeViewItemExtensions',
-            title:"TreeViewItemExtensions",
-            description:""
-        }
-    );
-    a(
-        {
-            id:143,
-            title:"ReloadBehavior",
-            content:"ReloadBehavior",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Behaviors/ReloadBehavior',
-            title:"ReloadBehavior",
-            description:""
-        }
-    );
-    a(
-        {
-            id:144,
-            title:"RadioButtonHelper",
-            content:"RadioButtonHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/RadioButtonHelper',
-            title:"RadioButtonHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:145,
-            title:"IHamburgerMenuHeaderItem",
-            content:"IHamburgerMenuHeaderItem",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/IHamburgerMenuHeaderItem',
-            title:"IHamburgerMenuHeaderItem",
-            description:""
-        }
-    );
-    a(
-        {
-            id:146,
-            title:"ScrollViewerOffsetMediator",
-            content:"ScrollViewerOffsetMediator",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/ScrollViewerOffsetMediator',
-            title:"ScrollViewerOffsetMediator",
-            description:""
-        }
-    );
-    a(
-        {
-            id:147,
-            title:"Flyout",
-            content:"Flyout",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/Flyout',
-            title:"Flyout",
-            description:""
-        }
-    );
-    a(
-        {
-            id:148,
-            title:"MathAddConverter",
-            content:"MathAddConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/MathAddConverter',
-            title:"MathAddConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:149,
-            title:"MathMultiplyConverter",
-            content:"MathMultiplyConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/MathMultiplyConverter',
-            title:"MathMultiplyConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:150,
-            title:"MetroProgressBar",
-            content:"MetroProgressBar",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MetroProgressBar',
-            title:"MetroProgressBar",
-            description:""
-        }
-    );
-    a(
-        {
-            id:151,
-            title:"BaseMetroTabControl TabItemClosingEventArgs",
-            content:"BaseMetroTabControl TabItemClosingEventArgs",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/TabItemClosingEventArgs',
-            title:"BaseMetroTabControl.TabItemClosingEventArgs",
-            description:""
-        }
-    );
-    a(
-        {
-            id:152,
-            title:"BindableResourceBehavior",
-            content:"BindableResourceBehavior",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Behaviors/BindableResourceBehavior',
-            title:"BindableResourceBehavior",
-            description:""
-        }
-    );
-    a(
-        {
-            id:153,
-            title:"NumericInput",
-            content:"NumericInput",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/NumericInput',
-            title:"NumericInput",
-            description:""
-        }
-    );
-    a(
-        {
-            id:154,
-            title:"TreeHelper",
-            content:"TreeHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/TreeHelper',
-            title:"TreeHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:155,
-            title:"MetroAnimatedSingleRowTabControl",
-            content:"MetroAnimatedSingleRowTabControl",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MetroAnimatedSingleRowTabControl',
-            title:"MetroAnimatedSingleRowTabControl",
-            description:""
-        }
-    );
-    a(
-        {
-            id:156,
-            title:"MathSubtractConverter",
-            content:"MathSubtractConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/MathSubtractConverter',
-            title:"MathSubtractConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:157,
-            title:"AccessibilitySwitches",
-            content:"AccessibilitySwitches",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Accessibility/AccessibilitySwitches',
-            title:"AccessibilitySwitches",
-            description:""
-        }
-    );
-    a(
-        {
-            id:158,
-            title:"PivotItem",
-            content:"PivotItem",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/PivotItem',
-            title:"PivotItem",
-            description:""
-        }
-    );
-    a(
-        {
-            id:159,
-            title:"HamburgerMenuItemCollection",
-            content:"HamburgerMenuItemCollection",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenuItemCollection',
-            title:"HamburgerMenuItemCollection",
-            description:""
-        }
-    );
-    a(
-        {
-            id:160,
-            title:"CustomDialog",
-            content:"CustomDialog",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/CustomDialog',
-            title:"CustomDialog",
-            description:""
-        }
-    );
-    a(
-        {
-            id:161,
-            title:"MetroNavigationWindow",
-            content:"MetroNavigationWindow",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MetroNavigationWindow',
-            title:"MetroNavigationWindow",
-            description:""
-        }
-    );
-    a(
-        {
-            id:162,
-            title:"Underline",
-            content:"Underline",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/Underline',
-            title:"Underline",
-            description:""
-        }
-    );
-    a(
-        {
-            id:163,
-            title:"NumericUpDownChangedRoutedEventArgs",
-            content:"NumericUpDownChangedRoutedEventArgs",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventArgs',
-            title:"NumericUpDownChangedRoutedEventArgs",
-            description:""
-        }
-    );
-    a(
-        {
-            id:164,
-            title:"BaseMetroDialog",
-            content:"BaseMetroDialog",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/BaseMetroDialog',
-            title:"BaseMetroDialog",
-            description:""
-        }
-    );
-    a(
-        {
-            id:165,
-            title:"RangeSelectionChangedEventArgs",
-            content:"RangeSelectionChangedEventArgs",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/RangeSelectionChangedEventArgs_1',
-            title:"RangeSelectionChangedEventArgs<T>",
-            description:""
-        }
-    );
-    a(
-        {
-            id:166,
-            title:"CornerRadiusBindingConverter",
-            content:"CornerRadiusBindingConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/CornerRadiusBindingConverter',
-            title:"CornerRadiusBindingConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:167,
-            title:"UnderlinedType",
-            content:"UnderlinedType",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/UnderlinedType',
-            title:"UnderlinedType",
-            description:""
-        }
-    );
-    a(
-        {
-            id:168,
-            title:"FlyoutAutomationPeer",
-            content:"FlyoutAutomationPeer",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Automation.Peers/FlyoutAutomationPeer',
-            title:"FlyoutAutomationPeer",
-            description:""
-        }
-    );
-    a(
-        {
-            id:169,
-            title:"HotKey",
-            content:"HotKey",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HotKey',
-            title:"HotKey",
-            description:""
-        }
-    );
-    a(
-        {
-            id:170,
-            title:"MessageDialogResult",
-            content:"MessageDialogResult",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/MessageDialogResult',
-            title:"MessageDialogResult",
-            description:""
-        }
-    );
-    a(
-        {
-            id:171,
-            title:"MathDivideConverter",
-            content:"MathDivideConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/MathDivideConverter',
-            title:"MathDivideConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:172,
-            title:"TimePartVisibility",
-            content:"TimePartVisibility",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/TimePartVisibility',
-            title:"TimePartVisibility",
-            description:""
-        }
-    );
-    a(
-        {
-            id:173,
-            title:"HamburgerMenuItemInvokedEventArgs",
-            content:"HamburgerMenuItemInvokedEventArgs",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedEventArgs',
-            title:"HamburgerMenuItemInvokedEventArgs",
-            description:""
-        }
-    );
-    a(
-        {
-            id:174,
-            title:"MessageDialogStyle",
-            content:"MessageDialogStyle",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/MessageDialogStyle',
-            title:"MessageDialogStyle",
-            description:""
-        }
-    );
-    a(
-        {
-            id:175,
-            title:"DropDownButton",
-            content:"DropDownButton",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/DropDownButton',
-            title:"DropDownButton",
-            description:""
-        }
-    );
-    a(
-        {
-            id:176,
-            title:"WinApiHelper",
-            content:"WinApiHelper",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/WinApiHelper',
-            title:"WinApiHelper",
-            description:""
-        }
-    );
-    a(
-        {
-            id:177,
-            title:"OverlayBehavior",
-            content:"OverlayBehavior",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/OverlayBehavior',
-            title:"OverlayBehavior",
-            description:""
-        }
-    );
-    a(
-        {
-            id:178,
-            title:"MouseWheelChange",
-            content:"MouseWheelChange",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MouseWheelChange',
-            title:"MouseWheelChange",
-            description:""
-        }
-    );
-    a(
-        {
-            id:179,
-            title:"WindowCommands",
-            content:"WindowCommands",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/WindowCommands',
-            title:"WindowCommands",
-            description:""
-        }
-    );
-    a(
-        {
-            id:180,
-            title:"TimePickerBase",
-            content:"TimePickerBase",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/TimePickerBase',
-            title:"TimePickerBase",
-            description:""
-        }
-    );
-    a(
-        {
-            id:181,
-            title:"SplitButton",
-            content:"SplitButton",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/SplitButton',
-            title:"SplitButton",
-            description:""
-        }
-    );
-    a(
-        {
-            id:182,
-            title:"IDialogCoordinator",
-            content:"IDialogCoordinator",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/IDialogCoordinator',
-            title:"IDialogCoordinator",
-            description:""
-        }
-    );
-    a(
-        {
-            id:183,
-            title:"DialogCoordinator",
-            content:"DialogCoordinator",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator',
-            title:"DialogCoordinator",
-            description:""
-        }
-    );
-    a(
-        {
-            id:184,
-            title:"CustomValidationPopup",
-            content:"CustomValidationPopup",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/CustomValidationPopup',
-            title:"CustomValidationPopup",
-            description:""
-        }
-    );
-    a(
-        {
-            id:185,
-            title:"CloseFlyoutAction",
-            content:"CloseFlyoutAction",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Actions/CloseFlyoutAction',
-            title:"CloseFlyoutAction",
-            description:""
-        }
-    );
-    a(
-        {
-            id:186,
-            title:"MetroThumbContentControlDragCompletedEventArgs",
-            content:"MetroThumbContentControlDragCompletedEventArgs",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Controls/MetroThumbContentControlDragCompletedEventArgs',
-            title:"MetroThumbContentControlDragCompletedEventArgs",
-            description:""
-        }
-    );
-    a(
-        {
-            id:187,
-            title:"IsNullConverter",
-            content:"IsNullConverter",
-            description:'',
-            tags:''
-        },
-        {
-            url:'/api/MahApps.Metro.Converters/IsNullConverter',
-            title:"IsNullConverter",
-            description:""
-        }
-    );
-    a(
-        {
-            id:188,
+            id:94,
             title:"HamburgerMenuItemStyleSelector",
             content:"HamburgerMenuItemStyleSelector",
             description:'',
@@ -2684,77 +1368,105 @@ var searchModule = function() {
     );
     a(
         {
-            id:189,
-            title:"FlipView",
-            content:"FlipView",
+            id:95,
+            title:"RevealImage",
+            content:"RevealImage",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/FlipView',
-            title:"FlipView",
+            url:'/api/MahApps.Metro.Controls/RevealImage',
+            title:"RevealImage",
             description:""
         }
     );
     a(
         {
-            id:190,
-            title:"Spelling",
-            content:"Spelling",
+            id:96,
+            title:"HSVColorChannelType",
+            content:"HSVColorChannelType",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Controls/Spelling',
-            title:"Spelling",
+            url:'/api/MahApps.Metro.Converters/HSVColorChannelType',
+            title:"HSVColorChannelType",
             description:""
         }
     );
     a(
         {
-            id:191,
-            title:"WindowCommandsAutomationPeer",
-            content:"WindowCommandsAutomationPeer",
+            id:97,
+            title:"MetroDialogColorScheme",
+            content:"MetroDialogColorScheme",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Automation.Peers/WindowCommandsAutomationPeer',
-            title:"WindowCommandsAutomationPeer",
+            url:'/api/MahApps.Metro.Controls.Dialogs/MetroDialogColorScheme',
+            title:"MetroDialogColorScheme",
             description:""
         }
     );
     a(
         {
-            id:192,
-            title:"PasswordBoxBindingBehavior",
-            content:"PasswordBoxBindingBehavior",
+            id:98,
+            title:"TabControlHelper",
+            content:"TabControlHelper",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Behaviors/PasswordBoxBindingBehavior',
-            title:"PasswordBoxBindingBehavior",
+            url:'/api/MahApps.Metro.Controls/TabControlHelper',
+            title:"TabControlHelper",
             description:""
         }
     );
     a(
         {
-            id:193,
-            title:"MarkupConverter",
-            content:"MarkupConverter",
+            id:99,
+            title:"SplitViewTemplateSettings",
+            content:"SplitViewTemplateSettings",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Converters/MarkupConverter',
-            title:"MarkupConverter",
+            url:'/api/MahApps.Metro.Controls/SplitViewTemplateSettings',
+            title:"SplitViewTemplateSettings",
             description:""
         }
     );
     a(
         {
-            id:194,
+            id:100,
+            title:"ItemHelper",
+            content:"ItemHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ItemHelper',
+            title:"ItemHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:101,
+            title:"Extensions",
+            content:"Extensions",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/Extensions',
+            title:"Extensions",
+            description:""
+        }
+    );
+    a(
+        {
+            id:102,
             title:"NullToUnsetValueConverter",
             content:"NullToUnsetValueConverter",
             description:'',
@@ -2768,21 +1480,693 @@ var searchModule = function() {
     );
     a(
         {
-            id:195,
-            title:"CommandTriggerAction",
-            content:"CommandTriggerAction",
+            id:103,
+            title:"HotKey",
+            content:"HotKey",
             description:'',
             tags:''
         },
         {
-            url:'/api/MahApps.Metro.Actions/CommandTriggerAction',
-            title:"CommandTriggerAction",
+            url:'/api/MahApps.Metro.Controls/HotKey',
+            title:"HotKey",
             description:""
         }
     );
     a(
         {
-            id:196,
+            id:104,
+            title:"ItemClickRoutedEventHandler",
+            content:"ItemClickRoutedEventHandler",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ItemClickRoutedEventHandler',
+            title:"ItemClickRoutedEventHandler",
+            description:""
+        }
+    );
+    a(
+        {
+            id:105,
+            title:"IDataGridColumnStylesHelper",
+            content:"IDataGridColumnStylesHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/IDataGridColumnStylesHelper',
+            title:"IDataGridColumnStylesHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:106,
+            title:"ProgressRing",
+            content:"ProgressRing",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ProgressRing',
+            title:"ProgressRing",
+            description:""
+        }
+    );
+    a(
+        {
+            id:107,
+            title:"SplitView",
+            content:"SplitView",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/SplitView',
+            title:"SplitView",
+            description:""
+        }
+    );
+    a(
+        {
+            id:108,
+            title:"MathOperation",
+            content:"MathOperation",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/MathOperation',
+            title:"MathOperation",
+            description:""
+        }
+    );
+    a(
+        {
+            id:109,
+            title:"LoginDialogSettings",
+            content:"LoginDialogSettings",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/LoginDialogSettings',
+            title:"LoginDialogSettings",
+            description:""
+        }
+    );
+    a(
+        {
+            id:110,
+            title:"ToggleSwitch",
+            content:"ToggleSwitch",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ToggleSwitch',
+            title:"ToggleSwitch",
+            description:""
+        }
+    );
+    a(
+        {
+            id:111,
+            title:"CheckBoxHelper",
+            content:"CheckBoxHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/CheckBoxHelper',
+            title:"CheckBoxHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:112,
+            title:"DecimalPointCorrectionMode",
+            content:"DecimalPointCorrectionMode",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/DecimalPointCorrectionMode',
+            title:"DecimalPointCorrectionMode",
+            description:""
+        }
+    );
+    a(
+        {
+            id:113,
+            title:"ColorPalette",
+            content:"ColorPalette",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ColorPalette',
+            title:"ColorPalette",
+            description:""
+        }
+    );
+    a(
+        {
+            id:114,
+            title:"ProgressDialogController",
+            content:"ProgressDialogController",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/ProgressDialogController',
+            title:"ProgressDialogController",
+            description:""
+        }
+    );
+    a(
+        {
+            id:115,
+            title:"BackgroundToForegroundConverter",
+            content:"BackgroundToForegroundConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/BackgroundToForegroundConverter',
+            title:"BackgroundToForegroundConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:116,
+            title:"HSVColorChannelMinMaxConverter",
+            content:"HSVColorChannelMinMaxConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/HSVColorChannelMinMaxConverter',
+            title:"HSVColorChannelMinMaxConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:117,
+            title:"HamburgerMenuItemInvokedRoutedEventHandler",
+            content:"HamburgerMenuItemInvokedRoutedEventHandler",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedRoutedEventHandler',
+            title:"HamburgerMenuItemInvokedRoutedEventHandler",
+            description:""
+        }
+    );
+    a(
+        {
+            id:118,
+            title:"IconElement",
+            content:"IconElement",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/IconElement',
+            title:"IconElement",
+            description:""
+        }
+    );
+    a(
+        {
+            id:119,
+            title:"MetroTabControl",
+            content:"MetroTabControl",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MetroTabControl',
+            title:"MetroTabControl",
+            description:""
+        }
+    );
+    a(
+        {
+            id:120,
+            title:"HamburgerMenuGlyphItem",
+            content:"HamburgerMenuGlyphItem",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HamburgerMenuGlyphItem',
+            title:"HamburgerMenuGlyphItem",
+            description:""
+        }
+    );
+    a(
+        {
+            id:121,
+            title:"MetroAnimatedSingleRowTabControl",
+            content:"MetroAnimatedSingleRowTabControl",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MetroAnimatedSingleRowTabControl',
+            title:"MetroAnimatedSingleRowTabControl",
+            description:""
+        }
+    );
+    a(
+        {
+            id:122,
+            title:"ThicknessToDoubleConverter",
+            content:"ThicknessToDoubleConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/ThicknessToDoubleConverter',
+            title:"ThicknessToDoubleConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:123,
+            title:"BaseMetroTabControl TabItemClosingEventArgs",
+            content:"BaseMetroTabControl TabItemClosingEventArgs",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/TabItemClosingEventArgs',
+            title:"BaseMetroTabControl.TabItemClosingEventArgs",
+            description:""
+        }
+    );
+    a(
+        {
+            id:124,
+            title:"MetroNavigationWindow",
+            content:"MetroNavigationWindow",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MetroNavigationWindow',
+            title:"MetroNavigationWindow",
+            description:""
+        }
+    );
+    a(
+        {
+            id:125,
+            title:"BindableResourceBehavior",
+            content:"BindableResourceBehavior",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Behaviors/BindableResourceBehavior',
+            title:"BindableResourceBehavior",
+            description:""
+        }
+    );
+    a(
+        {
+            id:126,
+            title:"NumericUpDownChangedRoutedEventHandler",
+            content:"NumericUpDownChangedRoutedEventHandler",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventHandler',
+            title:"NumericUpDownChangedRoutedEventHandler",
+            description:""
+        }
+    );
+    a(
+        {
+            id:127,
+            title:"HeaderedControlHelper",
+            content:"HeaderedControlHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HeaderedControlHelper',
+            title:"HeaderedControlHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:128,
+            title:"TimePickerBase",
+            content:"TimePickerBase",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/TimePickerBase',
+            title:"TimePickerBase",
+            description:""
+        }
+    );
+    a(
+        {
+            id:129,
+            title:"Pivot",
+            content:"Pivot",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/Pivot',
+            title:"Pivot",
+            description:""
+        }
+    );
+    a(
+        {
+            id:130,
+            title:"HamburgerMenuItemCollection",
+            content:"HamburgerMenuItemCollection",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HamburgerMenuItemCollection',
+            title:"HamburgerMenuItemCollection",
+            description:""
+        }
+    );
+    a(
+        {
+            id:131,
+            title:"FlipView",
+            content:"FlipView",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/FlipView',
+            title:"FlipView",
+            description:""
+        }
+    );
+    a(
+        {
+            id:132,
+            title:"MetroWindowAutomationPeer",
+            content:"MetroWindowAutomationPeer",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Automation.Peers/MetroWindowAutomationPeer',
+            title:"MetroWindowAutomationPeer",
+            description:""
+        }
+    );
+    a(
+        {
+            id:133,
+            title:"DatePickerTextBoxBehavior",
+            content:"DatePickerTextBoxBehavior",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Behaviors/DatePickerTextBoxBehavior',
+            title:"DatePickerTextBoxBehavior",
+            description:""
+        }
+    );
+    a(
+        {
+            id:134,
+            title:"MouseWheelState",
+            content:"MouseWheelState",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MouseWheelState',
+            title:"MouseWheelState",
+            description:""
+        }
+    );
+    a(
+        {
+            id:135,
+            title:"ClockDegreeConverter",
+            content:"ClockDegreeConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/ClockDegreeConverter',
+            title:"ClockDegreeConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:136,
+            title:"RangeSlider",
+            content:"RangeSlider",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/RangeSlider',
+            title:"RangeSlider",
+            description:""
+        }
+    );
+    a(
+        {
+            id:137,
+            title:"ItemClickEventArgs",
+            content:"ItemClickEventArgs",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ItemClickEventArgs',
+            title:"ItemClickEventArgs",
+            description:""
+        }
+    );
+    a(
+        {
+            id:138,
+            title:"TreeViewItemHelper",
+            content:"TreeViewItemHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/TreeViewItemHelper',
+            title:"TreeViewItemHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:139,
+            title:"MetroProgressBar",
+            content:"MetroProgressBar",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MetroProgressBar',
+            title:"MetroProgressBar",
+            description:""
+        }
+    );
+    a(
+        {
+            id:140,
+            title:"MetroHeader",
+            content:"MetroHeader",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MetroHeader',
+            title:"MetroHeader",
+            description:""
+        }
+    );
+    a(
+        {
+            id:141,
+            title:"CornerRadiusBindingConverter",
+            content:"CornerRadiusBindingConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/CornerRadiusBindingConverter',
+            title:"CornerRadiusBindingConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:142,
+            title:"StylizedBehaviors",
+            content:"StylizedBehaviors",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Behaviors/StylizedBehaviors',
+            title:"StylizedBehaviors",
+            description:""
+        }
+    );
+    a(
+        {
+            id:143,
+            title:"MetroThumbContentControlDragStartedEventArgs",
+            content:"MetroThumbContentControlDragStartedEventArgs",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MetroThumbContentControlDragStartedEventArgs',
+            title:"MetroThumbContentControlDragStartedEventArgs",
+            description:""
+        }
+    );
+    a(
+        {
+            id:144,
+            title:"ContentPresenterEx",
+            content:"ContentPresenterEx",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ContentPresenterEx',
+            title:"ContentPresenterEx",
+            description:""
+        }
+    );
+    a(
+        {
+            id:145,
+            title:"ResizeModeMinMaxButtonVisibilityConverter",
+            content:"ResizeModeMinMaxButtonVisibilityConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/ResizeModeMinMaxButtonVisibilityConverter',
+            title:"ResizeModeMinMaxButtonVisibilityConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:146,
+            title:"TreeViewMarginConverter",
+            content:"TreeViewMarginConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/TreeViewMarginConverter',
+            title:"TreeViewMarginConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:147,
+            title:"StringToVisibilityConverter",
+            content:"StringToVisibilityConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/StringToVisibilityConverter',
+            title:"StringToVisibilityConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:148,
+            title:"DatePickerHelper",
+            content:"DatePickerHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/DatePickerHelper',
+            title:"DatePickerHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:149,
+            title:"MessageDialogStyle",
+            content:"MessageDialogStyle",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/MessageDialogStyle',
+            title:"MessageDialogStyle",
+            description:""
+        }
+    );
+    a(
+        {
+            id:150,
+            title:"ToggleSwitchAutomationPeer",
+            content:"ToggleSwitchAutomationPeer",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Automation.Peers/ToggleSwitchAutomationPeer',
+            title:"ToggleSwitchAutomationPeer",
+            description:""
+        }
+    );
+    a(
+        {
+            id:151,
+            title:"TextBoxHelper",
+            content:"TextBoxHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/TextBoxHelper',
+            title:"TextBoxHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:152,
             title:"DialogStateChangedEventArgs",
             content:"DialogStateChangedEventArgs",
             description:'',
@@ -2791,6 +2175,902 @@ var searchModule = function() {
         {
             url:'/api/MahApps.Metro.Controls.Dialogs/DialogStateChangedEventArgs',
             title:"DialogStateChangedEventArgs",
+            description:""
+        }
+    );
+    a(
+        {
+            id:153,
+            title:"BooleanBoxes",
+            content:"BooleanBoxes",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.ValueBoxes/BooleanBoxes',
+            title:"BooleanBoxes",
+            description:""
+        }
+    );
+    a(
+        {
+            id:154,
+            title:"ClipBorder",
+            content:"ClipBorder",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ClipBorder',
+            title:"ClipBorder",
+            description:""
+        }
+    );
+    a(
+        {
+            id:155,
+            title:"TransitioningContentControl",
+            content:"TransitioningContentControl",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/TransitioningContentControl',
+            title:"TransitioningContentControl",
+            description:""
+        }
+    );
+    a(
+        {
+            id:156,
+            title:"MetroTabItemCloseButtonWidthConverter",
+            content:"MetroTabItemCloseButtonWidthConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/MetroTabItemCloseButtonWidthConverter',
+            title:"MetroTabItemCloseButtonWidthConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:157,
+            title:"Underline",
+            content:"Underline",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/Underline',
+            title:"Underline",
+            description:""
+        }
+    );
+    a(
+        {
+            id:158,
+            title:"ColorChannelMinMaxConverter",
+            content:"ColorChannelMinMaxConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/ColorChannelMinMaxConverter',
+            title:"ColorChannelMinMaxConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:159,
+            title:"RadioButtonHelper",
+            content:"RadioButtonHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/RadioButtonHelper',
+            title:"RadioButtonHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:160,
+            title:"NumericInput",
+            content:"NumericInput",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/NumericInput',
+            title:"NumericInput",
+            description:""
+        }
+    );
+    a(
+        {
+            id:161,
+            title:"MetroTabItem",
+            content:"MetroTabItem",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MetroTabItem',
+            title:"MetroTabItem",
+            description:""
+        }
+    );
+    a(
+        {
+            id:162,
+            title:"HamburgerMenuListBox",
+            content:"HamburgerMenuListBox",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HamburgerMenuListBox',
+            title:"HamburgerMenuListBox",
+            description:""
+        }
+    );
+    a(
+        {
+            id:163,
+            title:"Flyout",
+            content:"Flyout",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/Flyout',
+            title:"Flyout",
+            description:""
+        }
+    );
+    a(
+        {
+            id:164,
+            title:"TimePartVisibility",
+            content:"TimePartVisibility",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/TimePartVisibility',
+            title:"TimePartVisibility",
+            description:""
+        }
+    );
+    a(
+        {
+            id:165,
+            title:"MahAppsCommands",
+            content:"MahAppsCommands",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MahAppsCommands',
+            title:"MahAppsCommands",
+            description:""
+        }
+    );
+    a(
+        {
+            id:166,
+            title:"RadiusType",
+            content:"RadiusType",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/RadiusType',
+            title:"RadiusType",
+            description:""
+        }
+    );
+    a(
+        {
+            id:167,
+            title:"HamburgerMenuImageItem",
+            content:"HamburgerMenuImageItem",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HamburgerMenuImageItem',
+            title:"HamburgerMenuImageItem",
+            description:""
+        }
+    );
+    a(
+        {
+            id:168,
+            title:"CloseTabItemAction",
+            content:"CloseTabItemAction",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Actions/CloseTabItemAction',
+            title:"CloseTabItemAction",
+            description:""
+        }
+    );
+    a(
+        {
+            id:169,
+            title:"WindowsSettingBehavior",
+            content:"WindowsSettingBehavior",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Behaviors/WindowsSettingBehavior',
+            title:"WindowsSettingBehavior",
+            description:""
+        }
+    );
+    a(
+        {
+            id:170,
+            title:"CloseFlyoutAction",
+            content:"CloseFlyoutAction",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Actions/CloseFlyoutAction',
+            title:"CloseFlyoutAction",
+            description:""
+        }
+    );
+    a(
+        {
+            id:171,
+            title:"StaticResourceExtension",
+            content:"StaticResourceExtension",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Markup/StaticResourceExtension',
+            title:"StaticResourceExtension",
+            description:""
+        }
+    );
+    a(
+        {
+            id:172,
+            title:"IMetroThumb",
+            content:"IMetroThumb",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/IMetroThumb',
+            title:"IMetroThumb",
+            description:""
+        }
+    );
+    a(
+        {
+            id:173,
+            title:"IHamburgerMenuItem",
+            content:"IHamburgerMenuItem",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/IHamburgerMenuItem',
+            title:"IHamburgerMenuItem",
+            description:""
+        }
+    );
+    a(
+        {
+            id:174,
+            title:"DialogCoordinator",
+            content:"DialogCoordinator",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/DialogCoordinator',
+            title:"DialogCoordinator",
+            description:""
+        }
+    );
+    a(
+        {
+            id:175,
+            title:"HamburgerMenu",
+            content:"HamburgerMenu",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HamburgerMenu',
+            title:"HamburgerMenu",
+            description:""
+        }
+    );
+    a(
+        {
+            id:176,
+            title:"WindowCommands",
+            content:"WindowCommands",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/WindowCommands',
+            title:"WindowCommands",
+            description:""
+        }
+    );
+    a(
+        {
+            id:177,
+            title:"UnderlinedType",
+            content:"UnderlinedType",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/UnderlinedType',
+            title:"UnderlinedType",
+            description:""
+        }
+    );
+    a(
+        {
+            id:178,
+            title:"MathAddConverter",
+            content:"MathAddConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/MathAddConverter',
+            title:"MathAddConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:179,
+            title:"LoginDialog",
+            content:"LoginDialog",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/LoginDialog',
+            title:"LoginDialog",
+            description:""
+        }
+    );
+    a(
+        {
+            id:180,
+            title:"TreeHelper",
+            content:"TreeHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/TreeHelper',
+            title:"TreeHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:181,
+            title:"MetroHeaderAutomationPeer",
+            content:"MetroHeaderAutomationPeer",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Automation.Peers/MetroHeaderAutomationPeer',
+            title:"MetroHeaderAutomationPeer",
+            description:""
+        }
+    );
+    a(
+        {
+            id:182,
+            title:"IWindowPlacementSettings",
+            content:"IWindowPlacementSettings",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/IWindowPlacementSettings',
+            title:"IWindowPlacementSettings",
+            description:""
+        }
+    );
+    a(
+        {
+            id:183,
+            title:"ColorEyeDropper",
+            content:"ColorEyeDropper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ColorEyeDropper',
+            title:"ColorEyeDropper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:184,
+            title:"AccessibilitySwitches",
+            content:"AccessibilitySwitches",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Accessibility/AccessibilitySwitches',
+            title:"AccessibilitySwitches",
+            description:""
+        }
+    );
+    a(
+        {
+            id:185,
+            title:"BorderlessWindowBehavior",
+            content:"BorderlessWindowBehavior",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Behaviors/BorderlessWindowBehavior',
+            title:"BorderlessWindowBehavior",
+            description:""
+        }
+    );
+    a(
+        {
+            id:186,
+            title:"ButtonsAlignment",
+            content:"ButtonsAlignment",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ButtonsAlignment',
+            title:"ButtonsAlignment",
+            description:""
+        }
+    );
+    a(
+        {
+            id:187,
+            title:"MetroWindow",
+            content:"MetroWindow",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MetroWindow',
+            title:"MetroWindow",
+            description:""
+        }
+    );
+    a(
+        {
+            id:188,
+            title:"SplitViewPanePlacement",
+            content:"SplitViewPanePlacement",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/SplitViewPanePlacement',
+            title:"SplitViewPanePlacement",
+            description:""
+        }
+    );
+    a(
+        {
+            id:189,
+            title:"ThicknessSideType",
+            content:"ThicknessSideType",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/ThicknessSideType',
+            title:"ThicknessSideType",
+            description:""
+        }
+    );
+    a(
+        {
+            id:190,
+            title:"ValidationHelper",
+            content:"ValidationHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ValidationHelper',
+            title:"ValidationHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:191,
+            title:"ScrollViewerHelper",
+            content:"ScrollViewerHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ScrollViewerHelper',
+            title:"ScrollViewerHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:192,
+            title:"RangeSelectionChangedEventArgs",
+            content:"RangeSelectionChangedEventArgs",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/RangeSelectionChangedEventArgs_1',
+            title:"RangeSelectionChangedEventArgs<T>",
+            description:""
+        }
+    );
+    a(
+        {
+            id:193,
+            title:"FontIcon",
+            content:"FontIcon",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/FontIcon',
+            title:"FontIcon",
+            description:""
+        }
+    );
+    a(
+        {
+            id:194,
+            title:"LayoutInvalidationCatcher",
+            content:"LayoutInvalidationCatcher",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/LayoutInvalidationCatcher',
+            title:"LayoutInvalidationCatcher",
+            description:""
+        }
+    );
+    a(
+        {
+            id:195,
+            title:"BuildInColorPalettes",
+            content:"BuildInColorPalettes",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/BuildInColorPalettes',
+            title:"BuildInColorPalettes",
+            description:""
+        }
+    );
+    a(
+        {
+            id:196,
+            title:"MetroThumbContentControl",
+            content:"MetroThumbContentControl",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/MetroThumbContentControl',
+            title:"MetroThumbContentControl",
+            description:""
+        }
+    );
+    a(
+        {
+            id:197,
+            title:"HamburgerMenuItem",
+            content:"HamburgerMenuItem",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HamburgerMenuItem',
+            title:"HamburgerMenuItem",
+            description:""
+        }
+    );
+    a(
+        {
+            id:198,
+            title:"IHamburgerMenuItemBase",
+            content:"IHamburgerMenuItemBase",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/IHamburgerMenuItemBase',
+            title:"IHamburgerMenuItemBase",
+            description:""
+        }
+    );
+    a(
+        {
+            id:199,
+            title:"MetroDialogSettings",
+            content:"MetroDialogSettings",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/MetroDialogSettings',
+            title:"MetroDialogSettings",
+            description:""
+        }
+    );
+    a(
+        {
+            id:200,
+            title:"MathConverter",
+            content:"MathConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/MathConverter',
+            title:"MathConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:201,
+            title:"ExpanderHelper",
+            content:"ExpanderHelper",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ExpanderHelper',
+            title:"ExpanderHelper",
+            description:""
+        }
+    );
+    a(
+        {
+            id:202,
+            title:"MessageDialogResult",
+            content:"MessageDialogResult",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/MessageDialogResult',
+            title:"MessageDialogResult",
+            description:""
+        }
+    );
+    a(
+        {
+            id:203,
+            title:"ColorPicker",
+            content:"ColorPicker",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ColorPicker',
+            title:"ColorPicker",
+            description:""
+        }
+    );
+    a(
+        {
+            id:204,
+            title:"SplitViewPaneClosingEventArgs",
+            content:"SplitViewPaneClosingEventArgs",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/SplitViewPaneClosingEventArgs',
+            title:"SplitViewPaneClosingEventArgs",
+            description:""
+        }
+    );
+    a(
+        {
+            id:205,
+            title:"WindowCommandsAutomationPeer",
+            content:"WindowCommandsAutomationPeer",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Automation.Peers/WindowCommandsAutomationPeer',
+            title:"WindowCommandsAutomationPeer",
+            description:""
+        }
+    );
+    a(
+        {
+            id:206,
+            title:"ContentControlEx",
+            content:"ContentControlEx",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/ContentControlEx',
+            title:"ContentControlEx",
+            description:""
+        }
+    );
+    a(
+        {
+            id:207,
+            title:"FlyoutAutomationPeer",
+            content:"FlyoutAutomationPeer",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Automation.Peers/FlyoutAutomationPeer',
+            title:"FlyoutAutomationPeer",
+            description:""
+        }
+    );
+    a(
+        {
+            id:208,
+            title:"FlipViewItem",
+            content:"FlipViewItem",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/FlipViewItem',
+            title:"FlipViewItem",
+            description:""
+        }
+    );
+    a(
+        {
+            id:209,
+            title:"SplitButton",
+            content:"SplitButton",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/SplitButton',
+            title:"SplitButton",
+            description:""
+        }
+    );
+    a(
+        {
+            id:210,
+            title:"WindowButtonCommands",
+            content:"WindowButtonCommands",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/WindowButtonCommands',
+            title:"WindowButtonCommands",
+            description:""
+        }
+    );
+    a(
+        {
+            id:211,
+            title:"HamburgerMenuItemInvokedEventArgs",
+            content:"HamburgerMenuItemInvokedEventArgs",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedEventArgs',
+            title:"HamburgerMenuItemInvokedEventArgs",
+            description:""
+        }
+    );
+    a(
+        {
+            id:212,
+            title:"FontSizeOffsetConverter",
+            content:"FontSizeOffsetConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/FontSizeOffsetConverter',
+            title:"FontSizeOffsetConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:213,
+            title:"TimePickerFormat",
+            content:"TimePickerFormat",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls/TimePickerFormat',
+            title:"TimePickerFormat",
+            description:""
+        }
+    );
+    a(
+        {
+            id:214,
+            title:"ReloadBehavior",
+            content:"ReloadBehavior",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Behaviors/ReloadBehavior',
+            title:"ReloadBehavior",
+            description:""
+        }
+    );
+    a(
+        {
+            id:215,
+            title:"ThicknessBindingConverter",
+            content:"ThicknessBindingConverter",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Converters/ThicknessBindingConverter',
+            title:"ThicknessBindingConverter",
+            description:""
+        }
+    );
+    a(
+        {
+            id:216,
+            title:"DialogParticipation",
+            content:"DialogParticipation",
+            description:'',
+            tags:''
+        },
+        {
+            url:'/api/MahApps.Metro.Controls.Dialogs/DialogParticipation',
+            title:"DialogParticipation",
             description:""
         }
     );
