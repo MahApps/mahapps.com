@@ -148,6 +148,8 @@
 			<li class="header">Namespace</li>
 		<li><a href="/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></li>
 		<li role="separator" class="divider"></li>
+			<li class="header">Struct Types</li>
+				<li><a href="/api/MahApps.Metro.Controls/HSVColor">HSVColor</a></li>
 			<li class="header">Class Types</li>
 				<li><a href="/api/MahApps.Metro.Controls/Badged">Badged</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/BaseMetroTabControl">BaseMetroTabControl</a></li>
@@ -282,8 +284,6 @@
 				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuSeparatorItem">I<wbr>Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/IMetroThumb">IMetroThumb</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/IWindowPlacementSettings">I<wbr>Window<wbr>Placement<wbr>Settings</a></li>
-			<li class="header">Struct Types</li>
-				<li><a href="/api/MahApps.Metro.Controls/HSVColor">HSVColor</a></li>
 			<li class="header">Delegate Types</li>
 				<li><a href="/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedRoutedEventHandler">Hamburger<wbr>Menu<wbr>Item<wbr>Invoked<wbr>Routed<wbr>Event<wbr>Handler</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/ItemClickRoutedEventHandler">Item<wbr>Click<wbr>Routed<wbr>Event<wbr>Handler</a></li>
@@ -347,7 +347,9 @@ class Type type-node
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>[TemplatePart(Name = "HamburgerButton", Type = typeof(Button))]
+	<pre><code>[StyleTypedProperty(Property = nameof(OptionsItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
+[StyleTypedProperty(Property = nameof(HamburgerButtonStyle), StyleTargetType = typeof(Button))]
+[TemplatePart(Name = "HamburgerButton", Type = typeof(Button))]
 [TemplatePart(Name = "ButtonsListView", Type = typeof(ListBox))]
 [TemplatePart(Name = "OptionsListView", Type = typeof(ListBox))]
 [StyleTypedProperty(Property = nameof(ResizeThumbStyle), StyleTargetType = typeof(MetroThumb))]
@@ -355,8 +357,6 @@ class Type type-node
 [StyleTypedProperty(Property = nameof(HeaderItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
 [StyleTypedProperty(Property = nameof(SeparatorItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
 [StyleTypedProperty(Property = nameof(ItemFocusVisualStyle), StyleTargetType = typeof(Control))]
-[StyleTypedProperty(Property = nameof(OptionsItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
-[StyleTypedProperty(Property = nameof(HamburgerButtonStyle), StyleTargetType = typeof(Button))]
 public class HamburgerMenu : ContentControl</code></pre>
 
 
@@ -372,23 +372,23 @@ public class HamburgerMenu : ContentControl</code></pre>
 					</tr>
 				</thead>
 					<tbody><tr>
-						<td>TemplatePart</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>TemplatePart</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>TemplatePart</td>
-						<td></td>
-					</tr>
-					<tr>
 						<td>StyleTypedProperty</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>StyleTypedProperty</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
 						<td></td>
 					</tr>
 					<tr>
