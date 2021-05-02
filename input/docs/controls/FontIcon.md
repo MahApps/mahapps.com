@@ -6,7 +6,7 @@ The `FontIcon` class represents an icon that uses a glyph from the specified fon
 
 ## Examples
 
-```xaml
+```xml
 <Grid xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
     <mah:FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;" />
 </Grid>
