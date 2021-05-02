@@ -81,11 +81,9 @@
                     	
         <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/HamburgerMenu.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
     <div id="infobar-headings"><h6>On This Page</h6><p><a href="#example">Example</a></p>
-<p><a href="#example-code">Example Code</a></p>
 <p><a href="#properties">Properties</a></p>
 <p><a href="#events">Events</a></p>
 <p><a href="#navigation-example">Navigation Example</a></p>
-<p><a href="#navigation-example-code">Navigation Example Code</a></p>
 <hr class="infobar-hidden">
 </div>
 
@@ -239,7 +237,7 @@
 <p>Developers can place menu specific content, navigation, images, text or custom controls.</p>
 <h1 id="example">Example</h1>
 <p><img src="images/hamburgermenu.gif" class="img-fluid" alt="HamburgerMenu"></p>
-<h1 id="example-code">Example Code</h1>
+<h2 id="example-code">Example Code</h2>
 <p>This sample demonstrates how to add custom menu items to the HamburgerMenu control.</p>
 <pre><code class="language-xml">&lt;Controls:MetroWindow ...
                       xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
@@ -408,16 +406,288 @@
 
   if (!e.IsItemOptions &amp;&amp; this.HamburgerMenuControl.IsPaneOpen)
   {
-    // close the menu if a item was selected
-    // this.HamburgerMenuControl.IsPaneOpen = false;
+    // You can close the menu if an item was selected
+    // this.HamburgerMenuControl.SetCurrentValue(HamburgerMenuControl.IsPaneOpenProperty, false);
   }
 }
 </code></pre>
 <h1 id="properties">Properties</h1>
+<table class="table">
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CanResizeOpenPane</td>
+<td>bool</td>
+<td>Gets or Sets whether the open pane can be resized by the user. The default value is false.</td>
+</tr>
+<tr>
+<td>CompactPaneLength</td>
+<td>double</td>
+<td>Gets or sets the width of the pane when in its compact display mode.</td>
+</tr>
+<tr>
+<td>ContentTransition</td>
+<td>TransitionType</td>
+<td>Gets or sets the TransitionType for the TransitioningContentControl which shows the selected menu item content.</td>
+</tr>
+<tr>
+<td>DisplayMode</td>
+<td>SplitViewDisplayMode</td>
+<td>Gets or sets a value that specifies how the pane and content areas are shown.</td>
+</tr>
+<tr>
+<td>HamburgerButtonHelpText</td>
+<td>string</td>
+<td>Gets or sets the AutomationProperties.HelpTextProperty for the HamburgerMenu button.</td>
+</tr>
+<tr>
+<td>HamburgerButtonName</td>
+<td>string</td>
+<td>Gets or sets theAutomationProperties.NameProperty for the HamburgerMenu button.</td>
+</tr>
+<tr>
+<td>HamburgerButtonStyle</td>
+<td>Style</td>
+<td>Gets or sets the FrameworkElement.Style for the HamburgerMenu button.</td>
+</tr>
+<tr>
+<td>HamburgerButtonTemplate</td>
+<td>DataTemplate</td>
+<td>Gets or sets the ContentControl.ContentTemplate for the HamburgerMenu button.</td>
+</tr>
+<tr>
+<td>HamburgerHeight</td>
+<td>double</td>
+<td>Gets or sets the FrameworkElement.Height for the HamburgerMenu button.</td>
+</tr>
+<tr>
+<td>HamburgerMargin</td>
+<td>Thickness</td>
+<td>Gets or sets the margin for the HamburgerMenu button.</td>
+</tr>
+<tr>
+<td>HamburgerMenuHeaderTemplate</td>
+<td>DataTemplate</td>
+<td>Gets or sets the ContentControl.ContentTemplate for the HamburgerMenu pane header.</td>
+</tr>
+<tr>
+<td>HamburgerVisibility</td>
+<td>Visibility</td>
+<td>Gets or sets the UIElement.Visibility for the HamburgerMenu button.</td>
+</tr>
+<tr>
+<td>HamburgerWidth</td>
+<td>double</td>
+<td>Gets or sets HamburgerMenu button's FrameworkElement.Width.</td>
+</tr>
+<tr>
+<td>HeaderItemContainerStyle</td>
+<td>Style</td>
+<td>Gets or sets the Style used for each header item.</td>
+</tr>
+<tr>
+<td>IsPaneOpen</td>
+<td>bool</td>
+<td>Gets or sets a value indicating whether the pane is expanded to its full width.</td>
+</tr>
+<tr>
+<td>ItemCommand</td>
+<td>ICommand</td>
+<td>Gets or sets a ICommand which will be executed if an item was clicked by the user.</td>
+</tr>
+<tr>
+<td>ItemCommandParameter</td>
+<td>object</td>
+<td>Gets or sets the ICommand parameter which will be passed by the ItemCommand.</td>
+</tr>
+<tr>
+<td>ItemContainerStyle</td>
+<td>Style</td>
+<td>Gets or sets the Style used for each item.</td>
+</tr>
+<tr>
+<td>ItemFocusVisualStyle</td>
+<td>Style</td>
+<td>Gets or sets the default FocusVisualStyle for a HamburgerMenuItem. This style can be override at the HamburgerMenuItem style by setting the FocusVisualStyle property.</td>
+</tr>
+<tr>
+<td>Items</td>
+<td>ItemCollection</td>
+<td>Gets the collection used to generate the content of the items list.</td>
+</tr>
+<tr>
+<td>ItemsSource</td>
+<td>object</td>
+<td>Gets or sets an object source used to generate the content of the menu.</td>
+</tr>
+<tr>
+<td>ItemTemplate</td>
+<td>DataTemplate</td>
+<td>Gets or sets the DataTemplate used to display each item.</td>
+</tr>
+<tr>
+<td>ItemTemplateSelector</td>
+<td>DataTemplateSelector</td>
+<td>Gets or sets the DataTemplateSelector used to display each item.</td>
+</tr>
+<tr>
+<td>MaximumOpenPaneLength</td>
+<td>double</td>
+<td>Gets or sets the maximum width of the SplitView pane when it's fully expanded.</td>
+</tr>
+<tr>
+<td>MinimumOpenPaneLength</td>
+<td>double</td>
+<td>Gets or sets the minimum width of the SplitView pane when it's fully expanded.</td>
+</tr>
+<tr>
+<td>OpenPaneLength</td>
+<td>double</td>
+<td>Gets or sets the width of the pane when it's fully expanded.</td>
+</tr>
+<tr>
+<td>OptionsItemCommand</td>
+<td>ICommand</td>
+<td>Gets or sets a ICommand which will be executed if an options item was clicked by the user.</td>
+</tr>
+<tr>
+<td>OptionsItemCommandParameter</td>
+<td>object</td>
+<td>Gets or sets the ICommand parameter which will be passed by the OptionsItemCommand.</td>
+</tr>
+<tr>
+<td>OptionsItemContainerStyle</td>
+<td>Style</td>
+<td>Gets or sets the Style used for each item in the options.</td>
+</tr>
+<tr>
+<td>OptionsItems</td>
+<td>ItemCollection</td>
+<td>Gets the collection used to generate the content of the option list.</td>
+</tr>
+<tr>
+<td>OptionsItemsSource</td>
+<td>object</td>
+<td>Gets or sets an object source used to generate the content of the options.</td>
+</tr>
+<tr>
+<td>OptionsItemTemplate</td>
+<td>DataTemplate</td>
+<td>Gets or sets the DataTemplate used to display each item in the options.</td>
+</tr>
+<tr>
+<td>OptionsItemTemplateSelector</td>
+<td>DataTemplateSelector</td>
+<td>Gets or sets the DataTemplateSelector used to display each item in the options.</td>
+</tr>
+<tr>
+<td>OptionsVisibility</td>
+<td>Visibility</td>
+<td>Gets or sets the Visibility of the options menu.</td>
+</tr>
+<tr>
+<td>PaneBackground</td>
+<td>Brush</td>
+<td>Gets or sets the Brush to apply to the background of the pane area of the HamburgerMenu.</td>
+</tr>
+<tr>
+<td>PaneForeground</td>
+<td>Brush</td>
+<td>Gets or sets the Brush to apply to the foreground of the pane area of the HamburgerMenu.</td>
+</tr>
+<tr>
+<td>PaneHeaderMargin</td>
+<td>Thickness</td>
+<td>Gets or sets the margin for the pane header.</td>
+</tr>
+<tr>
+<td>PaneMargin</td>
+<td>Thickness</td>
+<td>Gets or sets the margin for the SplitView pane.</td>
+</tr>
+<tr>
+<td>PanePlacement</td>
+<td>SplitViewPanePlacement</td>
+<td>Gets or sets a value that specifies whether the pane is shown on the right or on left side of the HamburgerMenu.</td>
+</tr>
+<tr>
+<td>ResizeThumbStyle</td>
+<td>Style</td>
+<td>Gets or Sets the Style for the resizing Thumb (type of MetroThumb)</td>
+</tr>
+<tr>
+<td>SelectedIndex</td>
+<td>int</td>
+<td>Gets or sets the selected menu index.</td>
+</tr>
+<tr>
+<td>SelectedItem</td>
+<td>object</td>
+<td>Gets or sets the selected menu item.</td>
+</tr>
+<tr>
+<td>SelectedOptionsIndex</td>
+<td>int</td>
+<td>Gets or sets the selected options menu index.</td>
+</tr>
+<tr>
+<td>SelectedOptionsItem</td>
+<td>object</td>
+<td>Gets or sets the selected options menu item.</td>
+</tr>
+<tr>
+<td>SeparatorItemContainerStyle</td>
+<td>Style</td>
+<td>Gets or sets the Style used for each separator item.</td>
+</tr>
+<tr>
+<td>ShowSelectionIndicator</td>
+<td>bool</td>
+<td>Gets or sets whether a selection indicator will be shown on the HamburgerMenuItem.</td>
+</tr>
+<tr>
+<td>VerticalScrollBarOnLeftSide</td>
+<td>bool</td>
+<td>Gets or sets whether the ScrollBar of the HamburgerMenu is on the left side or on the right side of the menu items.</td>
+</tr>
+</tbody>
+</table>
 <h1 id="events">Events</h1>
+<table class="table">
+<thead>
+<tr>
+<th>Event</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HamburgerButtonClick</td>
+<td>Event raised when the hamburger menu button is clicked</td>
+</tr>
+<tr>
+<td>ItemClick</td>
+<td>Event raised when an item is clicked</td>
+</tr>
+<tr>
+<td>ItemInvoked</td>
+<td>Event raised when an item is invoked</td>
+</tr>
+<tr>
+<td>OptionsItemClick</td>
+<td>Event raised when an options' item is clicked</td>
+</tr>
+</tbody>
+</table>
 <h1 id="navigation-example">Navigation Example</h1>
 <p><img src="images/hamburgermenunavi.gif" class="img-fluid" alt="HamburgerMenuNavi"></p>
-<h1 id="navigation-example-code">Navigation Example Code</h1>
+<h2 id="navigation-example-code">Navigation Example Code</h2>
 <p>This sample demonstrates how to use the HamburgerMenu control with a Frame inside. The complete sample is available at <a href="https://github.com/punker76/code-samples/tree/main/MahAppsMetroHamburgerMenuNavigation">this repository</a>.</p>
 <pre><code class="language-xml">&lt;controls:MetroWindow x:Class="MahAppsMetroHamburgerMenuNavigation.MainWindow"
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
