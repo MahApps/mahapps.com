@@ -171,6 +171,11 @@ The `ColorCanvas` control lets the user select a `Color` by the following option
 | LabelValueChannel      | string                     | Gets or sets the `Label` for the Value-channel |
 | LabelColorPreview      | string                     | Gets or sets the `Label` for the preview field |
 | LabelColorName         | string                     | Gets or sets the `Label` for the color name |
+| AreRgbChannelsVisible  | bool                       | Gets or sets if the slider for the `RGB`-channels are visible. The default is `true`                                                               |
+| AreHsvChannelsVisible  | bool                       | Gets or sets if the slider for the `HSV`-channels are visible. The default is `true`                                                               |
+| IsAlphaChannelVisible  | bool                       | Gets or sets if the slider for the `Alpha`-channel isvisible. The default is `true`                                                                |
+| IsColorNameVisible     | bool                       | Gets or sets if the entry for the `ColorName` is visible. The default is `true`                                                                    |
+| IsEyeDropperVisible    | bool                       | Gets or sets if the `EyeDropper` is visible. The default is `true`                                                                                 |
 
 ## Events
 
@@ -425,6 +430,11 @@ This control lets the user select a `Color` in a `ComboBox`-like control. The us
 | IsDropDownOpen                 | bool                       | Gets or sets whether the `DropDown` is open |
 | IsAdvancedTabVisible           | bool                       | Gets or sets whether the advanced tab is visible |
 | IsColorPalettesTabVisible      | bool                       | Gets or sets whether the standard tab is visible |
+| AreRgbChannelsVisible  | bool                       | Gets or sets if the slider for the `RGB`-channels are visible. The default is `true`                                                               |
+| AreHsvChannelsVisible  | bool                       | Gets or sets if the slider for the `HSV`-channels are visible. The default is `true`                                                               |
+| IsAlphaChannelVisible  | bool                       | Gets or sets if the slider for the `Alpha`-channel is visible. The default is `true`                                                                |
+| IsColorNameVisible     | bool                       | Gets or sets if the entry for the `ColorName` is visible. The default is `true`                                                                    |
+| IsEyeDropperVisible    | bool                       | Gets or sets if the `EyeDropper` is visible. The default is `true`                                                                                 |
 | TabControlStyle                | Style                      | Gets or sets the `Style` for the `TabControl` inside the `DropDown` |
 | TabItemStyle                   | Style                      | Gets or sets the `Style` for the `TabItems` inside the `DropDown` |
 
