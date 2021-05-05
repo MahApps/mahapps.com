@@ -5,40 +5,42 @@ Description: The documentation for the ColorPicker, ColorCanvas, ColorPallette a
 # Table of content
 <!-- Start Document Outline -->
 
+* [Table of content](#table-of-content)
 * [Introduction](#introduction)
 * [ColorNamesDictionary and ColorHelper](#colornamesdictionary-and-colorhelper)
 	* [Looking up a color name](#looking-up-a-color-name)
 	* [Getting a color from a given name](#getting-a-color-from-a-given-name)
+		* [Examples](#examples)
 	* [How to provide custom color names](#how-to-provide-custom-color-names)
+		* [Example](#example)
 	* [Provide translations for a language of your choice](#provide-translations-for-a-language-of-your-choice)
+	* [Use your own ColorHelper](#use-your-own-colorhelper)
 * [ColorCanvas](#colorcanvas)
 	* [The user interface](#the-user-interface)
 	* [Properties](#properties)
-	* [Attached Properties (Helper)](#attached-properties-helper)
 	* [Events](#events)
 	* [DynamicResources](#dynamicresources)
-	* [Example](#example)
+	* [Example](#example-1)
 * [ColorPalette](#colorpalette)
 	* [The user interface](#the-user-interface-1)
 	* [Properties](#properties-1)
-	* [Attached Properties (Helper)](#attached-properties-helper-1)
 	* [DynamicResources](#dynamicresources-1)
-	* [Example](#example-1)
+	* [Example](#example-2)
 	* [Build in color palettes](#build-in-color-palettes)
 * [ColorEyeDropper](#coloreyedropper)
 	* [The user interface](#the-user-interface-2)
 	* [Properties](#properties-2)
-	* [Attached Properties (Helper)](#attached-properties-helper-2)
 	* [Events](#events-1)
-	* [DynamicResources](#dynamicresources-2)
-	* [Example](#example-2)
+	* [Example](#example-3)
 * [ColorPicker](#colorpicker)
 	* [The user interface](#the-user-interface-3)
 	* [Properties](#properties-3)
-	* [Attached Properties (Helper)](#attached-properties-helper-3)
 	* [Events](#events-2)
-	* [DynamicResources](#dynamicresources-3)
-	* [Example](#example-3)
+	* [DynamicResources](#dynamicresources-2)
+	* [Example](#example-4)
+		* [Basic example](#basic-example)
+		* [Using the SelectedColorChanged-Event](#using-the-selectedcolorchanged-event)
+		* [Customizing the content of the color picker](#customizing-the-content-of-the-color-picker)
 
 <!-- End Document Outline -->
 
@@ -64,7 +66,7 @@ Colors may have a name which is localize-able if you want to. The color names ar
 If you want to look up a name of a given `Color` in code behind use this line: 
 
 ```csharp
-string nameOfTheColor = MahApps.Metro.Controls.ColorHelper.GetColorName(myColor, theDictionaryToUse);
+string nameOfTheColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.GetColorName(myColor, theDictionaryToUse);
 ```
 
 :::{.alert .alert-info}
@@ -79,13 +81,13 @@ You can also get back the color by looking up its name. The routine will first c
 ### Examples
 
 ```csharp
-Color? myColor = MahApps.Metro.Controls.ColorHelper.ColorFromString(myColorName, theDictionaryToUse);
+Color? myColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.ColorFromString(myColorName, theDictionaryToUse);
 
 // this will look up the German word "Blau" and returns blue color
-Color? myColor = MahApps.Metro.Controls.ColorHelper.ColorFromString("Blau", null);
+Color? myColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.ColorFromString("Blau", null);
 
 // this will look up the HTML-notation "#FF000000" and returns black color
-Color? myColor = MahApps.Metro.Controls.ColorHelper.ColorFromString("#FF000000", null);
+Color? myColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.ColorFromString("#FF000000", null);
 ```
 
 :::{.alert .alert-info}
@@ -118,6 +120,40 @@ Currently implemented color languages are
 You can help providing translations to the build in dictionary.
 
 We recommend using the [ResXManager](https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager).
+
+## Use your own `ColorHelper`
+The `ColorHelper` can be derived from which lets you create your own logic for `ColorFromString` and `GetColorName`:
+
+```csharp
+// Add this to your using-section
+using MahApps.Metro.Controls;
+
+public class MyColorHelper : ColorHelper
+{
+    public override Color? ColorFromString(string? colorName, Dictionary<Color, string>? colorNamesDictionary)
+    {
+        // Your logic goes here
+        return myFoundColor;
+    }
+
+    public override string? GetColorName(Color? color, Dictionary<Color, string>? colorNamesDictionary, bool useAlphaChannel)
+    {
+        // Your logic goes here
+        return theNameOfMyColor;
+    }
+}
+```
+
+You can then use this class like every other Property:
+
+```xml
+<!-- make sure to add the right namespace -->
+<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+
+<mah:ColorPicker  ColorHelper="[[Bind here to your ColorHelper]]" />
+<mah:ColorCanvas  ColorHelper="[[Bind here to your ColorHelper]]" />
+<mah:ColorPalette ColorHelper="[[Bind here to your ColorHelper]]" />
+```
 
 # ColorCanvas
 
@@ -171,7 +207,12 @@ The `ColorCanvas` control lets the user select a `Color` by the following option
 | LabelValueChannel      | string                     | Gets or sets the `Label` for the Value-channel |
 | LabelColorPreview      | string                     | Gets or sets the `Label` for the preview field |
 | LabelColorName         | string                     | Gets or sets the `Label` for the color name |
-
+| AreRgbChannelsVisible  | bool                       | Gets or sets if the slider for the `RGB`-channels are visible. The default is `true`                                                               |
+| AreHsvChannelsVisible  | bool                       | Gets or sets if the slider for the `HSV`-channels are visible. The default is `true`                                                               |
+| IsAlphaChannelVisible  | bool                       | Gets or sets if the slider for the `Alpha`-channel isvisible. The default is `true`                                                                |
+| IsColorNameVisible     | bool                       | Gets or sets if the entry for the `ColorName` is visible. The default is `true`                                                                    |
+| IsEyeDropperVisible    | bool                       | Gets or sets if the `EyeDropper` is visible. The default is `true`                                                                                 |
+| ColorHelper           | ColorHelper                 | Gets or sets the  [ColorHelper](#colornamesdictionary-and-colorhelper) to use |
 ## Events
 
 | Event                  | Description                             |
@@ -231,6 +272,7 @@ In addition to this the `ColorPalette` provides the following properties.
 | Header               | object                     | Gets or sets the header content          |
 | HeaderTemplate       | DataTemplate               | Gets or sets the header template         |
 | ColorNamesDictionary | Dictionary<Color?, string> | Gets or sets the `Dictionary<Color?, string>` used to get or set the ColorName [(see also `ColorHelper`)](#colornamesdictionary-and-colorhelper) |
+| ColorHelper           | ColorHelper                 | Gets or sets the  [ColorHelper](#colornamesdictionary-and-colorhelper) to use |
 
 ## DynamicResources
 
@@ -425,8 +467,14 @@ This control lets the user select a `Color` in a `ComboBox`-like control. The us
 | IsDropDownOpen                 | bool                       | Gets or sets whether the `DropDown` is open |
 | IsAdvancedTabVisible           | bool                       | Gets or sets whether the advanced tab is visible |
 | IsColorPalettesTabVisible      | bool                       | Gets or sets whether the standard tab is visible |
+| AreRgbChannelsVisible  | bool                       | Gets or sets if the slider for the `RGB`-channels are visible. The default is `true`                                                               |
+| AreHsvChannelsVisible  | bool                       | Gets or sets if the slider for the `HSV`-channels are visible. The default is `true`                                                               |
+| IsAlphaChannelVisible  | bool                       | Gets or sets if the slider for the `Alpha`-channel is visible. The default is `true`                                                                |
+| IsColorNameVisible     | bool                       | Gets or sets if the entry for the `ColorName` is visible. The default is `true`                                                                    |
+| IsEyeDropperVisible    | bool                       | Gets or sets if the `EyeDropper` is visible. The default is `true`                                                                                 |
 | TabControlStyle                | Style                      | Gets or sets the `Style` for the `TabControl` inside the `DropDown` |
 | TabItemStyle                   | Style                      | Gets or sets the `Style` for the `TabItems` inside the `DropDown` |
+| ColorHelper           | ColorHelper                 | Gets or sets the  [ColorHelper](#colornamesdictionary-and-colorhelper) to use |
 
 The `ColorPicker` can hold up to five different [`ColorPalettes`](#colorpalette) which can be controlled by the following properties. As the properties repeat for all five `ColorPalettes` we use <b>[###ColorPalette]</b> as a placeholder. In your code please replace it with one of these names: 
 
@@ -471,6 +519,7 @@ The `RecentColorPalette` is a special `ColorPalette` which is used to store the 
 
 ## Example
 
+### Basic example
 ```xml
 <!-- make sure to add the right namespace -->
 <!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
@@ -481,6 +530,8 @@ The `RecentColorPalette` is a special `ColorPalette` which is used to store the 
                  mah:TextBoxHelper.Watermark="Select a color"
                  AddToRecentColorsTrigger="SelectedColorChanged" />
 ```
+
+### Using the `SelectedColorChanged`-Event
 
 The following example shows how the `SelectedColorChanged`-Event can be used to create a custom theme. 
 
@@ -522,3 +573,61 @@ private void ColorPicker_SelectedColorChanged(object sender, RoutedPropertyChang
 ```
 
 ![](images/ColorPicker_ThemeExample.png)
+
+### Customizing the content of the color picker
+
+This section shows how the content (**`03`** in the picture below) can be customized
+
+![](images/ColorPicker_Opened_Numbered.png)
+
+```xml
+<!-- make sure to add the right namespace -->
+<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+
+<!-- Add a DataTemplate in your Resources-Section. This can be in App.xaml, MainWindow.xaml or any other place. Here we define it inside a UserControl -->
+
+<UserControl.Resources>
+    <DataTemplate x:Key="My.Datatemplates.CustomColorPickerContent">
+        <Grid x:Name="RootGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <mah:ClipBorder Grid.Column="0"
+                            Width="80"
+                            Height="80"
+                            Background="{DynamicResource MahApps.Brushes.Tile.Small}"
+                            BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
+                            BorderThickness="3"
+                            CornerRadius="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight, Converter={mah:SizeToCornerRadiusConverter}}">
+                <Grid Background="{Binding Converter={x:Static mah:ColorToSolidColorBrushConverter.DefaultInstance}}">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=Background, Converter={x:Static mah:BackgroundToForegroundConverter.Instance}}"
+                               Text="{Binding}" />
+                </Grid>
+            </mah:ClipBorder>
+        </Grid>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding}" Value="{x:Null}">
+                <Setter TargetName="RootGrid" Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+</UserControl.Resources>
+
+<!-- Now we need to reference our DataTemplate either as StaticResource or DynamicResource -->
+<mah:ColorPicker Height="100"
+                 HorizontalAlignment="Left"
+                 SelectedColor="blue"
+                 SelectedColorTemplate="{StaticResource My.Datatemplates.CustomColorPickerContent}" />
+```
+
+The final result will look like this: 
+
+![](images/ColorPicker_CustomDataTemplate.png)
+
+Please find the build-in `DataTemplates` here: 
+
+[MahApps.Metro Source ▶ Themes ▶ ColorPicker ▶ ColorPicker.xaml](https://github.com/MahApps/MahApps.Metro/blob/a636cc8295742a230682ad7c5033cf4520b0916c/src/MahApps.Metro/Themes/ColorPicker/ColorPicker.xaml#L13-L64)
