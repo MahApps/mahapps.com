@@ -64,7 +64,7 @@ Colors may have a name which is localize-able if you want to. The color names ar
 If you want to look up a name of a given `Color` in code behind use this line: 
 
 ```csharp
-string nameOfTheColor = MahApps.Metro.Controls.ColorHelper.GetColorName(myColor, theDictionaryToUse);
+string nameOfTheColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.GetColorName(myColor, theDictionaryToUse);
 ```
 
 :::{.alert .alert-info}
@@ -79,13 +79,13 @@ You can also get back the color by looking up its name. The routine will first c
 ### Examples
 
 ```csharp
-Color? myColor = MahApps.Metro.Controls.ColorHelper.ColorFromString(myColorName, theDictionaryToUse);
+Color? myColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.ColorFromString(myColorName, theDictionaryToUse);
 
 // this will look up the German word "Blau" and returns blue color
-Color? myColor = MahApps.Metro.Controls.ColorHelper.ColorFromString("Blau", null);
+Color? myColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.ColorFromString("Blau", null);
 
 // this will look up the HTML-notation "#FF000000" and returns black color
-Color? myColor = MahApps.Metro.Controls.ColorHelper.ColorFromString("#FF000000", null);
+Color? myColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.ColorFromString("#FF000000", null);
 ```
 
 :::{.alert .alert-info}
@@ -118,6 +118,39 @@ Currently implemented color languages are
 You can help providing translations to the build in dictionary.
 
 We recommend using the [ResXManager](https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager).
+
+## Use your own `ColorHelper`
+The `ColorHelper` can be derived from which lets you create your own logic for `ColorFromString` and `GetColorName`:
+
+```csharp
+// Add this to your using-section
+using MahApps.Metro.Controls;
+
+public class MyColorHelper : ColorHelper
+{
+    public override Color? ColorFromString(string? colorName, Dictionary<Color, string>? colorNamesDictionary)
+    {
+        // Your logic goes here
+        return myFoundColor;
+    }
+
+    public override string? GetColorName(Color? color, Dictionary<Color, string>? colorNamesDictionary, bool useAlphaChannel)
+    {
+        // Your logic goes here
+        return theNameOfMyColor;
+    }
+}
+```
+
+You can then use this class like every other Property:
+
+```xml
+<!-- make sure to add the right namespace -->
+<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+
+<mah:ColorPicker ColorHelper="[[Bind here to your ColorHelper]]" />
+<mah:ColorCanvas ColorHelper="[[Bind here to your ColorHelper]]" />
+```
 
 # ColorCanvas
 
@@ -176,7 +209,7 @@ The `ColorCanvas` control lets the user select a `Color` by the following option
 | IsAlphaChannelVisible  | bool                       | Gets or sets if the slider for the `Alpha`-channel isvisible. The default is `true`                                                                |
 | IsColorNameVisible     | bool                       | Gets or sets if the entry for the `ColorName` is visible. The default is `true`                                                                    |
 | IsEyeDropperVisible    | bool                       | Gets or sets if the `EyeDropper` is visible. The default is `true`                                                                                 |
-
+| ColorHelper           | ColorHelper                 | Gets or sets the  [ColorHelper](#colornamesdictionary-and-colorhelper) to use |
 ## Events
 
 | Event                  | Description                             |
@@ -236,6 +269,7 @@ In addition to this the `ColorPalette` provides the following properties.
 | Header               | object                     | Gets or sets the header content          |
 | HeaderTemplate       | DataTemplate               | Gets or sets the header template         |
 | ColorNamesDictionary | Dictionary<Color?, string> | Gets or sets the `Dictionary<Color?, string>` used to get or set the ColorName [(see also `ColorHelper`)](#colornamesdictionary-and-colorhelper) |
+| ColorHelper           | ColorHelper                 | Gets or sets the  [ColorHelper](#colornamesdictionary-and-colorhelper) to use |
 
 ## DynamicResources
 
@@ -437,6 +471,7 @@ This control lets the user select a `Color` in a `ComboBox`-like control. The us
 | IsEyeDropperVisible    | bool                       | Gets or sets if the `EyeDropper` is visible. The default is `true`                                                                                 |
 | TabControlStyle                | Style                      | Gets or sets the `Style` for the `TabControl` inside the `DropDown` |
 | TabItemStyle                   | Style                      | Gets or sets the `Style` for the `TabItems` inside the `DropDown` |
+| ColorHelper           | ColorHelper                 | Gets or sets the  [ColorHelper](#colornamesdictionary-and-colorhelper) to use |
 
 The `ColorPicker` can hold up to five different [`ColorPalettes`](#colorpalette) which can be controlled by the following properties. As the properties repeat for all five `ColorPalettes` we use <b>[###ColorPalette]</b> as a placeholder. In your code please replace it with one of these names: 
 
