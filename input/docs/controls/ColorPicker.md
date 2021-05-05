@@ -481,6 +481,7 @@ The `RecentColorPalette` is a special `ColorPalette` which is used to store the 
 
 ## Example
 
+### Basic example
 ```xml
 <!-- make sure to add the right namespace -->
 <!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
@@ -491,6 +492,8 @@ The `RecentColorPalette` is a special `ColorPalette` which is used to store the 
                  mah:TextBoxHelper.Watermark="Select a color"
                  AddToRecentColorsTrigger="SelectedColorChanged" />
 ```
+
+### Using the `SelectedColorChanged`-Event
 
 The following example shows how the `SelectedColorChanged`-Event can be used to create a custom theme. 
 
@@ -532,3 +535,60 @@ private void ColorPicker_SelectedColorChanged(object sender, RoutedPropertyChang
 ```
 
 ![](images/ColorPicker_ThemeExample.png)
+
+### Customizing the content of the color picker
+
+This section shows how the content (**`03`** in the picture below) can be customized
+
+![](images/ColorPicker_Opened_Numbered.png)
+
+```xml
+<!-- make sure to add the right namespace -->
+<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+
+<!-- Add a DataTemplate in your Resources-Section. This can be in App.xaml, MainWindow.xaml or any other place. Here we define it inside a UserControl -->
+
+<UserControl.Resources>
+    <DataTemplate x:Key="My.Datatemplates.CustomColorPickerContent">
+        <Grid x:Name="RootGrid">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <mah:ClipBorder Grid.Column="0"
+                            Width="80"
+                            Height="80"
+                            Background="{DynamicResource MahApps.Brushes.Tile.Small}"
+                            BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
+                            BorderThickness="3"
+                            CornerRadius="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight, Converter={mah:SizeToCornerRadiusConverter}}">
+                <Grid Background="{Binding Converter={x:Static mah:ColorToSolidColorBrushConverter.DefaultInstance}}">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=Background, Converter={x:Static mah:BackgroundToForegroundConverter.Instance}}"
+                               Text="{Binding}" />
+                </Grid>
+            </mah:ClipBorder>
+        </Grid>
+        <DataTemplate.Triggers>
+            <DataTrigger Binding="{Binding}" Value="{x:Null}">
+                <Setter TargetName="RootGrid" Property="Visibility" Value="Collapsed" />
+            </DataTrigger>
+        </DataTemplate.Triggers>
+    </DataTemplate>
+</UserControl.Resources>
+
+<!-- Now we need to reference our DataTemplate either as StaticResource or DynamicResource -->
+<mah:ColorPicker Height="100"
+                 HorizontalAlignment="Left"
+                 SelectedColor="blue"
+                 SelectedColorTemplate="{StaticResource My.Datatemplates.CustomColorPickerContent}" />
+```
+
+The final result will look like this: 
+![](images/ColorPicker_CustomDataTemplate.png)
+
+Please find the build-in `DataTemplates` here: 
+
+[MahApps.Metro Source ▶ Themes ▶ ColorPicker ▶ ColorPicker.xaml](https://github.com/MahApps/MahApps.Metro/blob/a636cc8295742a230682ad7c5033cf4520b0916c/src/MahApps.Metro/Themes/ColorPicker/ColorPicker.xaml#L13-L64)
