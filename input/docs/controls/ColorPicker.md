@@ -5,40 +5,42 @@ Description: The documentation for the ColorPicker, ColorCanvas, ColorPallette a
 # Table of content
 <!-- Start Document Outline -->
 
+* [Table of content](#table-of-content)
 * [Introduction](#introduction)
 * [ColorNamesDictionary and ColorHelper](#colornamesdictionary-and-colorhelper)
 	* [Looking up a color name](#looking-up-a-color-name)
 	* [Getting a color from a given name](#getting-a-color-from-a-given-name)
+		* [Examples](#examples)
 	* [How to provide custom color names](#how-to-provide-custom-color-names)
+		* [Example](#example)
 	* [Provide translations for a language of your choice](#provide-translations-for-a-language-of-your-choice)
+	* [Use your own ColorHelper](#use-your-own-colorhelper)
 * [ColorCanvas](#colorcanvas)
 	* [The user interface](#the-user-interface)
 	* [Properties](#properties)
-	* [Attached Properties (Helper)](#attached-properties-helper)
 	* [Events](#events)
 	* [DynamicResources](#dynamicresources)
-	* [Example](#example)
+	* [Example](#example-1)
 * [ColorPalette](#colorpalette)
 	* [The user interface](#the-user-interface-1)
 	* [Properties](#properties-1)
-	* [Attached Properties (Helper)](#attached-properties-helper-1)
 	* [DynamicResources](#dynamicresources-1)
-	* [Example](#example-1)
+	* [Example](#example-2)
 	* [Build in color palettes](#build-in-color-palettes)
 * [ColorEyeDropper](#coloreyedropper)
 	* [The user interface](#the-user-interface-2)
 	* [Properties](#properties-2)
-	* [Attached Properties (Helper)](#attached-properties-helper-2)
 	* [Events](#events-1)
-	* [DynamicResources](#dynamicresources-2)
-	* [Example](#example-2)
+	* [Example](#example-3)
 * [ColorPicker](#colorpicker)
 	* [The user interface](#the-user-interface-3)
 	* [Properties](#properties-3)
-	* [Attached Properties (Helper)](#attached-properties-helper-3)
 	* [Events](#events-2)
-	* [DynamicResources](#dynamicresources-3)
-	* [Example](#example-3)
+	* [DynamicResources](#dynamicresources-2)
+	* [Example](#example-4)
+		* [Basic example](#basic-example)
+		* [Using the SelectedColorChanged-Event](#using-the-selectedcolorchanged-event)
+		* [Customizing the content of the color picker](#customizing-the-content-of-the-color-picker)
 
 <!-- End Document Outline -->
 
@@ -148,8 +150,9 @@ You can then use this class like every other Property:
 <!-- make sure to add the right namespace -->
 <!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
 
-<mah:ColorPicker ColorHelper="[[Bind here to your ColorHelper]]" />
-<mah:ColorCanvas ColorHelper="[[Bind here to your ColorHelper]]" />
+<mah:ColorPicker  ColorHelper="[[Bind here to your ColorHelper]]" />
+<mah:ColorCanvas  ColorHelper="[[Bind here to your ColorHelper]]" />
+<mah:ColorPalette ColorHelper="[[Bind here to your ColorHelper]]" />
 ```
 
 # ColorCanvas
@@ -622,6 +625,7 @@ This section shows how the content (**`03`** in the picture below) can be custom
 ```
 
 The final result will look like this: 
+
 ![](images/ColorPicker_CustomDataTemplate.png)
 
 Please find the build-in `DataTemplates` here: 
