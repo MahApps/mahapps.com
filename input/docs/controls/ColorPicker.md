@@ -1,46 +1,46 @@
 Title: ColorPicker
-Description: The documentation for the ColorPicker, ColorCanvas, ColorPallette and ColorEyeDropper
+Description: The documentation for the ColorPicker, ColorCanvas, ColorPalette and ColorEyeDropper
 ---
 
 # Table of content
 <!-- Start Document Outline -->
 
-* [Table of content](#table-of-content)
-* [Introduction](#introduction)
-* [ColorNamesDictionary and ColorHelper](#colornamesdictionary-and-colorhelper)
-	* [Looking up a color name](#looking-up-a-color-name)
-	* [Getting a color from a given name](#getting-a-color-from-a-given-name)
-		* [Examples](#examples)
-	* [How to provide custom color names](#how-to-provide-custom-color-names)
-		* [Example](#example)
-	* [Provide translations for a language of your choice](#provide-translations-for-a-language-of-your-choice)
-	* [Use your own ColorHelper](#use-your-own-colorhelper)
-* [ColorCanvas](#colorcanvas)
-	* [The user interface](#the-user-interface)
-	* [Properties](#properties)
-	* [Events](#events)
-	* [DynamicResources](#dynamicresources)
-	* [Example](#example-1)
-* [ColorPalette](#colorpalette)
-	* [The user interface](#the-user-interface-1)
-	* [Properties](#properties-1)
-	* [DynamicResources](#dynamicresources-1)
-	* [Example](#example-2)
-	* [Build in color palettes](#build-in-color-palettes)
-* [ColorEyeDropper](#coloreyedropper)
-	* [The user interface](#the-user-interface-2)
-	* [Properties](#properties-2)
-	* [Events](#events-1)
-	* [Example](#example-3)
-* [ColorPicker](#colorpicker)
-	* [The user interface](#the-user-interface-3)
-	* [Properties](#properties-3)
-	* [Events](#events-2)
-	* [DynamicResources](#dynamicresources-2)
-	* [Example](#example-4)
-		* [Basic example](#basic-example)
-		* [Using the SelectedColorChanged-Event](#using-the-selectedcolorchanged-event)
-		* [Customizing the content of the color picker](#customizing-the-content-of-the-color-picker)
+- [Table of content](#table-of-content)
+- [Introduction](#introduction)
+- [ColorNamesDictionary and ColorHelper](#colornamesdictionary-and-colorhelper)
+  - [Looking up a color name](#looking-up-a-color-name)
+  - [Getting a color from a given name](#getting-a-color-from-a-given-name)
+    - [Examples](#examples)
+  - [How to provide custom color names](#how-to-provide-custom-color-names)
+    - [Example](#example)
+  - [Provide translations for a language of your choice](#provide-translations-for-a-language-of-your-choice)
+  - [Use your own `ColorHelper`](#use-your-own-colorhelper)
+- [ColorCanvas](#colorcanvas)
+  - [The user interface](#the-user-interface)
+  - [Properties](#properties)
+  - [Events](#events)
+  - [DynamicResources](#dynamicresources)
+  - [Example](#example-1)
+- [ColorPalette](#colorpalette)
+  - [The user interface](#the-user-interface-1)
+  - [Properties](#properties-1)
+  - [DynamicResources](#dynamicresources-1)
+  - [Example](#example-2)
+  - [Build in color palettes](#build-in-color-palettes)
+- [ColorEyeDropper](#coloreyedropper)
+  - [The user interface](#the-user-interface-2)
+  - [Properties](#properties-2)
+  - [Events](#events-1)
+  - [Example](#example-3)
+- [ColorPicker](#colorpicker)
+  - [The user interface](#the-user-interface-3)
+  - [Properties](#properties-3)
+  - [Events](#events-2)
+  - [DynamicResources](#dynamicresources-2)
+  - [Example](#example-4)
+    - [Basic example](#basic-example)
+    - [Using the `SelectedColorChanged`-Event](#using-the-selectedcolorchanged-event)
+    - [Customizing the content of the color picker](#customizing-the-content-of-the-color-picker)
 
 <!-- End Document Outline -->
 
@@ -580,6 +580,30 @@ This section shows how the content (**`03`** in the picture below) can be custom
 
 ![](images/ColorPicker_Opened_Numbered.png)
 
+There are also some build-in `DataTemplate`s: [MahApps.Metro Source ▶ Themes ▶ ColorPicker ▶ ColorPicker.xaml](https://github.com/MahApps/MahApps.Metro/blob/a636cc8295742a230682ad7c5033cf4520b0916c/src/MahApps.Metro/Themes/ColorPicker/ColorPicker.xaml#L13-L64)
+
+`ColorAndName` (default)
+
+```xml
+<mah:ColorPicker Width="150"
+                 SelectedColor="red"
+                 SelectedColorTemplate="{DynamicResource MahApps.Templates.ColorPickerContent.ColorAndName}" />
+```
+
+![](images/ColorPicker_SelectedColorTemplate_ColorAndName.png)
+
+`ColorOnly`
+
+```xml
+<mah:ColorPicker Width="150"
+                 SelectedColor="red"
+                 SelectedColorTemplate="{DynamicResource MahApps.Templates.ColorPickerContent.ColorOnly}" />
+```
+
+![](images/ColorPicker_SelectedColorTemplate_ColorOnly.png)
+
+A custom `DataTemplate` could look like this:
+
 ```xml
 <!-- make sure to add the right namespace -->
 <!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
@@ -627,7 +651,3 @@ This section shows how the content (**`03`** in the picture below) can be custom
 The final result will look like this: 
 
 ![](images/ColorPicker_CustomDataTemplate.png)
-
-Please find the build-in `DataTemplates` here: 
-
-[MahApps.Metro Source ▶ Themes ▶ ColorPicker ▶ ColorPicker.xaml](https://github.com/MahApps/MahApps.Metro/blob/a636cc8295742a230682ad7c5033cf4520b0916c/src/MahApps.Metro/Themes/ColorPicker/ColorPicker.xaml#L13-L64)
