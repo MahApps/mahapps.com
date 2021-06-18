@@ -254,7 +254,7 @@
 </ul>
 </li>
 <li><a href="#provide-translations-for-a-language-of-your-choice">Provide translations for a language of your choice</a></li>
-<li><a href="#use-your-own-colorhelper">Use your own ColorHelper</a></li>
+<li><a href="#use-your-own-colorhelper">Use your own <code>ColorHelper</code></a></li>
 </ul>
 </li>
 <li><a href="#colorcanvas">ColorCanvas</a>
@@ -292,7 +292,7 @@
 <li><a href="#example-4">Example</a>
 <ul>
 <li><a href="#basic-example">Basic example</a></li>
-<li><a href="#using-the-selectedcolorchanged-event">Using the SelectedColorChanged-Event</a></li>
+<li><a href="#using-the-selectedcolorchanged-event">Using the <code>SelectedColorChanged</code>-Event</a></li>
 <li><a href="#customizing-the-content-of-the-color-picker">Customizing the content of the color picker</a></li>
 </ul>
 </li>
@@ -1353,6 +1353,20 @@ private void ColorPicker_SelectedColorChanged(object sender, RoutedPropertyChang
 <h3 id="customizing-the-content-of-the-color-picker">Customizing the content of the color picker</h3>
 <p>This section shows how the content (<strong><code>03</code></strong> in the picture below) can be customized</p>
 <p><img src="images/ColorPicker_Opened_Numbered.png" class="img-fluid" alt=""></p>
+<p>There are also some build-in <code>DataTemplate</code>s: <a href="https://github.com/MahApps/MahApps.Metro/blob/a636cc8295742a230682ad7c5033cf4520b0916c/src/MahApps.Metro/Themes/ColorPicker/ColorPicker.xaml#L13-L64">MahApps.Metro Source ▶ Themes ▶ ColorPicker ▶ ColorPicker.xaml</a></p>
+<p><code>ColorAndName</code> (default)</p>
+<pre><code class="language-xml">&lt;mah:ColorPicker Width="150"
+                 SelectedColor="red"
+                 SelectedColorTemplate="{DynamicResource MahApps.Templates.ColorPickerContent.ColorAndName}" /&gt;
+</code></pre>
+<p><img src="images/ColorPicker_SelectedColorTemplate_ColorAndName.png" class="img-fluid" alt=""></p>
+<p><code>ColorOnly</code></p>
+<pre><code class="language-xml">&lt;mah:ColorPicker Width="150"
+                 SelectedColor="red"
+                 SelectedColorTemplate="{DynamicResource MahApps.Templates.ColorPickerContent.ColorOnly}" /&gt;
+</code></pre>
+<p><img src="images/ColorPicker_SelectedColorTemplate_ColorOnly.png" class="img-fluid" alt=""></p>
+<p>A custom <code>DataTemplate</code> could look like this:</p>
 <pre><code class="language-xml">&lt;!-- make sure to add the right namespace --&gt;
 &lt;!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" --&gt;
 
@@ -1397,8 +1411,6 @@ private void ColorPicker_SelectedColorChanged(object sender, RoutedPropertyChang
 </code></pre>
 <p>The final result will look like this:</p>
 <p><img src="images/ColorPicker_CustomDataTemplate.png" class="img-fluid" alt=""></p>
-<p>Please find the build-in <code>DataTemplates</code> here:</p>
-<p><a href="https://github.com/MahApps/MahApps.Metro/blob/a636cc8295742a230682ad7c5033cf4520b0916c/src/MahApps.Metro/Themes/ColorPicker/ColorPicker.xaml#L13-L64">MahApps.Metro Source ▶ Themes ▶ ColorPicker ▶ ColorPicker.xaml</a></p>
 
 	</section>
                 
