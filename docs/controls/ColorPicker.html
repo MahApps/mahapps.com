@@ -361,6 +361,15 @@ If you set the second parameter to 'null' the default dictionary will be used.</
     { Colors.Yellow, "warning" },
     { Colors.Red, "error" }
 };
+
+public Dictionary&lt;Color?, string&gt; MyColorNames
+{
+    get { return myColorNames; }    
+}
+</code></pre>
+<pre><code class="language-xml">&lt;!-- example usage --&gt;
+&lt;!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" --&gt;
+&lt;mah:ColorPicker ColorNamesDictionary="{Binding MyColorNames}" /&gt;
 </code></pre>
 <h2 id="provide-translations-for-a-language-of-your-choice">Provide translations for a language of your choice</h2>
 <p>Currently implemented color languages are</p>
@@ -375,18 +384,23 @@ If you set the second parameter to 'null' the default dictionary will be used.</
 <pre><code class="language-csharp">// Add this to your using-section
 using MahApps.Metro.Controls;
 
-public class MyColorHelper : <a href="/api/MahApps.Metro.Controls/ColorHelper">ColorHelper</a>
+namespace MyNamespace
 {
-    public override Color? ColorFromString(string? colorName, Dictionary&lt;Color, string&gt;? colorNamesDictionary)
+    public class MyColorHelper : <a href="/api/MahApps.Metro.Controls/ColorHelper">ColorHelper</a>
     {
-        // Your logic goes here
-        return myFoundColor;
-    }
+        public static new readonly MyColorHelper DefaultInstance = new();
 
-    public override string? GetColorName(Color? color, Dictionary&lt;Color, string&gt;? colorNamesDictionary, bool useAlphaChannel)
-    {
-        // Your logic goes here
-        return theNameOfMyColor;
+        public override Color? ColorFromString(string? colorName, Dictionary&lt;Color, string&gt;? colorNamesDictionary)
+        {
+            // Your logic goes here
+            return myFoundColor;
+        }
+    
+        public override string? GetColorName(Color? color, Dictionary&lt;Color, string&gt;? colorNamesDictionary, bool useAlphaChannel)
+        {
+            // Your logic goes here
+            return theNameOfMyColor;
+        }
     }
 }
 </code></pre>
@@ -394,9 +408,13 @@ public class MyColorHelper : <a href="/api/MahApps.Metro.Controls/ColorHelper">C
 <pre><code class="language-xml">&lt;!-- make sure to add the right namespace --&gt;
 &lt;!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" --&gt;
 
-&lt;mah:ColorPicker  ColorHelper="[[Bind here to your ColorHelper]]" /&gt;
-&lt;mah:ColorCanvas  ColorHelper="[[Bind here to your ColorHelper]]" /&gt;
+&lt;mah:ColorPicker ColorHelper="[[Bind here to your ColorHelper]]" /&gt;
+&lt;mah:ColorCanvas ColorHelper="[[Bind here to your ColorHelper]]" /&gt;
 &lt;mah:ColorPalette ColorHelper="[[Bind here to your ColorHelper]]" /&gt;
+
+&lt;!-- example usage --&gt;
+&lt;!-- xmlns:my="clr-namespace:MyNamespace;assembly=YourAssembly" --&gt;
+&lt;mah:ColorPicker ColorHelper="{Binding Source={x:Static my:MyColorHelper.DefaultInstance}}" /&gt;
 </code></pre>
 <h1 id="colorcanvas">ColorCanvas</h1>
 <p>The <code><a href="/api/MahApps.Metro.Controls/ColorCanvas">ColorCanvas</a></code> control lets the user select a <code>Color</code> by the following options:</p>
