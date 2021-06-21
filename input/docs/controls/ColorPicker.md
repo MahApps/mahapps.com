@@ -97,7 +97,7 @@ If you set the second parameter to 'null' the default dictionary will be used.
 
 ## How to provide custom color names
 
-You can change the build in dictionary via `MahApps.Metro.Controls.ColorHelper.ColorNamesDictionary` by adding, removing or changing any color name. You can also create your own `Dictionary<Color?, string>` anywhere in your `Model` or `ViewModel` to provide your own color names. That way you can use also different dictionaries for different `ColorPicker`. 
+You can change the build in dictionary via `MahApps.Metro.Controls.ColorHelper.ColorNamesDictionary` by adding, removing or changing any color name. You can also create your own `Dictionary<Color?, string>` anywhere in your `Model` or `ViewModel` to provide your own color names. That way you can use also different dictionaries for different `ColorPicker`.
 
 ### Example
 
@@ -108,6 +108,17 @@ Dictionary<Color?, string> myColorNames = new Dictionary<Color?, string>()
     { Colors.Yellow, "warning" },
     { Colors.Red, "error" }
 };
+
+public Dictionary<Color?, string> MyColorNames
+{
+    get { return myColorNames; }    
+}
+```
+
+```xml
+<!-- example usage -->
+<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+<mah:ColorPicker ColorNamesDictionary="{Binding MyColorNames}" />
 ```
 
 ## Provide translations for a language of your choice
@@ -122,24 +133,30 @@ You can help providing translations to the build in dictionary.
 We recommend using the [ResXManager](https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager).
 
 ## Use your own `ColorHelper`
+
 The `ColorHelper` can be derived from which lets you create your own logic for `ColorFromString` and `GetColorName`:
 
 ```csharp
 // Add this to your using-section
 using MahApps.Metro.Controls;
 
-public class MyColorHelper : ColorHelper
+namespace MyNamespace
 {
-    public override Color? ColorFromString(string? colorName, Dictionary<Color, string>? colorNamesDictionary)
+    public class MyColorHelper : ColorHelper
     {
-        // Your logic goes here
-        return myFoundColor;
-    }
+        public static new readonly MyColorHelper DefaultInstance = new();
 
-    public override string? GetColorName(Color? color, Dictionary<Color, string>? colorNamesDictionary, bool useAlphaChannel)
-    {
-        // Your logic goes here
-        return theNameOfMyColor;
+        public override Color? ColorFromString(string? colorName, Dictionary<Color, string>? colorNamesDictionary)
+        {
+            // Your logic goes here
+            return myFoundColor;
+        }
+    
+        public override string? GetColorName(Color? color, Dictionary<Color, string>? colorNamesDictionary, bool useAlphaChannel)
+        {
+            // Your logic goes here
+            return theNameOfMyColor;
+        }
     }
 }
 ```
@@ -150,9 +167,13 @@ You can then use this class like every other Property:
 <!-- make sure to add the right namespace -->
 <!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
 
-<mah:ColorPicker  ColorHelper="[[Bind here to your ColorHelper]]" />
-<mah:ColorCanvas  ColorHelper="[[Bind here to your ColorHelper]]" />
+<mah:ColorPicker ColorHelper="[[Bind here to your ColorHelper]]" />
+<mah:ColorCanvas ColorHelper="[[Bind here to your ColorHelper]]" />
 <mah:ColorPalette ColorHelper="[[Bind here to your ColorHelper]]" />
+
+<!-- example usage -->
+<!-- xmlns:my="clr-namespace:MyNamespace;assembly=YourAssembly" -->
+<mah:ColorPicker ColorHelper="{Binding Source={x:Static my:MyColorHelper.DefaultInstance}}" />
 ```
 
 # ColorCanvas
