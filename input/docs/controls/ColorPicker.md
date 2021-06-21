@@ -496,6 +496,7 @@ This control lets the user select a `Color` in a `ComboBox`-like control. The us
 | TabControlStyle                | Style                      | Gets or sets the `Style` for the `TabControl` inside the `DropDown` |
 | TabItemStyle                   | Style                      | Gets or sets the `Style` for the `TabItems` inside the `DropDown` |
 | ColorHelper           | ColorHelper                 | Gets or sets the  [ColorHelper](#colornamesdictionary-and-colorhelper) to use |
+| CloseOnSelectedColorChanged           | bool                 | Gets or sets whether the `DropDown` should close after a color was selected from a `ColorPalette`. The default is `false` |
 
 The `ColorPicker` can hold up to five different [`ColorPalettes`](#colorpalette) which can be controlled by the following properties. As the properties repeat for all five `ColorPalettes` we use <b>[###ColorPalette]</b> as a placeholder. In your code please replace it with one of these names: 
 
