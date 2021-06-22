@@ -246,6 +246,50 @@
 &lt;/StackPanel&gt;
 </code></pre>
 <p><img src="images/groupbox_charactercasing.png" class="img-fluid" alt="image of GroupBoxes with different character casing"></p>
+<h2 id="different-styles-of-groupbox">Different Styles of <code>GroupBox</code></h2>
+<p>There are different styles available for <code>GroupBox</code>. You can change this by setting the property <code>Style</code>.</p>
+<p>The style <code>Visual Studio</code> is optimized for a dark theme.</p>
+<h3 id="example-1">Example</h3>
+<pre><code class="language-xml">&lt;StackPanel Margin="10"&gt;
+    &lt;GroupBox Header="GroupBox Header (default)"
+              Margin="5"&gt;
+        &lt;TextBlock Text="some content" /&gt;
+    &lt;/GroupBox&gt;
+
+    &lt;GroupBox Margin="5"
+              Header="GroupBox Header (Clean)"
+              Style="{DynamicResource MahApps.Styles.GroupBox.Clean}"&gt;
+        &lt;GroupBox.Resources&gt;
+            &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Clean/Controls.xaml" /&gt;
+        &lt;/GroupBox.Resources&gt;
+        &lt;TextBlock Text="some content" /&gt;
+    &lt;/GroupBox&gt;
+
+    &lt;GroupBox Margin="5"
+              Header="GroupBox Header (VisualStudio)"
+              Style="{DynamicResource MahApps.Styles.GroupBox.VisualStudio}"&gt;
+        &lt;GroupBox.Resources&gt;
+            &lt;ResourceDictionary&gt;
+                &lt;ResourceDictionary.MergedDictionaries&gt;
+                    &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml" /&gt;
+                    &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml" /&gt;
+                &lt;/ResourceDictionary.MergedDictionaries&gt;
+            &lt;/ResourceDictionary&gt;
+        &lt;/GroupBox.Resources&gt;
+        &lt;TextBlock Text="some content" /&gt;
+    &lt;/GroupBox&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<h4 id="light-theme">Light theme</h4>
+<pre><code class="language-xml">&lt;!-- Theme setting in App.xaml--&gt;
+&lt;!-- &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" /&gt; --&gt;
+</code></pre>
+<p><img src="images/groupbox_styles_light.png" class="img-fluid" alt="image of GroupBoxes with different styles in a light theme"></p>
+<h4 id="dark-theme">Dark theme</h4>
+<pre><code class="language-xml">&lt;!-- Theme setting in App.xaml--&gt;
+&lt;!-- &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" /&gt; --&gt;
+</code></pre>
+<p><img src="images/groupbox_styles_dark.png" class="img-fluid" alt="image of GroupBoxes with different styles in a dark theme"></p>
 
 	</section>
                 
