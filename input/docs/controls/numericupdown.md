@@ -13,9 +13,9 @@ If you press and hold `+` or `-` then value keeps increasing, decreasing respect
 
 If you press and hold `+` or `-` for some longe time then the `Value` increases or decreases much faster. If this behaviour is not desired you can turn this off by setting `Speedup=false`. The default value is `true`.
 
-# HasDecimals
+# NumericInputMode
 
-Controls whether the NumericUpDown should show the decimal separator and decimal digits.
+Controls whether the NumericUpDown should show the decimal separator and decimal digits. Replaces HasDecimals property.
 
 # InterceptArrowKeys
 
