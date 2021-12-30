@@ -1,21 +1,19 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - MetroHeader</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/assets/css/theme/theme.css" rel="stylesheet" />
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet" />
+        <link href="/assets/css/override.css" rel="stylesheet">
         <script src="/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>        
         <script src="/assets/js/app.min.js"></script>         
@@ -229,13 +227,13 @@
 			<h1>MetroHeader</h1>
 		</section>
 	<section class="content">
-		<p>The MetroHeader is a UI control that allows content to be displayed with a specified header (like the HeaderedContentControl). The <code>Header</code> property can be any object and you can use the <code>HeaderTemplate</code> to specify a custom look to the header. Content for the MetroHeader will streched horizontally and vertically.</p>
-<div class="alert alert-info"><p><em><strong>Note</strong></em><br />
-Setting the <code>BorderBrush</code> and <code>BorderThickness</code> properties will not have any effect on the MetroHeader. This is to maintain the same functionality as the ContentControl.</p>
+		<p>The <code><a href="/api/MahApps.Metro.Controls/MetroHeader">MetroHeader</a></code> is a UI control that allows content to be displayed with a specified header (like the HeaderedContentControl). The <code>Header</code> property can be any object and you can use the <code>HeaderTemplate</code> to specify a custom look to the header. Content for the <code><a href="/api/MahApps.Metro.Controls/MetroHeader">MetroHeader</a></code> will streched horizontally and vertically.</p>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+Setting the <code>BorderBrush</code> and <code>BorderThickness</code> properties will not have any effect on the <code><a href="/api/MahApps.Metro.Controls/MetroHeader">MetroHeader</a></code>. This is to maintain the same functionality as the ContentControl.</p>
 </div>
 <h2 id="syntax">Syntax</h2>
 <pre><code class="language-xml">&lt;Page ...
-     xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot; /&gt;
+     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" /&gt;
 
 &lt;mah:MetroHeader&gt;
     &lt;!-- Header content or HeaderTemplate content --&gt;
@@ -271,30 +269,30 @@ Setting the <code>BorderBrush</code> and <code>BorderThickness</code> properties
 <h2 id="example">Example</h2>
 <p>The <code>Header</code> property can be set to a string or any other Xaml elements.</p>
 <p><em>Sample Code</em></p>
-<pre><code class="language-xml">&lt;mah:MetroHeader Header=&quot;This is the header!&quot; /&gt;
+<pre><code class="language-xml">&lt;mah:MetroHeader Header="This is the header!" /&gt;
 
 &lt;mah:MetroHeader&gt;
     &lt;mah:MetroHeader.Header&gt;
-        &lt;Border Background=&quot;Gray&quot;&gt;
-            &lt;TextBlock Text=&quot;This is the header!&quot; FontSize=&quot;16&quot; /&gt;
+        &lt;Border Background="Gray"&gt;
+            &lt;TextBlock Text="This is the header!" FontSize="16" /&gt;
         &lt;/Border&gt;
     &lt;/mah:MetroHeader.Header&gt;
 &lt;/mah:MetroHeader&gt;
 
-&lt;mah:MetroHeader mah:HeaderedControlHelper.HeaderFontWeight=&quot;Bold&quot;
-                 mah:HeaderedControlHelper.HeaderForeground=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
-                 Header=&quot;TextBox sample&quot;&gt;
-    &lt;TextBox Text=&quot;Proident ut reprehenderit excepteur esse non.&quot; /&gt;
+&lt;mah:MetroHeader mah:HeaderedControlHelper.HeaderFontWeight="Bold"
+                 mah:HeaderedControlHelper.HeaderForeground="{DynamicResource MahApps.Brushes.Accent}"
+                 Header="TextBox sample"&gt;
+    &lt;TextBox Text="Proident ut reprehenderit excepteur esse non." /&gt;
 &lt;/mah:MetroHeader&gt;
 
 </code></pre>
-<p><img src="images/metroheader.png" class="img-fluid" alt="" /></p>
+<p><img src="images/metroheader.png" class="img-fluid" alt=""></p>
 <p>For binding the <code>Header</code> to an object that is not a string, use the <code>HeaderTemplate</code> to control how the content is rendered. The default value for the <code>HeaderTemplate</code> will display the string representation of the <code>Header</code>.</p>
 <p><em>Sample Code</em></p>
-<pre><code class="language-xml">&lt;mah:MetroHeader Header=&quot;{Binding CustomObject}&quot;&gt;
+<pre><code class="language-xml">&lt;mah:MetroHeader Header="{Binding CustomObject}"&gt;
     &lt;mah:MetroHeader.HeaderTemplate&gt;
         &lt;DataTemplate&gt;
-            &lt;TextBlock Text=&quot;{Binding Title}&quot; /&gt;
+            &lt;TextBlock Text="{Binding Title}" /&gt;
         &lt;/DataTemplate&gt;
     &lt;/mah:MetroHeader.HeaderTemplate&gt;
 &lt;/mah:MetroHeader&gt;
@@ -315,9 +313,9 @@ Setting the <code>BorderBrush</code> and <code>BorderThickness</code> properties
     <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
     <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
     <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
-    <br/>
-    Copyright &copy; <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br/>
+    <br>
+    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br>
     Generated by <a href="http://wyam.io">Wyam</a>
 </p>
 
@@ -426,5 +424,5 @@ Setting the <code>BorderBrush</code> and <code>BorderThickness</code> properties
                 }, 500);
             });
         </script>
-    </body>
-</html>
+    
+</body></html>
