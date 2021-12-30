@@ -229,7 +229,76 @@
 			<h1>MetroHeader</h1>
 		</section>
 	<section class="content">
-		<p><em>coming soon</em></p>
+		<p>The MetroHeader is a UI control that allows content to be displayed with a specified header (like the HeaderedContentControl). The <code>Header</code> property can be any object and you can use the <code>HeaderTemplate</code> to specify a custom look to the header. Content for the MetroHeader will streched horizontally and vertically.</p>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br />
+Setting the <code>BorderBrush</code> and <code>BorderThickness</code> properties will not have any effect on the MetroHeader. This is to maintain the same functionality as the ContentControl.</p>
+</div>
+<h2 id="syntax">Syntax</h2>
+<pre><code class="language-xml">&lt;Page ...
+     xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot; /&gt;
+
+&lt;mah:MetroHeader&gt;
+    &lt;!-- Header content or HeaderTemplate content --&gt;
+&lt;/mah:MetroHeader&gt;
+</code></pre>
+<h2 id="properties">Properties</h2>
+<table class="table">
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Header</td>
+<td>object</td>
+<td>Gets or sets the data used for the header of each control.</td>
+</tr>
+<tr>
+<td>HeaderTemplate</td>
+<td>DataTemplate</td>
+<td>Gets or sets the template used to display the content of the control's header.</td>
+</tr>
+<tr>
+<td>Orientation</td>
+<td>Orientation</td>
+<td>Gets or sets the Orientation to use for layout of the header. If set to Vertical the Header will be above the content. If set to Horizontal the Header will be to the left of the content..</td>
+</tr>
+</tbody>
+</table>
+<h2 id="example">Example</h2>
+<p>The <code>Header</code> property can be set to a string or any other Xaml elements.</p>
+<p><em>Sample Code</em></p>
+<pre><code class="language-xml">&lt;mah:MetroHeader Header=&quot;This is the header!&quot; /&gt;
+
+&lt;mah:MetroHeader&gt;
+    &lt;mah:MetroHeader.Header&gt;
+        &lt;Border Background=&quot;Gray&quot;&gt;
+            &lt;TextBlock Text=&quot;This is the header!&quot; FontSize=&quot;16&quot; /&gt;
+        &lt;/Border&gt;
+    &lt;/mah:MetroHeader.Header&gt;
+&lt;/mah:MetroHeader&gt;
+
+&lt;mah:MetroHeader mah:HeaderedControlHelper.HeaderFontWeight=&quot;Bold&quot;
+                 mah:HeaderedControlHelper.HeaderForeground=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+                 Header=&quot;TextBox sample&quot;&gt;
+    &lt;TextBox Text=&quot;Proident ut reprehenderit excepteur esse non.&quot; /&gt;
+&lt;/mah:MetroHeader&gt;
+
+</code></pre>
+<p><img src="images/metroheader.png" class="img-fluid" alt="" /></p>
+<p>For binding the <code>Header</code> to an object that is not a string, use the <code>HeaderTemplate</code> to control how the content is rendered. The default value for the <code>HeaderTemplate</code> will display the string representation of the <code>Header</code>.</p>
+<p><em>Sample Code</em></p>
+<pre><code class="language-xml">&lt;mah:MetroHeader Header=&quot;{Binding CustomObject}&quot;&gt;
+    &lt;mah:MetroHeader.HeaderTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;TextBlock Text=&quot;{Binding Title}&quot; /&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/mah:MetroHeader.HeaderTemplate&gt;
+&lt;/mah:MetroHeader&gt;
+</code></pre>
 
 	</section>
                 
