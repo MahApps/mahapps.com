@@ -2,11 +2,11 @@ Title: MetroHeader
 Description: A HeaderedContentControl
 ---
 
-The MetroHeader is a UI control that allows content to be displayed with a specified header (like the HeaderedContentControl). The `Header` property can be any object and you can use the `HeaderTemplate` to specify a custom look to the header. Content for the MetroHeader will streched horizontally and vertically.
+The `MetroHeader` is a UI control that allows content to be displayed with a specified header (like the HeaderedContentControl). The `Header` property can be any object and you can use the `HeaderTemplate` to specify a custom look to the header. Content for the `MetroHeader` will streched horizontally and vertically.
 
 :::{.alert .alert-info}
 ***Note***  
-Setting the `BorderBrush` and `BorderThickness` properties will not have any effect on the MetroHeader. This is to maintain the same functionality as the ContentControl.
+Setting the `BorderBrush` and `BorderThickness` properties will not have any effect on the `MetroHeader`. This is to maintain the same functionality as the ContentControl.
 :::
 
 ## Syntax
