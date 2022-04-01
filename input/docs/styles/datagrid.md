@@ -20,10 +20,10 @@ After including the references, any `DataGrid` that you place in XAML will follo
 
 ## Alternative Style
 
-MahApps.Metro also provides an alternative style, `AzureDataGrid` that attempts to mimic the DataGrid found on Microsoft Azure. To use it instead of the default style, simple set the DataGrid's `Style` property to `{StaticResource AzureDataGrid`. As usual, make sure that you have your references defined.
+MahApps.Metro also provides an alternative style, `MahApps.Styles.DataGrid.Azure` that attempts to mimic the DataGrid found on Microsoft Azure. To use it instead of the default style, simple set the DataGrid's `Style` property to `{StaticResource MahApps.Styles.DataGrid.Azure}`. As usual, make sure that you have your references defined.
 
 ```xml
-<DataGrid ItemsSource="{Binding People}" Style="{StaticResource AzureDataGrid}" />
+<DataGrid ItemsSource="{Binding People}" Style="{StaticResource MahApps.Styles.DataGrid.Azure}" />
 ```
 
 The `AzureDataGrid` style will look something like this:
