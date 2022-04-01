@@ -254,14 +254,6 @@
 				<li><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/WindowCommandsItem">WindowCommandsItem</a></li>
-			<li class="header">Interface Types</li>
-				<li><a href="/api/MahApps.Metro.Controls/IDataGridColumnStylesHelper">I<wbr>Data<wbr>Grid<wbr>Column<wbr>Styles<wbr>Helper</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuHeaderItem">I<wbr>Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuItem">IHamburgerMenuItem</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuItemBase">I<wbr>Hamburger<wbr>Menu<wbr>Item<wbr>Base</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuSeparatorItem">I<wbr>Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IMetroThumb">IMetroThumb</a></li>
-				<li><a href="/api/MahApps.Metro.Controls/IWindowPlacementSettings">I<wbr>Window<wbr>Placement<wbr>Settings</a></li>
 			<li class="header">Enum Types</li>
 				<li><a href="/api/MahApps.Metro.Controls/AddToRecentColorsTrigger">Add<wbr>To<wbr>Recent<wbr>Colors<wbr>Trigger</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/ButtonsAlignment">ButtonsAlignment</a></li>
@@ -287,6 +279,14 @@
 				<li><a href="/api/MahApps.Metro.Controls/ItemClickRoutedEventHandler">Item<wbr>Click<wbr>Routed<wbr>Event<wbr>Handler</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventHandler">Numeric<wbr>Up<wbr>Down<wbr>Changed<wbr>Routed<wbr>Event<wbr>Handler</a></li>
 				<li><a href="/api/MahApps.Metro.Controls/RangeSelectionChangedEventHandler_1">Range<wbr>Selection<wbr>Changed<wbr>Event<wbr>Handler<wbr>&lt;T&gt;<wbr></a></li>
+			<li class="header">Interface Types</li>
+				<li><a href="/api/MahApps.Metro.Controls/IDataGridColumnStylesHelper">I<wbr>Data<wbr>Grid<wbr>Column<wbr>Styles<wbr>Helper</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuHeaderItem">I<wbr>Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuItem">IHamburgerMenuItem</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuItemBase">I<wbr>Hamburger<wbr>Menu<wbr>Item<wbr>Base</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IHamburgerMenuSeparatorItem">I<wbr>Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IMetroThumb">IMetroThumb</a></li>
+				<li><a href="/api/MahApps.Metro.Controls/IWindowPlacementSettings">I<wbr>Window<wbr>Placement<wbr>Settings</a></li>
 			<li class="header">Struct Types</li>
 				<li><a href="/api/MahApps.Metro.Controls/HSVColor">HSVColor</a></li>
 
@@ -347,11 +347,11 @@ class Type type-node
 		</div>
 
 	<h1 id="Syntax">Syntax</h1>
-	<pre><code>[StyleTypedProperty(Property = nameof(OptionsItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
-[StyleTypedProperty(Property = nameof(HamburgerButtonStyle), StyleTargetType = typeof(Button))]
-[TemplatePart(Name = "HamburgerButton", Type = typeof(Button))]
+	<pre><code>[TemplatePart(Name = "HamburgerButton", Type = typeof(Button))]
 [TemplatePart(Name = "ButtonsListView", Type = typeof(ListBox))]
 [TemplatePart(Name = "OptionsListView", Type = typeof(ListBox))]
+[StyleTypedProperty(Property = nameof(HamburgerButtonStyle), StyleTargetType = typeof(Button))]
+[StyleTypedProperty(Property = nameof(OptionsItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
 [StyleTypedProperty(Property = nameof(ResizeThumbStyle), StyleTargetType = typeof(MetroThumb))]
 [StyleTypedProperty(Property = nameof(ItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
 [StyleTypedProperty(Property = nameof(HeaderItemContainerStyle), StyleTargetType = typeof(ListBoxItem))]
@@ -372,23 +372,23 @@ public class HamburgerMenu : ContentControl</code></pre>
 					</tr>
 				</thead>
 					<tbody><tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>TemplatePart</td>
+						<td></td>
+					</tr>
+					<tr>
 						<td>StyleTypedProperty</td>
 						<td></td>
 					</tr>
 					<tr>
 						<td>StyleTypedProperty</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>TemplatePart</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>TemplatePart</td>
-						<td></td>
-					</tr>
-					<tr>
-						<td>TemplatePart</td>
 						<td></td>
 					</tr>
 					<tr>
