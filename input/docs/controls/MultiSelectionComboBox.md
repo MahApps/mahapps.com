@@ -22,9 +22,9 @@ The `MultiSelectionComboBox` is like a normal `ComboBox`, but instead of limit t
 
 | No. | Description                                                                                                         |
 |-----|---------------------------------------------------------------------------------------------------------------------|
-| 01  | Displays the selected item(s), or, if the control is editable mode a `TextBox` representing a concatenated `string` |
+| 01  | Displays the selected item(s), or, if the control is editable mode, a `TextBox` representing a concatenated `string` |
 | 02  | This button opens or closes the popup (No. 03)                                                                      |
-| 03  | A popup displaying all available items. Selected items are highlighted (blue background  in the sample image)                   |
+| 03  | A `DropDown` which displays all available items. Selected items are highlighted (blue background in the sample image)                   |
 
 # Common Properties 
 
@@ -69,18 +69,18 @@ This control has all properties which are known from the normal `ComboBox` and i
 
 MahApps ships two build in styles for this control.
 
-The default style (`MahApps.Styles.MultiSelectionComboBox`) wraps the selected items if not all fits into a single line:
+The default style (`MahApps.Styles.MultiSelectionComboBox`) wraps the selected items, if not all fits into a single line:
 
 ![](images/MultiSelectionComboBox_DefaultStyle.png)
 
 
-If you want a single line you can use `MahApps.Styles.MultiSelectionComboBox.Horizontal` which will show a horizontal ScrollViewer if not all items fit into the available space.
+If you want a single line you can use `MahApps.Styles.MultiSelectionComboBox.Horizontal` which will show a horizontal `ScrollViewer`, if not all items fit into the available space.
 
 ![](images/MultiSelectionComboBox_HorizontalStyle.png)
 
 ## ItemContainer-Styles
 
-MahApps ships two build in styles for the item container visible when the drop down is open. 
+MahApps ships two build in styles for the item container visible when the `DropDown` is open. 
 
 The default style (`MahApps.Styles.MultiSelectionComboBoxItem`) looks like the one from the normal `ComboBox`. 
 
@@ -117,20 +117,50 @@ This `enum` defines how the selected items should be presented to the user. The 
 
 
 # Text processing
-
 ## Separator
-
 The `Separator` is used to concatenate the selected items into one single string. if the text comes from user input the `Separator` is also used to split the input string into fragments which will be used to select the requested items. 
 
 > **Note**: Take care which Separator to use. Ideally it should not be a valid (sub)-string of your items, as this may mess up with selection.
 
-## Selecting items from text input
+## Custom text
+If the text entered into the editable `TextBox` does not match the `string` representation of the `SelectedItems` the `DropDown` will show an overlay above the `Items` and will disable selection. This will prevent loss any user input. The property `HasCustomText` will be set to `true` in this case. 
 
+![](images/MultiSelectionComboBox_OverlayDisabled.png)
+
+*Build-in overlay*
+
+### Customize the overlay
+If you don't like the build-in overlay you can roll your own as shown below. 
+
+```xml
+<mah:MultiSelectionComboBox ItemsSource="{Binding Animals}"
+                            IsEditable="True"
+                            Text="CustomText" >
+    <mah:MultiSelectionComboBox.DisabledPopupOverlayContentTemplate>
+        <DataTemplate>
+            <!-- Note: mah:MultiSelectionComboBox.ClearContentCommand will reset the text to match the SelectedItems representation if executed -->
+            <Button Background="{DynamicResource MahApps.Brushes.Accent4}" 
+                    BorderThickness="0"
+                    Command="{x:Static mah:MultiSelectionComboBox.ClearContentCommand}">
+                <TextBlock Text="🤷" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Center" 
+                           FontSize="50" />
+            </Button>
+        </DataTemplate>
+    </mah:MultiSelectionComboBox.DisabledPopupOverlayContentTemplate>
+</mah:MultiSelectionComboBox>
+```
+
+The result will look like this:
+
+![](images/MultiSelectionComboBox_OverlayDisabled_Custom.png)
+
+## Selecting items from text input
 If the control is editable and you have set a `ObjectToStringComparer`, the `MultiSelectionComboBox` will try to select the items from the user input. The build-in comparer will compare the input string fragments with the objects string representation while taking the [`StringComparison`](https://docs.microsoft.com/en-us/dotnet/api/system.stringcomparison) into account. 
 
 ### Basic Example
-
-```xaml
+```xml
 <mah:MultiSelectionComboBox ItemsSource="{Binding Animals}"            
                             SelectionMode="Multiple"
                             IsEditable="True"
@@ -142,7 +172,6 @@ If the control is editable and you have set a `ObjectToStringComparer`, the `Mul
 ```
 
 ### Custom ObjectToStringComparer Example
-
 You can use any class that implements the `ICompareObjectToString` interface to compare your items to the entered text. For this example lets assume you have the following class `User` where you want to select the items by `Userame` or `MailAddress`.
 
 ```cs
@@ -183,4 +212,55 @@ public class MyUserToStringComparer : ICompareObjectToString
     }
 }
 
+```
+
+## Adding new items from text input 
+If the control is editable and you have set a `StringToObjectParser`, the `MultiSelectionComboBox` will try to create a new item if the item was not found (see <a href="#selecting-items-from-text-input" target="_blank">Selecting items from text input</a>). The build-in parser will try to use reflection to create a new item from the input string, but you can also provide your own implementation.
+
+### Basic Example
+```xml
+<mah:MultiSelectionComboBox ItemsSource="{Binding Animals}"
+                            SelectionMode="Multiple"
+                            IsEditable="True"
+                            Separator=", "
+                            SelectItemsFromTextInputDelay="200"
+                            EditableTextStringComparision="OrdinalIgnoreCase"
+                            ObjectToStringComparer="{mah:DefaultObjectToStringComparer}" 
+                            StringToObjectParser="{x:Static mah:DefaultStringToObjectParser.Instance}" // We use the build in parser here
+                            />
+```
+
+### Custom StringToObjectParser Example
+You can use any class that implements the `IParseStringToObject` interface to parse the user input to a new object. The interface has one member called `TryCreateObjectFromString`. Let's assume we have a `List<string>` called `Animals`. The user can add new animals, but before adding a new animal, we want the user to confirm the input. 
+
+```cs
+public class MyObjectParser : IParseStringToObject
+{
+    public bool TryCreateObjectFromString(
+        string? input,                      // The input string to parse
+        out object? result,                 // return the object here if successful, otherwise return null
+        CultureInfo? culture = null,        // The culture which should be used to parse. This parameter is optional
+        string? stringFormat = null,        // The string format to apply. This parameter is optional
+        Type? elementType = null)           // the Type to which the input should be converted to. This parameter is optional
+    {
+        // if we got an empty string, we return false and set the result to null
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            result = null;
+            return false;
+        }
+
+        // We ask the user for confirmation
+        if (MessageBox.Show($"Do you want to add \"{input}\" to the animals list?", "Add Animal", MessageBoxButtons.YesNo) == DialogResult.Yes)
+        {
+            result = input; // The user accepted this item. As our List contains only strings, we can just return the input string. 
+            return true;
+        }
+        else
+        {
+            result = null;
+            return false;
+        }
+    }
+}
 ```
