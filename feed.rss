@@ -5,8 +5,8 @@
 		<link>https://mahapps.com/</link>
 		<description />
 		<copyright>2022</copyright>
-		<pubDate>Wed, 13 Apr 2022 20:37:27 GMT</pubDate>
-		<lastBuildDate>Wed, 13 Apr 2022 20:37:27 GMT</lastBuildDate>
+		<pubDate>Wed, 13 Apr 2022 20:46:25 GMT</pubDate>
+		<lastBuildDate>Wed, 13 Apr 2022 20:46:25 GMT</lastBuildDate>
 		<item>
 			<title>Release 1.6.5</title>
 			<link>https://mahapps.com/blog/release-v1.6.5</link>
@@ -1278,18 +1278,6 @@ It takes the largest frame from the window which has equal or smaller size than 
 </content:encoded>
 		</item>
 		<item>
-			<title>Release 1.2.2</title>
-			<link>https://mahapps.com/blog/release-v1.2.2</link>
-			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.2.2</guid>
-			<pubDate>Tue, 12 Jan 2016 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h1 id="bugfixes"&gt;Bugfixes&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Fixed strong sign assembly stuff&lt;/li&gt;
-&lt;/ul&gt;
-</content:encoded>
-		</item>
-		<item>
 			<title>Release 1.2.1</title>
 			<link>https://mahapps.com/blog/release-v1.2.1</link>
 			<author>punker76</author>
@@ -1299,6 +1287,18 @@ It takes the largest frame from the window which has equal or smaller size than 
 &lt;ul&gt;
 &lt;li&gt;Fixed hidden focus for TextBox control (and other input controls) #2296 #2304&lt;/li&gt;
 &lt;li&gt;Fixed not working &lt;code&gt;TextBoxHelper.SelectAllOnFocus=&amp;quot;True&amp;quot;&lt;/code&gt; #2307 (&amp;#64;sachokFoX)&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Release 1.2.2</title>
+			<link>https://mahapps.com/blog/release-v1.2.2</link>
+			<author>punker76</author>
+			<guid>https://mahapps.com/blog/release-v1.2.2</guid>
+			<pubDate>Tue, 12 Jan 2016 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h1 id="bugfixes"&gt;Bugfixes&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed strong sign assembly stuff&lt;/li&gt;
 &lt;/ul&gt;
 </content:encoded>
 		</item>
