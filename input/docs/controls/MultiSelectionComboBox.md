@@ -36,7 +36,7 @@ Description: The documentation for the MultiSelectionComboBox
 The `MultiSelectionComboBox` is like a normal `ComboBox`, but instead of limit the selection to one item, the user is allowed to select multiple items.  
 
 # The user interface
-![MultiSelectionComboBox with numbers](Images/MultiSelectionComboBox_Numbered.png)
+![MultiSelectionComboBox with numbers](images/MultiSelectionComboBox_Numbered.png)
 
 | No. | Description                                                                                                             |
 |-----|-------------------------------------------------------------------------------------------------------------------------|
