@@ -4,8 +4,8 @@
 
 #tool nuget:?package=Wyam&version=2.2.9
 
-#addin nuget:?package=Cake.Figlet&version=1.4.0
-#addin nuget:?package=Cake.Wyam&version=2.2.9
+#addin nuget:?package=Cake.Figlet&version=2.0.1
+#addin nuget:?package=Cake.Wyam&version=2.2.13
 
 ///////////////////////////////////////////////////////////////////////////////
 // ARGUMENTS

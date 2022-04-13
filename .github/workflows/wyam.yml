@@ -2,36 +2,36 @@ name: Wyam
 
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        submodules: true
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 2.1.805
-    - name: Build with Cake
-      uses: ecampidoglio/cake-action@v1
-      with:
-        cake-version: 0.38.5
-        # The name of the task to execute. Note that this argument must be supported by the script.
-        target: CIBuild
-    - name: Deploy to GitHub Pages
-      if: success() && github.event_name != 'pull_request'
-      uses: Cecilapp/GitHub-Pages-deploy@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        email: ${{ secrets.MY_GITHUB_EMAIL }}
-        cname: mahapps.com
-        build_dir: ./output
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          submodules: true
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: |
+            2.1.818
+            6.0.x
+      - name: Run the Cake script
+        uses: cake-build/cake-action@v1
+        with:
+          cake-version: tool-manifest
+          target: CIBuild
+      - name: Deploy to GitHub Pages
+        if: success() && github.event_name != 'pull_request'
+        uses: Cecilapp/GitHub-Pages-deploy@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          email: ${{ secrets.MY_GITHUB_EMAIL }}
+          cname: mahapps.com
+          build_dir: ./output
