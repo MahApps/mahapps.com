@@ -1,0 +1,778 @@
+﻿<!DOCTYPE html><html><head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <title>MahApps.Metro - MultiSelectionComboBox</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/assets/js/clipboard.min.js"></script>
+
+    </head>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
+
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
+                    </div>
+            
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/blog">Blog</a></li>
+        <li class="active"><a href="/docs">Documentation</a></li>
+        <li><a href="/api">API</a></li>
+        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
+ 
+                        </ul>       
+                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/MultiSelectionComboBox.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#table-of-content">Table of content</a></p>
+<p><a href="#introduction">Introduction</a></p>
+<p><a href="#the-user-interface">The user interface</a></p>
+<p><a href="#common-properties">Common Properties</a></p>
+<p><a href="#styles">Styles</a></p>
+<p><a href="#selection">Selection</a></p>
+<p><a href="#text-processing">Text processing</a></p>
+<hr class="infobar-hidden">
+</div>
+
+                </section>
+                <section class="sidebar">    
+                                     
+                    
+
+                    <ul class="sidebar-menu">
+                        
+
+                <li class="treeview active">
+                    <a href="/docs/controls">Controls</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/controls/metrowindow">MetroWindow</a></li>
+                <li><a href="/docs/controls/Badged">Badged Control</a></li>
+                <li><a href="/docs/controls/ColorPicker">ColorPicker</a></li>
+                <li><a href="/docs/controls/ContentControlEx">ContentControlEx</a></li>
+                <li><a href="/docs/controls/CustomValidationPopup">CustomValidationPopup</a></li>
+                <li><a href="/docs/controls/DateTimePicker">DateTimePicker</a></li>
+                <li><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
+                <li><a href="/docs/controls/flipview">FlipView</a></li>
+                <li><a href="/docs/controls/flyouts">Flyouts</a></li>
+                <li><a href="/docs/controls/FontIcon">FontIcon</a></li>
+                <li><a href="/docs/controls/HamburgerMenu">HamburgerMenu</a></li>
+                <li><a href="/docs/controls/HotKeyBox">HotKeyBox</a></li>
+                <li><a href="/docs/controls/MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a></li>
+                <li><a href="/docs/controls/MetroAnimatedTabControl">MetroAnimatedTabControl</a></li>
+                <li><a href="/docs/controls/MetroContentControl">MetroContentControl</a></li>
+                <li><a href="/docs/controls/MetroHeader">MetroHeader</a></li>
+                <li><a href="/docs/controls/MetroNavigationWindow">MetroNavigationWindow</a></li>
+                <li><a href="/docs/controls/metroprogressbar">MetroProgressBar</a></li>
+                <li><a href="/docs/controls/MetroTabControl">MetroTabControl</a></li>
+                <li><a href="/docs/controls/MetroTabItem">MetroTabItem</a></li>
+                <li><a href="/docs/controls/MetroThumbContentControl">MetroThumbContentControl</a></li>
+                <li><a href="/docs/controls/MultiFrameImage">MultiFrameImage</a></li>
+                <li class="selected"><a href="/docs/controls/MultiSelectionComboBox">MultiSelectionComboBox</a></li>
+                <li><a href="/docs/controls/numericupdown">NumericUpDown</a></li>
+                <li><a href="/docs/controls/progressring">ProgressRing</a></li>
+                <li><a href="/docs/controls/rangeslider">RangeSlider</a></li>
+                <li><a href="/docs/controls/splitbutton">SplitButton</a></li>
+                <li><a href="/docs/controls/SplitView">SplitView</a></li>
+                <li><a href="/docs/controls/tile">Tile</a></li>
+                <li><a href="/docs/controls/TimePicker">TimePicker</a></li>
+                <li><a href="/docs/controls/toggleswitch">ToggleSwitch</a></li>
+                <li><a href="/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
+                <li><a href="/docs/controls/WindowButtonCommands">WindowButtonCommands</a></li>
+                <li><a href="/docs/controls/WindowCommands">WindowCommands</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/styles">Styles</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/styles/buttons">Buttons</a></li>
+                <li><a href="/docs/styles/calendar">Calendar</a></li>
+                <li><a href="/docs/styles/checkbox">CheckBox</a></li>
+                <li><a href="/docs/styles/combobox">ComboBox</a></li>
+                <li><a href="/docs/styles/datagrid">DataGrid</a></li>
+                <li><a href="/docs/styles/datagridcolumns">DataGrid Columns</a></li>
+                <li><a href="/docs/styles/datepicker">DatePicker</a></li>
+                <li><a href="/docs/styles/expander">Expander</a></li>
+                <li><a href="/docs/styles/gridsplitter">GridSplitter</a></li>
+                <li><a href="/docs/styles/groupbox">GroupBox</a></li>
+                <li><a href="/docs/styles/hyperlink">Hyperlink</a></li>
+                <li><a href="/docs/styles/listbox">ListBox</a></li>
+                <li><a href="/docs/styles/listview">ListView</a></li>
+                <li><a href="/docs/styles/menus">Menus</a></li>
+                <li><a href="/docs/styles/page">Page</a></li>
+                <li><a href="/docs/styles/passwordbox">PasswordBox</a></li>
+                <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
+                <li><a href="/docs/styles/radiobutton">RadioButton</a></li>
+                <li><a href="/docs/styles/scrollbars">ScrollBar</a></li>
+                <li><a href="/docs/styles/slider">Slider</a></li>
+                <li><a href="/docs/styles/statusbar">StatusBar</a></li>
+                <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
+                <li><a href="/docs/styles/text">Text</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
+                <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
+                <li><a href="/docs/styles/toolbar">ToolBar</a></li>
+                <li><a href="/docs/styles/tooltip">ToolTip</a></li>
+                <li><a href="/docs/styles/treeview">TreeView</a></li>
+                <li><a href="/docs/styles/validation">Validation</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/stylevariants">Style Variants</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/stylevariants/clean">Clean</a></li>
+                <li><a href="/docs/stylevariants/vs">Visual Studio</a></li>
+                <li><a href="/docs/stylevariants/win10">Win 10 (UWP)</a></li>
+                <li><a href="/docs/stylevariants/winui">WinUI</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="/docs/helper">Helper Classes</a></li>
+                <li class="treeview">
+                    <a href="/docs/dialogs">Dialogs</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/dialogs/message-dialog">Message Dialog</a></li>
+                <li><a href="/docs/dialogs/input-dialog">Input Dialog</a></li>
+                <li><a href="/docs/dialogs/login-dialogs">Login Dialog</a></li>
+                <li><a href="/docs/dialogs/progress-dialogs">Progress Dialog</a></li>
+                <li><a href="/docs/dialogs/mvvm-dialog">MVVM</a></li>
+                <li><a href="/docs/dialogs/custom-dialogs">Custom Dialogs</a></li>
+                <li><a href="/docs/dialogs/dialogsettings">Dialogsettings</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/themes">Themes</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/themes/usage">Usage</a></li>
+                <li><a href="/docs/themes/thememanager">Thememanager</a></li>
+
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/guides">Guides</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/guides/quick-start">Quick Start</a></li>
+                <li><a href="/docs/guides/migration-to-v2.0">Migration to v2.0</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="/docs/usage">Usage</a></li>
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+		<section class="content-header">
+			<h1>MultiSelectionComboBox</h1>
+		</section>
+	<section class="content">
+		<h1 id="table-of-content">Table of content</h1>
+<!-- Start Document Outline -->
+<ul>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#the-user-interface">The user interface</a></li>
+<li><a href="#common-properties">Common Properties</a></li>
+<li><a href="#styles">Styles</a>
+<ul>
+<li><a href="#multiselectioncombobox-styles">MultiSelectionComboBox-Styles</a></li>
+<li><a href="#itemcontainer-styles">ItemContainer-Styles</a></li>
+<li><a href="#selecteditemcontainer-styles">SelectedItemContainer-Styles</a></li>
+</ul>
+</li>
+<li><a href="#selection">Selection</a>
+<ul>
+<li><a href="#selectionmode">SelectionMode</a></li>
+<li><a href="#selecteditemsorder">SelectedItemsOrder</a></li>
+</ul>
+</li>
+<li><a href="#text-processing">Text processing</a>
+<ul>
+<li><a href="#separator">Separator</a></li>
+<li><a href="#custom-text">Custom text</a>
+<ul>
+<li><a href="#customize-the-overlay">Customize the overlay</a></li>
+</ul>
+</li>
+<li><a href="#selecting-items-from-text-input">Selecting items from text input</a>
+<ul>
+<li><a href="#basic-example">Basic Example</a></li>
+<li><a href="#custom-objecttostringcomparer-example">Custom ObjectToStringComparer Example</a></li>
+</ul>
+</li>
+<li><a href="#adding-new-items-from-text-input">Adding new items from text input</a>
+<ul>
+<li><a href="#basic-example-1">Basic Example</a></li>
+<li><a href="#custom-stringtoobjectparser-example">Custom StringToObjectParser Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- End Document Outline -->
+<hr>
+<h1 id="introduction">Introduction</h1>
+<p>The <code>MultiSelectionComboBox</code> is like a normal <code>ComboBox</code>, but instead of limit the selection to one item, the user is allowed to select multiple items.</p>
+<h1 id="the-user-interface">The user interface</h1>
+<p><img src="Images/MultiSelectionComboBox_Numbered.png" class="img-fluid" alt="MultiSelectionComboBox with numbers"></p>
+<table class="table">
+<thead>
+<tr>
+<th>No.</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>Displays the selected item(s), or, if the control is in editable mode, a <code>TextBox</code> representing a concatenated <code>string</code></td>
+</tr>
+<tr>
+<td>02</td>
+<td>This button opens or closes the <code>DrowDown</code> (No. 03)</td>
+</tr>
+<tr>
+<td>03</td>
+<td>A <code>DropDown</code> which displays all available items. Selected items are highlighted (blue background in the sample image)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="common-properties">Common Properties</h1>
+<p>This control has all properties which are known from the normal <code>ComboBox</code> and in addition the following properties.</p>
+<table class="table">
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AcceptsReturn</td>
+<td>bool</td>
+<td>Gets or sets if the <code>TextBox</code> accepts return (editable mode only)</td>
+</tr>
+<tr>
+<td>DisabledPopupOverlayContent</td>
+<td>object?</td>
+<td>Gets or sets the content to render above the <code>DropDown</code> when the <code>DropDown</code> is disabled (<a href="#customize-the-overlay">more</a>)</td>
+</tr>
+<tr>
+<td>DisabledPopupOverlayContentTemplate</td>
+<td>DataTemplate?</td>
+<td>Gets or sets the <code>DataTemplate</code> to render above the <code>DropDown</code> when the control has custom text (<a href="#customize-the-overlay">more</a>)</td>
+</tr>
+<tr>
+<td>DropDownFooterContent</td>
+<td>object?</td>
+<td>Gets or sets the content of the <code>DropDown</code> footer</td>
+</tr>
+<tr>
+<td>DropDownFooterContentStringFormat</td>
+<td>string?</td>
+<td>Gets or sets the string format of the <code>DropDown</code> footer</td>
+</tr>
+<tr>
+<td>DropDownFooterContentTemplate</td>
+<td>DataTemplate?</td>
+<td>Gets or sets the <code>DataTemplate</code> for the <code>DropDown</code> footer content</td>
+</tr>
+<tr>
+<td>DropDownFooterContentTemplateSelector</td>
+<td>DataTemplateSelector?</td>
+<td>Gets or sets the <code>DataTemplateSelector</code> for the <code>DropDown</code> footer content</td>
+</tr>
+<tr>
+<td>DropDownHeaderContent</td>
+<td>object?</td>
+<td>Gets or sets the content of the <code>DropDown</code> header</td>
+</tr>
+<tr>
+<td>DropDownHeaderContentStringFormat</td>
+<td>string?</td>
+<td>Gets or sets the string format of the <code>DropDown</code> header</td>
+</tr>
+<tr>
+<td>DropDownHeaderContentTemplate</td>
+<td>DataTemplate?</td>
+<td>Gets or sets the <code>DataTemplate</code> for the <code>DropDown</code> header content</td>
+</tr>
+<tr>
+<td>DropDownHeaderContentTemplateSelector</td>
+<td>DataTemplateSelector?</td>
+<td>Gets or sets the <code>DataTemplateSelector</code> for the <code>DropDown</code> header content</td>
+</tr>
+<tr>
+<td>EditableTextStringComparision</td>
+<td>StringComparison</td>
+<td>Gets or Sets the <code>StringComparison</code> that is used to check if the entered text matches to the <code>SelectedItems</code></td>
+</tr>
+<tr>
+<td>HasCustomText</td>
+<td>bool</td>
+<td>Indicates if the text is user defined. This property is read-only</td>
+</tr>
+<tr>
+<td>InterceptKeyboardSelection</td>
+<td>bool</td>
+<td>Gets or sets if the user can select items from the keyboard, e.g. with the ▲ ▼ Keys. This property is only applied when the <code>SelectionMode</code> is <code>Single</code>.</td>
+</tr>
+<tr>
+<td>InterceptMouseWheelSelection</td>
+<td>bool</td>
+<td>Gets or sets if the user can select items by mouse wheel. This property is only applied when the <code>SelectionMode</code> is <code>Single</code>.</td>
+</tr>
+<tr>
+<td>IsDropDownFooterVisible</td>
+<td>bool</td>
+<td>Gets or sets if the footer in the <code>DropDown</code> is visible</td>
+</tr>
+<tr>
+<td>IsDropDownHeaderVisible</td>
+<td>bool</td>
+<td>Gets or sets if the header in the <code>DropDown</code> is visible</td>
+</tr>
+<tr>
+<td>ObjectToStringComparer</td>
+<td>ICompareObjectToString?</td>
+<td>Gets or sets a function that is used to check if the entered text matches an object that should be selected (<a href="#selecting-items-from-text-input">more</a>)</td>
+</tr>
+<tr>
+<td>OrderSelectedItemsBy</td>
+<td>SelectedItemsOrderType</td>
+<td>Gets or sets how the <code>SelectedItems</code> should be sorted (<a href="#selecteditemsorder">more</a>).</td>
+</tr>
+<tr>
+<td>SelectedItemContainerStyle</td>
+<td>Style?</td>
+<td>Gets or sets the <code>Style</code> that is applied to the selected items</td>
+</tr>
+<tr>
+<td>SelectedItemContainerStyleSelector</td>
+<td>StyleSelector?</td>
+<td>Gets or sets the <code>StyleSelector</code> that is applied to the selected items</td>
+</tr>
+<tr>
+<td>SelectedItems</td>
+<td>IList?</td>
+<td>Gets a read-only list which holds the currently selected items.</td>
+</tr>
+<tr>
+<td>SelectedItemsPanelTemplate</td>
+<td>ItemsPanelTemplate?</td>
+<td>Gets or sets the template that defines the <code>Panel</code> that controls the layout of the selected items.</td>
+</tr>
+<tr>
+<td>SelectedItemStringFormat</td>
+<td>string?</td>
+<td>Gets or sets how to format the selected items if they are displayed as strings.</td>
+</tr>
+<tr>
+<td>SelectedItemTemplate</td>
+<td>DataTemplate?</td>
+<td>Gets or sets the <code>DataTemplate</code> used to display the <code>SelcetedItems</code></td>
+</tr>
+<tr>
+<td>SelectedItemTemplateSelector</td>
+<td>DataTemplateSelector?</td>
+<td>Gets or sets the <code>DataTemplateSelector</code> for the selected items</td>
+</tr>
+<tr>
+<td>SelectionMode</td>
+<td>SelectionMode</td>
+<td>Gets or sets the <code>SelectionMode</code></td>
+</tr>
+<tr>
+<td>SelectItemsFromTextInputDelay</td>
+<td>int</td>
+<td>Gets or Sets the delay in milliseconds to wait before the selection is updated during text input. If this value is -1 the selection will not be updated during text input. <br><div class="alert alert-info"><strong>Note</strong>: You also need to set an <code>ObjectToStringComparer</code> to get this to work. </div></td>
+</tr>
+<tr>
+<td>Separator</td>
+<td>string?</td>
+<td>Gets or sets the separator which will be used if the <code>MultiSelectionComboBox</code> is editable.</td>
+</tr>
+<tr>
+<td>StringToObjectParser</td>
+<td>IParseStringToObject?</td>
+<td>Gets or sets a parser-class that implements <code>IParseStringToObject</code> (<a href="#adding-new-items-from-text-input">more</a>)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="styles">Styles</h1>
+<h2 id="multiselectioncombobox-styles">MultiSelectionComboBox-Styles</h2>
+<p>MahApps ships two build in styles for this control.</p>
+<p>The default style (<code>MahApps.Styles.MultiSelectionComboBox</code>) wraps the selected items, if not all fits into a single line:</p>
+<p><img src="images/MultiSelectionComboBox_DefaultStyle.png" class="img-fluid" alt=""></p>
+<p>If you want a single line you can use <code>MahApps.Styles.MultiSelectionComboBox.Horizontal</code> which will show a horizontal <code>ScrollViewer</code>, if not all items fit into the available space.</p>
+<p><img src="images/MultiSelectionComboBox_HorizontalStyle.png" class="img-fluid" alt=""></p>
+<h2 id="itemcontainer-styles">ItemContainer-Styles</h2>
+<p>MahApps ships two build in styles for the item container visible when the <code>DropDown</code> is open.</p>
+<p>The default style (<code>MahApps.Styles.MultiSelectionComboBoxItem</code>) looks like the one from the normal <code>ComboBox</code>.</p>
+<p>If you want to present <code>CheckBoxes</code> to the user you can use the <code>MahApps.Styles.MultiSelectionComboBoxItem.CheckBox</code> style:</p>
+<p><img src="images/MultiSelectionComboBox_DropDown_CheckBox.png" class="img-fluid" alt=""></p>
+<h2 id="selecteditemcontainer-styles">SelectedItemContainer-Styles</h2>
+<p>Also for this MahApps ships two build in styles. Please note that these are only applied if <code>IsEditable=false</code>.</p>
+<p>The default one wraps each item in a nugget like container:</p>
+<p><img src="images/MultiSelectionComboBox_DefaultStyle.png" class="img-fluid" alt=""></p>
+<p>If you want to provide an option to remove from the selected items you can use <code>MahApps.Styles.MulitselectionComboBoxSelectedItem.Removeable</code> which will add a delete button next to each item:</p>
+<p><img src="images/MultiSelectionComboBox_SelectedItemContainerStyle_Removeable.png" class="img-fluid" alt=""></p>
+<h1 id="selection">Selection</h1>
+<h2 id="selectionmode">SelectionMode</h2>
+<p>The <code>MultiSelectionComboBox</code> supports all <a href="https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.selectionmode"><code>SelectionModes</code></a> which are known from other controls with multi selection support (for example <code>ListBox</code>).</p>
+<h2 id="selecteditemsorder">SelectedItemsOrder</h2>
+<p>This <code>enum</code> defines how the selected items should be presented to the user. The following values are possible:</p>
+<table class="table">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SelectedOrder</td>
+<td>Displays the selected items in the same order as they were selected</td>
+</tr>
+<tr>
+<td>ItemsSourceOrder</td>
+<td>Displays the selected items in the same order as they are stored in the <code>ItemsSource</code></td>
+</tr>
+</tbody>
+</table>
+<h1 id="text-processing">Text processing</h1>
+<h2 id="separator">Separator</h2>
+<p>The <code>Separator</code> is used to concatenate the selected items into one single string. if the text comes from user input, the <code>Separator</code> is also used to split the input string into fragments which will be used to select the requested items.</p>
+<div class="alert alert-info"><p><strong>Note</strong>:</p>
+<p>Take care which Separator to use. Ideally it should not be a valid (sub)-string of your items, as this may mess up with selection.</p>
+</div>
+<h2 id="custom-text">Custom text</h2>
+<p>If the text entered into the editable <code>TextBox</code> does not match the <code>string</code> representation of the <code>SelectedItems</code>, the <code>DropDown</code> will show an overlay above the <code>Items</code> and will disable selection. This will prevent loss any user input. The property <code>HasCustomText</code> will be set to <code>true</code> in this case.</p>
+<p><img src="images/MultiSelectionComboBox_OverlayDisabled.png" class="img-fluid" alt=""></p>
+<p><em>Build-in overlay</em></p>
+<h3 id="customize-the-overlay">Customize the overlay</h3>
+<p>If you don't like the build-in overlay, you can roll your own as shown below.</p>
+<pre><code class="language-xml">&lt;mah:MultiSelectionComboBox ItemsSource="{Binding Animals}"
+                            IsEditable="True"
+                            Text="CustomText" &gt;
+    &lt;mah:MultiSelectionComboBox.DisabledPopupOverlayContentTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;!-- Note: mah:MultiSelectionComboBox.ClearContentCommand will reset the text to match the SelectedItems representation if executed --&gt;
+            &lt;Button Background="{DynamicResource MahApps.Brushes.Accent4}" 
+                    BorderThickness="0"
+                    Command="{x:Static mah:MultiSelectionComboBox.ClearContentCommand}"&gt;
+                &lt;TextBlock Text="🤷" 
+                           VerticalAlignment="Center" 
+                           HorizontalAlignment="Center" 
+                           FontSize="50" /&gt;
+            &lt;/Button&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/mah:MultiSelectionComboBox.DisabledPopupOverlayContentTemplate&gt;
+&lt;/mah:MultiSelectionComboBox&gt;
+</code></pre>
+<p>The result will look like this:</p>
+<p><img src="images/MultiSelectionComboBox_OverlayDisabled_Custom.png" class="img-fluid" alt=""></p>
+<h2 id="selecting-items-from-text-input">Selecting items from text input</h2>
+<p>If the control is editable and you have set a <code>ObjectToStringComparer</code>, the <code>MultiSelectionComboBox</code> will try to select the items from the user input. The build-in comparer will compare the input string fragments with the objects string representation while taking the <a href="https://docs.microsoft.com/en-us/dotnet/api/system.stringcomparison"><code>StringComparison</code></a> into account.</p>
+<h3 id="basic-example">Basic Example</h3>
+<pre><code class="language-xml">&lt;!--
+    - The Separator must be defined for automatic item selection.
+    - The SelectItemsFromTextInputDelay is optional. If it is set to -1,
+      it means the items will be selected only after LostFocus.
+    - The EditableTextStringComparision is optional.
+    - We use the build in comparer (DefaultObjectToStringComparer), but you can also use your own.
+--&gt;
+
+&lt;mah:MultiSelectionComboBox ItemsSource="{Binding Animals}"            
+                            SelectionMode="Multiple"
+                            IsEditable="True"
+                            Separator=", "
+                            SelectItemsFromTextInputDelay="200"
+                            EditableTextStringComparision="OrdinalIgnoreCase"
+                            ObjectToStringComparer="{mah:DefaultObjectToStringComparer}" /&gt;
+</code></pre>
+<h3 id="custom-objecttostringcomparer-example">Custom ObjectToStringComparer Example</h3>
+<p>You can use any class that implements the <code>ICompareObjectToString</code> interface to compare your items to the entered text. For this example lets assume you have the following class <code>User</code> where you want to select the items by <code>Userame</code> or <code>MailAddress</code>.</p>
+<pre><code class="language-cs">public class User
+{
+    public string Username {get; set;}
+    public string Name {get; set;}
+    public string GivenName {get; set;}
+    public string MailAddress {get; set;}
+}
+</code></pre>
+<p>We can now implement the interface as shown below:</p>
+<pre><code class="language-cs">public class MyUserToStringComparer : ICompareObjectToString
+{
+    // This function is expected to be implemented. Returns true if the item matches, otherise false.
+    public bool CheckIfStringMatchesObject(
+        string? input,                      // The text fragment to test 
+        object? objectToCompare,            // The item to test for match
+        StringComparison stringComparison,  // The string comparison to use
+        string? stringFormat)               // The string format to use
+    {
+        // we cast the object to compare to a user.
+        var user = objectToCompare as User;
+        
+        // if the input is null or the user is null we return false. 
+        if (input is null || user is null)
+        {
+            return false;
+        }
+        
+        // If either the Username or the MailAddress matches the provided  
+        // input string we return true, otherwise we return false.
+        return input.Equals(user.Username, stringComparison) 
+               || input.Equals(user.MailAddress, stringComparison);
+    }
+}
+
+</code></pre>
+<h2 id="adding-new-items-from-text-input">Adding new items from text input</h2>
+<p>If the control is editable and you have set a <code>StringToObjectParser</code>, the <code>MultiSelectionComboBox</code> will try to create a new item if the item was not found (see <a href="#selecting-items-from-text-input">Selecting items from text input</a>). The build-in parser will try to use reflection to create a new item from the input string, but you can also provide your own implementation.</p>
+<h3 id="basic-example-1">Basic Example</h3>
+<pre><code class="language-xml">&lt;mah:MultiSelectionComboBox ItemsSource="{Binding Animals}"
+                            SelectionMode="Multiple"
+                            IsEditable="True"
+                            Separator=", "
+                            SelectItemsFromTextInputDelay="200"
+                            EditableTextStringComparision="OrdinalIgnoreCase"
+                            ObjectToStringComparer="{mah:DefaultObjectToStringComparer}" 
+                            StringToObjectParser="{x:Static mah:DefaultStringToObjectParser.Instance}" /&gt;
+</code></pre>
+<h3 id="custom-stringtoobjectparser-example">Custom StringToObjectParser Example</h3>
+<p>You can use any class that implements the <code>IParseStringToObject</code> interface to parse the user input to a new object. The interface has one member called <code>TryCreateObjectFromString</code>. Let's assume we have a <code>List&lt;string&gt;</code> called <code>Animals</code>. The user can add new animals, but before adding a new animal, we want the user to confirm the input.</p>
+<pre><code class="language-cs">public class MyObjectParser : IParseStringToObject
+{
+    // This function is expected to be implemented. Returns true if the item could be created, otherise false.
+    public bool TryCreateObjectFromString(
+        string? input,                      // The input string to parse
+        out object? result,                 // return the object here if successful, otherwise return null
+        CultureInfo? culture = null,        // The culture which should be used to parse. This parameter is optional
+        string? stringFormat = null,        // The string format to apply. This parameter is optional
+        Type? elementType = null)           // The Type to which the input should be converted to. This parameter is optional
+    {
+        // if we got an empty string, we return false and set the result to null
+        if (string.IsNullOrWhiteSpace(input))
+        {
+            result = null;
+            return false;
+        }
+
+        // We ask the user for confirmation
+        if (MessageBox.Show(
+            $"Do you want to add \"{input}\" to the animals list?", 
+            "Add Animal", 
+            MessageBoxButtons.YesNo) == DialogResult.Yes)
+        {
+            // The user accepted this item. As our List contains only strings, we can just return the input string.
+            result = input;  
+            return true;
+        }
+        else
+        {
+            result = null;
+            return false;
+        }
+    }
+}
+</code></pre>
+
+	</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
+        </div>
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
+                <p class="text-muted">
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
+    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
+    <br>
+    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br>
+    Generated by <a href="http://wyam.io">Wyam</a>
+</p>
+
+<script>
+	anchors.options.placement = 'left';
+	anchors.add();
+</script>
+
+<script>
+	var snippets = document.querySelectorAll('pre > code');
+	[].forEach.call(snippets, function (snippet) {
+	  snippet.insertAdjacentHTML(
+	    'beforebegin',
+	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
+	  );
+	});
+	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+	  container: document.getElementById('modal'),
+	  target: function (trigger) {
+	    return trigger.nextElementSibling;
+	  },
+	});
+	clipboardSnippets.on('success', function (e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		e.clearSelection();
+		// showTooltip(e.trigger, 'Copied!');
+	});
+	clipboardSnippets.on('error', function (e) {
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
+		// showTooltip(e.trigger, fallbackMessage(e.action));
+	});
+</script>
+            </footer>
+        </div>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
+            $(document).ready(function() {
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });     
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});			                          
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+                    
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
+            });
+        </script>
+    
+</body></html>
