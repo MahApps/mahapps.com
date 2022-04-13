@@ -38,11 +38,11 @@ The `MultiSelectionComboBox` is like a normal `ComboBox`, but instead of limit t
 # The user interface
 ![MultiSelectionComboBox with numbers](Images/MultiSelectionComboBox_Numbered.png)
 
-| No. | Description                                                                                                         |
-|-----|---------------------------------------------------------------------------------------------------------------------|
+| No. | Description                                                                                                             |
+|-----|-------------------------------------------------------------------------------------------------------------------------|
 | 01  | Displays the selected item(s), or, if the control is in editable mode, a `TextBox` representing a concatenated `string` |
-| 02  | This button opens or closes the `DrowDown` (No. 03)                                                                      |
-| 03  | A `DropDown` which displays all available items. Selected items are highlighted (blue background in the sample image)                   |
+| 02  | This button opens or closes the `DrowDown` (No. 03)                                                                     |
+| 03  | A `DropDown` which displays all available items. Selected items are highlighted (blue background in the sample image)   |
 
 # Common Properties 
 
@@ -51,35 +51,35 @@ This control has all properties which are known from the normal `ComboBox` and i
 | Property                              | Type                    | Description                                                                                                                                                                |
 |---------------------------------------|-------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | AcceptsReturn                         | bool                    | Gets or sets if the `TextBox` accepts return (editable mode only)                                                                                                          |
-| DisabledPopupOverlayContent           | object?                 | Gets or sets the content to render above the `DropDown` when the `DropDown` is disabled ([more](#customize-the-overlay))                                                                                  |
-| DisabledPopupOverlayContentTemplate   | DataTemplate?           | Gets or sets the `DataTemplate` to render above the `DropDown` when the control has custom text ([more](#customize-the-overlay))                                                                |
-| DropDownFooterContent                 | object?                 | Gets or sets the content of the `DropDown` footer                                                                                                                               |
-| DropDownFooterContentStringFormat     | string?                 | Gets or sets the string format of the `DropDown` footer                                                                                                                      |
-| DropDownFooterContentTemplate         | DataTemplate?           | Gets or sets the `DataTemplate` for the `DropDown` footer content                                                                                                             |
-| DropDownFooterContentTemplateSelector | DataTemplateSelector?   | Gets or sets the `DataTemplateSelector` for the `DropDown` footer content                                                                                                       |
-| DropDownHeaderContent                 | object?                 | Gets or sets the content of the `DropDown` header                                                                                                                               |
-| DropDownHeaderContentStringFormat     | string?                 | Gets or sets the string format of the `DropDown` header                                                                                                                         |
-| DropDownHeaderContentTemplate         | DataTemplate?           | Gets or sets the `DataTemplate` for the `DropDown` header content                                                                                                                |
-| DropDownHeaderContentTemplateSelector | DataTemplateSelector?   | Gets or sets the `DataTemplateSelector` for the `DropDown` header content                                                                                                       |
-| EditableTextStringComparision         | StringComparison        | Gets or Sets the `StringComparison` that is used to check if the entered text matches to the `SelectedItems`                                                                   |
+| DisabledPopupOverlayContent           | object?                 | Gets or sets the content to render above the `DropDown` when the `DropDown` is disabled ([more](#customize-the-overlay))                                                   |
+| DisabledPopupOverlayContentTemplate   | DataTemplate?           | Gets or sets the `DataTemplate` to render above the `DropDown` when the control has custom text ([more](#customize-the-overlay))                                           |
+| DropDownFooterContent                 | object?                 | Gets or sets the content of the `DropDown` footer                                                                                                                          |
+| DropDownFooterContentStringFormat     | string?                 | Gets or sets the string format of the `DropDown` footer                                                                                                                    |
+| DropDownFooterContentTemplate         | DataTemplate?           | Gets or sets the `DataTemplate` for the `DropDown` footer content                                                                                                          |
+| DropDownFooterContentTemplateSelector | DataTemplateSelector?   | Gets or sets the `DataTemplateSelector` for the `DropDown` footer content                                                                                                  |
+| DropDownHeaderContent                 | object?                 | Gets or sets the content of the `DropDown` header                                                                                                                          |
+| DropDownHeaderContentStringFormat     | string?                 | Gets or sets the string format of the `DropDown` header                                                                                                                    |
+| DropDownHeaderContentTemplate         | DataTemplate?           | Gets or sets the `DataTemplate` for the `DropDown` header content                                                                                                          |
+| DropDownHeaderContentTemplateSelector | DataTemplateSelector?   | Gets or sets the `DataTemplateSelector` for the `DropDown` header content                                                                                                  |
+| EditableTextStringComparision         | StringComparison        | Gets or Sets the `StringComparison` that is used to check if the entered text matches to the `SelectedItems`                                                               |
 | HasCustomText                         | bool                    | Indicates if the text is user defined. This property is read-only                                                                                                          |
-| InterceptKeyboardSelection            | bool                    | Gets or sets if the user can select items from the keyboard, e.g. with the ▲ ▼ Keys. This property is only applied when the `SelectionMode` is `Single`.         |
-| InterceptMouseWheelSelection          | bool                    | Gets or sets if the user can select items by mouse wheel. This property is only applied when the `SelectionMode` is `Single`.                                    |
-| IsDropDownFooterVisible               | bool                    | Gets or sets if the footer in the `DropDown` is visible                                                                                                                      |
-| IsDropDownHeaderVisible               | bool                    | Gets or sets if the header in the `DropDown` is visible                                                                                                                      |
-| ObjectToStringComparer                | ICompareObjectToString? | Gets or sets a function that is used to check if the entered text matches an object that should be selected ([more](#selecting-items-from-text-input))                                                               |
-| OrderSelectedItemsBy                  | SelectedItemsOrderType  | Gets or sets how the `SelectedItems` should be sorted ([more](#selecteditemsorder)).                                                                                                                       |
-| SelectedItemContainerStyle            | Style?                  | Gets or sets the `Style` that is applied to the selected items                                                                                                               |
-| SelectedItemContainerStyleSelector    | StyleSelector?          | Gets or sets the `StyleSelector` that is applied to the selected items                                                                                                       |
-| SelectedItems                         | IList?                  | Gets a read-only list which holds the currently selected items.                                                                                                             |
-| SelectedItemsPanelTemplate            | ItemsPanelTemplate?     | Gets or sets the template that defines the `Panel` that controls the layout of the selected items.                                                                           |
-| SelectedItemStringFormat              | string?                 | Gets or sets how to format the selected items if they are displayed as strings.                                                                                          |
-| SelectedItemTemplate                  | DataTemplate?           | Gets or sets the `DataTemplate` used to display the `SelcetedItems`                                                                                                            |
+| InterceptKeyboardSelection            | bool                    | Gets or sets if the user can select items from the keyboard, e.g. with the ▲ ▼ Keys. This property is only applied when the `SelectionMode` is `Single`.                   |
+| InterceptMouseWheelSelection          | bool                    | Gets or sets if the user can select items by mouse wheel. This property is only applied when the `SelectionMode` is `Single`.                                              |
+| IsDropDownFooterVisible               | bool                    | Gets or sets if the footer in the `DropDown` is visible                                                                                                                    |
+| IsDropDownHeaderVisible               | bool                    | Gets or sets if the header in the `DropDown` is visible                                                                                                                    |
+| ObjectToStringComparer                | ICompareObjectToString? | Gets or sets a function that is used to check if the entered text matches an object that should be selected ([more](#selecting-items-from-text-input))                     |
+| OrderSelectedItemsBy                  | SelectedItemsOrderType  | Gets or sets how the `SelectedItems` should be sorted ([more](#selecteditemsorder)).                                                                                       |
+| SelectedItemContainerStyle            | Style?                  | Gets or sets the `Style` that is applied to the selected items                                                                                                             |
+| SelectedItemContainerStyleSelector    | StyleSelector?          | Gets or sets the `StyleSelector` that is applied to the selected items                                                                                                     |
+| SelectedItems                         | IList?                  | Gets a read-only list which holds the currently selected items.                                                                                                            |
+| SelectedItemsPanelTemplate            | ItemsPanelTemplate?     | Gets or sets the template that defines the `Panel` that controls the layout of the selected items.                                                                         |
+| SelectedItemStringFormat              | string?                 | Gets or sets how to format the selected items if they are displayed as strings.                                                                                            |
+| SelectedItemTemplate                  | DataTemplate?           | Gets or sets the `DataTemplate` used to display the `SelcetedItems`                                                                                                        |
 | SelectedItemTemplateSelector          | DataTemplateSelector?   | Gets or sets the `DataTemplateSelector` for the selected items                                                                                                             |
-| SelectionMode                         | SelectionMode           | Gets or sets the `SelectionMode`                                                                                                                                             |
+| SelectionMode                         | SelectionMode           | Gets or sets the `SelectionMode`                                                                                                                                           |
 | SelectItemsFromTextInputDelay         | int                     | Gets or Sets the delay in milliseconds to wait before the selection is updated during text input. If this value is -1 the selection will not be updated during text input. <br><div class="alert alert-info">**Note**: You also need to set an `ObjectToStringComparer` to get this to work. </div> |
-| Separator                             | string?                 | Gets or sets the separator which will be used if the `MultiSelectionComboBox` is editable.                                                                                                 |
-| StringToObjectParser                  | IParseStringToObject?   | Gets or sets a parser-class that implements `IParseStringToObject` ([more](#adding-new-items-from-text-input))                                                                                               |
+| Separator                             | string?                 | Gets or sets the separator which will be used if the `MultiSelectionComboBox` is editable.                                                                                 |
+| StringToObjectParser                  | IParseStringToObject?   | Gets or sets a parser-class that implements `IParseStringToObject` ([more](#adding-new-items-from-text-input))                                                             |
 
 # Styles
 
@@ -133,7 +133,6 @@ This `enum` defines how the selected items should be presented to the user. The 
 | SelectedOrder    | Displays the selected items in the same order as they were selected                   |
 | ItemsSourceOrder | Displays the selected items in the same order as they are stored in the `ItemsSource` |
 
-
 # Text processing
 ## Separator
 The `Separator` is used to concatenate the selected items into one single string. if the text comes from user input, the `Separator` is also used to split the input string into fragments which will be used to select the requested items. 
@@ -182,15 +181,23 @@ The result will look like this:
 If the control is editable and you have set a `ObjectToStringComparer`, the `MultiSelectionComboBox` will try to select the items from the user input. The build-in comparer will compare the input string fragments with the objects string representation while taking the [`StringComparison`](https://docs.microsoft.com/en-us/dotnet/api/system.stringcomparison) into account. 
 
 ### Basic Example
+
 ```xml
+<!--
+    - The Separator must be defined for automatic item selection.
+    - The SelectItemsFromTextInputDelay is optional. If it is set to -1,
+      it means the items will be selected only after LostFocus.
+    - The EditableTextStringComparision is optional.
+    - We use the build in comparer (DefaultObjectToStringComparer), but you can also use your own.
+-->
+
 <mah:MultiSelectionComboBox ItemsSource="{Binding Animals}"            
                             SelectionMode="Multiple"
                             IsEditable="True"
-                            Separator=", "                                                  // The Separator must be defined for automatic item selection
-                            SelectItemsFromTextInputDelay="200"                             // This is optional. If it is set to -1, it means the items will be selected only after LostFocus
-                            EditableTextStringComparision="OrdinalIgnoreCase"               // This is optional
-                            ObjectToStringComparer="{mah:DefaultObjectToStringComparer}"    // Here we use the build in comparer, but you can also use your own
-                            />
+                            Separator=", "
+                            SelectItemsFromTextInputDelay="200"
+                            EditableTextStringComparision="OrdinalIgnoreCase"
+                            ObjectToStringComparer="{mah:DefaultObjectToStringComparer}" />
 ```
 
 ### Custom ObjectToStringComparer Example
@@ -216,7 +223,7 @@ public class MyUserToStringComparer : ICompareObjectToString
         string? input,                      // The text fragment to test 
         object? objectToCompare,            // The item to test for match
         StringComparison stringComparison,  // The string comparison to use
-        string? stringFormat)               // the string format to use
+        string? stringFormat)               // The string format to use
     {
         // we cast the object to compare to a user.
         var user = objectToCompare as User;
@@ -240,6 +247,7 @@ public class MyUserToStringComparer : ICompareObjectToString
 If the control is editable and you have set a `StringToObjectParser`, the `MultiSelectionComboBox` will try to create a new item if the item was not found (see [Selecting items from text input](#selecting-items-from-text-input)). The build-in parser will try to use reflection to create a new item from the input string, but you can also provide your own implementation.
 
 ### Basic Example
+
 ```xml
 <mah:MultiSelectionComboBox ItemsSource="{Binding Animals}"
                             SelectionMode="Multiple"
@@ -248,8 +256,7 @@ If the control is editable and you have set a `StringToObjectParser`, the `Multi
                             SelectItemsFromTextInputDelay="200"
                             EditableTextStringComparision="OrdinalIgnoreCase"
                             ObjectToStringComparer="{mah:DefaultObjectToStringComparer}" 
-                            StringToObjectParser="{x:Static mah:DefaultStringToObjectParser.Instance}" // We use the build in parser here
-                            />
+                            StringToObjectParser="{x:Static mah:DefaultStringToObjectParser.Instance}" />
 ```
 
 ### Custom StringToObjectParser Example
@@ -264,7 +271,7 @@ public class MyObjectParser : IParseStringToObject
         out object? result,                 // return the object here if successful, otherwise return null
         CultureInfo? culture = null,        // The culture which should be used to parse. This parameter is optional
         string? stringFormat = null,        // The string format to apply. This parameter is optional
-        Type? elementType = null)           // the Type to which the input should be converted to. This parameter is optional
+        Type? elementType = null)           // The Type to which the input should be converted to. This parameter is optional
     {
         // if we got an empty string, we return false and set the result to null
         if (string.IsNullOrWhiteSpace(input))
