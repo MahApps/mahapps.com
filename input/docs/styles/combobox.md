@@ -2,7 +2,7 @@ Title: ComboBox
 Description: The ComboBox styles
 ---
 
-# Default Style
+## Default Style
 
 The standard `ComboBox` is automatically styled when you include the MahApps.Metro library. You can enhance it with helper properties from `TextBoxHelper`.
 
