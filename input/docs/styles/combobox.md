@@ -1,4 +1,6 @@
-## Title: ComboBox
+Title: ComboBox
+Description: The ComboBox styles
+---
 
 # Default Style
 
