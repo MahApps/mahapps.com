@@ -1,21 +1,19 @@
-﻿<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - ComboBox</title>
         <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/assets/css/theme/theme.css" rel="stylesheet" />
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
         <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
         <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet" />
+        <link href="/assets/css/override.css" rel="stylesheet">
         <script src="/assets/js/jquery-2.2.3.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>        
         <script src="/assets/js/app.min.js"></script>         
@@ -230,7 +228,100 @@
 			<h1>ComboBox</h1>
 		</section>
 	<section class="content">
-		<p><em>coming soon</em></p>
+		<h2 id="default-style">Default Style</h2>
+<p>The standard <code>ComboBox</code> is automatically styled when you include the MahApps.Metro library. You can enhance it with helper properties from <code><a href="/api/MahApps.Metro.Controls/TextBoxHelper">TextBoxHelper</a></code>.</p>
+<hr>
+<h2 id="watermark">Watermark</h2>
+<p>You can add placeholder text, known as a watermark, which appears when the <code>ComboBox</code> has no selected item.</p>
+<p>Add the following attribute to your <code>ComboBox</code>: <code>mah:TextBoxHelper.Watermark="Your placeholder text..."</code></p>
+<pre><code class="language-xml">&lt;ComboBox mah:TextBoxHelper.Watermark="Please select an item..."
+          Width="200"&gt;
+    &lt;ComboBoxItem Content="Item 1" /&gt;
+    &lt;ComboBoxItem Content="Item 2" /&gt;
+&lt;/ComboBox&gt;
+</code></pre>
+<hr>
+<h2 id="cleartext-button">ClearText Button</h2>
+<p>A button to clear the selected item can be added to the <code>ComboBox</code>.</p>
+<p>Set <code>mah:TextBoxHelper.ClearTextButton="True"</code> to make the button always visible.</p>
+<pre><code class="language-xml">&lt;ComboBox mah:TextBoxHelper.ClearTextButton="True"
+          mah:TextBoxHelper.Watermark="Please select an item..."
+          Width="200"&gt;
+    &lt;ComboBoxItem Content="Item 1" /&gt;
+    &lt;ComboBoxItem Content="Item 2" /&gt;
+&lt;/ComboBox&gt;
+</code></pre>
+<p>Alternatively, you can bind its visibility to the <code>SelectedItem</code> property, so it only appears when an item is selected.</p>
+<pre><code class="language-xml">&lt;ComboBox mah:TextBoxHelper.ClearTextButton="{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=Self}, Converter={x:Static mah:IsNotNullConverter.Instance}}"
+          mah:TextBoxHelper.Watermark="Please select an item..."
+          Width="200"&gt;
+    &lt;ComboBoxItem Content="Item 1" /&gt;
+    &lt;ComboBoxItem Content="Item 2" /&gt;
+&lt;/ComboBox&gt;
+</code></pre>
+<hr>
+<h2 id="floating-watermark">Floating Watermark</h2>
+<p>The watermark can be configured to float above the <code>ComboBox</code> like a label when an item is selected. This also works for editable <code>ComboBoxes</code>.</p>
+<p>Add the following attribute to apply this style: <code>mah:TextBoxHelper.UseFloatingWatermark="True"</code></p>
+<pre><code class="language-xml">&lt;ComboBox mah:TextBoxHelper.UseFloatingWatermark="True"
+          mah:TextBoxHelper.Watermark="Please select an item..."
+          Width="200"&gt;
+    &lt;ComboBoxItem Content="Item 1" /&gt;
+    &lt;ComboBoxItem Content="Item 2" /&gt;
+&lt;/ComboBox&gt;
+</code></pre>
+<hr>
+<h2 id="custom-button-content">Custom Button Content</h2>
+<p>You can replace the default dropdown arrow with custom content, such as an icon. This is useful for creating search or filter-like inputs.</p>
+<p>Use the <code>ButtonCommand</code>, <code>ButtonContent</code>, and <code>ButtonContentTemplate</code> properties from <code><a href="/api/MahApps.Metro.Controls/TextBoxHelper">TextBoxHelper</a></code> to customize the button.</p>
+<pre><code class="language-xml">&lt;ComboBox Width="200"
+          mah:TextBoxHelper.ButtonCommand="{Binding ControlButtonCommand, Mode=OneWay}"
+          mah:TextBoxHelper.ButtonContent="M17.545,15.467l-3.779-3.779..."
+          mah:TextBoxHelper.Watermark="Search here..."&gt;
+    &lt;mah:TextBoxHelper.ButtonContentTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;mah:PathIcon Width="16"
+                          Height="16"
+                          Padding="3"
+                          Data="{Binding Mode=OneWay}" /&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/mah:TextBoxHelper.ButtonContentTemplate&gt;
+    &lt;ComboBoxItem Content="Item 1" /&gt;
+    &lt;ComboBoxItem Content="Item 2" /&gt;
+&lt;/ComboBox&gt;
+</code></pre>
+<hr>
+<h2 id="editable-auto-completion">Editable / Auto-Completion</h2>
+<p>Set <code>IsEditable="True"</code> to allow users to type directly into the <code>ComboBox</code>. When combined with an <code>ItemsSource</code>, this enables auto-completion.</p>
+<p>For <code>ComboBoxes</code> with a large number of items, use the virtualized style for better performance.</p>
+<p>Add the following to a <code>ComboBox</code> to apply this style: <code>Style="{DynamicResource MahApps.Styles.ComboBox.Virtualized}"</code></p>
+<pre><code class="language-xaml">&lt;ComboBox Width="200"
+          mah:TextBoxHelper.Watermark="Auto completion"
+          DisplayMemberPath="Title"
+          IsEditable="True"
+          ItemsSource="{Binding Albums}"
+          Style="{DynamicResource MahApps.Styles.ComboBox.Virtualized}" /&gt;
+</code></pre>
+<hr>
+<h2 id="grouping">Grouping</h2>
+<p>Items within the dropdown can be grouped under custom headers. This is achieved by setting the <code>&lt;ComboBox.GroupStyle&gt;</code>.</p>
+<pre><code class="language-xml">&lt;ComboBox Width="200"
+          mah:TextBoxHelper.Watermark="Auto completion with grouping"
+          DisplayMemberPath="Title"
+          IsEditable="True"
+          ItemsSource="{Binding Albums}"
+          Style="{DynamicResource MahApps.Styles.ComboBox.Virtualized}"&gt;
+    &lt;ComboBox.GroupStyle&gt;
+        &lt;GroupStyle&gt;
+            &lt;GroupStyle.HeaderTemplate&gt;
+                &lt;DataTemplate&gt;
+                    &lt;TextBlock Text="{Binding Path=Name.Name}" /&gt;
+                &lt;/DataTemplate&gt;
+            &lt;/GroupStyle.HeaderTemplate&gt;
+        &lt;/GroupStyle&gt;
+    &lt;/ComboBox.GroupStyle&gt;
+&lt;/ComboBox&gt;
+</code></pre>
 
 	</section>
                 
@@ -247,9 +338,9 @@
     <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
     <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
     <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
-    <br/>
-    Copyright &copy; <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br/>
+    <br>
+    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br>
     Generated by <a href="http://wyam.io">Wyam</a>
 </p>
 
@@ -358,5 +449,5 @@
                 }, 500);
             });
         </script>
-    </body>
-</html>
+    
+</body></html>
