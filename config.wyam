@@ -5,7 +5,7 @@
 System.Globalization.CultureInfo.DefaultThreadCurrentCulture = System.Globalization.CultureInfo.CreateSpecificCulture("en-US");
 
 //Settings[Keys.Host] = "mahapps.com";
-Settings[Keys.Host] = "mahapps.github.io";
+Settings[Keys.Host] = "mahapps.github.io/mahapps.com";
 Settings[Keys.LinksUseHttps] = true;
 Settings[Keys.UseCache] = true;
 
