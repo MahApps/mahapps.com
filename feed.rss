@@ -2,17 +2,17 @@
 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
 	<channel>
 		<title>MahApps.Metro</title>
-		<link>https://mahapps.com/</link>
+		<link>https://mahapps.github.io/mahapps.com//</link>
 		<description />
-		<copyright>2025</copyright>
-		<pubDate>Mon, 06 Oct 2025 07:07:19 GMT</pubDate>
-		<lastBuildDate>Mon, 06 Oct 2025 07:07:19 GMT</lastBuildDate>
+		<copyright>2026</copyright>
+		<pubDate>Fri, 31 Jul 2026 10:28:15 GMT</pubDate>
+		<lastBuildDate>Fri, 31 Jul 2026 10:28:15 GMT</lastBuildDate>
 		<item>
 			<title>Release 1.6.5</title>
-			<link>https://mahapps.com/blog/release-v1.6.5</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.6.5</link>
 			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.4...1.6.5"&gt;1 commit&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=33&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</description>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.6.5</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.6.5</guid>
 			<pubDate>Tue, 19 Jun 2018 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.4...1.6.5"&gt;1 commit&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=33&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Bug&lt;/strong&gt;&lt;/p&gt;
@@ -23,10 +23,10 @@
 		</item>
 		<item>
 			<title>Release 1.6.4</title>
-			<link>https://mahapps.com/blog/release-v1.6.4</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.6.4</link>
 			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.3...1.6.4"&gt;2 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=32&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;</description>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.6.4</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.6.4</guid>
 			<pubDate>Mon, 14 May 2018 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.3...1.6.4"&gt;2 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=32&amp;amp;state=closed"&gt;1 issue&lt;/a&gt; being closed.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Bug&lt;/strong&gt;&lt;/p&gt;
@@ -42,10 +42,10 @@
 		</item>
 		<item>
 			<title>Release 1.6.3</title>
-			<link>https://mahapps.com/blog/release-v1.6.3</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.6.3</link>
 			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.2...1.6.3"&gt;7 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=31&amp;amp;state=closed"&gt;3 issues&lt;/a&gt; being closed.&lt;/p&gt;</description>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.6.3</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.6.3</guid>
 			<pubDate>Fri, 11 May 2018 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.2...1.6.3"&gt;7 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=31&amp;amp;state=closed"&gt;3 issues&lt;/a&gt; being closed.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Bugs&lt;/strong&gt;&lt;/p&gt;
@@ -58,10 +58,10 @@
 		</item>
 		<item>
 			<title>Release 1.6.2</title>
-			<link>https://mahapps.com/blog/release-v1.6.2</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.6.2</link>
 			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.1...1.6.2"&gt;29 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=30&amp;amp;state=closed"&gt;7 issues&lt;/a&gt; being closed.&lt;/p&gt;</description>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.6.2</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.6.2</guid>
 			<pubDate>Mon, 30 Apr 2018 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.1...1.6.2"&gt;29 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=30&amp;amp;state=closed"&gt;7 issues&lt;/a&gt; being closed.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Bugs&lt;/strong&gt;&lt;/p&gt;
@@ -77,10 +77,10 @@
 		</item>
 		<item>
 			<title>Release 1.6.1</title>
-			<link>https://mahapps.com/blog/release-v1.6.1</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.6.1</link>
 			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.0...1.6.1"&gt;4 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=29&amp;amp;state=closed"&gt;2 issues&lt;/a&gt; being closed.&lt;/p&gt;</description>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.6.1</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.6.1</guid>
 			<pubDate>Tue, 13 Mar 2018 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.6.0...1.6.1"&gt;4 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=29&amp;amp;state=closed"&gt;2 issues&lt;/a&gt; being closed.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Bugs&lt;/strong&gt;&lt;/p&gt;
@@ -94,10 +94,10 @@
 		</item>
 		<item>
 			<title>Release 1.6.0</title>
-			<link>https://mahapps.com/blog/release-v1.6.0</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.6.0</link>
 			<description>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.5.0...1.6.0"&gt;362 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=24&amp;amp;state=closed"&gt;153 issues&lt;/a&gt; being closed.&lt;/p&gt;</description>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.6.0</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.6.0</guid>
 			<pubDate>Thu, 15 Feb 2018 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;p&gt;As part of this release we had &lt;a href="https://github.com/MahApps/MahApps.Metro/compare/1.5.0...1.6.0"&gt;362 commits&lt;/a&gt; which resulted in &lt;a href="https://github.com/MahApps/MahApps.Metro/issues?milestone=24&amp;amp;state=closed"&gt;153 issues&lt;/a&gt; being closed.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Features / Changes / Improvements (most interesting)&lt;/strong&gt;&lt;/p&gt;
@@ -538,9 +538,9 @@
 		</item>
 		<item>
 			<title>Release 1.5.0</title>
-			<link>https://mahapps.com/blog/release-v1.5.0</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.5.0</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.5.0</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.5.0</guid>
 			<pubDate>Thu, 13 Apr 2017 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="features-changes-fixes"&gt;Features / Changes / Fixes&lt;/h1&gt;
 &lt;ul&gt;
@@ -669,9 +669,9 @@ TabControlHelper.UnderlineMouseOverSelectedBrush
 		</item>
 		<item>
 			<title>Release 1.4.3</title>
-			<link>https://mahapps.com/blog/release-v1.4.3</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.4.3</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.4.3</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.4.3</guid>
 			<pubDate>Thu, 02 Feb 2017 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="changes-fixes"&gt;Changes / Fixes&lt;/h1&gt;
 &lt;ul&gt;
@@ -687,9 +687,9 @@ TabControlHelper.UnderlineMouseOverSelectedBrush
 		</item>
 		<item>
 			<title>Release 1.4.2</title>
-			<link>https://mahapps.com/blog/release-v1.4.2</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.4.2</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.4.2</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.4.2</guid>
 			<pubDate>Mon, 30 Jan 2017 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="changes-fixes"&gt;Changes / Fixes&lt;/h1&gt;
 &lt;ul&gt;
@@ -720,9 +720,9 @@ TabControlHelper.UnderlineMouseOverSelectedBrush
 		</item>
 		<item>
 			<title>Release 1.4.1</title>
-			<link>https://mahapps.com/blog/release-v1.4.1</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.4.1</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.4.1</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.4.1</guid>
 			<pubDate>Thu, 05 Jan 2017 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="changes-fixes"&gt;Changes / Fixes&lt;/h1&gt;
 &lt;ul&gt;
@@ -742,10 +742,10 @@ TabControlHelper.UnderlineMouseOverSelectedBrush
 		</item>
 		<item>
 			<title>Release 1.4.0</title>
-			<link>https://mahapps.com/blog/release-v1.4.0</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.4.0</link>
 			<description>&lt;p&gt;Don't focus flyout on close &lt;a href="https://github.com/MahApps/MahApps.Metro/pull/2671"&gt;#2671&lt;/a&gt; (@ButchersBoy) This hack was introduced with &lt;a href="https://github.com/MahApps/MahApps.Metro/pull/1805"&gt;#1805&lt;/a&gt; which was noticed by manual testing.&lt;/p&gt;</description>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.4.0</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.4.0</guid>
 			<pubDate>Fri, 23 Dec 2016 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="features-changes-fixes"&gt;Features / Changes / Fixes&lt;/h1&gt;
 &lt;ul&gt;
@@ -1002,9 +1002,9 @@ It takes the largest frame from the window which has equal or smaller size than 
 		</item>
 		<item>
 			<title>Release 1.3.0</title>
-			<link>https://mahapps.com/blog/release-v1.3.0</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.3.0</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.3.0</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.3.0</guid>
 			<pubDate>Fri, 23 Sep 2016 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="features-changes-and-fixes"&gt;Features / Changes (and Fixes)&lt;/h1&gt;
 &lt;ul&gt;
@@ -1253,9 +1253,9 @@ It takes the largest frame from the window which has equal or smaller size than 
 		</item>
 		<item>
 			<title>Release 1.2.4</title>
-			<link>https://mahapps.com/blog/release-v1.2.4</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.2.4</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.2.4</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.2.4</guid>
 			<pubDate>Thu, 21 Jan 2016 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="bugfixes"&gt;Bugfixes&lt;/h1&gt;
 &lt;ul&gt;
@@ -1267,9 +1267,9 @@ It takes the largest frame from the window which has equal or smaller size than 
 		</item>
 		<item>
 			<title>Release 1.2.3</title>
-			<link>https://mahapps.com/blog/release-v1.2.3</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.2.3</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.2.3</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.2.3</guid>
 			<pubDate>Sat, 16 Jan 2016 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="bugfixes"&gt;Bugfixes&lt;/h1&gt;
 &lt;ul&gt;
@@ -1278,10 +1278,22 @@ It takes the largest frame from the window which has equal or smaller size than 
 </content:encoded>
 		</item>
 		<item>
-			<title>Release 1.2.1</title>
-			<link>https://mahapps.com/blog/release-v1.2.1</link>
+			<title>Release 1.2.2</title>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.2.2</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.2.1</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.2.2</guid>
+			<pubDate>Tue, 12 Jan 2016 00:00:00 GMT</pubDate>
+			<content:encoded>&lt;h1 id="bugfixes"&gt;Bugfixes&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed strong sign assembly stuff&lt;/li&gt;
+&lt;/ul&gt;
+</content:encoded>
+		</item>
+		<item>
+			<title>Release 1.2.1</title>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.2.1</link>
+			<author>punker76</author>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.2.1</guid>
 			<pubDate>Tue, 12 Jan 2016 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="bugfixes"&gt;Bugfixes&lt;/h1&gt;
 &lt;ul&gt;
@@ -1291,22 +1303,10 @@ It takes the largest frame from the window which has equal or smaller size than 
 </content:encoded>
 		</item>
 		<item>
-			<title>Release 1.2.2</title>
-			<link>https://mahapps.com/blog/release-v1.2.2</link>
-			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.2.2</guid>
-			<pubDate>Tue, 12 Jan 2016 00:00:00 GMT</pubDate>
-			<content:encoded>&lt;h1 id="bugfixes"&gt;Bugfixes&lt;/h1&gt;
-&lt;ul&gt;
-&lt;li&gt;Fixed strong sign assembly stuff&lt;/li&gt;
-&lt;/ul&gt;
-</content:encoded>
-		</item>
-		<item>
 			<title>Release 1.2.0</title>
-			<link>https://mahapps.com/blog/release-v1.2.0</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.2.0</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.2.0</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.2.0</guid>
 			<pubDate>Thu, 31 Dec 2015 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="features-changes"&gt;Features / Changes&lt;/h1&gt;
 &lt;ul&gt;
@@ -1533,9 +1533,9 @@ It takes the largest frame from the window which has equal or smaller size than 
 		</item>
 		<item>
 			<title>Release 1.1.2</title>
-			<link>https://mahapps.com/blog/release-v1.1.2</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.1.2</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.1.2</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.1.2</guid>
 			<pubDate>Sun, 01 Mar 2015 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="bugfixes-changes"&gt;Bugfixes / Changes&lt;/h1&gt;
 &lt;ul&gt;
@@ -1551,9 +1551,9 @@ It takes the largest frame from the window which has equal or smaller size than 
 		</item>
 		<item>
 			<title>Release 1.1.1</title>
-			<link>https://mahapps.com/blog/release-v1.1.1</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.1.1</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.1.1</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.1.1</guid>
 			<pubDate>Wed, 25 Feb 2015 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="bugfixes"&gt;Bugfixes&lt;/h1&gt;
 &lt;ul&gt;
@@ -1564,9 +1564,9 @@ It takes the largest frame from the window which has equal or smaller size than 
 		</item>
 		<item>
 			<title>Release 1.1.0</title>
-			<link>https://mahapps.com/blog/release-v1.1.0</link>
+			<link>https://mahapps.github.io/mahapps.com//blog/release-v1.1.0</link>
 			<author>punker76</author>
-			<guid>https://mahapps.com/blog/release-v1.1.0</guid>
+			<guid>https://mahapps.github.io/mahapps.com//blog/release-v1.1.0</guid>
 			<pubDate>Tue, 24 Feb 2015 00:00:00 GMT</pubDate>
 			<content:encoded>&lt;h1 id="features-changes"&gt;Features / Changes&lt;/h1&gt;
 &lt;ul&gt;
