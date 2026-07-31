@@ -2,11 +2,11 @@
 <rss xmlns:content="http://purl.org/rss/1.0/modules/content/" version="2.0">
 	<channel>
 		<title>MahApps.Metro</title>
-		<link>https://mahapps.github.io/mahapps.com/</link>
+		<link>https://mahapps.github.io/mahapps.com</link>
 		<description />
 		<copyright>2026</copyright>
-		<pubDate>Fri, 31 Jul 2026 11:27:25 GMT</pubDate>
-		<lastBuildDate>Fri, 31 Jul 2026 11:27:25 GMT</lastBuildDate>
+		<pubDate>Fri, 31 Jul 2026 11:35:15 GMT</pubDate>
+		<lastBuildDate>Fri, 31 Jul 2026 11:35:15 GMT</lastBuildDate>
 		<item>
 			<title>Release 1.6.5</title>
 			<link>https://mahapps.github.io/mahapps.com/blog/release-v1.6.5</link>

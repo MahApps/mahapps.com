@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-	<id>https://mahapps.github.io/mahapps.com/</id>
+	<id>https://mahapps.github.io/mahapps.com</id>
 	<title>MahApps.Metro</title>
-	<link rel="self" href="https://mahapps.github.io/mahapps.com/" />
+	<link rel="self" href="https://mahapps.github.io/mahapps.com" />
 	<rights>2026</rights>
-	<updated>2026-07-31T11:27:25Z</updated>
+	<updated>2026-07-31T11:35:15Z</updated>
 	<entry>
 		<id>https://mahapps.github.io/mahapps.com/blog/release-v1.6.5</id>
 		<title>Release 1.6.5</title>
