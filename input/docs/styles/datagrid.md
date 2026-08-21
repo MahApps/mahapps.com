@@ -8,7 +8,7 @@ MahApps.Metro adds styles for a `Checkbox` on `DataGridCheckBoxColumn` and a cus
 
 ## Getting Started
 
-In order for the style to be applied, you will have to include references to the styles and controls resource dictionary in your `App.xaml` and the namespace `xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"` in the window you are using. Instructions on how to do this can be found in the [Quick Start Guide](/docs/guides/quick-start).
+In order for the style to be applied, you will have to include references to the styles and controls resource dictionary in your `App.xaml` and the namespace `xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"` in the window you are using. Instructions on how to do this can be found in the [Quick Start Guide](../guides/quick-start).
 
 After including the references, any `DataGrid` that you place in XAML will follow the style displayed above.
 

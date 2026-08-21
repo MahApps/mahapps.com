@@ -1,8 +1,22 @@
+# --- Statiq ---
+output/
+cache/
+temp/
+bin/
+obj/
+
+# --- Cake (see the [Paths] section of cake.config) ---
+tools
+
+# --- Local AI assistant files, not part of the site ---
+CLAUDE.md
+.claude/
+
+# --- Wyam leftovers: nothing generates these any more, they only keep a
+#     pre-migration working copy from showing up as untracked ---
 config.wyam.dll
 config.wyam.hash
 config.wyam.packages.xml
 wwwroot
-output
-tools
 Wyam
 packages

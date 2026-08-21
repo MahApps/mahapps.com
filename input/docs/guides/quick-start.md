@@ -58,7 +58,7 @@ Make sure that all resource file names are Case Sensitive!
 
 ## Using the MetroWindow
 
-To start with the full MahApps styling and full window support you need to change your normal `Window` to our [MetroWindow](/docs/controls/metrowindow).
+To start with the full MahApps styling and full window support you need to change your normal `Window` to our [MetroWindow](../controls/metrowindow).
 
 - Open up your main window, normally named `MainWindow.xaml`
 - Add the namespace attribute inside the opening Window tag  
@@ -238,4 +238,4 @@ You can also show an `Icon` on the title bar by setting the `Icon` property or b
 
 ## What's Next?
 
-For extended documentation, take a look at the [Styles](/docs/styles) and [Controls](/docs/controls) section.
+For extended documentation, take a look at the [Styles](../styles) and [Controls](../controls) section.

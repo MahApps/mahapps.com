@@ -1,0 +1,31 @@
+@* Override of the Docable partial. Two changes from the theme original:
+   1. The logo src goes through Context.GetLink - the theme emits the Logo
+      setting verbatim, which drops LinkRoot and 404s on the deployed site.
+   2. The site title is shown next to the logo instead of only standing in for
+      a missing one, because our logo is a wordless mark. The image is
+      decorative once the title is spelled out, hence the empty alt. *@
+@{
+    string logo = Document.GetString(SiteKeys.Logo);
+    string siteTitle = Document.GetString(SiteKeys.SiteTitle);
+}
+<nav class="navbar navbar-expand-md navbar-light align-items-start">
+    <a class="navbar-brand d-flex align-items-center" href="@Context.GetLink("/")">
+        @if (!logo.IsNullOrWhiteSpace())
+        {
+            <img id="logo" src="@Context.GetLink(logo)" alt="">
+        }
+        <span class="site-title text-primary">@siteTitle</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
+        <ul class="navbar-nav mr-auto">
+            @await Html.PartialAsync("_LeftNavigation")
+        </ul>
+        <ul class="navbar-nav">
+            @await Html.PartialAsync("_RightNavigation")
+            @await Html.PartialAsync("_ExtraNavigation")
+        </ul>
+    </div>
+</nav>

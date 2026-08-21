@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RootNamespace>MahApps.Docs</RootNamespace>
+    <AssemblyName>MahApps.Docs</AssemblyName>
+    <!-- The site content lives next to the project file; don't let the SDK
+         glob it into the compilation or the build output. -->
+    <EnableDefaultItems>false</EnableDefaultItems>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Statiq.Docs" Version="1.0.0-beta.17" />
+  </ItemGroup>
+
+</Project>

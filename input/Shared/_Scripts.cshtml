@@ -1,0 +1,46 @@
+@* Heading anchors and the per-snippet copy button, carried over from the Samson
+   theme. The libraries are loaded in _Head.cshtml. *@
+<script>
+    anchors.options.placement = 'left';
+    anchors.add();
+
+    // Each <pre> is a horizontal scroll container (Bootstrap sets
+    // overflow: auto), so a button placed inside it scrolls out of view on long
+    // lines. Wrap the block instead and position the button against the
+    // wrapper, which never scrolls.
+    document.querySelectorAll('pre > code').forEach(function (code) {
+        var pre = code.parentNode;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn-copy';
+        button.title = 'Copy to clipboard';
+        button.setAttribute('aria-label', 'Copy to clipboard');
+        button.setAttribute('data-clipboard-snippet', '');
+        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        wrapper.appendChild(button);
+    });
+
+    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+        target: function (trigger) {
+            return trigger.parentNode.querySelector('pre > code');
+        },
+    });
+    clipboardSnippets.on('success', function (e) {
+        var button = e.trigger;
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+        window.setTimeout(function () {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        }, 1500);
+        e.clearSelection();
+    });
+    clipboardSnippets.on('error', function (e) {
+        console.error('Copy failed:', e.action, e.trigger);
+    });
+</script>
