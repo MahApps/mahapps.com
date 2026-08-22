@@ -8,6 +8,10 @@ obj/
 # --- Cake (see the [Paths] section of cake.config) ---
 tools
 
+# --- Default output of the screenshot generators; the images that belong to
+#     the docs are committed under input/docs/**/images ---
+shots/
+
 # --- Local AI assistant files, not part of the site ---
 CLAUDE.md
 .claude/
