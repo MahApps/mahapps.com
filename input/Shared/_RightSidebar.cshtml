@@ -1,0 +1,57 @@
+@* Override of the Docable partial. Two changes from the theme original:
+   1. The theme hardcodes the table of contents to headings of level 1. Pages
+      that start their sections at "##" - which most of the control docs do -
+      therefore got no "On This Page" list at all. Derive the top level from
+      the page instead.
+   2. The edit link used "fad fa-pencil". "fad" is Font Awesome Duotone, a Pro
+      style that the free Font Awesome we load does not carry, so it rendered
+      as an empty box. *@
+@{
+    IReadOnlyList<IDocument> allHeadings = Document.GetDocumentList(Keys.Headings);
+
+    int topLevel = allHeadings?.Count > 0
+        ? allHeadings.Min(x => x.GetInt(Keys.Level))
+        : 0;
+
+    IReadOnlyList<IDocument> headings = allHeadings
+        ?.Where(x => x.GetInt(Keys.Level) == topLevel)
+        .ToList();
+
+    string editLink = Document.ContainsKey(SiteKeys.EditLink)
+        ? Document.GetString(SiteKeys.EditLink)
+        : (Document.ContainsKey(SiteKeys.EditRoot)
+            ? Document.GetString(SiteKeys.EditRoot) + "/" + Document.Source.GetRelativeInputPath()
+            : null);
+
+    if (headings?.Count > 0)
+    {
+        <div class="@(editLink != null ? "border-bottom" : string.Empty) mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                @foreach (IDocument heading in headings)
+                {
+                    <div class="sidebar-nav-item"><a href="#@(heading.GetString(Keys.HeadingId))">@(await heading.GetContentStringAsync())</a></div>
+
+                    IReadOnlyList<IDocument> childHeadings = heading
+                        .GetDocumentList(Keys.Children)
+                        ?.Where(x => x.GetInt(Keys.Level) == topLevel + 1)
+                        .ToList();
+                    if (childHeadings?.Count > 0)
+                    {
+                        <div class="sidebar-nav-children">
+                            @foreach (IDocument childHeading in childHeadings)
+                            {
+                                <div class="sidebar-nav-item"><a href="#@(childHeading.GetString(Keys.HeadingId))">@(await childHeading.GetContentStringAsync())</a></div>
+                            }
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    }
+
+    if (editLink != null)
+    {
+        <p class="small font-weight-bold"><a href="@editLink" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+    }
+}
