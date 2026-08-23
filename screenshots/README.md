@@ -34,3 +34,19 @@ restores the property itself.
 ```
 dotnet run --project screenshots/SplitViewShots -- --probe
 ```
+
+## HamburgerMenuShots
+
+Produces the figures on `input/docs/controls/HamburgerMenu.md`:
+
+```
+dotnet run --project screenshots/HamburgerMenuShots -- input/docs/controls/images
+```
+
+One scenario embeds `input/assets/img/mahapps.metro.logo.png` as the thumbnail
+of a `HamburgerMenuImageItem`, which is the other reason to run this from the
+repository root; the app says so and carries on without it otherwise.
+
+Unlike SplitViewShots this one writes its scenarios as XAML and loads them with
+`XamlReader`. The control is driven almost entirely by templates, and spelling
+those out in C# would obscure what the documentation is trying to show.
