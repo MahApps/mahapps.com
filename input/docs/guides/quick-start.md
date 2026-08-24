@@ -4,33 +4,39 @@ Description: How to start with MahApps.Metro
 RedirectFrom: guides/quick-start.html
 ---
 
-This guide will introduce you to how `MahApps.Metro` works and how to incorporate it into your app.
+Three steps take a stock WPF application to a styled one: install the package, merge the resource dictionaries, swap `Window` for `MetroWindow`. Nothing else in your XAML has to change — your existing controls are restyled where they stand.
 
-## Installation
+This is where you will end up:
 
-You can install `MahApps.Metro` via the NuGet UI or with the Package Manager Console.
+![A MetroWindow](images/metrowindow.png)
 
-![](images/nugetinstall.png)
+## 1. Install the package
 
-With the Package Manager Console:
+Pick whichever you prefer — the .NET CLI, the Package Manager Console, or the NuGet UI.
+
+```
+dotnet add package MahApps.Metro
+```
 
 ```powershell
 PM> Install-Package MahApps.Metro
 ```
 
-If you want to use a pre-release packages of `MahApps.Metro`, you need to enable **Include Prerelease** in the NuGet UI:
+![Installing from the NuGet UI](images/nugetinstall.png)
 
-![](images/nugetinstallpre.png)
+For a pre-release build, tick **Include prerelease** in the NuGet UI:
 
-With the Package Manager Console:
+![Enabling prereleases in the NuGet UI](images/nugetinstallpre.png)
+
+or add the flag on the console:
 
 ```powershell
 PM> Install-Package MahApps.Metro -Pre
 ```
 
-## MahApps build-in styles and themes
+## 2. Add the resource dictionaries
 
-All resources of `MahApp.Metro` are located within separate resource dictionaries. To adopt the MahApps.Metro theme, you will need to add the resource dictionaries to your `App.xaml`.  
+Every resource in MahApps.Metro lives in its own dictionary. Merge them into your `App.xaml` and the styling applies across the application.
 
 ```xml
 <Application x:Class="SampleApp"
@@ -51,27 +57,27 @@ All resources of `MahApp.Metro` are located within separate resource dictionarie
 </Application>
 ```
 
-:::{.alert .alert-info}
-***Note***  
-Make sure that all resource file names are Case Sensitive!
+The last entry picks the theme — here the light base theme with a blue accent. Swapping that one line is enough to change the look, and [Themes](../themes) covers the rest, including switching at runtime.
+
+:::{.alert .alert-warning}
+**Case matters.** The pack URIs are case sensitive. A wrong letter fails at runtime, not at build time.
 :::
 
-## Using the MetroWindow
+## 3. Switch to MetroWindow
 
-To start with the full MahApps styling and full window support you need to change your normal `Window` to our [MetroWindow](/docs/controls/metrowindow).
+Your window needs to become a [MetroWindow](../controls/metrowindow) to get the custom title bar, the glow border and the dialog overlay.
 
-- Open up your main window, normally named `MainWindow.xaml`
-- Add the namespace attribute inside the opening Window tag  
-  ```xml
-  xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-  ```
-  or  
-  ```xml
-  xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-  ```
-- Change the `<Window ... </Window>` tag to `<mah:MetroWindow ... </mah:MetroWindow>`
+Open `MainWindow.xaml`, declare the namespace and change the root element from `Window` to `mah:MetroWindow`. Either namespace form works:
 
-Now you should have something like this (don't copy and paste this directly)
+```xml
+xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+```
+
+```xml
+xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+```
+
+The result looks like this — do not copy it over your own file wholesale, take the parts you need:
 
 ```xml
 <mah:MetroWindow x:Class="SampleApp.MainWindow"
@@ -91,7 +97,7 @@ Now you should have something like this (don't copy and paste this directly)
 </mah:MetroWindow>
 ```
 
-You'll also need to modify the code behind of the window file so that the base class matches the `MetroWindow` class of the XAML file.
+The code-behind has to agree with the XAML. Either derive from `MetroWindow` explicitly:
 
 ```csharp
 using MahApps.Metro.Controls;
@@ -111,7 +117,7 @@ namespace SampleApp
 }
 ```
 
-But in most cases you can just drop the base class (because this is a `partial` class the XAML should take care of this).
+or, in most cases, simply drop the base class — the generated half of the `partial` class already carries it:
 
 ```csharp
 namespace SampleApp
@@ -129,26 +135,23 @@ namespace SampleApp
 }
 ```
 
-The end result will look something like this:
+That is the whole setup. Everything below is optional.
 
-![](images/metrowindow.png)
+## Making the window your own
 
-## Extend the MetroWindow
+The title bar is yours to fill. The numbers below refer to the markers in this screenshot:
 
-The `MetroWindow` can be extend and changed with some extra features.
+![An extended MetroWindow](images/metrowindowext.png)
 
-1. The visibility of the `TitleBar` can be changed with the property `ShowTitleBar`
-2. Use the `LeftWindowCommands` and `RightWindowCommands` to add controls to the title bar. Button, ToggleButton, SplitButton and DropDownButton will use a default style. For all other controls you must create your own styles.
-3. The `WindowButtonCommands` are also changable, so you can create your own Min, Max/Restore and Close button styles.  
-The visibility of the Min and Max / Restore buttons are also effected by the `ResizeMode`. If `ResizeMode="NoResize"` the buttons are collapsed. If `ResizeMode="CanMinimize"` the Max / Restore button is collapsed.
+1. **`ShowTitleBar`** hides or shows the title bar.
+2. **`LeftWindowCommands`** and **`RightWindowCommands`** put your own controls into it. `Button`, `ToggleButton`, `SplitButton` and `DropDownButton` come with a matching style; anything else needs one of your own.
+3. **`WindowButtonCommands`** lets you restyle the minimise, maximise/restore and close buttons. Their visibility also follows `ResizeMode`: `NoResize` collapses both, `CanMinimize` collapses maximise/restore.
+4. **`ResizeMode="CanResizeWithGrip"`** shows a resize grip in the bottom right corner.
 
-4. Show a resize grip on the right bottom corner for better resizing.
-
-![](images/metrowindowext.png)
+Not marked in the screenshot, but used in the sample below: **`GlowBrush`** draws the coloured border around the window.
 
 :::{.alert .alert-info}
-***Note***  
-Make sure to include the [MahApps.Metro.IconPacks](https://github.com/MahApps/MahApps.Metro.IconPacks) to get the cupcake icon.
+The cupcake and octocat below come from [MahApps.Metro.IconPacks](https://github.com/MahApps/MahApps.Metro.IconPacks), a separate package.
 :::
 
 ```xml
@@ -232,10 +235,31 @@ namespace SampleApp
 }
 ```
 
-You can also show an `Icon` on the title bar by setting the `Icon` property or by using the `IconTemplate` property.
+An icon goes into the title bar through the `Icon` property, or through `IconTemplate` when you want to draw it yourself.
 
-![](images/metrowindowexticon.png)
+![A MetroWindow with an icon](images/metrowindowexticon.png)
 
-## What's Next?
+## Where to go next
 
-For extended documentation, take a look at the [Styles](/docs/styles) and [Controls](/docs/controls) section.
+<div class="row">
+<div class="col-md-4">
+
+**[Controls](../controls)**
+The custom controls: navigation, pickers, badges, flyouts and the rest.
+
+</div>
+<div class="col-md-4">
+
+**[Styles](../styles)**
+What MahApps.Metro does to the standard WPF controls, and the helpers that go with them.
+
+</div>
+<div class="col-md-4">
+
+**[Themes](../themes)**
+Base themes and accents, runtime switching, and building your own.
+
+</div>
+</div>
+
+Coming from version 1.x? The [migration guide](migration-to-v2.0) lists what changed.

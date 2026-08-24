@@ -1,0 +1,61 @@
+@using MahApps.Docs
+@* Override of the Docable partial. The theme builds the top navigation from
+   the root child pages, which would give a single "Documentation" entry.
+
+   These are plain links - no dropdowns, neither on hover nor on click. The
+   sections that belong under each entry are shown in the left sidebar
+   instead, which _Sidebar.cshtml fills from the same grouping. *@
+@{
+    (string Label, string Path)[] menu =
+    {
+        ("About", "/about"),
+        ("Controls", "/docs/controls"),
+        ("Styles", "/docs/styles"),
+        ("Guides", "/docs/guides")
+    };
+
+    string destination = Document.Destination.FullPath;
+    var currentGroup = SiteNavigation.GroupOf(destination);
+}
+
+@foreach (var entry in menu)
+{
+    string section = entry.Path.TrimStart('/');
+
+    // A top level entry stays lit for its whole group, so "Controls" is still
+    // marked while you are reading Dialogs or Helper Classes.
+    bool active = currentGroup is object
+        ? currentGroup[0] == section
+        : SiteNavigation.IsInSection(destination, section);
+
+    <li class="nav-item">
+        <a class="nav-link @(active ? "active" : null)" href="@Context.GetLink(entry.Path)">@entry.Label</a>
+    </li>
+}
+
+@{
+    // Carried over from the theme: the API section only exists when the
+    // reference was generated, which it is not for the default build.
+    IDocument apiIndex = OutputPages.Get(
+        NormalizedPath.Combine(Context.GetPath(DocsKeys.ApiPath), Context.Settings.GetIndexFileName()));
+}
+@if (apiIndex is object)
+{
+    <li class="nav-item">
+        @Html.DocumentLink(
+            apiIndex,
+            apiIndex.GetString(SiteKeys.NavigationTitle, apiIndex.GetTitle()),
+            new Dictionary<object, object> { { "class", "nav-link" } })
+    </li>
+}
+
+@if (Context.GetBool(WebKeys.GenerateSearchIndex))
+{
+    <li class="nav-item">
+        <a href="@Context.GetLink("/search")" class="nav-link">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+            </svg>
+        </a>
+    </li>
+}

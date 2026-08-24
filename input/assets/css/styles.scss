@@ -1,0 +1,82 @@
+// Overrides the theme's placeholder styles.scss. This is the file Docable links
+// from _Layout.cshtml, so it is where custom CSS belongs. A differently named
+// stylesheet in this folder gets compiled to output/ and then never linked.
+
+// Site title next to the logo in the navbar (see _Navigation.cshtml). The
+// adjacent-sibling selector keeps the gap from appearing when no logo is set.
+.navbar-brand {
+    #logo + .site-title {
+        margin-left: 0.6rem;
+    }
+
+    .site-title {
+        font-weight: 700;
+        letter-spacing: -0.01em;
+    }
+}
+
+// Copy button on code blocks. _Scripts.cshtml wraps every <pre> in a
+// .code-block and appends the button to that wrapper rather than to the <pre>
+// itself: Bootstrap gives <pre> "overflow: auto", so anything inside it scrolls
+// out of view on long lines.
+.code-block {
+    position: relative;
+
+    .btn-copy {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.75rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.75rem;
+        height: 1.75rem;
+        padding: 0;
+        font-size: 0.8rem;
+        color: #6c757d;
+        background-color: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        border-radius: 0.2rem;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out,
+            background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+
+        &:hover {
+            color: #212529;
+            background-color: #fff;
+            border-color: rgba(0, 0, 0, 0.25);
+        }
+
+        &.copied {
+            color: #1e7e34;
+            border-color: rgba(30, 126, 52, 0.4);
+            opacity: 1;
+        }
+    }
+
+    // Keyboard users get the button without a hover.
+    &:hover .btn-copy,
+    .btn-copy:focus {
+        opacity: 1;
+    }
+}
+
+// The theme bleeds highlighted code blocks past the text column with
+// "#content.p-4 > pre[class*=language-]". Wrapping the <pre> takes it out of
+// that selector's reach, so reproduce the effect on the wrapper. The 1.5rem
+// mirrors Bootstrap's .p-4 padding on #content, exactly as the theme rule does.
+#content.p-4 > .code-block {
+    margin-left: -1.5rem;
+    margin-right: -1.5rem;
+
+    > pre[class*="language-"] {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}

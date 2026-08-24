@@ -1,4 +1,4 @@
-name: Wyam
+name: Statiq
 
 on:
   push:
@@ -9,29 +9,25 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-        # Necessary for installing OpenSSL 1.1
-        DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: 1
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
+          # Two submodules are required: "mahapps" is the API documentation
+          # source, "theme" is the Docable theme.
           submodules: true
-      - name: Setup .NET Core
-        uses: actions/setup-dotnet@v2
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: |
-            2.1.818
-            6.0.x
-      - name: Install OpenSSL 1.1
-        run: |
-            wget http://security.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
-            sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2.24_amd64.deb
+          dotnet-version: 8.0.x
+
       - name: Run the Cake script
-        uses: cake-build/cake-action@v1
+        uses: cake-build/cake-action@v3
         with:
           cake-version: tool-manifest
           target: CIBuild
+
       - name: Deploy to GitHub Pages
         if: success() && github.event_name != 'pull_request'
         uses: Cecilapp/GitHub-Pages-deploy@v3
@@ -39,5 +35,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           email: ${{ secrets.MY_GITHUB_EMAIL }}
-          cname: mahapps.com
           build_dir: ./output

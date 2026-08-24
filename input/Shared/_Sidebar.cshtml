@@ -1,0 +1,120 @@
+@using MahApps.Docs
+@* Override of the Docable partial. The theme is handed the root of the
+   section - which for every documentation page is "docs" - and renders the
+   whole tree, so every page listed Controls, Styles, Themes, Guides and all of
+   their children at once.
+
+   Inside a group (see SiteNavigation) we instead show just that group's
+   sections, and expand the one being read. Everything else - About, the API
+   reference - falls through to the theme's original behaviour. *@
+@{
+    string indexFileName = Context.Settings.GetIndexFileName();
+    var group = SiteNavigation.GroupOf(Document.Destination.FullPath);
+}
+
+@if (group is object)
+{
+    <div class="sidebar-root">
+        @foreach (string section in group)
+        {
+            IDocument sectionPage = OutputPages.Get(NormalizedPath.Combine(section, indexFileName));
+            if (sectionPage is null || sectionPage.ContainsKey(Keys.RedirectTo))
+            {
+                continue;
+            }
+
+            DocumentList<IDocument> children = OutputPages
+                .GetChildrenOf(sectionPage)
+                .Where(x => !x.ContainsKey(Keys.RedirectTo) && x.GetBool(SiteKeys.ShowInSidebar, true))
+                .ToDocumentList();
+
+            @await Html.PartialAsync("_SidebarItem", (sectionPage, children.Count > 0))
+
+            // Every section of the group is expanded, not just the one being
+            // read, so the whole group is visible at a glance.
+            if (children.Count > 0)
+            {
+                <div class="sidebar-nav-children">
+                    @foreach (IDocument child in children)
+                    {
+                        DocumentList<IDocument> grandChildren = OutputPages
+                            .GetChildrenOf(child)
+                            .Where(x => !x.ContainsKey(Keys.RedirectTo) && x.GetBool(SiteKeys.ShowInSidebar, true))
+                            .ToDocumentList();
+
+                        @await Html.PartialAsync("_SidebarItem", (child, grandChildren.Count > 0))
+
+                        if (grandChildren.Count > 0)
+                        {
+                            <div class="sidebar-nav-children">
+                                @foreach (IDocument grandChild in grandChildren)
+                                {
+                                    @await Html.PartialAsync("_SidebarItem", (grandChild, false))
+                                }
+                            </div>
+                        }
+                    }
+                </div>
+            }
+        }
+    </div>
+}
+else
+{
+    @* The theme's original, unchanged. *@
+    <div class="sidebar-root">
+        @{
+            if (Model.GetBool(SiteKeys.ShowInSidebar, true)
+                && !Model.ContainsKey(Keys.RedirectTo))
+            {
+                @await Html.PartialAsync("_SidebarItem", (Model, false))
+            }
+
+            foreach (IDocument document in OutputPages
+                .GetChildrenOf(Model)
+                .Where(x => !x.ContainsKey(Keys.RedirectTo)))
+            {
+                DocumentList<IDocument> children = OutputPages
+                    .GetChildrenOf(document)
+                    .Where(x => !x.ContainsKey(Keys.RedirectTo))
+                    .ToDocumentList();
+
+                if (document.GetBool(SiteKeys.ShowInSidebar, true))
+                {
+                    @await Html.PartialAsync("_SidebarItem", (document, children.Count > 0))
+                }
+
+                @if (children.Count > 0)
+                {
+                    <div class="sidebar-nav-children">
+                        @foreach (IDocument child in children)
+                        {
+                            DocumentList<IDocument> children2 = OutputPages
+                                .GetChildrenOf(child)
+                                .Where(x => !x.ContainsKey(Keys.RedirectTo))
+                                .ToDocumentList();
+
+                            if (child.GetBool(SiteKeys.ShowInSidebar, true))
+                            {
+                                @await Html.PartialAsync("_SidebarItem", (child, children2.Count > 0))
+                            }
+
+                            @if (children2.Count > 0)
+                            {
+                                <div class="sidebar-nav-children">
+                                    @foreach (IDocument child2 in children2)
+                                    {
+                                        if (child2.GetBool(SiteKeys.ShowInSidebar, true))
+                                        {
+                                            @await Html.PartialAsync("_SidebarItem", (child2, false))
+                                        }
+                                    }
+                                </div>
+                            }
+                        }
+                    </div>
+                }
+            }
+        }
+    </div>
+}

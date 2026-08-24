@@ -1,0 +1,14 @@
+@* Docable's _Layout.cshtml hardcodes a Font Awesome *kit* that belongs to the
+   theme author and is locked to their domain, so it answers 403 for everyone
+   and the icons in _Footer/_ExtraNavigation never render. Loading the free
+   Font Awesome CSS supplies the same classes. jsdelivr is already used by the
+   theme, so this adds no new origin. (The theme's kit script still 403s - that
+   is harmless console noise; silencing it would mean overriding the whole
+   layout.) *@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@fortawesome/fontawesome-free@@6.5.2/css/all.min.css">
+
+@* Docable ships neither heading anchors nor a code-copy button, so both
+   libraries carried over from the Samson theme still earn their place.
+   The behaviour that uses them lives in _Scripts.cshtml. *@
+<script type="text/javascript" src="@Context.GetLink("/assets/js/anchor.min.js")"></script>
+<script type="text/javascript" src="@Context.GetLink("/assets/js/clipboard.min.js")"></script>

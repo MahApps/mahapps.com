@@ -1,0 +1,18 @@
+{
+  "Host": "mahapps.github.io",
+  "LinkRoot": "mahapps.com",
+  "LinksUseHttps": true,
+  "UseCache": true,
+
+  "DateTimeInputCulture": "en-US",
+  "DateTimeDisplayCulture": "en-US",
+
+  "SiteTitle": "MahApps.Metro",
+  "Logo": "/assets/img/mahapps.metro.logo.png",
+  "EditRoot": "https://github.com/MahApps/mahapps.com/edit/master/input",
+
+  "GatherHeadingsLevel": 3,
+
+  "ValidateRelativeLinks": true,
+  "ValidateAbsoluteLinks": false
+}

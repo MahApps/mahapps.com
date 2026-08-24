@@ -2,268 +2,188 @@ Title: HamburgerMenu
 Description: The HamburgerMenu control
 ---
 
-The `HamburgerMenu` control provides an easy-to-use, side-bar menu which users can show or hide by using a Hamburger button. By tapping the icon, it opens up a side menu with a selection of options or additional pages.
+The `HamburgerMenu` is a navigation control: a list of destinations in a pane that collapses to a strip of icons, next to the content of whatever is selected. It wraps a [SplitView](splitview) for the pane behaviour and adds the item list, the hamburger button, an options list pinned to the bottom, and a content area.
 
-The 3-line Hamburger menu icon, allows developers to pack more features into their apps or navigation. The tiny icon takes up a minimal amount of screen real estate and creates a clean, minimalist look.
+![HamburgerMenu anatomy](images/hamburgermenu-anatomy.png)
 
-Developers can place menu specific content, navigation, images, text or custom controls.
+Because the pane is a `SplitView`, `DisplayMode`, `PanePlacement`, `IsPaneOpen`, the four pane lengths, `CanResizeOpenPane` and `ResizeThumbStyle` behave exactly as described on the [SplitView page](splitview) — they are forwarded to it. Two defaults differ: `DisplayMode` starts at `CompactInline` instead of `Overlay`, and `OpenPaneLength` at `240` instead of `320`.
 
-# Example
+## Basic usage
+
+Menu entries come from `ItemsSource`, usually a `HamburgerMenuItemCollection` written inline:
+
+```xml
+<mah:HamburgerMenu x:Name="Menu" IsPaneOpen="True">
+
+    <mah:HamburgerMenu.ItemsSource>
+        <mah:HamburgerMenuItemCollection>
+            <mah:HamburgerMenuGlyphItem Glyph="&#xE80F;" Label="Home" />
+            <mah:HamburgerMenuGlyphItem Glyph="&#xE734;" Label="Favorites" />
+        </mah:HamburgerMenuItemCollection>
+    </mah:HamburgerMenu.ItemsSource>
+
+    <mah:HamburgerMenu.OptionsItemsSource>
+        <mah:HamburgerMenuItemCollection>
+            <mah:HamburgerMenuGlyphItem Glyph="&#xE713;" Label="Settings" />
+        </mah:HamburgerMenuItemCollection>
+    </mah:HamburgerMenu.OptionsItemsSource>
+
+</mah:HamburgerMenu>
+```
+
+**MahApps ships no `DataTemplate` for the menu item types.** Without one the list renders the type name of each item, so an `ItemTemplate` — or a `DataTemplate` keyed by `DataType`, which is what lets a single menu mix item types — is effectively required. Bind the icon column to `CompactPaneLength` so the icons stay put when the pane opens and closes:
+
+```xml
+<DataTemplate DataType="{x:Type mah:HamburgerMenuGlyphItem}">
+    <Grid Height="48">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:HamburgerMenu}}, Path=CompactPaneLength}" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Column="0"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontFamily="Segoe MDL2 Assets"
+                   FontSize="16"
+                   Text="{Binding Glyph}" />
+        <TextBlock Grid.Column="1"
+                   VerticalAlignment="Center"
+                   Text="{Binding Label}" />
+    </Grid>
+</DataTemplate>
+```
+
+## Menu items
+
+All item types derive from `HamburgerMenuItemBase`, which is a `Freezable` — not a `UIElement`. They carry data, and the templates above turn them into visuals.
+
+| Type | Adds | Purpose |
+| --- | --- | --- |
+| `HamburgerMenuItemBase` | `Tag`, `IsVisible` | base of all items |
+| `HamburgerMenuItem` | `Label`, `TargetPageType`, `Command`, `CommandParameter`, `CommandTarget`, `IsEnabled`, `ToolTip` | a selectable entry |
+| `HamburgerMenuGlyphItem` | `Glyph` (string) | entry with a font glyph |
+| `HamburgerMenuIconItem` | `Icon` (object) | entry with an arbitrary element as icon |
+| `HamburgerMenuImageItem` | `Thumbnail` (`ImageSource`) | entry with a picture |
+| `HamburgerMenuHeaderItem` | `Label` | a non-selectable group caption |
+| `HamburgerMenuSeparatorItem` | — | a divider line |
+
+![Item types](images/hamburgermenu-itemtypes.png)
+
+Header and separator items are not selectable, but they *do* occupy an index. Watch out when setting `SelectedIndex` by hand: in the menu above index 0 is the `LIBRARY` header, so the first real entry is index 1.
+
+```xml
+<mah:HamburgerMenu.ItemsSource>
+    <mah:HamburgerMenuItemCollection>
+        <mah:HamburgerMenuHeaderItem Label="LIBRARY" />
+        <mah:HamburgerMenuGlyphItem Glyph="&#xE80F;" Label="Home" />
+        <mah:HamburgerMenuGlyphItem Glyph="&#xE734;" Label="Favorites" />
+        <mah:HamburgerMenuSeparatorItem />
+        <mah:HamburgerMenuHeaderItem Label="ACCOUNT" />
+        <mah:HamburgerMenuIconItem Label="Mail">
+            <mah:HamburgerMenuIconItem.Icon>
+                <TextBlock FontFamily="Segoe MDL2 Assets" Text="&#xE715;" />
+            </mah:HamburgerMenuIconItem.Icon>
+        </mah:HamburgerMenuIconItem>
+        <mah:HamburgerMenuImageItem Label="Profile" Thumbnail="/assets/avatar.png" />
+    </mah:HamburgerMenuItemCollection>
+</mah:HamburgerMenu.ItemsSource>
+```
+
+`Items` and `OptionsItems` expose the generated `ItemCollection` in code, the same way `ItemsControl.Items` does.
+
+## Opening and closing the pane
+
+`IsPaneOpen` expands the pane; the hamburger button toggles it for you.
+
+![IsPaneOpen](images/hamburgermenu-ispaneopen.png)
 
 ![HamburgerMenu](images/hamburgermenu.gif)
 
-## Example Code
+`PanePlacement` moves the whole pane to the other side:
 
-This sample demonstrates how to add custom menu items to the `HamburgerMenu` control.
+![PanePlacement](images/hamburgermenu-paneplacement.png)
 
-```xml
-<Controls:MetroWindow ...
-                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
-                      xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
+`VerticalScrollBarOnLeftSide` puts the item list's scroll bar on the left, which reads better when the pane sits on the right.
 
-  <Controls:MetroWindow.Resources>
-    <ResourceDictionary>
+## The hamburger button and the pane header
 
-      <!--  Place for the DataTemplates for the menu items (see below)  -->
+`HamburgerMenuHeaderTemplate` fills the strip at the top of the pane, next to — or instead of — the hamburger button. Set `HamburgerVisibility` to `Collapsed` when your own toggle lives elsewhere.
 
-    </ResourceDictionary>
-  </Controls:MetroWindow.Resources>
-
-  <Controls:HamburgerMenu x:Name="HamburgerMenuControl"
-                          DisplayMode="CompactOverlay"
-                          HamburgerWidth="48"
-                          ItemInvoked="HamburgerMenuControl_OnItemInvoked"
-                          ItemTemplate="{StaticResource HamburgerMenuItem}"
-                          OptionsItemTemplate="{StaticResource HamburgerOptionsMenuItem}">
-    <!--  Header  -->
-    <Controls:HamburgerMenu.HamburgerMenuHeaderTemplate>
-      <DataTemplate>
-        <TextBlock HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   FontSize="16"
-                   Foreground="White"
-                   Text="Pictures" />
-      </DataTemplate>
-    </Controls:HamburgerMenu.HamburgerMenuHeaderTemplate>
-
-    <!--  Items  -->
-    <Controls:HamburgerMenu.ItemsSource>
-      <Controls:HamburgerMenuItemCollection>
-        <Controls:HamburgerMenuGlyphItem Glyph="/Assets/Photos/BigFourSummerHeat.png" Label="Big four summer heat" />
-        <Controls:HamburgerMenuGlyphItem Glyph="/Assets/Photos/BisonBadlandsChillin.png" Label="Bison badlands Chillin" />
-        <Controls:HamburgerMenuGlyphItem Glyph="/Assets/Photos/GiantSlabInOregon.png" Label="Giant slab in Oregon" />
-        <Controls:HamburgerMenuGlyphItem Glyph="/Assets/Photos/LakeAnnMushroom.png" Label="Lake Ann Mushroom" />
-      </Controls:HamburgerMenuItemCollection>
-    </Controls:HamburgerMenu.ItemsSource>
-
-    <!--  Options  -->
-    <Controls:HamburgerMenu.OptionsItemsSource>
-      <Controls:HamburgerMenuItemCollection>
-
-        <Controls:HamburgerMenuIconItem Label="About">
-          <Controls:HamburgerMenuIconItem.Icon>
-            <iconPacks:PackIconMaterial Width="22"
-                                        Height="22"
-                                        HorizontalAlignment="Center"
-                                        VerticalAlignment="Center"
-                                        Kind="Help" />
-          </Controls:HamburgerMenuIconItem.Icon>
-          <Controls:HamburgerMenuIconItem.Tag>
-            <TextBlock HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="28"
-                       FontWeight="Bold">
-                About
-            </TextBlock>
-          </Controls:HamburgerMenuIconItem.Tag>
-        </Controls:HamburgerMenuIconItem>
-
-      </Controls:HamburgerMenuItemCollection>
-    </Controls:HamburgerMenu.OptionsItemsSource>
-
-    <!--  Content  -->
-    <Controls:HamburgerMenu.ContentTemplate>
-      <DataTemplate>
-        <Grid x:Name="ContentGrid">
-          <Grid.RowDefinitions>
-            <RowDefinition Height="48" />
-            <RowDefinition />
-          </Grid.RowDefinitions>
-          <Border Grid.Row="0"
-                  Margin="-1 0 -1 0"
-                  Background="#7A7A7A">
-            <TextBlock x:Name="Header"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
-                       FontSize="24"
-                       Foreground="White"
-                       Text="{Binding Label}" />
-          </Border>
-          <Controls:TransitioningContentControl Grid.Row="1"
-                                                Content="{Binding}"
-                                                RestartTransitionOnContentChange="True"
-                                                Transition="Default">
-
-            <Controls:TransitioningContentControl.Resources>
-              <DataTemplate DataType="{x:Type Controls:HamburgerMenuGlyphItem}">
-                  <Image Source="{Binding Glyph, Mode=OneWay, Converter={converters:NullToUnsetValueConverter}}" />
-              </DataTemplate>
-
-              <DataTemplate DataType="{x:Type Controls:HamburgerMenuIconItem}">
-                  <ContentControl Content="{Binding Tag, Mode=OneWay}"
-                                  Focusable="True"
-                                  IsTabStop="False" />
-              </DataTemplate>
-            </Controls:TransitioningContentControl.Resources>
-
-          </Controls:TransitioningContentControl>
-        </Grid>
-      </DataTemplate>
-    </Controls:HamburgerMenu.ContentTemplate>
-  </Controls:HamburgerMenu>
-
-</Controls:MetroWindow>
-```
-
-In order to render the items like in the sample above, you need to declare DataTemplate for both item types.
+![Pane header](images/hamburgermenu-header.png)
 
 ```xml
-<Controls:MetroWindow.Resources>
-  <ResourceDictionary>
-
-    <!--  This is the template for all menu items. In this sample we use the glyph items.  -->
-    <DataTemplate x:Key="HamburgerMenuItem" DataType="{x:Type Controls:HamburgerMenuGlyphItem}">
-      <DockPanel Height="48" LastChildFill="True">
-        <Grid x:Name="IconPart"
-              Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=CompactPaneLength}"
-              DockPanel.Dock="Left">
-          <Image Margin="12"
-                 HorizontalAlignment="Center"
-                 VerticalAlignment="Center"
-                 Source="{Binding Glyph}" />
-        </Grid>
-        <TextBlock x:Name="TextPart"
-                   VerticalAlignment="Center"
-                   FontSize="16"
-                   Text="{Binding Label}" />
-      </DockPanel>
-      <DataTemplate.Triggers>
-        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=PanePlacement}" Value="Right">
-          <Setter TargetName="IconPart" Property="DockPanel.Dock" Value="Right" />
-          <Setter TargetName="TextPart" Property="Margin" Value="8 0 0 0" />
-        </DataTrigger>
-      </DataTemplate.Triggers>
-    </DataTemplate>
-
-    <!--  This is the template for the option menu item  -->
-    <DataTemplate x:Key="HamburgerOptionsMenuItem" DataType="{x:Type Controls:HamburgerMenuIconItem}">
-      <DockPanel Height="48" LastChildFill="True">
-        <ContentControl x:Name="IconPart"
-                        Width="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=CompactPaneLength}"
-                        Content="{Binding Icon}"
-                        DockPanel.Dock="Left"
-                        Focusable="False"
-                        IsTabStop="False" />
-        <TextBlock x:Name="TextPart"
-                   VerticalAlignment="Center"
-                   FontSize="16"
-                   Text="{Binding Label}" />
-      </DockPanel>
-      <DataTemplate.Triggers>
-        <DataTrigger Binding="{Binding RelativeSource={RelativeSource AncestorType={x:Type Controls:HamburgerMenu}}, Path=PanePlacement}" Value="Right">
-          <Setter TargetName="IconPart" Property="DockPanel.Dock" Value="Right" />
-          <Setter TargetName="TextPart" Property="Margin" Value="8 0 0 0" />
-        </DataTrigger>
-      </DataTemplate.Triggers>
-    </DataTemplate>
-
-  </ResourceDictionary>
-</Controls:MetroWindow.Resources>
+<mah:HamburgerMenu HamburgerVisibility="Collapsed">
+    <mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
+        <DataTemplate>
+            <TextBlock Margin="12 0"
+                       VerticalAlignment="Center"
+                       FontSize="16"
+                       Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"
+                       Text="My App" />
+        </DataTemplate>
+    </mah:HamburgerMenu.HamburgerMenuHeaderTemplate>
+</mah:HamburgerMenu>
 ```
 
-You can navigate to the items by using the following code.
+`HamburgerWidth`, `HamburgerHeight` and `HamburgerMargin` size the button, `HamburgerButtonStyle` and `HamburgerButtonTemplate` restyle it, and `HamburgerButtonName` and `HamburgerButtonHelpText` feed `AutomationProperties.Name` and `AutomationProperties.HelpText` for screen readers.
+
+## Options
+
+`OptionsItemsSource` fills a second list pinned to the bottom of the pane — the conventional place for settings or an account entry. It has its own `OptionsItemTemplate`, `OptionsItemTemplateSelector`, `OptionsItemContainerStyle`, `SelectedOptionsItem`, `SelectedOptionsIndex`, `OptionsItemCommand` and `OptionsItemCommandParameter`.
+
+![Options](images/hamburgermenu-options.png)
+
+**`OptionsVisibility` no longer does anything.** It used to: the control template bound the options container's `Visibility` to it, and that worked up to and including MahApps.Metro 1.4.2. The binding was dropped in 1.5.0 when the pane's scroll bar behaviour was reworked ([#2914](https://github.com/MahApps/MahApps.Metro/pull/2914)) and never restored, so the property has been inert since. It is still there, still settable, and still ignored.
+
+To leave the options block out, simply do not assign `OptionsItemsSource` — that is the difference shown above.
+
+## Selection, content and navigation
+
+`SelectedItem` and `SelectedIndex` track the item list, `SelectedOptionsItem` and `SelectedOptionsIndex` the options list.
+
+**Setting `SelectedIndex` in XAML does not fill the content area.** The control assigns `Content` only when an item is actually invoked, so a menu that starts on index 0 comes up with an empty content area. That is why the samples wire up `ItemInvoked`:
 
 ```csharp
-private void HamburgerMenuControl_OnItemInvoked(object sender, HamburgerMenuItemInvokedEventArgs e)
+private void Menu_ItemInvoked(object sender, HamburgerMenuItemInvokedEventArgs e)
 {
-  this.HamburgerMenuControl.Content = e.InvokedItem;
-
-  if (!e.IsItemOptions && this.HamburgerMenuControl.IsPaneOpen)
-  {
-    // You can close the menu if an item was selected
-    // this.HamburgerMenuControl.SetCurrentValue(HamburgerMenuControl.IsPaneOpenProperty, false);
-  }
+    this.Menu.Content = e.InvokedItem;
 }
 ```
 
-# Properties
+If you would rather stay declarative, bind `Content` to the selection instead:
 
-| Property                    | Type                     | Description                                                                                                                                                            |
-|-----------------------------|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| CanResizeOpenPane           | bool                     | Gets or Sets whether the open pane can be resized by the user. The default value is false.                                                                             |
-| CompactPaneLength           | double                   | Gets or sets the width of the pane when in its compact display mode.                                                                                                   |
-| ContentTransition           | `TransitionType`         | Gets or sets the `TransitionType` for the TransitioningContentControl which shows the selected menu item content.                                                      |
-| DisplayMode                 | `SplitViewDisplayMode`   | Gets or sets a value that specifies how the pane and content areas are shown.                                                                                          |
-| HamburgerButtonHelpText     | string                   | Gets or sets the AutomationProperties.HelpTextProperty for the HamburgerMenu button.                                                                                   |
-| HamburgerButtonName         | string                   | Gets or sets theAutomationProperties.NameProperty for the HamburgerMenu button.                                                                                        |
-| HamburgerButtonStyle        | Style                    | Gets or sets the FrameworkElement.Style for the HamburgerMenu button.                                                                                                  |
-| HamburgerButtonTemplate     | DataTemplate             | Gets or sets the ContentControl.ContentTemplate for the HamburgerMenu button.                                                                                          |
-| HamburgerHeight             | double                   | Gets or sets the FrameworkElement.Height for the HamburgerMenu button.                                                                                                 |
-| HamburgerMargin             | Thickness                | Gets or sets the margin for the HamburgerMenu button.                                                                                                                  |
-| HamburgerMenuHeaderTemplate | DataTemplate             | Gets or sets the ContentControl.ContentTemplate for the HamburgerMenu pane header.                                                                                     |
-| HamburgerVisibility         | Visibility               | Gets or sets the UIElement.Visibility for the HamburgerMenu button.                                                                                                    |
-| HamburgerWidth              | double                   | Gets or sets HamburgerMenu button's FrameworkElement.Width.                                                                                                            |
-| HeaderItemContainerStyle    | Style                    | Gets or sets the Style used for each header item.                                                                                                                      |
-| IsPaneOpen                  | bool                     | Gets or sets a value indicating whether the pane is expanded to its full width.                                                                                        |
-| ItemCommand                 | ICommand                 | Gets or sets a ICommand which will be executed if an item was clicked by the user.                                                                                     |
-| ItemCommandParameter        | object                   | Gets or sets the ICommand parameter which will be passed by the ItemCommand.                                                                                           |
-| ItemContainerStyle          | Style                    | Gets or sets the Style used for each item.                                                                                                                             |
-| ItemFocusVisualStyle        | Style                    | Gets or sets the default FocusVisualStyle for a HamburgerMenuItem. This style can be override at the HamburgerMenuItem style by setting the FocusVisualStyle property. |
-| Items                       | ItemCollection           | Gets the collection used to generate the content of the items list.                                                                                                    |
-| ItemsSource                 | object                   | Gets or sets an object source used to generate the content of the menu.                                                                                                |
-| ItemTemplate                | DataTemplate             | Gets or sets the DataTemplate used to display each item.                                                                                                               |
-| ItemTemplateSelector        | DataTemplateSelector     | Gets or sets the DataTemplateSelector used to display each item.                                                                                                       |
-| MaximumOpenPaneLength       | double                   | Gets or sets the maximum width of the SplitView pane when it's fully expanded.                                                                                         |
-| MinimumOpenPaneLength       | double                   | Gets or sets the minimum width of the SplitView pane when it's fully expanded.                                                                                         |
-| OpenPaneLength              | double                   | Gets or sets the width of the pane when it's fully expanded.                                                                                                           |
-| OptionsItemCommand          | ICommand                 | Gets or sets a ICommand which will be executed if an options item was clicked by the user.                                                                             |
-| OptionsItemCommandParameter | object                   | Gets or sets the ICommand parameter which will be passed by the OptionsItemCommand.                                                                                    |
-| OptionsItemContainerStyle   | Style                    | Gets or sets the Style used for each item in the options.                                                                                                              |
-| OptionsItems                | ItemCollection           | Gets the collection used to generate the content of the option list.                                                                                                   |
-| OptionsItemsSource          | object                   | Gets or sets an object source used to generate the content of the options.                                                                                             |
-| OptionsItemTemplate         | DataTemplate             | Gets or sets the DataTemplate used to display each item in the options.                                                                                                |
-| OptionsItemTemplateSelector | DataTemplateSelector     | Gets or sets the DataTemplateSelector used to display each item in the options.                                                                                        |
-| OptionsVisibility           | Visibility               | Gets or sets the Visibility of the options menu.                                                                                                                       |
-| PaneBackground              | Brush                    | Gets or sets the Brush to apply to the background of the pane area of the HamburgerMenu.                                                                               |
-| PaneForeground              | Brush                    | Gets or sets the Brush to apply to the foreground of the pane area of the HamburgerMenu.                                                                               |
-| PaneHeaderMargin            | Thickness                | Gets or sets the margin for the pane header.                                                                                                                           |
-| PaneMargin                  | Thickness                | Gets or sets the margin for the SplitView pane.                                                                                                                        |
-| PanePlacement               | `SplitViewPanePlacement` | Gets or sets a value that specifies whether the pane is shown on the right or on left side of the HamburgerMenu.                                                       |
-| ResizeThumbStyle            | Style                    | Gets or Sets the Style for the resizing Thumb (type of MetroThumb)                                                                                                     |
-| SelectedIndex               | int                      | Gets or sets the selected menu index.                                                                                                                                  |
-| SelectedItem                | object                   | Gets or sets the selected menu item.                                                                                                                                   |
-| SelectedOptionsIndex        | int                      | Gets or sets the selected options menu index.                                                                                                                          |
-| SelectedOptionsItem         | object                   | Gets or sets the selected options menu item.                                                                                                                           |
-| SeparatorItemContainerStyle | Style                    | Gets or sets the Style used for each separator item.                                                                                                                   |
-| ShowSelectionIndicator      | bool                     | Gets or sets whether a selection indicator will be shown on the HamburgerMenuItem.                                                                                     |
-| VerticalScrollBarOnLeftSide | bool                     | Gets or sets whether the ScrollBar of the HamburgerMenu is on the left side or on the right side of the menu items.                                                    |
+```xml
+<mah:HamburgerMenu x:Name="Menu"
+                   SelectedIndex="0"
+                   Content="{Binding RelativeSource={RelativeSource Self}, Path=SelectedItem}" />
+```
 
-# Events
+Either way a `ContentTemplate` renders whatever ends up in `Content`. The common pattern is to park the view for each entry in the item's `Tag` and unwrap it there:
 
-| Event                | Description                                            |
-|----------------------|--------------------------------------------------------|
-| HamburgerButtonClick | Event raised when the hamburger menu button is clicked |
-| ItemClick            | Event raised when an item is clicked                   |
-| ItemInvoked          | Event raised when an item is invoked                   |
-| OptionsItemClick     | Event raised when an options' item is clicked          |
+```xml
+<mah:HamburgerMenu.ContentTemplate>
+    <DataTemplate DataType="{x:Type mah:HamburgerMenuIconItem}">
+        <Grid Margin="20 0 10 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Margin="0 15 0 5"
+                       FontFamily="{DynamicResource MahApps.Fonts.Family.Header}"
+                       FontSize="{DynamicResource MahApps.Font.Size.Header}"
+                       Text="{Binding Label}" />
+            <ContentControl Grid.Row="1" Content="{Binding Tag}" Focusable="False" />
+        </Grid>
+    </DataTemplate>
+</mah:HamburgerMenu.ContentTemplate>
+```
 
-# Navigation Example
+### A complete navigation example
 
-![HamburgerMenuNavi](images/hamburgermenunavi.gif)
+This sample goes further than the snippets above: the menu is bound to a view model, and a `Frame` inside the content area does the navigating, which also gives the window's back button a back stack to work with. The complete sample is available at [this repository](https://github.com/punker76/code-samples/tree/main/MahAppsMetroHamburgerMenuNavigation).
 
-## Navigation Example Code
-
-This sample demonstrates how to use the `HamburgerMenu` control with a Frame inside. The complete sample is available at [this repository](https://github.com/punker76/code-samples/tree/main/MahAppsMetroHamburgerMenuNavigation).
+![Navigation](images/hamburgermenunavi.gif)
 
 ```xml
 <controls:MetroWindow x:Class="MahAppsMetroHamburgerMenuNavigation.MainWindow"
@@ -640,3 +560,138 @@ namespace MahAppsMetroHamburgerMenuNavigation.Navigation
   }
 }
 ```
+
+`ContentTransition` picks the animation the underlying `TransitioningContentControl` plays on every content change: `Default`, `Normal`, `Up`, `Down`, `Left`, `LeftReplace`, `Right` or `RightReplace`.
+
+Instead of handling events you can let each item carry a `Command`, or give the menu a single `ItemCommand` (and `OptionsItemCommand`) that receives the clicked item.
+
+## Styling
+
+MahApps ships two styles for the control:
+
+| Style | Look |
+| --- | --- |
+| `MahApps.Styles.HamburgerMenu` | the default: dark pane, selected entry filled with the accent colour |
+| `MahApps.Styles.HamburgerMenu.CreatorsUpdate` | pane in the theme background, selection marked by an accent bar (`ShowSelectionIndicator="True"`) |
+
+![Selection indicator](images/hamburgermenu-selectionindicator.png)
+
+`ShowSelectionIndicator` alone turns the indicator on for the default style too. `PaneBackground` and `PaneForeground` recolour the pane, `PaneMargin` and `PaneHeaderMargin` adjust its spacing.
+
+Per-row appearance is governed by `ItemContainerStyle`, `HeaderItemContainerStyle`, `SeparatorItemContainerStyle` and `OptionsItemContainerStyle`; all target `ListBoxItem`. Base your own on the MahApps ones so you keep the selection and hover brushes, which come from `ItemHelper` attached properties:
+
+```xml
+<Style x:Key="MyItemStyle"
+       BasedOn="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}"
+       TargetType="{x:Type ListBoxItem}">
+    <Setter Property="mah:ItemHelper.SelectedForegroundBrush" Value="{DynamicResource MahApps.Brushes.AccentBase}" />
+    <Setter Property="mah:ItemHelper.HoverBackgroundBrush" Value="{DynamicResource MahApps.Brushes.Gray.SemiTransparent}" />
+</Style>
+```
+
+### Material Design ripple
+
+The demo application also ships a variant that borrows the ripple effect from [MaterialDesignThemes](https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit). The trick is a container style whose template puts a `materialDesign:Ripple` where the `ContentPresenter` normally goes:
+
+```xml
+<Style x:Key="MahApps.Styles.ListBoxItem.HamburgerMenuItem.Ripple"
+       BasedOn="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}"
+       TargetType="{x:Type ListBoxItem}">
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                <!-- ... border and selection indicator ... -->
+                <materialDesign:Ripple Padding="{TemplateBinding Padding}"
+                                       Content="{TemplateBinding Content}"
+                                       ContentTemplate="{TemplateBinding ContentTemplate}"
+                                       Feedback="{DynamicResource MahApps.Brushes.Gray.MouseOver}"
+                                       Focusable="False" />
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+```
+
+The full template, including all selection and hover triggers, is in `HamburgerMenuRipple.xaml` in the MahApps demo. The effect itself is an animation on click, so it does not show in a screenshot; visually the style otherwise matches the Creators Update look above.
+
+## Events
+
+| Event | Event args | Raised when |
+| --- | --- | --- |
+| `ItemClick` | `ItemClickEventArgs` (`ClickedItem`) | an entry in the item list is clicked |
+| `OptionsItemClick` | `ItemClickEventArgs` (`ClickedItem`) | an entry in the options list is clicked |
+| `ItemInvoked` | `HamburgerMenuItemInvokedEventArgs` (`InvokedItem`, `IsItemOptions`) | either list invokes an entry |
+| `HamburgerButtonClick` | `RoutedEventArgs` | the hamburger button is clicked |
+
+`ItemInvoked` is the one to prefer for navigation: it fires for both lists and tells you which one through `IsItemOptions`.
+
+## Property reference
+
+### Pane, forwarded to the SplitView
+
+| Property | Type | Effective default |
+| --- | --- | --- |
+| `DisplayMode` | `SplitViewDisplayMode` | `CompactInline` |
+| `PanePlacement` | `SplitViewPanePlacement` | `Left` |
+| `IsPaneOpen` | `bool` | `False` |
+| `OpenPaneLength` | `double` | `240` |
+| `CompactPaneLength` | `double` | `48` |
+| `MinimumOpenPaneLength` | `double` | `100` |
+| `MaximumOpenPaneLength` | `double` | `500` |
+| `CanResizeOpenPane` | `bool` | `False` |
+| `ResizeThumbStyle` | `Style` | `MahApps.Styles.MetroThumb.SplitView.Resize` |
+| `PaneBackground` | `Brush` | `MahApps.HamburgerMenu.Pane.Background` |
+| `PaneForeground` | `Brush` | `MahApps.HamburgerMenu.Pane.Foreground` |
+| `PaneMargin` | `Thickness` | `0 0 0 8` |
+| `PaneHeaderMargin` | `Thickness` | `0 0 0 8` |
+
+### Items
+
+| Property | Type | Effective default |
+| --- | --- | --- |
+| `ItemsSource` | `object` | `null` |
+| `Items` | `ItemCollection` | read-only |
+| `ItemTemplate` | `DataTemplate` | `null` |
+| `ItemTemplateSelector` | `DataTemplateSelector` | `null` |
+| `ItemContainerStyle` | `Style` | `MahApps.Styles.ListBoxItem.HamburgerMenuItem` |
+| `HeaderItemContainerStyle` | `Style` | `MahApps.Styles.ListBoxItem.HamburgerMenuHeader` |
+| `SeparatorItemContainerStyle` | `Style` | `MahApps.Styles.ListBoxItem.HamburgerMenuSeparator` |
+| `SelectedItem` | `object` | `null` |
+| `SelectedIndex` | `int` | `-1` |
+| `ItemCommand` | `ICommand` | `null` |
+| `ItemCommandParameter` | `object` | `null` |
+| `ShowSelectionIndicator` | `bool` | `False` |
+| `VerticalScrollBarOnLeftSide` | `bool` | `False` |
+| `ItemFocusVisualStyle` | `Style` | read-only, recalculated by the control |
+
+### Options
+
+| Property | Type | Effective default |
+| --- | --- | --- |
+| `OptionsItemsSource` | `object` | `null` |
+| `OptionsItems` | `ItemCollection` | read-only |
+| `OptionsItemTemplate` | `DataTemplate` | `null` |
+| `OptionsItemTemplateSelector` | `DataTemplateSelector` | `null` |
+| `OptionsItemContainerStyle` | `Style` | `MahApps.Styles.ListBoxItem.HamburgerMenuItem` |
+| `SelectedOptionsItem` | `object` | `null` |
+| `SelectedOptionsIndex` | `int` | `-1` |
+| `OptionsItemCommand` | `ICommand` | `null` |
+| `OptionsItemCommandParameter` | `object` | `null` |
+| `OptionsVisibility` | `Visibility` | `Visible` — inert since 1.5.0, see above |
+
+### Hamburger button, header and content
+
+| Property | Type | Effective default |
+| --- | --- | --- |
+| `HamburgerWidth` | `double` | `48` |
+| `HamburgerHeight` | `double` | `48` |
+| `HamburgerMargin` | `Thickness` | `0` |
+| `HamburgerVisibility` | `Visibility` | `Visible` |
+| `HamburgerButtonStyle` | `Style` | `MahApps.Styles.Button.Hamburger` |
+| `HamburgerButtonTemplate` | `DataTemplate` | set by the default style |
+| `HamburgerButtonName` | `string` | `HamburgerButton` |
+| `HamburgerButtonHelpText` | `string` | empty |
+| `HamburgerMenuHeaderTemplate` | `DataTemplate` | `null` |
+| `ContentTransition` | `TransitionType` | `Normal` |
+
+"Effective default" is the value a `HamburgerMenu` actually starts with. Many of these come from the control's default style rather than from the dependency property metadata; where the two disagree, the style wins and the value above is the one that applies.

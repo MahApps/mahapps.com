@@ -4,7 +4,7 @@ Title: MetroWindow
 
 The `MetroWindow` is the main entry point of `MahApps` and replaces the normal `Window` to get the `MahApps` styles and themes to be work.  
 
-If you don't know how to start with this then you can read the [Quick Start](/docs/guides/quick-start) section.  
+If you don't know how to start with this then you can read the [Quick Start](../guides/quick-start) section.  
 
 # Window borders
 
