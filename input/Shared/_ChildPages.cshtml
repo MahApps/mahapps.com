@@ -1,0 +1,54 @@
+@using MahApps.Docs
+@* Override of the Docable partial. The first half is the theme's original.
+
+   Added below it: on the page that heads a navigation group - Controls and
+   Styles - the other sections of that group are listed as well, so the entry
+   the top navigation points at shows the whole group rather than only its own
+   pages. The sections stay where they are; this only adds links. *@
+@{
+    DocumentList<IDocument> children = OutputPages
+        .GetChildrenOf(Document)
+        .Where(x => !x.ContainsKey(Keys.RedirectTo))
+        .ToDocumentList();
+
+    if (!Document.GetBool(SiteKeys.NoChildPages) && children.Count > 0)
+    {
+        <h4 class="h-section mb-2">Child Pages</h4>
+        foreach (IDocument child in children)
+        {
+            <div>
+                @await Html.PartialAsync("_ChildPagesItem", child)
+            </div>
+        }
+    }
+
+    string indexFileName = Context.Settings.GetIndexFileName();
+    string destination = Document.Destination.FullPath.TrimStart('/');
+    var group = SiteNavigation.GroupOf(destination);
+
+    // Only on the section that heads its group, and only when the group has
+    // more than that one section.
+    bool isGroupHead = group is object
+        && group.Length > 1
+        && destination.Equals(group[0] + "/" + indexFileName, StringComparison.OrdinalIgnoreCase);
+
+    if (isGroupHead)
+    {
+        var relatedSections = group
+            .Skip(1)
+            .Select(section => OutputPages.Get(NormalizedPath.Combine(section, indexFileName)))
+            .Where(page => page is object && !page.ContainsKey(Keys.RedirectTo))
+            .ToList();
+
+        if (relatedSections.Count > 0)
+        {
+            <h4 class="h-section mb-2 mt-4">Related Sections</h4>
+            foreach (IDocument section in relatedSections)
+            {
+                <div>
+                    @await Html.PartialAsync("_ChildPagesItem", section)
+                </div>
+            }
+        }
+    }
+}

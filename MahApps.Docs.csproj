@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <Compile Include="Program.cs" />
+    <Compile Include="SiteNavigation.cs" />
   </ItemGroup>
 
   <ItemGroup>
