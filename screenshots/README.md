@@ -67,15 +67,18 @@ those out in C# would obscure what the documentation is trying to show.
 
 ## StyleShots
 
-Produces the figures for the pages under `input/docs/styles/`:
+Produces the figures for the pages under `input/docs/styles/` and
+`input/docs/helper/`. Unlike the other apps its argument is the docs root, not
+one images folder - each figure names the section it belongs to and is written
+to `<docs-root>/<section>/images/`:
 
 ```
-dotnet run --project screenshots/StyleShots -- input/docs/styles/images
+dotnet run --project screenshots/StyleShots -- input/docs
 ```
 
 Like HamburgerMenuShots it writes its scenarios as XAML and loads them with
 `XamlReader`, so the markup in the figure and the markup in the documentation
-are the same. It writes every style figure in one run.
+are the same. It writes every figure for both sections in one run.
 
 Two things a `PasswordBox` scenario cannot express in XAML and that the app
 therefore does after the window is up. `Password` is not a dependency property,

@@ -1,3 +1,28 @@
 Order: 25
 Title: Helper Classes
+Description: Attached properties that extend the standard WPF controls
 ---
+
+<p>
+MahApps.Metro adds most of its extras to the standard WPF controls through <strong>attached properties</strong> rather than by subclassing them.
+A <code>TextBox</code> stays a <code>TextBox</code>; it just gains a watermark and a clear button when you ask for them.
+That keeps the number of controls in the library down, lets you opt in per control, and means the features work on controls you did not write.
+</p>
+
+<p>
+The classes that carry those properties are all in the <code>MahApps.Metro.Controls</code> namespace and all reachable through the <code>mah:</code> prefix:
+</p>
+
+<pre><code class="language-xml">&lt;TextBox mah:TextBoxHelper.Watermark="Search" mah:TextBoxHelper.ClearTextButton="True" /&gt;</code></pre>
+
+<p>
+Two of them are worth knowing before the rest.
+<strong>ControlsHelper</strong> is the general one - corner radius, focus and mouse-over borders, content casing - and applies to most input controls.
+<strong>TextBoxHelper</strong> carries the watermark and the buttons, and despite its name is read by the templates of the <code>ComboBox</code>, <code>DatePicker</code>, <code>PasswordBox</code>, <code>NumericUpDown</code> and several more.
+The rest are named after the one control they belong to.
+</p>
+
+<p>
+A property only does something if the control's template reads it, so these work with the MahApps styles applied.
+Replace a style without a <code>BasedOn</code> and the properties are still there but nothing looks at them.
+</p>
