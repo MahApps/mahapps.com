@@ -48,6 +48,7 @@ namespace DialogShots
                     {
                         await MessageDialogFiguresAsync();
                         await InputDialogFiguresAsync();
+                        await LoginDialogFiguresAsync();
                         Console.WriteLine("done");
                     }
                     catch (Exception ex)
@@ -160,6 +161,49 @@ namespace DialogShots
                               {
                                   DefaultText = "report.pdf",
                                   ColorScheme = MetroDialogColorScheme.Accented
+                              }))));
+        }
+
+        // LoginDialogSettings derives from MetroDialogSettings, so it needs the
+        // same animation treatment.
+        private static LoginDialogSettings Still(LoginDialogSettings settings)
+        {
+            settings.AnimateShow = false;
+            settings.AnimateHide = false;
+            return settings;
+        }
+
+        private static async Task LoginDialogFiguresAsync()
+        {
+            await CaptureAsync("logindialog-basic", 560, 420,
+                ("Defaults",
+                    w => w.ShowLoginAsync("Sign in", "Enter your credentials.",
+                        Still(new LoginDialogSettings()))),
+                ("Cancel button and remember box",
+                    w => w.ShowLoginAsync("Sign in", "Enter your credentials.",
+                        Still(new LoginDialogSettings
+                              {
+                                  NegativeButtonVisibility = Visibility.Visible,
+                                  NegativeButtonText = "Cancel",
+                                  RememberCheckBoxVisibility = Visibility.Visible,
+                                  RememberCheckBoxText = "Keep me signed in"
+                              }))));
+
+            await CaptureAsync("logindialog-variants", 560, 420,
+                ("ShouldHideUsername",
+                    w => w.ShowLoginAsync("Unlock", "Enter your password to continue.",
+                        Still(new LoginDialogSettings
+                              {
+                                  ShouldHideUsername = true,
+                                  AffirmativeButtonText = "Unlock"
+                              }))),
+                ("EnablePasswordPreview",
+                    w => w.ShowLoginAsync("Sign in", "Enter your credentials.",
+                        Still(new LoginDialogSettings
+                              {
+                                  InitialUsername = "ada",
+                                  InitialPassword = "analytical",
+                                  EnablePasswordPreview = true
                               }))));
         }
 
