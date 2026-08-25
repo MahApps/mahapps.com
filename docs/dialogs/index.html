@@ -331,7 +331,7 @@ All dialogs in MahApps.Metro are called asynchronously. This means that you can 
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/dialogs/mvvm-dialog">MVVM</a></h4>
 
-            <div class="font-size-sm"><p>You can open dialogs from your ViewModel by using the <code>DialogCoordinator</code>.</p></div>
+            <div class="font-size-sm"><p>The dialogs are shown by a <code>MetroWindow</code>, but a view model has no business knowing about windows. <code>IDialogCoordinator</code> bridges that: the view model asks the coordinator for a dialog and passes itself along as the context, and the coordinator works out which window that context belongs to.</p></div>
 
     </div>
 
