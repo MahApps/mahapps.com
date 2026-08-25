@@ -8,12 +8,21 @@ changes, then commit the PNGs together with the documentation.
 Each app renders its scenarios straight to PNG with `RenderTargetBitmap` at 2x
 scale rather than capturing the desktop. That keeps the images independent of
 the machine's DPI setting, cropped exactly to what is being shown, and
-near enough reproducible that a rerun can be diffed. Two things stop it being
-exact, so check what actually changed before committing a rewritten PNG rather
-than assuming a rerun found something: text is antialiased at the sub-pixel
-level and the odd glyph comes out a shade different between runs, and anything
-that animates - the indeterminate progress bar - is caught at whatever phase it
-happened to be in.
+near enough reproducible that a rerun can be diffed. It is not exact, so diff a
+rewritten PNG before committing it rather than assuming the rerun found
+something.
+
+Measured over a full rerun, eleven of the fourteen figures came back
+pixel-identical. The three that did not:
+
+- `progressdialog-indeterminate` - the bar animates, so it is caught at
+  whatever phase it happened to be in. Expect this one to differ every time.
+- `logindialog-basic` and `logindialog-variants` - about a thousand pixels
+  each, all of them inside the watermark text, which is drawn at `Opacity=0.6`
+  by `MahApps.Styles.TextBlock.Watermark`. The largest channel difference
+  measured was 9 of 255 and the whole run came out uniformly lighter, so it is
+  a rounding difference in compositing that semi-transparent layer, not a
+  change in what is drawn. Invisible side by side.
 
 The apps reference MahApps.Metro from NuGet at the same version the `mahapps`
 submodule is pinned to, so the screenshots match the API reference.

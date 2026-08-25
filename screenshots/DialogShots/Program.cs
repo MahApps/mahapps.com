@@ -50,6 +50,7 @@ namespace DialogShots
                         await InputDialogFiguresAsync();
                         await LoginDialogFiguresAsync();
                         await ProgressDialogFiguresAsync();
+                        await DialogSettingsFiguresAsync();
                         Console.WriteLine("done");
                     }
                     catch (Exception ex)
@@ -258,6 +259,39 @@ namespace DialogShots
                                 Still(new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Accented }));
                             controller.SetProgress(0.25);
                         }));
+        }
+
+        // Figures for the shared MetroDialogSettings page. A message dialog is
+        // the vehicle; the point of each figure is the setting, not the type.
+        private static async Task DialogSettingsFiguresAsync()
+        {
+            await CaptureAsync("dialogsettings-colorscheme", 520, 340,
+                ("Theme",
+                    w => w.ShowMessageAsync("Delete the file?", "This cannot be undone.",
+                        MessageDialogStyle.AffirmativeAndNegative,
+                        Still(new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Theme }))),
+                ("Inverted",
+                    w => w.ShowMessageAsync("Delete the file?", "This cannot be undone.",
+                        MessageDialogStyle.AffirmativeAndNegative,
+                        Still(new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Inverted }))),
+                ("Accented",
+                    w => w.ShowMessageAsync("Delete the file?", "This cannot be undone.",
+                        MessageDialogStyle.AffirmativeAndNegative,
+                        Still(new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Accented }))));
+
+            await CaptureAsync("dialogsettings-fontsizes", 520, 340,
+                ("Defaults: 26 / 15 / 12",
+                    w => w.ShowMessageAsync("Delete the file?", "This cannot be undone.",
+                        MessageDialogStyle.AffirmativeAndNegative, Still())),
+                ("18 / 13 / 14",
+                    w => w.ShowMessageAsync("Delete the file?", "This cannot be undone.",
+                        MessageDialogStyle.AffirmativeAndNegative,
+                        Still(new MetroDialogSettings
+                              {
+                                  DialogTitleFontSize = 18,
+                                  DialogMessageFontSize = 13,
+                                  DialogButtonFontSize = 14
+                              }))));
         }
 
         // Pressing Cancel is the only way into the state the page warns about -
