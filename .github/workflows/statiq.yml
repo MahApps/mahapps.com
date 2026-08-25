@@ -1,12 +1,10 @@
 name: Statiq
 
 on:
-  # Both names are listed so the workflow keeps firing across the rename of the
-  # default branch. Drop "master" once the rename has settled.
   push:
-    branches: [main, master]
+    branches: [main]
   pull_request:
-    branches: [main, master]
+    branches: [main]
 
 jobs:
   build:
