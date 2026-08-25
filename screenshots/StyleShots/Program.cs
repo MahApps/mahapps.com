@@ -180,14 +180,34 @@ namespace StyleShots
                     ("Button.Dialogs.Accent", Xaml(@"<Button Width=""110"" Style=""{StaticResource MahApps.Styles.Button.Dialogs.Accent}"" Content=""OK"" />")),
                     ("Button.Dialogs.AccentHighlight", Xaml(@"<Button Width=""110"" Style=""{StaticResource MahApps.Styles.Button.Dialogs.AccentHighlight}"" Content=""OK"" />"))));
 
-            await CaptureAsync("styles", "buttons-toggle",
+            await CaptureAsync("styles", "togglebutton-styles",
                 Showcase(
-                    ("ToggleButton, unchecked", Xaml(@"<ToggleButton Width=""110"" Content=""Bold"" />")),
-                    ("ToggleButton, checked", Xaml(@"<ToggleButton Width=""110"" Content=""Bold"" IsChecked=""True"" />")),
+                    ("implicit style", Xaml(@"<ToggleButton Width=""110"" Content=""Bold"" IsChecked=""True"" />")),
                     ("ToggleButton.Circle", Xaml(@"<ToggleButton Width=""48"" Height=""48"" IsChecked=""True"" Style=""{StaticResource MahApps.Styles.ToggleButton.Circle}"">
                                                      <TextBlock FontFamily=""Segoe MDL2 Assets"" FontSize=""18"" Text=""&#xE734;"" />
                                                    </ToggleButton>")),
                     ("ToggleButton.Flat", Xaml(@"<ToggleButton Width=""110"" Content=""Bold"" IsChecked=""True"" Style=""{StaticResource MahApps.Styles.ToggleButton.Flat}"" />"))));
+
+            await CaptureAsync("styles", "togglebutton-states",
+                Showcase(
+                    ("unchecked", Xaml(@"<ToggleButton Width=""110"" Content=""Bold"" />")),
+                    ("checked", Xaml(@"<ToggleButton Width=""110"" Content=""Bold"" IsChecked=""True"" />")),
+                    ("indeterminate", Xaml(@"<ToggleButton Width=""110"" Content=""Bold"" IsThreeState=""True"" IsChecked=""{x:Null}"" />")),
+                    ("disabled", Xaml(@"<ToggleButton Width=""110"" Content=""Bold"" IsChecked=""True"" IsEnabled=""False"" />"))));
+
+            await CaptureAsync("styles", "togglebutton-icons",
+                Showcase(
+                    ("unchecked", Xaml(@"<ToggleButton Width=""48"" Height=""48"" Style=""{StaticResource MahApps.Styles.ToggleButton.Circle}"">
+                                           <TextBlock FontFamily=""Segoe MDL2 Assets"" FontSize=""18"" Text=""&#xE734;"" />
+                                         </ToggleButton>")),
+                    ("checked", Xaml(@"<ToggleButton Width=""48"" Height=""48"" IsChecked=""True"" Style=""{StaticResource MahApps.Styles.ToggleButton.Circle}"">
+                                         <TextBlock FontFamily=""Segoe MDL2 Assets"" FontSize=""18"" Text=""&#xE734;"" />
+                                       </ToggleButton>")),
+                    ("a Path instead of a glyph", Xaml(@"<ToggleButton Width=""48"" Height=""48"" IsChecked=""True"" Style=""{StaticResource MahApps.Styles.ToggleButton.Circle}"">
+                                                           <ContentControl Width=""20"" Height=""20""
+                                                                           Content=""M12,2L15,9L22,9L16,14L18,21L12,17L6,21L8,14L2,9L9,9Z""
+                                                                           Style=""{DynamicResource MahApps.Styles.ContentControl.PathIcon}"" />
+                                                         </ToggleButton>"))));
         }
 
         private const string ComboItems = @"

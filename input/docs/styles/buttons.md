@@ -87,15 +87,7 @@ They are `MahApps.Styles.Button.Square` and its variants with a minimum size and
 
 ## Toggle buttons
 
-![Toggle buttons, unchecked and checked, circular and flat](images/buttons-toggle.png)
-
-| Style | |
-| --- | --- |
-| `MahApps.Styles.ToggleButton` | the implicit one; the checked state is filled |
-| `MahApps.Styles.ToggleButton.Circle` | the circular counterpart of `Button.Circle` |
-| `MahApps.Styles.ToggleButton.Flat` | the flat counterpart of `Button.Flat` |
-
-For a switch rather than a button, use the `ToggleSwitch` control instead.
+`MahApps.Styles.ToggleButton` is the implicit style for `ToggleButton`, and `MahApps.Styles.ToggleButton.Circle` and `.Flat` are the counterparts of `Button.Circle` and `Button.Flat`. They have a page of their own: [ToggleButton](togglebutton).
 
 ## The rest
 

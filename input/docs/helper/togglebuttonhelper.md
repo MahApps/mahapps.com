@@ -3,7 +3,11 @@ Title: ToggleButtonHelper
 Description: Put the box or the circle on the other side of the label
 ---
 
-Applies to `ToggleButton` and `RadioButton`, and through `ToggleButton` to `CheckBox`. One property.
+Applies to `CheckBox` and `RadioButton`. One property, which puts the box or the circle on the other side of the label.
+
+:::{.alert .alert-info}
+Despite the name it does nothing on a `ToggleButton`. The property is marked browsable for `ToggleButton` and `RadioButton`, so the designer offers it on both, but only the `CheckBox` and `RadioButton` templates read it — a plain `ToggleButton` has no separate box and label to swap around.
+:::
 
 ![The default layout and the reversed one](images/togglebuttonhelper.png)
 
