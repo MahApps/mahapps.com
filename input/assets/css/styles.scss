@@ -76,6 +76,38 @@
     }
 }
 
+// Markdown tables come out as a bare <table>. Bootstrap 4 puts all of its table
+// styling on the .table class, which nothing here adds, so the only rule that
+// reaches them is Reboot's "border-collapse: collapse" - no cell padding, no
+// rules, and no margin, which left the following paragraph against the last
+// row. Reproduce what .table would have given them.
+//
+// The sizing is GitHub's rather than Bootstrap's "width: 100%": max-content
+// capped at the text column means a table is only as wide as it needs to be,
+// prose still wraps, and a table that genuinely cannot fit - a wide reference
+// table on a phone - scrolls inside itself instead of pushing the page sideways.
+#content table {
+    display: block;
+    width: max-content;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    overflow-x: auto;
+
+    th,
+    td {
+        padding: 0.75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+
+    // A rule under the header, and none floating above the first row.
+    thead th {
+        vertical-align: bottom;
+        border-top: 0;
+        border-bottom: 2px solid #dee2e6;
+    }
+}
+
 img {
     max-width: 100%;
     height: auto;
