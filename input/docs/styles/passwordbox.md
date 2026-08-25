@@ -58,20 +58,7 @@ Its content is an attached property, so the eye icon can be swapped out:
              mah:PasswordBoxHelper.RevealButtonContent="Show" />
 ```
 
-## PasswordBoxHelper
-
-The helper that exists only for this control. All four properties are attached to the `PasswordBox`.
-
-| Property | Type | Default | |
-| --- | --- | --- | --- |
-| `CapsLockIcon` | `object` | a warning triangle | what the caps lock indicator shows |
-| `CapsLockWarningToolTip` | `object` | `Caps lock is on` | its tooltip |
-| `RevealButtonContent` | `object` | an eye icon | content of the reveal button |
-| `RevealButtonContentTemplate` | `DataTemplate` | `null` | template for that content |
-
-`CapsLockIcon` and `RevealButtonContent` are typed as `object`, so anything goes in: a string, a `Path`, a whole `Grid`.
-
-### The caps lock warning
+## The caps lock warning
 
 While the box has keyboard focus, an indicator appears inside it whenever <kbd>Caps Lock</kbd> is on. Nothing has to be switched on — it is part of the base style, and therefore of the implicit one.
 
@@ -82,34 +69,9 @@ While the box has keyboard focus, an indicator appears inside it whenever <kbd>C
              mah:PasswordBoxHelper.CapsLockWarningToolTip="Caps Lock is turned on" />
 ```
 
-## TextBoxHelper
+Both are typed `object`, so anything goes in: a string, a `Path`, a whole `Grid`.
 
-The `PasswordBox` templates read a good part of `TextBoxHelper`, which is why the watermark and the clear button work the same way here as on a `TextBox`.
-
-| Property | Type | Default | |
-| --- | --- | --- | --- |
-| `Watermark` | `string` | empty | placeholder shown while the box is empty |
-| `WatermarkAlignment` | `TextAlignment` | `Left` | how it is aligned |
-| `WatermarkTrimming` | `TextTrimming` | `None` | how it is trimmed when the box is too narrow |
-| `UseFloatingWatermark` | `bool` | `false` | keep the watermark above the content once something is typed |
-| `ClearTextButton` | `bool` | `false` | show a button that clears the password |
-| `TextButton` | `bool` | `false` | show the button of `MahApps.Styles.PasswordBox.Button`, which that style sets for you |
-| `ButtonCommand` | `ICommand` | `null` | invoked when the button is clicked |
-| `ButtonCommandParameter` | `object` | the `PasswordBox` | passed to that command |
-| `ButtonContent` | `object` | an ✕ glyph | content of the button |
-| `ButtonContentTemplate` | `DataTemplate` | | template for that content |
-| `ButtonTemplate` | `ControlTemplate` | `null` | template of the button itself |
-| `ButtonWidth` | `double` | `22` | its width |
-| `ButtonFontFamily`, `ButtonFontSize` | | | the font its content is drawn in |
-| `ButtonsAlignment` | `ButtonsAlignment` | `Right` | which side the button sits on |
-| `SelectAllOnFocus` | `bool` | `false` | select the password when the box gains focus |
-| `IsWaitingForData` | `bool` | `false` | pulse a glow around the box while a value is being fetched |
-| `IsMonitoring` | `bool` | `true` here | watch the password for changes; the base style turns it on |
-| `HasText` | `bool` | | **read-only** — set by the monitoring above, useful in your own triggers |
-
-`IsMonitoring` is what keeps `HasText` current and what raises the events the caps lock indicator and the floating watermark hang off. The base style sets it, so leave it alone unless you have replaced the style entirely.
-
-### Watermark
+## Watermark
 
 ![Watermark and floating watermark](images/passwordbox-watermark.png)
 
@@ -121,6 +83,16 @@ The `PasswordBox` templates read a good part of `TextBoxHelper`, which is why th
 ```
 
 A plain watermark disappears as soon as the first character is typed. A floating one moves above the content instead and stays there, which keeps the label visible while the password is being entered.
+
+## Buttons
+
+The base style and the `.Button` styles put the same button in the same place, but gate it differently — which is the thing to know before wondering why a `ButtonCommand` never fires.
+
+| | Button appears when | What clicking it does |
+| --- | --- | --- |
+| `MahApps.Styles.PasswordBox` | `TextBoxHelper.ClearTextButton` is `True` | clears the box |
+| `MahApps.Styles.PasswordBox.Button` | always — the style sets `TextBoxHelper.TextButton` | runs `ButtonCommand` |
+| `MahApps.Styles.PasswordBox.Button.Revealed` | `TextBoxHelper.ClearTextButton` is `True` | clears the box |
 
 ### Clear button
 
@@ -154,16 +126,27 @@ Clearing calls `PasswordBox.Clear()` and pushes the empty value back through the
 
 Without a `ButtonCommand` the button is still shown — the style sets `TextButton="True"` — but clicking it does nothing. Setting `ClearTextButton="True"` as well makes it run the command *and* clear the box.
 
-## ControlsHelper
+## Helper properties
 
-The shared helper contributes the parts of the look that are not specific to text input.
+Three helpers reach a `PasswordBox`, and their full property tables are on their own pages: [PasswordBoxHelper](../helper/passwordboxhelper) for the caps lock indicator and the reveal button, [TextBoxHelper](../helper/textboxhelper) for the watermark and the buttons, and [ControlsHelper](../helper/controlshelper) for the border and the corner radius.
 
-| Property | Type | Default in this style | |
-| --- | --- | --- | --- |
-| `FocusBorderBrush` | `Brush` | `MahApps.Brushes.TextBox.Border.Focus` | border while the box has focus |
-| `MouseOverBorderBrush` | `Brush` | `MahApps.Brushes.TextBox.Border.MouseOver` | border under the pointer |
-| `CornerRadius` | `CornerRadius` | `0` | rounds the border |
-| `DisabledVisualElementVisibility` | `Visibility` | `Visible` | the overlay drawn over a disabled box |
+What is worth knowing here is which of them the style already sets, because those are the values you are overriding rather than setting:
+
+| Property | Set by | To |
+| --- | --- | --- |
+| `PasswordBoxHelper.CapsLockIcon` | the base style | the warning triangle |
+| `TextBoxHelper.IsMonitoring` | the base style | `True` |
+| `TextBoxHelper.ButtonWidth` | the base style | `22` |
+| `TextBoxHelper.ButtonFontSize` | the base style | `MahApps.Font.Size.Button.ClearText` |
+| `ControlsHelper.FocusBorderBrush` | the base style | `MahApps.Brushes.TextBox.Border.Focus` |
+| `ControlsHelper.MouseOverBorderBrush` | the base style | `MahApps.Brushes.TextBox.Border.MouseOver` |
+| `TextBoxHelper.TextButton` | `.Button` | `True` |
+| `TextBoxHelper.ButtonTemplate` | `.Button`, `.Button.Revealed` | the chromeless button template |
+| `PasswordBoxHelper.RevealButtonContent` | `.Button.Revealed` | the eye icon |
+
+`IsMonitoring` is the load-bearing one: it keeps `HasText` current and raises the events the caps lock indicator and the floating watermark hang off. Leave it alone unless you have replaced the style without a `BasedOn`.
+
+Nothing sets `ControlsHelper.CornerRadius`, so that one starts at zero:
 
 ```xml
 <PasswordBox mah:ControlsHelper.CornerRadius="4"
