@@ -6,9 +6,10 @@ folder - and CI does not run them. Regenerate the images by hand when a control
 changes, then commit the PNGs together with the documentation.
 
 Each app renders its scenarios straight to PNG with `RenderTargetBitmap` at 2x
-scale rather than capturing the desktop. That keeps the images free of window
-chrome, independent of the machine's DPI setting, cropped exactly to the
-control, and identical on every run.
+scale rather than capturing the desktop. That keeps the images independent of
+the machine's DPI setting, cropped exactly to what is being shown, and
+reproducible - a rerun produces the same pixels, though the encoder does not
+always write byte-identical files.
 
 The apps reference MahApps.Metro from NuGet at the same version the `mahapps`
 submodule is pinned to, so the screenshots match the API reference.
@@ -50,3 +51,17 @@ repository root; the app says so and carries on without it otherwise.
 Unlike SplitViewShots this one writes its scenarios as XAML and loads them with
 `XamlReader`. The control is driven almost entirely by templates, and spelling
 those out in C# would obscure what the documentation is trying to show.
+
+## MessageDialogShots
+
+Produces the figures on `input/docs/dialogs/message-dialog.md`:
+
+```
+dotnet run --project screenshots/MessageDialogShots -- input/docs/dialogs/images
+```
+
+A dialog is not a control that can be laid out on a canvas - it is shown into a
+`MetroWindow`'s overlay. Each scenario therefore opens a real window off screen,
+starts `ShowMessageAsync` without awaiting the answer that never comes, renders
+the window once the dialog has settled, and composes those renders into one
+image. `AnimateShow` is turned off so the capture is not a race.
