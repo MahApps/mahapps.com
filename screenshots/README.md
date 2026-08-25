@@ -12,8 +12,8 @@ near enough reproducible that a rerun can be diffed. It is not exact, so diff a
 rewritten PNG before committing it rather than assuming the rerun found
 something.
 
-Measured over a full rerun, eleven of the fourteen figures came back
-pixel-identical. The three that did not:
+Measured over a full rerun, every figure came back pixel-identical except
+these three:
 
 - `progressdialog-indeterminate` - the bar animates, so it is caught at
   whatever phase it happened to be in. Expect this one to differ every time.
@@ -110,6 +110,11 @@ The progress dialog scenarios use that to drive the returned controller, and
 one of them presses the real cancel button - found in the visual tree by its
 template part name - because the disabled-button state the documentation warns
 about cannot be reached any other way.
+
+The custom dialog figures are the exception to this app being written in C#:
+their dialogs are parsed from XAML with `XamlReader`, because the page prints
+that same XAML as its sample. Keep them that way so the figure and the sample
+cannot drift apart.
 
 Two things had to be pinned down to make these reproducible, both worth keeping
 if you touch the capture code. Only one window can be the active one, so with

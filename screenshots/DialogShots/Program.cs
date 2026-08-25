@@ -51,6 +51,7 @@ namespace DialogShots
                         await LoginDialogFiguresAsync();
                         await ProgressDialogFiguresAsync();
                         await DialogSettingsFiguresAsync();
+                        await CustomDialogFiguresAsync();
                         Console.WriteLine("done");
                     }
                     catch (Exception ex)
@@ -259,6 +260,143 @@ namespace DialogShots
                                 Still(new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Accented }));
                             controller.SetProgress(0.25);
                         }));
+        }
+
+        private const string DialogXmlns =
+            "xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\" " +
+            "xmlns:x=\"http://schemas.microsoft.com/winfx/2006/xaml\" " +
+            "xmlns:mah=\"http://metro.mahapps.com/winfx/xaml/controls\"";
+
+        // The dialogs on the custom dialogs page, written as the XAML the page
+        // prints rather than assembled in C#, so the figure and the sample
+        // cannot drift apart.
+        private static CustomDialog Dialog(string inner)
+        {
+            return (CustomDialog)System.Windows.Markup.XamlReader.Parse(
+                $"<mah:CustomDialog {DialogXmlns}>{inner}</mah:CustomDialog>");
+        }
+
+        private const string UpdateDialog = @"
+  <mah:CustomDialog.DialogTop>
+    <Border Padding=""20 14"" Background=""{DynamicResource MahApps.Brushes.Accent}"">
+      <StackPanel Orientation=""Horizontal"">
+        <TextBlock VerticalAlignment=""Center"" FontFamily=""Segoe MDL2 Assets"" FontSize=""18""
+                   Foreground=""{DynamicResource MahApps.Brushes.IdealForeground}"" Text=""&#xE896;"" />
+        <TextBlock Margin=""12 0 0 0"" VerticalAlignment=""Center"" FontSize=""14""
+                   Foreground=""{DynamicResource MahApps.Brushes.IdealForeground}"" Text=""Version 2.5.0 is ready to install"" />
+      </StackPanel>
+    </Border>
+  </mah:CustomDialog.DialogTop>
+
+  <StackPanel Margin=""0 4 0 20"">
+    <TextBlock Margin=""0 0 0 12"" FontSize=""15"" Opacity=""0.75"" TextWrapping=""Wrap""
+               Text=""This release fixes the crash on startup and adds two things you asked for."" />
+    <StackPanel Margin=""0 0 0 4"" Orientation=""Horizontal"">
+      <TextBlock Width=""22"" FontFamily=""Segoe MDL2 Assets"" FontSize=""12""
+                 Foreground=""{DynamicResource MahApps.Brushes.Accent}"" Text=""&#xE73E;"" />
+      <TextBlock FontSize=""14"" Text=""Dark theme follows the system setting"" />
+    </StackPanel>
+    <StackPanel Margin=""0 0 0 4"" Orientation=""Horizontal"">
+      <TextBlock Width=""22"" FontFamily=""Segoe MDL2 Assets"" FontSize=""12""
+                 Foreground=""{DynamicResource MahApps.Brushes.Accent}"" Text=""&#xE73E;"" />
+      <TextBlock FontSize=""14"" Text=""Export to CSV"" />
+    </StackPanel>
+  </StackPanel>
+
+  <mah:CustomDialog.DialogBottom>
+    <Border Padding=""20 14"" Background=""{DynamicResource MahApps.Brushes.Gray10}"">
+      <StackPanel HorizontalAlignment=""Right"" Orientation=""Horizontal"">
+        <Button Content=""Later"" Style=""{DynamicResource MahApps.Styles.Button.Dialogs}"" />
+        <Button Margin=""8 0 0 0"" Content=""Install now"" Style=""{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"" />
+      </StackPanel>
+    </Border>
+  </mah:CustomDialog.DialogBottom>";
+
+        private const string ExportDialogBody = @"
+  <StackPanel Margin=""0 4 0 20"">
+    <TextBlock Margin=""0 0 0 14"" FontSize=""15"" Opacity=""0.75"" Text=""Choose a format and what to include."" />
+
+    <TextBox Margin=""0 0 0 14""
+             mah:TextBoxHelper.UseFloatingWatermark=""True""
+             mah:TextBoxHelper.Watermark=""File name""
+             Text=""quarterly-report"" />
+
+    <RadioButton Margin=""0 0 0 6"" Content=""PDF document"" IsChecked=""True"" />
+    <RadioButton Margin=""0 0 0 6"" Content=""Excel workbook"" />
+    <RadioButton Margin=""0 0 0 14"" Content=""Comma separated values"" />
+
+    <CheckBox Content=""Include charts"" IsChecked=""True"" />
+  </StackPanel>
+
+  <mah:CustomDialog.DialogBottom>
+    <Border Padding=""20 14"" Background=""{DynamicResource MahApps.Brushes.Gray10}"">
+      <StackPanel HorizontalAlignment=""Right"" Orientation=""Horizontal"">
+        <Button Content=""Cancel"" Style=""{DynamicResource MahApps.Styles.Button.Dialogs}"" />
+        <Button Margin=""8 0 0 0"" Content=""Export"" Style=""{DynamicResource MahApps.Styles.Button.Dialogs.Accent}"" />
+      </StackPanel>
+    </Border>
+  </mah:CustomDialog.DialogBottom>";
+
+        private static string Account(string initials, string name, string mail, bool selected)
+        {
+            return $@"
+      <ListBoxItem IsSelected=""{selected.ToString().ToLowerInvariant()}"" Padding=""8"">
+        <StackPanel Orientation=""Horizontal"">
+          <Border Width=""36"" Height=""36"" Background=""{{DynamicResource MahApps.Brushes.Accent}}"" CornerRadius=""18"">
+            <TextBlock HorizontalAlignment=""Center"" VerticalAlignment=""Center"" FontSize=""13""
+                       Foreground=""{{DynamicResource MahApps.Brushes.IdealForeground}}"" Text=""{initials}"" />
+          </Border>
+          <StackPanel Margin=""12 0 0 0"" VerticalAlignment=""Center"">
+            <TextBlock FontSize=""14"" Text=""{name}"" />
+            <TextBlock FontSize=""12"" Opacity=""0.7"" Text=""{mail}"" />
+          </StackPanel>
+        </StackPanel>
+      </ListBoxItem>";
+        }
+
+        private static async Task CustomDialogFiguresAsync()
+        {
+            await CaptureAsync("customdialog-update", 620, 440,
+                ("DialogTop, Title, content and DialogBottom",
+                    w => w.ShowMetroDialogAsync(
+                        Dialog($@"<mah:CustomDialog.Title>Update available</mah:CustomDialog.Title>{UpdateDialog}"),
+                        Still())));
+
+            await CaptureAsync("customdialog-form", 620, 520,
+                ("A form in a dialog",
+                    w => w.ShowMetroDialogAsync(
+                        Dialog($@"<mah:CustomDialog.Title>Export report</mah:CustomDialog.Title>{ExportDialogBody}"),
+                        Still())));
+
+            await CaptureAsync("customdialog-list", 620, 480,
+                ("A list in a dialog",
+                    w => w.ShowMetroDialogAsync(
+                        Dialog($@"<mah:CustomDialog.Title>Choose an account</mah:CustomDialog.Title>
+  <StackPanel Margin=""0 4 0 20"">
+    <TextBlock Margin=""0 0 0 12"" FontSize=""15"" Opacity=""0.75"" Text=""You are signed in with more than one account."" />
+    <ListBox BorderThickness=""0"">
+      {Account("AL", "Ada Lovelace", "ada@example.com", true)}
+      {Account("GH", "Grace Hopper", "grace@example.com", false)}
+      {Account("AT", "Alan Turing", "alan@example.com", false)}
+    </ListBox>
+  </StackPanel>
+  <mah:CustomDialog.DialogBottom>
+    <Border Padding=""20 14"" Background=""{{DynamicResource MahApps.Brushes.Gray10}}"">
+      <Button HorizontalAlignment=""Right"" Content=""Cancel"" Style=""{{DynamicResource MahApps.Styles.Button.Dialogs}}"" />
+    </Border>
+  </mah:CustomDialog.DialogBottom>"),
+                        Still())));
+
+            await CaptureAsync("customdialog-contentwidth", 620, 520,
+                ("Default, DialogContentWidth 50*",
+                    w => w.ShowMetroDialogAsync(
+                        Dialog($@"<mah:CustomDialog.Title>Export report</mah:CustomDialog.Title>{ExportDialogBody}"),
+                        Still())),
+                ("DialogContentWidth 80*",
+                    w => w.ShowMetroDialogAsync(
+                        Dialog($@"<mah:CustomDialog.Title>Export report</mah:CustomDialog.Title>
+  <mah:CustomDialog.DialogContentWidth>80*</mah:CustomDialog.DialogContentWidth>{ExportDialogBody}"),
+                        Still())));
         }
 
         // Figures for the shared MetroDialogSettings page. A message dialog is
