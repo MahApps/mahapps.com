@@ -8,8 +8,12 @@ changes, then commit the PNGs together with the documentation.
 Each app renders its scenarios straight to PNG with `RenderTargetBitmap` at 2x
 scale rather than capturing the desktop. That keeps the images independent of
 the machine's DPI setting, cropped exactly to what is being shown, and
-reproducible - a rerun produces the same pixels, though the encoder does not
-always write byte-identical files.
+near enough reproducible that a rerun can be diffed. Two things stop it being
+exact, so check what actually changed before committing a rewritten PNG rather
+than assuming a rerun found something: text is antialiased at the sub-pixel
+level and the odd glyph comes out a shade different between runs, and anything
+that animates - the indeterminate progress bar - is caught at whatever phase it
+happened to be in.
 
 The apps reference MahApps.Metro from NuGet at the same version the `mahapps`
 submodule is pinned to, so the screenshots match the API reference.
@@ -93,6 +97,10 @@ window once it has settled, and composes those renders into one image.
 
 Adding a figure for another dialog type means adding a scenario: the capture
 takes a `Func<MetroWindow, Task>`, so anything you can start on a window fits.
+The progress dialog scenarios use that to drive the returned controller, and
+one of them presses the real cancel button - found in the visual tree by its
+template part name - because the disabled-button state the documentation warns
+about cannot be reached any other way.
 
 Two things had to be pinned down to make these reproducible, both worth keeping
 if you touch the capture code. Only one window can be the active one, so with

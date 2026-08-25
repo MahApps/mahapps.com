@@ -49,6 +49,7 @@ namespace DialogShots
                         await MessageDialogFiguresAsync();
                         await InputDialogFiguresAsync();
                         await LoginDialogFiguresAsync();
+                        await ProgressDialogFiguresAsync();
                         Console.WriteLine("done");
                     }
                     catch (Exception ex)
@@ -205,6 +206,92 @@ namespace DialogShots
                                   InitialPassword = "analytical",
                                   EnablePasswordPreview = true
                               }))));
+        }
+
+        private static async Task ProgressDialogFiguresAsync()
+        {
+            await CaptureAsync("progressdialog-basic", 560, 360,
+                ("Defaults",
+                    async w =>
+                        {
+                            var controller = await w.ShowProgressAsync("Copying files", "3 of 12 files copied", settings: Still());
+                            controller.SetProgress(0.25);
+                        }),
+                ("isCancelable: true",
+                    async w =>
+                        {
+                            var controller = await w.ShowProgressAsync("Copying files", "3 of 12 files copied", true, Still());
+                            controller.SetProgress(0.25);
+                        }));
+
+            // The indeterminate bar animates, so this is the one figure whose
+            // pixels differ between runs.
+            await CaptureAsync("progressdialog-indeterminate", 560, 360,
+                ("SetIndeterminate()",
+                    async w =>
+                        {
+                            var controller = await w.ShowProgressAsync("Connecting", "Waiting for the server...", settings: Still());
+                            controller.SetIndeterminate();
+                        }));
+
+            await CaptureAsync("progressdialog-canceled", 560, 360,
+                ("After Cancel was pressed",
+                    async w =>
+                        {
+                            var controller = await w.ShowProgressAsync("Copying files", "3 of 12 files copied", true, Still());
+                            controller.SetProgress(0.25);
+                            await PressCancelAsync(w);
+                        }));
+
+            await CaptureAsync("progressdialog-colorscheme", 560, 360,
+                ("ColorScheme = Theme",
+                    async w =>
+                        {
+                            var controller = await w.ShowProgressAsync("Copying files", "3 of 12 files copied", true,
+                                Still(new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Theme }));
+                            controller.SetProgress(0.25);
+                        }),
+                ("ColorScheme = Accented",
+                    async w =>
+                        {
+                            var controller = await w.ShowProgressAsync("Copying files", "3 of 12 files copied", true,
+                                Still(new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Accented }));
+                            controller.SetProgress(0.25);
+                        }));
+        }
+
+        // Pressing Cancel is the only way into the state the page warns about -
+        // the dialog stays up and only the button is disabled - and the
+        // controller does not expose a way to trigger it. The button carries the
+        // template part name, so drive the real one.
+        private static async Task PressCancelAsync(DependencyObject window)
+        {
+            await window.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+
+            var button = FindByName<Button>(window, "PART_NegativeButton");
+            button?.RaiseEvent(new RoutedEventArgs(System.Windows.Controls.Primitives.ButtonBase.ClickEvent));
+
+            await window.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+        }
+
+        private static T FindByName<T>(DependencyObject root, string name)
+            where T : FrameworkElement
+        {
+            if (root is T match && match.Name == name)
+            {
+                return match;
+            }
+
+            for (var i = 0; i < VisualTreeHelper.GetChildrenCount(root); i++)
+            {
+                var found = FindByName<T>(VisualTreeHelper.GetChild(root, i), name);
+                if (found != null)
+                {
+                    return found;
+                }
+            }
+
+            return null;
         }
 
         // Content behind the dialog, so the overlay that dims it is visible.
