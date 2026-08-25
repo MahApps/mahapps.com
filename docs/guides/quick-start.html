@@ -1,298 +1,214 @@
-﻿<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-        <meta name="description">
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/mahapps.com/assets/img/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/mahapps.com/assets/img/favicon.ico" type="image/x-icon">
-        <title>MahApps.Metro - Quick Start</title>
-        <link href="/mahapps.com/assets/css/highlight.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/theme/theme.css" rel="stylesheet">
-        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/mahapps.com/assets/css/override.css" rel="stylesheet">
-        <script src="/mahapps.com/assets/js/jquery-2.2.3.min.js"></script>
-        <script src="/mahapps.com/assets/js/bootstrap.min.js"></script>        
-        <script src="/mahapps.com/assets/js/app.min.js"></script>         
-        <script src="/mahapps.com/assets/js/highlight.pack.js"></script>   
-        <script src="/mahapps.com/assets/js/jquery.slimscroll.min.js"></script>
-        <script src="/mahapps.com/assets/js/jquery.sticky-kit.min.js"></script>
-        <script src="/mahapps.com/assets/js/mermaid.min.js"></script>
-        <script src="/mahapps.com/assets/js/svg-pan-zoom.min.js"></script>
-        <!--[if lt IE 9]>
-        <script src="/mahapps.com/assets/js/html5shiv.min.js"></script>
-        <script src="/mahapps.com/assets/js/respond.min.js"></script>
-        <![endif]-->  
 
-        <script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
+        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
+        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
+        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+	    
+        <!-- Lunr search -->
+
+        
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
+
+        <title>MahApps.Metro - Quick Start</title>
     </head>
-    <body class="hold-transition wyam layout-boxed  ">    
-        <div class="top-banner"></div>
-        <div class="wrapper with-container">
-            <!-- Header -->
-            <header class="main-header">   
-                     
-                <a href="/mahapps.com/" class="logo">
+    <body class="d-flex flex-column">
+        <div class="flex-grow-1 d-flex flex-column">
+            <div class="bg-nav">
+                <div class="container-xl py-3">
+                    <div class="row">
+                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
+                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
+    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
+            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
+        <span class="site-title text-primary">MahApps.Metro</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
+        <ul class="navbar-nav mr-auto">
+            
+        </ul>
+        <ul class="navbar-nav">
+            
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/controls">Controls</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/mahapps.com/docs/guides">Guides</a>
+    </li>
 
-                                <!-- mini logo for sidebar mini 50x50 pixels -->
-                                <span class="logo-mini"><img src="/mahapps.com/assets/img/mahapps.metro.logo.png"></span>
-                                <!-- logo for regular state and mobile devices -->
-                                <span class="logo-lg"><img src="/mahapps.com/assets/img/mahapps.metro.logo.png"></span>
-                                            </a>   
-                         
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle button-->
-                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-right"></i>
-                        </a>
-                                        
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-down"></i>
-                        </button>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/api">API</a>
+    </li>
+
+
+            <li class="nav-item">
+    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
+</li>
+
+        </ul>
+    </div>
+</nav>
+
+                        </div>
                     </div>
+                </div>
+            </div>
             
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        <ul class="nav navbar-nav">                            
-                                    <li><a href="/mahapps.com/blog">Blog</a></li>
-        <li class="active"><a href="/mahapps.com/docs">Documentation</a></li>
-        <li><a href="/mahapps.com/api">API</a></li>
-        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
- 
-                        </ul>       
+            <div class="flex-grow-1 d-flex flex-column">
+                    <!-- Titlebar -->
+                    <div id="titlebar" class="py-4">
+                        <div class="container-xl">
+                            <div class="row">
+                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
+                                    <div class="flex-grow-1">
+                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
+
+        <span><a href="/mahapps.com/docs">Documentation</a></span>
+        <span><a href="/mahapps.com/docs/guides">Guides</a></span>
+                                        </div>
+                                        <div class="text-white m-0 text-break title">
+
+Quick Start
+                                        </div>
+                                    </div>
+                                        <div class="navbar navbar-expand-md navbar-dark p-0">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.navbar-collapse -->
-                
-                    <!-- Navbar Right Menu -->
-                </nav>
-            </header>
-            
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar ">
-                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
-                    	
-        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/guides/quick-start.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+                    <!-- Under title -->
+                    <div id="undertitle">
+                        <div class="container-xl">
+                            <div class="row">
+                                    <div class="col-md-3 col-lg-2">
+                                    </div>
+                                    <div class="col-md-9 col-lg-8 bg-white">
+                                    </div>
+                                <div class="col-lg-2 d-none d-lg-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                </section>
-                <section class="sidebar">    
-                                     
-                    
+                <!-- Body -->
+                <div class="flex-grow-1 d-flex flex-column">
+                        <div class="container-xl flex-grow-1 d-flex flex-column">
+                            <div class="row flex-grow-1 align-items-stretch">
+                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
+                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
 
-                    <ul class="sidebar-menu">
-                        
+    <div class="sidebar-root">
 
-                <li class="treeview">
-                    <a href="/mahapps.com/docs/controls">Controls</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a></li>
-                <li><a href="/mahapps.com/docs/controls/Badged">Badged Control</a></li>
-                <li><a href="/mahapps.com/docs/controls/ColorPicker">ColorPicker</a></li>
-                <li><a href="/mahapps.com/docs/controls/ContentControlEx">ContentControlEx</a></li>
-                <li><a href="/mahapps.com/docs/controls/CustomValidationPopup">CustomValidationPopup</a></li>
-                <li><a href="/mahapps.com/docs/controls/DateTimePicker">DateTimePicker</a></li>
-                <li><a href="/mahapps.com/docs/controls/dropdownbutton">DropDownButton</a></li>
-                <li><a href="/mahapps.com/docs/controls/flipview">FlipView</a></li>
-                <li><a href="/mahapps.com/docs/controls/flyouts">Flyouts</a></li>
-                <li><a href="/mahapps.com/docs/controls/FontIcon">FontIcon</a></li>
-                <li><a href="/mahapps.com/docs/controls/HamburgerMenu">HamburgerMenu</a></li>
-                <li><a href="/mahapps.com/docs/controls/HotKeyBox">HotKeyBox</a></li>
-                <li><a href="/mahapps.com/docs/controls/MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a></li>
-                <li><a href="/mahapps.com/docs/controls/MetroAnimatedTabControl">MetroAnimatedTabControl</a></li>
-                <li><a href="/mahapps.com/docs/controls/MetroContentControl">MetroContentControl</a></li>
-                <li><a href="/mahapps.com/docs/controls/MetroHeader">MetroHeader</a></li>
-                <li><a href="/mahapps.com/docs/controls/MetroNavigationWindow">MetroNavigationWindow</a></li>
-                <li><a href="/mahapps.com/docs/controls/metroprogressbar">MetroProgressBar</a></li>
-                <li><a href="/mahapps.com/docs/controls/MetroTabControl">MetroTabControl</a></li>
-                <li><a href="/mahapps.com/docs/controls/MetroTabItem">MetroTabItem</a></li>
-                <li><a href="/mahapps.com/docs/controls/MetroThumbContentControl">MetroThumbContentControl</a></li>
-                <li><a href="/mahapps.com/docs/controls/MultiFrameImage">MultiFrameImage</a></li>
-                <li><a href="/mahapps.com/docs/controls/MultiSelectionComboBox">MultiSelectionComboBox</a></li>
-                <li><a href="/mahapps.com/docs/controls/numericupdown">NumericUpDown</a></li>
-                <li><a href="/mahapps.com/docs/controls/progressring">ProgressRing</a></li>
-                <li><a href="/mahapps.com/docs/controls/rangeslider">RangeSlider</a></li>
-                <li><a href="/mahapps.com/docs/controls/splitbutton">SplitButton</a></li>
-                <li><a href="/mahapps.com/docs/controls/SplitView">SplitView</a></li>
-                <li><a href="/mahapps.com/docs/controls/tile">Tile</a></li>
-                <li><a href="/mahapps.com/docs/controls/TimePicker">TimePicker</a></li>
-                <li><a href="/mahapps.com/docs/controls/toggleswitch">ToggleSwitch</a></li>
-                <li><a href="/mahapps.com/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
-                <li><a href="/mahapps.com/docs/controls/WindowButtonCommands">WindowButtonCommands</a></li>
-                <li><a href="/mahapps.com/docs/controls/WindowCommands">WindowCommands</a></li>
+<div class="sidebar-nav-item has-children">
+    <a href="/mahapps.com/docs/guides">Guides</a>
+</div>                <div class="sidebar-nav-children">
 
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="/mahapps.com/docs/styles">Styles</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/mahapps.com/docs/styles/buttons">Buttons</a></li>
-                <li><a href="/mahapps.com/docs/styles/calendar">Calendar</a></li>
-                <li><a href="/mahapps.com/docs/styles/checkbox">CheckBox</a></li>
-                <li><a href="/mahapps.com/docs/styles/combobox">ComboBox</a></li>
-                <li><a href="/mahapps.com/docs/styles/datagrid">DataGrid</a></li>
-                <li><a href="/mahapps.com/docs/styles/datagridcolumns">DataGrid Columns</a></li>
-                <li><a href="/mahapps.com/docs/styles/datepicker">DatePicker</a></li>
-                <li><a href="/mahapps.com/docs/styles/expander">Expander</a></li>
-                <li><a href="/mahapps.com/docs/styles/gridsplitter">GridSplitter</a></li>
-                <li><a href="/mahapps.com/docs/styles/groupbox">GroupBox</a></li>
-                <li><a href="/mahapps.com/docs/styles/hyperlink">Hyperlink</a></li>
-                <li><a href="/mahapps.com/docs/styles/listbox">ListBox</a></li>
-                <li><a href="/mahapps.com/docs/styles/listview">ListView</a></li>
-                <li><a href="/mahapps.com/docs/styles/menus">Menus</a></li>
-                <li><a href="/mahapps.com/docs/styles/page">Page</a></li>
-                <li><a href="/mahapps.com/docs/styles/passwordbox">PasswordBox</a></li>
-                <li><a href="/mahapps.com/docs/styles/progressbar">ProgressBar</a></li>
-                <li><a href="/mahapps.com/docs/styles/radiobutton">RadioButton</a></li>
-                <li><a href="/mahapps.com/docs/styles/scrollbars">ScrollBar</a></li>
-                <li><a href="/mahapps.com/docs/styles/slider">Slider</a></li>
-                <li><a href="/mahapps.com/docs/styles/statusbar">StatusBar</a></li>
-                <li><a href="/mahapps.com/docs/styles/tabcontrol">TabControl</a></li>
-                <li><a href="/mahapps.com/docs/styles/text">Text</a></li>
-                <li><a href="/mahapps.com/docs/styles/textbox">TextBox</a></li>
-                <li><a href="/mahapps.com/docs/styles/togglebutton">ToggleButton</a></li>
-                <li><a href="/mahapps.com/docs/styles/toolbar">ToolBar</a></li>
-                <li><a href="/mahapps.com/docs/styles/tooltip">ToolTip</a></li>
-                <li><a href="/mahapps.com/docs/styles/treeview">TreeView</a></li>
-                <li><a href="/mahapps.com/docs/styles/validation">Validation</a></li>
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="/mahapps.com/docs/stylevariants">Style Variants</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/mahapps.com/docs/stylevariants/clean">Clean</a></li>
-                <li><a href="/mahapps.com/docs/stylevariants/vs">Visual Studio</a></li>
-                <li><a href="/mahapps.com/docs/stylevariants/win10">Win 10 (UWP)</a></li>
-                <li><a href="/mahapps.com/docs/stylevariants/winui">WinUI</a></li>
-
-                    </ul>
-                </li>
-                <li><a href="/mahapps.com/docs/helper">Helper Classes</a></li>
-                <li class="treeview">
-                    <a href="/mahapps.com/docs/dialogs">Dialogs</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/mahapps.com/docs/dialogs/message-dialog">Message Dialog</a></li>
-                <li><a href="/mahapps.com/docs/dialogs/input-dialog">Input Dialog</a></li>
-                <li><a href="/mahapps.com/docs/dialogs/login-dialogs">Login Dialog</a></li>
-                <li><a href="/mahapps.com/docs/dialogs/progress-dialogs">Progress Dialog</a></li>
-                <li><a href="/mahapps.com/docs/dialogs/mvvm-dialog">MVVM</a></li>
-                <li><a href="/mahapps.com/docs/dialogs/custom-dialogs">Custom Dialogs</a></li>
-                <li><a href="/mahapps.com/docs/dialogs/dialogsettings">Dialogsettings</a></li>
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="/mahapps.com/docs/themes">Themes</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/mahapps.com/docs/themes/usage">Usage</a></li>
-                <li><a href="/mahapps.com/docs/themes/thememanager">Thememanager</a></li>
-
-                    </ul>
-                </li>
-                <li class="treeview active">
-                    <a href="/mahapps.com/docs/guides">Guides</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li class="selected"><a href="/mahapps.com/docs/guides/quick-start">Quick Start</a></li>
-                <li><a href="/mahapps.com/docs/guides/migration-to-v2.0">Migration to v2.0</a></li>
-
-                    </ul>
-                </li>
-                <li><a href="/mahapps.com/docs/usage">Usage</a></li>
-
-                    </ul>
-                            
-                </section>                
-            </aside>
-            
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                
-
-
-
-		<section class="content-header">
-			<h1>Quick Start</h1>
-		</section>
-	<section class="content">
-		<p>This guide will introduce you to how <code>MahApps.Metro</code> works and how to incorporate it into your app.</p>
-<h2 id="installation">Installation</h2>
-<p>You can install <code>MahApps.Metro</code> via the NuGet UI or with the Package Manager Console.</p>
-<p><img src="images/nugetinstall.png" class="img-fluid" alt=""></p>
-<p>With the Package Manager Console:</p>
+<div class="sidebar-nav-item active">
+    <a href="/mahapps.com/docs/guides/quick-start">Quick Start</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/guides/migration-to-v2.0">Migration to v2.0</a>
+</div>                </div>
+    </div>
+                                            </div>
+                                        </div>
+                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
+<p>Three steps take a stock WPF application to a styled one: install the package, merge the resource dictionaries, swap <code>Window</code> for <code>MetroWindow</code>. Nothing else in your XAML has to change — your existing controls are restyled where they stand.</p>
+<p>This is where you will end up:</p>
+<p><img src="images/metrowindow.png" alt="A MetroWindow" /></p>
+<h2 id="install-the-package">1. Install the package</h2>
+<p>Pick whichever you prefer — the .NET CLI, the Package Manager Console, or the NuGet UI.</p>
+<pre><code>dotnet add package MahApps.Metro
+</code></pre>
 <pre><code class="language-powershell">PM&gt; Install-Package MahApps.Metro
 </code></pre>
-<p>If you want to use a pre-release packages of <code>MahApps.Metro</code>, you need to enable <strong>Include Prerelease</strong> in the NuGet UI:</p>
-<p><img src="images/nugetinstallpre.png" class="img-fluid" alt=""></p>
-<p>With the Package Manager Console:</p>
+<p><img src="images/nugetinstall.png" alt="Installing from the NuGet UI" /></p>
+<p>For a pre-release build, tick <strong>Include prerelease</strong> in the NuGet UI:</p>
+<p><img src="images/nugetinstallpre.png" alt="Enabling prereleases in the NuGet UI" /></p>
+<p>or add the flag on the console:</p>
 <pre><code class="language-powershell">PM&gt; Install-Package MahApps.Metro -Pre
 </code></pre>
-<h2 id="mahapps-build-in-styles-and-themes">MahApps build-in styles and themes</h2>
-<p>All resources of <code>MahApp.Metro</code> are located within separate resource dictionaries. To adopt the MahApps.Metro theme, you will need to add the resource dictionaries to your <code>App.xaml</code>.</p>
-<pre><code class="language-xml">&lt;Application x:Class="SampleApp"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="MainWindow.xaml"&gt;
+<h2 id="add-the-resource-dictionaries">2. Add the resource dictionaries</h2>
+<p>Every resource in MahApps.Metro lives in its own dictionary. Merge them into your <code>App.xaml</code> and the styling applies across the application.</p>
+<pre><code class="language-xml">&lt;Application x:Class=&quot;SampleApp&quot;
+             xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+             StartupUri=&quot;MainWindow.xaml&quot;&gt;
   &lt;Application.Resources&gt;
     &lt;ResourceDictionary&gt;
       &lt;ResourceDictionary.MergedDictionaries&gt;
         &lt;!-- MahApps.Metro resource dictionaries. Make sure that all file names are Case Sensitive! --&gt;
-        &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" /&gt;
-        &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" /&gt;
+        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml&quot; /&gt;
         &lt;!-- Theme setting --&gt;
-        &lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" /&gt;
+        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml&quot; /&gt;
       &lt;/ResourceDictionary.MergedDictionaries&gt;
     &lt;/ResourceDictionary&gt;
   &lt;/Application.Resources&gt;
 &lt;/Application&gt;
 </code></pre>
-<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
-Make sure that all resource file names are Case Sensitive!</p>
+<p>The last entry picks the theme — here the light base theme with a blue accent. Swapping that one line is enough to change the look, and <a href="../themes">Themes</a> covers the rest, including switching at runtime.</p>
+<div class="alert alert-warning"><p><strong>Case matters.</strong> The pack URIs are case sensitive. A wrong letter fails at runtime, not at build time.</p>
 </div>
-<h2 id="using-the-metrowindow">Using the MetroWindow</h2>
-<p>To start with the full MahApps styling and full window support you need to change your normal <code>Window</code> to our <a href="/docs/controls/metrowindow">MetroWindow</a>.</p>
-<ul>
-<li>Open up your main window, normally named <code>MainWindow.xaml</code></li>
-<li>Add the namespace attribute inside the opening Window tag
-<pre><code class="language-xml">xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+<h2 id="switch-to-metrowindow">3. Switch to MetroWindow</h2>
+<p>Your window needs to become a <a href="../controls/metrowindow">MetroWindow</a> to get the custom title bar, the glow border and the dialog overlay.</p>
+<p>Open <code>MainWindow.xaml</code>, declare the namespace and change the root element from <code>Window</code> to <code>mah:MetroWindow</code>. Either namespace form works:</p>
+<pre><code class="language-xml">xmlns:mah=&quot;clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro&quot;
 </code></pre>
-or
-<pre><code class="language-xml">xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+<pre><code class="language-xml">xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
 </code></pre>
-</li>
-<li>Change the <code>&lt;Window ... &lt;/Window&gt;</code> tag to <code>&lt;mah:MetroWindow ... &lt;/mah:MetroWindow&gt;</code></li>
-</ul>
-<p>Now you should have something like this (don't copy and paste this directly)</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow x:Class="SampleApp.MainWindow"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 Title="MainWindow"
-                 Width="800"
-                 Height="450"
-                 WindowStartupLocation="CenterScreen"
-                 mc:Ignorable="d"&gt;
+<p>The result looks like this — do not copy it over your own file wholesale, take the parts you need:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow x:Class=&quot;SampleApp.MainWindow&quot;
+                 xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+                 xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+                 xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;
+                 xmlns:mah=&quot;clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro&quot;
+                 xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+                 Title=&quot;MainWindow&quot;
+                 Width=&quot;800&quot;
+                 Height=&quot;450&quot;
+                 WindowStartupLocation=&quot;CenterScreen&quot;
+                 mc:Ignorable=&quot;d&quot;&gt;
   &lt;Grid&gt;
     &lt;!--  Your content  --&gt;
   &lt;/Grid&gt;
 &lt;/mah:MetroWindow&gt;
 </code></pre>
-<p>You'll also need to modify the code behind of the window file so that the base class matches the <code><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> class of the XAML file.</p>
+<p>The code-behind has to agree with the XAML. Either derive from <code>MetroWindow</code> explicitly:</p>
 <pre><code class="language-csharp">using MahApps.Metro.Controls;
 
 namespace SampleApp
@@ -300,7 +216,7 @@ namespace SampleApp
     /// &lt;summary&gt;
     /// Interaction logic for MainWindow.xaml
     /// &lt;/summary&gt;
-    public partial class MainWindow : <a href="/mahapps.com/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a>
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
@@ -309,7 +225,7 @@ namespace SampleApp
     }
 }
 </code></pre>
-<p>But in most cases you can just drop the base class (because this is a <code>partial</code> class the XAML should take care of this).</p>
+<p>or, in most cases, simply drop the base class — the generated half of the <code>partial</code> class already carries it:</p>
 <pre><code class="language-csharp">namespace SampleApp
 {
     /// &lt;summary&gt;
@@ -324,63 +240,57 @@ namespace SampleApp
     }
 }
 </code></pre>
-<p>The end result will look something like this:</p>
-<p><img src="images/metrowindow.png" class="img-fluid" alt=""></p>
-<h2 id="extend-the-metrowindow">Extend the MetroWindow</h2>
-<p>The <code><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> can be extend and changed with some extra features.</p>
+<p>That is the whole setup. Everything below is optional.</p>
+<h2 id="making-the-window-your-own">Making the window your own</h2>
+<p>The title bar is yours to fill. The numbers below refer to the markers in this screenshot:</p>
+<p><img src="images/metrowindowext.png" alt="An extended MetroWindow" /></p>
 <ol>
-<li><p>The visibility of the <code>TitleBar</code> can be changed with the property <code>ShowTitleBar</code></p>
-</li>
-<li><p>Use the <code>LeftWindowCommands</code> and <code>RightWindowCommands</code> to add controls to the title bar. Button, ToggleButton, SplitButton and DropDownButton will use a default style. For all other controls you must create your own styles.</p>
-</li>
-<li><p>The <code><a href="/mahapps.com/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> are also changable, so you can create your own Min, Max/Restore and Close button styles.<br>
-The visibility of the Min and Max / Restore buttons are also effected by the <code>ResizeMode</code>. If <code>ResizeMode="NoResize"</code> the buttons are collapsed. If <code>ResizeMode="CanMinimize"</code> the Max / Restore button is collapsed.</p>
-</li>
-<li><p>Show a resize grip on the right bottom corner for better resizing.</p>
-</li>
+<li><strong><code>ShowTitleBar</code></strong> hides or shows the title bar.</li>
+<li><strong><code>LeftWindowCommands</code></strong> and <strong><code>RightWindowCommands</code></strong> put your own controls into it. <code>Button</code>, <code>ToggleButton</code>, <code>SplitButton</code> and <code>DropDownButton</code> come with a matching style; anything else needs one of your own.</li>
+<li><strong><code>WindowButtonCommands</code></strong> lets you restyle the minimise, maximise/restore and close buttons. Their visibility also follows <code>ResizeMode</code>: <code>NoResize</code> collapses both, <code>CanMinimize</code> collapses maximise/restore.</li>
+<li><strong><code>ResizeMode=&quot;CanResizeWithGrip&quot;</code></strong> shows a resize grip in the bottom right corner.</li>
 </ol>
-<p><img src="images/metrowindowext.png" class="img-fluid" alt=""></p>
-<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
-Make sure to include the <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">MahApps.Metro.IconPacks</a> to get the cupcake icon.</p>
+<p>Not marked in the screenshot, but used in the sample below: <strong><code>GlowBrush</code></strong> draws the coloured border around the window.</p>
+<div class="alert alert-info"><p>The cupcake and octocat below come from <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">MahApps.Metro.IconPacks</a>, a separate package.</p>
 </div>
-<pre><code class="language-xml">&lt;mah:MetroWindow x:Class="SampleApp.MainWindow"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                 xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                 Title="MainWindow"
-                 Width="800"
-                 Height="450"
-                 GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
-                 ResizeMode="CanResizeWithGrip"
-                 WindowStartupLocation="CenterScreen"
-                 mc:Ignorable="d"&gt;
+<pre><code class="language-xml">&lt;mah:MetroWindow x:Class=&quot;SampleApp.MainWindow&quot;
+                 xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+                 xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+                 xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;
+                 xmlns:iconPacks=&quot;http://metro.mahapps.com/winfx/xaml/iconpacks&quot;
+                 xmlns:mah=&quot;clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro&quot;
+                 xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+                 Title=&quot;MainWindow&quot;
+                 Width=&quot;800&quot;
+                 Height=&quot;450&quot;
+                 GlowBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+                 ResizeMode=&quot;CanResizeWithGrip&quot;
+                 WindowStartupLocation=&quot;CenterScreen&quot;
+                 mc:Ignorable=&quot;d&quot;&gt;
 
   &lt;mah:MetroWindow.LeftWindowCommands&gt;
     &lt;mah:WindowCommands&gt;
-      &lt;Button Click="LaunchGitHubSite" ToolTip="Open up the GitHub site"&gt;
-        &lt;iconPacks:PackIconModern Width="22"
-                                  Height="22"
-                                  Kind="SocialGithubOctocat" /&gt;
+      &lt;Button Click=&quot;LaunchGitHubSite&quot; ToolTip=&quot;Open up the GitHub site&quot;&gt;
+        &lt;iconPacks:PackIconModern Width=&quot;22&quot;
+                                  Height=&quot;22&quot;
+                                  Kind=&quot;SocialGithubOctocat&quot; /&gt;
       &lt;/Button&gt;
     &lt;/mah:WindowCommands&gt;
   &lt;/mah:MetroWindow.LeftWindowCommands&gt;
 
   &lt;mah:MetroWindow.RightWindowCommands&gt;
     &lt;mah:WindowCommands&gt;
-      &lt;Button Click="DeployCupCakes" Content="Deploy CupCakes"&gt;
+      &lt;Button Click=&quot;DeployCupCakes&quot; Content=&quot;Deploy CupCakes&quot;&gt;
         &lt;Button.ContentTemplate&gt;
           &lt;DataTemplate&gt;
-            &lt;StackPanel Orientation="Horizontal"&gt;
-              &lt;iconPacks:PackIconModern Width="22"
-                                        Height="22"
-                                        VerticalAlignment="Center"
-                                        Kind="FoodCupcake" /&gt;
-              &lt;TextBlock Margin="4 0 0 0"
-                         VerticalAlignment="Center"
-                         Text="{Binding}" /&gt;
+            &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+              &lt;iconPacks:PackIconModern Width=&quot;22&quot;
+                                        Height=&quot;22&quot;
+                                        VerticalAlignment=&quot;Center&quot;
+                                        Kind=&quot;FoodCupcake&quot; /&gt;
+              &lt;TextBlock Margin=&quot;4 0 0 0&quot;
+                         VerticalAlignment=&quot;Center&quot;
+                         Text=&quot;{Binding}&quot; /&gt;
             &lt;/StackPanel&gt;
           &lt;/DataTemplate&gt;
         &lt;/Button.ContentTemplate&gt;
@@ -401,7 +311,7 @@ namespace SampleApp
     /// &lt;summary&gt;
     /// Interaction logic for MainWindow.xaml
     /// &lt;/summary&gt;
-    public partial class MainWindow : <a href="/mahapps.com/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a>
+    public partial class MainWindow : MetroWindow
     {
         public MainWindow()
         {
@@ -420,75 +330,140 @@ namespace SampleApp
     }
 }
 </code></pre>
-<p>You can also show an <code>Icon</code> on the title bar by setting the <code>Icon</code> property or by using the <code>IconTemplate</code> property.</p>
-<p><img src="images/metrowindowexticon.png" class="img-fluid" alt=""></p>
-<h2 id="whats-next">What's Next?</h2>
-<p>For extended documentation, take a look at the <a href="/docs/styles">Styles</a> and <a href="/docs/controls">Controls</a> section.</p>
+<p>An icon goes into the title bar through the <code>Icon</code> property, or through <code>IconTemplate</code> when you want to draw it yourself.</p>
+<p><img src="images/metrowindowexticon.png" alt="A MetroWindow with an icon" /></p>
+<h2 id="where-to-go-next">Where to go next</h2>
+<div class="row">
+<div class="col-md-4">
+<p><strong><a href="../controls">Controls</a></strong>
+The custom controls: navigation, pickers, badges, flyouts and the rest.</p>
+</div>
+<div class="col-md-4">
+<p><strong><a href="../styles">Styles</a></strong>
+What MahApps.Metro does to the standard WPF controls, and the helpers that go with them.</p>
+</div>
+<div class="col-md-4">
+<p><strong><a href="../themes">Themes</a></strong>
+Base themes and accents, runtime switching, and building your own.</p>
+</div>
+</div>
+<p>Coming from version 1.x? The <a href="migration-to-v2.0">migration guide</a> lists what changed.</p>
 
-	</section>
-                
-            </div>           
-            
-            <!-- Footer -->
-            <footer class="main-footer">
-            </footer>
-            
+
+                                        </div>
+                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
+                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#install-the-package">1. Install the package</a></div>
+                    <div class="sidebar-nav-item"><a href="#add-the-resource-dictionaries">2. Add the resource dictionaries</a></div>
+                    <div class="sidebar-nav-item"><a href="#switch-to-metrowindow">3. Switch to MetroWindow</a></div>
+                    <div class="sidebar-nav-item"><a href="#making-the-window-your-own">Making the window your own</a></div>
+                    <div class="sidebar-nav-item"><a href="#where-to-go-next">Where to go next</a></div>
+            </div>
         </div>
-        <div class="wrapper bottom-wrapper">
-            <footer class="bottom-footer">
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/master/input/docs/guides/quick-start.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="p-3 text-white">
+            <div class="container-xl">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
-    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
-    <br>
-    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br>
-    Generated by <a href="http://wyam.io">Wyam</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
+    <br/>
+    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br/>
+    Generated by <a href="https://statiq.dev">Statiq</a>
 </p>
 
-<script>
-	anchors.options.placement = 'left';
-	anchors.add();
-</script>
-
-<script>
-	var snippets = document.querySelectorAll('pre > code');
-	[].forEach.call(snippets, function (snippet) {
-	  snippet.insertAdjacentHTML(
-	    'beforebegin',
-	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
-	  );
-	});
-	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-	  container: document.getElementById('modal'),
-	  target: function (trigger) {
-	    return trigger.nextElementSibling;
-	  },
-	});
-	clipboardSnippets.on('success', function (e) {
-		console.info('Action:', e.action);
-		console.info('Text:', e.text);
-		console.info('Trigger:', e.trigger);
-		e.clearSelection();
-		// showTooltip(e.trigger, 'Copied!');
-	});
-	clipboardSnippets.on('error', function (e) {
-		console.error('Action:', e.action);
-		console.error('Trigger:', e.trigger);
-		// showTooltip(e.trigger, fallbackMessage(e.action));
-	});
-</script>
-            </footer>
+            </div>
         </div>
-        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-        
-        <script>           
-            // Close the sidebar if we select an anchor link
-            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
-                $(document.body).removeClass('sidebar-open');
-            });
-            
+
+        <!-- Scripts -->
+        <script>
             $(document).ready(function() {
+                quicklink.listen();
+
+                // Bootstrap tooltips
+                $('[data-toggle="tooltip"]').tooltip();
+
+				// Keeps the sidebars in view on wider viewports
+				let left = null;
+				let leftParent = null;
+				let right = null;
+				let rightParent = null;
+                function stickSidebars()
+				{
+				    if (left == null) {
+                        left = $('#left-sidebar');
+                        right = $('#right-sidebar');
+                    }
+                    if (left.length) {
+                        if (window.innerWidth >= 768) {
+                            if (leftParent == null) {
+                                leftParent = left.parent()[0];
+                            }
+                            if (leftParent) {
+                                let leftRect = leftParent.getBoundingClientRect();
+                                stickSidebar(left,  leftRect);
+                            }
+                        } else {
+                            left.css('position', 'relative');
+                            if (left.css('bottom') != 0) {
+                                left.css('bottom', '0');
+                            }
+                        }
+                    }
+                    if (right.length) {
+                        if (window.innerWidth >= 768) {
+                            if (rightParent == null) {
+                                rightParent = right.parent()[0];
+                            }
+                            if (rightParent) {
+                                let rightRect = rightParent.getBoundingClientRect();
+                                stickSidebar(right,  rightRect);
+                            }
+                        } else {
+                            right.css('position', 'relative');
+                            if (right.css('bottom') != 0) {
+                                right.css('bottom', '0');
+                            }
+                        }
+                    }
+				}
+				function stickSidebar(sidebar, rect) {
+                    // Bottom
+                    if (rect.bottom > window.innerHeight) {
+                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
+                    } else {
+                        sidebar.css('bottom', 0);
+                    }
+                    // Top
+                    if (rect.top < 0) {
+                        sidebar.css('position', 'sticky');
+                    } else {
+                        sidebar.css('position', 'absolute');
+                    }
+				}
+				$(window).on("load", function() {
+				    stickSidebars();
+				});
+                $(window).scroll(function() {
+				    stickSidebars();
+				});
+				$(window).resize(function() {
+				    stickSidebars();
+				})
+
+                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -497,12 +472,12 @@ namespace SampleApp
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });     
+                });
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.addClass('img-fluid');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -516,40 +491,68 @@ namespace SampleApp
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});			                          
+					});
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-                    
+
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
-                
-                $('pre code').each(function(i, block) {
-                    hljs.highlightBlock(block);
-                });  
-            });
-
-            hljs.initHighlightingOnLoad();
-
-            // Back to top
-            $(window).scroll(function() {
-                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
-                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
-                } else {
-                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
-                }
-            });
-            $('#return-to-top').click(function() {      // When arrow is clicked
-                $('body,html').animate({
-                    scrollTop : 0                       // Scroll to top of body
-                }, 500);
             });
         </script>
-    
-</body></html>
+
+        
+
+        <script>
+    anchors.options.placement = 'left';
+    anchors.add();
+
+    // Each <pre> is a horizontal scroll container (Bootstrap sets
+    // overflow: auto), so a button placed inside it scrolls out of view on long
+    // lines. Wrap the block instead and position the button against the
+    // wrapper, which never scrolls.
+    document.querySelectorAll('pre > code').forEach(function (code) {
+        var pre = code.parentNode;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn-copy';
+        button.title = 'Copy to clipboard';
+        button.setAttribute('aria-label', 'Copy to clipboard');
+        button.setAttribute('data-clipboard-snippet', '');
+        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        wrapper.appendChild(button);
+    });
+
+    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+        target: function (trigger) {
+            return trigger.parentNode.querySelector('pre > code');
+        },
+    });
+    clipboardSnippets.on('success', function (e) {
+        var button = e.trigger;
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+        window.setTimeout(function () {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        }, 1500);
+        e.clearSelection();
+    });
+    clipboardSnippets.on('error', function (e) {
+        console.error('Copy failed:', e.action, e.trigger);
+    });
+</script>
+
+    </body>
+</html>

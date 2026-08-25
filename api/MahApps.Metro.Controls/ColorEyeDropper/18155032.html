@@ -1,276 +1,326 @@
-﻿<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-        <meta name="description">
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/mahapps.com/assets/img/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/mahapps.com/assets/img/favicon.ico" type="image/x-icon">
-        <title>MahApps.Metro - API - ColorEyeDropper.EyeDropperCursorProperty Field</title>
-        <link href="/mahapps.com/assets/css/highlight.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/theme/theme.css" rel="stylesheet">
-        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/mahapps.com/assets/css/override.css" rel="stylesheet">
-        <script src="/mahapps.com/assets/js/jquery-2.2.3.min.js"></script>
-        <script src="/mahapps.com/assets/js/bootstrap.min.js"></script>        
-        <script src="/mahapps.com/assets/js/app.min.js"></script>         
-        <script src="/mahapps.com/assets/js/highlight.pack.js"></script>   
-        <script src="/mahapps.com/assets/js/jquery.slimscroll.min.js"></script>
-        <script src="/mahapps.com/assets/js/jquery.sticky-kit.min.js"></script>
-        <script src="/mahapps.com/assets/js/mermaid.min.js"></script>
-        <script src="/mahapps.com/assets/js/svg-pan-zoom.min.js"></script>
-        <!--[if lt IE 9]>
-        <script src="/mahapps.com/assets/js/html5shiv.min.js"></script>
-        <script src="/mahapps.com/assets/js/respond.min.js"></script>
-        <![endif]-->  
 
-        <script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
+        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
+        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
+        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+	    
+        <!-- Lunr search -->
+
+        
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
+
+        <title>MahApps.Metro - EyeDropperCursorProperty</title>
     </head>
-    <body class="hold-transition wyam layout-boxed  ">    
-        <div class="top-banner"></div>
-        <div class="wrapper with-container">
-            <!-- Header -->
-            <header class="main-header">   
-                     
-                <a href="/mahapps.com/" class="logo">
-
-                                <!-- mini logo for sidebar mini 50x50 pixels -->
-                                <span class="logo-mini"><img src="/mahapps.com/assets/img/mahapps.metro.logo.png"></span>
-                                <!-- logo for regular state and mobile devices -->
-                                <span class="logo-lg"><img src="/mahapps.com/assets/img/mahapps.metro.logo.png"></span>
-                                            </a>   
-                         
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle button-->
-                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-right"></i>
-                        </a>
-                                        
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-down"></i>
-                        </button>
-                    </div>
+    <body class="d-flex flex-column">
+        <div class="flex-grow-1 d-flex flex-column">
+            <div class="bg-nav">
+                <div class="container-xl py-3">
+                    <div class="row">
+                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
+                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
+    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
+            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
+        <span class="site-title text-primary">MahApps.Metro</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
+        <ul class="navbar-nav mr-auto">
             
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        <ul class="nav navbar-nav">                            
-                                    <li><a href="/mahapps.com/blog">Blog</a></li>
-        <li><a href="/mahapps.com/docs">Documentation</a></li>
-        <li class="active"><a href="/mahapps.com/api">API</a></li>
-        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
- 
-                        </ul>       
-                    </div>
-                    <!-- /.navbar-collapse -->
-                
-                    <!-- Navbar Right Menu -->
-                </nav>
-            </header>
+        </ul>
+        <ul class="navbar-nav">
             
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar ">
-                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
-                    	
-	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#Summary">Summary</a></p>
-<p><a href="#Syntax">Syntax</a></p>
-<hr class="infobar-hidden">
-</div>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/controls">Controls</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
+    </li>
 
-                </section>
-                <section class="sidebar">    
-                                     
-                    	
-	    <script src="/mahapps.com/assets/js/lunr.min.js"></script>
-    <script src="/mahapps.com/assets/js/searchIndex.js"></script>
-    <div class="sidebar-form">
-        <div class="input-group">
-            <input type="text" name="search" id="search" class="form-control" placeholder="Search Types...">
-            <span class="input-group-btn">
-                <button class="btn btn-flat"><i class="fa fa-search"></i></button>
-            </span>
-        </div>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/api">API</a>
+    </li>
+
+
+            <li class="nav-item">
+    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
+</li>
+
+        </ul>
     </div>
-    <div id="search-results">
-    </div>
-    <script>
-        function runSearch(query){
-            $("#search-results").empty();			
-            if( query.length < 2 ){
-                return;
-            }			
-            var results = searchModule.search("*" + query + "*");
-            var listHtml = "<ul class='sidebar-menu'>";	
-            listHtml += "<li class='header'>Type Results</li>";	
-            if(results.length == 0 ){
-                listHtml += "<li>No results found</li>";
-            } else {					
-                for(var i = 0; i < results.length; ++i){
-                    var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
-                }				
-            }
-            listHtml += "</ul>";				
-            $("#search-results").append(listHtml);
-        }
+</nav>
 
-        $(document).ready(function(){
-            $("#search").on('input propertychange paste', function() {
-                runSearch($("#search").val());
-            });
-        });
-
-        function htmlEscape(html) {
-            return document.createElement('div')
-                .appendChild(document.createTextNode(html))
-                .parentNode
-                .innerHTML;
-        }
-    </script>
-	
-    <hr>
-
-                    <ul class="sidebar-menu">
-                        
-			<li class="header">Namespace</li>
-		<li><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></li>
-		<li class="header">Type</li>
-		<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a></li>
-		<li role="separator" class="divider"></li>
-			<li class="header">Field Members</li>
-				<li class="selected"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/18155032">Eye<wbr>Dropper<wbr>Cursor<wbr>Property</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/2C8C6FC1">Preview<wbr>Content<wbr>Template<wbr>Property</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/E8A2CCD7">Preview<wbr>Image<wbr>Outer<wbr>Pixel<wbr>Count<wbr>Property</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/6CF24E2C">Selected<wbr>Color<wbr>Changed<wbr>Event</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/B0498988">Selected<wbr>Color<wbr>Property</a></li>
-			<li class="header">Property Members</li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/1A3FCDD0">EyeDropperCursor</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/1711FD17">Preview<wbr>Content<wbr>Template</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/90612EF5">Preview<wbr>Image<wbr>Outer<wbr>Pixel<wbr>Count</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/B521A4A3">SelectedColor</a></li>
-			<li class="header">Method Members</li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/3DDD29CD">OnMouseMove<wbr>(MouseEventArgs)<wbr></a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/08A1CF29">On<wbr>Preview<wbr>Mouse<wbr>Left<wbr>Button<wbr>Down<wbr>(<wbr>Mouse<wbr>Button<wbr>Event<wbr>Args)<wbr></a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/AAD6092A">On<wbr>Preview<wbr>Mouse<wbr>Left<wbr>Button<wbr>Up<wbr>(<wbr>Mouse<wbr>Button<wbr>Event<wbr>Args)<wbr></a></li>
-			<li class="header">Event Members</li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/398813E8">SelectedColorChanged</a></li>
-
-
-                    </ul>
-                            
-                </section>                
-            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                
+            <div class="flex-grow-1 d-flex flex-column">
+                    <!-- Titlebar -->
+                    <div id="titlebar" class="py-4">
+                        <div class="container-xl">
+                            <div class="row">
+                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
+                                    <div class="flex-grow-1">
+                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
 
+			<span><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a>.</span>
+                                        </div>
+                                        <div class="text-white m-0 text-break title">
 
+    <div>Eye<wbr>Dropper<wbr>Cursor<wbr>Property <small>Field</small></div>
+                                        </div>
+                                    </div>
+                                        <div class="navbar navbar-expand-md navbar-dark p-0">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Under title -->
+                    <div id="undertitle">
+                        <div class="container-xl">
+                            <div class="row">
+                                    <div class="col-md-3 col-lg-2">
+                                    </div>
+                                    <div class="col-md-9 col-lg-8 bg-white">
+                                    </div>
+                                <div class="col-lg-2 d-none d-lg-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-<section class="content-header">
-			<h3><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a>.</h3>
-	<h1>Eye<wbr>Dropper<wbr>Cursor<wbr>Property <small>Field</small></h1>
-</section>
-<section class="content">
-	
-	
-		<h1 id="Summary">Summary</h1>
-	<div class="lead">Identifies the <code class="cs"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/1A3FCDD0">EyeDropperCursor</a></code> dependency property.</div>
+                <!-- Body -->
+                <div class="flex-grow-1 d-flex flex-column">
+                        <div class="container-xl flex-grow-1 d-flex flex-column">
+                            <div class="row flex-grow-1 align-items-stretch">
+                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
+                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
 
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<dl class="dl-horizontal">				
-
-						<dt>Namespace</dt>
-						<dd><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></dd>
-					
-						<dt>Containing Type</dt>
-						<dd><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a></dd>		
-				</dl>
-			</div>
-		</div>
-
-	<h1 id="Syntax">Syntax</h1>
-	<pre><code>public static readonly DependencyProperty EyeDropperCursorProperty</code></pre>
-
-
-
-
-
-
-
-	
-</section>
-                
-            </div>           
-            
-            <!-- Footer -->
-            <footer class="main-footer">
-            </footer>
-            
+	<div class="sidebar-root">
+		        <div class="sidebar-root bg-white mb-3 page-box font-size-sm">
+                <div class="sidebar-nav-item sidebar-header mb-0 pb-0">Namespace</div>
+                <div class="sidebar-nav-item  font-weight-normal mt-0 pt-0"><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></div>
+                <div class="sidebar-nav-item sidebar-header mb-0 pb-0">Type</div>
+                <div class="sidebar-nav-item font-weight-normal mt-0 pt-0"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a></div>
         </div>
-        <div class="wrapper bottom-wrapper">
-            <footer class="bottom-footer">
+            <div class="sidebar-nav-item sidebar-header">Event Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/398813E8">SelectedColorChanged</a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Field Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item active"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/18155032">Eye<wbr>Dropper<wbr>Cursor<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/2C8C6FC1">Preview<wbr>Content<wbr>Template<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/E8A2CCD7">Preview<wbr>Image<wbr>Outer<wbr>Pixel<wbr>Count<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/6CF24E2C">Selected<wbr>Color<wbr>Changed<wbr>Event</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/B0498988">Selected<wbr>Color<wbr>Property</a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Method Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/3DDD29CD">OnMouseMove<wbr>(MouseEventArgs)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/08A1CF29">On<wbr>Preview<wbr>Mouse<wbr>Left<wbr>Button<wbr>Down<wbr>(<wbr>Mouse<wbr>Button<wbr>Event<wbr>Args)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/AAD6092A">On<wbr>Preview<wbr>Mouse<wbr>Left<wbr>Button<wbr>Up<wbr>(<wbr>Mouse<wbr>Button<wbr>Event<wbr>Args)<wbr></a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Property Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/1A3FCDD0">EyeDropperCursor</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/1711FD17">Preview<wbr>Content<wbr>Template</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/90612EF5">Preview<wbr>Image<wbr>Outer<wbr>Pixel<wbr>Count</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/B521A4A3">SelectedColor</a></div>
+            </div>
+
+	</div>
+                                            </div>
+                                        </div>
+                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
+
+
+
+
+
+
+        <div class="lead mb-3">Identifies the <code class="language-csharp"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper/1A3FCDD0">EyeDropperCursor</a></code> dependency property.</div>
+
+    <div class="p-3 bg-light page-box container small">
+        		<dl class="dl-horizontal">
+
+    		    <dt>Namespace</dt>
+    		    <dd><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></dd>
+
+				<dt>Containing Type</dt>
+				<dd><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a></dd>
+
+
+
+
+
+
+
+				<dt>Field Type</dt>
+				<dd>DependencyProperty</dd>
+	    </dl>
+
+    </div>
+		<h1 id="Syntax">Syntax</h1>
+		<pre class="language-csharp"><code class="language-csharp">public static readonly DependencyProperty EyeDropperCursorProperty</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        </div>
+                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
+                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+
+	        <div class="sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#Syntax">Syntax</a></div>
+            </div>
+        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="p-3 text-white">
+            <div class="container-xl">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
-    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
-    <br>
-    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br>
-    Generated by <a href="http://wyam.io">Wyam</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
+    <br/>
+    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br/>
+    Generated by <a href="https://statiq.dev">Statiq</a>
 </p>
 
-<script>
-	anchors.options.placement = 'left';
-	anchors.add();
-</script>
-
-<script>
-	var snippets = document.querySelectorAll('pre > code');
-	[].forEach.call(snippets, function (snippet) {
-	  snippet.insertAdjacentHTML(
-	    'beforebegin',
-	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
-	  );
-	});
-	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-	  container: document.getElementById('modal'),
-	  target: function (trigger) {
-	    return trigger.nextElementSibling;
-	  },
-	});
-	clipboardSnippets.on('success', function (e) {
-		console.info('Action:', e.action);
-		console.info('Text:', e.text);
-		console.info('Trigger:', e.trigger);
-		e.clearSelection();
-		// showTooltip(e.trigger, 'Copied!');
-	});
-	clipboardSnippets.on('error', function (e) {
-		console.error('Action:', e.action);
-		console.error('Trigger:', e.trigger);
-		// showTooltip(e.trigger, fallbackMessage(e.action));
-	});
-</script>
-            </footer>
+            </div>
         </div>
-        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-        
-        <script>           
-            // Close the sidebar if we select an anchor link
-            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
-                $(document.body).removeClass('sidebar-open');
-            });
-            
+
+        <!-- Scripts -->
+        <script>
             $(document).ready(function() {
+                quicklink.listen();
+
+                // Bootstrap tooltips
+                $('[data-toggle="tooltip"]').tooltip();
+
+				// Keeps the sidebars in view on wider viewports
+				let left = null;
+				let leftParent = null;
+				let right = null;
+				let rightParent = null;
+                function stickSidebars()
+				{
+				    if (left == null) {
+                        left = $('#left-sidebar');
+                        right = $('#right-sidebar');
+                    }
+                    if (left.length) {
+                        if (window.innerWidth >= 768) {
+                            if (leftParent == null) {
+                                leftParent = left.parent()[0];
+                            }
+                            if (leftParent) {
+                                let leftRect = leftParent.getBoundingClientRect();
+                                stickSidebar(left,  leftRect);
+                            }
+                        } else {
+                            left.css('position', 'relative');
+                            if (left.css('bottom') != 0) {
+                                left.css('bottom', '0');
+                            }
+                        }
+                    }
+                    if (right.length) {
+                        if (window.innerWidth >= 768) {
+                            if (rightParent == null) {
+                                rightParent = right.parent()[0];
+                            }
+                            if (rightParent) {
+                                let rightRect = rightParent.getBoundingClientRect();
+                                stickSidebar(right,  rightRect);
+                            }
+                        } else {
+                            right.css('position', 'relative');
+                            if (right.css('bottom') != 0) {
+                                right.css('bottom', '0');
+                            }
+                        }
+                    }
+				}
+				function stickSidebar(sidebar, rect) {
+                    // Bottom
+                    if (rect.bottom > window.innerHeight) {
+                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
+                    } else {
+                        sidebar.css('bottom', 0);
+                    }
+                    // Top
+                    if (rect.top < 0) {
+                        sidebar.css('position', 'sticky');
+                    } else {
+                        sidebar.css('position', 'absolute');
+                    }
+				}
+				$(window).on("load", function() {
+				    stickSidebars();
+				});
+                $(window).scroll(function() {
+				    stickSidebars();
+				});
+				$(window).resize(function() {
+				    stickSidebars();
+				})
+
+                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -279,12 +329,12 @@
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });     
+                });
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.addClass('img-fluid');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -298,40 +348,68 @@
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});			                          
+					});
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-                    
+
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
-                
-                $('pre code').each(function(i, block) {
-                    hljs.highlightBlock(block);
-                });  
-            });
-
-            hljs.initHighlightingOnLoad();
-
-            // Back to top
-            $(window).scroll(function() {
-                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
-                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
-                } else {
-                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
-                }
-            });
-            $('#return-to-top').click(function() {      // When arrow is clicked
-                $('body,html').animate({
-                    scrollTop : 0                       // Scroll to top of body
-                }, 500);
             });
         </script>
-    
-</body></html>
+
+        
+
+        <script>
+    anchors.options.placement = 'left';
+    anchors.add();
+
+    // Each <pre> is a horizontal scroll container (Bootstrap sets
+    // overflow: auto), so a button placed inside it scrolls out of view on long
+    // lines. Wrap the block instead and position the button against the
+    // wrapper, which never scrolls.
+    document.querySelectorAll('pre > code').forEach(function (code) {
+        var pre = code.parentNode;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn-copy';
+        button.title = 'Copy to clipboard';
+        button.setAttribute('aria-label', 'Copy to clipboard');
+        button.setAttribute('data-clipboard-snippet', '');
+        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        wrapper.appendChild(button);
+    });
+
+    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+        target: function (trigger) {
+            return trigger.parentNode.querySelector('pre > code');
+        },
+    });
+    clipboardSnippets.on('success', function (e) {
+        var button = e.trigger;
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+        window.setTimeout(function () {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        }, 1500);
+        e.clearSelection();
+    });
+    clipboardSnippets.on('error', function (e) {
+        console.error('Copy failed:', e.action, e.trigger);
+    });
+</script>
+
+    </body>
+</html>

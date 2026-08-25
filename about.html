@@ -1,174 +1,335 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="description" />
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML" />
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/mahapps.com/assets/img/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/mahapps.com/assets/img/favicon.ico" type="image/x-icon">
-        <title>MahApps.Metro - About This Project</title>
-        <link href="/mahapps.com/assets/css/highlight.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/bootstrap/bootstrap.css" rel="stylesheet" />
-        <link href="/mahapps.com/assets/css/adminlte/AdminLTE.css" rel="stylesheet" />
-        <link href="/mahapps.com/assets/css/theme/theme.css" rel="stylesheet" />
-        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/mahapps.com/assets/css/override.css" rel="stylesheet" />
-        <script src="/mahapps.com/assets/js/jquery-2.2.3.min.js"></script>
-        <script src="/mahapps.com/assets/js/bootstrap.min.js"></script>        
-        <script src="/mahapps.com/assets/js/app.min.js"></script>         
-        <script src="/mahapps.com/assets/js/highlight.pack.js"></script>   
-        <script src="/mahapps.com/assets/js/jquery.slimscroll.min.js"></script>
-        <script src="/mahapps.com/assets/js/jquery.sticky-kit.min.js"></script>
-        <script src="/mahapps.com/assets/js/mermaid.min.js"></script>
-        <script src="/mahapps.com/assets/js/svg-pan-zoom.min.js"></script>
-        <!--[if lt IE 9]>
-        <script src="/mahapps.com/assets/js/html5shiv.min.js"></script>
-        <script src="/mahapps.com/assets/js/respond.min.js"></script>
-        <![endif]-->  
 
-        <script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
+        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
+        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
+        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+	    
+        <!-- Lunr search -->
+
+        
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
+
+        <title>MahApps.Metro - About</title>
     </head>
-    <body class="hold-transition wyam layout-boxed layout-top-nav ">    
-        <div class="top-banner"></div>
-        <div class="wrapper with-container">
-            <!-- Header -->
-            <header class="main-header">   
-                     
-                <a href="/mahapps.com/" class="logo">
+    <body class="d-flex flex-column">
+        <div class="flex-grow-1 d-flex flex-column">
+            <div class="bg-nav">
+                <div class="container-xl py-3">
+                    <div class="row">
+                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
+                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
+    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
+            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
+        <span class="site-title text-primary">MahApps.Metro</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
+        <ul class="navbar-nav mr-auto">
+            
+        </ul>
+        <ul class="navbar-nav">
+            
+    <li class="nav-item">
+        <a class="nav-link active" href="/mahapps.com/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/controls">Controls</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
+    </li>
 
-                                <!-- mini logo for sidebar mini 50x50 pixels -->
-                                <span class="logo-mini"><img src="/mahapps.com/assets/img/mahapps.metro.logo.png"></span>
-                                <!-- logo for regular state and mobile devices -->
-                                <span class="logo-lg"><img src="/mahapps.com/assets/img/mahapps.metro.logo.png"></span>
-                                            </a>   
-                         
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle button-->
-                                        
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-down"></i>
-                        </button>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/api">API</a>
+    </li>
+
+
+            <li class="nav-item">
+    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
+</li>
+
+        </ul>
+    </div>
+</nav>
+
+                        </div>
                     </div>
+                </div>
+            </div>
             
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        <ul class="nav navbar-nav">                            
-                                    <li><a href="/mahapps.com/blog">Blog</a></li>
-        <li><a href="/mahapps.com/docs">Documentation</a></li>
-        <li><a href="/mahapps.com/api">API</a></li>
-        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
- 
-                        </ul>       
+            <div class="flex-grow-1 d-flex flex-column">
+                    <!-- Titlebar -->
+                    <div id="titlebar" class="py-4">
+                        <div class="container-xl">
+                            <div class="row">
+                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
+                                    <div class="flex-grow-1">
+                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
+
+                                        </div>
+                                        <div class="text-white m-0 text-break title">
+
+About
+                                        </div>
+                                    </div>
+                                        <div class="navbar navbar-expand-md navbar-dark p-0">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.navbar-collapse -->
-                
-                    <!-- Navbar Right Menu -->
-                </nav>
-            </header>
-            
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar hidden">
-                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
-                    	
-        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/about.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"></div>
+                    <!-- Under title -->
+                    <div id="undertitle">
+                        <div class="container-xl">
+                            <div class="row">
+                                    <div class="col-md-3 col-lg-2">
+                                    </div>
+                                    <div class="col-md-9 col-lg-8 bg-white">
+                                    </div>
+                                <div class="col-lg-2 d-none d-lg-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                </section>
-                <section class="sidebar">    
-                                     
-                    
+                <!-- Body -->
+                <div class="flex-grow-1 d-flex flex-column">
+                        <div class="container-xl flex-grow-1 d-flex flex-column">
+                            <div class="row flex-grow-1 align-items-stretch">
+                                        <div id="content" class="offset-lg-2 col-12 col-lg-8 p-4 pt-md-0 bg-white">
+<p>MahApps.Metro is a UI toolkit for WPF. It takes the standard Windows Presentation Foundation controls — the ones you already know and already use — and gives them a clean, modern look, then adds the pieces WPF never shipped: a proper window chrome, a theming engine, dialogs that do not block, and a set of navigation controls.</p>
+<p>The project started on <strong>29 January 2011</strong> and has been going ever since. It is MIT licensed, has been part of the <a href="https://dotnetfoundation.org/">.NET Foundation</a> since 2020, and is used by thousands of desktop applications.</p>
+<div class="row text-center my-4">
+    <div class="col-6 col-md-3"><div class="h3 mb-0 text-primary">2011</div><small class="text-muted">first commit</small></div>
+    <div class="col-6 col-md-3"><div class="h3 mb-0 text-primary">9,800+</div><small class="text-muted">GitHub stars</small></div>
+    <div class="col-6 col-md-3"><div class="h3 mb-0 text-primary">2,400+</div><small class="text-muted">forks</small></div>
+    <div class="col-6 col-md-3"><div class="h3 mb-0 text-primary">MIT</div><small class="text-muted">licence</small></div>
+</div>
+<h2 id="what-makes-it-mahapps">What makes it MahApps</h2>
+<p><strong>It restyles what you already have.</strong> Most UI libraries ask you to swap your controls for theirs. MahApps.Metro does the opposite: reference it, merge two resource dictionaries, and your existing <code>Button</code>, <code>TextBox</code>, <code>DataGrid</code> and <code>TreeView</code> are restyled in place. No rewrite, no new control names, no vendor lock-in on your XAML.</p>
+<p><strong>A window that actually looks like an app.</strong> <code>MetroWindow</code> replaces the Windows title bar with one you control — your own commands to the left and right of the title, a coloured glow border, an overlay for dialogs, and flyouts that slide in from any edge.</p>
+<p><strong>Theming is a first-class feature, not a stylesheet.</strong> Themes are built from a base theme (Light or Dark) and an accent colour, switchable at runtime, and the <code>ThemeManager</code> can follow the Windows accent colour and the system's light/dark setting. You can generate your own themes from the same scheme the built-in ones use.</p>
+<p><strong>Helpers instead of subclasses.</strong> Watermarks, clear buttons, per-control corner radii, spell-check styling, selected-item brushes — these arrive as attached properties like <code>TextBoxHelper.Watermark</code>, so you attach behaviour to a stock control instead of inheriting from a special one.</p>
+<p><strong>It is old in the good way.</strong> Fifteen years of use in real applications, a stable v2 API, and an issue tracker with a long memory. The edge cases have been found.</p>
+<h2 id="what-you-can-build-with-it">What you can build with it</h2>
+<div class="row">
+<div class="col-md-6">
+<p><strong>Windows and chrome.</strong> <code>MetroWindow</code> with custom title-bar commands, glow borders, and <code>MetroNavigationWindow</code> for page-based navigation.</p>
+<p><strong>Navigation.</strong> A <a href="docs/controls/hamburgermenu">HamburgerMenu</a> for the side-bar pattern, a <a href="docs/controls/splitview">SplitView</a> underneath it, <a href="docs/controls/flyouts">Flyouts</a> from any edge, and animated tab controls.</p>
+<p><strong>Dialogs.</strong> <a href="docs/dialogs">Message, input, login and progress dialogs</a> shown as an overlay inside your window instead of a blocking modal — awaitable, and usable <a href="docs/dialogs/mvvm-dialog">from a view model</a>.</p>
+</div>
+<div class="col-md-6">
+<p><strong>Input and data.</strong> A <a href="docs/controls/colorpicker">ColorPicker</a>, <a href="docs/controls/datetimepicker">DateTimePicker</a>, <a href="docs/controls/numericupdown">NumericUpDown</a>, <a href="docs/controls/multiselectioncombobox">MultiSelectionComboBox</a>, <a href="docs/controls/hotkeybox">HotKeyBox</a> and a restyled <a href="docs/styles/datagrid">DataGrid</a>.</p>
+<p><strong>Feedback.</strong> <a href="docs/controls/badged">Badges</a>, <a href="docs/controls/metroprogressbar">progress bars and rings</a>, <a href="docs/controls/toggleswitch">toggle switches</a> and validation popups.</p>
+<p><strong>Look and feel.</strong> <a href="docs/themes">Themes</a> you can switch at runtime and <a href="docs/stylevariants">style variants</a> that follow Visual Studio, Windows 10 or WinUI conventions.</p>
+</div>
+</div>
+<p>The <a href="docs/guides/quick-start">Quick Start</a> gets you to a running <code>MetroWindow</code> in a few minutes.</p>
+<p>MahApps.Metro 2.4 runs on .NET Framework 4.5.2 and newer as well as .NET Core 3.x, which is the asset current .NET applications resolve to. Version 3.0, available as a release candidate on NuGet, brings the window chrome up to date with Windows 11: the caption buttons are registered as non-client controls, so the maximise button takes part in snap layouts, and the window can use the newer backdrop materials.</p>
+<h2 id="the-people-behind-it">The people behind it</h2>
+<p>Presented in the order they first committed to the repository, with the dates and commit counts taken from its history.</p>
+<table class="table">
+<thead><tr><th></th><th>Maintainer</th><th>Active</th><th>Commits</th></tr></thead>
+<tbody>
+<tr>
+  <td><img src="https://github.com/vikingcode.png?size=48" width="48" height="48" alt="" class="rounded"></td>
+  <td><strong>Paul Jenkins</strong><br><a href="https://github.com/vikingcode">&#64;vikingcode</a></td>
+  <td>Jan 2011 – Jan 2013</td><td>254</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/shiftkey.png?size=48" width="48" height="48" alt="" class="rounded"></td>
+  <td><strong>Brendan Forster</strong><br><a href="https://github.com/shiftkey">&#64;shiftkey</a></td>
+  <td>Mar 2011 – Jul 2013</td><td>181</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/thoemmi.png?size=48" width="48" height="48" alt="" class="rounded"></td>
+  <td><strong>Thomas Freudenberg</strong><br><a href="https://github.com/thoemmi">&#64;thoemmi</a></td>
+  <td>Jan 2012 – Feb 2017</td><td>106</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/flagbug.png?size=48" width="48" height="48" alt="" class="rounded"></td>
+  <td><strong>Dennis Daume</strong><br><a href="https://github.com/flagbug">&#64;flagbug</a></td>
+  <td>Feb 2012 – Feb 2015</td><td>451</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/punker76.png?size=48" width="48" height="48" alt="" class="rounded"></td>
+  <td><strong>Jan Karger</strong><br><a href="https://github.com/punker76">&#64;punker76</a></td>
+  <td>Dec 2012 – today</td><td>3,923</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/AzureKitsune.png?size=48" width="48" height="48" alt="" class="rounded"></td>
+  <td><strong><a href="https://github.com/AzureKitsune">&#64;AzureKitsune</a></strong></td>
+  <td>Feb 2013 – Jun 2014</td><td>385</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/michaelmairegger.png?size=48" width="48" height="48" alt="" class="rounded"></td>
+  <td><strong>Michael Mairegger</strong><br><a href="https://github.com/michaelmairegger">&#64;michaelmairegger</a></td>
+  <td>May 2013 – Jun 2017</td><td>287</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/batzen.png?size=48" width="48" height="48" alt="" class="rounded"></td>
+  <td><strong>Bastian Schmidt</strong><br><a href="https://github.com/batzen">&#64;batzen</a></td>
+  <td>Feb 2017 – May 2024</td><td>111</td>
+</tr>
+<tr>
+  <td><img src="https://github.com/timunie.png?size=48" width="48" height="48" alt="" class="rounded"></td>
+  <td><strong>Tim</strong><br><a href="https://github.com/timunie">&#64;timunie</a></td>
+  <td>Jun 2019 – May 2023</td><td>53</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Paul Jenkins</strong> started the project and wrote the first two years of it. <strong>Brendan Forster</strong> joined weeks later and shaped the early releases. <strong>Thomas Freudenberg</strong> and <strong>Dennis Daume</strong> carried it through the 2012–2015 period, Dennis with the second-largest body of work in the project after the current lead.</p>
+<p><strong>Jan Karger</strong> made his first commit in December 2012 and has maintained MahApps.Metro ever since — by a wide margin the most prolific contributor, and the person behind the v2 rewrite. <strong>&#64;AzureKitsune</strong> and <strong>Michael Mairegger</strong> were the other main hands of the middle years, and <strong>Tim</strong> joined after v2.</p>
+<p><strong>Bastian Schmidt</strong> deserves a particular mention. He is the lead contributor to <a href="https://github.com/ControlzEx/ControlzEx">ControlzEx</a>, the library MahApps.Metro's window handling is built on, and the two projects have advanced together ever since — a good deal of what looks like MahApps behaviour is really ControlzEx underneath. He is also the driving force behind getting MahApps.Metro to behave correctly on Windows 11, from registering the caption buttons as non-client controls so that snap layouts work, to the backdrop materials.</p>
+<p>Brendan Forster, &#64;AzureKitsune, Bastian Schmidt and Jan Karger remain members of the <a href="https://github.com/orgs/MahApps/people">MahApps organisation</a>; Thomas Freudenberg and Tim are outside collaborators.</p>
+<p>Beyond them, more than 160 people have contributed code, and many more have reported issues and answered questions. The full list is on the <a href="https://github.com/MahApps/MahApps.Metro/graphs/contributors">contributors page</a>.</p>
+<h2 id="getting-involved">Getting involved</h2>
+<p>MahApps.Metro is developed in the open at <a href="https://github.com/MahApps/MahApps.Metro">github.com/MahApps/MahApps.Metro</a>. Issues and pull requests are welcome — including for this documentation, which lives in <a href="https://github.com/MahApps/mahapps.com">its own repository</a> and has an edit link on every page.</p>
+<p>The library is released under the MIT licence, copyright the .NET Foundation and contributors.</p>
 
-                    <ul class="sidebar-menu">
-                        
-
-                    </ul>
-                            
-                </section>                
-            </aside>
-            
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                
-
-
-
-		<section class="content-header">
-			<h1>About This Project</h1>
-		</section>
-	<section class="content">
-		<p>This project is awesome!</p>
-
-	</section>
-                
-            </div>           
-            
-            <!-- Footer -->
-            <footer class="main-footer">
-            </footer>
-            
+                                        </div>
+                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
+                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#what-makes-it-mahapps">What makes it MahApps</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-you-can-build-with-it">What you can build with it</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-people-behind-it">The people behind it</a></div>
+                    <div class="sidebar-nav-item"><a href="#getting-involved">Getting involved</a></div>
+            </div>
         </div>
-        <div class="wrapper bottom-wrapper">
-            <footer class="bottom-footer">
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/master/input/about.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="p-3 text-white">
+            <div class="container-xl">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
-    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
     <br/>
-    Copyright &copy; <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
     <br/>
-    Generated by <a href="http://wyam.io">Wyam</a>
+    Generated by <a href="https://statiq.dev">Statiq</a>
 </p>
 
-<script>
-	anchors.options.placement = 'left';
-	anchors.add();
-</script>
-
-<script>
-	var snippets = document.querySelectorAll('pre > code');
-	[].forEach.call(snippets, function (snippet) {
-	  snippet.insertAdjacentHTML(
-	    'beforebegin',
-	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
-	  );
-	});
-	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-	  container: document.getElementById('modal'),
-	  target: function (trigger) {
-	    return trigger.nextElementSibling;
-	  },
-	});
-	clipboardSnippets.on('success', function (e) {
-		console.info('Action:', e.action);
-		console.info('Text:', e.text);
-		console.info('Trigger:', e.trigger);
-		e.clearSelection();
-		// showTooltip(e.trigger, 'Copied!');
-	});
-	clipboardSnippets.on('error', function (e) {
-		console.error('Action:', e.action);
-		console.error('Trigger:', e.trigger);
-		// showTooltip(e.trigger, fallbackMessage(e.action));
-	});
-</script>
-            </footer>
+            </div>
         </div>
-        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-        
-        <script>           
-            // Close the sidebar if we select an anchor link
-            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
-                $(document.body).removeClass('sidebar-open');
-            });
-            
+
+        <!-- Scripts -->
+        <script>
             $(document).ready(function() {
+                quicklink.listen();
+
+                // Bootstrap tooltips
+                $('[data-toggle="tooltip"]').tooltip();
+
+				// Keeps the sidebars in view on wider viewports
+				let left = null;
+				let leftParent = null;
+				let right = null;
+				let rightParent = null;
+                function stickSidebars()
+				{
+				    if (left == null) {
+                        left = $('#left-sidebar');
+                        right = $('#right-sidebar');
+                    }
+                    if (left.length) {
+                        if (window.innerWidth >= 768) {
+                            if (leftParent == null) {
+                                leftParent = left.parent()[0];
+                            }
+                            if (leftParent) {
+                                let leftRect = leftParent.getBoundingClientRect();
+                                stickSidebar(left,  leftRect);
+                            }
+                        } else {
+                            left.css('position', 'relative');
+                            if (left.css('bottom') != 0) {
+                                left.css('bottom', '0');
+                            }
+                        }
+                    }
+                    if (right.length) {
+                        if (window.innerWidth >= 768) {
+                            if (rightParent == null) {
+                                rightParent = right.parent()[0];
+                            }
+                            if (rightParent) {
+                                let rightRect = rightParent.getBoundingClientRect();
+                                stickSidebar(right,  rightRect);
+                            }
+                        } else {
+                            right.css('position', 'relative');
+                            if (right.css('bottom') != 0) {
+                                right.css('bottom', '0');
+                            }
+                        }
+                    }
+				}
+				function stickSidebar(sidebar, rect) {
+                    // Bottom
+                    if (rect.bottom > window.innerHeight) {
+                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
+                    } else {
+                        sidebar.css('bottom', 0);
+                    }
+                    // Top
+                    if (rect.top < 0) {
+                        sidebar.css('position', 'sticky');
+                    } else {
+                        sidebar.css('position', 'absolute');
+                    }
+				}
+				$(window).on("load", function() {
+				    stickSidebars();
+				});
+                $(window).scroll(function() {
+				    stickSidebars();
+				});
+				$(window).resize(function() {
+				    stickSidebars();
+				})
+
+                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -177,12 +338,12 @@
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });     
+                });
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.addClass('img-fluid');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -196,40 +357,68 @@
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});			                          
+					});
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-                    
+
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
-                
-                $('pre code').each(function(i, block) {
-                    hljs.highlightBlock(block);
-                });  
-            });
-
-            hljs.initHighlightingOnLoad();
-
-            // Back to top
-            $(window).scroll(function() {
-                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
-                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
-                } else {
-                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
-                }
-            });
-            $('#return-to-top').click(function() {      // When arrow is clicked
-                $('body,html').animate({
-                    scrollTop : 0                       // Scroll to top of body
-                }, 500);
             });
         </script>
+
+        
+
+        <script>
+    anchors.options.placement = 'left';
+    anchors.add();
+
+    // Each <pre> is a horizontal scroll container (Bootstrap sets
+    // overflow: auto), so a button placed inside it scrolls out of view on long
+    // lines. Wrap the block instead and position the button against the
+    // wrapper, which never scrolls.
+    document.querySelectorAll('pre > code').forEach(function (code) {
+        var pre = code.parentNode;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn-copy';
+        button.title = 'Copy to clipboard';
+        button.setAttribute('aria-label', 'Copy to clipboard');
+        button.setAttribute('data-clipboard-snippet', '');
+        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        wrapper.appendChild(button);
+    });
+
+    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+        target: function (trigger) {
+            return trigger.parentNode.querySelector('pre > code');
+        },
+    });
+    clipboardSnippets.on('success', function (e) {
+        var button = e.trigger;
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+        window.setTimeout(function () {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        }, 1500);
+        e.clearSelection();
+    });
+    clipboardSnippets.on('error', function (e) {
+        console.error('Copy failed:', e.action, e.trigger);
+    });
+</script>
+
     </body>
 </html>

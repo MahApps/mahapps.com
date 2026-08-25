@@ -1,0 +1,1400 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
+        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
+        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+	    
+        <!-- Lunr search -->
+
+        
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
+
+
+        <title>MahApps.Metro - HamburgerMenu</title>
+    </head>
+    <body class="d-flex flex-column">
+        <div class="flex-grow-1 d-flex flex-column">
+            <div class="bg-nav">
+                <div class="container-xl py-3">
+                    <div class="row">
+                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
+                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
+    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
+            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
+        <span class="site-title text-primary">MahApps.Metro</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
+        <ul class="navbar-nav mr-auto">
+            
+        </ul>
+        <ul class="navbar-nav">
+            
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/mahapps.com/docs/controls">Controls</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/api">API</a>
+    </li>
+
+
+            <li class="nav-item">
+    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
+</li>
+
+        </ul>
+    </div>
+</nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex-grow-1 d-flex flex-column">
+                    <!-- Titlebar -->
+                    <div id="titlebar" class="py-4">
+                        <div class="container-xl">
+                            <div class="row">
+                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
+                                    <div class="flex-grow-1">
+                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
+
+        <span><a href="/mahapps.com/docs">Documentation</a></span>
+        <span><a href="/mahapps.com/docs/controls">Controls</a></span>
+                                        </div>
+                                        <div class="text-white m-0 text-break title">
+
+HamburgerMenu
+                                        </div>
+                                    </div>
+                                        <div class="navbar navbar-expand-md navbar-dark p-0">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Under title -->
+                    <div id="undertitle">
+                        <div class="container-xl">
+                            <div class="row">
+                                    <div class="col-md-3 col-lg-2">
+                                    </div>
+                                    <div class="col-md-9 col-lg-8 bg-white">
+                                    </div>
+                                <div class="col-lg-2 d-none d-lg-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Body -->
+                <div class="flex-grow-1 d-flex flex-column">
+                        <div class="container-xl flex-grow-1 d-flex flex-column">
+                            <div class="row flex-grow-1 align-items-stretch">
+                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
+                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+
+    <div class="sidebar-root">
+
+<div class="sidebar-nav-item has-children">
+    <a href="/mahapps.com/docs/controls">Controls</a>
+</div>                <div class="sidebar-nav-children">
+
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/badged">Badged Control</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/colorpicker">ColorPicker</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/contentcontrolex">ContentControlEx</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/customvalidationpopup">CustomValidationPopup</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/datetimepicker">DateTimePicker</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/dropdownbutton">DropDownButton</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/flipview">FlipView</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/flyouts">Flyouts</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/fonticon">FontIcon</a>
+</div>
+<div class="sidebar-nav-item active">
+    <a href="/mahapps.com/docs/controls/hamburgermenu">HamburgerMenu</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/hotkeybox">HotKeyBox</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metroanimatedsinglerowtabcontrol">MetroAnimatedSingleRowTabControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metroanimatedtabcontrol">MetroAnimatedTabControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrocontentcontrol">MetroContentControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metroheader">MetroHeader</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metronavigationwindow">MetroNavigationWindow</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metroprogressbar">MetroProgressBar</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrotabcontrol">MetroTabControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrotabitem">MetroTabItem</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/multiselectioncombobox">MultiSelectionComboBox</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/numericupdown">NumericUpDown</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/progressring">ProgressRing</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/rangeslider">RangeSlider</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/splitbutton">SplitButton</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/splitview">SplitView</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/tile">Tile</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/timepicker">TimePicker</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/toggleswitch">ToggleSwitch</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/windowbuttoncommands">WindowButtonCommands</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>                </div>
+
+<div class="sidebar-nav-item has-children">
+    <a href="/mahapps.com/docs/dialogs">Dialogs</a>
+</div>                <div class="sidebar-nav-children">
+
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/message-dialog">Message Dialog</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/input-dialog">Input Dialog</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/login-dialogs">Login Dialog</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/progress-dialogs">Progress Dialog</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/mvvm-dialog">MVVM</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/custom-dialogs">Custom Dialogs</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialogsettings</a>
+</div>                </div>
+
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper">Helper Classes</a>
+</div>    </div>
+                                            </div>
+                                        </div>
+                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
+<p>The <code>HamburgerMenu</code> is a navigation control: a list of destinations in a pane that collapses to a strip of icons, next to the content of whatever is selected. It wraps a <a href="splitview">SplitView</a> for the pane behaviour and adds the item list, the hamburger button, an options list pinned to the bottom, and a content area.</p>
+<p><img src="images/hamburgermenu-anatomy.png" alt="HamburgerMenu anatomy" /></p>
+<p>Because the pane is a <code>SplitView</code>, <code>DisplayMode</code>, <code>PanePlacement</code>, <code>IsPaneOpen</code>, the four pane lengths, <code>CanResizeOpenPane</code> and <code>ResizeThumbStyle</code> behave exactly as described on the <a href="splitview">SplitView page</a> — they are forwarded to it. Two defaults differ: <code>DisplayMode</code> starts at <code>CompactInline</code> instead of <code>Overlay</code>, and <code>OpenPaneLength</code> at <code>240</code> instead of <code>320</code>.</p>
+<h2 id="basic-usage">Basic usage</h2>
+<p>Menu entries come from <code>ItemsSource</code>, usually a <code>HamburgerMenuItemCollection</code> written inline:</p>
+<pre><code class="language-xml">&lt;mah:HamburgerMenu x:Name=&quot;Menu&quot; IsPaneOpen=&quot;True&quot;&gt;
+
+    &lt;mah:HamburgerMenu.ItemsSource&gt;
+        &lt;mah:HamburgerMenuItemCollection&gt;
+            &lt;mah:HamburgerMenuGlyphItem Glyph=&quot;&amp;#xE80F;&quot; Label=&quot;Home&quot; /&gt;
+            &lt;mah:HamburgerMenuGlyphItem Glyph=&quot;&amp;#xE734;&quot; Label=&quot;Favorites&quot; /&gt;
+        &lt;/mah:HamburgerMenuItemCollection&gt;
+    &lt;/mah:HamburgerMenu.ItemsSource&gt;
+
+    &lt;mah:HamburgerMenu.OptionsItemsSource&gt;
+        &lt;mah:HamburgerMenuItemCollection&gt;
+            &lt;mah:HamburgerMenuGlyphItem Glyph=&quot;&amp;#xE713;&quot; Label=&quot;Settings&quot; /&gt;
+        &lt;/mah:HamburgerMenuItemCollection&gt;
+    &lt;/mah:HamburgerMenu.OptionsItemsSource&gt;
+
+&lt;/mah:HamburgerMenu&gt;
+</code></pre>
+<p><strong>MahApps ships no <code>DataTemplate</code> for the menu item types.</strong> Without one the list renders the type name of each item, so an <code>ItemTemplate</code> — or a <code>DataTemplate</code> keyed by <code>DataType</code>, which is what lets a single menu mix item types — is effectively required. Bind the icon column to <code>CompactPaneLength</code> so the icons stay put when the pane opens and closes:</p>
+<pre><code class="language-xml">&lt;DataTemplate DataType=&quot;{x:Type mah:HamburgerMenuGlyphItem}&quot;&gt;
+    &lt;Grid Height=&quot;48&quot;&gt;
+        &lt;Grid.ColumnDefinitions&gt;
+            &lt;ColumnDefinition Width=&quot;{Binding RelativeSource={RelativeSource AncestorType={x:Type mah:HamburgerMenu}}, Path=CompactPaneLength}&quot; /&gt;
+            &lt;ColumnDefinition /&gt;
+        &lt;/Grid.ColumnDefinitions&gt;
+        &lt;TextBlock Grid.Column=&quot;0&quot;
+                   HorizontalAlignment=&quot;Center&quot;
+                   VerticalAlignment=&quot;Center&quot;
+                   FontFamily=&quot;Segoe MDL2 Assets&quot;
+                   FontSize=&quot;16&quot;
+                   Text=&quot;{Binding Glyph}&quot; /&gt;
+        &lt;TextBlock Grid.Column=&quot;1&quot;
+                   VerticalAlignment=&quot;Center&quot;
+                   Text=&quot;{Binding Label}&quot; /&gt;
+    &lt;/Grid&gt;
+&lt;/DataTemplate&gt;
+</code></pre>
+<h2 id="menu-items">Menu items</h2>
+<p>All item types derive from <code>HamburgerMenuItemBase</code>, which is a <code>Freezable</code> — not a <code>UIElement</code>. They carry data, and the templates above turn them into visuals.</p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Adds</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HamburgerMenuItemBase</code></td>
+<td><code>Tag</code>, <code>IsVisible</code></td>
+<td>base of all items</td>
+</tr>
+<tr>
+<td><code>HamburgerMenuItem</code></td>
+<td><code>Label</code>, <code>TargetPageType</code>, <code>Command</code>, <code>CommandParameter</code>, <code>CommandTarget</code>, <code>IsEnabled</code>, <code>ToolTip</code></td>
+<td>a selectable entry</td>
+</tr>
+<tr>
+<td><code>HamburgerMenuGlyphItem</code></td>
+<td><code>Glyph</code> (string)</td>
+<td>entry with a font glyph</td>
+</tr>
+<tr>
+<td><code>HamburgerMenuIconItem</code></td>
+<td><code>Icon</code> (object)</td>
+<td>entry with an arbitrary element as icon</td>
+</tr>
+<tr>
+<td><code>HamburgerMenuImageItem</code></td>
+<td><code>Thumbnail</code> (<code>ImageSource</code>)</td>
+<td>entry with a picture</td>
+</tr>
+<tr>
+<td><code>HamburgerMenuHeaderItem</code></td>
+<td><code>Label</code></td>
+<td>a non-selectable group caption</td>
+</tr>
+<tr>
+<td><code>HamburgerMenuSeparatorItem</code></td>
+<td>—</td>
+<td>a divider line</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/hamburgermenu-itemtypes.png" alt="Item types" /></p>
+<p>Header and separator items are not selectable, but they <em>do</em> occupy an index. Watch out when setting <code>SelectedIndex</code> by hand: in the menu above index 0 is the <code>LIBRARY</code> header, so the first real entry is index 1.</p>
+<pre><code class="language-xml">&lt;mah:HamburgerMenu.ItemsSource&gt;
+    &lt;mah:HamburgerMenuItemCollection&gt;
+        &lt;mah:HamburgerMenuHeaderItem Label=&quot;LIBRARY&quot; /&gt;
+        &lt;mah:HamburgerMenuGlyphItem Glyph=&quot;&amp;#xE80F;&quot; Label=&quot;Home&quot; /&gt;
+        &lt;mah:HamburgerMenuGlyphItem Glyph=&quot;&amp;#xE734;&quot; Label=&quot;Favorites&quot; /&gt;
+        &lt;mah:HamburgerMenuSeparatorItem /&gt;
+        &lt;mah:HamburgerMenuHeaderItem Label=&quot;ACCOUNT&quot; /&gt;
+        &lt;mah:HamburgerMenuIconItem Label=&quot;Mail&quot;&gt;
+            &lt;mah:HamburgerMenuIconItem.Icon&gt;
+                &lt;TextBlock FontFamily=&quot;Segoe MDL2 Assets&quot; Text=&quot;&amp;#xE715;&quot; /&gt;
+            &lt;/mah:HamburgerMenuIconItem.Icon&gt;
+        &lt;/mah:HamburgerMenuIconItem&gt;
+        &lt;mah:HamburgerMenuImageItem Label=&quot;Profile&quot; Thumbnail=&quot;/assets/avatar.png&quot; /&gt;
+    &lt;/mah:HamburgerMenuItemCollection&gt;
+&lt;/mah:HamburgerMenu.ItemsSource&gt;
+</code></pre>
+<p><code>Items</code> and <code>OptionsItems</code> expose the generated <code>ItemCollection</code> in code, the same way <code>ItemsControl.Items</code> does.</p>
+<h2 id="opening-and-closing-the-pane">Opening and closing the pane</h2>
+<p><code>IsPaneOpen</code> expands the pane; the hamburger button toggles it for you.</p>
+<p><img src="images/hamburgermenu-ispaneopen.png" alt="IsPaneOpen" /></p>
+<p><img src="images/hamburgermenu.gif" alt="HamburgerMenu" /></p>
+<p><code>PanePlacement</code> moves the whole pane to the other side:</p>
+<p><img src="images/hamburgermenu-paneplacement.png" alt="PanePlacement" /></p>
+<p><code>VerticalScrollBarOnLeftSide</code> puts the item list's scroll bar on the left, which reads better when the pane sits on the right.</p>
+<h2 id="the-hamburger-button-and-the-pane-header">The hamburger button and the pane header</h2>
+<p><code>HamburgerMenuHeaderTemplate</code> fills the strip at the top of the pane, next to — or instead of — the hamburger button. Set <code>HamburgerVisibility</code> to <code>Collapsed</code> when your own toggle lives elsewhere.</p>
+<p><img src="images/hamburgermenu-header.png" alt="Pane header" /></p>
+<pre><code class="language-xml">&lt;mah:HamburgerMenu HamburgerVisibility=&quot;Collapsed&quot;&gt;
+    &lt;mah:HamburgerMenu.HamburgerMenuHeaderTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;TextBlock Margin=&quot;12 0&quot;
+                       VerticalAlignment=&quot;Center&quot;
+                       FontSize=&quot;16&quot;
+                       Foreground=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot;
+                       Text=&quot;My App&quot; /&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/mah:HamburgerMenu.HamburgerMenuHeaderTemplate&gt;
+&lt;/mah:HamburgerMenu&gt;
+</code></pre>
+<p><code>HamburgerWidth</code>, <code>HamburgerHeight</code> and <code>HamburgerMargin</code> size the button, <code>HamburgerButtonStyle</code> and <code>HamburgerButtonTemplate</code> restyle it, and <code>HamburgerButtonName</code> and <code>HamburgerButtonHelpText</code> feed <code>AutomationProperties.Name</code> and <code>AutomationProperties.HelpText</code> for screen readers.</p>
+<h2 id="options">Options</h2>
+<p><code>OptionsItemsSource</code> fills a second list pinned to the bottom of the pane — the conventional place for settings or an account entry. It has its own <code>OptionsItemTemplate</code>, <code>OptionsItemTemplateSelector</code>, <code>OptionsItemContainerStyle</code>, <code>SelectedOptionsItem</code>, <code>SelectedOptionsIndex</code>, <code>OptionsItemCommand</code> and <code>OptionsItemCommandParameter</code>.</p>
+<p><img src="images/hamburgermenu-options.png" alt="Options" /></p>
+<p><strong><code>OptionsVisibility</code> no longer does anything.</strong> It used to: the control template bound the options container's <code>Visibility</code> to it, and that worked up to and including MahApps.Metro 1.4.2. The binding was dropped in 1.5.0 when the pane's scroll bar behaviour was reworked (<a href="https://github.com/MahApps/MahApps.Metro/pull/2914">#2914</a>) and never restored, so the property has been inert since. It is still there, still settable, and still ignored.</p>
+<p>To leave the options block out, simply do not assign <code>OptionsItemsSource</code> — that is the difference shown above.</p>
+<h2 id="selection-content-and-navigation">Selection, content and navigation</h2>
+<p><code>SelectedItem</code> and <code>SelectedIndex</code> track the item list, <code>SelectedOptionsItem</code> and <code>SelectedOptionsIndex</code> the options list.</p>
+<p><strong>Setting <code>SelectedIndex</code> in XAML does not fill the content area.</strong> The control assigns <code>Content</code> only when an item is actually invoked, so a menu that starts on index 0 comes up with an empty content area. That is why the samples wire up <code>ItemInvoked</code>:</p>
+<pre><code class="language-csharp">private void Menu_ItemInvoked(object sender, HamburgerMenuItemInvokedEventArgs e)
+{
+    this.Menu.Content = e.InvokedItem;
+}
+</code></pre>
+<p>If you would rather stay declarative, bind <code>Content</code> to the selection instead:</p>
+<pre><code class="language-xml">&lt;mah:HamburgerMenu x:Name=&quot;Menu&quot;
+                   SelectedIndex=&quot;0&quot;
+                   Content=&quot;{Binding RelativeSource={RelativeSource Self}, Path=SelectedItem}&quot; /&gt;
+</code></pre>
+<p>Either way a <code>ContentTemplate</code> renders whatever ends up in <code>Content</code>. The common pattern is to park the view for each entry in the item's <code>Tag</code> and unwrap it there:</p>
+<pre><code class="language-xml">&lt;mah:HamburgerMenu.ContentTemplate&gt;
+    &lt;DataTemplate DataType=&quot;{x:Type mah:HamburgerMenuIconItem}&quot;&gt;
+        &lt;Grid Margin=&quot;20 0 10 0&quot;&gt;
+            &lt;Grid.RowDefinitions&gt;
+                &lt;RowDefinition Height=&quot;Auto&quot; /&gt;
+                &lt;RowDefinition Height=&quot;*&quot; /&gt;
+            &lt;/Grid.RowDefinitions&gt;
+            &lt;TextBlock Grid.Row=&quot;0&quot;
+                       Margin=&quot;0 15 0 5&quot;
+                       FontFamily=&quot;{DynamicResource MahApps.Fonts.Family.Header}&quot;
+                       FontSize=&quot;{DynamicResource MahApps.Font.Size.Header}&quot;
+                       Text=&quot;{Binding Label}&quot; /&gt;
+            &lt;ContentControl Grid.Row=&quot;1&quot; Content=&quot;{Binding Tag}&quot; Focusable=&quot;False&quot; /&gt;
+        &lt;/Grid&gt;
+    &lt;/DataTemplate&gt;
+&lt;/mah:HamburgerMenu.ContentTemplate&gt;
+</code></pre>
+<h3 id="a-complete-navigation-example">A complete navigation example</h3>
+<p>This sample goes further than the snippets above: the menu is bound to a view model, and a <code>Frame</code> inside the content area does the navigating, which also gives the window's back button a back stack to work with. The complete sample is available at <a href="https://github.com/punker76/code-samples/tree/main/MahAppsMetroHamburgerMenuNavigation">this repository</a>.</p>
+<p><img src="images/hamburgermenunavi.gif" alt="Navigation" /></p>
+<pre><code class="language-xml">&lt;controls:MetroWindow x:Class=&quot;MahAppsMetroHamburgerMenuNavigation.MainWindow&quot;
+                      xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+                      xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+                      xmlns:controls=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
+                      xmlns:d=&quot;http://schemas.microsoft.com/expression/blend/2008&quot;
+                      xmlns:mc=&quot;http://schemas.openxmlformats.org/markup-compatibility/2006&quot;
+                      xmlns:viewModels=&quot;clr-namespace:MahAppsMetroHamburgerMenuNavigation.ViewModels&quot;
+                      Title=&quot;MainWindow&quot;
+                      Width=&quot;600&quot;
+                      Height=&quot;450&quot;
+                      GlowBrush=&quot;{DynamicResource MahApps.Brushes.AccentBase}&quot;
+                      WindowStartupLocation=&quot;CenterScreen&quot;
+                      WindowTransitionsEnabled=&quot;False&quot;
+                      mc:Ignorable=&quot;d&quot;&gt;
+
+  &lt;controls:MetroWindow.DataContext&gt;
+    &lt;viewModels:ShellViewModel /&gt;
+  &lt;/controls:MetroWindow.DataContext&gt;
+
+  &lt;controls:MetroWindow.LeftWindowCommands&gt;
+    &lt;controls:WindowCommands ShowSeparators=&quot;False&quot;&gt;
+      &lt;Button x:Name=&quot;GoBackButton&quot;
+              Width=&quot;{Binding ElementName=HamburgerMenuControl, Path=CompactPaneLength}&quot;
+              AutomationProperties.Name=&quot;Go back&quot;
+              Click=&quot;GoBack_OnClick&quot;&gt;
+        &lt;controls:FontIcon AutomationProperties.Name=&quot;Go back icon&quot;
+                           FontSize=&quot;14&quot;
+                           Glyph=&quot;&amp;#xE72B;&quot; /&gt;
+      &lt;/Button&gt;
+    &lt;/controls:WindowCommands&gt;
+  &lt;/controls:MetroWindow.LeftWindowCommands&gt;
+
+  &lt;controls:MetroWindow.Resources&gt;
+
+    &lt;DataTemplate x:Key=&quot;MenuItemTemplate&quot; DataType=&quot;{x:Type viewModels:MenuItem}&quot;&gt;
+      &lt;Grid Height=&quot;48&quot;&gt;
+        &lt;Grid.ColumnDefinitions&gt;
+          &lt;ColumnDefinition Width=&quot;{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:HamburgerMenu}}, Path=CompactPaneLength, Mode=OneWay}&quot; /&gt;
+          &lt;ColumnDefinition /&gt;
+        &lt;/Grid.ColumnDefinitions&gt;
+        &lt;ContentControl Grid.Column=&quot;0&quot;
+                        HorizontalAlignment=&quot;Center&quot;
+                        VerticalAlignment=&quot;Center&quot;
+                        Content=&quot;{Binding Icon}&quot;
+                        Focusable=&quot;False&quot; /&gt;
+        &lt;TextBlock Grid.Column=&quot;1&quot;
+                   VerticalAlignment=&quot;Center&quot;
+                   FontSize=&quot;16&quot;
+                   Text=&quot;{Binding Label}&quot; /&gt;
+      &lt;/Grid&gt;
+    &lt;/DataTemplate&gt;
+
+    &lt;Style BasedOn=&quot;{StaticResource {x:Type Frame}}&quot; TargetType=&quot;{x:Type Frame}&quot;&gt;
+      &lt;Setter Property=&quot;Background&quot; Value=&quot;{DynamicResource MahApps.Brushes.Accent4}&quot; /&gt;
+      &lt;Setter Property=&quot;ClipToBounds&quot; Value=&quot;True&quot; /&gt;
+      &lt;Setter Property=&quot;ContentTemplate&quot;&gt;
+        &lt;Setter.Value&gt;
+          &lt;DataTemplate&gt;
+            &lt;controls:TransitioningContentControl Content=&quot;{Binding}&quot;
+                                                  RestartTransitionOnContentChange=&quot;True&quot;
+                                                  Transition=&quot;Custom&quot;&gt;
+              &lt;controls:TransitioningContentControl.CustomVisualStates&gt;
+                &lt;VisualState x:Name=&quot;CustomTransition&quot;&gt;
+                  &lt;Storyboard&gt;
+                    &lt;DoubleAnimationUsingKeyFrames BeginTime=&quot;00:00:00&quot;
+                                                   Storyboard.TargetName=&quot;CurrentContentPresentationSite&quot;
+                                                   Storyboard.TargetProperty=&quot;(UIElement.Opacity)&quot;&gt;
+                      &lt;SplineDoubleKeyFrame KeyTime=&quot;00:00:00&quot; Value=&quot;0&quot; /&gt;
+                      &lt;SplineDoubleKeyFrame KeyTime=&quot;00:00:00.150&quot; Value=&quot;1&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+                    &lt;DoubleAnimationUsingKeyFrames BeginTime=&quot;00:00:00&quot;
+                                                   Storyboard.TargetName=&quot;CurrentContentPresentationSite&quot;
+                                                   Storyboard.TargetProperty=&quot;(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)&quot;&gt;
+                      &lt;SplineDoubleKeyFrame KeyTime=&quot;00:00:00&quot; Value=&quot;200&quot; /&gt;
+                      &lt;SplineDoubleKeyFrame KeySpline=&quot;0.1, 0.9, 0.2, 1&quot;
+                                            KeyTime=&quot;00:00:00.300&quot;
+                                            Value=&quot;0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+
+                    &lt;DoubleAnimationUsingKeyFrames BeginTime=&quot;00:00:00&quot;
+                                                   Storyboard.TargetName=&quot;PreviousContentPresentationSite&quot;
+                                                   Storyboard.TargetProperty=&quot;(UIElement.Opacity)&quot;&gt;
+                      &lt;SplineDoubleKeyFrame KeyTime=&quot;00:00:00&quot; Value=&quot;0&quot; /&gt;
+                    &lt;/DoubleAnimationUsingKeyFrames&gt;
+                  &lt;/Storyboard&gt;
+                &lt;/VisualState&gt;
+              &lt;/controls:TransitioningContentControl.CustomVisualStates&gt;
+            &lt;/controls:TransitioningContentControl&gt;
+          &lt;/DataTemplate&gt;
+        &lt;/Setter.Value&gt;
+      &lt;/Setter&gt;
+    &lt;/Style&gt;
+
+  &lt;/controls:MetroWindow.Resources&gt;
+
+  &lt;controls:HamburgerMenu x:Name=&quot;HamburgerMenuControl&quot;
+                          DisplayMode=&quot;CompactInline&quot;
+                          IsPaneOpen=&quot;False&quot;
+                          ItemInvoked=&quot;HamburgerMenuControl_OnItemInvoked&quot;
+                          ItemTemplate=&quot;{StaticResource MenuItemTemplate}&quot;
+                          ItemsSource=&quot;{Binding Menu}&quot;
+                          OptionsItemTemplate=&quot;{StaticResource MenuItemTemplate}&quot;
+                          OptionsItemsSource=&quot;{Binding OptionsMenu}&quot; /&gt;
+
+&lt;/controls:MetroWindow&gt;
+</code></pre>
+<p>Using this Frame object, you can navigate to your pages by using the following code.</p>
+<pre><code class="language-csharp">using System;
+using System.Linq;
+using System.Windows;
+using System.Windows.Navigation;
+using MahApps.Metro.Controls;
+using MenuItem = MahAppsMetroHamburgerMenuNavigation.ViewModels.MenuItem;
+
+namespace MahAppsMetroHamburgerMenuNavigation
+{
+  /// &lt;summary&gt;
+  /// Interaction logic for MainWindow.xaml
+  /// &lt;/summary&gt;
+  public partial class MainWindow : MetroWindow
+  {
+    private readonly Navigation.NavigationServiceEx navigationServiceEx;
+
+    public MainWindow()
+    {
+      this.InitializeComponent();
+
+      this.navigationServiceEx = new Navigation.NavigationServiceEx();
+      this.navigationServiceEx.Navigated += this.NavigationServiceEx_OnNavigated;
+      this.HamburgerMenuControl.Content = this.navigationServiceEx.Frame;
+
+      // Navigate to the home page.
+      this.Loaded += (sender, args) =&gt; this.navigationServiceEx.Navigate(new Uri(&quot;Views/MainPage.xaml&quot;, UriKind.RelativeOrAbsolute));
+    }
+
+    private void HamburgerMenuControl_OnItemInvoked(object sender, HamburgerMenuItemInvokedEventArgs e)
+    {
+      if (e.InvokedItem is MenuItem menuItem &amp;&amp; menuItem.IsNavigation)
+      {
+        this.navigationServiceEx.Navigate(menuItem.NavigationDestination);
+      }
+    }
+
+    private void NavigationServiceEx_OnNavigated(object sender, NavigationEventArgs e)
+    {
+      // select the menu item
+      this.HamburgerMenuControl.SelectedItem = this.HamburgerMenuControl
+                                                   .Items
+                                                   .OfType&lt;MenuItem&gt;()
+                                                   .FirstOrDefault(x =&gt; x.NavigationDestination == e.Uri);
+      this.HamburgerMenuControl.SelectedOptionsItem = this.HamburgerMenuControl
+                                                          .OptionsItems
+                                                          .OfType&lt;MenuItem&gt;()
+                                                          .FirstOrDefault(x =&gt; x.NavigationDestination == e.Uri);
+
+      // or when using the NavigationType on menu item
+      // this.HamburgerMenuControl.SelectedItem = this.HamburgerMenuControl
+      //                                              .Items
+      //                                              .OfType&lt;MenuItem&gt;()
+      //                                              .FirstOrDefault(x =&gt; x.NavigationType == e.Content?.GetType());
+      // this.HamburgerMenuControl.SelectedOptionsItem = this.HamburgerMenuControl
+      //                                                     .OptionsItems
+      //                                                     .OfType&lt;MenuItem&gt;()
+      //                                                     .FirstOrDefault(x =&gt; x.NavigationType == e.Content?.GetType());
+
+      // update back button
+      this.GoBackButton.Visibility = this.navigationServiceEx.CanGoBack ? Visibility.Visible : Visibility.Collapsed;
+    }
+
+    private void GoBack_OnClick(object sender, RoutedEventArgs e)
+    {
+      this.navigationServiceEx.GoBack();
+    }
+  }
+}
+</code></pre>
+<p>The <code>MenuItem</code> is derived from the <code>HamburgerMenuIconItem</code> class and adds the <code>NavigationDestination</code> and <code>NavigationType</code> properties for this navigation sample.</p>
+<pre><code class="language-csharp">using System;
+using System.Windows;
+using MahApps.Metro.Controls;
+
+namespace MahAppsMetroHamburgerMenuNavigation.ViewModels
+{
+  public class MenuItem : HamburgerMenuIconItem
+  {
+    public static readonly DependencyProperty NavigationDestinationProperty = DependencyProperty.Register(
+      nameof(NavigationDestination), typeof(Uri), typeof(MenuItem), new PropertyMetadata(default(Uri)));
+
+    public Uri NavigationDestination
+    {
+      get =&gt; (Uri)this.GetValue(NavigationDestinationProperty);
+      set =&gt; this.SetValue(NavigationDestinationProperty, value);
+    }
+
+    public static readonly DependencyProperty NavigationTypeProperty = DependencyProperty.Register(
+      nameof(NavigationType), typeof(Type), typeof(MenuItem), new PropertyMetadata(default(Type)));
+
+    public Type NavigationType
+    {
+      get =&gt; (Type)this.GetValue(NavigationTypeProperty);
+      set =&gt; this.SetValue(NavigationTypeProperty, value);
+    }
+
+    public bool IsNavigation =&gt; this.NavigationDestination != null;
+  }
+}
+</code></pre>
+<p>The <code>ShellViewModel</code> defines the Items and OptionsItems for the <code>HamburgerMenu</code>. The <code>BindableBase</code> class implements the <code>INotifyPropertyChanged</code> with a helper method <code>SetProperty</code>. This sample uses the <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">IconPacks</a> NuGet package, so you need to add this to your project.</p>
+<pre><code class="language-csharp">using System;
+using System.Collections.ObjectModel;
+using MahApps.Metro.IconPacks;
+using MahAppsMetroHamburgerMenuNavigation.Mvvm;
+using MahAppsMetroHamburgerMenuNavigation.Views;
+
+namespace MahAppsMetroHamburgerMenuNavigation.ViewModels
+{
+  public class ShellViewModel : BindableBase
+  {
+    private static readonly ObservableCollection&lt;MenuItem&gt; AppMenu = new ObservableCollection&lt;MenuItem&gt;();
+    private static readonly ObservableCollection&lt;MenuItem&gt; AppOptionsMenu = new ObservableCollection&lt;MenuItem&gt;();
+
+    public ObservableCollection&lt;MenuItem&gt; Menu =&gt; AppMenu;
+
+    public ObservableCollection&lt;MenuItem&gt; OptionsMenu =&gt; AppOptionsMenu;
+
+    public ShellViewModel()
+    {
+      // Build the menus
+      this.Menu.Add(new MenuItem()
+                    {
+                      Icon = new PackIconFontAwesome() { Kind = PackIconFontAwesomeKind.BugSolid },
+                      Label = &quot;Bugs&quot;,
+                      NavigationType = typeof(BugsPage),
+                      NavigationDestination = new Uri(&quot;Views/BugsPage.xaml&quot;, UriKind.RelativeOrAbsolute)
+                    });
+      this.Menu.Add(new MenuItem()
+                    {
+                      Icon = new PackIconFontAwesome() { Kind = PackIconFontAwesomeKind.UserSolid },
+                      Label = &quot;User&quot;,
+                      NavigationType = typeof(UserPage),
+                      NavigationDestination = new Uri(&quot;Views/UserPage.xaml&quot;, UriKind.RelativeOrAbsolute)
+                    });
+      this.Menu.Add(new MenuItem()
+                    {
+                      Icon = new PackIconFontAwesome() { Kind = PackIconFontAwesomeKind.CoffeeSolid },
+                      Label = &quot;Break&quot;,
+                      NavigationType = typeof(BreakPage),
+                      NavigationDestination = new Uri(&quot;Views/BreakPage.xaml&quot;, UriKind.RelativeOrAbsolute)
+                    });
+      this.Menu.Add(new MenuItem()
+                    {
+                      Icon = new PackIconFontAwesome() { Kind = PackIconFontAwesomeKind.FontAwesomeBrands },
+                      Label = &quot;Awesome&quot;,
+                      NavigationType = typeof(AwesomePage),
+                      NavigationDestination = new Uri(&quot;Views/AwesomePage.xaml&quot;, UriKind.RelativeOrAbsolute)
+                    });
+
+      this.OptionsMenu.Add(new MenuItem()
+                           {
+                             Icon = new PackIconFontAwesome() { Kind = PackIconFontAwesomeKind.CogsSolid },
+                             Label = &quot;Settings&quot;,
+                             NavigationType = typeof(SettingsPage),
+                             NavigationDestination = new Uri(&quot;Views/SettingsPage.xaml&quot;, UriKind.RelativeOrAbsolute)
+                           });
+      this.OptionsMenu.Add(new MenuItem()
+                           {
+                             Icon = new PackIconFontAwesome() { Kind = PackIconFontAwesomeKind.InfoCircleSolid },
+                             Label = &quot;About&quot;,
+                             NavigationType = typeof(AboutPage),
+                             NavigationDestination = new Uri(&quot;Views/AboutPage.xaml&quot;, UriKind.RelativeOrAbsolute)
+                           });
+    }
+  }
+}
+</code></pre>
+<p>The <code>NavigationServiceEx</code> is a helper class with a Frame to allow easy navigation in this sample.</p>
+<pre><code class="language-csharp">using System;
+using System.Windows.Controls;
+using System.Windows.Navigation;
+
+namespace MahAppsMetroHamburgerMenuNavigation.Navigation
+{
+  public class NavigationServiceEx
+  {
+    public event NavigatedEventHandler Navigated;
+
+    public event NavigationFailedEventHandler NavigationFailed;
+
+    private Frame _frame;
+
+    public Frame Frame
+    {
+      get
+      {
+        if (this._frame == null)
+        {
+          this._frame = new Frame() { NavigationUIVisibility = NavigationUIVisibility.Hidden };
+          this.RegisterFrameEvents();
+        }
+
+        return this._frame;
+      }
+      set
+      {
+        this.UnregisterFrameEvents();
+        this._frame = value;
+        this.RegisterFrameEvents();
+      }
+    }
+
+    public bool CanGoBack =&gt; this.Frame.CanGoBack;
+
+    public bool CanGoForward =&gt; this.Frame.CanGoForward;
+
+    public void GoBack() =&gt; this.Frame.GoBack();
+
+    public void GoForward() =&gt; this.Frame.GoForward();
+
+    public bool Navigate(Uri sourcePageUri, object extraData = null)
+    {
+      if (this.Frame.CurrentSource != sourcePageUri)
+      {
+        return this.Frame.Navigate(sourcePageUri, extraData);
+      }
+
+      return false;
+    }
+
+    public bool Navigate(Type sourceType)
+    {
+      if (this.Frame.NavigationService?.Content?.GetType() != sourceType)
+      {
+        return this.Frame.Navigate(Activator.CreateInstance(sourceType));
+      }
+
+      return false;
+    }
+
+    private void RegisterFrameEvents()
+    {
+      if (this._frame != null)
+      {
+        this._frame.Navigated += this.Frame_Navigated;
+        this._frame.NavigationFailed += this.Frame_NavigationFailed;
+      }
+    }
+
+    private void UnregisterFrameEvents()
+    {
+      if (this._frame != null)
+      {
+        this._frame.Navigated -= this.Frame_Navigated;
+        this._frame.NavigationFailed -= this.Frame_NavigationFailed;
+      }
+    }
+
+    private void Frame_NavigationFailed(object sender, NavigationFailedEventArgs e) =&gt; this.NavigationFailed?.Invoke(sender, e);
+
+    private void Frame_Navigated(object sender, NavigationEventArgs e) =&gt; this.Navigated?.Invoke(sender, e);
+  }
+}
+</code></pre>
+<p><code>ContentTransition</code> picks the animation the underlying <code>TransitioningContentControl</code> plays on every content change: <code>Default</code>, <code>Normal</code>, <code>Up</code>, <code>Down</code>, <code>Left</code>, <code>LeftReplace</code>, <code>Right</code> or <code>RightReplace</code>.</p>
+<p>Instead of handling events you can let each item carry a <code>Command</code>, or give the menu a single <code>ItemCommand</code> (and <code>OptionsItemCommand</code>) that receives the clicked item.</p>
+<h2 id="styling">Styling</h2>
+<p>MahApps ships two styles for the control:</p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Look</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.HamburgerMenu</code></td>
+<td>the default: dark pane, selected entry filled with the accent colour</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.HamburgerMenu.CreatorsUpdate</code></td>
+<td>pane in the theme background, selection marked by an accent bar (<code>ShowSelectionIndicator=&quot;True&quot;</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/hamburgermenu-selectionindicator.png" alt="Selection indicator" /></p>
+<p><code>ShowSelectionIndicator</code> alone turns the indicator on for the default style too. <code>PaneBackground</code> and <code>PaneForeground</code> recolour the pane, <code>PaneMargin</code> and <code>PaneHeaderMargin</code> adjust its spacing.</p>
+<p>Per-row appearance is governed by <code>ItemContainerStyle</code>, <code>HeaderItemContainerStyle</code>, <code>SeparatorItemContainerStyle</code> and <code>OptionsItemContainerStyle</code>; all target <code>ListBoxItem</code>. Base your own on the MahApps ones so you keep the selection and hover brushes, which come from <code>ItemHelper</code> attached properties:</p>
+<pre><code class="language-xml">&lt;Style x:Key=&quot;MyItemStyle&quot;
+       BasedOn=&quot;{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}&quot;
+       TargetType=&quot;{x:Type ListBoxItem}&quot;&gt;
+    &lt;Setter Property=&quot;mah:ItemHelper.SelectedForegroundBrush&quot; Value=&quot;{DynamicResource MahApps.Brushes.AccentBase}&quot; /&gt;
+    &lt;Setter Property=&quot;mah:ItemHelper.HoverBackgroundBrush&quot; Value=&quot;{DynamicResource MahApps.Brushes.Gray.SemiTransparent}&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<h3 id="material-design-ripple">Material Design ripple</h3>
+<p>The demo application also ships a variant that borrows the ripple effect from <a href="https://github.com/MaterialDesignInXAML/MaterialDesignInXamlToolkit">MaterialDesignThemes</a>. The trick is a container style whose template puts a <code>materialDesign:Ripple</code> where the <code>ContentPresenter</code> normally goes:</p>
+<pre><code class="language-xml">&lt;Style x:Key=&quot;MahApps.Styles.ListBoxItem.HamburgerMenuItem.Ripple&quot;
+       BasedOn=&quot;{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}&quot;
+       TargetType=&quot;{x:Type ListBoxItem}&quot;&gt;
+    &lt;Setter Property=&quot;Template&quot;&gt;
+        &lt;Setter.Value&gt;
+            &lt;ControlTemplate TargetType=&quot;{x:Type ListBoxItem}&quot;&gt;
+                &lt;!-- ... border and selection indicator ... --&gt;
+                &lt;materialDesign:Ripple Padding=&quot;{TemplateBinding Padding}&quot;
+                                       Content=&quot;{TemplateBinding Content}&quot;
+                                       ContentTemplate=&quot;{TemplateBinding ContentTemplate}&quot;
+                                       Feedback=&quot;{DynamicResource MahApps.Brushes.Gray.MouseOver}&quot;
+                                       Focusable=&quot;False&quot; /&gt;
+            &lt;/ControlTemplate&gt;
+        &lt;/Setter.Value&gt;
+    &lt;/Setter&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>The full template, including all selection and hover triggers, is in <code>HamburgerMenuRipple.xaml</code> in the MahApps demo. The effect itself is an animation on click, so it does not show in a screenshot; visually the style otherwise matches the Creators Update look above.</p>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Event args</th>
+<th>Raised when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ItemClick</code></td>
+<td><code>ItemClickEventArgs</code> (<code>ClickedItem</code>)</td>
+<td>an entry in the item list is clicked</td>
+</tr>
+<tr>
+<td><code>OptionsItemClick</code></td>
+<td><code>ItemClickEventArgs</code> (<code>ClickedItem</code>)</td>
+<td>an entry in the options list is clicked</td>
+</tr>
+<tr>
+<td><code>ItemInvoked</code></td>
+<td><code>HamburgerMenuItemInvokedEventArgs</code> (<code>InvokedItem</code>, <code>IsItemOptions</code>)</td>
+<td>either list invokes an entry</td>
+</tr>
+<tr>
+<td><code>HamburgerButtonClick</code></td>
+<td><code>RoutedEventArgs</code></td>
+<td>the hamburger button is clicked</td>
+</tr>
+</tbody>
+</table>
+<p><code>ItemInvoked</code> is the one to prefer for navigation: it fires for both lists and tells you which one through <code>IsItemOptions</code>.</p>
+<h2 id="property-reference">Property reference</h2>
+<h3 id="pane-forwarded-to-the-splitview">Pane, forwarded to the SplitView</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Effective default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DisplayMode</code></td>
+<td><code>SplitViewDisplayMode</code></td>
+<td><code>CompactInline</code></td>
+</tr>
+<tr>
+<td><code>PanePlacement</code></td>
+<td><code>SplitViewPanePlacement</code></td>
+<td><code>Left</code></td>
+</tr>
+<tr>
+<td><code>IsPaneOpen</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>OpenPaneLength</code></td>
+<td><code>double</code></td>
+<td><code>240</code></td>
+</tr>
+<tr>
+<td><code>CompactPaneLength</code></td>
+<td><code>double</code></td>
+<td><code>48</code></td>
+</tr>
+<tr>
+<td><code>MinimumOpenPaneLength</code></td>
+<td><code>double</code></td>
+<td><code>100</code></td>
+</tr>
+<tr>
+<td><code>MaximumOpenPaneLength</code></td>
+<td><code>double</code></td>
+<td><code>500</code></td>
+</tr>
+<tr>
+<td><code>CanResizeOpenPane</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>ResizeThumbStyle</code></td>
+<td><code>Style</code></td>
+<td><code>MahApps.Styles.MetroThumb.SplitView.Resize</code></td>
+</tr>
+<tr>
+<td><code>PaneBackground</code></td>
+<td><code>Brush</code></td>
+<td><code>MahApps.HamburgerMenu.Pane.Background</code></td>
+</tr>
+<tr>
+<td><code>PaneForeground</code></td>
+<td><code>Brush</code></td>
+<td><code>MahApps.HamburgerMenu.Pane.Foreground</code></td>
+</tr>
+<tr>
+<td><code>PaneMargin</code></td>
+<td><code>Thickness</code></td>
+<td><code>0 0 0 8</code></td>
+</tr>
+<tr>
+<td><code>PaneHeaderMargin</code></td>
+<td><code>Thickness</code></td>
+<td><code>0 0 0 8</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="items">Items</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Effective default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ItemsSource</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>Items</code></td>
+<td><code>ItemCollection</code></td>
+<td>read-only</td>
+</tr>
+<tr>
+<td><code>ItemTemplate</code></td>
+<td><code>DataTemplate</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>ItemTemplateSelector</code></td>
+<td><code>DataTemplateSelector</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>ItemContainerStyle</code></td>
+<td><code>Style</code></td>
+<td><code>MahApps.Styles.ListBoxItem.HamburgerMenuItem</code></td>
+</tr>
+<tr>
+<td><code>HeaderItemContainerStyle</code></td>
+<td><code>Style</code></td>
+<td><code>MahApps.Styles.ListBoxItem.HamburgerMenuHeader</code></td>
+</tr>
+<tr>
+<td><code>SeparatorItemContainerStyle</code></td>
+<td><code>Style</code></td>
+<td><code>MahApps.Styles.ListBoxItem.HamburgerMenuSeparator</code></td>
+</tr>
+<tr>
+<td><code>SelectedItem</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>SelectedIndex</code></td>
+<td><code>int</code></td>
+<td><code>-1</code></td>
+</tr>
+<tr>
+<td><code>ItemCommand</code></td>
+<td><code>ICommand</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>ItemCommandParameter</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>ShowSelectionIndicator</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>VerticalScrollBarOnLeftSide</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>ItemFocusVisualStyle</code></td>
+<td><code>Style</code></td>
+<td>read-only, recalculated by the control</td>
+</tr>
+</tbody>
+</table>
+<h3 id="options-1">Options</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Effective default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OptionsItemsSource</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>OptionsItems</code></td>
+<td><code>ItemCollection</code></td>
+<td>read-only</td>
+</tr>
+<tr>
+<td><code>OptionsItemTemplate</code></td>
+<td><code>DataTemplate</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>OptionsItemTemplateSelector</code></td>
+<td><code>DataTemplateSelector</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>OptionsItemContainerStyle</code></td>
+<td><code>Style</code></td>
+<td><code>MahApps.Styles.ListBoxItem.HamburgerMenuItem</code></td>
+</tr>
+<tr>
+<td><code>SelectedOptionsItem</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>SelectedOptionsIndex</code></td>
+<td><code>int</code></td>
+<td><code>-1</code></td>
+</tr>
+<tr>
+<td><code>OptionsItemCommand</code></td>
+<td><code>ICommand</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>OptionsItemCommandParameter</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>OptionsVisibility</code></td>
+<td><code>Visibility</code></td>
+<td><code>Visible</code> — inert since 1.5.0, see above</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hamburger-button-header-and-content">Hamburger button, header and content</h3>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Effective default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HamburgerWidth</code></td>
+<td><code>double</code></td>
+<td><code>48</code></td>
+</tr>
+<tr>
+<td><code>HamburgerHeight</code></td>
+<td><code>double</code></td>
+<td><code>48</code></td>
+</tr>
+<tr>
+<td><code>HamburgerMargin</code></td>
+<td><code>Thickness</code></td>
+<td><code>0</code></td>
+</tr>
+<tr>
+<td><code>HamburgerVisibility</code></td>
+<td><code>Visibility</code></td>
+<td><code>Visible</code></td>
+</tr>
+<tr>
+<td><code>HamburgerButtonStyle</code></td>
+<td><code>Style</code></td>
+<td><code>MahApps.Styles.Button.Hamburger</code></td>
+</tr>
+<tr>
+<td><code>HamburgerButtonTemplate</code></td>
+<td><code>DataTemplate</code></td>
+<td>set by the default style</td>
+</tr>
+<tr>
+<td><code>HamburgerButtonName</code></td>
+<td><code>string</code></td>
+<td><code>HamburgerButton</code></td>
+</tr>
+<tr>
+<td><code>HamburgerButtonHelpText</code></td>
+<td><code>string</code></td>
+<td>empty</td>
+</tr>
+<tr>
+<td><code>HamburgerMenuHeaderTemplate</code></td>
+<td><code>DataTemplate</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>ContentTransition</code></td>
+<td><code>TransitionType</code></td>
+<td><code>Normal</code></td>
+</tr>
+</tbody>
+</table>
+<p>&quot;Effective default&quot; is the value a <code>HamburgerMenu</code> actually starts with. Many of these come from the control's default style rather than from the dependency property metadata; where the two disagree, the style wins and the value above is the one that applies.</p>
+
+
+                                        </div>
+                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
+                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#basic-usage">Basic usage</a></div>
+                    <div class="sidebar-nav-item"><a href="#menu-items">Menu items</a></div>
+                    <div class="sidebar-nav-item"><a href="#opening-and-closing-the-pane">Opening and closing the pane</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-hamburger-button-and-the-pane-header">The hamburger button and the pane header</a></div>
+                    <div class="sidebar-nav-item"><a href="#options">Options</a></div>
+                    <div class="sidebar-nav-item"><a href="#selection-content-and-navigation">Selection, content and navigation</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#a-complete-navigation-example">A complete navigation example</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#styling">Styling</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#material-design-ripple">Material Design ripple</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#events">Events</a></div>
+                    <div class="sidebar-nav-item"><a href="#property-reference">Property reference</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#pane-forwarded-to-the-splitview">Pane, forwarded to the SplitView</a></div>
+                                <div class="sidebar-nav-item"><a href="#items">Items</a></div>
+                                <div class="sidebar-nav-item"><a href="#options-1">Options</a></div>
+                                <div class="sidebar-nav-item"><a href="#hamburger-button-header-and-content">Hamburger button, header and content</a></div>
+                        </div>
+            </div>
+        </div>
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/master/input/docs/controls/HamburgerMenu.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="p-3 text-white">
+            <div class="container-xl">
+                <p class="text-muted">
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
+    <br/>
+    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br/>
+    Generated by <a href="https://statiq.dev">Statiq</a>
+</p>
+
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script>
+            $(document).ready(function() {
+                quicklink.listen();
+
+                // Bootstrap tooltips
+                $('[data-toggle="tooltip"]').tooltip();
+
+				// Keeps the sidebars in view on wider viewports
+				let left = null;
+				let leftParent = null;
+				let right = null;
+				let rightParent = null;
+                function stickSidebars()
+				{
+				    if (left == null) {
+                        left = $('#left-sidebar');
+                        right = $('#right-sidebar');
+                    }
+                    if (left.length) {
+                        if (window.innerWidth >= 768) {
+                            if (leftParent == null) {
+                                leftParent = left.parent()[0];
+                            }
+                            if (leftParent) {
+                                let leftRect = leftParent.getBoundingClientRect();
+                                stickSidebar(left,  leftRect);
+                            }
+                        } else {
+                            left.css('position', 'relative');
+                            if (left.css('bottom') != 0) {
+                                left.css('bottom', '0');
+                            }
+                        }
+                    }
+                    if (right.length) {
+                        if (window.innerWidth >= 768) {
+                            if (rightParent == null) {
+                                rightParent = right.parent()[0];
+                            }
+                            if (rightParent) {
+                                let rightRect = rightParent.getBoundingClientRect();
+                                stickSidebar(right,  rightRect);
+                            }
+                        } else {
+                            right.css('position', 'relative');
+                            if (right.css('bottom') != 0) {
+                                right.css('bottom', '0');
+                            }
+                        }
+                    }
+				}
+				function stickSidebar(sidebar, rect) {
+                    // Bottom
+                    if (rect.bottom > window.innerHeight) {
+                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
+                    } else {
+                        sidebar.css('bottom', 0);
+                    }
+                    // Top
+                    if (rect.top < 0) {
+                        sidebar.css('position', 'sticky');
+                    } else {
+                        sidebar.css('position', 'absolute');
+                    }
+				}
+				$(window).on("load", function() {
+				    stickSidebars();
+				});
+                $(window).scroll(function() {
+				    stickSidebars();
+				});
+				$(window).resize(function() {
+				    stickSidebars();
+				})
+
+                // Mermaid diagrams
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-fluid');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+            });
+        </script>
+
+        
+
+        <script>
+    anchors.options.placement = 'left';
+    anchors.add();
+
+    // Each <pre> is a horizontal scroll container (Bootstrap sets
+    // overflow: auto), so a button placed inside it scrolls out of view on long
+    // lines. Wrap the block instead and position the button against the
+    // wrapper, which never scrolls.
+    document.querySelectorAll('pre > code').forEach(function (code) {
+        var pre = code.parentNode;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn-copy';
+        button.title = 'Copy to clipboard';
+        button.setAttribute('aria-label', 'Copy to clipboard');
+        button.setAttribute('data-clipboard-snippet', '');
+        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        wrapper.appendChild(button);
+    });
+
+    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+        target: function (trigger) {
+            return trigger.parentNode.querySelector('pre > code');
+        },
+    });
+    clipboardSnippets.on('success', function (e) {
+        var button = e.trigger;
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+        window.setTimeout(function () {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        }, 1500);
+        e.clearSelection();
+    });
+    clipboardSnippets.on('error', function (e) {
+        console.error('Copy failed:', e.action, e.trigger);
+    });
+</script>
+
+    </body>
+</html>

@@ -1,161 +1,132 @@
-﻿<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-        <meta name="description">
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/mahapps.com/assets/img/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/mahapps.com/assets/img/favicon.ico" type="image/x-icon">
-        <title>MahApps.Metro - Release 0.12.0</title>
-        <link href="/mahapps.com/assets/css/highlight.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/theme/theme.css" rel="stylesheet">
-        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/mahapps.com/assets/css/override.css" rel="stylesheet">
-        <script src="/mahapps.com/assets/js/jquery-2.2.3.min.js"></script>
-        <script src="/mahapps.com/assets/js/bootstrap.min.js"></script>        
-        <script src="/mahapps.com/assets/js/app.min.js"></script>         
-        <script src="/mahapps.com/assets/js/highlight.pack.js"></script>   
-        <script src="/mahapps.com/assets/js/jquery.slimscroll.min.js"></script>
-        <script src="/mahapps.com/assets/js/jquery.sticky-kit.min.js"></script>
-        <script src="/mahapps.com/assets/js/mermaid.min.js"></script>
-        <script src="/mahapps.com/assets/js/svg-pan-zoom.min.js"></script>
-        <!--[if lt IE 9]>
-        <script src="/mahapps.com/assets/js/html5shiv.min.js"></script>
-        <script src="/mahapps.com/assets/js/respond.min.js"></script>
-        <![endif]-->  
 
-        <script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
+        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
+        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
+        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+	    
+        <!-- Lunr search -->
+
+        
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
+
+        <title>MahApps.Metro - Release 0.12.0</title>
     </head>
-    <body class="hold-transition wyam layout-boxed  ">    
-        <div class="top-banner"></div>
-        <div class="wrapper with-container">
-            <!-- Header -->
-            <header class="main-header">   
-                     
-                <a href="/mahapps.com/" class="logo">
+    <body class="d-flex flex-column">
+        <div class="flex-grow-1 d-flex flex-column">
+            <div class="bg-nav">
+                <div class="container-xl py-3">
+                    <div class="row">
+                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
+                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
+    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
+            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
+        <span class="site-title text-primary">MahApps.Metro</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
+        <ul class="navbar-nav mr-auto">
+            
+        </ul>
+        <ul class="navbar-nav">
+            
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/controls">Controls</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
+    </li>
 
-                                <!-- mini logo for sidebar mini 50x50 pixels -->
-                                <span class="logo-mini"><img src="/mahapps.com/assets/img/mahapps.metro.logo.png"></span>
-                                <!-- logo for regular state and mobile devices -->
-                                <span class="logo-lg"><img src="/mahapps.com/assets/img/mahapps.metro.logo.png"></span>
-                                            </a>   
-                         
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle button-->
-                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-right"></i>
-                        </a>
-                                        
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-down"></i>
-                        </button>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/api">API</a>
+    </li>
+
+
+            <li class="nav-item">
+    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
+</li>
+
+        </ul>
+    </div>
+</nav>
+
+                        </div>
                     </div>
+                </div>
+            </div>
             
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        <ul class="nav navbar-nav">                            
-                                    <li class="active"><a href="/mahapps.com/blog">Blog</a></li>
-        <li><a href="/mahapps.com/docs">Documentation</a></li>
-        <li><a href="/mahapps.com/api">API</a></li>
-        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
- 
-                        </ul>       
+            <div class="flex-grow-1 d-flex flex-column">
+                    <!-- Titlebar -->
+                    <div id="titlebar" class="py-4">
+                        <div class="container-xl">
+                            <div class="row">
+                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
+                                    <div class="flex-grow-1">
+                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
+
+                                        </div>
+                                        <div class="text-white m-0 text-break title">
+
+Release 0.12.0
+                                        </div>
+                                    </div>
+                                        <div class="navbar navbar-expand-md navbar-dark p-0">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.navbar-collapse -->
-                
-                    <!-- Navbar Right Menu -->
-                </nav>
-            </header>
-            
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar ">
-                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
-                    	
-        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/blog/release-v0.12.0.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#notes">Notes</a></p>
-<p><a href="#features">Features</a></p>
-<p><a href="#changes">Changes</a></p>
-<p><a href="#fixes">Fixes</a></p>
-<hr class="infobar-hidden">
-</div>
+                    <!-- Under title -->
+                    <div id="undertitle">
+                        <div class="container-xl">
+                            <div class="row">
+                                    <div class="col-md-3 col-lg-2">
+                                    </div>
+                                    <div class="col-md-9 col-lg-8 bg-white">
+                                    </div>
+                                <div class="col-lg-2 d-none d-lg-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                </section>
-                <section class="sidebar">    
-                                     
-                    
-
-                    <ul class="sidebar-menu">
-                        
-
-        <li class="header"><i class="fa fa-bookmark"></i> Categories</li>    
-            <li><a href="/mahapps.com/blog/Release">Release</a></li>
-            <li><a href="/mahapps.com/blog/general">general</a></li>
-    
-    <li class="header"><i class="fa fa-calendar"></i> Archive</li>    
-        <li><a href="/mahapps.com/blog/archive/2018/06">June, 2018</a></li>
-        <li><a href="/mahapps.com/blog/archive/2018/05">May, 2018</a></li>
-        <li><a href="/mahapps.com/blog/archive/2018/04">April, 2018</a></li>
-        <li><a href="/mahapps.com/blog/archive/2018/03">March, 2018</a></li>
-        <li><a href="/mahapps.com/blog/archive/2018/02">February, 2018</a></li>
-        <li><a href="/mahapps.com/blog/archive/2017/04">April, 2017</a></li>
-        <li><a href="/mahapps.com/blog/archive/2017/02">February, 2017</a></li>
-        <li><a href="/mahapps.com/blog/archive/2017/01">January, 2017</a></li>
-        <li><a href="/mahapps.com/blog/archive/2016/12">December, 2016</a></li>
-        <li><a href="/mahapps.com/blog/archive/2016/09">September, 2016</a></li>
-        <li><a href="/mahapps.com/blog/archive/2016/01">January, 2016</a></li>
-        <li><a href="/mahapps.com/blog/archive/2015/12">December, 2015</a></li>
-        <li><a href="/mahapps.com/blog/archive/2015/03">March, 2015</a></li>
-        <li><a href="/mahapps.com/blog/archive/2015/02">February, 2015</a></li>
-        <li><a href="/mahapps.com/blog/archive/2014/12">December, 2014</a></li>
-        <li><a href="/mahapps.com/blog/archive/2014/08">August, 2014</a></li>
-        <li><a href="/mahapps.com/blog/archive/2014/04">April, 2014</a></li>
-        <li><a href="/mahapps.com/blog/archive/2014/03">March, 2014</a></li>
-        <li><a href="/mahapps.com/blog/archive/2014/02">February, 2014</a></li>
-        <li><a href="/mahapps.com/blog/archive/2014/01">January, 2014</a></li>
-        <li><a href="/mahapps.com/blog/archive/2013/11">November, 2013</a></li>
-        <li><a href="/mahapps.com/blog/archive/2013/03">March, 2013</a></li>
-    
-        <li class="header"><i class="fa fa-user"></i> Authors</li>    
-            <li><a href="/mahapps.com/blog/author/flagbug">flagbug</a></li>
-            <li><a href="/mahapps.com/blog/author/punker76">punker76</a></li>
-
-                    </ul>
-                            
-                </section>                
-            </aside>
-            
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                
-
-
-
-		<section class="content-header">
-			<h1>Release 0.12.0</h1>
-		</section>
-	<section class="content">
-		
-
-
-
-<dl class="dl-horizontal" style="margin-bottom: 12px;">
-    <dt style="text-align: left;"><i class="fa fa-calendar"></i> Published</dt>
-    <dd>Thursday, 16 January 2014</dd>
-        <dt style="text-align: left;"><i class="fa fa-bookmark"></i> Category</dt>
-        <dd><a href="/mahapps.com/blog/Release">Release</a></dd>
-            <dt style="text-align: left;"><i class="fa fa-user"></i> Author</dt>
-        <dd><a href="/mahapps.com/blog/author/punker76">punker76</a></dd>
-</dl>
-
-
+                <!-- Body -->
+                <div class="flex-grow-1 d-flex flex-column">
+                        <div class="container-xl flex-grow-1 d-flex flex-column">
+                            <div class="row flex-grow-1 align-items-stretch">
+                                        <div id="content" class="offset-lg-2 col-12 col-lg-8 p-4 pt-md-0 bg-white">
 <h1 id="notes">Notes</h1>
 <p>After only 2 months and nearly 300 commits, this is one of the feature-richest releases we've ever done.</p>
 <p>This release, again, contains some breaking changes.
@@ -163,7 +134,7 @@ We try to break things now rather than later, when we release version 1.0 (which
 <p>A quick overview:</p>
 <ul>
 <li><code>ProgressIndicator</code> is now removed, as it wasn't working as expected.
-Use <code><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></code> with <code>IsIndeterminate = True</code> instead, which should give a much smoother experience.</li>
+Use <code>MetroProgressBar</code> with <code>IsIndeterminate = True</code> instead, which should give a much smoother experience.</li>
 <li>Like <code>ProgressIndicator</code>, <code>MetroImage</code> has been removed because it was broken.
 A better alternative is to use a simple <code>Rectangle</code>, as described <a href="http://mahapps.com/MahApps.Metro/guides/icons-and-resources.html">here</a></li>
 <li>For the same reasons, the <code>Panorama</code> control has been removed.
@@ -172,22 +143,22 @@ you can always submit a pull request with a better Panorama, but beware, it most
 </ul>
 <p>Upcoming changes:</p>
 <ul>
-<li>The <code><a href="/mahapps.com/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> control is currently being rewritten, so expect some breaking changes here.</li>
+<li>The <code>RangeSlider</code> control is currently being rewritten, so expect some breaking changes here.</li>
 </ul>
 <h1 id="features">Features</h1>
 <h2 id="dialog-system">Dialog system</h2>
 <p>The dialog system has been overhauled for better extensibility.</p>
 <p>The <code>SimpleDialog</code> class now allows to create a custom dialog.</p>
-<p><code><a href="/mahapps.com/api/MahApps.Metro.Controls.Dialogs/ProgressDialog">ProgressDialog</a></code> is a dialog that displays progress (duh!) inspired by Github for Windows.
-<code><a href="/mahapps.com/api/MahApps.Metro.Controls.Dialogs/InputDialog">InputDialog</a></code> works like the <code><a href="/mahapps.com/api/MahApps.Metro.Controls.Dialogs/MessageDialog">MessageDialog</a></code> but allows the user to input text.</p>
+<p><code>ProgressDialog</code> is a dialog that displays progress (duh!) inspired by Github for Windows.
+<code>InputDialog</code> works like the <code>MessageDialog</code> but allows the user to input text.</p>
 <p>For reference, see PR #785 , #860 and #901 .</p>
 <h2 id="modal-flyouts">Modal Flyouts</h2>
 <p>Just like modal dialogs, Flyouts can now be made modal by setting the <code>IsModal = true</code>.
-Thanks @grokys for this feature!</p>
+Thanks &#64;grokys for this feature!</p>
 <p>For reference, see PR #824</p>
 <h2 id="themed-flyouts">Themed Flyouts</h2>
-<p>A Flyout can now have a theme, just like <code><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code></p>
-<p>There are four different theme states, indicated by the <code><a href="/mahapps.com/api/MahApps.Metro.Controls/FlyoutTheme">FlyoutTheme</a></code> enum:</p>
+<p>A Flyout can now have a theme, just like <code>MetroWindow</code></p>
+<p>There are four different theme states, indicated by the <code>FlyoutTheme</code> enum:</p>
 <ul>
 <li><code>FlyoutTheme.Adapt</code>: The flyout will use the theme if the host window</li>
 <li><code>FlyoutTheme.Inverse</code>: The flyout will use the inverse theme of the host window</li>
@@ -199,11 +170,11 @@ Thanks @grokys for this feature!</p>
 <p>For reference, see PR #941</p>
 <h2 id="expander">Expander</h2>
 <p>Added new <code>Expander</code> control that can can be used to close/open for example a <code>GroupBox</code>
-Thanks @Icehunter for this feature!</p>
+Thanks &#64;Icehunter for this feature!</p>
 <p>For reference, see PR #834</p>
 <h2 id="numericupdown">NumericUpDown</h2>
-<p>Implemented a <code><a href="/mahapps.com/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> control, inspired by the <a href="https://github.com/timheuer/callisto/wiki/NumericUpDown">Callisto</a> style.
-Thanks @xxMUROxx for this feature!</p>
+<p>Implemented a <code>NumericUpDown</code> control, inspired by the <a href="https://github.com/timheuer/callisto/wiki/NumericUpDown">Callisto</a> style.
+Thanks &#64;xxMUROxx for this feature!</p>
 <h2 id="new-icons">New icons</h2>
 <p>Two new icons have been added to Mahapps.Metro.Resources:</p>
 <ul>
@@ -212,10 +183,10 @@ Thanks @xxMUROxx for this feature!</p>
 </ul>
 <p>For reference, see PR #887</p>
 <h2 id="metronavigationwindow">MetroNavigationWindow</h2>
-<p>Implemented a <code><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroNavigationWindow">MetroNavigationWindow</a></code>. This is the re-implementation of <a href="http://msdn.microsoft.com/en-us/library/System.Windows.Navigation.NavigationWindow.aspx">System.Windows.Navigation.NavigationWindow</a> in a Metro-style</p>
+<p>Implemented a <code>MetroNavigationWindow</code>. This is the re-implementation of <a href="http://msdn.microsoft.com/en-us/library/System.Windows.Navigation.NavigationWindow.aspx">System.Windows.Navigation.NavigationWindow</a> in a Metro-style</p>
 <p>For reference, see PR #801</p>
-<h2 id="contenttemplateselector-support-for-transitioningcontentcontrol">ContentTemplateSelector support for <code><a href="/mahapps.com/api/MahApps.Metro.Controls/TransitioningContentControl">TransitioningContentControl</a></code>.</h2>
-<p>You can now provide a <code>ContentTemplateSelector</code> for the <code><a href="/mahapps.com/api/MahApps.Metro.Controls/TransitioningContentControl">TransitioningContentControl</a></code>.</p>
+<h2 id="contenttemplateselector-support-for-transitioningcontentcontrol">ContentTemplateSelector support for <code>TransitioningContentControl</code>.</h2>
+<p>You can now provide a <code>ContentTemplateSelector</code> for the <code>TransitioningContentControl</code>.</p>
 <h2 id="added-accentedsquarebutton-and-idealforegroundcolor-key">Added AccentedSquareButton and IdealForegroundColor key</h2>
 <ul>
 <li>Added an AccentedSquareButton. It looks like the SquareButton except that its Background is the current Accent.</li>
@@ -232,77 +203,136 @@ Thanks @xxMUROxx for this feature!</p>
 <li>Fixed high GPU usage when the <code>MetroProgressbar</code> is hidden. #812 #817</li>
 <li>Fixed the window glow not hiding when the window is hidden #839 #843</li>
 <li>Fixed window not being able to have a greater width than the width of the main screen #874 #917</li>
-<li>Fixed <code>ShowWindowCommandsOnTop="False"</code> not working for <code>CleanWindowStyle</code> #894 #896</li>
+<li>Fixed <code>ShowWindowCommandsOnTop=&quot;False&quot;</code> not working for <code>CleanWindowStyle</code> #894 #896</li>
 <li>Fixed using GlowBrush property enables the resizing of the window #851 #896</li>
 <li>Fixed the ToggleSwitch's built-in Top/Left margin #878 #880</li>
 <li>Fixed ThemeManager's OnThemeChanged work-around conflicting with other WPF internals #923 #932</li>
 </ul>
 
-
-	</section>
-                
-            </div>           
-            
-            <!-- Footer -->
-            <footer class="main-footer">
-            </footer>
-            
+                                        </div>
+                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
+                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#notes">Notes</a></div>
+                    <div class="sidebar-nav-item"><a href="#features">Features</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#dialog-system">Dialog system</a></div>
+                                <div class="sidebar-nav-item"><a href="#modal-flyouts">Modal Flyouts</a></div>
+                                <div class="sidebar-nav-item"><a href="#themed-flyouts">Themed Flyouts</a></div>
+                                <div class="sidebar-nav-item"><a href="#expander">Expander</a></div>
+                                <div class="sidebar-nav-item"><a href="#numericupdown">NumericUpDown</a></div>
+                                <div class="sidebar-nav-item"><a href="#new-icons">New icons</a></div>
+                                <div class="sidebar-nav-item"><a href="#metronavigationwindow">MetroNavigationWindow</a></div>
+                                <div class="sidebar-nav-item"><a href="#contenttemplateselector-support-for-transitioningcontentcontrol">ContentTemplateSelector support for .</a></div>
+                                <div class="sidebar-nav-item"><a href="#added-accentedsquarebutton-and-idealforegroundcolor-key">Added AccentedSquareButton and IdealForegroundColor key</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#changes">Changes</a></div>
+                    <div class="sidebar-nav-item"><a href="#fixes">Fixes</a></div>
+            </div>
         </div>
-        <div class="wrapper bottom-wrapper">
-            <footer class="bottom-footer">
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/master/input/blog/release-v0.12.0.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="p-3 text-white">
+            <div class="container-xl">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
-    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
-    <br>
-    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br>
-    Generated by <a href="http://wyam.io">Wyam</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
+    <br/>
+    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br/>
+    Generated by <a href="https://statiq.dev">Statiq</a>
 </p>
 
-<script>
-	anchors.options.placement = 'left';
-	anchors.add();
-</script>
-
-<script>
-	var snippets = document.querySelectorAll('pre > code');
-	[].forEach.call(snippets, function (snippet) {
-	  snippet.insertAdjacentHTML(
-	    'beforebegin',
-	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
-	  );
-	});
-	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-	  container: document.getElementById('modal'),
-	  target: function (trigger) {
-	    return trigger.nextElementSibling;
-	  },
-	});
-	clipboardSnippets.on('success', function (e) {
-		console.info('Action:', e.action);
-		console.info('Text:', e.text);
-		console.info('Trigger:', e.trigger);
-		e.clearSelection();
-		// showTooltip(e.trigger, 'Copied!');
-	});
-	clipboardSnippets.on('error', function (e) {
-		console.error('Action:', e.action);
-		console.error('Trigger:', e.trigger);
-		// showTooltip(e.trigger, fallbackMessage(e.action));
-	});
-</script>
-            </footer>
+            </div>
         </div>
-        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-        
-        <script>           
-            // Close the sidebar if we select an anchor link
-            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
-                $(document.body).removeClass('sidebar-open');
-            });
-            
+
+        <!-- Scripts -->
+        <script>
             $(document).ready(function() {
+                quicklink.listen();
+
+                // Bootstrap tooltips
+                $('[data-toggle="tooltip"]').tooltip();
+
+				// Keeps the sidebars in view on wider viewports
+				let left = null;
+				let leftParent = null;
+				let right = null;
+				let rightParent = null;
+                function stickSidebars()
+				{
+				    if (left == null) {
+                        left = $('#left-sidebar');
+                        right = $('#right-sidebar');
+                    }
+                    if (left.length) {
+                        if (window.innerWidth >= 768) {
+                            if (leftParent == null) {
+                                leftParent = left.parent()[0];
+                            }
+                            if (leftParent) {
+                                let leftRect = leftParent.getBoundingClientRect();
+                                stickSidebar(left,  leftRect);
+                            }
+                        } else {
+                            left.css('position', 'relative');
+                            if (left.css('bottom') != 0) {
+                                left.css('bottom', '0');
+                            }
+                        }
+                    }
+                    if (right.length) {
+                        if (window.innerWidth >= 768) {
+                            if (rightParent == null) {
+                                rightParent = right.parent()[0];
+                            }
+                            if (rightParent) {
+                                let rightRect = rightParent.getBoundingClientRect();
+                                stickSidebar(right,  rightRect);
+                            }
+                        } else {
+                            right.css('position', 'relative');
+                            if (right.css('bottom') != 0) {
+                                right.css('bottom', '0');
+                            }
+                        }
+                    }
+				}
+				function stickSidebar(sidebar, rect) {
+                    // Bottom
+                    if (rect.bottom > window.innerHeight) {
+                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
+                    } else {
+                        sidebar.css('bottom', 0);
+                    }
+                    // Top
+                    if (rect.top < 0) {
+                        sidebar.css('position', 'sticky');
+                    } else {
+                        sidebar.css('position', 'absolute');
+                    }
+				}
+				$(window).on("load", function() {
+				    stickSidebars();
+				});
+                $(window).scroll(function() {
+				    stickSidebars();
+				});
+				$(window).resize(function() {
+				    stickSidebars();
+				})
+
+                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -311,12 +341,12 @@ Thanks @xxMUROxx for this feature!</p>
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });     
+                });
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.addClass('img-fluid');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -330,40 +360,68 @@ Thanks @xxMUROxx for this feature!</p>
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});			                          
+					});
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-                    
+
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
-                
-                $('pre code').each(function(i, block) {
-                    hljs.highlightBlock(block);
-                });  
-            });
-
-            hljs.initHighlightingOnLoad();
-
-            // Back to top
-            $(window).scroll(function() {
-                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
-                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
-                } else {
-                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
-                }
-            });
-            $('#return-to-top').click(function() {      // When arrow is clicked
-                $('body,html').animate({
-                    scrollTop : 0                       // Scroll to top of body
-                }, 500);
             });
         </script>
-    
-</body></html>
+
+        
+
+        <script>
+    anchors.options.placement = 'left';
+    anchors.add();
+
+    // Each <pre> is a horizontal scroll container (Bootstrap sets
+    // overflow: auto), so a button placed inside it scrolls out of view on long
+    // lines. Wrap the block instead and position the button against the
+    // wrapper, which never scrolls.
+    document.querySelectorAll('pre > code').forEach(function (code) {
+        var pre = code.parentNode;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn-copy';
+        button.title = 'Copy to clipboard';
+        button.setAttribute('aria-label', 'Copy to clipboard');
+        button.setAttribute('data-clipboard-snippet', '');
+        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        wrapper.appendChild(button);
+    });
+
+    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+        target: function (trigger) {
+            return trigger.parentNode.querySelector('pre > code');
+        },
+    });
+    clipboardSnippets.on('success', function (e) {
+        var button = e.trigger;
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+        window.setTimeout(function () {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        }, 1500);
+        e.clearSelection();
+    });
+    clipboardSnippets.on('error', function (e) {
+        console.error('Copy failed:', e.action, e.trigger);
+    });
+</script>
+
+    </body>
+</html>

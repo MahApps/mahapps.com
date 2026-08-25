@@ -1,518 +1,574 @@
-﻿<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-        <meta name="description">
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/mahapps.com/assets/img/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/mahapps.com/assets/img/favicon.ico" type="image/x-icon">
-        <title>MahApps.Metro - API - ContentControlEx Class</title>
-        <link href="/mahapps.com/assets/css/highlight.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/theme/theme.css" rel="stylesheet">
-        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
-        <link href="/mahapps.com/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/mahapps.com/assets/css/override.css" rel="stylesheet">
-        <script src="/mahapps.com/assets/js/jquery-2.2.3.min.js"></script>
-        <script src="/mahapps.com/assets/js/bootstrap.min.js"></script>        
-        <script src="/mahapps.com/assets/js/app.min.js"></script>         
-        <script src="/mahapps.com/assets/js/highlight.pack.js"></script>   
-        <script src="/mahapps.com/assets/js/jquery.slimscroll.min.js"></script>
-        <script src="/mahapps.com/assets/js/jquery.sticky-kit.min.js"></script>
-        <script src="/mahapps.com/assets/js/mermaid.min.js"></script>
-        <script src="/mahapps.com/assets/js/svg-pan-zoom.min.js"></script>
-        <!--[if lt IE 9]>
-        <script src="/mahapps.com/assets/js/html5shiv.min.js"></script>
-        <script src="/mahapps.com/assets/js/respond.min.js"></script>
-        <![endif]-->  
 
-        <script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
+        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
+        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
+        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+	    
+        <!-- Lunr search -->
+
+        
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
+
+        <title>MahApps.Metro - ContentControlEx</title>
     </head>
-    <body class="hold-transition wyam layout-boxed  ">    
-        <div class="top-banner"></div>
-        <div class="wrapper with-container">
-            <!-- Header -->
-            <header class="main-header">   
-                     
-                <a href="/mahapps.com/" class="logo">
-
-                                <!-- mini logo for sidebar mini 50x50 pixels -->
-                                <span class="logo-mini"><img src="/mahapps.com/assets/img/mahapps.metro.logo.png"></span>
-                                <!-- logo for regular state and mobile devices -->
-                                <span class="logo-lg"><img src="/mahapps.com/assets/img/mahapps.metro.logo.png"></span>
-                                            </a>   
-                         
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle button-->
-                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-right"></i>
-                        </a>
-                                        
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-down"></i>
-                        </button>
-                    </div>
+    <body class="d-flex flex-column">
+        <div class="flex-grow-1 d-flex flex-column">
+            <div class="bg-nav">
+                <div class="container-xl py-3">
+                    <div class="row">
+                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
+                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
+    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
+            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
+        <span class="site-title text-primary">MahApps.Metro</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
+        <ul class="navbar-nav mr-auto">
             
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        <ul class="nav navbar-nav">                            
-                                    <li><a href="/mahapps.com/blog">Blog</a></li>
-        <li><a href="/mahapps.com/docs">Documentation</a></li>
-        <li class="active"><a href="/mahapps.com/api">API</a></li>
-        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
- 
-                        </ul>       
-                    </div>
-                    <!-- /.navbar-collapse -->
-                
-                    <!-- Navbar Right Menu -->
-                </nav>
-            </header>
+        </ul>
+        <ul class="navbar-nav">
             
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar ">
-                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
-                    	
-	<div id="infobar-headings"><h6>On This Page</h6><p><a href="#Syntax">Syntax</a></p>
-<p><a href="#fields">Fields</a></p>
-<p><a href="#Properties">Properties</a></p>
-<p><a href="#Methods">Methods</a></p>
-<hr class="infobar-hidden">
-</div>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/controls">Controls</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
+    </li>
 
-                </section>
-                <section class="sidebar">    
-                                     
-                    	
-	    <script src="/mahapps.com/assets/js/lunr.min.js"></script>
-    <script src="/mahapps.com/assets/js/searchIndex.js"></script>
-    <div class="sidebar-form">
-        <div class="input-group">
-            <input type="text" name="search" id="search" class="form-control" placeholder="Search Types...">
-            <span class="input-group-btn">
-                <button class="btn btn-flat"><i class="fa fa-search"></i></button>
-            </span>
-        </div>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/api">API</a>
+    </li>
+
+
+            <li class="nav-item">
+    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
+</li>
+
+        </ul>
     </div>
-    <div id="search-results">
-    </div>
-    <script>
-        function runSearch(query){
-            $("#search-results").empty();			
-            if( query.length < 2 ){
-                return;
-            }			
-            var results = searchModule.search("*" + query + "*");
-            var listHtml = "<ul class='sidebar-menu'>";	
-            listHtml += "<li class='header'>Type Results</li>";	
-            if(results.length == 0 ){
-                listHtml += "<li>No results found</li>";
-            } else {					
-                for(var i = 0; i < results.length; ++i){
-                    var res = results[i];
-                    listHtml += "<li><a href='" + res.url + "'>" + htmlEscape(res.title) + "</a></li>";
-                }				
-            }
-            listHtml += "</ul>";				
-            $("#search-results").append(listHtml);
-        }
+</nav>
 
-        $(document).ready(function(){
-            $("#search").on('input propertychange paste', function() {
-                runSearch($("#search").val());
-            });
-        });
-
-        function htmlEscape(html) {
-            return document.createElement('div')
-                .appendChild(document.createTextNode(html))
-                .parentNode
-                .innerHTML;
-        }
-    </script>
-	
-    <hr>
-
-                    <ul class="sidebar-menu">
-                        
-			<li class="header">Namespace</li>
-		<li><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></li>
-		<li role="separator" class="divider"></li>
-			<li class="header">Class Types</li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/Badged">Badged</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/BaseMetroTabControl">BaseMetroTabControl</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/BuildInColorPalettes">BuildInColorPalettes</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/CheckBoxHelper">CheckBoxHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ClipBorder">ClipBorder</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ClosingWindowEventHandlerArgs">Closing<wbr>Window<wbr>Event<wbr>Handler<wbr>Args</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorCanvas">ColorCanvas</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyePreviewData">ColorEyePreviewData</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorHelper">ColorHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorPicker">ColorPicker</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorPickerBase">ColorPickerBase</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ComboBoxHelper">ComboBoxHelper</a></li>
-				<li class="selected"><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx">ContentControlEx</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentPresenterEx">ContentPresenterEx</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ControlsHelper">ControlsHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/CustomValidationPopup">Custom<wbr>Validation<wbr>Popup</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/DataGridColumnStylesHelperExtension">Data<wbr>Grid<wbr>Column<wbr>Styles<wbr>Helper<wbr>Extension</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/DataGridHelper">DataGridHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/DataGridNumericUpDownColumn">Data<wbr>Grid<wbr>Numeric<wbr>Up<wbr>Down<wbr>Column</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/DatePickerHelper">DatePickerHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/DropDownButton">DropDownButton</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ExpanderHelper">ExpanderHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/Extensions">Extensions</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/FlipView">FlipView</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/FlipViewItem">FlipViewItem</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/Flyout">Flyout</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/FontIcon">FontIcon</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/GridLengthAnimation">GridLengthAnimation</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuGlyphItem">Hamburger<wbr>Menu<wbr>Glyph<wbr>Item</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuHeaderItem">Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuIconItem">Hamburger<wbr>Menu<wbr>Icon<wbr>Item</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuImageItem">Hamburger<wbr>Menu<wbr>Image<wbr>Item</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItem">HamburgerMenuItem</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItemBase">Hamburger<wbr>Menu<wbr>Item<wbr>Base</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItemCollection">Hamburger<wbr>Menu<wbr>Item<wbr>Collection</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedEventArgs">Hamburger<wbr>Menu<wbr>Item<wbr>Invoked<wbr>Event<wbr>Args</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItemStyleSelector">Hamburger<wbr>Menu<wbr>Item<wbr>Style<wbr>Selector</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuListBox">HamburgerMenuListBox</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuSeparatorItem">Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HeaderedControlHelper">Headered<wbr>Control<wbr>Helper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HotKey">HotKey</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HotKeyBox">HotKeyBox</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/IconElement">IconElement</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ItemClickEventArgs">ItemClickEventArgs</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ItemHelper">ItemHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/LayoutInvalidationCatcher">Layout<wbr>Invalidation<wbr>Catcher</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MahAppsCommands">MahAppsCommands</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroAnimatedSingleRowTabControl">Metro<wbr>Animated<wbr>Single<wbr>Row<wbr>Tab<wbr>Control</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroAnimatedTabControl">Metro<wbr>Animated<wbr>Tab<wbr>Control</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroContentControl">MetroContentControl</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroHeader">MetroHeader</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroNavigationWindow">Metro<wbr>Navigation<wbr>Window</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroTabControl">MetroTabControl</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroTabItem">MetroTabItem</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroThumb">MetroThumb</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroThumbContentControl">Metro<wbr>Thumb<wbr>Content<wbr>Control</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroThumbContentControlDragCompletedEventArgs">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Drag<wbr>Completed<wbr>Event<wbr>Args</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroThumbContentControlDragStartedEventArgs">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Drag<wbr>Started<wbr>Event<wbr>Args</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MultiFrameImage">MultiFrameImage</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MultiSelectorHelper">MultiSelectorHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventArgs">Numeric<wbr>Up<wbr>Down<wbr>Changed<wbr>Routed<wbr>Event<wbr>Args</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/PasswordBoxHelper">PasswordBoxHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/Pivot">Pivot</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/PivotItem">PivotItem</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/Planerator">Planerator</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ProgressRing">ProgressRing</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper">RadioButtonHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/RangeSelectionChangedEventArgs_1">Range<wbr>Selection<wbr>Changed<wbr>Event<wbr>Args<wbr>&lt;T&gt;<wbr></a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/RangeSliderAutoTooltipValues">Range<wbr>Slider<wbr>Auto<wbr>Tooltip<wbr>Values</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/RevealImage">RevealImage</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ScrollViewerHelper">ScrollViewerHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ScrollViewerOffsetMediator">Scroll<wbr>Viewer<wbr>Offset<wbr>Mediator</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/SliderHelper">SliderHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/Spelling">Spelling</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitView">SplitView</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitViewPaneClosingEventArgs">Split<wbr>View<wbr>Pane<wbr>Closing<wbr>Event<wbr>Args</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitViewTemplateSettings">Split<wbr>View<wbr>Template<wbr>Settings</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/TabControlHelper">TabControlHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/TextBoxHelper">TextBoxHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/Tile">Tile</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePicker">TimePicker</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase">TimePickerBase</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ToggleButtonHelper">ToggleButtonHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ToggleSwitch">ToggleSwitch</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/TransitioningContentControl">Transitioning<wbr>Content<wbr>Control</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/TreeHelper">TreeHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/TreeViewItemHelper">TreeViewItemHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/Underline">Underline</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/Utils">Utils</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ValidationHelper">ValidationHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/VisibilityHelper">VisibilityHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/WinApiHelper">WinApiHelper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/WindowCommandsItem">WindowCommandsItem</a></li>
-			<li class="header">Enum Types</li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/AddToRecentColorsTrigger">Add<wbr>To<wbr>Recent<wbr>Colors<wbr>Trigger</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ButtonsAlignment">ButtonsAlignment</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/DecimalPointCorrectionMode">Decimal<wbr>Point<wbr>Correction<wbr>Mode</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/FlyoutTheme">FlyoutTheme</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MouseWheelChange">MouseWheelChange</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MouseWheelState">MouseWheelState</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MultiFrameImageMode">MultiFrameImageMode</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/NavigationButtonsPosition">Navigation<wbr>Buttons<wbr>Position</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/NavigationIndexPlacement">Navigation<wbr>Index<wbr>Placement</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/NumericInput">NumericInput</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/OverlayBehavior">OverlayBehavior</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/Position">Position</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitViewDisplayMode">SplitViewDisplayMode</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitViewPanePlacement">Split<wbr>View<wbr>Pane<wbr>Placement</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePartVisibility">TimePartVisibility</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerFormat">TimePickerFormat</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/TransitionType">TransitionType</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/UnderlinedType">UnderlinedType</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">Window<wbr>Commands<wbr>Overlay<wbr>Behavior</a></li>
-			<li class="header">Interface Types</li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/IDataGridColumnStylesHelper">I<wbr>Data<wbr>Grid<wbr>Column<wbr>Styles<wbr>Helper</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/IHamburgerMenuHeaderItem">I<wbr>Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/IHamburgerMenuItem">IHamburgerMenuItem</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/IHamburgerMenuItemBase">I<wbr>Hamburger<wbr>Menu<wbr>Item<wbr>Base</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/IHamburgerMenuSeparatorItem">I<wbr>Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/IMetroThumb">IMetroThumb</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/IWindowPlacementSettings">I<wbr>Window<wbr>Placement<wbr>Settings</a></li>
-			<li class="header">Struct Types</li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HSVColor">HSVColor</a></li>
-			<li class="header">Delegate Types</li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedRoutedEventHandler">Hamburger<wbr>Menu<wbr>Item<wbr>Invoked<wbr>Routed<wbr>Event<wbr>Handler</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/ItemClickRoutedEventHandler">Item<wbr>Click<wbr>Routed<wbr>Event<wbr>Handler</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventHandler">Numeric<wbr>Up<wbr>Down<wbr>Changed<wbr>Routed<wbr>Event<wbr>Handler</a></li>
-				<li><a href="/mahapps.com/api/MahApps.Metro.Controls/RangeSelectionChangedEventHandler_1">Range<wbr>Selection<wbr>Changed<wbr>Event<wbr>Handler<wbr>&lt;T&gt;<wbr></a></li>
-
-
-                    </ul>
-                            
-                </section>                
-            </aside>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                
+            <div class="flex-grow-1 d-flex flex-column">
+                    <!-- Titlebar -->
+                    <div id="titlebar" class="py-4">
+                        <div class="container-xl">
+                            <div class="row">
+                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
+                                    <div class="flex-grow-1">
+                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
+
+                                        </div>
+                                        <div class="text-white m-0 text-break title">
+
+    <div>ContentControlEx <small>Class</small></div>
+                                        </div>
+                                    </div>
+                                        <div class="navbar navbar-expand-md navbar-dark p-0">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Under title -->
+                    <div id="undertitle">
+                        <div class="container-xl">
+                            <div class="row">
+                                    <div class="col-md-3 col-lg-2">
+                                    </div>
+                                    <div class="col-md-9 col-lg-8 bg-white">
+                                    </div>
+                                <div class="col-lg-2 d-none d-lg-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Body -->
+                <div class="flex-grow-1 d-flex flex-column">
+                        <div class="container-xl flex-grow-1 d-flex flex-column">
+                            <div class="row flex-grow-1 align-items-stretch">
+                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
+                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+
+	<div class="sidebar-root">
+				<div class="sidebar-root bg-white mb-3 page-box font-size-sm">
+				<div class="sidebar-nav-item sidebar-header mb-0 pb-0">Namespace</div>
+				<div class="sidebar-nav-item font-weight-normal mt-0 pt-0"><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></div>
+		</div>
+			<div class="sidebar-nav-item sidebar-header">Class Types</div>
+			<div class="sidebar-nav-children">
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/Badged">Badged</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/BaseMetroTabControl">BaseMetroTabControl</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/BuildInColorPalettes">BuildInColorPalettes</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/CheckBoxHelper">CheckBoxHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ClipBorder">ClipBorder</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ClosingWindowEventHandlerArgs">Closing<wbr>Window<wbr>Event<wbr>Handler<wbr>Args</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorCanvas">ColorCanvas</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyeDropper">ColorEyeDropper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorEyePreviewData">ColorEyePreviewData</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorHelper">ColorHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorPalette">ColorPalette</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorPicker">ColorPicker</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ColorPickerBase">ColorPickerBase</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ComboBoxHelper">ComboBoxHelper</a></div>
+					<div class="sidebar-nav-item active"><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx">ContentControlEx</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentPresenterEx">ContentPresenterEx</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ControlsHelper">ControlsHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/CustomValidationPopup">Custom<wbr>Validation<wbr>Popup</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DataGridColumnStylesHelperExtension">Data<wbr>Grid<wbr>Column<wbr>Styles<wbr>Helper<wbr>Extension</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DataGridHelper">DataGridHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DataGridNumericUpDownColumn">Data<wbr>Grid<wbr>Numeric<wbr>Up<wbr>Down<wbr>Column</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DatePickerHelper">DatePickerHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DropDownButton">DropDownButton</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ExpanderHelper">ExpanderHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/Extensions">Extensions</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/FlipView">FlipView</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/FlipViewItem">FlipViewItem</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/Flyout">Flyout</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/FontIcon">FontIcon</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/GridLengthAnimation">GridLengthAnimation</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuGlyphItem">Hamburger<wbr>Menu<wbr>Glyph<wbr>Item</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuHeaderItem">Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuIconItem">Hamburger<wbr>Menu<wbr>Icon<wbr>Item</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuImageItem">Hamburger<wbr>Menu<wbr>Image<wbr>Item</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItem">HamburgerMenuItem</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItemBase">Hamburger<wbr>Menu<wbr>Item<wbr>Base</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItemCollection">Hamburger<wbr>Menu<wbr>Item<wbr>Collection</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedEventArgs">Hamburger<wbr>Menu<wbr>Item<wbr>Invoked<wbr>Event<wbr>Args</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItemStyleSelector">Hamburger<wbr>Menu<wbr>Item<wbr>Style<wbr>Selector</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuListBox">HamburgerMenuListBox</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuSeparatorItem">Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HeaderedControlHelper">Headered<wbr>Control<wbr>Helper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HotKey">HotKey</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HotKeyBox">HotKeyBox</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/IconElement">IconElement</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ItemClickEventArgs">ItemClickEventArgs</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ItemHelper">ItemHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/LayoutInvalidationCatcher">Layout<wbr>Invalidation<wbr>Catcher</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MahAppsCommands">MahAppsCommands</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroAnimatedSingleRowTabControl">Metro<wbr>Animated<wbr>Single<wbr>Row<wbr>Tab<wbr>Control</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroAnimatedTabControl">Metro<wbr>Animated<wbr>Tab<wbr>Control</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroContentControl">MetroContentControl</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroHeader">MetroHeader</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroNavigationWindow">Metro<wbr>Navigation<wbr>Window</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroProgressBar">MetroProgressBar</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroTabControl">MetroTabControl</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroTabItem">MetroTabItem</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroThumb">MetroThumb</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroThumbContentControl">Metro<wbr>Thumb<wbr>Content<wbr>Control</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroThumbContentControlDragCompletedEventArgs">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Drag<wbr>Completed<wbr>Event<wbr>Args</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroThumbContentControlDragStartedEventArgs">Metro<wbr>Thumb<wbr>Content<wbr>Control<wbr>Drag<wbr>Started<wbr>Event<wbr>Args</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MultiFrameImage">MultiFrameImage</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MultiSelectorHelper">MultiSelectorHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventArgs">Numeric<wbr>Up<wbr>Down<wbr>Changed<wbr>Routed<wbr>Event<wbr>Args</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/PasswordBoxHelper">PasswordBoxHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/Pivot">Pivot</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/PivotItem">PivotItem</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/Planerator">Planerator</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ProgressRing">ProgressRing</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper">RadioButtonHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RangeSelectionChangedEventArgs_1">Range<wbr>Selection<wbr>Changed<wbr>Event<wbr>Args<wbr>&lt;T&gt;<wbr></a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RangeSliderAutoTooltipValues">Range<wbr>Slider<wbr>Auto<wbr>Tooltip<wbr>Values</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RevealImage">RevealImage</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ScrollViewerHelper">ScrollViewerHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ScrollViewerOffsetMediator">Scroll<wbr>Viewer<wbr>Offset<wbr>Mediator</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/SliderHelper">SliderHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/Spelling">Spelling</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitButton">SplitButton</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitView">SplitView</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitViewPaneClosingEventArgs">Split<wbr>View<wbr>Pane<wbr>Closing<wbr>Event<wbr>Args</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitViewTemplateSettings">Split<wbr>View<wbr>Template<wbr>Settings</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TabControlHelper">TabControlHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TextBoxHelper">TextBoxHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/Tile">Tile</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePicker">TimePicker</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase">TimePickerBase</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ToggleButtonHelper">ToggleButtonHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ToggleSwitch">ToggleSwitch</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TransitioningContentControl">Transitioning<wbr>Content<wbr>Control</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TreeHelper">TreeHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TreeViewItemHelper">TreeViewItemHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/Underline">Underline</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/Utils">Utils</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ValidationHelper">ValidationHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/VisibilityHelper">VisibilityHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/WinApiHelper">WinApiHelper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/WindowCommandsItem">WindowCommandsItem</a></div>
+			</div>
+			<div class="sidebar-nav-item sidebar-header">Delegate Types</div>
+			<div class="sidebar-nav-children">
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenuItemInvokedRoutedEventHandler">Hamburger<wbr>Menu<wbr>Item<wbr>Invoked<wbr>Routed<wbr>Event<wbr>Handler</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ItemClickRoutedEventHandler">Item<wbr>Click<wbr>Routed<wbr>Event<wbr>Handler</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/NumericUpDownChangedRoutedEventHandler">Numeric<wbr>Up<wbr>Down<wbr>Changed<wbr>Routed<wbr>Event<wbr>Handler</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RangeSelectionChangedEventHandler_1">Range<wbr>Selection<wbr>Changed<wbr>Event<wbr>Handler<wbr>&lt;T&gt;<wbr></a></div>
+			</div>
+			<div class="sidebar-nav-item sidebar-header">Enum Types</div>
+			<div class="sidebar-nav-children">
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/AddToRecentColorsTrigger">Add<wbr>To<wbr>Recent<wbr>Colors<wbr>Trigger</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/ButtonsAlignment">ButtonsAlignment</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DecimalPointCorrectionMode">Decimal<wbr>Point<wbr>Correction<wbr>Mode</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/FlyoutTheme">FlyoutTheme</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MouseWheelChange">MouseWheelChange</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MouseWheelState">MouseWheelState</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/MultiFrameImageMode">MultiFrameImageMode</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/NavigationButtonsPosition">Navigation<wbr>Buttons<wbr>Position</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/NavigationIndexPlacement">Navigation<wbr>Index<wbr>Placement</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/NumericInput">NumericInput</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/OverlayBehavior">OverlayBehavior</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/Position">Position</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitViewDisplayMode">SplitViewDisplayMode</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/SplitViewPanePlacement">Split<wbr>View<wbr>Pane<wbr>Placement</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePartVisibility">TimePartVisibility</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerFormat">TimePickerFormat</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TransitionType">TransitionType</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/UnderlinedType">UnderlinedType</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/WindowCommandsOverlayBehavior">Window<wbr>Commands<wbr>Overlay<wbr>Behavior</a></div>
+			</div>
+			<div class="sidebar-nav-item sidebar-header">Interface Types</div>
+			<div class="sidebar-nav-children">
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/IDataGridColumnStylesHelper">I<wbr>Data<wbr>Grid<wbr>Column<wbr>Styles<wbr>Helper</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/IHamburgerMenuHeaderItem">I<wbr>Hamburger<wbr>Menu<wbr>Header<wbr>Item</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/IHamburgerMenuItem">IHamburgerMenuItem</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/IHamburgerMenuItemBase">I<wbr>Hamburger<wbr>Menu<wbr>Item<wbr>Base</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/IHamburgerMenuSeparatorItem">I<wbr>Hamburger<wbr>Menu<wbr>Separator<wbr>Item</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/IMetroThumb">IMetroThumb</a></div>
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/IWindowPlacementSettings">I<wbr>Window<wbr>Placement<wbr>Settings</a></div>
+			</div>
+			<div class="sidebar-nav-item sidebar-header">Struct Types</div>
+			<div class="sidebar-nav-children">
+					<div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HSVColor">HSVColor</a></div>
+			</div>
+
+	</div>
+                                            </div>
+                                        </div>
+                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
 
 
 
-<section class="content-header">
-	<h1>ContentControlEx <small>Class</small></h1>
-</section>
-<section class="content">
-	
-	
-	
-		<div class="panel panel-default">
-  			<div class="panel-body">
-				<div class="row">
-					<div class="col-md-6">
-						<dl class="dl-horizontal">		
 
-								<dt>Namespace</dt>
-								<dd><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></dd>
-											
-							
-								<dt>Base Types</dt>
-								<dd>
-									<ul class="list-unstyled">										
-											<li>ContentControl</li>								
-									</ul>
-								</dd>				
-							
-								<dt>Derived Types</dt>
-								<dd>
-									<ul class="list-unstyled">
-											<li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroThumbContentControl">Metro<wbr>Thumb<wbr>Content<wbr>Control</a></li>								
-									</ul>
-								</dd>			
-							
-						</dl>
-					</div>		
-					<div class="col-md-6">
-						<div class="mermaid">
-							graph BT
-	Type--&gt;Base0["ContentControl"]
+
+
+
+    <div class="container-md">
+	    <div class="row">
+		    <div class="col-md-6 pt-0 pl-0 pb-0 pr-0 pr-md-4 mb-3 mb-md-0">
+			    <div class="p-3 bg-light page-box small" style="min-height: 100%">
+				    		<dl class="dl-horizontal">
+
+    		    <dt>Namespace</dt>
+    		    <dd><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></dd>
+
+
+
+
+    		    <dt>Base Types</dt>
+    		    <dd>
+    			    <ul class="list-unstyled">
+    					    <li>ContentControl</li>
+    			    </ul>
+    		    </dd>
+
+    		    <dt>Derived Types</dt>
+    		    <dd>
+    			    <ul class="list-unstyled">
+    					    <li><a href="/mahapps.com/api/MahApps.Metro.Controls/MetroThumbContentControl">Metro<wbr>Thumb<wbr>Content<wbr>Control</a></li>
+    			    </ul>
+    		    </dd>
+
+
+
+	    </dl>
+
+			    </div>
+		    </div>
+		    <div class="col-md-6 p-0">
+			    <div class="bg-light page-box">
+				    <div class="mermaid text-center">
+	graph BT
+	Type-->Base0["ContentControl"]
 	Type["ContentControlEx"]
 class Type type-node
-	Derived0["MetroThumbContentControl"]--&gt;Type
+	Derived0["MetroThumbContentControl"]-->Type
 	click Derived0 "/mahapps.com/api/MahApps.Metro.Controls/MetroThumbContentControl"
 
-						</div>
-					</div>
-				</div>
-  			</div>
+</div>
+			    </div>
+		    </div>
+	    </div>
+    </div>
+		<h1 id="Syntax">Syntax</h1>
+		<pre class="language-csharp"><code class="language-csharp">public class ContentControlEx : ContentControl</code></pre>
+
+
+
+
+
+
+
+
+
+
+		<h1 id="fields">Fields</h1>
+		<div class="table-responsive">
+			<table class="table table-api table-striped table-hover three-cols">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Field Type</th>
+						<th>Constant Value</th>
+						<th>Summary</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr>
+							<td><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/72FCF46A">Content<wbr>Character<wbr>Casing<wbr>Property</a></td>
+							<td>DependencyProperty</td>
+							<td></td>
+							<td>
+								<div>Identifies the <code class="language-csharp"><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/33916244">ContentCharacterCasing</a></code> dependency property.</div>
+										<div><small><em>static</em></small></div>
+							</td>
+						</tr>
+						<tr>
+							<td><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/DAB3411A">Recognizes<wbr>Access<wbr>Key<wbr>Property</a></td>
+							<td>DependencyProperty</td>
+							<td></td>
+							<td>
+								<div>Identifies the <code class="language-csharp"><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/CC9506F5">RecognizesAccessKey</a></code> dependency property.</div>
+										<div><small><em>static</em></small></div>
+							</td>
+						</tr>
+				</tbody>
+			</table>
 		</div>
 
-	<h1 id="Syntax">Syntax</h1>
-	<pre><code>public class ContentControlEx : ContentControl</code></pre>
-
-
-
-
-
-
-
-
-
-			<h1 id="fields">Fields</h1>
-			<div class="box">
-				<div class="box-body no-padding table-responsive">
-					<table class="table table-striped table-hover three-cols">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Constant Value</th>
-								<th>Summary</th>
-							</tr>
-						</thead>
-							<tbody><tr>
-								<td><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/72FCF46A">Content<wbr>Character<wbr>Casing<wbr>Property</a></td>
-								<td></td>
-								<td>
-									<div>Identifies the <code class="cs"><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/33916244">ContentCharacterCasing</a></code> dependency property.</div>
-											<div><small><em>static</em></small></div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/DAB3411A">Recognizes<wbr>Access<wbr>Key<wbr>Property</a></td>
-								<td></td>
-								<td>
-									<div>Identifies the <code class="cs"><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/CC9506F5">RecognizesAccessKey</a></code> dependency property.</div>
-											<div><small><em>static</em></small></div>
-								</td>
-							</tr>
-					</tbody></table>
-				</div>
-			</div>
-		
-
-			<h1 id="Properties">Properties</h1>
-			<div class="box">
-				<div class="box-body no-padding table-responsive">
-					<table class="table table-striped table-hover three-cols">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Value</th>
-								<th>Summary</th>
-							</tr>
-						</thead>
-							<tbody><tr>
-								<td><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/33916244">Content<wbr>Character<wbr>Casing</a></td>
-								<td>CharacterCasing</td>
-								<td>
-									<div> 
+        <h1 id="Properties">Properties</h1>
+        <div class="table-responsive">
+            <table class="table table-api table-striped table-hover three-cols">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Property Type</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/33916244">Content<wbr>Character<wbr>Casing</a></td>
+                            <td>CharacterCasing</td>
+                            <td>
+                                <div> 
     Gets or sets the character casing of the Content.
     </div>
-								</td>
-							</tr>
-							<tr>
-								<td><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/CC9506F5">RecognizesAccessKey</a></td>
-								<td>bool</td>
-								<td>
-									<div> 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/CC9506F5">RecognizesAccessKey</a></td>
+                            <td>bool</td>
+                            <td>
+                                <div> 
     Determine if the inner ContentPresenter should use AccessText in its style
     </div>
-								</td>
-							</tr>
-					</tbody></table>
-				</div>
-			</div>
-		
-
-			<h1 id="Methods">Methods</h1>
-			<div class="box">
-				<div class="box-body no-padding table-responsive">
-					<table class="table table-striped table-hover three-cols">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Value</th>
-								<th>Summary</th>
-							</tr>
-						</thead>
-							<tbody><tr>
-								<td><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/20D14306">OnContentChanged<wbr>(object, <wbr>object)<wbr></a></td>
-								<td>void</td>
-								<td>
-									<div></div>
-								</td>
-							</tr>
-					</tbody></table>
-				</div>
-			</div>
-		
-
-
-
-	
-</section>
-                
-            </div>           
-            
-            <!-- Footer -->
-            <footer class="main-footer">
-            </footer>
-            
+                            </td>
+                        </tr>
+                </tbody>
+            </table>
         </div>
-        <div class="wrapper bottom-wrapper">
-            <footer class="bottom-footer">
+
+		<h1 id="Methods">Methods</h1>
+		<div class="table-responsive">
+			<table class="table table-api table-striped table-hover three-cols">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Return Value</th>
+						<th>Summary</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr>
+							<td><a href="/mahapps.com/api/MahApps.Metro.Controls/ContentControlEx/20D14306">OnContentChanged<wbr>(object, <wbr>object)<wbr></a></td>
+							<td>void</td>
+							<td>
+								<div></div>
+							</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+                                        </div>
+                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
+                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+
+	        <div class="sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#Syntax">Syntax</a></div>
+                    <div class="sidebar-nav-item"><a href="#Fields">Fields</a></div>
+                    <div class="sidebar-nav-item"><a href="#Properties">Properties</a></div>
+                    <div class="sidebar-nav-item"><a href="#Methods">Methods</a></div>
+            </div>
+        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="p-3 text-white">
+            <div class="container-xl">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
-    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
-    <br>
-    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br>
-    Generated by <a href="http://wyam.io">Wyam</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
+    <br/>
+    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br/>
+    Generated by <a href="https://statiq.dev">Statiq</a>
 </p>
 
-<script>
-	anchors.options.placement = 'left';
-	anchors.add();
-</script>
-
-<script>
-	var snippets = document.querySelectorAll('pre > code');
-	[].forEach.call(snippets, function (snippet) {
-	  snippet.insertAdjacentHTML(
-	    'beforebegin',
-	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
-	  );
-	});
-	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-	  container: document.getElementById('modal'),
-	  target: function (trigger) {
-	    return trigger.nextElementSibling;
-	  },
-	});
-	clipboardSnippets.on('success', function (e) {
-		console.info('Action:', e.action);
-		console.info('Text:', e.text);
-		console.info('Trigger:', e.trigger);
-		e.clearSelection();
-		// showTooltip(e.trigger, 'Copied!');
-	});
-	clipboardSnippets.on('error', function (e) {
-		console.error('Action:', e.action);
-		console.error('Trigger:', e.trigger);
-		// showTooltip(e.trigger, fallbackMessage(e.action));
-	});
-</script>
-            </footer>
+            </div>
         </div>
-        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-        
-        <script>           
-            // Close the sidebar if we select an anchor link
-            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
-                $(document.body).removeClass('sidebar-open');
-            });
-            
+
+        <!-- Scripts -->
+        <script>
             $(document).ready(function() {
+                quicklink.listen();
+
+                // Bootstrap tooltips
+                $('[data-toggle="tooltip"]').tooltip();
+
+				// Keeps the sidebars in view on wider viewports
+				let left = null;
+				let leftParent = null;
+				let right = null;
+				let rightParent = null;
+                function stickSidebars()
+				{
+				    if (left == null) {
+                        left = $('#left-sidebar');
+                        right = $('#right-sidebar');
+                    }
+                    if (left.length) {
+                        if (window.innerWidth >= 768) {
+                            if (leftParent == null) {
+                                leftParent = left.parent()[0];
+                            }
+                            if (leftParent) {
+                                let leftRect = leftParent.getBoundingClientRect();
+                                stickSidebar(left,  leftRect);
+                            }
+                        } else {
+                            left.css('position', 'relative');
+                            if (left.css('bottom') != 0) {
+                                left.css('bottom', '0');
+                            }
+                        }
+                    }
+                    if (right.length) {
+                        if (window.innerWidth >= 768) {
+                            if (rightParent == null) {
+                                rightParent = right.parent()[0];
+                            }
+                            if (rightParent) {
+                                let rightRect = rightParent.getBoundingClientRect();
+                                stickSidebar(right,  rightRect);
+                            }
+                        } else {
+                            right.css('position', 'relative');
+                            if (right.css('bottom') != 0) {
+                                right.css('bottom', '0');
+                            }
+                        }
+                    }
+				}
+				function stickSidebar(sidebar, rect) {
+                    // Bottom
+                    if (rect.bottom > window.innerHeight) {
+                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
+                    } else {
+                        sidebar.css('bottom', 0);
+                    }
+                    // Top
+                    if (rect.top < 0) {
+                        sidebar.css('position', 'sticky');
+                    } else {
+                        sidebar.css('position', 'absolute');
+                    }
+				}
+				$(window).on("load", function() {
+				    stickSidebars();
+				});
+                $(window).scroll(function() {
+				    stickSidebars();
+				});
+				$(window).resize(function() {
+				    stickSidebars();
+				})
+
+                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -521,12 +577,12 @@ class Type type-node
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });     
+                });
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.addClass('img-fluid');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -540,40 +596,68 @@ class Type type-node
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});			                          
+					});
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-                    
+
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
-                
-                $('pre code').each(function(i, block) {
-                    hljs.highlightBlock(block);
-                });  
-            });
-
-            hljs.initHighlightingOnLoad();
-
-            // Back to top
-            $(window).scroll(function() {
-                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
-                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
-                } else {
-                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
-                }
-            });
-            $('#return-to-top').click(function() {      // When arrow is clicked
-                $('body,html').animate({
-                    scrollTop : 0                       // Scroll to top of body
-                }, 500);
             });
         </script>
-    
-</body></html>
+
+        
+
+        <script>
+    anchors.options.placement = 'left';
+    anchors.add();
+
+    // Each <pre> is a horizontal scroll container (Bootstrap sets
+    // overflow: auto), so a button placed inside it scrolls out of view on long
+    // lines. Wrap the block instead and position the button against the
+    // wrapper, which never scrolls.
+    document.querySelectorAll('pre > code').forEach(function (code) {
+        var pre = code.parentNode;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn-copy';
+        button.title = 'Copy to clipboard';
+        button.setAttribute('aria-label', 'Copy to clipboard');
+        button.setAttribute('data-clipboard-snippet', '');
+        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        wrapper.appendChild(button);
+    });
+
+    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+        target: function (trigger) {
+            return trigger.parentNode.querySelector('pre > code');
+        },
+    });
+    clipboardSnippets.on('success', function (e) {
+        var button = e.trigger;
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+        window.setTimeout(function () {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        }, 1500);
+        e.clearSelection();
+    });
+    clipboardSnippets.on('error', function (e) {
+        console.error('Copy failed:', e.action, e.trigger);
+    });
+</script>
+
+    </body>
+</html>

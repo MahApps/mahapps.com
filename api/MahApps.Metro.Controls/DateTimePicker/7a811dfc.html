@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
+        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
+        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+	    
+        <!-- Lunr search -->
+
+        
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
+
+
+        <title>MahApps.Metro - OnSelectedDateTimeChanged(DateTime?, DateTime?)</title>
+    </head>
+    <body class="d-flex flex-column">
+        <div class="flex-grow-1 d-flex flex-column">
+            <div class="bg-nav">
+                <div class="container-xl py-3">
+                    <div class="row">
+                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
+                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
+    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
+            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
+        <span class="site-title text-primary">MahApps.Metro</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
+        <ul class="navbar-nav mr-auto">
+            
+        </ul>
+        <ul class="navbar-nav">
+            
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/controls">Controls</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/api">API</a>
+    </li>
+
+
+            <li class="nav-item">
+    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
+</li>
+
+        </ul>
+    </div>
+</nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex-grow-1 d-flex flex-column">
+                    <!-- Titlebar -->
+                    <div id="titlebar" class="py-4">
+                        <div class="container-xl">
+                            <div class="row">
+                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
+                                    <div class="flex-grow-1">
+                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
+
+			<span><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a>.</span>
+                                        </div>
+                                        <div class="text-white m-0 text-break title">
+
+    <div>On<wbr>Selected<wbr>Date<wbr>Time<wbr>Changed<wbr>(DateTime?, <wbr>DateTime?)<wbr> <small>Method</small></div>
+                                        </div>
+                                    </div>
+                                        <div class="navbar navbar-expand-md navbar-dark p-0">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Under title -->
+                    <div id="undertitle">
+                        <div class="container-xl">
+                            <div class="row">
+                                    <div class="col-md-3 col-lg-2">
+                                    </div>
+                                    <div class="col-md-9 col-lg-8 bg-white">
+                                    </div>
+                                <div class="col-lg-2 d-none d-lg-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Body -->
+                <div class="flex-grow-1 d-flex flex-column">
+                        <div class="container-xl flex-grow-1 d-flex flex-column">
+                            <div class="row flex-grow-1 align-items-stretch">
+                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
+                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+
+	<div class="sidebar-root">
+		        <div class="sidebar-root bg-white mb-3 page-box font-size-sm">
+                <div class="sidebar-nav-item sidebar-header mb-0 pb-0">Namespace</div>
+                <div class="sidebar-nav-item  font-weight-normal mt-0 pt-0"><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></div>
+                <div class="sidebar-nav-item sidebar-header mb-0 pb-0">Type</div>
+                <div class="sidebar-nav-item font-weight-normal mt-0 pt-0"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></div>
+        </div>
+            <div class="sidebar-nav-item sidebar-header">Constructors</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/DBEEB7A3">DateTimePicker<wbr>()<wbr></a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Event Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/FC444A22">Selected<wbr>Date<wbr>Time<wbr>Changed</a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Field Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/0871F11C">Calendar<wbr>Style<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/1D075B22">CultureProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/76F0C420">Display<wbr>Date<wbr>End<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/163F3EE3">DisplayDateProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/67EE7AA8">Display<wbr>Date<wbr>Start<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/D4F7B405">First<wbr>Day<wbr>Of<wbr>Week<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/863FFD44">Hand<wbr>Visibility<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/28F56743">hourInput</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/8AB3A4FB">Hours<wbr>Item<wbr>String<wbr>Format<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/B86563B4">IntervalOf10</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/379109C4">IntervalOf15</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/F33BDC60">IntervalOf5</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/C99847E9">Is<wbr>Clock<wbr>Visible<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/DBE21AAB">Is<wbr>Date<wbr>Picker<wbr>Visible<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/8B6223C9">Is<wbr>Drop<wbr>Down<wbr>Open<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/733759FA">IsReadOnlyProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/DA871523">Is<wbr>Today<wbr>Highlighted<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/A3E665EB">Minutes<wbr>Item<wbr>String<wbr>Format<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/448BDC74">OrientationProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/4555F163">original<wbr>Selected<wbr>Date<wbr>Time</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/12C77AA9">Picker<wbr>Visibility<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/639D5CB4">Seconds<wbr>Item<wbr>String<wbr>Format<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/CABF367B">Selected<wbr>Date<wbr>Format<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/C5B12416">Selected<wbr>Date<wbr>Time<wbr>Changed<wbr>Event</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/6C703E28">Selected<wbr>Date<wbr>Time<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/47E275AA">Selected<wbr>Time<wbr>Format<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/DD2A80A5">SourceHoursProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/03022E64">Source<wbr>Minutes<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/868652E5">Source<wbr>Seconds<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/3154A265">textBox</a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Method Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/613AD69F">ApplyCulture<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/A0DEB0D6">Clock<wbr>Selected<wbr>Time<wbr>Changed<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/9A93F08D">Focus<wbr>Element<wbr>After<wbr>Is<wbr>Drop<wbr>Down<wbr>Open<wbr>Changed<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/8C9B7858">GetBinding<wbr>(<wbr>Dependency<wbr>Property, <wbr>BindingMode)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/7B67FB0F">Get<wbr>Selected<wbr>Time<wbr>From<wbr>G<wbr>U<wbr>I<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/30FEA6A5">GetValueForTextBox<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/1C6A970C">OnApplyTemplate<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/82DCD00C">OnPopUpClosed<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/3DB641A5">OnPopUpOpened<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item active"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/7A811DFC">On<wbr>Selected<wbr>Date<wbr>Time<wbr>Changed<wbr>(DateTime?, <wbr>DateTime?)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/EEF10351">Raise<wbr>Selected<wbr>Date<wbr>Time<wbr>Changed<wbr>Event<wbr>(DateTime?, <wbr>DateTime?)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/A86E0581">Set<wbr>Default<wbr>Time<wbr>Of<wbr>Day<wbr>Values<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/D4C191C4">SetSelectedDateTime<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/205920E1">WriteValueToTextBox<wbr>()<wbr></a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Property Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/B4B9912C">BlackoutDates</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/322FDE63">CalendarStyle</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/EE9BDCAE">Culture</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/26B18127">DisplayDate</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/6B631063">DisplayDateEnd</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/024AC58F">DisplayDateStart</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/60776E2C">FirstDayOfWeek</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/D996CF8A">HandVisibility</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/F718DC62">Hours<wbr>Item<wbr>String<wbr>Format</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/01277DE2">IsClockVisible</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/CF79504B">IsDatePickerVisible</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/691AC29F">IsDropDownOpen</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/BEC5F3F8">IsMilitaryTime</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/A2B08B6E">IsReadOnly</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/451A12EE">IsTodayHighlighted</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/000E6648">Minutes<wbr>Item<wbr>String<wbr>Format</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/945E9382">Orientation</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/6F8E76E4">PickerVisibility</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/C71F82DF">Seconds<wbr>Item<wbr>String<wbr>Format</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker/629E132A">SelectedDateFormat</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/6DA73C47">SelectedDateTime</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/10D003CA">SelectedTimeFormat</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/C394C164">SourceHours</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/9F5E238C">SourceMinutes</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/DA1D9E03">SourceSeconds</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/D2FA3351">SpecificCultureInfo</a></div>
+            </div>
+
+	</div>
+                                            </div>
+                                        </div>
+                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
+
+
+
+
+
+
+
+    <div class="p-3 bg-light page-box container small">
+        		<dl class="dl-horizontal">
+
+    		    <dt>Namespace</dt>
+    		    <dd><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></dd>
+
+				<dt>Containing Type</dt>
+				<dd><a href="/mahapps.com/api/MahApps.Metro.Controls/DateTimePicker">DateTimePicker</a></dd>
+
+				<dt>Overridden</dt>
+				<dd><a href="/mahapps.com/api/MahApps.Metro.Controls/TimePickerBase/015BB3DB">On<wbr>Selected<wbr>Date<wbr>Time<wbr>Changed<wbr>(DateTime?, <wbr>DateTime?)<wbr></a></dd>
+
+
+
+
+
+
+	    </dl>
+
+    </div>
+		<h1 id="Syntax">Syntax</h1>
+		<pre class="language-csharp"><code class="language-csharp">protected override void OnSelectedDateTimeChanged(DateTime? oldValue, DateTime? newValue)</code></pre>
+
+
+
+
+
+
+		<h1 id="Parameters">Parameters</h1>
+		<div class="table-responsive">
+			<table class="table table-api table-striped table-hover three-cols">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr>
+							<td>oldValue</td>
+							<td>DateTime?</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>newValue</td>
+							<td>DateTime?</td>
+							<td></td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+
+
+
+
+
+
+
+
+                                        </div>
+                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
+                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+
+	        <div class="sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#Syntax">Syntax</a></div>
+                    <div class="sidebar-nav-item"><a href="#Parameters">Parameters</a></div>
+            </div>
+        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="p-3 text-white">
+            <div class="container-xl">
+                <p class="text-muted">
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
+    <br/>
+    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br/>
+    Generated by <a href="https://statiq.dev">Statiq</a>
+</p>
+
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script>
+            $(document).ready(function() {
+                quicklink.listen();
+
+                // Bootstrap tooltips
+                $('[data-toggle="tooltip"]').tooltip();
+
+				// Keeps the sidebars in view on wider viewports
+				let left = null;
+				let leftParent = null;
+				let right = null;
+				let rightParent = null;
+                function stickSidebars()
+				{
+				    if (left == null) {
+                        left = $('#left-sidebar');
+                        right = $('#right-sidebar');
+                    }
+                    if (left.length) {
+                        if (window.innerWidth >= 768) {
+                            if (leftParent == null) {
+                                leftParent = left.parent()[0];
+                            }
+                            if (leftParent) {
+                                let leftRect = leftParent.getBoundingClientRect();
+                                stickSidebar(left,  leftRect);
+                            }
+                        } else {
+                            left.css('position', 'relative');
+                            if (left.css('bottom') != 0) {
+                                left.css('bottom', '0');
+                            }
+                        }
+                    }
+                    if (right.length) {
+                        if (window.innerWidth >= 768) {
+                            if (rightParent == null) {
+                                rightParent = right.parent()[0];
+                            }
+                            if (rightParent) {
+                                let rightRect = rightParent.getBoundingClientRect();
+                                stickSidebar(right,  rightRect);
+                            }
+                        } else {
+                            right.css('position', 'relative');
+                            if (right.css('bottom') != 0) {
+                                right.css('bottom', '0');
+                            }
+                        }
+                    }
+				}
+				function stickSidebar(sidebar, rect) {
+                    // Bottom
+                    if (rect.bottom > window.innerHeight) {
+                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
+                    } else {
+                        sidebar.css('bottom', 0);
+                    }
+                    // Top
+                    if (rect.top < 0) {
+                        sidebar.css('position', 'sticky');
+                    } else {
+                        sidebar.css('position', 'absolute');
+                    }
+				}
+				$(window).on("load", function() {
+				    stickSidebars();
+				});
+                $(window).scroll(function() {
+				    stickSidebars();
+				});
+				$(window).resize(function() {
+				    stickSidebars();
+				})
+
+                // Mermaid diagrams
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-fluid');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+            });
+        </script>
+
+        
+
+        <script>
+    anchors.options.placement = 'left';
+    anchors.add();
+
+    // Each <pre> is a horizontal scroll container (Bootstrap sets
+    // overflow: auto), so a button placed inside it scrolls out of view on long
+    // lines. Wrap the block instead and position the button against the
+    // wrapper, which never scrolls.
+    document.querySelectorAll('pre > code').forEach(function (code) {
+        var pre = code.parentNode;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn-copy';
+        button.title = 'Copy to clipboard';
+        button.setAttribute('aria-label', 'Copy to clipboard');
+        button.setAttribute('data-clipboard-snippet', '');
+        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        wrapper.appendChild(button);
+    });
+
+    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+        target: function (trigger) {
+            return trigger.parentNode.querySelector('pre > code');
+        },
+    });
+    clipboardSnippets.on('success', function (e) {
+        var button = e.trigger;
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+        window.setTimeout(function () {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        }, 1500);
+        e.clearSelection();
+    });
+    clipboardSnippets.on('error', function (e) {
+        console.error('Copy failed:', e.action, e.trigger);
+    });
+</script>
+
+    </body>
+</html>
