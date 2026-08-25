@@ -46,6 +46,7 @@ namespace StyleShots
                 {
                     try
                     {
+                        await ButtonFiguresAsync();
                         await TextBoxFiguresAsync();
                         await ComboBoxFiguresAsync();
                         await DatePickerFiguresAsync();
@@ -149,6 +150,44 @@ namespace StyleShots
                                                                    mah:TextBoxHelper.ButtonFontSize=""12""
                                                                    mah:TextBoxHelper.ButtonWidth=""48""
                                                                    Text=""metro"" />"))));
+        }
+
+        private static async Task ButtonFiguresAsync()
+        {
+            await CaptureAsync("styles", "buttons-square",
+                Showcase(
+                    ("implicit style", Xaml(@"<Button Width=""110"" Content=""Save"" />")),
+                    ("Button.Square", Xaml(@"<Button Width=""110"" Style=""{StaticResource MahApps.Styles.Button.Square}"" Content=""Save"" />")),
+                    ("Button.Square.Accent", Xaml(@"<Button Width=""110"" Style=""{StaticResource MahApps.Styles.Button.Square.Accent}"" Content=""Save"" />")),
+                    ("Button.Square.Highlight", Xaml(@"<Button Width=""110"" Style=""{StaticResource MahApps.Styles.Button.Square.Highlight}"" Content=""Save"" />"))));
+
+            await CaptureAsync("styles", "buttons-metrosquare",
+                Showcase(
+                    ("Button.MetroSquare", Xaml(@"<Button Width=""130"" Style=""{StaticResource MahApps.Styles.Button.MetroSquare}"" Content=""Save"" />")),
+                    ("Button.MetroSquare.Accent", Xaml(@"<Button Width=""130"" Style=""{StaticResource MahApps.Styles.Button.MetroSquare.Accent}"" Content=""Save"" />"))));
+
+            await CaptureAsync("styles", "buttons-circle-flat",
+                Showcase(
+                    ("Button.Circle", Xaml(@"<Button Width=""48"" Height=""48"" Style=""{StaticResource MahApps.Styles.Button.Circle}"">
+                                               <TextBlock FontFamily=""Segoe MDL2 Assets"" FontSize=""18"" Text=""&#xE72C;"" />
+                                             </Button>")),
+                    ("Button.Flat", Xaml(@"<Button Width=""110"" Style=""{StaticResource MahApps.Styles.Button.Flat}"" Content=""Save"" />")),
+                    ("Button.Chromeless", Xaml(@"<Button Width=""110"" Style=""{StaticResource MahApps.Styles.Button.Chromeless}"" Content=""Save"" />"))));
+
+            await CaptureAsync("styles", "buttons-dialogs",
+                Showcase(
+                    ("Button.Dialogs", Xaml(@"<Button Width=""110"" Style=""{StaticResource MahApps.Styles.Button.Dialogs}"" Content=""Cancel"" />")),
+                    ("Button.Dialogs.Accent", Xaml(@"<Button Width=""110"" Style=""{StaticResource MahApps.Styles.Button.Dialogs.Accent}"" Content=""OK"" />")),
+                    ("Button.Dialogs.AccentHighlight", Xaml(@"<Button Width=""110"" Style=""{StaticResource MahApps.Styles.Button.Dialogs.AccentHighlight}"" Content=""OK"" />"))));
+
+            await CaptureAsync("styles", "buttons-toggle",
+                Showcase(
+                    ("ToggleButton, unchecked", Xaml(@"<ToggleButton Width=""110"" Content=""Bold"" />")),
+                    ("ToggleButton, checked", Xaml(@"<ToggleButton Width=""110"" Content=""Bold"" IsChecked=""True"" />")),
+                    ("ToggleButton.Circle", Xaml(@"<ToggleButton Width=""48"" Height=""48"" IsChecked=""True"" Style=""{StaticResource MahApps.Styles.ToggleButton.Circle}"">
+                                                     <TextBlock FontFamily=""Segoe MDL2 Assets"" FontSize=""18"" Text=""&#xE734;"" />
+                                                   </ToggleButton>")),
+                    ("ToggleButton.Flat", Xaml(@"<ToggleButton Width=""110"" Content=""Bold"" IsChecked=""True"" Style=""{StaticResource MahApps.Styles.ToggleButton.Flat}"" />"))));
         }
 
         private const string ComboItems = @"
