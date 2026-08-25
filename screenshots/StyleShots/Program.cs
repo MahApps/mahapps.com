@@ -47,6 +47,7 @@ namespace StyleShots
                     try
                     {
                         await TextBoxFiguresAsync();
+                        await DatePickerFiguresAsync();
                         await PasswordBoxFiguresAsync();
                         await HelperFiguresAsync();
                         Console.WriteLine("done");
@@ -147,6 +148,31 @@ namespace StyleShots
                                                                    mah:TextBoxHelper.ButtonFontSize=""12""
                                                                    mah:TextBoxHelper.ButtonWidth=""48""
                                                                    Text=""metro"" />"))));
+        }
+
+        private static async Task DatePickerFiguresAsync()
+        {
+            await CaptureAsync("styles", "datepicker-styles",
+                Showcase(
+                    ("empty", Xaml(@"<DatePicker Width=""190"" />")),
+                    ("SelectedDate", Xaml(@"<DatePicker Width=""190"" SelectedDate=""2026-08-25"" />")),
+                    ("ClearTextButton", Xaml(@"<DatePicker Width=""190"" SelectedDate=""2026-08-25"" mah:TextBoxHelper.ClearTextButton=""True"" />"))));
+
+            await CaptureAsync("styles", "datepicker-watermark",
+                Showcase(
+                    ("Watermark", Xaml(@"<DatePicker Width=""190"" mah:TextBoxHelper.Watermark=""Start date"" />")),
+                    ("UseFloatingWatermark", Xaml(@"<DatePicker Width=""190"" SelectedDate=""2026-08-25""
+                                                                mah:TextBoxHelper.Watermark=""Start date""
+                                                                mah:TextBoxHelper.UseFloatingWatermark=""True"" />"))));
+
+            // The drop-down draws its calendar in a popup, which lives in its
+            // own window and is out of reach of RenderTargetBitmap. A Calendar
+            // carrying the same style shows exactly what the drop-down shows.
+            await CaptureAsync("styles", "datepicker-calendar",
+                Showcase(
+                    ("MahApps.Styles.Calendar.Base",
+                        Xaml(@"<Calendar Style=""{StaticResource MahApps.Styles.Calendar.Base}""
+                                         DisplayDate=""2026-08-25"" SelectedDate=""2026-08-25"" />"))));
         }
 
         private static async Task PasswordBoxFiguresAsync()
