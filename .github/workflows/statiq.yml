@@ -1,10 +1,12 @@
 name: Statiq
 
 on:
+  # Both names are listed so the workflow keeps firing across the rename of the
+  # default branch. Drop "master" once the rename has settled.
   push:
-    branches: [master]
+    branches: [main, master]
   pull_request:
-    branches: [master]
+    branches: [main, master]
 
 jobs:
   build:
@@ -20,7 +22,19 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 8.0.x
+          # 8.0 builds and runs the generator. The SDK version matters: Statiq
+          # restores and compiles the Docable theme project at startup, and that
+          # project targets netcoreapp3.1. Under the runner's newest SDK that
+          # compilation silently produced nothing - one "warning CS8021: No value
+          # for RuntimeMetadataVersion found" - and every Razor page then failed
+          # with "The type or namespace name 'Docable' could not be found".
+          # global.json pins the SDK to 8.0 so the newest one is not picked.
+          #
+          # 3.1 is installed for its targeting pack, which building a
+          # netcoreapp3.1 project needs. Nothing executes on it.
+          dotnet-version: |
+            3.1.x
+            8.0.x
 
       - name: Run the Cake script
         uses: cake-build/cake-action@v3
