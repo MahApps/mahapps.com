@@ -52,6 +52,27 @@ Unlike SplitViewShots this one writes its scenarios as XAML and loads them with
 `XamlReader`. The control is driven almost entirely by templates, and spelling
 those out in C# would obscure what the documentation is trying to show.
 
+## StyleShots
+
+Produces the figures for the pages under `input/docs/styles/`:
+
+```
+dotnet run --project screenshots/StyleShots -- input/docs/styles/images
+```
+
+Like HamburgerMenuShots it writes its scenarios as XAML and loads them with
+`XamlReader`, so the markup in the figure and the markup in the documentation
+are the same. It writes every style figure in one run.
+
+Two things a `PasswordBox` scenario cannot express in XAML and that the app
+therefore does after the window is up. `Password` is not a dependency property,
+and setting it earlier would also be before the style has attached
+`PasswordBoxBindingBehavior`, which is what feeds the hidden text box the reveal
+button's visibility hangs off. And the caps lock indicator is shown by the
+library looking the template part up and setting its visibility from a key
+handler - an off-screen render never presses a key, so the same part is driven
+directly.
+
 ## DialogShots
 
 Produces the figures for the pages under `input/docs/dialogs/`:
