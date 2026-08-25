@@ -5,9 +5,9 @@
     <TargetFramework>net8.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
     <Nullable>disable</Nullable>
-    <AssemblyName>MessageDialogShots</AssemblyName>
-    <RootNamespace>MessageDialogShots</RootNamespace>
-    <StartupObject>MessageDialogShots.Program</StartupObject>
+    <AssemblyName>DialogShots</AssemblyName>
+    <RootNamespace>DialogShots</RootNamespace>
+    <StartupObject>DialogShots.Program</StartupObject>
   </PropertyGroup>
 
   <ItemGroup>

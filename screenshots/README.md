@@ -52,16 +52,31 @@ Unlike SplitViewShots this one writes its scenarios as XAML and loads them with
 `XamlReader`. The control is driven almost entirely by templates, and spelling
 those out in C# would obscure what the documentation is trying to show.
 
-## MessageDialogShots
+## DialogShots
 
-Produces the figures on `input/docs/dialogs/message-dialog.md`:
+Produces the figures for the pages under `input/docs/dialogs/`:
 
 ```
-dotnet run --project screenshots/MessageDialogShots -- input/docs/dialogs/images
+dotnet run --project screenshots/DialogShots -- input/docs/dialogs/images
 ```
+
+It writes every dialog figure in one run, so expect the message dialog images
+to be rewritten even when you only meant to change an input dialog one. They
+come out the same unless the scenario changed.
 
 A dialog is not a control that can be laid out on a canvas - it is shown into a
 `MetroWindow`'s overlay. Each scenario therefore opens a real window off screen,
-starts `ShowMessageAsync` without awaiting the answer that never comes, renders
-the window once the dialog has settled, and composes those renders into one
-image. `AnimateShow` is turned off so the capture is not a race.
+starts the dialog without awaiting the answer that never comes, renders the
+window once it has settled, and composes those renders into one image.
+`AnimateShow` is turned off so the capture is not a race.
+
+Adding a figure for another dialog type means adding a scenario: the capture
+takes a `Func<MetroWindow, Task>`, so anything you can start on a window fits.
+
+Two things had to be pinned down to make these reproducible, both worth keeping
+if you touch the capture code. Only one window can be the active one, so with
+several panels in a figure the others would render with the inactive title bar
+- the windows are opened with `ShowActivated = false` and the inactive brushes
+are set to the active ones. And whether a button ends up wearing the dashed
+focus adorner depends on where keyboard focus landed, so focus is cleared
+before rendering.

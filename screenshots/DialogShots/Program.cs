@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,13 +10,15 @@ using System.Windows.Threading;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 
-namespace MessageDialogShots
+namespace DialogShots
 {
-    // Renders message dialogs to PNG. Unlike the other generators these need a
-    // live MetroWindow: a dialog is not a control you can lay out, it is shown
-    // into the window's overlay. So each scenario opens a real window off
-    // screen, starts ShowMessageAsync without awaiting the user's answer, lets
-    // the dialog settle and then renders the window.
+    // Renders the dialog figures for the docs/dialogs pages.
+    //
+    // A dialog is not a control that can be laid out on a canvas - it is shown
+    // into a MetroWindow's overlay. So each scenario opens a real window off
+    // screen, starts the dialog without awaiting the answer that never comes,
+    // renders the window once it has settled, and the renders are composed into
+    // one image per figure.
     public static class Program
     {
         private const double Scale = 2.0;
@@ -24,7 +28,7 @@ namespace MessageDialogShots
         public static void Main(string[] args)
         {
             outputDirectory = Array.Find(args, a => !a.StartsWith("--")) ?? "shots";
-            System.IO.Directory.CreateDirectory(outputDirectory);
+            Directory.CreateDirectory(outputDirectory);
 
             var app = new Application { ShutdownMode = ShutdownMode.OnExplicitShutdown };
             foreach (var source in new[]
@@ -42,7 +46,8 @@ namespace MessageDialogShots
                 {
                     try
                     {
-                        await CaptureAllAsync();
+                        await MessageDialogFiguresAsync();
+                        await InputDialogFiguresAsync();
                         Console.WriteLine("done");
                     }
                     catch (Exception ex)
@@ -58,67 +63,104 @@ namespace MessageDialogShots
             app.Run();
         }
 
-        private static async Task CaptureAllAsync()
+        // Animating would turn the capture into a race.
+        private static MetroDialogSettings Still(MetroDialogSettings settings = null)
+        {
+            settings = settings ?? new MetroDialogSettings();
+            settings.AnimateShow = false;
+            settings.AnimateHide = false;
+            return settings;
+        }
+
+        private static async Task MessageDialogFiguresAsync()
         {
             await CaptureAsync("messagedialog-styles", 520, 340,
                 ("MessageDialogStyle.Affirmative",
-                    "Delete the file?", "This cannot be undone.",
-                    MessageDialogStyle.Affirmative, null),
+                    w => w.ShowMessageAsync("Delete the file?", "This cannot be undone.",
+                        MessageDialogStyle.Affirmative, Still())),
                 ("MessageDialogStyle.AffirmativeAndNegative",
-                    "Delete the file?", "This cannot be undone.",
-                    MessageDialogStyle.AffirmativeAndNegative, null));
+                    w => w.ShowMessageAsync("Delete the file?", "This cannot be undone.",
+                        MessageDialogStyle.AffirmativeAndNegative, Still())));
 
             await CaptureAsync("messagedialog-auxiliary", 700, 340,
                 ("...AndSingleAuxiliary",
-                    "Unsaved changes", "Save your changes before closing?",
-                    MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary,
-                    new MetroDialogSettings
-                    {
-                        AffirmativeButtonText = "Save",
-                        NegativeButtonText = "Discard",
-                        FirstAuxiliaryButtonText = "Cancel"
-                    }),
+                    w => w.ShowMessageAsync("Unsaved changes", "Save your changes before closing?",
+                        MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary,
+                        Still(new MetroDialogSettings
+                              {
+                                  AffirmativeButtonText = "Save",
+                                  NegativeButtonText = "Discard",
+                                  FirstAuxiliaryButtonText = "Cancel"
+                              }))),
                 ("...AndDoubleAuxiliary",
-                    "Unsaved changes", "Save your changes before closing?",
-                    MessageDialogStyle.AffirmativeAndNegativeAndDoubleAuxiliary,
-                    new MetroDialogSettings
-                    {
-                        AffirmativeButtonText = "Save",
-                        NegativeButtonText = "Discard",
-                        FirstAuxiliaryButtonText = "Save as...",
-                        SecondAuxiliaryButtonText = "Cancel"
-                    }));
+                    w => w.ShowMessageAsync("Unsaved changes", "Save your changes before closing?",
+                        MessageDialogStyle.AffirmativeAndNegativeAndDoubleAuxiliary,
+                        Still(new MetroDialogSettings
+                              {
+                                  AffirmativeButtonText = "Save",
+                                  NegativeButtonText = "Discard",
+                                  FirstAuxiliaryButtonText = "Save as...",
+                                  SecondAuxiliaryButtonText = "Cancel"
+                              }))));
 
             await CaptureAsync("messagedialog-colorscheme", 520, 340,
                 ("ColorScheme = Theme (default)",
-                    "Connection lost", "Retry the request?",
-                    MessageDialogStyle.AffirmativeAndNegative,
-                    new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Theme }),
+                    w => w.ShowMessageAsync("Connection lost", "Retry the request?",
+                        MessageDialogStyle.AffirmativeAndNegative,
+                        Still(new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Theme }))),
                 ("ColorScheme = Accented",
-                    "Connection lost", "Retry the request?",
-                    MessageDialogStyle.AffirmativeAndNegative,
-                    new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Accented }));
+                    w => w.ShowMessageAsync("Connection lost", "Retry the request?",
+                        MessageDialogStyle.AffirmativeAndNegative,
+                        Still(new MetroDialogSettings { ColorScheme = MetroDialogColorScheme.Accented }))));
 
             await CaptureAsync("messagedialog-custom", 560, 340,
                 ("Custom button text",
-                    "Leave the page?", "Your draft will be kept for seven days.",
-                    MessageDialogStyle.AffirmativeAndNegative,
-                    new MetroDialogSettings
-                    {
-                        AffirmativeButtonText = "Leave",
-                        NegativeButtonText = "Stay here"
-                    }),
+                    w => w.ShowMessageAsync("Leave the page?", "Your draft will be kept for seven days.",
+                        MessageDialogStyle.AffirmativeAndNegative,
+                        Still(new MetroDialogSettings
+                              {
+                                  AffirmativeButtonText = "Leave",
+                                  NegativeButtonText = "Stay here"
+                              }))),
                 ("Custom font sizes",
-                    "Leave the page?", "Your draft will be kept for seven days.",
-                    MessageDialogStyle.AffirmativeAndNegative,
-                    new MetroDialogSettings
-                    {
-                        AffirmativeButtonText = "Leave",
-                        NegativeButtonText = "Stay here",
-                        DialogTitleFontSize = 22,
-                        DialogMessageFontSize = 14,
-                        DialogButtonFontSize = 14
-                    }));
+                    w => w.ShowMessageAsync("Leave the page?", "Your draft will be kept for seven days.",
+                        MessageDialogStyle.AffirmativeAndNegative,
+                        Still(new MetroDialogSettings
+                              {
+                                  AffirmativeButtonText = "Leave",
+                                  NegativeButtonText = "Stay here",
+                                  DialogTitleFontSize = 22,
+                                  DialogMessageFontSize = 14,
+                                  DialogButtonFontSize = 14
+                              }))));
+        }
+
+        private static async Task InputDialogFiguresAsync()
+        {
+            await CaptureAsync("inputdialog-basic", 560, 360,
+                ("Empty, with the default buttons",
+                    w => w.ShowInputAsync("What is your name?", "This will appear on your profile.",
+                        Still())),
+                ("DefaultText and custom buttons",
+                    w => w.ShowInputAsync("What is your name?", "This will appear on your profile.",
+                        Still(new MetroDialogSettings
+                              {
+                                  DefaultText = "Ada Lovelace",
+                                  AffirmativeButtonText = "Save",
+                                  NegativeButtonText = "Skip"
+                              }))));
+
+            await CaptureAsync("inputdialog-colorscheme", 560, 360,
+                ("ColorScheme = Theme (default)",
+                    w => w.ShowInputAsync("Rename the file", "Enter a new name.",
+                        Still(new MetroDialogSettings { DefaultText = "report.pdf" }))),
+                ("ColorScheme = Accented",
+                    w => w.ShowInputAsync("Rename the file", "Enter a new name.",
+                        Still(new MetroDialogSettings
+                              {
+                                  DefaultText = "report.pdf",
+                                  ColorScheme = MetroDialogColorScheme.Accented
+                              }))));
         }
 
         // Content behind the dialog, so the overlay that dims it is visible.
@@ -147,26 +189,27 @@ namespace MessageDialogShots
                    };
         }
 
-        private static async Task<(MetroWindow Window, FrameworkElement Root)> OpenAsync(
-            string title, string message, MessageDialogStyle style, MetroDialogSettings settings,
-            double width, double height)
+        private static async Task<MetroWindow> OpenAsync(Func<MetroWindow, Task> show, double width, double height)
         {
-            settings = settings ?? new MetroDialogSettings();
-            // Animations would make the capture a race.
-            settings.AnimateShow = false;
-            settings.AnimateHide = false;
-
             var window = new MetroWindow
                          {
                              Title = "MainWindow",
                              Width = width,
                              Height = height,
                              ShowInTaskbar = false,
+                             // Only one window can be the active one, so with
+                             // several panels in a figure the rest would render
+                             // with the inactive title bar - and which is which
+                             // is not deterministic. Take activation out of the
+                             // picture and make both states look the same.
+                             ShowActivated = false,
                              WindowStartupLocation = WindowStartupLocation.Manual,
                              Left = -20000,
                              Top = -20000,
                              Content = Backdrop()
                          };
+            window.NonActiveWindowTitleBrush = window.WindowTitleBrush;
+            window.NonActiveBorderBrush = window.BorderBrush;
 
             var rendered = new TaskCompletionSource<bool>();
             window.ContentRendered += (_, _) => rendered.TrySetResult(true);
@@ -175,30 +218,38 @@ namespace MessageDialogShots
 
             // Deliberately not awaited: the task completes when a button is
             // clicked, which never happens here.
-            _ = window.ShowMessageAsync(title, message, style, settings);
+            _ = show(window);
 
             await Task.Delay(700);
+
+            // Whether a button ends up carrying the dashed focus adorner
+            // depends on where keyboard focus landed, which varies between
+            // runs. Drop it so the figures are reproducible; the affirmative
+            // button is still recognisable by its accent fill.
+            System.Windows.Input.Keyboard.ClearFocus();
+            System.Windows.Input.FocusManager.SetFocusedElement(window, null);
+
             await window.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
 
-            return (window, window);
+            return window;
         }
 
         private static async Task CaptureAsync(
             string name,
             double width,
             double height,
-            params (string Caption, string Title, string Message, MessageDialogStyle Style, MetroDialogSettings Settings)[] scenarios)
+            params (string Caption, Func<MetroWindow, Task> Show)[] scenarios)
         {
             var row = new StackPanel { Orientation = Orientation.Horizontal };
-            var windows = new System.Collections.Generic.List<MetroWindow>();
+            var windows = new List<MetroWindow>();
 
             foreach (var scenario in scenarios)
             {
-                var (window, _) = await OpenAsync(scenario.Title, scenario.Message, scenario.Style, scenario.Settings, width, height);
+                var window = await OpenAsync(scenario.Show, width, height);
                 windows.Add(window);
 
-                // Render each window on its own, then compose the panels into
-                // one image - a Window cannot be reparented into a StackPanel.
+                // Render each window on its own; a Window cannot be reparented
+                // into the composition panel.
                 var shot = RenderToBitmap(window);
 
                 var column = new StackPanel { Margin = new Thickness(10) };
@@ -225,14 +276,13 @@ namespace MessageDialogShots
                 row.Children.Add(column);
             }
 
-            var composed = new Border
-                           {
-                               Background = new SolidColorBrush(Color.FromRgb(0xF8, 0xF9, 0xFA)),
-                               Padding = new Thickness(6),
-                               Child = row
-                           };
-
-            await SaveComposedAsync(name, composed);
+            await SaveComposedAsync(name,
+                new Border
+                {
+                    Background = new SolidColorBrush(Color.FromRgb(0xF8, 0xF9, 0xFA)),
+                    Padding = new Thickness(6),
+                    Child = row
+                });
 
             foreach (var window in windows)
             {
@@ -279,8 +329,8 @@ namespace MessageDialogShots
             var encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(bitmap));
 
-            var path = System.IO.Path.Combine(outputDirectory, name + ".png");
-            using (var stream = System.IO.File.Create(path))
+            var path = Path.Combine(outputDirectory, name + ".png");
+            using (var stream = File.Create(path))
             {
                 encoder.Save(stream);
             }
