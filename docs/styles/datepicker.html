@@ -256,12 +256,172 @@ DatePicker
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>Every <code>DatePicker</code> in a MahApps application is styled without any markup on your side, and so is the calendar that drops out of it. On top of that the library adds a watermark and a clear button, both through the same attached properties a <code>TextBox</code> uses.</p>
+<p><img src="images/datepicker-styles.png" alt="A DatePicker, empty, with a date, and with the clear button" /></p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> contains keyless styles for <code>DatePicker</code>, <code>DatePickerTextBox</code> and <code>Calendar</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+</code></pre>
+<p>Three of them are needed because a <code>DatePicker</code> is three controls: the picker itself, the <code>DatePickerTextBox</code> inside it, and the <code>Calendar</code> in the drop-down.</p>
+<p>To extend rather than replace, base your own style on the keyed one:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.DatePicker}&quot; TargetType=&quot;{x:Type DatePicker}&quot;&gt;
+    &lt;Setter Property=&quot;mah:TextBoxHelper.ClearTextButton&quot; Value=&quot;True&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<h2 id="the-styles">The styles</h2>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Target</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.DatePicker</code></td>
+<td><code>DatePicker</code></td>
+<td>the picker. What the implicit style applies</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.DatePickerTextBox</code></td>
+<td><code>DatePickerTextBox</code></td>
+<td>the text box inside it</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.DatePickerTextBox.TimePickerBase</code></td>
+<td><code>DatePickerTextBox</code></td>
+<td>the same, used by <code>TimePicker</code> and <code>DateTimePicker</code>; it only forwards the automation properties from the picker to the box</td>
+</tr>
+</tbody>
+</table>
+<p>Besides the look, the picker style also sets three behavioural defaults you may want to change: <code>SelectedDateFormat</code> to <code>Short</code>, <code>IsTodayHighlighted</code> to <code>True</code>, and <code>CalendarStyle</code> to <code>MahApps.Styles.Calendar.Base</code>.</p>
+<h2 id="the-clear-button">The clear button</h2>
+<p><code>ClearTextButton</code> puts an ✕ next to the calendar button, which empties the picker.</p>
+<pre><code class="language-xml">&lt;DatePicker mah:TextBoxHelper.ClearTextButton=&quot;True&quot; /&gt;
+</code></pre>
+<p>The mechanism is worth knowing, because it is not the one the other input controls use. The button is in the template unconditionally, and a trigger collapses it while <code>TextBoxHelper.ButtonCommand</code> is <code>null</code> — which it is by default. Setting <code>ClearTextButton=&quot;True&quot;</code> fires a second trigger that puts <code>MahAppsCommands.ClearControlCommand</code> into <code>ButtonCommand</code>, and that is what brings the button back.</p>
+<p>Two things follow from that:</p>
+<ul>
+<li>Setting your own <code>ButtonCommand</code> also makes the button appear, and it replaces the clearing rather than adding to it. That is the way to turn the ✕ into something else — a &quot;today&quot; button, for instance.</li>
+<li><code>ClearControlCommand</code> refuses to run unless <code>ClearTextButton</code> is <code>True</code> and the picker is not read-only, so the button is disabled rather than misleading in those cases.</li>
+</ul>
+<p>The command is public and works on more than a picker — it clears a <code>TextBox</code>, <code>ComboBox</code> or <code>TimePicker</code> the same way, and can be invoked from anywhere:</p>
+<pre><code class="language-xml">&lt;Button Command=&quot;{x:Static mah:MahAppsCommands.ClearControlCommand}&quot;
+        CommandTarget=&quot;{Binding ElementName=StartDate}&quot;
+        Content=&quot;Clear&quot; /&gt;
+</code></pre>
+<h2 id="watermark">Watermark</h2>
+<p>WPF's own <code>DatePickerTextBox</code> shows <em>Select a date</em> when it is empty. <code>TextBoxHelper.Watermark</code> replaces that with your own text, and the floating variant keeps it visible once a date has been picked:</p>
+<p><img src="images/datepicker-watermark.png" alt="Watermark and floating watermark" /></p>
+<pre><code class="language-xml">&lt;DatePicker mah:TextBoxHelper.Watermark=&quot;Start date&quot; /&gt;
+
+&lt;DatePicker mah:TextBoxHelper.Watermark=&quot;Start date&quot;
+            mah:TextBoxHelper.UseFloatingWatermark=&quot;True&quot; /&gt;
+</code></pre>
+<h2 id="the-calendar">The calendar</h2>
+<p>The drop-down is an ordinary <code>Calendar</code>, styled through the picker's <code>CalendarStyle</code>. Three calendar styles ship with the library:</p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Calendar.Base</code></td>
+<td>what a <code>DatePicker</code> uses in its drop-down</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Calendar</code></td>
+<td>the same plus the control font and size; what a standalone <code>Calendar</code> gets from the implicit style</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Calendar.DateTimePicker</code></td>
+<td>the base with a quieter border, for the drop-down of a <code>DateTimePicker</code></td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/datepicker-calendar.png" alt="The calendar in the drop-down" /></p>
+<p>All three build on <code>MahApps.Styles.CalendarItem</code>, <code>MahApps.Styles.CalendarDayButton</code> and <code>MahApps.Styles.CalendarButton</code>, which is where the individual days, the month and year buttons and the header live. Restyling one day cell means replacing <code>CalendarDayButtonStyle</code> rather than the whole calendar.</p>
+<pre><code class="language-xml">&lt;DatePicker CalendarStyle=&quot;{StaticResource MyCalendar}&quot; /&gt;
+</code></pre>
+<h2 id="helper-properties">Helper properties</h2>
+<p>Three helpers reach a <code>DatePicker</code>, and their full property tables are on their own pages: <a href="../helper/datepickerhelper">DatePickerHelper</a> for the drop-down button, <a href="../helper/textboxhelper">TextBoxHelper</a> for the watermark and the clear button, and <a href="../helper/controlshelper">ControlsHelper</a> for the border, the corner radius and read-only.</p>
+<p>What the style itself sets, since those are the values you would be overriding:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>To</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DatePickerHelper.DropDownButtonContent</code></td>
+<td>the calendar glyph, as <code>Path</code> geometry</td>
+</tr>
+<tr>
+<td><code>DatePickerHelper.DropDownButtonContentTemplate</code></td>
+<td>the template that draws that geometry</td>
+</tr>
+<tr>
+<td><code>TextBoxHelper.IsMonitoring</code></td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>TextBoxHelper.ButtonWidth</code></td>
+<td><code>22</code></td>
+</tr>
+<tr>
+<td><code>TextBoxHelper.ButtonFontSize</code></td>
+<td><code>MahApps.Font.Size.Button.ClearText</code></td>
+</tr>
+<tr>
+<td><code>TextBoxHelper.ButtonTemplate</code></td>
+<td>the chromeless button template</td>
+</tr>
+<tr>
+<td><code>ControlsHelper.FocusBorderBrush</code></td>
+<td><code>MahApps.Brushes.TextBox.Border.Focus</code></td>
+</tr>
+<tr>
+<td><code>ControlsHelper.MouseOverBorderBrush</code></td>
+<td><code>MahApps.Brushes.TextBox.Border.MouseOver</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>ButtonCommand</code> is deliberately absent from that list — it is set by the trigger described above, not by the style.</p>
+<p>The drop-down button's content and template are set as a pair, so replacing the calendar icon means dealing with both. <a href="../helper/datepickerhelper">DatePickerHelper</a> has the detail.</p>
+<h2 id="read-only">Read-only</h2>
+<p><code>DatePicker</code> has no <code>IsReadOnly</code> of its own. <code>ControlsHelper.IsReadOnly</code> fills the gap: it disables the drop-down button, makes the text box read-only, and stops the clear command from running.</p>
+<pre><code class="language-xml">&lt;DatePicker mah:ControlsHelper.IsReadOnly=&quot;True&quot; SelectedDate=&quot;{Binding StartDate}&quot; /&gt;
+</code></pre>
+<p>That leaves the date readable and selectable, which is what a disabled picker does not.</p>
+<h2 id="validation">Validation</h2>
+<p><code>Validation.ErrorTemplate</code> is set to <code>MahApps.Templates.ValidationError</code>, so a failing validation rule on <code>SelectedDate</code> is drawn the way it is on every other MahApps input control. How the popup behaves is <a href="../helper/validationhelper">ValidationHelper</a>.</p>
+<h2 id="related">Related</h2>
+<p><code>TimePicker</code> and <code>DateTimePicker</code> are MahApps controls of their own rather than styles of a WPF one, and they reuse both the <code>DatePickerTextBox.TimePickerBase</code> style and <code>DatePickerHelper</code>.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-styles">The styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-clear-button">The clear button</a></div>
+                    <div class="sidebar-nav-item"><a href="#watermark">Watermark</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-calendar">The calendar</a></div>
+                    <div class="sidebar-nav-item"><a href="#helper-properties">Helper properties</a></div>
+                    <div class="sidebar-nav-item"><a href="#read-only">Read-only</a></div>
+                    <div class="sidebar-nav-item"><a href="#validation">Validation</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/datepicker.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

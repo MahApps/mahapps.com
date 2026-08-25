@@ -263,21 +263,303 @@ Custom Dialogs
     <a href="/mahapps.com/docs/dialogs/custom-dialogs">Custom Dialogs</a>
 </div>
 <div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialogsettings</a>
+    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialog Settings</a>
 </div>                </div>
 
-<div class="sidebar-nav-item">
+<div class="sidebar-nav-item has-children">
     <a href="/mahapps.com/docs/helper">Helper Classes</a>
-</div>    </div>
+</div>                <div class="sidebar-nav-children">
+
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/checkboxhelper">CheckBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/datagridhelper">DataGridHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/datepickerhelper">DatePickerHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/itemhelper">ItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/multiselectorhelper">MultiSelectorHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/scrollviewerhelper">ScrollViewerHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/sliderhelper">SliderHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/tabcontrolhelper">TabControlHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/textboxhelper">TextBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/togglebuttonhelper">ToggleButtonHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/treeviewitemhelper">TreeViewItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/validationhelper">ValidationHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/visibilityhelper">VisibilityHelper</a>
+</div>                </div>
+    </div>
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>When none of the built-in dialogs fits, <code>CustomDialog</code> gives you the same overlay with whatever content you put in it. It is a <code>ContentControl</code>, so anything that goes in a <code>UserControl</code> goes in a dialog.</p>
+<p><img src="images/customdialog-update.png" alt="A custom dialog using all four regions" /></p>
+<h2 id="anatomy">Anatomy</h2>
+<p>A dialog has four regions, and knowing which is which is most of the job:</p>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DialogTop</code></td>
+<td>full width, above everything. Good for a coloured band or a banner</td>
+</tr>
+<tr>
+<td><code>Title</code></td>
+<td>a <code>TextBlock</code> above the content, in the dialog title font. Hidden when <code>null</code></td>
+</tr>
+<tr>
+<td><code>Content</code></td>
+<td>your content</td>
+</tr>
+<tr>
+<td><code>DialogBottom</code></td>
+<td>full width, below everything. Where a button bar goes</td>
+</tr>
+</tbody>
+</table>
+<p><code>Title</code> and <code>Content</code> sit in the middle column of a three-column grid — <code>DialogContentMargin</code>, <code>DialogContentWidth</code>, <code>DialogContentMargin</code>, which default to <code>25*</code>, <code>50*</code> and <code>25*</code>. So they occupy the middle half of the window and stay centred as it is resized. <code>DialogTop</code> and <code>DialogBottom</code> are outside that grid and always span the full width, which is what makes the coloured band above and the button bar below reach the edges.</p>
+<p>The dialog in the figure is this, and nothing else:</p>
+<pre><code class="language-xml">&lt;mah:CustomDialog x:Class=&quot;MyApp.UpdateDialog&quot;
+                  xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+                  xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+                  xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
+                  Title=&quot;Update available&quot;&gt;
+
+    &lt;mah:CustomDialog.DialogTop&gt;
+        &lt;Border Padding=&quot;20 14&quot; Background=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;&gt;
+            &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+                &lt;TextBlock VerticalAlignment=&quot;Center&quot;
+                           FontFamily=&quot;Segoe MDL2 Assets&quot;
+                           FontSize=&quot;18&quot;
+                           Foreground=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot;
+                           Text=&quot;&amp;#xE896;&quot; /&gt;
+                &lt;TextBlock Margin=&quot;12 0 0 0&quot;
+                           VerticalAlignment=&quot;Center&quot;
+                           FontSize=&quot;14&quot;
+                           Foreground=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot;
+                           Text=&quot;Version 2.5.0 is ready to install&quot; /&gt;
+            &lt;/StackPanel&gt;
+        &lt;/Border&gt;
+    &lt;/mah:CustomDialog.DialogTop&gt;
+
+    &lt;StackPanel Margin=&quot;0 4 0 20&quot;&gt;
+        &lt;TextBlock Margin=&quot;0 0 0 12&quot;
+                   FontSize=&quot;15&quot;
+                   Opacity=&quot;0.75&quot;
+                   Text=&quot;This release fixes the crash on startup and adds two things you asked for.&quot;
+                   TextWrapping=&quot;Wrap&quot; /&gt;
+        &lt;!-- one row per change --&gt;
+    &lt;/StackPanel&gt;
+
+    &lt;mah:CustomDialog.DialogBottom&gt;
+        &lt;Border Padding=&quot;20 14&quot; Background=&quot;{DynamicResource MahApps.Brushes.Gray10}&quot;&gt;
+            &lt;StackPanel HorizontalAlignment=&quot;Right&quot; Orientation=&quot;Horizontal&quot;&gt;
+                &lt;Button Content=&quot;Later&quot; Style=&quot;{DynamicResource MahApps.Styles.Button.Dialogs}&quot; /&gt;
+                &lt;Button Margin=&quot;8 0 0 0&quot;
+                        Content=&quot;Install now&quot;
+                        Style=&quot;{DynamicResource MahApps.Styles.Button.Dialogs.Accent}&quot; /&gt;
+            &lt;/StackPanel&gt;
+        &lt;/Border&gt;
+    &lt;/mah:CustomDialog.DialogBottom&gt;
+
+&lt;/mah:CustomDialog&gt;
+</code></pre>
+<p>Use the theme brushes rather than fixed colours — <code>MahApps.Brushes.Accent</code> with <code>MahApps.Brushes.IdealForeground</code> on top of it, <code>MahApps.Brushes.Gray10</code> for the quiet strip — and the dialog follows the application's theme without further work.</p>
+<h3 id="button-styles">Button styles</h3>
+<p>Three styles make your buttons look like the ones in the built-in dialogs. They are the same styles those dialogs use.</p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Button.Dialogs</code></td>
+<td>the plain one</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.Dialogs.Accent</code></td>
+<td>filled with the accent colour, for the affirmative action</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.Dialogs.AccentHighlight</code></td>
+<td>the highlight variant</td>
+</tr>
+</tbody>
+</table>
+<h2 id="showing-and-hiding">Showing and hiding</h2>
+<p><code>ShowMetroDialogAsync</code> puts the dialog on screen. It returns as soon as it is up — <strong>not</strong> when the user has answered — so closing it is your job:</p>
+<pre><code class="language-csharp">var dialog = new UpdateDialog();
+
+await this.ShowMetroDialogAsync(dialog);
+</code></pre>
+<pre><code class="language-csharp">await this.HideMetroDialogAsync(dialog);
+</code></pre>
+<p>From inside the dialog, <code>RequestCloseAsync</code> does the same without needing the window:</p>
+<pre><code class="language-csharp">private async void OnLaterClick(object sender, RoutedEventArgs e)
+{
+    await this.RequestCloseAsync();
+}
+</code></pre>
+<div class="alert alert-info"><p><code>RequestCloseAsync</code> works both for a dialog shown inside a <code>MetroWindow</code> and for one shown in its own window, despite what its XML doc says about throwing for the first case — it routes to <code>HideMetroDialogAsync</code> for you.</p>
+</div>
+<p>There is also an overload that constructs the dialog for you:</p>
+<pre><code class="language-csharp">await this.ShowMetroDialogAsync&lt;UpdateDialog&gt;();
+</code></pre>
+<p>It uses <code>Activator.CreateInstance(typeof(TDialog), window, settings)</code>, so the type needs a <code>(MetroWindow, MetroDialogSettings)</code> constructor. A dialog defined in XAML has only the generated parameterless one unless you add it, and without it this overload throws <code>MissingMethodException</code>.</p>
+<p><code>GetCurrentDialogAsync&lt;T&gt;()</code> hands back the topmost dialog of that type, or <code>null</code>:</p>
+<pre><code class="language-csharp">var dialog = await this.GetCurrentDialogAsync&lt;UpdateDialog&gt;();
+</code></pre>
+<h2 id="getting-an-answer-back">Getting an answer back</h2>
+<p>Since the show call does not wait, a custom dialog needs its own way to report what the user chose. A <code>TaskCompletionSource</code> set by the buttons turns it back into something awaitable:</p>
+<pre><code class="language-csharp">public partial class ExportDialog : CustomDialog
+{
+    private readonly TaskCompletionSource&lt;ExportOptions&gt; result = new();
+
+    public ExportDialog()
+    {
+        this.InitializeComponent();
+    }
+
+    public Task&lt;ExportOptions&gt; WaitForResultAsync() =&gt; this.result.Task;
+
+    private async void OnExportClick(object sender, RoutedEventArgs e)
+    {
+        this.result.TrySetResult(new ExportOptions(this.FileName.Text, this.IncludeCharts.IsChecked == true));
+        await this.RequestCloseAsync();
+    }
+
+    private async void OnCancelClick(object sender, RoutedEventArgs e)
+    {
+        this.result.TrySetResult(null);
+        await this.RequestCloseAsync();
+    }
+}
+</code></pre>
+<p>which reads like any other dialog at the call site:</p>
+<pre><code class="language-csharp">var dialog = new ExportDialog();
+await this.ShowMetroDialogAsync(dialog);
+
+var options = await dialog.WaitForResultAsync();
+if (options is not null)
+{
+    await ExportAsync(options);
+}
+</code></pre>
+<p><code>TrySetResult</code> rather than <code>SetResult</code>, so a second click cannot throw. Where there is nothing to report back, <code>WaitUntilUnloadedAsync()</code> is enough on its own:</p>
+<pre><code class="language-csharp">await this.ShowMetroDialogAsync(dialog);
+await dialog.WaitUntilUnloadedAsync();
+</code></pre>
+<h2 id="a-form">A form</h2>
+<p>Ordinary controls need no special treatment. The MahApps styles apply to them inside a dialog as everywhere else, so a <code>TextBox</code> keeps its floating watermark and the radio buttons and checkbox keep the accent colour:</p>
+<p><img src="images/customdialog-form.png" alt="A form in a custom dialog" /></p>
+<pre><code class="language-xml">&lt;StackPanel Margin=&quot;0 4 0 20&quot;&gt;
+    &lt;TextBlock Margin=&quot;0 0 0 14&quot; FontSize=&quot;15&quot; Opacity=&quot;0.75&quot; Text=&quot;Choose a format and what to include.&quot; /&gt;
+
+    &lt;TextBox x:Name=&quot;FileName&quot;
+             Margin=&quot;0 0 0 14&quot;
+             mah:TextBoxHelper.UseFloatingWatermark=&quot;True&quot;
+             mah:TextBoxHelper.Watermark=&quot;File name&quot;
+             Text=&quot;quarterly-report&quot; /&gt;
+
+    &lt;RadioButton Margin=&quot;0 0 0 6&quot; Content=&quot;PDF document&quot; IsChecked=&quot;True&quot; /&gt;
+    &lt;RadioButton Margin=&quot;0 0 0 6&quot; Content=&quot;Excel workbook&quot; /&gt;
+    &lt;RadioButton Margin=&quot;0 0 0 14&quot; Content=&quot;Comma separated values&quot; /&gt;
+
+    &lt;CheckBox x:Name=&quot;IncludeCharts&quot; Content=&quot;Include charts&quot; IsChecked=&quot;True&quot; /&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<h2 id="a-list">A list</h2>
+<p>Nor is there anything stopping an <code>ItemsControl</code> — this is a <code>ListBox</code> with <code>BorderThickness=&quot;0&quot;</code> so it does not draw a frame inside the dialog:</p>
+<p><img src="images/customdialog-list.png" alt="A list in a custom dialog" /></p>
+<p>In a real application the items come from a binding and each one gets a <code>DataTemplate</code>; the picture above spells them out to keep the sample short.</p>
+<h2 id="making-the-content-wider">Making the content wider</h2>
+<p><code>DialogContentWidth</code> and <code>DialogContentMargin</code> are <code>GridLength</code>s, so they take star values. Widening the content to <code>80*</code> narrows the two margins to what is left:</p>
+<p><img src="images/customdialog-contentwidth.png" alt="The same dialog at two content widths" /></p>
+<pre><code class="language-xml">&lt;mah:CustomDialog Title=&quot;Export report&quot; DialogContentWidth=&quot;80*&quot; /&gt;
+</code></pre>
+<p>Absolute values work too — <code>DialogContentWidth=&quot;400&quot;</code> with <code>DialogContentMargin=&quot;*&quot;</code> gives a fixed-width block centred in the window.</p>
+<h2 id="from-a-view-model">From a view model</h2>
+<p><code>IDialogCoordinator</code> carries the same three methods, with the context object in front. See <a href="mvvm-dialog">MVVM dialogs</a> for how the context is wired up.</p>
+<pre><code class="language-csharp">await this.dialogCoordinator.ShowMetroDialogAsync(this, dialog);
+await this.dialogCoordinator.HideMetroDialogAsync(this, dialog);
+</code></pre>
+<h2 id="in-a-window-of-its-own">In a window of its own</h2>
+<p>Where there is no <code>MetroWindow</code> to draw into, a custom dialog can open in one:</p>
+<pre><code class="language-csharp">new UpdateDialog().ShowDialogExternally();       // returns immediately
+new UpdateDialog().ShowModalDialogExternally();  // blocks until it is closed
+</code></pre>
+<p>Both take an optional owner window and an <code>Action&lt;Window&gt;</code> that lets you set the size, title or position of the window that is created for it.</p>
+<h2 id="settings">Settings</h2>
+<p>A custom dialog takes a <code>MetroDialogSettings</code> like the built-in ones, and reads the parts that are not about buttons: <code>ColorScheme</code>, the three font sizes, <code>AnimateShow</code> and <code>AnimateHide</code>, <code>OwnerCanCloseWithDialog</code> and <code>CustomResourceDictionary</code>. The button labels and <code>CancellationToken</code> do nothing here — the buttons are yours, and so is closing the dialog. See <a href="dialogsettings">Dialog Settings</a>.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#anatomy">Anatomy</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#button-styles">Button styles</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#showing-and-hiding">Showing and hiding</a></div>
+                    <div class="sidebar-nav-item"><a href="#getting-an-answer-back">Getting an answer back</a></div>
+                    <div class="sidebar-nav-item"><a href="#a-form">A form</a></div>
+                    <div class="sidebar-nav-item"><a href="#a-list">A list</a></div>
+                    <div class="sidebar-nav-item"><a href="#making-the-content-wider">Making the content wider</a></div>
+                    <div class="sidebar-nav-item"><a href="#from-a-view-model">From a view model</a></div>
+                    <div class="sidebar-nav-item"><a href="#in-a-window-of-its-own">In a window of its own</a></div>
+                    <div class="sidebar-nav-item"><a href="#settings">Settings</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/dialogs/custom-dialogs.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

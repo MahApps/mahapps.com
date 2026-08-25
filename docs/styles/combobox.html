@@ -256,100 +256,212 @@ ComboBox
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<h2 id="default-style">Default Style</h2>
-<p>The standard <code>ComboBox</code> is automatically styled when you include the MahApps.Metro library. You can enhance it with helper properties from <code>TextBoxHelper</code>.</p>
-<hr />
+<p>Every <code>ComboBox</code> in a MahApps application is styled without any markup on your side, drop-down and items included. On top of that come a watermark, a clear button and the editable variant with auto-completion.</p>
+<p><img src="images/combobox-styles.png" alt="A ComboBox, with a watermark, and with the clear button" /></p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> contains keyless styles for <code>ComboBox</code> and <code>ComboBoxItem</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+</code></pre>
+<p>To extend rather than replace, base your own style on the keyed one:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.ComboBox}&quot; TargetType=&quot;{x:Type ComboBox}&quot;&gt;
+    &lt;Setter Property=&quot;mah:TextBoxHelper.ClearTextButton&quot; Value=&quot;True&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<h2 id="the-styles">The styles</h2>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Target</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.ComboBox</code></td>
+<td><code>ComboBox</code></td>
+<td>the box. What the implicit style applies</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ComboBox.Virtualized</code></td>
+<td><code>ComboBox</code></td>
+<td>the same with UI virtualization switched on</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ComboBoxItem</code></td>
+<td><code>ComboBoxItem</code></td>
+<td>one row in the drop-down</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TextBox.ComboBox.Editable</code></td>
+<td><code>TextBox</code></td>
+<td>the text box an editable combo box types into</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ToggleButton.ComboBoxDropDown</code></td>
+<td><code>ToggleButton</code></td>
+<td>the arrow that opens it</td>
+</tr>
+</tbody>
+</table>
+<p>The last two are building blocks of the template rather than something to set yourself.</p>
 <h2 id="watermark">Watermark</h2>
-<p>You can add placeholder text, known as a watermark, which appears when the <code>ComboBox</code> has no selected item.</p>
-<p>Add the following attribute to your <code>ComboBox</code>: <code>mah:TextBoxHelper.Watermark=&quot;Your placeholder text...&quot;</code></p>
-<pre><code class="language-xml">&lt;ComboBox mah:TextBoxHelper.Watermark=&quot;Please select an item...&quot;
-          Width=&quot;200&quot;&gt;
-    &lt;ComboBoxItem Content=&quot;Item 1&quot; /&gt;
-    &lt;ComboBoxItem Content=&quot;Item 2&quot; /&gt;
-&lt;/ComboBox&gt;
+<pre><code class="language-xml">&lt;ComboBox mah:TextBoxHelper.Watermark=&quot;Pick someone&quot; /&gt;
 </code></pre>
-<hr />
-<h2 id="cleartext-button">ClearText Button</h2>
-<p>A button to clear the selected item can be added to the <code>ComboBox</code>.</p>
-<p>Set <code>mah:TextBoxHelper.ClearTextButton=&quot;True&quot;</code> to make the button always visible.</p>
+<p>The watermark shows while nothing is selected. <code>UseFloatingWatermark</code> keeps it above the box afterwards, which works for the editable variant too:</p>
+<p><img src="images/combobox-editable.png" alt="Editable, floating watermark and forced casing" /></p>
+<h2 id="clear-button">Clear button</h2>
+<p><code>ClearTextButton</code> adds an ✕ that empties the box. Unlike a <code>DatePicker</code> — where the button hangs off <code>ButtonCommand</code> — the <code>ComboBox</code> binds its visibility straight to this property, so the button is there whenever the flag is set:</p>
+<pre><code class="language-xml">&lt;ComboBox mah:TextBoxHelper.ClearTextButton=&quot;True&quot; mah:TextBoxHelper.Watermark=&quot;Pick someone&quot; /&gt;
+</code></pre>
+<p>Clearing sets <code>SelectedItem</code> to <code>null</code> and, on an editable box, empties <code>Text</code> as well — pushing both back through their bindings.</p>
+<h3 id="only-when-something-is-selected">Only when something is selected</h3>
+<p>A permanently visible ✕ next to an empty box is noise. A trigger on the style hides it again while nothing is selected:</p>
+<p><img src="images/combobox-clearbutton.png" alt="The clear button appearing only once an item is selected" /></p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.ComboBox}&quot; TargetType=&quot;{x:Type ComboBox}&quot;&gt;
+    &lt;Setter Property=&quot;mah:TextBoxHelper.ClearTextButton&quot; Value=&quot;True&quot; /&gt;
+    &lt;Style.Triggers&gt;
+        &lt;DataTrigger Binding=&quot;{Binding SelectedItem, RelativeSource={RelativeSource Self}, Converter={x:Static mah:IsNullConverter.Instance}}&quot;
+                     Value=&quot;True&quot;&gt;
+            &lt;Setter Property=&quot;mah:TextBoxHelper.ClearTextButton&quot; Value=&quot;False&quot; /&gt;
+        &lt;/DataTrigger&gt;
+    &lt;/Style.Triggers&gt;
+&lt;/Style&gt;
+</code></pre>
+<p><code>IsNullConverter</code> is a singleton in the library, so it needs no resource of its own — <code>{x:Static mah:IsNullConverter.Instance}</code> is the whole reference. It reports whether the value <em>is</em> null, which is why the trigger switches the button <strong>off</strong> rather than on.</p>
+<h3 id="a-button-of-your-own">A button of your own</h3>
+<p><code>ButtonContent</code>, <code>ButtonContentTemplate</code>, <code>ButtonWidth</code> and <code>ButtonCommand</code> reshape the same button:</p>
 <pre><code class="language-xml">&lt;ComboBox mah:TextBoxHelper.ClearTextButton=&quot;True&quot;
-          mah:TextBoxHelper.Watermark=&quot;Please select an item...&quot;
-          Width=&quot;200&quot;&gt;
-    &lt;ComboBoxItem Content=&quot;Item 1&quot; /&gt;
-    &lt;ComboBoxItem Content=&quot;Item 2&quot; /&gt;
-&lt;/ComboBox&gt;
-</code></pre>
-<p>Alternatively, you can bind its visibility to the <code>SelectedItem</code> property, so it only appears when an item is selected.</p>
-<pre><code class="language-xml">&lt;ComboBox mah:TextBoxHelper.ClearTextButton=&quot;{Binding Path=SelectedItem, RelativeSource={RelativeSource Mode=Self}, Converter={x:Static mah:IsNotNullConverter.Instance}}&quot;
-          mah:TextBoxHelper.Watermark=&quot;Please select an item...&quot;
-          Width=&quot;200&quot;&gt;
-    &lt;ComboBoxItem Content=&quot;Item 1&quot; /&gt;
-    &lt;ComboBoxItem Content=&quot;Item 2&quot; /&gt;
-&lt;/ComboBox&gt;
-</code></pre>
-<hr />
-<h2 id="floating-watermark">Floating Watermark</h2>
-<p>The watermark can be configured to float above the <code>ComboBox</code> like a label when an item is selected. This also works for editable <code>ComboBoxes</code>.</p>
-<p>Add the following attribute to apply this style: <code>mah:TextBoxHelper.UseFloatingWatermark=&quot;True&quot;</code></p>
-<pre><code class="language-xml">&lt;ComboBox mah:TextBoxHelper.UseFloatingWatermark=&quot;True&quot;
-          mah:TextBoxHelper.Watermark=&quot;Please select an item...&quot;
-          Width=&quot;200&quot;&gt;
-    &lt;ComboBoxItem Content=&quot;Item 1&quot; /&gt;
-    &lt;ComboBoxItem Content=&quot;Item 2&quot; /&gt;
-&lt;/ComboBox&gt;
-</code></pre>
-<hr />
-<h2 id="custom-button-content">Custom Button Content</h2>
-<p>You can replace the default dropdown arrow with custom content, such as an icon. This is useful for creating search or filter-like inputs.</p>
-<p>Use the <code>ButtonCommand</code>, <code>ButtonContent</code>, and <code>ButtonContentTemplate</code> properties from <code>TextBoxHelper</code> to customize the button.</p>
-<pre><code class="language-xml">&lt;ComboBox Width=&quot;200&quot;
-          mah:TextBoxHelper.ButtonCommand=&quot;{Binding ControlButtonCommand, Mode=OneWay}&quot;
-          mah:TextBoxHelper.ButtonContent=&quot;M17.545,15.467l-3.779-3.779...&quot;
-          mah:TextBoxHelper.Watermark=&quot;Search here...&quot;&gt;
+          mah:TextBoxHelper.ButtonCommand=&quot;{Binding SearchCommand}&quot;
+          mah:TextBoxHelper.ButtonContent=&quot;M42.5,22A12.5,12.5 0 0,1 55,34.5A12.5,12.5 0 0,1 42.5,47C40.14,47 37.92,46.34 36,45.24L26.97,54.27C25.8,55.44 23.9,55.44 22.73,54.27C21.56,53.1 21.56,51.2 22.73,50.03L31.8,40.96C30.66,39.08 30,36.86 30,34.5A12.5,12.5 0 0,1 42.5,22Z&quot;&gt;
     &lt;mah:TextBoxHelper.ButtonContentTemplate&gt;
         &lt;DataTemplate&gt;
-            &lt;mah:PathIcon Width=&quot;16&quot;
-                          Height=&quot;16&quot;
-                          Padding=&quot;3&quot;
-                          Data=&quot;{Binding Mode=OneWay}&quot; /&gt;
+            &lt;ContentControl Width=&quot;16&quot; Height=&quot;16&quot; Padding=&quot;3&quot;
+                            Content=&quot;{Binding Mode=OneWay}&quot;
+                            Style=&quot;{DynamicResource MahApps.Styles.ContentControl.PathIcon}&quot; /&gt;
         &lt;/DataTemplate&gt;
     &lt;/mah:TextBoxHelper.ButtonContentTemplate&gt;
-    &lt;ComboBoxItem Content=&quot;Item 1&quot; /&gt;
-    &lt;ComboBoxItem Content=&quot;Item 2&quot; /&gt;
 &lt;/ComboBox&gt;
 </code></pre>
-<hr />
-<h2 id="editable-auto-completion">Editable / Auto-Completion</h2>
-<p>Set <code>IsEditable=&quot;True&quot;</code> to allow users to type directly into the <code>ComboBox</code>. When combined with an <code>ItemsSource</code>, this enables auto-completion.</p>
-<p>For <code>ComboBoxes</code> with a large number of items, use the virtualized style for better performance.</p>
-<p>Add the following to a <code>ComboBox</code> to apply this style: <code>Style=&quot;{DynamicResource MahApps.Styles.ComboBox.Virtualized}&quot;</code></p>
-<pre><code class="language-xaml">&lt;ComboBox Width=&quot;200&quot;
-          mah:TextBoxHelper.Watermark=&quot;Auto completion&quot;
-          DisplayMemberPath=&quot;Title&quot;
-          IsEditable=&quot;True&quot;
+<div class="alert alert-warning"><p>Two things to know before building on this. The button's visibility is bound to <code>ClearTextButton</code> alone, so a <code>ButtonCommand</code> without that flag leaves the button invisible and the command unreachable. And the click handler runs your command <strong>and then clears the box</strong>, because clearing is what <code>ClearTextButton</code> also switches on — there is no way to have one without the other on a <code>ComboBox</code>.</p>
+</div>
+<h2 id="editable">Editable</h2>
+<p><code>IsEditable=&quot;True&quot;</code> lets the user type, which with an <code>ItemsSource</code> gives auto-completion:</p>
+<pre><code class="language-xml">&lt;ComboBox IsEditable=&quot;True&quot;
           ItemsSource=&quot;{Binding Albums}&quot;
-          Style=&quot;{DynamicResource MahApps.Styles.ComboBox.Virtualized}&quot; /&gt;
+          DisplayMemberPath=&quot;Title&quot;
+          mah:TextBoxHelper.Watermark=&quot;Album&quot; /&gt;
 </code></pre>
-<hr />
-<h2 id="grouping">Grouping</h2>
-<p>Items within the dropdown can be grouped under custom headers. This is achieved by setting the <code>&lt;ComboBox.GroupStyle&gt;</code>.</p>
-<pre><code class="language-xml">&lt;ComboBox Width=&quot;200&quot;
-          mah:TextBoxHelper.Watermark=&quot;Auto completion with grouping&quot;
-          DisplayMemberPath=&quot;Title&quot;
-          IsEditable=&quot;True&quot;
+<p><code>ComboBoxHelper</code> adds the two things a <code>ComboBox</code> lacks compared with a <code>TextBox</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MaxLength</code></td>
+<td><code>int</code></td>
+<td><code>0</code></td>
+<td>how many characters may be typed; <code>0</code> means no limit</td>
+</tr>
+<tr>
+<td><code>CharacterCasing</code></td>
+<td><code>CharacterCasing</code></td>
+<td><code>Normal</code></td>
+<td><code>Upper</code> or <code>Lower</code> converts as the user types</td>
+</tr>
+</tbody>
+</table>
+<p>Both only do something while <code>IsEditable</code> is <code>True</code>. See <a href="../helper/comboboxhelper">ComboBoxHelper</a>.</p>
+<h2 id="the-drop-down">The drop-down</h2>
+<p>The drop-down is a list of <code>ComboBoxItem</code>s, styled by <code>MahApps.Styles.ComboBoxItem</code>:</p>
+<p><img src="images/combobox-dropdown.png" alt="The open drop-down" /></p>
+<p>That style is where the item colours come from, and it sets eleven <code>ItemHelper</code> brushes — selected, hovered, disabled and the combinations. To recolour them, derive a container style rather than setting the properties on the <code>ComboBox</code>; a style setter on the item beats a value inherited from the box:</p>
+<pre><code class="language-xml">&lt;ComboBox.ItemContainerStyle&gt;
+    &lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.ComboBoxItem}&quot; TargetType=&quot;{x:Type ComboBoxItem}&quot;&gt;
+        &lt;Setter Property=&quot;mah:ItemHelper.ActiveSelectionBackgroundBrush&quot; Value=&quot;#2E7D32&quot; /&gt;
+    &lt;/Style&gt;
+&lt;/ComboBox.ItemContainerStyle&gt;
+</code></pre>
+<p><a href="../helper/itemhelper">ItemHelper</a> has the full list of states.</p>
+<h3 id="long-lists">Long lists</h3>
+<p><code>MahApps.Styles.ComboBox.Virtualized</code> is the base style plus <code>VirtualizingStackPanel.IsVirtualizing</code>, <code>IsVirtualizingWhenGrouping</code> and recycling mode. Reach for it once the list is long enough that opening it stutters:</p>
+<pre><code class="language-xml">&lt;ComboBox Style=&quot;{StaticResource MahApps.Styles.ComboBox.Virtualized}&quot;
           ItemsSource=&quot;{Binding Albums}&quot;
-          Style=&quot;{DynamicResource MahApps.Styles.ComboBox.Virtualized}&quot;&gt;
+          DisplayMemberPath=&quot;Title&quot;
+          IsEditable=&quot;True&quot; /&gt;
+</code></pre>
+<h3 id="grouping">Grouping</h3>
+<p>Grouping is WPF's own <code>GroupStyle</code>, and works on the virtualized style because of <code>IsVirtualizingWhenGrouping</code>. The headers come out styled to match the rest of the drop-down:</p>
+<p><img src="images/combobox-grouping.png" alt="The drop-down with grouped items" /></p>
+<pre><code class="language-xml">&lt;ComboBox Style=&quot;{StaticResource MahApps.Styles.ComboBox.Virtualized}&quot;
+          ItemsSource=&quot;{Binding GroupedAlbums}&quot;
+          DisplayMemberPath=&quot;Title&quot;&gt;
     &lt;ComboBox.GroupStyle&gt;
         &lt;GroupStyle&gt;
             &lt;GroupStyle.HeaderTemplate&gt;
                 &lt;DataTemplate&gt;
-                    &lt;TextBlock Text=&quot;{Binding Path=Name.Name}&quot; /&gt;
+                    &lt;TextBlock Margin=&quot;4 2&quot; FontWeight=&quot;Bold&quot; Text=&quot;{Binding Name}&quot; /&gt;
                 &lt;/DataTemplate&gt;
             &lt;/GroupStyle.HeaderTemplate&gt;
         &lt;/GroupStyle&gt;
     &lt;/ComboBox.GroupStyle&gt;
 &lt;/ComboBox&gt;
 </code></pre>
+<p>The grouping itself is not something the <code>ComboBox</code> does — it comes from the bound collection being a grouped view:</p>
+<pre><code class="language-csharp">var view = new CollectionViewSource { Source = this.Albums };
+view.GroupDescriptions.Add(new PropertyGroupDescription(nameof(Album.Genre)));
+
+this.GroupedAlbums = view.View;
+</code></pre>
+<p><code>{Binding Name}</code> in the header template is the group key — the genre string, in this case — not a property of your item type.</p>
+<h2 id="helper-properties">Helper properties</h2>
+<p>Four helpers reach a <code>ComboBox</code>, and their full property tables are on their own pages: <a href="../helper/textboxhelper">TextBoxHelper</a> for the watermark and the button, <a href="../helper/comboboxhelper">ComboBoxHelper</a> for the typing rules, <a href="../helper/controlshelper">ControlsHelper</a> for the border and corner radius, and <a href="../helper/itemhelper">ItemHelper</a> for the drop-down rows.</p>
+<p>What the styles themselves set:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Set by</th>
+<th>To</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TextBoxHelper.ButtonWidth</code></td>
+<td><code>MahApps.Styles.ComboBox</code></td>
+<td><code>22</code></td>
+</tr>
+<tr>
+<td><code>TextBoxHelper.ButtonFontSize</code></td>
+<td><code>MahApps.Styles.ComboBox</code></td>
+<td><code>MahApps.Font.Size.Button.ClearText</code></td>
+</tr>
+<tr>
+<td><code>ControlsHelper.FocusBorderBrush</code></td>
+<td><code>MahApps.Styles.ComboBox</code></td>
+<td><code>MahApps.Brushes.ComboBox.Border.Focus</code></td>
+</tr>
+<tr>
+<td><code>ControlsHelper.MouseOverBorderBrush</code></td>
+<td><code>MahApps.Styles.ComboBox</code></td>
+<td><code>MahApps.Brushes.ComboBox.Border.MouseOver</code></td>
+</tr>
+<tr>
+<td>eleven <code>ItemHelper</code> brushes</td>
+<td><code>MahApps.Styles.ComboBoxItem</code></td>
+<td>the theme's selection and hover colours</td>
+</tr>
+</tbody>
+</table>
+<p>Note the focus and mouse-over brushes are the <code>ComboBox</code> ones, not the <code>TextBox</code> ones the other input controls use.</p>
+<h2 id="validation">Validation</h2>
+<p><code>Validation.ErrorTemplate</code> is set to <code>MahApps.Templates.ValidationError</code>, so a failing rule on <code>SelectedItem</code> or <code>Text</code> is drawn the way it is on every other MahApps input control. How the popup behaves is <a href="../helper/validationhelper">ValidationHelper</a>.</p>
 
 
                                         </div>
@@ -358,13 +470,22 @@ ComboBox
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#default-style">Default Style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-styles">The styles</a></div>
                     <div class="sidebar-nav-item"><a href="#watermark">Watermark</a></div>
-                    <div class="sidebar-nav-item"><a href="#cleartext-button">ClearText Button</a></div>
-                    <div class="sidebar-nav-item"><a href="#floating-watermark">Floating Watermark</a></div>
-                    <div class="sidebar-nav-item"><a href="#custom-button-content">Custom Button Content</a></div>
-                    <div class="sidebar-nav-item"><a href="#editable-auto-completion">Editable / Auto-Completion</a></div>
-                    <div class="sidebar-nav-item"><a href="#grouping">Grouping</a></div>
+                    <div class="sidebar-nav-item"><a href="#clear-button">Clear button</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#only-when-something-is-selected">Only when something is selected</a></div>
+                                <div class="sidebar-nav-item"><a href="#a-button-of-your-own">A button of your own</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#editable">Editable</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-drop-down">The drop-down</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#long-lists">Long lists</a></div>
+                                <div class="sidebar-nav-item"><a href="#grouping">Grouping</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#helper-properties">Helper properties</a></div>
+                    <div class="sidebar-nav-item"><a href="#validation">Validation</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/combobox.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

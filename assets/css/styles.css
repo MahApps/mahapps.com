@@ -16,4 +16,90 @@
 
 #content.p-4 > .code-block > pre[class*="language-"] { padding-left: 1.5rem; padding-right: 1.5rem; }
 
+#content table { display: block; width: max-content; max-width: 100%; margin-bottom: 1rem; overflow-x: auto; }
+
+#content table th, #content table td { padding: 0.75rem; vertical-align: top; border-top: 1px solid #dee2e6; }
+
+#content table thead th { vertical-align: bottom; border-top: 0; border-bottom: 2px solid #dee2e6; }
+
+.app-samples { margin-top: 3rem; padding: 3rem 0; background-color: #f8f9fa; border-top: 1px solid #e9ecef; }
+
+.app-samples .app-samples-title { margin-bottom: 0.25rem; text-align: center; }
+
+.app-samples .app-samples-lead { margin-bottom: 2rem; color: #6c757d; text-align: center; }
+
+.flipview { display: flex; align-items: center; justify-content: center; max-width: 840px; margin: 0 auto; }
+
+.flipview .flipview-viewport { position: relative; display: grid; flex: 1 1 auto; min-width: 0; overflow: hidden; }
+
+.flipview .flipview-item { grid-area: 1 / 1; margin: 0; visibility: hidden; }
+
+.flipview .flipview-item.is-active { visibility: visible; }
+
+.flipview .flipview-item.is-leaving { visibility: visible; pointer-events: none; animation-fill-mode: forwards; }
+
+.flipview .flipview-item.is-active.from-right { animation: flipview-in-right 0.35s ease-out; }
+
+.flipview .flipview-item.is-active.from-left { animation: flipview-in-left 0.35s ease-out; }
+
+.flipview .flipview-item.is-leaving.to-left { animation: flipview-out-left 0.35s ease-out; }
+
+.flipview .flipview-item.is-leaving.to-right { animation: flipview-out-right 0.35s ease-out; }
+
+.flipview .flipview-item img { display: block; width: 100%; height: 340px; object-fit: contain; }
+
+.flipview .flipview-item figcaption { margin-top: 1rem; min-height: 4.5rem; color: #495057; text-align: center; }
+
+.flipview .flipview-item figcaption strong { display: block; margin-bottom: 0.25rem; font-size: 1.15rem; color: #212529; }
+
+.flipview .flipview-nav { flex: 0 0 auto; width: 3rem; height: 3rem; margin: 0 0.5rem; padding: 0; font-size: 1.75rem; line-height: 1; color: #495057; background-color: #fff; border: 1px solid #ced4da; border-radius: 50%; cursor: pointer; transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+
+.flipview .flipview-nav span { position: relative; top: -0.1em; }
+
+.flipview .flipview-nav:hover { color: #fff; background-color: #007bff; border-color: #007bff; }
+
+.flipview .flipview-nav:focus { outline: 0; box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
+
+.flipview-dots { display: flex; justify-content: center; margin-top: 1rem; }
+
+.flipview-dots .flipview-dot { width: 0.7rem; height: 0.7rem; margin: 0 0.3rem; padding: 0; background-color: #ced4da; border: 0; border-radius: 50%; cursor: pointer; transition: background-color 0.15s ease-in-out, transform 0.15s ease-in-out; }
+
+.flipview-dots .flipview-dot.is-active { background-color: #007bff; transform: scale(1.25); }
+
+.flipview-dots .flipview-dot:focus { outline: 0; box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); }
+
+@keyframes flipview-in-right { from { opacity: 0;
+    transform: translateX(100%); }
+  to { opacity: 1;
+    transform: none; } }
+
+@keyframes flipview-in-left { from { opacity: 0;
+    transform: translateX(-100%); }
+  to { opacity: 1;
+    transform: none; } }
+
+@keyframes flipview-out-left { from { opacity: 1;
+    transform: none; }
+  to { opacity: 0;
+    transform: translateX(-100%); } }
+
+@keyframes flipview-out-right { from { opacity: 1;
+    transform: none; }
+  to { opacity: 0;
+    transform: translateX(100%); } }
+
+@keyframes flipview-fade-in { from { opacity: 0; }
+  to { opacity: 1; } }
+
+@keyframes flipview-fade-out { from { opacity: 1; }
+  to { opacity: 0; } }
+
+@media (prefers-reduced-motion: reduce) { .flipview .flipview-item.is-active.from-right, .flipview .flipview-item.is-active.from-left { animation: flipview-fade-in 0.25s ease-out; }
+  .flipview .flipview-item.is-leaving.to-left, .flipview .flipview-item.is-leaving.to-right { animation: flipview-fade-out 0.25s ease-out forwards; } }
+
+@media (max-width: 575.98px) { .flipview { flex-wrap: wrap; }
+  .flipview .flipview-viewport { order: 1; flex: 0 0 100%; }
+  .flipview .flipview-nav { order: 2; margin-top: 1rem; }
+  .flipview .flipview-item img { height: 200px; } }
+
 img { max-width: 100%; height: auto; }

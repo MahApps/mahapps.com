@@ -256,20 +256,154 @@ TextBox
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>There is just the one style in this library for <code>TextBox</code>, however it does have a special attached property for creating 'watermarked' textboxes and for added a 'clear' button.</p>
+<p>Every <code>TextBox</code> in a MahApps application is styled without any markup on your side. On top of that the library adds a watermark, a clear button, a command button and a search variant — all through attached properties, so nothing has to be subclassed.</p>
+<p><img src="images/textbox-styles.png" alt="The TextBox styles" /></p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> contains a keyless style for <code>TextBox</code> based on <code>MahApps.Styles.TextBox</code>, and another for <code>RichTextBox</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+</code></pre>
+<p>From then on a plain <code>&lt;TextBox /&gt;</code> is the MahApps one, with a 26 pixel minimum height, 4 pixels of padding, the theme's border brushes and the MahApps context menu.</p>
+<p>To extend it rather than replace it, base your own style on the keyed one:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.TextBox}&quot; TargetType=&quot;{x:Type TextBox}&quot;&gt;
+    &lt;Setter Property=&quot;mah:TextBoxHelper.ClearTextButton&quot; Value=&quot;True&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Leaving out the <code>BasedOn</code> throws the template away with it, and with the template go the watermark, the buttons and the validation adorner.</p>
+<h2 id="the-explicit-styles">The explicit styles</h2>
+<p>Three styles are meant to be set on a <code>TextBox</code>, each inheriting from the one above it.</p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.TextBox</code></td>
+<td>the base. What the implicit style applies</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TextBox.Button</code></td>
+<td>adds a command button, driven by <code>TextBoxHelper.ButtonCommand</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TextBox.Search</code></td>
+<td>the same with a magnifier as the button's icon</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;TextBox Style=&quot;{StaticResource MahApps.Styles.TextBox.Search}&quot;
+         mah:TextBoxHelper.ButtonCommand=&quot;{Binding SearchCommand}&quot;
+         mah:TextBoxHelper.Watermark=&quot;Search&quot; /&gt;
+</code></pre>
+<h3 id="which-flag-shows-the-button">Which flag shows the button</h3>
+<p>The base style and the <code>.Button</code> style put the same button in the same place, but gate it differently — which is the thing to know before wondering why a <code>ButtonCommand</code> never fires.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Button appears when</th>
+<th>What clicking it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.TextBox</code></td>
+<td><code>TextBoxHelper.ClearTextButton</code> is <code>True</code></td>
+<td>clears the box</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TextBox.Button</code></td>
+<td>always — the style sets <code>TextBoxHelper.TextButton</code></td>
+<td>runs <code>ButtonCommand</code></td>
+</tr>
+</tbody>
+</table>
+<p>On the <code>.Button</code> style the click handler is wired unconditionally, so setting <code>ClearTextButton</code> as well makes the button run the command <em>and</em> clear the box.</p>
+<p>Clearing calls <code>TextBox.Clear()</code> and pushes the empty value back through the <code>Text</code> binding, so a bound view model sees the change.</p>
 <h2 id="watermark">Watermark</h2>
-<p>A <strong>watermark</strong> - in the context of textboxes - refers to text that appears in the textbox <em>before</em> the user has focused or entered any text. This is often an alternative to providing a label next to your textbox - for example, a search box would have a watermark with the text 'enter search terms' to indicate it's purpose.</p>
-<p><code>&lt;TextBox Controls:TextBoxHelper.Watermark=&quot;This is a textbox&quot; /&gt;</code></p>
-<p>Will produce a textbox that looks like the below image. The three states are <em>unfocused</em> (with no user text provided), focused, and unfocused (with user text provided).</p>
-<p><img src="images/10_textboxstates.png" alt="" /></p>
-<h2 id="clear-button">Clear button</h2>
-<p>Like the watermark, a simple attached property adds in the functionality</p>
-<p><code>&lt;TextBox Controls:TextBoxHelper.ClearTextButton=&quot;True&quot; /&gt;</code></p>
-<p>Which will give you</p>
-<p><img src="images/11_textboxclearstates.png" alt="" /></p>
-<h2 id="why-attached-properties">Why Attached Properties?</h2>
-<p>Rather than deriving from TextBox and adding another class to this library, this behaviour is implemented as an Attached Property.</p>
-<p>This avoids the overhead of providing styles for another control, and makes it easy to &quot;opt in&quot; to this behaviour in your application.</p>
+<p><img src="images/textbox-watermark.png" alt="Watermark, filled, and the floating variant" /></p>
+<pre><code class="language-xml">&lt;TextBox mah:TextBoxHelper.Watermark=&quot;Search&quot; /&gt;
+
+&lt;TextBox mah:TextBoxHelper.Watermark=&quot;Search&quot;
+         mah:TextBoxHelper.UseFloatingWatermark=&quot;True&quot; /&gt;
+</code></pre>
+<p>A plain watermark disappears as soon as the first character is typed. A floating one moves above the content instead and stays there, which keeps the label visible while the box is being filled in.</p>
+<p><code>WatermarkAlignment</code> and <code>WatermarkTrimming</code> control how it sits and how it is cut off. <code>WatermarkWrapping</code> follows the box's own <code>TextWrapping</code> unless you set it — the base style binds the two together, so a wrapping text box gets a wrapping watermark for free.</p>
+<p><code>AutoWatermark</code> takes the text from the bound property instead:</p>
+<pre><code class="language-csharp">[Display(Prompt = &quot;Search&quot;)]
+public string Query { get; set; }
+</code></pre>
+<pre><code class="language-xml">&lt;TextBox Text=&quot;{Binding Query}&quot; mah:TextBoxHelper.AutoWatermark=&quot;True&quot; /&gt;
+</code></pre>
+<h2 id="buttons">Buttons</h2>
+<p><img src="images/textbox-buttons.png" alt="Clear button, on the left, and with its own content" /></p>
+<pre><code class="language-xml">&lt;TextBox mah:TextBoxHelper.ClearTextButton=&quot;True&quot; /&gt;
+
+&lt;TextBox mah:TextBoxHelper.ClearTextButton=&quot;True&quot;
+         mah:TextBoxHelper.ButtonsAlignment=&quot;Left&quot; /&gt;
+</code></pre>
+<p><code>ButtonsAlignment</code> takes <code>Left</code>, <code>Right</code> or <code>Opposite</code>. <code>ButtonContent</code>, <code>ButtonContentTemplate</code>, <code>ButtonTemplate</code>, <code>ButtonWidth</code>, <code>ButtonFontFamily</code> and <code>ButtonFontSize</code> decide what the button looks like; the base style sets the width to 22 and the font size to <code>MahApps.Font.Size.Button.ClearText</code>.</p>
+<h2 id="helper-properties">Helper properties</h2>
+<p>Everything above comes from <code>TextBoxHelper</code>, and the border and corner from <code>ControlsHelper</code>. The full tables are on the helper pages — <a href="../helper/textboxhelper">TextBoxHelper</a> and <a href="../helper/controlshelper">ControlsHelper</a> — but three of them are worth repeating because the style depends on them:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Set by the style to</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TextBoxHelper.IsMonitoring</code></td>
+<td><code>True</code></td>
+<td>keeps <code>HasText</code> and <code>TextLength</code> current, and drives the watermark</td>
+</tr>
+<tr>
+<td><code>TextBoxHelper.IsSpellCheckContextMenuEnabled</code></td>
+<td>bound to <code>SpellCheck.IsEnabled</code></td>
+<td>turning spell check on gets you the spell-check context menu as well</td>
+</tr>
+<tr>
+<td><code>ControlsHelper.FocusBorderBrush</code></td>
+<td><code>MahApps.Brushes.TextBox.Border.Focus</code></td>
+<td>the border while the box has focus</td>
+</tr>
+</tbody>
+</table>
+<p>That second one is a nicety worth knowing about: this is enough to get both.</p>
+<pre><code class="language-xml">&lt;TextBox SpellCheck.IsEnabled=&quot;True&quot; /&gt;
+</code></pre>
+<h2 id="richtextbox">RichTextBox</h2>
+<p><code>RichTextBox</code> gets the same treatment — an implicit style, and a <code>.Button</code> variant.</p>
+<p><img src="images/textbox-richtextbox.png" alt="The two RichTextBox styles" /></p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.RichTextBox</code></td>
+<td>the base, matching the <code>TextBox</code> look</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.RichTextBox.Button</code></td>
+<td>adds a command button</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-info"><p>The <code>RichTextBox</code> variant behaves differently from the <code>TextBox</code> one. Its button is <strong>always visible</strong> — no flag hides it — and it never clears: the clearing behaviour is switched off and the button binds straight to <code>ButtonCommand</code>. <code>ButtonCommandParameter</code> defaults to the <code>RichTextBox</code> itself, so the command receives the control without you passing anything.</p>
+</div>
+<h2 id="validation-and-busy-state">Validation and busy state</h2>
+<p><code>Validation.ErrorTemplate</code> is set to <code>MahApps.Templates.ValidationError</code>, so a failing validation rule is drawn the way it is on every other MahApps input control. How that popup behaves — whether it shows on hover, whether a click dismisses it — is <a href="../helper/validationhelper">ValidationHelper</a>.</p>
+<p><code>TextBoxHelper.IsWaitingForData</code> runs a pulsing glow around the box, which suits a value that is being fetched or checked:</p>
+<pre><code class="language-xml">&lt;TextBox mah:TextBoxHelper.IsWaitingForData=&quot;{Binding IsLoading}&quot; /&gt;
+</code></pre>
 
 
                                         </div>
@@ -278,9 +412,16 @@ TextBox
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-explicit-styles">The explicit styles</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#which-flag-shows-the-button">Which flag shows the button</a></div>
+                        </div>
                     <div class="sidebar-nav-item"><a href="#watermark">Watermark</a></div>
-                    <div class="sidebar-nav-item"><a href="#clear-button">Clear button</a></div>
-                    <div class="sidebar-nav-item"><a href="#why-attached-properties">Why Attached Properties?</a></div>
+                    <div class="sidebar-nav-item"><a href="#buttons">Buttons</a></div>
+                    <div class="sidebar-nav-item"><a href="#helper-properties">Helper properties</a></div>
+                    <div class="sidebar-nav-item"><a href="#richtextbox">RichTextBox</a></div>
+                    <div class="sidebar-nav-item"><a href="#validation-and-busy-state">Validation and busy state</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/textbox.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

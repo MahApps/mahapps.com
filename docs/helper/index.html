@@ -262,17 +262,291 @@ Helper Classes
     <a href="/mahapps.com/docs/dialogs/custom-dialogs">Custom Dialogs</a>
 </div>
 <div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialogsettings</a>
+    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialog Settings</a>
 </div>                </div>
 
-<div class="sidebar-nav-item active">
+<div class="sidebar-nav-item active has-children">
     <a href="/mahapps.com/docs/helper">Helper Classes</a>
-</div>    </div>
+</div>                <div class="sidebar-nav-children">
+
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/checkboxhelper">CheckBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/datagridhelper">DataGridHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/datepickerhelper">DatePickerHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/itemhelper">ItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/multiselectorhelper">MultiSelectorHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/scrollviewerhelper">ScrollViewerHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/sliderhelper">SliderHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/tabcontrolhelper">TabControlHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/textboxhelper">TextBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/togglebuttonhelper">ToggleButtonHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/treeviewitemhelper">TreeViewItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/validationhelper">ValidationHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/visibilityhelper">VisibilityHelper</a>
+</div>                </div>
+    </div>
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
 
+<p>
+MahApps.Metro adds most of its extras to the standard WPF controls through <strong>attached properties</strong> rather than by subclassing them.
+A <code>TextBox</code> stays a <code>TextBox</code>; it just gains a watermark and a clear button when you ask for them.
+That keeps the number of controls in the library down, lets you opt in per control, and means the features work on controls you did not write.
+</p>
 
+<p>
+The classes that carry those properties are all in the <code>MahApps.Metro.Controls</code> namespace and all reachable through the <code>mah:</code> prefix:
+</p>
+
+<pre><code class="language-xml">&lt;TextBox mah:TextBoxHelper.Watermark="Search" mah:TextBoxHelper.ClearTextButton="True" /&gt;</code></pre>
+
+<p>
+Two of them are worth knowing before the rest.
+<strong>ControlsHelper</strong> is the general one - corner radius, focus and mouse-over borders, content casing - and applies to most input controls.
+<strong>TextBoxHelper</strong> carries the watermark and the buttons, and despite its name is read by the templates of the <code>ComboBox</code>, <code>DatePicker</code>, <code>PasswordBox</code>, <code>NumericUpDown</code> and several more.
+The rest are named after the one control they belong to.
+</p>
+
+<p>
+A property only does something if the control's template reads it, so these work with the MahApps styles applied.
+Replace a style without a <code>BasedOn</code> and the properties are still there but nothing looks at them.
+</p>
+
+
+        <h4 class="h-section mb-2">Child Pages</h4>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/checkboxhelper">CheckBoxHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>CheckBox</code>. It has 81 attached properties, but they are three settings and one naming scheme rather than 81 things to learn.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>ComboBox</code>. Two properties, both about the text an editable combo box accepts — a <code>ComboBox</code> has no <code>MaxLength</code> or <code>CharacterCasing</code> of its own, so these fill the gap that <code>TextBox</code> does not have.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a></h4>
+
+            <div class="font-size-sm"><p>The general-purpose one. Where the other helpers belong to a single control, <code>ControlsHelper</code> is read by the templates of <code>ButtonBase</code>, <code>CheckBox</code>, <code>ColorPalette</code>, <code>ComboBox</code>, <code>ContentControl</code>, <code>DatePicker</code>, <code>DropDownButton</code>, <code>NumericUpDown</code>, <code>PasswordBox</code>, <code>RadioButton</code>, <code>SplitButton</code>, <code>TextBox</code>, <code>Tile</code> and <code>WindowCommands</code>.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/datagridhelper">DataGridHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>DataGrid</code>, <code>DataGridRow</code> and <code>DataGridCell</code>. Two halves: a few properties for the look of the grid, and a set for styling the columns WPF generates for you.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/datepickerhelper">DatePickerHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>DatePicker</code> and <code>TimePickerBase</code>, which covers <code>TimePicker</code> and <code>DateTimePicker</code>. All four properties describe the button that opens the calendar or clock.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>Expander</code>. An expander's header is a <code>ToggleButton</code>, and which way it points depends on <code>ExpandDirection</code> — so the helper carries one header style per direction rather than one style.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>HeaderedContentControl</code> and <code>TabControl</code>, which covers <code>GroupBox</code>, <code>Expander</code>, <code>Flyout</code>, <code>MetroHeader</code> and the tab strip. A <code>HeaderedContentControl</code> gives you a <code>Header</code> but no way to style it — that is what this helper is for.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/itemhelper">ItemHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>ListBoxItem</code> and <code>TreeViewItem</code>, which through those covers <code>ListBox</code>, <code>ListView</code>, <code>ComboBox</code> drop-downs and <code>TreeView</code>. Every property is a brush for one state an item can be in.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/multiselectorhelper">MultiSelectorHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>ListBox</code> and <code>MultiSelector</code>, which covers <code>ListView</code> and <code>DataGrid</code>. It exists for one reason: <code>Selector.SelectedItems</code> is read-only, so it cannot be bound.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>PasswordBox</code>. Four properties, covering the two things MahApps adds to a password box: the warning that caps lock is on, and the button that reveals what has been typed.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>RadioButton</code>. Like <a href="checkboxhelper">CheckBoxHelper</a> it is three sizes plus one naming scheme for the brushes.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/scrollviewerhelper">ScrollViewerHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>ScrollViewer</code>, <code>ItemsControl</code> and any <code>UIElement</code>, so it reaches a list or a grid without you having to find the scroll viewer inside it.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/sliderhelper">SliderHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>Slider</code> and <code>RangeSlider</code>. Twelve brushes for the three parts a slider is made of, plus two properties for the mouse wheel.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/tabcontrolhelper">TabControlHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>TabControl</code> and <code>TabItem</code>. Three groups: the underline that marks the selected tab, the animation when the content changes, and closable tabs.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/textboxhelper">TextBoxHelper</a></h4>
+
+            <div class="font-size-sm"><p>The most used of the helpers, and the one whose name undersells it. Its templates are read by <code>TextBox</code>, <code>PasswordBox</code>, <code>ComboBox</code>, <code>DatePicker</code>, <code>TimePicker</code>, <code>NumericUpDown</code>, <code>HotKeyBox</code>, <code>ColorPicker</code> and <code>ButtonBase</code> — so the same watermark works on all of them.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/togglebuttonhelper">ToggleButtonHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>CheckBox</code> and <code>RadioButton</code>. One property, which puts the box or the circle on the other side of the label.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/treeviewitemhelper">TreeViewItemHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to <code>TreeViewItem</code>. One property, for the little triangle that opens and closes a node.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/validationhelper">ValidationHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to any <code>UIElement</code>. Two properties, both about the popup MahApps shows next to a control whose binding failed validation.</p></div>
+
+    </div>
+
+            </div>
+            <div>
+                
+    <div class="p-3 mb-2 bg-light page-box">
+        <h4><a href="/mahapps.com/docs/helper/visibilityhelper">VisibilityHelper</a></h4>
+
+            <div class="font-size-sm"><p>Applies to any <code>UIElement</code>. Three properties, all of them shortcuts for a <code>BooleanToVisibilityConverter</code> you would otherwise have to declare and reference.</p></div>
+
+    </div>
+
+            </div>
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">

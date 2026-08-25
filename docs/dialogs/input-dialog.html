@@ -263,21 +263,195 @@ Input Dialog
     <a href="/mahapps.com/docs/dialogs/custom-dialogs">Custom Dialogs</a>
 </div>
 <div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialogsettings</a>
+    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialog Settings</a>
 </div>                </div>
 
-<div class="sidebar-nav-item">
+<div class="sidebar-nav-item has-children">
     <a href="/mahapps.com/docs/helper">Helper Classes</a>
-</div>    </div>
+</div>                <div class="sidebar-nav-children">
+
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/checkboxhelper">CheckBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/datagridhelper">DataGridHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/datepickerhelper">DatePickerHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/itemhelper">ItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/multiselectorhelper">MultiSelectorHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/scrollviewerhelper">ScrollViewerHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/sliderhelper">SliderHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/tabcontrolhelper">TabControlHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/textboxhelper">TextBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/togglebuttonhelper">ToggleButtonHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/treeviewitemhelper">TreeViewItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/validationhelper">ValidationHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/visibilityhelper">VisibilityHelper</a>
+</div>                </div>
+    </div>
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><img src="images/dialog.png" alt="" /></p>
+<p>An input dialog asks for one line of text. Like the other dialogs it is drawn inside the <code>MetroWindow</code> rather than in a window of its own.</p>
+<p><code>ShowInputAsync</code> returns the text that was entered, or <code>null</code> if the user backed out:</p>
+<pre><code class="language-csharp">private async void OnButtonClick(object sender, RoutedEventArgs e)
+{
+    var name = await this.ShowInputAsync(&quot;What is your name?&quot;, &quot;This will appear on your profile.&quot;);
+
+    if (name is null)
+    {
+        return; // cancelled
+    }
+
+    // use name
+}
+</code></pre>
+<p><img src="images/inputdialog-basic.png" alt="An input dialog" /></p>
+<p>From a view model, use the <a href="mvvm-dialog">dialog coordinator</a> instead of reaching for the window.</p>
+<h2 id="the-null-result">The null result</h2>
+<p>Everything that is not &quot;the user pressed the affirmative button&quot; gives you <code>null</code>: the negative button, <kbd>Esc</kbd>, <kbd>Alt</kbd>+<kbd>F4</kbd>, and cancelling the <code>CancellationToken</code>.</p>
+<div class="alert alert-info"><p><code>null</code> and an empty string are different answers. An empty string means the user confirmed an empty box; <code>null</code> means there was no answer at all. Check for <code>null</code> rather than using <code>string.IsNullOrEmpty</code> if the two should behave differently.</p>
+</div>
+<h2 id="prefilling-the-box">Prefilling the box</h2>
+<p><code>DefaultText</code> puts a value in the box before the dialog opens. It arrives selected, so typing replaces it and confirming keeps it:</p>
+<pre><code class="language-csharp">var settings = new MetroDialogSettings
+               {
+                   DefaultText = &quot;Ada Lovelace&quot;,
+                   AffirmativeButtonText = &quot;Save&quot;,
+                   NegativeButtonText = &quot;Skip&quot;
+               };
+
+var name = await this.ShowInputAsync(&quot;What is your name?&quot;, &quot;This will appear on your profile.&quot;, settings);
+</code></pre>
+<h2 id="colour-scheme">Colour scheme</h2>
+<p><code>ColorScheme</code> works as it does for the other dialogs: <code>Theme</code> follows the current theme, <code>Accented</code> fills the dialog with the accent colour, <code>Inverted</code> uses the inverse of the theme.</p>
+<p><img src="images/inputdialog-colorscheme.png" alt="Theme and Accented colour schemes" /></p>
+<h2 id="which-settings-actually-apply">Which settings actually apply</h2>
+<p><code>MetroDialogSettings</code> is shared by all the dialog types, and an input dialog reads only part of it. The rest is accepted and ignored, which is worth knowing before you spend time on a setting that cannot take effect here.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Effect on an input dialog</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DefaultText</code></td>
+<td>prefills the box</td>
+</tr>
+<tr>
+<td><code>AffirmativeButtonText</code></td>
+<td>label of the confirm button, <code>OK</code> by default</td>
+</tr>
+<tr>
+<td><code>NegativeButtonText</code></td>
+<td>label of the cancel button, <code>Cancel</code> by default</td>
+</tr>
+<tr>
+<td><code>ColorScheme</code></td>
+<td>as above</td>
+</tr>
+<tr>
+<td><code>DialogTitleFontSize</code>, <code>DialogMessageFontSize</code>, <code>DialogButtonFontSize</code></td>
+<td>as for the other dialogs</td>
+</tr>
+<tr>
+<td><code>AnimateShow</code>, <code>AnimateHide</code></td>
+<td>as for the other dialogs</td>
+</tr>
+<tr>
+<td><code>OwnerCanCloseWithDialog</code></td>
+<td>whether the window can be closed while the dialog is up</td>
+</tr>
+<tr>
+<td><code>CancellationToken</code></td>
+<td>closes the dialog; the call returns <code>null</code></td>
+</tr>
+<tr>
+<td><code>CustomResourceDictionary</code></td>
+<td>resources for the dialog</td>
+</tr>
+<tr>
+<td><code>FirstAuxiliaryButtonText</code>, <code>SecondAuxiliaryButtonText</code></td>
+<td><strong>ignored</strong> — an input dialog has exactly two buttons</td>
+</tr>
+<tr>
+<td><code>DefaultButtonFocus</code></td>
+<td><strong>ignored</strong> — focus starts in the text box</td>
+</tr>
+<tr>
+<td><code>DialogResultOnCancel</code></td>
+<td><strong>ignored</strong> — cancelling always gives <code>null</code></td>
+</tr>
+<tr>
+<td><code>MaximumBodyHeight</code></td>
+<td><strong>ignored</strong> — only the message dialog uses it</td>
+</tr>
+</tbody>
+</table>
+<h2 id="keyboard">Keyboard</h2>
+<p>Focus starts in the text box, so the user can type straight away. <kbd>Enter</kbd> confirms and returns the text. <kbd>Esc</kbd> cancels and returns <code>null</code>.</p>
+<h2 id="outside-a-metrowindow">Outside a MetroWindow</h2>
+<p>Where there is no <code>MetroWindow</code> to draw into, <code>ShowModalInputExternal</code> opens the dialog in a window of its own and blocks until it is answered:</p>
+<pre><code class="language-csharp">string name = this.ShowModalInputExternal(&quot;What is your name?&quot;, &quot;This will appear on your profile.&quot;);
+</code></pre>
+<p>Being synchronous, it is not the one to use from an <code>async</code> path.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-null-result">The null result</a></div>
+                    <div class="sidebar-nav-item"><a href="#prefilling-the-box">Prefilling the box</a></div>
+                    <div class="sidebar-nav-item"><a href="#colour-scheme">Colour scheme</a></div>
+                    <div class="sidebar-nav-item"><a href="#which-settings-actually-apply">Which settings actually apply</a></div>
+                    <div class="sidebar-nav-item"><a href="#keyboard">Keyboard</a></div>
+                    <div class="sidebar-nav-item"><a href="#outside-a-metrowindow">Outside a MetroWindow</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/dialogs/input-dialog.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

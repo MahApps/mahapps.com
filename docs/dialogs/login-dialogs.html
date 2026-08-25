@@ -263,21 +263,243 @@ Login Dialog
     <a href="/mahapps.com/docs/dialogs/custom-dialogs">Custom Dialogs</a>
 </div>
 <div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialogsettings</a>
+    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialog Settings</a>
 </div>                </div>
 
-<div class="sidebar-nav-item">
+<div class="sidebar-nav-item has-children">
     <a href="/mahapps.com/docs/helper">Helper Classes</a>
-</div>    </div>
+</div>                <div class="sidebar-nav-children">
+
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/checkboxhelper">CheckBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/datagridhelper">DataGridHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/datepickerhelper">DatePickerHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/itemhelper">ItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/multiselectorhelper">MultiSelectorHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/scrollviewerhelper">ScrollViewerHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/sliderhelper">SliderHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/tabcontrolhelper">TabControlHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/textboxhelper">TextBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/togglebuttonhelper">ToggleButtonHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/treeviewitemhelper">TreeViewItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/validationhelper">ValidationHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/visibilityhelper">VisibilityHelper</a>
+</div>                </div>
+    </div>
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>A login dialog asks for a username and a password. Like the other dialogs it is drawn inside the <code>MetroWindow</code> rather than in a window of its own.</p>
+<p><code>ShowLoginAsync</code> returns a <code>LoginDialogData</code>, or <code>null</code> if the user backed out:</p>
+<pre><code class="language-csharp">private async void OnSignInClick(object sender, RoutedEventArgs e)
+{
+    var result = await this.ShowLoginAsync(&quot;Sign in&quot;, &quot;Enter your credentials.&quot;);
+
+    if (result is null)
+    {
+        return; // cancelled
+    }
+
+    await this.SignInAsync(result.Username, result.SecurePassword);
+}
+</code></pre>
+<p><img src="images/logindialog-basic.png" alt="A login dialog" /></p>
+<p>Note the left one: <strong>there is no cancel button by default.</strong> <code>NegativeButtonVisibility</code> starts at <code>Collapsed</code>, so out of the box the dialog can only be dismissed with <kbd>Esc</kbd>. Show the button if the user should be able to see a way out.</p>
+<p>From a view model, use the <a href="mvvm-dialog">dialog coordinator</a> rather than reaching for the window.</p>
+<h2 id="what-you-get-back">What you get back</h2>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Username</code></td>
+<td><code>string</code></td>
+<td>what was typed in the first box</td>
+</tr>
+<tr>
+<td><code>SecurePassword</code></td>
+<td><code>SecureString</code></td>
+<td>the password</td>
+</tr>
+<tr>
+<td><code>Password</code></td>
+<td><code>string</code></td>
+<td>the same password as a plain string</td>
+</tr>
+<tr>
+<td><code>ShouldRemember</code></td>
+<td><code>bool</code></td>
+<td>state of the remember checkbox, <code>false</code> when it is hidden</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p>Prefer <code>SecurePassword</code>. The <code>Password</code> property is not a stored value — each read marshals the <code>SecureString</code> into a managed <code>string</code>, which then sits in memory until the garbage collector happens to reclaim it, and cannot be cleared. Use it only when an API you cannot change demands a <code>string</code>, and keep it out of variables that live longer than the call.</p>
+</div>
+<h2 id="settings">Settings</h2>
+<p><code>ShowLoginAsync</code> takes a <code>LoginDialogSettings</code>, which derives from <code>MetroDialogSettings</code> and adds the login-specific parts.</p>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InitialUsername</code></td>
+<td><code>null</code></td>
+<td>prefills the username box</td>
+</tr>
+<tr>
+<td><code>InitialPassword</code></td>
+<td><code>null</code></td>
+<td>prefills the password box</td>
+</tr>
+<tr>
+<td><code>UsernameWatermark</code></td>
+<td><code>Username...</code></td>
+<td>placeholder in the empty username box</td>
+</tr>
+<tr>
+<td><code>PasswordWatermark</code></td>
+<td><code>Password...</code></td>
+<td>placeholder in the empty password box</td>
+</tr>
+<tr>
+<td><code>UsernameCharacterCasing</code></td>
+<td><code>Normal</code></td>
+<td>force the username to upper or lower case as it is typed</td>
+</tr>
+<tr>
+<td><code>ShouldHideUsername</code></td>
+<td><code>false</code></td>
+<td>hide the username box entirely</td>
+</tr>
+<tr>
+<td><code>EnablePasswordPreview</code></td>
+<td><code>false</code></td>
+<td>add a button that reveals the password while held</td>
+</tr>
+<tr>
+<td><code>NegativeButtonVisibility</code></td>
+<td><code>Collapsed</code></td>
+<td>show the cancel button</td>
+</tr>
+<tr>
+<td><code>RememberCheckBoxVisibility</code></td>
+<td><code>Collapsed</code></td>
+<td>show the remember checkbox</td>
+</tr>
+<tr>
+<td><code>RememberCheckBoxText</code></td>
+<td><code>Remember</code></td>
+<td>its label</td>
+</tr>
+<tr>
+<td><code>RememberCheckBoxChecked</code></td>
+<td><code>false</code></td>
+<td>its initial state</td>
+</tr>
+<tr>
+<td><code>AffirmativeButtonText</code></td>
+<td><code>Login</code></td>
+<td>note the different default from the other dialogs</td>
+</tr>
+</tbody>
+</table>
+<p>Inherited from <code>MetroDialogSettings</code>: <code>NegativeButtonText</code>, <code>ColorScheme</code>, the three font sizes, <code>AnimateShow</code> and <code>AnimateHide</code>, <code>OwnerCanCloseWithDialog</code>, <code>CancellationToken</code> and <code>CustomResourceDictionary</code>. As with the input dialog, <code>DefaultButtonFocus</code>, <code>DialogResultOnCancel</code> and <code>MaximumBodyHeight</code> have no effect here.</p>
+<h2 id="variants">Variants</h2>
+<p><code>ShouldHideUsername</code> turns the dialog into a password prompt, which suits unlocking something that already knows who you are. <code>EnablePasswordPreview</code> adds the reveal button to the password box:</p>
+<p><img src="images/logindialog-variants.png" alt="Hidden username and password preview" /></p>
+<pre><code class="language-csharp">var settings = new LoginDialogSettings
+               {
+                   InitialUsername = &quot;ada&quot;,
+                   EnablePasswordPreview = true,
+                   NegativeButtonVisibility = Visibility.Visible,
+                   NegativeButtonText = &quot;Cancel&quot;,
+                   RememberCheckBoxVisibility = Visibility.Visible,
+                   RememberCheckBoxText = &quot;Keep me signed in&quot;
+               };
+
+var result = await this.ShowLoginAsync(&quot;Sign in&quot;, &quot;Enter your credentials.&quot;, settings);
+</code></pre>
+<h2 id="caps-lock-warning">Caps lock warning</h2>
+<p>You get one for free. While the password box has focus, an indicator appears inside it whenever <kbd>Caps Lock</kbd> is on, carrying the tooltip <em>Caps lock is on</em>. Nothing has to be switched on for this — it comes from the MahApps <code>PasswordBox</code> style, which every <code>PasswordBox</code> picks up implicitly, and it survives <code>EnablePasswordPreview</code> because that style inherits from the same base.</p>
+<p>The icon and the tooltip are attached properties on the password box, so they can be replaced:</p>
+<pre><code class="language-xml">&lt;PasswordBox mah:PasswordBoxHelper.CapsLockWarningToolTip=&quot;Caps Lock is turned on&quot; /&gt;
+</code></pre>
+<p>Inside a login dialog you cannot reach the box directly to set these; overriding them means supplying your own style through <code>CustomResourceDictionary</code>.</p>
+<h2 id="keyboard">Keyboard</h2>
+<p><kbd>Enter</kbd> confirms and returns the data. <kbd>Esc</kbd> cancels and returns <code>null</code> — which it does whether or not the cancel button is visible.</p>
+<h2 id="outside-a-metrowindow">Outside a MetroWindow</h2>
+<p>Where there is no <code>MetroWindow</code> to draw into — a login prompt before the main window exists is the usual case — <code>ShowModalLoginExternal</code> opens the dialog in a window of its own and blocks until it is answered:</p>
+<pre><code class="language-csharp">LoginDialogData result = this.ShowModalLoginExternal(&quot;Sign in&quot;, &quot;Enter your credentials.&quot;);
+</code></pre>
+<p>Being synchronous, it is not the one to use from an <code>async</code> path.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#what-you-get-back">What you get back</a></div>
+                    <div class="sidebar-nav-item"><a href="#settings">Settings</a></div>
+                    <div class="sidebar-nav-item"><a href="#variants">Variants</a></div>
+                    <div class="sidebar-nav-item"><a href="#caps-lock-warning">Caps lock warning</a></div>
+                    <div class="sidebar-nav-item"><a href="#keyboard">Keyboard</a></div>
+                    <div class="sidebar-nav-item"><a href="#outside-a-metrowindow">Outside a MetroWindow</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/dialogs/login-dialogs.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

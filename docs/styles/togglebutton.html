@@ -256,22 +256,63 @@ ToggleButton
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>There are two kinds of styles for ToggleButtons available in MahApps.Metro.</p>
-<p>The default style, available just by placing a <code>ToggleButton</code> control in XAML looks like the default MahApps.Metro button.</p>
-<pre><code class="language-xml">  &lt;Grid&gt;
-      &lt;ToggleButton/&gt;
-  &lt;/Grid&gt;
+<p>A <code>ToggleButton</code> is a button that stays pressed. MahApps styles it to match the ordinary <a href="buttons">buttons</a> and adds a circular and a flat variant.</p>
+<p><img src="images/togglebutton-styles.png" alt="The three ToggleButton styles" /></p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.ToggleButton</code> to every <code>ToggleButton</code>, so a plain one already looks like the figure:</p>
+<pre><code class="language-xml">&lt;ToggleButton Content=&quot;Bold&quot; /&gt;
 </code></pre>
-<p><img src="images/toggle-button-normal.png" alt="" /></p>
-<p>Another style, <code>MetroCircleToggleButtonStyle</code> is available by setting the ToggleButton's style to <code>MetroCircleToggleButtonStyle</code>. This style changes the button's background to <code>AccentColorBrush</code> when it is checked. To modify this behaviour, you will have to edit a copy of the control template using Blend.</p>
-<pre><code class="language-xml">  &lt;ToggleButton Width=&quot;50&quot;
-                Height=&quot;50&quot;
-                Margin=&quot;0, 10, 0, 0&quot;
-                Style=&quot;{DynamicResource MetroCircleToggleButtonStyle}&quot;&gt;
-  &lt;/ToggleButton&gt;
+<p>Because <code>CheckBox</code> and <code>RadioButton</code> derive from <code>ToggleButton</code>, this style is <em>not</em> what they use — each has its own, and their look is controlled through <a href="../helper/checkboxhelper">CheckBoxHelper</a> and <a href="../helper/radiobuttonhelper">RadioButtonHelper</a>.</p>
+<h2 id="the-styles">The styles</h2>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.ToggleButton</code></td>
+<td>the implicit one; filled while checked</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ToggleButton.Circle</code></td>
+<td>round and transparent, filled with the accent colour while checked</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ToggleButton.Flat</code></td>
+<td>no border, filled while checked</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;ToggleButton Width=&quot;48&quot; Height=&quot;48&quot;
+              Style=&quot;{StaticResource MahApps.Styles.ToggleButton.Circle}&quot; /&gt;
 </code></pre>
-<p><img src="images/toggle-button-circle.png" alt="" /></p>
-<h2 id="using-icons-within-a-circle-togglebutton">Using Icons within a Circle ToggleButton</h2>
+<p>These are the general-purpose ones. The library has a dozen more <code>ToggleButton</code> styles that belong to particular controls — the <code>Expander</code> header, the <code>ComboBox</code> arrow, the <code>TreeViewItem</code> expander — which the <a href="buttons">buttons</a> page lists.</p>
+<h2 id="the-states">The states</h2>
+<p><img src="images/togglebutton-states.png" alt="Unchecked, checked, indeterminate and disabled" /></p>
+<div class="alert alert-warning"><p>Note the third one. <code>IsThreeState=&quot;True&quot;</code> makes the value cycle through <code>null</code>, and that works — but the style draws the indeterminate state <strong>exactly like unchecked</strong>, so the user has no way to tell the two apart. Where a third state has to be visible, use a <code>CheckBox</code>: its style has a distinct dash glyph for it.</p>
+</div>
+<h2 id="icons">Icons</h2>
+<p>The circle style has no content of its own and is meant to carry an icon. Anything that renders works — a glyph from an icon font is the least trouble:</p>
+<p><img src="images/togglebutton-icons.png" alt="A circle toggle button unchecked, checked, and carrying a Path" /></p>
+<pre><code class="language-xml">&lt;ToggleButton Width=&quot;48&quot; Height=&quot;48&quot; Style=&quot;{StaticResource MahApps.Styles.ToggleButton.Circle}&quot;&gt;
+    &lt;TextBlock FontFamily=&quot;Segoe MDL2 Assets&quot; FontSize=&quot;18&quot; Text=&quot;&amp;#xE734;&quot; /&gt;
+&lt;/ToggleButton&gt;
+</code></pre>
+<p>The icon takes the button's <code>Foreground</code>, and the template switches that to <code>MahApps.Brushes.IdealForeground</code> while the button is checked — so a glyph you draw in the accent colour disappears against the checked fill. Leave the <code>Foreground</code> alone unless you also handle the checked state.</p>
+<p>For a <code>Path</code> rather than a glyph, the library's own icon style keeps it scaled and coloured correctly:</p>
+<pre><code class="language-xml">&lt;ToggleButton Width=&quot;48&quot; Height=&quot;48&quot; Style=&quot;{StaticResource MahApps.Styles.ToggleButton.Circle}&quot;&gt;
+    &lt;ContentControl Width=&quot;20&quot; Height=&quot;20&quot;
+                    Content=&quot;M12,2L15,9L22,9L16,14L18,21L12,17L6,21L8,14L2,9L9,9Z&quot;
+                    Style=&quot;{DynamicResource MahApps.Styles.ContentControl.PathIcon}&quot; /&gt;
+&lt;/ToggleButton&gt;
+</code></pre>
+<h2 id="togglebuttonhelper-does-not-apply-here">ToggleButtonHelper does not apply here</h2>
+<p><code>ToggleButtonHelper</code> is named after this control, but its one property — <code>ContentDirection</code>, which puts the box on the other side of the label — is read only by the <code>CheckBox</code> and <code>RadioButton</code> templates. A plain <code>ToggleButton</code> has no separate box and label to swap, and none of the three styles above look at the property. See <a href="../helper/checkboxhelper">CheckBoxHelper</a> and <a href="../helper/radiobuttonhelper">RadioButtonHelper</a> for the controls where it does something.</p>
+<h2 id="related">Related</h2>
+<p>For a switch rather than a button that stays pressed, use the <code>ToggleSwitch</code> control — it has an on/off track and its own header, and reads as a setting rather than as an action.</p>
 
 
                                         </div>
@@ -280,7 +321,12 @@ ToggleButton
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#using-icons-within-a-circle-togglebutton">Using Icons within a Circle ToggleButton</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-styles">The styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-states">The states</a></div>
+                    <div class="sidebar-nav-item"><a href="#icons">Icons</a></div>
+                    <div class="sidebar-nav-item"><a href="#togglebuttonhelper-does-not-apply-here">ToggleButtonHelper does not apply here</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/togglebutton.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

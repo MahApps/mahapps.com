@@ -256,27 +256,184 @@ Buttons
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<h1 id="default">Default</h1>
-<p>This just replaces the standard button when you drop in the library, nothing fancy to activate it.<br />
-<img src="images/08_RegularButton.png" alt="" /></p>
-<h1 id="circle">Circle</h1>
-<p>&quot;Standard&quot; circle button, designed for icons.<br />
-Add the following to a button to apply this style: <code>Style=&quot;{DynamicResource MahApps.Styles.Button.Circle}&quot;</code></p>
-<p><img src="images/07_CircleButtons.png" alt="" /></p>
-<h1 id="square">Square</h1>
-<p>Another WP7 styled button, this time just for text. Like all the buttons here, has normal, clicked, and hover states.</p>
-<p><img src="images/square-button.png" alt="" /></p>
-<p>Add the following to a button to apply this style: <code>Style=&quot;{DynamicResource MahApps.Styles.Button.Square}&quot;</code></p>
-<h1 id="accented-square">Accented Square</h1>
-<p>A slightly modified version of <code>SquareButton</code> that has the current accent color as background color.</p>
-<p><img src="images/accent-square-button.png" alt="" /></p>
-<p>Add the following to a button to apply this style: <code>Style=&quot;{StaticResource MahApps.Styles.Button.Square.Accent}&quot;</code></p>
-<h1 id="flat">Flat</h1>
-<p>This sort of button can be found when you're making a call on Windows Phone - all of the controls (hang up, keypad, etc) are 'flat buttons'.</p>
-<p><img src="images/flatbutton.png" alt="" /></p>
-<p>Flat button lives in<br />
-<code>&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.FlatButton.xaml&quot; /&gt;</code></p>
-<p>You'll need to import that as well to use it.</p>
+<p>Every <code>Button</code>, <code>RepeatButton</code> and <code>ToggleButton</code> in a MahApps application is styled without any markup on your side. Beyond that the library ships a set of keyed styles to pick from — square, circular, flat, chromeless — plus a good many that belong to particular controls.</p>
+<p><img src="images/buttons-square.png" alt="The default button and the three square variants" /></p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.Button</code> to <code>Button</code> <strong>and</strong> <code>RepeatButton</code>, and <code>MahApps.Styles.ToggleButton</code> to <code>ToggleButton</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+</code></pre>
+<p>The default button is a rounded, bordered button with bold, upper-cased content. The upper-casing is not a font trick: the style sets <code>ControlsHelper.ContentCharacterCasing</code> to <code>Upper</code>, and setting it back to <code>Normal</code> gives you the content as written.</p>
+<pre><code class="language-xml">&lt;Button mah:ControlsHelper.ContentCharacterCasing=&quot;Normal&quot; Content=&quot;Save&quot; /&gt;
+</code></pre>
+<p>Along with it the style sets <code>ControlsHelper.CornerRadius</code> to <code>3</code> and <code>FocusBorderThickness</code> to <code>2</code>, both of which are yours to override. See <a href="../helper/controlshelper">ControlsHelper</a>.</p>
+<h2 id="the-square-styles">The square styles</h2>
+<pre><code class="language-xml">&lt;Button Style=&quot;{StaticResource MahApps.Styles.Button.Square}&quot; Content=&quot;Save&quot; /&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Button.Square</code></td>
+<td>a flat-cornered button with a 2 pixel border</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.Square.Accent</code></td>
+<td>the same filled with the accent colour</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.Square.Highlight</code></td>
+<td>the same filled with the highlight colour, a darker accent</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-info"><p>Look at the captions in the figure above: the default style upper-cases its content, but the square styles set <code>ContentCharacterCasing</code> to <strong><code>Lower</code></strong>, so <code>Content=&quot;Save&quot;</code> comes out as <em>save</em>. It is a deliberate part of the look rather than an accident, but it surprises people who expect the content verbatim. Set the property to <code>Normal</code> if you want it as written.</p>
+</div>
+<p><code>MahApps.Styles.Button.MetroSquare</code> is a third square variant, and it leaves the casing alone:</p>
+<p><img src="images/buttons-metrosquare.png" alt="MetroSquare and its accented variant" /></p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Button.MetroSquare</code></td>
+<td>transparent with a 2 pixel border and wider padding</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.MetroSquare.Accent</code></td>
+<td>the same filled with the accent colour</td>
+</tr>
+</tbody>
+</table>
+<h2 id="circle-flat-and-chromeless">Circle, flat and chromeless</h2>
+<p><img src="images/buttons-circle-flat.png" alt="A circle button, a flat button and a chromeless one" /></p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Button.Circle</code></td>
+<td>a round, transparent button with a 2 pixel border, meant for an icon rather than text</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.Flat</code></td>
+<td>a filled button with no border at all</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.Chromeless</code></td>
+<td>no border, no background — the content and nothing else</td>
+</tr>
+</tbody>
+</table>
+<p>The circle button has no content of its own, so give it one:</p>
+<pre><code class="language-xml">&lt;Button Width=&quot;48&quot; Height=&quot;48&quot; Style=&quot;{StaticResource MahApps.Styles.Button.Circle}&quot;&gt;
+    &lt;TextBlock FontFamily=&quot;Segoe MDL2 Assets&quot; FontSize=&quot;18&quot; Text=&quot;&amp;#xE72C;&quot; /&gt;
+&lt;/Button&gt;
+</code></pre>
+<p><code>Chromeless</code> is what the library uses for the small buttons inside a text box or a picker, and it is the one to reach for when a button should read as part of another control rather than as a button.</p>
+<div class="alert alert-info"><p>The flat button needs no extra import. Older documentation says to merge <code>Styles/Controls.FlatButton.xaml</code> — that dictionary still exists, but all it does is make the flat style <strong>implicit for every <code>Button</code> in scope</strong>. <code>MahApps.Styles.Button.Flat</code> itself lives in <code>Controls.Buttons.xaml</code>, which <code>Controls.xaml</code> already merges, so referencing it by key works out of the box.</p>
+</div>
+<h2 id="dialog-buttons">Dialog buttons</h2>
+<p>The three styles the built-in dialogs use are public, which is what makes a <a href="../dialogs/custom-dialogs">custom dialog</a> look like the built-in ones:</p>
+<p><img src="images/buttons-dialogs.png" alt="The three dialog button styles" /></p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Button.Dialogs</code></td>
+<td>the plain one</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.Dialogs.Accent</code></td>
+<td>for the affirmative action</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.Dialogs.AccentHighlight</code></td>
+<td>the highlight variant</td>
+</tr>
+</tbody>
+</table>
+<p>They are <code>MahApps.Styles.Button.Square</code> and its variants with a minimum size and <code>ContentCharacterCasing</code> back at <code>Normal</code> — which is why a dialog button says <em>Cancel</em> rather than <em>cancel</em>.</p>
+<h2 id="toggle-buttons">Toggle buttons</h2>
+<p><code>MahApps.Styles.ToggleButton</code> is the implicit style for <code>ToggleButton</code>, and <code>MahApps.Styles.ToggleButton.Circle</code> and <code>.Flat</code> are the counterparts of <code>Button.Circle</code> and <code>Button.Flat</code>. They have a page of their own: <a href="togglebutton">ToggleButton</a>.</p>
+<h2 id="the-rest">The rest</h2>
+<p>Most of the button styles in the library belong to one control and are not meant to be applied by hand. They are listed here so a name in the resource dictionary is recognisable rather than mysterious:</p>
+<table>
+<thead>
+<tr>
+<th>Prefix</th>
+<th>Belongs to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Button.MetroWindow.*</code>, <code>Button.WindowCommands</code>, <code>ToggleButton.WindowCommands</code></td>
+<td>the window chrome and its command buttons</td>
+</tr>
+<tr>
+<td><code>Button.DropDown</code>, <code>Button.Split</code>, <code>Button.Split.Arrow</code></td>
+<td><code>DropDownButton</code> and <code>SplitButton</code></td>
+</tr>
+<tr>
+<td><code>Button.Calendar.*</code></td>
+<td>the calendar header and its arrows</td>
+</tr>
+<tr>
+<td><code>Button.Hamburger</code></td>
+<td>the <code>HamburgerMenu</code> toggle</td>
+</tr>
+<tr>
+<td><code>Button.Reveal</code></td>
+<td>the reveal button of a <code>PasswordBox</code></td>
+</tr>
+<tr>
+<td><code>Button.ToolBar</code>, <code>ToggleButton.ToolBar</code>, <code>ToggleButton.ToolBarOverflow</code></td>
+<td><code>ToolBar</code></td>
+</tr>
+<tr>
+<td><code>Button.FlipView.Navigation</code></td>
+<td>the <code>FlipView</code> arrows</td>
+</tr>
+<tr>
+<td><code>ToggleButton.ExpanderHeader.*</code></td>
+<td>the <code>Expander</code> header, one per direction</td>
+</tr>
+<tr>
+<td><code>ToggleButton.ComboBoxDropDown</code>, <code>ToggleButton.ColorPickerDropDown</code></td>
+<td>the arrow of a <code>ComboBox</code> or <code>ColorPicker</code></td>
+</tr>
+<tr>
+<td><code>ToggleButton.TreeViewItem.ExpandCollapse</code></td>
+<td>the expander of a <code>TreeViewItem</code></td>
+</tr>
+<tr>
+<td><code>*.VisualStudio</code></td>
+<td>the Visual Studio look, in <code>Styles/VS/</code>, which <code>Controls.xaml</code> does not merge</td>
+</tr>
+<tr>
+<td><code>Button.FocusVisualStyle.*</code></td>
+<td>focus adorners used by the styles above</td>
+</tr>
+</tbody>
+</table>
+<p>Basing your own style on one of these is fine — that is how the <a href="../helper/expanderhelper">Expander</a> and <a href="../helper/treeviewitemhelper">TreeViewItem</a> helpers expect you to customise them. Applying one to an ordinary button generally is not, since most assume the template around them.</p>
 
 
                                         </div>
@@ -285,11 +442,12 @@ Add the following to a button to apply this style: <code>Style=&quot;{DynamicRes
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#default">Default</a></div>
-                    <div class="sidebar-nav-item"><a href="#circle">Circle</a></div>
-                    <div class="sidebar-nav-item"><a href="#square">Square</a></div>
-                    <div class="sidebar-nav-item"><a href="#accented-square">Accented Square</a></div>
-                    <div class="sidebar-nav-item"><a href="#flat">Flat</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-square-styles">The square styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#circle-flat-and-chromeless">Circle, flat and chromeless</a></div>
+                    <div class="sidebar-nav-item"><a href="#dialog-buttons">Dialog buttons</a></div>
+                    <div class="sidebar-nav-item"><a href="#toggle-buttons">Toggle buttons</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-rest">The rest</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/buttons.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
