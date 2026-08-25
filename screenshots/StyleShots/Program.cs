@@ -46,6 +46,7 @@ namespace StyleShots
                 {
                     try
                     {
+                        await TextBoxFiguresAsync();
                         await PasswordBoxFiguresAsync();
                         await HelperFiguresAsync();
                         Console.WriteLine("done");
@@ -107,6 +108,45 @@ namespace StyleShots
             }
 
             return box;
+        }
+
+        private static async Task TextBoxFiguresAsync()
+        {
+            await CaptureAsync("styles", "textbox-styles",
+                Showcase(
+                    ("implicit style", Xaml(@"<TextBox Width=""190"" Text=""metro"" />")),
+                    ("MahApps.Styles.TextBox.Button",
+                        Xaml(@"<TextBox Width=""190"" Style=""{StaticResource MahApps.Styles.TextBox.Button}"" Text=""metro"" />")),
+                    ("MahApps.Styles.TextBox.Search",
+                        Xaml(@"<TextBox Width=""190"" Style=""{StaticResource MahApps.Styles.TextBox.Search}"" Text=""metro"" />"))));
+
+            await CaptureAsync("styles", "textbox-richtextbox",
+                Showcase(
+                    ("MahApps.Styles.RichTextBox",
+                        Xaml(@"<RichTextBox Width=""210"" Height=""70"">
+                                 <FlowDocument><Paragraph>Rich text</Paragraph></FlowDocument>
+                               </RichTextBox>")),
+                    ("MahApps.Styles.RichTextBox.Button",
+                        Xaml(@"<RichTextBox Width=""210"" Height=""70"" Style=""{StaticResource MahApps.Styles.RichTextBox.Button}"">
+                                 <FlowDocument><Paragraph>Rich text</Paragraph></FlowDocument>
+                               </RichTextBox>"))));
+
+            await CaptureAsync("styles", "textbox-watermark",
+                Showcase(
+                    ("Watermark, empty", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.Watermark=""Search"" />")),
+                    ("Watermark, filled", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.Watermark=""Search"" Text=""metro"" />")),
+                    ("UseFloatingWatermark", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.Watermark=""Search"" mah:TextBoxHelper.UseFloatingWatermark=""True"" Text=""metro"" />"))));
+
+            await CaptureAsync("styles", "textbox-buttons",
+                Showcase(
+                    ("ClearTextButton", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.ClearTextButton=""True"" Text=""metro"" />")),
+                    ("ButtonsAlignment=Left", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.ClearTextButton=""True"" mah:TextBoxHelper.ButtonsAlignment=""Left"" Text=""metro"" />")),
+                    ("ButtonContent + ButtonWidth", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.ClearTextButton=""True""
+                                                                   mah:TextBoxHelper.ButtonContent=""Clear""
+                                                                   mah:TextBoxHelper.ButtonFontFamily=""{DynamicResource MahApps.Fonts.Family.Control}""
+                                                                   mah:TextBoxHelper.ButtonFontSize=""12""
+                                                                   mah:TextBoxHelper.ButtonWidth=""48""
+                                                                   Text=""metro"" />"))));
         }
 
         private static async Task PasswordBoxFiguresAsync()
@@ -265,23 +305,6 @@ namespace StyleShots
                 Showcase(
                     ("UnderlineSelectedBrush", Tabs(@"mah:TabControlHelper.Underlined=""SelectedTabItem"" mah:TabControlHelper.UnderlineSelectedBrush=""#2E7D32""")),
                     ("UnderlinePlacement=Top", Tabs(@"mah:TabControlHelper.Underlined=""SelectedTabItem"" mah:TabControlHelper.UnderlinePlacement=""Top"""))));
-
-            await CaptureAsync("helper", "textboxhelper-watermark",
-                Showcase(
-                    ("Watermark, empty", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.Watermark=""Search"" />")),
-                    ("Watermark, filled", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.Watermark=""Search"" Text=""metro"" />")),
-                    ("UseFloatingWatermark", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.Watermark=""Search"" mah:TextBoxHelper.UseFloatingWatermark=""True"" Text=""metro"" />"))));
-
-            await CaptureAsync("helper", "textboxhelper-buttons",
-                Showcase(
-                    ("ClearTextButton", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.ClearTextButton=""True"" Text=""metro"" />")),
-                    ("ButtonsAlignment=Left", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.ClearTextButton=""True"" mah:TextBoxHelper.ButtonsAlignment=""Left"" Text=""metro"" />")),
-                    ("ButtonContent + ButtonWidth", Xaml(@"<TextBox Width=""190"" mah:TextBoxHelper.ClearTextButton=""True""
-                                                                   mah:TextBoxHelper.ButtonContent=""Clear""
-                                                                   mah:TextBoxHelper.ButtonFontFamily=""{DynamicResource MahApps.Fonts.Family.Control}""
-                                                                   mah:TextBoxHelper.ButtonFontSize=""12""
-                                                                   mah:TextBoxHelper.ButtonWidth=""48""
-                                                                   Text=""metro"" />"))));
 
             await CaptureAsync("helper", "comboboxhelper",
                 Showcase(

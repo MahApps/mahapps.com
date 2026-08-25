@@ -7,7 +7,7 @@ The most used of the helpers, and the one whose name undersells it. Its template
 
 ## Watermark
 
-![Watermark, filled, and the floating variant](images/textboxhelper-watermark.png)
+![Watermark, filled, and the floating variant](../styles/images/textbox-watermark.png)
 
 | Property | Type | Default | |
 | --- | --- | --- | --- |
@@ -40,7 +40,7 @@ public string Query { get; set; }
 
 ## Buttons
 
-![Clear button, on the left, and with its own content](images/textboxhelper-buttons.png)
+![Clear button, on the left, and with its own content](../styles/images/textbox-buttons.png)
 
 | Property | Type | Default | |
 | --- | --- | --- | --- |
