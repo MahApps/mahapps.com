@@ -47,6 +47,7 @@ namespace StyleShots
                     try
                     {
                         await TextBoxFiguresAsync();
+                        await ComboBoxFiguresAsync();
                         await DatePickerFiguresAsync();
                         await PasswordBoxFiguresAsync();
                         await HelperFiguresAsync();
@@ -148,6 +149,140 @@ namespace StyleShots
                                                                    mah:TextBoxHelper.ButtonFontSize=""12""
                                                                    mah:TextBoxHelper.ButtonWidth=""48""
                                                                    Text=""metro"" />"))));
+        }
+
+        private const string ComboItems = @"
+                                 <ComboBoxItem Content=""Ada Lovelace"" />
+                                 <ComboBoxItem Content=""Grace Hopper"" />
+                                 <ComboBoxItem Content=""Alan Turing"" />";
+
+        private static async Task ComboBoxFiguresAsync()
+        {
+            await CaptureAsync("styles", "combobox-styles",
+                Showcase(
+                    ("default", Xaml($@"<ComboBox Width=""190"" SelectedIndex=""0"">{ComboItems}</ComboBox>")),
+                    ("Watermark", Xaml($@"<ComboBox Width=""190"" mah:TextBoxHelper.Watermark=""Pick someone"">{ComboItems}</ComboBox>")),
+                    ("ClearTextButton", Xaml($@"<ComboBox Width=""190"" SelectedIndex=""0"" mah:TextBoxHelper.ClearTextButton=""True"">{ComboItems}</ComboBox>"))));
+
+            await CaptureAsync("styles", "combobox-editable",
+                Showcase(
+                    ("IsEditable", Xaml($@"<ComboBox Width=""190"" IsEditable=""True"" SelectedIndex=""0"">{ComboItems}</ComboBox>")),
+                    ("UseFloatingWatermark", Xaml($@"<ComboBox Width=""190"" IsEditable=""True"" SelectedIndex=""0""
+                                                               mah:TextBoxHelper.Watermark=""Pick someone""
+                                                               mah:TextBoxHelper.UseFloatingWatermark=""True"">{ComboItems}</ComboBox>")),
+                    ("CharacterCasing", Xaml($@"<ComboBox Width=""190"" IsEditable=""True"" Text=""ADA LOVELACE""
+                                                          mah:ComboBoxHelper.CharacterCasing=""Upper"">{ComboItems}</ComboBox>"))));
+
+            // The recipe the page prints for showing the clear button only once
+            // something is selected. Rendering both states is what proves the
+            // trigger does what the page claims.
+            const string conditionalClear = @"
+              <Grid.Resources>
+                <Style x:Key=""ClearWhenSelected"" BasedOn=""{StaticResource MahApps.Styles.ComboBox}"" TargetType=""{x:Type ComboBox}"">
+                  <Setter Property=""mah:TextBoxHelper.ClearTextButton"" Value=""True"" />
+                  <Style.Triggers>
+                    <DataTrigger Binding=""{Binding SelectedItem, RelativeSource={RelativeSource Self}, Converter={x:Static mah:IsNullConverter.Instance}}"" Value=""True"">
+                      <Setter Property=""mah:TextBoxHelper.ClearTextButton"" Value=""False"" />
+                    </DataTrigger>
+                  </Style.Triggers>
+                </Style>
+              </Grid.Resources>";
+
+            await CaptureAsync("styles", "combobox-clearbutton",
+                Showcase(
+                    ("nothing selected", Xaml($@"{conditionalClear}
+                        <ComboBox Width=""190"" Style=""{{StaticResource ClearWhenSelected}}"" mah:TextBoxHelper.Watermark=""Pick someone"">{ComboItems}</ComboBox>")),
+                    ("item selected", Xaml($@"{conditionalClear}
+                        <ComboBox Width=""190"" Style=""{{StaticResource ClearWhenSelected}}"" SelectedIndex=""0"">{ComboItems}</ComboBox>"))));
+
+            await CaptureDropDownAsync("styles", "combobox-dropdown",
+                $@"<ComboBox Width=""190"" SelectedIndex=""0"">{ComboItems}</ComboBox>");
+
+            // Grouping needs a grouped view, which is a CollectionViewSource
+            // over real objects rather than anything XAML can spell inline. The
+            // GroupStyle - the part the page prints - stays in the markup.
+            await CaptureDropDownAsync("styles", "combobox-grouping",
+                @"<ComboBox Width=""190"" DisplayMemberPath=""Title""
+                            Style=""{StaticResource MahApps.Styles.ComboBox.Virtualized}"">
+                    <ComboBox.GroupStyle>
+                      <GroupStyle>
+                        <GroupStyle.HeaderTemplate>
+                          <DataTemplate>
+                            <TextBlock Margin=""4 2"" FontWeight=""Bold"" Text=""{Binding Name}"" />
+                          </DataTemplate>
+                        </GroupStyle.HeaderTemplate>
+                      </GroupStyle>
+                    </ComboBox.GroupStyle>
+                  </ComboBox>",
+                combo =>
+                    {
+                        var albums = new[]
+                                     {
+                                         new Album { Title = "Kind of Blue", Genre = "Jazz" },
+                                         new Album { Title = "A Love Supreme", Genre = "Jazz" },
+                                         new Album { Title = "The Köln Concert", Genre = "Jazz" },
+                                         new Album { Title = "Remain in Light", Genre = "Rock" },
+                                         new Album { Title = "OK Computer", Genre = "Rock" }
+                                     };
+
+                        var view = new System.Windows.Data.CollectionViewSource { Source = albums };
+                        view.GroupDescriptions.Add(new System.Windows.Data.PropertyGroupDescription(nameof(Album.Genre)));
+
+                        combo.ItemsSource = view.View;
+                        combo.SelectedIndex = 0;
+                    });
+        }
+
+        // The drop-down lives in a Popup, which is its own window and so out of
+        // reach of a RenderTargetBitmap of the page. The popup's child is an
+        // ordinary element with a laid-out visual tree, though, so open the
+        // drop-down and render that instead.
+        public sealed class Album
+        {
+            public string Title { get; set; }
+
+            public string Genre { get; set; }
+        }
+
+        private static async Task CaptureDropDownAsync(string section, string name, string comboXaml, Action<ComboBox> configure = null)
+        {
+            var combo = (ComboBox)XamlReader.Parse($"<ComboBox {Xmlns}{comboXaml.Substring("<ComboBox".Length)}");
+            configure?.Invoke(combo);
+
+            var host = new Window
+                       {
+                           Content = new Border { Padding = new Thickness(16), Child = combo },
+                           SizeToContent = SizeToContent.WidthAndHeight,
+                           WindowStyle = WindowStyle.None,
+                           ShowInTaskbar = false,
+                           WindowStartupLocation = WindowStartupLocation.Manual,
+                           Left = -20000,
+                           Top = -20000,
+                           Background = Brushes.White
+                       };
+
+            var rendered = new TaskCompletionSource<bool>();
+            host.ContentRendered += (_, _) => rendered.TrySetResult(true);
+            host.Show();
+            await rendered.Task;
+
+            combo.IsDropDownOpen = true;
+            await Task.Delay(600);
+            await host.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+
+            if (combo.Template?.FindName("PART_Popup", combo) is System.Windows.Controls.Primitives.Popup popup
+                && popup.Child is FrameworkElement child)
+            {
+                child.UpdateLayout();
+                await SaveAsync(section, name, child);
+            }
+            else
+            {
+                Console.WriteLine($"{section}/{name}: PART_Popup not found, skipped");
+            }
+
+            combo.IsDropDownOpen = false;
+            host.Close();
         }
 
         private static async Task DatePickerFiguresAsync()
@@ -488,10 +623,17 @@ namespace StyleShots
 
             root.UpdateLayout();
 
-            var width = (int)Math.Ceiling(root.ActualWidth * Scale);
-            var height = (int)Math.Ceiling(root.ActualHeight * Scale);
+            await SaveAsync(section, name, root);
+
+            window.Close();
+        }
+
+        private static Task SaveAsync(string section, string name, FrameworkElement element)
+        {
+            var width = (int)Math.Ceiling(element.ActualWidth * Scale);
+            var height = (int)Math.Ceiling(element.ActualHeight * Scale);
             var bitmap = new RenderTargetBitmap(width, height, 96 * Scale, 96 * Scale, PixelFormats.Pbgra32);
-            bitmap.Render(root);
+            bitmap.Render(element);
 
             var encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(bitmap));
@@ -506,7 +648,7 @@ namespace StyleShots
             }
 
             Console.WriteLine($"{section}/{name}.png  {width}x{height}");
-            window.Close();
+            return Task.CompletedTask;
         }
     }
 }
