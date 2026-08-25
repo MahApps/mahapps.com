@@ -272,17 +272,215 @@ Message Dialog
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>Simple message dialogs can be displayed with the <code>ShowMessageAsync</code> method. It is an extension method for <code>MetroWindow</code>, so call it from your window class.</p>
+<p>A message dialog asks a question or states a fact and waits for a button. It is drawn inside the <code>MetroWindow</code> rather than in a window of its own, so it dims what is behind it instead of stacking another frame on the desktop.</p>
+<p><code>ShowMessageAsync</code> is an extension method on <code>MetroWindow</code>. From code-behind that means calling it on <code>this</code>:</p>
 <pre><code class="language-csharp">private async void OnButtonClick(object sender, RoutedEventArgs e)
 {
-  await this.ShowMessageAsync(&quot;This is the title&quot;, &quot;Some message&quot;);
+    await this.ShowMessageAsync(&quot;This is the title&quot;, &quot;Some message&quot;);
 }
 </code></pre>
+<p>From a view model you would not reach for the window at all — use the <a href="mvvm-dialog">dialog coordinator</a> instead, which takes the same arguments.</p>
+<h2 id="which-buttons-appear">Which buttons appear</h2>
+<p>The third parameter picks the button set. Each returns a different <code>MessageDialogResult</code>, and awaiting the call gives you that result.</p>
+<table>
+<thead>
+<tr>
+<th><code>MessageDialogStyle</code></th>
+<th>Buttons</th>
+<th>Possible results</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Affirmative</code> (default)</td>
+<td>one</td>
+<td><code>Affirmative</code></td>
+</tr>
+<tr>
+<td><code>AffirmativeAndNegative</code></td>
+<td>two</td>
+<td><code>Affirmative</code>, <code>Negative</code></td>
+</tr>
+<tr>
+<td><code>AffirmativeAndNegativeAndSingleAuxiliary</code></td>
+<td>three</td>
+<td>+ <code>FirstAuxiliary</code></td>
+</tr>
+<tr>
+<td><code>AffirmativeAndNegativeAndDoubleAuxiliary</code></td>
+<td>four</td>
+<td>+ <code>SecondAuxiliary</code></td>
+</tr>
+</tbody>
+</table>
+<p><img src="images/messagedialog-styles.png" alt="Affirmative and AffirmativeAndNegative" /></p>
+<p><img src="images/messagedialog-auxiliary.png" alt="The auxiliary styles" /></p>
+<pre><code class="language-csharp">var result = await this.ShowMessageAsync(
+    &quot;Delete the file?&quot;,
+    &quot;This cannot be undone.&quot;,
+    MessageDialogStyle.AffirmativeAndNegative);
+
+if (result == MessageDialogResult.Affirmative)
+{
+    // delete it
+}
+</code></pre>
+<p><code>MessageDialogResult</code> also has a <code>Canceled</code> member. A message dialog does not produce it — it belongs to the dialogs that can be dismissed without an answer, such as a login dialog.</p>
+<h2 id="button-labels-and-appearance">Button labels and appearance</h2>
+<p>Everything else is set through <code>MetroDialogSettings</code>, passed as the last argument. The buttons are labelled <code>OK</code> and <code>Cancel</code> unless you say otherwise, which is rarely what you want for a question:</p>
+<p><img src="images/messagedialog-custom.png" alt="Custom labels and font sizes" /></p>
+<pre><code class="language-csharp">var settings = new MetroDialogSettings
+               {
+                   AffirmativeButtonText = &quot;Leave&quot;,
+                   NegativeButtonText = &quot;Stay here&quot;
+               };
+
+var result = await this.ShowMessageAsync(
+    &quot;Leave the page?&quot;,
+    &quot;Your draft will be kept for seven days.&quot;,
+    MessageDialogStyle.AffirmativeAndNegative,
+    settings);
+</code></pre>
+<p><code>FirstAuxiliaryButtonText</code> and <code>SecondAuxiliaryButtonText</code> label the third and fourth buttons. <code>DialogTitleFontSize</code>, <code>DialogMessageFontSize</code> and <code>DialogButtonFontSize</code> override the sizes; leave them alone and the theme decides.</p>
+<p><code>ColorScheme</code> paints the dialog. <code>Theme</code> follows the current theme, <code>Accented</code> fills it with the accent colour, and <code>Inverted</code> uses the inverse of the theme:</p>
+<p><img src="images/messagedialog-colorscheme.png" alt="Theme and Accented colour schemes" /></p>
+<h2 id="keyboard">Keyboard</h2>
+<p><kbd>Enter</kbd> activates the focused button. <code>DefaultButtonFocus</code> decides which one that is at the start — it defaults to <code>Negative</code>, so the safe choice is preselected on a two-button dialog.</p>
+<p><kbd>Esc</kbd> and <kbd>Alt</kbd>+<kbd>F4</kbd> close the dialog. What that returns depends on <code>DialogResultOnCancel</code>: set it and you get that value, leave it unset and you get <code>Affirmative</code> for a one-button dialog and <code>Negative</code> for every other style.</p>
+<div class="alert alert-info"><p>Escape always returns <em>something</em> — a message dialog has no &quot;no answer&quot; result. If cancelling has to be distinguishable from choosing the negative button, set <code>DialogResultOnCancel</code> to one of the auxiliary values and check for it.</p>
+</div>
+<pre><code class="language-csharp">var settings = new MetroDialogSettings
+               {
+                   AffirmativeButtonText = &quot;Save&quot;,
+                   NegativeButtonText = &quot;Discard&quot;,
+                   FirstAuxiliaryButtonText = &quot;Cancel&quot;,
+                   DefaultButtonFocus = MessageDialogResult.Affirmative,
+                   DialogResultOnCancel = MessageDialogResult.FirstAuxiliary
+               };
+</code></pre>
+<h2 id="settings-reference">Settings reference</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AffirmativeButtonText</code></td>
+<td><code>string</code></td>
+<td><code>OK</code></td>
+</tr>
+<tr>
+<td><code>NegativeButtonText</code></td>
+<td><code>string</code></td>
+<td><code>Cancel</code></td>
+</tr>
+<tr>
+<td><code>FirstAuxiliaryButtonText</code></td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>SecondAuxiliaryButtonText</code></td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>ColorScheme</code></td>
+<td><code>MetroDialogColorScheme</code></td>
+<td><code>Theme</code></td>
+</tr>
+<tr>
+<td><code>DefaultButtonFocus</code></td>
+<td><code>MessageDialogResult</code></td>
+<td><code>Negative</code></td>
+</tr>
+<tr>
+<td><code>DialogResultOnCancel</code></td>
+<td><code>MessageDialogResult?</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>DialogTitleFontSize</code></td>
+<td><code>double</code></td>
+<td><code>NaN</code> — theme decides</td>
+</tr>
+<tr>
+<td><code>DialogMessageFontSize</code></td>
+<td><code>double</code></td>
+<td><code>NaN</code> — theme decides</td>
+</tr>
+<tr>
+<td><code>DialogButtonFontSize</code></td>
+<td><code>double</code></td>
+<td><code>NaN</code> — theme decides</td>
+</tr>
+<tr>
+<td><code>MaximumBodyHeight</code></td>
+<td><code>double</code></td>
+<td><code>NaN</code> — unbounded</td>
+</tr>
+<tr>
+<td><code>AnimateShow</code> / <code>AnimateHide</code></td>
+<td><code>bool</code></td>
+<td><code>true</code></td>
+</tr>
+<tr>
+<td><code>OwnerCanCloseWithDialog</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+</tr>
+<tr>
+<td><code>CancellationToken</code></td>
+<td><code>CancellationToken</code></td>
+<td><code>None</code></td>
+</tr>
+<tr>
+<td><code>CustomResourceDictionary</code></td>
+<td><code>ResourceDictionary</code></td>
+<td><code>null</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>MaximumBodyHeight</code> gives the message area a fixed height and lets it scroll, which keeps a long message from pushing the dialog past the window. Left at <code>NaN</code> the area sizes itself to the text.</p>
+<p><code>CancellationToken</code> closes the dialog from your own code — cancel the token and the awaited call returns. Note that it returns <code>Affirmative</code> for a one-button dialog and <code>Negative</code> for the others, and that it does <strong>not</strong> honour <code>DialogResultOnCancel</code>, unlike pressing <kbd>Esc</kbd>. If you need to tell a programmatic cancel apart from a button press, track that yourself.</p>
+<p><code>OwnerCanCloseWithDialog</code> allows the window itself to be closed while the dialog is up. By default it cannot be, and the window's close button is disabled for as long as the dialog is showing.</p>
+<h2 id="defaults-for-the-whole-window">Defaults for the whole window</h2>
+<p>Rather than passing the same settings everywhere, set them once on the window. <code>ShowMessageAsync</code> falls back to <code>MetroDialogOptions</code> when no settings are given:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow.MetroDialogOptions&gt;
+    &lt;mah:MetroDialogSettings AffirmativeButtonText=&quot;Yes&quot;
+                             NegativeButtonText=&quot;No&quot;
+                             ColorScheme=&quot;Accented&quot; /&gt;
+&lt;/mah:MetroWindow.MetroDialogOptions&gt;
+</code></pre>
+<p>Note that it is a fallback, not a merge: pass a <code>MetroDialogSettings</code> to a single call and that object is used on its own, with its own defaults for anything you did not set.</p>
+<h2 id="outside-a-metrowindow">Outside a MetroWindow</h2>
+<p><code>ShowMessageAsync</code> needs a <code>MetroWindow</code> to draw into. When there is not one — early startup, a plain <code>Window</code>, a console-hosted tool — <code>ShowModalMessageExternal</code> opens the dialog in a separate window of its own and blocks until it is answered:</p>
+<pre><code class="language-csharp">MessageDialogResult result = this.ShowModalMessageExternal(
+    &quot;Delete the file?&quot;,
+    &quot;This cannot be undone.&quot;,
+    MessageDialogStyle.AffirmativeAndNegative);
+</code></pre>
+<p>It is synchronous, so it is not the one to reach for from an <code>async</code> path.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#which-buttons-appear">Which buttons appear</a></div>
+                    <div class="sidebar-nav-item"><a href="#button-labels-and-appearance">Button labels and appearance</a></div>
+                    <div class="sidebar-nav-item"><a href="#keyboard">Keyboard</a></div>
+                    <div class="sidebar-nav-item"><a href="#settings-reference">Settings reference</a></div>
+                    <div class="sidebar-nav-item"><a href="#defaults-for-the-whole-window">Defaults for the whole window</a></div>
+                    <div class="sidebar-nav-item"><a href="#outside-a-metrowindow">Outside a MetroWindow</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/dialogs/message-dialog.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
