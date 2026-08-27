@@ -46,6 +46,7 @@ namespace StyleShots
                 {
                     try
                     {
+                        await CheckBoxFiguresAsync();
                         await ButtonFiguresAsync();
                         await TextBoxFiguresAsync();
                         await ComboBoxFiguresAsync();
@@ -150,6 +151,54 @@ namespace StyleShots
                                                                    mah:TextBoxHelper.ButtonFontSize=""12""
                                                                    mah:TextBoxHelper.ButtonWidth=""48""
                                                                    Text=""metro"" />"))));
+        }
+
+        private static async Task CheckBoxFiguresAsync()
+        {
+            await CaptureAsync("styles", "checkbox-styles",
+                Showcase(
+                    ("implicit style", Xaml(@"<StackPanel Width=""150"">
+                                                <CheckBox Content=""Unchecked"" />
+                                                <CheckBox Margin=""0 8 0 0"" Content=""Checked"" IsChecked=""True"" />
+                                              </StackPanel>")),
+                    ("MahApps.Styles.CheckBox.Win10", Xaml(@"<StackPanel Width=""150"">
+                                                <CheckBox Style=""{StaticResource MahApps.Styles.CheckBox.Win10}"" Content=""Unchecked"" />
+                                                <CheckBox Margin=""0 8 0 0"" Style=""{StaticResource MahApps.Styles.CheckBox.Win10}"" Content=""Checked"" IsChecked=""True"" />
+                                              </StackPanel>"))));
+
+            await CaptureAsync("styles", "checkbox-states",
+                Showcase(
+                    ("Unchecked", Xaml(@"<CheckBox Content=""Unchecked"" />")),
+                    ("Checked", Xaml(@"<CheckBox Content=""Checked"" IsChecked=""True"" />")),
+                    ("Indeterminate", Xaml(@"<CheckBox Content=""Indeterminate"" IsChecked=""{x:Null}"" IsThreeState=""True"" />")),
+                    ("Disabled", Xaml(@"<CheckBox Content=""Disabled"" IsChecked=""True"" IsEnabled=""False"" />"))));
+
+            // The same box under the three groups of properties the page names:
+            // size, shape, and the brushes for one state.
+            await CaptureAsync("styles", "checkbox-custom",
+                Showcase(
+                    ("default", Xaml(@"<CheckBox Content=""Checked"" IsChecked=""True"" />")),
+                    ("CheckSize", Xaml(@"<CheckBox mah:CheckBoxHelper.CheckSize=""26"" Content=""Checked"" IsChecked=""True"" />")),
+                    ("+ CheckCornerRadius", Xaml(@"<CheckBox mah:CheckBoxHelper.CheckSize=""26""
+                                                             mah:CheckBoxHelper.CheckCornerRadius=""13""
+                                                             Content=""Checked"" IsChecked=""True"" />")),
+                    ("+ recoloured", Xaml(@"<CheckBox mah:CheckBoxHelper.CheckSize=""26""
+                                                      mah:CheckBoxHelper.CheckCornerRadius=""13""
+                                                      mah:CheckBoxHelper.CheckBackgroundFillChecked=""#2E7D32""
+                                                      mah:CheckBoxHelper.CheckBackgroundStrokeChecked=""#2E7D32""
+                                                      mah:CheckBoxHelper.CheckGlyphForegroundChecked=""White""
+                                                      Content=""Checked"" IsChecked=""True"" />"))));
+
+            await CaptureAsync("styles", "checkbox-layout",
+                Showcase(
+                    ("default", Xaml(@"<StackPanel Width=""170"">
+                                         <CheckBox Content=""Wrap lines"" IsChecked=""True"" />
+                                         <CheckBox Margin=""0 8 0 0"" Content=""Show line numbers"" />
+                                       </StackPanel>")),
+                    ("ContentDirection=RightToLeft", Xaml(@"<StackPanel Width=""170"">
+                                         <CheckBox mah:ToggleButtonHelper.ContentDirection=""RightToLeft"" Content=""Wrap lines"" IsChecked=""True"" />
+                                         <CheckBox Margin=""0 8 0 0"" mah:ToggleButtonHelper.ContentDirection=""RightToLeft"" Content=""Show line numbers"" />
+                                       </StackPanel>"))));
         }
 
         private static async Task ButtonFiguresAsync()
@@ -362,11 +411,16 @@ namespace StyleShots
             // The drop-down draws its calendar in a popup, which lives in its
             // own window and is out of reach of RenderTargetBitmap. A Calendar
             // carrying the same style shows exactly what the drop-down shows.
+            //
+            // The month is pinned to one safely in the past. The DatePicker
+            // style sets IsTodayHighlighted, so a calendar showing the current
+            // month puts an accent fill on whatever day it happens to be - the
+            // figure then changes every day the generator runs.
             await CaptureAsync("styles", "datepicker-calendar",
                 Showcase(
                     ("MahApps.Styles.Calendar.Base",
                         Xaml(@"<Calendar Style=""{StaticResource MahApps.Styles.Calendar.Base}""
-                                         DisplayDate=""2026-08-25"" SelectedDate=""2026-08-25"" />"))));
+                                         DisplayDate=""2020-06-15"" SelectedDate=""2020-06-15"" />"))));
         }
 
         private static async Task PasswordBoxFiguresAsync()
