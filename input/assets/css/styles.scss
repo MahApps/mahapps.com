@@ -108,10 +108,12 @@
     }
 }
 
-// The "Built with MahApps.Metro" flip view on the home page. One slide at a
-// time, a button on each side to step through them, dots underneath for
-// position. Bootstrap classes are reused where possible so it follows the
-// theme rather than carrying its own colours.
+// The "Built with MahApps.Metro" showcase on the home page. The carousel
+// itself is Bootstrap's, which the theme already ships the JavaScript for, so
+// there is nothing here but the parts that differ from the default: the
+// controls sit beside the slide rather than on top of it, the caption goes
+// under the picture instead of over it, and the indicators are dots below the
+// whole thing rather than bars floating on the image.
 .app-samples {
     margin-top: 3rem;
     padding: 3rem 0;
@@ -130,217 +132,133 @@
     }
 }
 
-.flipview {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    // Bound the whole thing rather than just the slide, so the buttons stay
-    // beside the screenshot instead of drifting out to the container edges.
+.app-samples-carousel {
+    // Room down each side for the controls, so they no longer cover the
+    // picture the way Bootstrap places them by default.
     max-width: 840px;
     margin: 0 auto;
+    padding: 0 4rem 3rem;
 
-    // The four screenshots differ in aspect ratio from 1.19 to 1.79, so the
-    // viewport is a fixed frame and each image is contained inside it. Sizing
-    // to the image instead would make the page jump on every step.
-    //
-    // The slides share one grid cell rather than being positioned absolutely,
-    // so the viewport is still as tall as its content and the outgoing slide
-    // can stay visible while it slides away.
-    .flipview-viewport {
-        position: relative;
-        display: grid;
-        flex: 1 1 auto;
-        min-width: 0;
-        overflow: hidden;
+    // The four screenshots run from 1.19 to 1.79 in aspect ratio. A frame of a
+    // fixed height with the picture contained inside keeps the page from
+    // jumping as the carousel steps.
+    .carousel-item img {
+        width: 100%;
+        height: 340px;
+        object-fit: contain;
     }
 
-    .flipview-item {
-        grid-area: 1 / 1;
-        margin: 0;
-        visibility: hidden;
+    .app-samples-caption {
+        margin-top: 1rem;
+        min-height: 4.5rem;
+        color: #495057;
+        text-align: center;
 
-        &.is-active {
-            visibility: visible;
-        }
-
-        // Kept visible for the length of its outgoing animation. It holds the
-        // final frame so there is no flash before the script clears the class,
-        // and it must not swallow clicks meant for the slide on top of it.
-        &.is-leaving {
-            visibility: visible;
-            pointer-events: none;
-            animation-fill-mode: forwards;
-        }
-
-        &.is-active.from-right {
-            animation: flipview-in-right 0.35s ease-out;
-        }
-
-        &.is-active.from-left {
-            animation: flipview-in-left 0.35s ease-out;
-        }
-
-        &.is-leaving.to-left {
-            animation: flipview-out-left 0.35s ease-out;
-        }
-
-        &.is-leaving.to-right {
-            animation: flipview-out-right 0.35s ease-out;
-        }
-
-        img {
+        strong {
             display: block;
-            width: 100%;
-            height: 340px;
-            object-fit: contain;
+            margin-bottom: 0.25rem;
+            font-size: 1.15rem;
+            color: #212529;
+        }
+    }
+
+    // Quiet by default: no fill, no border, a grey glyph that only darkens on
+    // hover. They sit in the margin beside the picture, so they need to be
+    // findable rather than loud - the screenshot is what the section is for.
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 2.5rem;
+        height: 2.5rem;
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+        background-color: transparent;
+        // Bootstrap paints a dark gradient across the control, meant to lift
+        // white chevrons off a photo. Over a light section it is just a grey
+        // smear, and background-color alone does not remove it.
+        background-image: none;
+        border: 0;
+        border-radius: 50%;
+        opacity: 1;
+        transition: background-color 0.15s ease-in-out;
+
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
         }
 
-        figcaption {
-            margin-top: 1rem;
-            min-height: 4.5rem;
-            color: #495057;
-            text-align: center;
+        // :focus-visible rather than :focus, or the button a mouse just
+        // clicked keeps its ring until something else takes the focus.
+        &:focus-visible {
+            outline: 0;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
 
-            strong {
-                display: block;
-                margin-bottom: 0.25rem;
-                font-size: 1.15rem;
-                color: #212529;
+        // Bootstrap draws these as white SVGs, meant for a dark photo behind
+        // them. Inverting gives a dark glyph, and the opacity keeps it grey
+        // until the pointer is over it.
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            width: 1rem;
+            height: 1rem;
+            filter: invert(1) grayscale(1);
+            opacity: 0.45;
+            transition: opacity 0.15s ease-in-out;
+        }
+
+        &:hover .carousel-control-prev-icon,
+        &:hover .carousel-control-next-icon,
+        &:focus-visible .carousel-control-prev-icon,
+        &:focus-visible .carousel-control-next-icon {
+            opacity: 0.8;
+        }
+    }
+
+    .carousel-control-prev { left: 0; }
+    .carousel-control-next { right: 0; }
+
+    .carousel-indicators {
+        bottom: 0;
+        margin-right: 0;
+        margin-left: 0;
+
+        li {
+            width: 0.5rem;
+            height: 0.5rem;
+            margin: 0 0.3rem;
+            background-color: #ced4da;
+            border: 0;
+            border-radius: 50%;
+            opacity: 1;
+            text-indent: 0;
+
+            // Grey rather than accent-blue, to match the quiet controls.
+            &.active {
+                background-color: #868e96;
             }
         }
     }
-
-    .flipview-nav {
-        flex: 0 0 auto;
-        width: 3rem;
-        height: 3rem;
-        margin: 0 0.5rem;
-        padding: 0;
-        font-size: 1.75rem;
-        line-height: 1;
-        color: #495057;
-        background-color: #fff;
-        border: 1px solid #ced4da;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
-            border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-
-        // The glyphs sit high in the line box; nudge them back to the middle.
-        span {
-            position: relative;
-            top: -0.1em;
-        }
-
-        &:hover {
-            color: #fff;
-            background-color: #007bff;
-            border-color: #007bff;
-        }
-
-        &:focus {
-            outline: 0;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
-    }
 }
 
-.flipview-dots {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-
-    .flipview-dot {
-        width: 0.7rem;
-        height: 0.7rem;
-        margin: 0 0.3rem;
-        padding: 0;
-        background-color: #ced4da;
-        border: 0;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background-color 0.15s ease-in-out, transform 0.15s ease-in-out;
-
-        &.is-active {
-            background-color: #007bff;
-            transform: scale(1.25);
-        }
-
-        &:focus {
-            outline: 0;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-        }
-    }
-}
-
-@keyframes flipview-in-right {
-    from { opacity: 0; transform: translateX(100%); }
-    to { opacity: 1; transform: none; }
-}
-
-@keyframes flipview-in-left {
-    from { opacity: 0; transform: translateX(-100%); }
-    to { opacity: 1; transform: none; }
-}
-
-@keyframes flipview-out-left {
-    from { opacity: 1; transform: none; }
-    to { opacity: 0; transform: translateX(-100%); }
-}
-
-@keyframes flipview-out-right {
-    from { opacity: 1; transform: none; }
-    to { opacity: 0; transform: translateX(100%); }
-}
-
-@keyframes flipview-fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes flipview-fade-out {
-    from { opacity: 1; }
-    to { opacity: 0; }
-}
-
-// Someone who has asked for less motion gets a cross-fade instead of the slide.
-// What that setting is about is content travelling across the screen, not a
-// change of picture, so a fade keeps the step legible without the movement -
-// and unlike switching the animation off entirely it leaves something to see.
-@media (prefers-reduced-motion: reduce) {
-    .flipview .flipview-item {
-        &.is-active.from-right,
-        &.is-active.from-left {
-            animation: flipview-fade-in 0.25s ease-out;
-        }
-
-        &.is-leaving.to-left,
-        &.is-leaving.to-right {
-            animation: flipview-fade-out 0.25s ease-out forwards;
-        }
-    }
-}
-
-// On a phone the round buttons would eat the width the screenshot needs, so
-// move them under the slide next to the dots.
+// On a phone the round controls would eat the width the screenshot needs.
 @media (max-width: 575.98px) {
-    .flipview {
-        flex-wrap: wrap;
+    .app-samples-carousel {
+        padding: 0 0 4.5rem;
 
-        .flipview-viewport {
-            order: 1;
-            flex: 0 0 100%;
-        }
-
-        .flipview-nav {
-            order: 2;
-            margin-top: 1rem;
-        }
-
-        .flipview-item img {
+        .carousel-item img {
             height: 200px;
         }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+            top: auto;
+            bottom: 0;
+            transform: none;
+        }
+
+        .carousel-control-prev { left: calc(50% - 4.5rem); }
+        .carousel-control-next { right: calc(50% - 4.5rem); }
+
+        .carousel-indicators { bottom: 1rem; }
     }
 }
 
