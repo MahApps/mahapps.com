@@ -256,12 +256,135 @@ RadioButton
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>Every <code>RadioButton</code> in a MahApps application is styled without any markup on your side. As with the <a href="checkbox">CheckBox</a> there is one alternative style with the Windows 10 look, and the whole appearance is reachable through attached properties.</p>
+<p><img src="images/radiobutton-styles.png" alt="The default RadioButton and the Win10 variant" /></p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.RadioButton</code> to every <code>RadioButton</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+</code></pre>
+<p>To extend rather than replace, base your own style on the keyed one:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.RadioButton}&quot; TargetType=&quot;{x:Type RadioButton}&quot;&gt;
+    &lt;Setter Property=&quot;mah:RadioButtonHelper.RadioSize&quot; Value=&quot;22&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<h2 id="the-two-styles">The two styles</h2>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.RadioButton</code></td>
+<td>the default: a thin ring with a filled dot when selected</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.RadioButton.Win10</code></td>
+<td>the Windows 10 look: a heavier ring, and the ring turns accent-coloured when selected</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;RadioButton Style=&quot;{StaticResource MahApps.Styles.RadioButton.Win10}&quot; Content=&quot;Medium&quot; /&gt;
+</code></pre>
+<p>The Win10 style derives from the default one and, as with the check box, differs in more than colour:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>default</th>
+<th>Win10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RadioSize</code></td>
+<td><code>18</code></td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td><code>RadioCheckSize</code></td>
+<td><code>10</code></td>
+<td><code>10</code></td>
+</tr>
+<tr>
+<td><code>RadioStrokeThickness</code></td>
+<td><code>1</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>MinHeight</code></td>
+<td>—</td>
+<td><code>32</code></td>
+</tr>
+<tr>
+<td><code>MinWidth</code></td>
+<td>—</td>
+<td><code>120</code></td>
+</tr>
+<tr>
+<td><code>Padding</code></td>
+<td><code>6 0 0 0</code></td>
+<td><code>8 0 0 0</code></td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p><code>MinWidth=&quot;120&quot;</code> applies here too. A Win10 radio button is at least 120 pixels wide however short its label, which spreads a horizontal row of them far apart. Set <code>MinWidth=&quot;0&quot;</code> where that is not what you want.</p>
+</div>
+<h2 id="the-states">The states</h2>
+<p><img src="images/radiobutton-states.png" alt="Unchecked, checked, indeterminate and disabled" /></p>
+<div class="alert alert-info"><p><code>RadioButton</code> inherits <code>IsThreeState</code> from <code>ToggleButton</code>, and the value does cycle through <code>null</code> — but the style draws the indeterminate state <strong>exactly like unchecked</strong>, so nobody can tell them apart. The <a href="checkbox">CheckBox</a> is the one control of the three whose style gives that state a mark of its own. A radio button is a pick-one control anyway, so there is rarely a reason to reach for three states here.</p>
+</div>
+<h2 id="grouping">Grouping</h2>
+<p>Grouping is WPF's own and needs no MahApps involvement: radio buttons in the same container are mutually exclusive, and <code>GroupName</code> groups them across containers.</p>
+<pre><code class="language-xml">&lt;StackPanel&gt;
+    &lt;RadioButton GroupName=&quot;Size&quot; Content=&quot;Small&quot; /&gt;
+    &lt;RadioButton GroupName=&quot;Size&quot; Content=&quot;Medium&quot; IsChecked=&quot;True&quot; /&gt;
+    &lt;RadioButton GroupName=&quot;Size&quot; Content=&quot;Large&quot; /&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<h2 id="content-on-the-other-side">Content on the other side</h2>
+<p><code>ToggleButtonHelper.ContentDirection</code> moves the ring to the right of the label. The style's own trigger switches <code>HorizontalContentAlignment</code> to <code>Right</code> and flips the padding with it, so the spacing stays correct:</p>
+<p><img src="images/radiobutton-layout.png" alt="The default layout and the reversed one" /></p>
+<pre><code class="language-xml">&lt;RadioButton mah:ToggleButtonHelper.ContentDirection=&quot;RightToLeft&quot; Content=&quot;Medium&quot; /&gt;
+</code></pre>
+<p>This is not the control's own <code>FlowDirection</code>, which would mirror the text as well. See <a href="../helper/togglebuttonhelper">ToggleButtonHelper</a>.</p>
+<h2 id="changing-the-look">Changing the look</h2>
+<p>Everything visual comes from <a href="../helper/radiobuttonhelper">RadioButtonHelper</a> — three properties for size and 36 brushes following one naming scheme:</p>
+<p><img src="images/radiobutton-custom.png" alt="The default ring, enlarged, with a bigger dot and recoloured" /></p>
+<pre><code class="language-xml">&lt;RadioButton mah:RadioButtonHelper.RadioSize=&quot;26&quot;
+             mah:RadioButtonHelper.RadioCheckSize=&quot;16&quot;
+             mah:RadioButtonHelper.OuterEllipseCheckedFill=&quot;#2E7D32&quot;
+             mah:RadioButtonHelper.OuterEllipseCheckedStroke=&quot;#2E7D32&quot;
+             mah:RadioButtonHelper.CheckGlyphFill=&quot;White&quot;
+             mah:RadioButtonHelper.CheckGlyphStroke=&quot;White&quot;
+             Content=&quot;Selected&quot; /&gt;
+</code></pre>
+<p><code>RadioSize</code> is the outer ring, <code>RadioCheckSize</code> the dot inside it — set the second close to the first and the dot fills the ring, as in the last panel above.</p>
+<p>The brushes are named <code>{Part}{Interaction}</code>, where the interaction is nothing at all for the resting state, or <code>PointerOver</code>, <code>Pressed</code> or <code>Disabled</code>. Note that the ring has separate brushes for selected and unselected — <code>OuterEllipseFill</code> against <code>OuterEllipseCheckedFill</code> — while the dot has only one set, since it is not drawn at all when nothing is selected.</p>
+<div class="alert alert-info"><p>Both styles set 33 of the 36 brushes themselves; the three left out are the resting <code>Foreground</code>, <code>Background</code> and <code>BorderBrush</code>, which are the control's own properties and which both styles set directly instead. So an override always replaces a value the style already put there.</p>
+<p>Watch the naming when you style a check box and a radio button to match: this helper says <code>PointerOver</code> where <code>CheckBoxHelper</code> says <code>MouseOver</code>. Same state, different word.</p>
+</div>
+<h2 id="related">Related</h2>
+<p><a href="checkbox">CheckBox</a> for the many-of-several counterpart, and <a href="togglebutton">ToggleButton</a> for a button that stays pressed.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-two-styles">The two styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-states">The states</a></div>
+                    <div class="sidebar-nav-item"><a href="#grouping">Grouping</a></div>
+                    <div class="sidebar-nav-item"><a href="#content-on-the-other-side">Content on the other side</a></div>
+                    <div class="sidebar-nav-item"><a href="#changing-the-look">Changing the look</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/radiobutton.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

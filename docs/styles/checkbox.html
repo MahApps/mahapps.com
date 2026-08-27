@@ -256,12 +256,117 @@ CheckBox
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>Every <code>CheckBox</code> in a MahApps application is styled without any markup on your side. There is one alternative style with the Windows 10 look, and everything about the appearance — size, shape, glyph and the colour of each state — is reachable through attached properties.</p>
+<p><img src="images/checkbox-styles.png" alt="The default CheckBox and the Win10 variant" /></p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.CheckBox</code> to every <code>CheckBox</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+</code></pre>
+<p>To extend rather than replace, base your own style on the keyed one:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.CheckBox}&quot; TargetType=&quot;{x:Type CheckBox}&quot;&gt;
+    &lt;Setter Property=&quot;mah:CheckBoxHelper.CheckSize&quot; Value=&quot;22&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<h2 id="the-two-styles">The two styles</h2>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.CheckBox</code></td>
+<td>the default: an outlined box with a coloured tick inside it</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.CheckBox.Win10</code></td>
+<td>the Windows 10 look: the box fills with the accent colour and the tick turns white</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;CheckBox Style=&quot;{StaticResource MahApps.Styles.CheckBox.Win10}&quot; Content=&quot;Checked&quot; /&gt;
+</code></pre>
+<p>The Win10 style derives from the default one and differs in more than colour, which matters if you mix the two in one dialog:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>default</th>
+<th>Win10</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CheckSize</code></td>
+<td><code>18</code></td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td><code>CheckStrokeThickness</code></td>
+<td><code>1</code></td>
+<td><code>2</code></td>
+</tr>
+<tr>
+<td><code>MinHeight</code></td>
+<td>—</td>
+<td><code>32</code></td>
+</tr>
+<tr>
+<td><code>MinWidth</code></td>
+<td>—</td>
+<td><code>120</code></td>
+</tr>
+<tr>
+<td><code>Padding</code></td>
+<td><code>6 0 0 0</code></td>
+<td><code>8 0 0 0</code></td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p><code>MinWidth=&quot;120&quot;</code> is the one to watch. A Win10 check box is at least 120 pixels wide however short its label, so a row of them in a <code>StackPanel</code> with <code>Orientation=&quot;Horizontal&quot;</code> comes out spaced far apart. Set <code>MinWidth=&quot;0&quot;</code> where that is not what you want.</p>
+</div>
+<h2 id="the-states">The states</h2>
+<p><img src="images/checkbox-states.png" alt="Unchecked, checked, indeterminate and disabled" /></p>
+<p><code>IsThreeState=&quot;True&quot;</code> lets the value cycle through <code>null</code>, and unlike a <a href="togglebutton">ToggleButton</a> the check box draws that state distinctly — a dash rather than a tick — so the user can tell the three apart.</p>
+<h2 id="content-on-the-other-side">Content on the other side</h2>
+<p><code>ToggleButtonHelper.ContentDirection</code> moves the box to the right of the label. The style's own trigger switches <code>HorizontalContentAlignment</code> to <code>Right</code> and flips the padding along with it, so the label stays properly spaced:</p>
+<p><img src="images/checkbox-layout.png" alt="The default layout and the reversed one" /></p>
+<pre><code class="language-xml">&lt;CheckBox mah:ToggleButtonHelper.ContentDirection=&quot;RightToLeft&quot; Content=&quot;Wrap lines&quot; /&gt;
+</code></pre>
+<p>That is the layout for a settings list, where labels on the left with the boxes lined up on the right read better than a ragged column. This is not the control's own <code>FlowDirection</code>, which would mirror the text as well. See <a href="../helper/togglebuttonhelper">ToggleButtonHelper</a>.</p>
+<h2 id="changing-the-look">Changing the look</h2>
+<p>Everything visual comes from <a href="../helper/checkboxhelper">CheckBoxHelper</a>, which has 81 attached properties — three for size and shape, six glyph properties, and 72 brushes following one naming scheme. The full explanation is on that page; the short version is that the box grows, rounds and recolours without touching the template:</p>
+<p><img src="images/checkbox-custom.png" alt="The default box, enlarged, rounded and recoloured" /></p>
+<pre><code class="language-xml">&lt;CheckBox mah:CheckBoxHelper.CheckSize=&quot;26&quot;
+          mah:CheckBoxHelper.CheckCornerRadius=&quot;13&quot;
+          mah:CheckBoxHelper.CheckBackgroundFillChecked=&quot;#2E7D32&quot;
+          mah:CheckBoxHelper.CheckBackgroundStrokeChecked=&quot;#2E7D32&quot;
+          mah:CheckBoxHelper.CheckGlyphForegroundChecked=&quot;White&quot;
+          Content=&quot;Checked&quot; /&gt;
+</code></pre>
+<p>The brushes are named <code>{Part}{CheckState}{Interaction}</code> — so <code>CheckBackgroundFillChecked</code> is the inside of the box while checked, and <code>CheckBackgroundFillCheckedMouseOver</code> the same under the pointer. Recolouring one state changes only that state.</p>
+<div class="alert alert-info"><p>Both styles set <strong>all 72</strong> brushes themselves — that is what separates them. The default points <code>CheckBackgroundFill*</code> at the theme background so the box stays hollow with a coloured tick; Win10 points the same twelve properties at the accent brushes so the box fills and the tick turns white. So you are always overriding a value the style already set, never filling in a blank, and a half-finished override shows up as one state looking out of place rather than as nothing happening at all.</p>
+</div>
+<h2 id="related">Related</h2>
+<p><code>RadioButton</code> is the same idea with a circle instead of a box; see <a href="../helper/radiobuttonhelper">RadioButtonHelper</a>. For a check box that reads as a setting rather than a tick, the <code>ToggleSwitch</code> control has an on/off track and its own header.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-two-styles">The two styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-states">The states</a></div>
+                    <div class="sidebar-nav-item"><a href="#content-on-the-other-side">Content on the other side</a></div>
+                    <div class="sidebar-nav-item"><a href="#changing-the-look">Changing the look</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/checkbox.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

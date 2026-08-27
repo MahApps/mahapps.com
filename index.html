@@ -132,182 +132,71 @@
         <h2 class="app-samples-title">Built with MahApps.Metro</h2>
         <p class="app-samples-lead">A few of the applications people have shipped with it.</p>
 
-        <div class="flipview" id="app-samples" role="group" aria-roledescription="carousel" aria-label="Applications built with MahApps.Metro">
-            <button class="flipview-nav flipview-prev" type="button" aria-controls="app-samples-viewport" aria-label="Previous application">
-                <span aria-hidden="true">&#8249;</span>
-            </button>
+        <div id="app-samples" class="carousel slide app-samples-carousel"
+             data-ride="carousel" data-interval="8000">
 
-            <div class="flipview-viewport" id="app-samples-viewport" aria-live="polite">
-                <figure class="flipview-item is-active">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
                     <a href="https://www.masterpackager.com/master-packager">
-                        <img src="/mahapps.com/assets/img/samples/master_packager.png" alt="Master Packager"/>
+                        <img class="d-block" src="/mahapps.com/assets/img/samples/master_packager.png" alt="Master Packager"/>
                     </a>
-                    <figcaption>
+                    <div class="app-samples-caption">
                         <strong>Master Packager</strong>
                         Software to view, create and edit Microsoft Windows Installer (MSI) and MST files for free
-                    </figcaption>
-                </figure>
+                    </div>
+                </div>
 
-                <figure class="flipview-item">
+                <div class="carousel-item">
                     <a href="https://markdownmonster.west-wind.com">
-                        <img src="/mahapps.com/assets/img/samples/markdown_monster.png" alt="Markdown Monster"/>
+                        <img class="d-block" src="/mahapps.com/assets/img/samples/markdown_monster.png" alt="Markdown Monster"/>
                     </a>
-                    <figcaption>
+                    <div class="app-samples-caption">
                         <strong>Markdown Monster</strong>
                         An extensible Markdown editor, viewer and weblog publisher for Windows
                         by <a href="https://github.com/RickStrahl">&#64;RickStrahl</a>
-                    </figcaption>
-                </figure>
+                    </div>
+                </div>
 
-                <figure class="flipview-item">
+                <div class="carousel-item">
                     <a href="https://github.com/chocolatey/ChocolateyGUI">
-                        <img src="/mahapps.com/assets/img/samples/chocolatey_gui.png" alt="Chocolatey GUI"/>
+                        <img class="d-block" src="/mahapps.com/assets/img/samples/chocolatey_gui.png" alt="Chocolatey GUI"/>
                     </a>
-                    <figcaption>
+                    <div class="app-samples-caption">
                         <strong>Chocolatey GUI</strong>
                         A user interface for <a href="https://chocolatey.org/">Chocolatey</a>, a machine package manager for Windows
-                    </figcaption>
-                </figure>
+                    </div>
+                </div>
 
-                <figure class="flipview-item">
+                <div class="carousel-item">
                     <a href="https://github.com/BornToBeRoot/NETworkManager">
-                        <img src="/mahapps.com/assets/img/samples/networkmanager.png" alt="NETworkManager"/>
+                        <img class="d-block" src="/mahapps.com/assets/img/samples/networkmanager.png" alt="NETworkManager"/>
                     </a>
-                    <figcaption>
+                    <div class="app-samples-caption">
                         <strong>NETworkManager</strong>
                         A powerful tool for managing networks and troubleshooting network problems
                         by <a href="https://github.com/BornToBeRoot">&#64;BornToBeRoot</a>
-                    </figcaption>
-                </figure>
+                    </div>
+                </div>
             </div>
 
-            <button class="flipview-nav flipview-next" type="button" aria-controls="app-samples-viewport" aria-label="Next application">
-                <span aria-hidden="true">&#8250;</span>
-            </button>
-        </div>
+            <a class="carousel-control-prev" href="#app-samples" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#app-samples" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
 
-        <div class="flipview-dots" role="tablist" aria-label="Choose an application"></div>
+            <ol class="carousel-indicators">
+                <li data-target="#app-samples" data-slide-to="0" class="active"></li>
+                <li data-target="#app-samples" data-slide-to="1"></li>
+                <li data-target="#app-samples" data-slide-to="2"></li>
+                <li data-target="#app-samples" data-slide-to="3"></li>
+            </ol>
+        </div>
     </div>
 </section>
-
-<script>
-    (function () {
-        var flipview = document.getElementById('app-samples');
-        if (!flipview) { return; }
-
-        var items = [].slice.call(flipview.querySelectorAll('.flipview-item'));
-        var dotBar = document.querySelector('.flipview-dots');
-        var index = 0;
-
-        var dots = items.map(function (item, i) {
-            var dot = document.createElement('button');
-            dot.type = 'button';
-            dot.className = 'flipview-dot';
-            dot.setAttribute('role', 'tab');
-            var label = item.querySelector('figcaption strong');
-            dot.setAttribute('aria-label', label ? label.textContent : 'Application ' + (i + 1));
-            dot.addEventListener('click', function () { show(i, i > index); start(); });
-            dotBar.appendChild(dot);
-            return dot;
-        });
-
-        var DIRECTIONS = ['from-right', 'from-left', 'to-left', 'to-right'];
-
-        // A little longer than the 0.35s the stylesheet animates for.
-        var CLEAR_AFTER = 400;
-        var leavingTimer = null;
-
-        function show(next, forwards) {
-            var previous = index;
-            index = (next + items.length) % items.length;
-            if (index === previous) { return; }
-
-            items.forEach(function (item, i) {
-                item.classList.remove('is-leaving');
-                DIRECTIONS.forEach(function (c) { item.classList.remove(c); });
-                item.classList.toggle('is-active', i === index);
-                // Keep the hidden slides out of the tab order.
-                item.querySelectorAll('a').forEach(function (link) {
-                    link.tabIndex = i === index ? 0 : -1;
-                });
-            });
-
-            // The incoming slide comes from the side you are heading towards,
-            // the outgoing one leaves the opposite way.
-            if (previous !== null) {
-                items[index].classList.add(forwards ? 'from-right' : 'from-left');
-
-                var leaving = items[previous];
-                leaving.classList.add('is-leaving', forwards ? 'to-left' : 'to-right');
-
-                // The outgoing slide has to lose is-leaving again, or it stays
-                // visible in the shared grid cell on top of the new one. This
-                // used to hang off animationend, which never fires when there
-                // is no animation to end - as under prefers-reduced-motion,
-                // where the stylesheet turns the animation off. A timer does
-                // not care whether anything animated.
-                clearTimeout(leavingTimer);
-                leavingTimer = setTimeout(function () {
-                    leaving.classList.remove('is-leaving');
-                    DIRECTIONS.forEach(function (c) { leaving.classList.remove(c); });
-                }, CLEAR_AFTER);
-            }
-
-            dots.forEach(function (dot, i) {
-                dot.classList.toggle('is-active', i === index);
-                dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
-            });
-        }
-
-        // Automatic stepping. It pauses while the pointer is over the flip view
-        // or the keyboard focus is inside it, so it cannot pull a slide away
-        // from someone reading it, and restarts after every manual step.
-        //
-        // It keeps running under prefers-reduced-motion. That setting turns the
-        // sliding animation off - the stylesheet sees to that - so those
-        // visitors get a plain swap every few seconds rather than a carousel
-        // gliding about, which is the part that setting is about.
-        var INTERVAL = 8000;
-        var timer = null;
-
-        function stop() {
-            if (timer !== null) { clearInterval(timer); timer = null; }
-        }
-
-        function start() {
-            stop();
-            if (document.hidden) { return; }
-            timer = setInterval(function () { show(index + 1, true); }, INTERVAL);
-        }
-
-        function step(forwards) {
-            show(forwards ? index + 1 : index - 1, forwards);
-            start();
-        }
-
-        flipview.querySelector('.flipview-prev').addEventListener('click', function () { step(false); });
-        flipview.querySelector('.flipview-next').addEventListener('click', function () { step(true); });
-
-        flipview.addEventListener('keydown', function (e) {
-            if (e.key === 'ArrowLeft') { step(false); e.preventDefault(); }
-            if (e.key === 'ArrowRight') { step(true); e.preventDefault(); }
-        });
-
-        flipview.addEventListener('mouseenter', stop);
-        flipview.addEventListener('mouseleave', start);
-        flipview.addEventListener('focusin', stop);
-        flipview.addEventListener('focusout', start);
-        dotBar.addEventListener('mouseenter', stop);
-        dotBar.addEventListener('mouseleave', start);
-        document.addEventListener('visibilitychange', function () {
-            if (document.hidden) { stop(); } else { start(); }
-        });
-
-        index = null;
-        show(0, true);
-        start();
-    }());
-</script>
 
                         </div>
                 </div>
