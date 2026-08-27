@@ -47,6 +47,7 @@ namespace StyleShots
                     try
                     {
                         await CheckBoxFiguresAsync();
+                        await RadioButtonFiguresAsync();
                         await ButtonFiguresAsync();
                         await TextBoxFiguresAsync();
                         await ComboBoxFiguresAsync();
@@ -199,6 +200,52 @@ namespace StyleShots
                                          <CheckBox mah:ToggleButtonHelper.ContentDirection=""RightToLeft"" Content=""Wrap lines"" IsChecked=""True"" />
                                          <CheckBox Margin=""0 8 0 0"" mah:ToggleButtonHelper.ContentDirection=""RightToLeft"" Content=""Show line numbers"" />
                                        </StackPanel>"))));
+        }
+
+        private const string RadioGroup = @"
+                                <RadioButton {0} Content=""Small"" />
+                                <RadioButton Margin=""0 8 0 0"" {0} Content=""Medium"" IsChecked=""True"" />
+                                <RadioButton Margin=""0 8 0 0"" {0} Content=""Large"" />";
+
+        private static async Task RadioButtonFiguresAsync()
+        {
+            await CaptureAsync("styles", "radiobutton-styles",
+                Showcase(
+                    ("implicit style", Xaml("<StackPanel Width=\"150\">" + string.Format(RadioGroup, string.Empty) + "</StackPanel>")),
+                    ("MahApps.Styles.RadioButton.Win10",
+                        Xaml("<StackPanel Width=\"150\">"
+                             + string.Format(RadioGroup, @"Style=""{StaticResource MahApps.Styles.RadioButton.Win10}""")
+                             + "</StackPanel>"))));
+
+            await CaptureAsync("styles", "radiobutton-states",
+                Showcase(
+                    ("Unchecked", Xaml(@"<RadioButton Content=""Unchecked"" />")),
+                    ("Checked", Xaml(@"<RadioButton Content=""Checked"" IsChecked=""True"" />")),
+                    ("Indeterminate", Xaml(@"<RadioButton Content=""Indeterminate"" IsThreeState=""True"" IsChecked=""{x:Null}"" />")),
+                    ("Disabled", Xaml(@"<RadioButton Content=""Disabled"" IsChecked=""True"" IsEnabled=""False"" />"))));
+
+            await CaptureAsync("styles", "radiobutton-custom",
+                Showcase(
+                    ("default", Xaml(@"<RadioButton Content=""Selected"" IsChecked=""True"" />")),
+                    ("RadioSize", Xaml(@"<RadioButton mah:RadioButtonHelper.RadioSize=""26"" Content=""Selected"" IsChecked=""True"" />")),
+                    ("+ RadioCheckSize", Xaml(@"<RadioButton mah:RadioButtonHelper.RadioSize=""26""
+                                                             mah:RadioButtonHelper.RadioCheckSize=""16""
+                                                             Content=""Selected"" IsChecked=""True"" />")),
+                    ("+ recoloured", Xaml(@"<RadioButton mah:RadioButtonHelper.RadioSize=""26""
+                                                         mah:RadioButtonHelper.RadioCheckSize=""16""
+                                                         mah:RadioButtonHelper.OuterEllipseCheckedFill=""#2E7D32""
+                                                         mah:RadioButtonHelper.OuterEllipseCheckedStroke=""#2E7D32""
+                                                         mah:RadioButtonHelper.CheckGlyphFill=""White""
+                                                         mah:RadioButtonHelper.CheckGlyphStroke=""White""
+                                                         Content=""Selected"" IsChecked=""True"" />"))));
+
+            await CaptureAsync("styles", "radiobutton-layout",
+                Showcase(
+                    ("default", Xaml("<StackPanel Width=\"170\">" + string.Format(RadioGroup, string.Empty) + "</StackPanel>")),
+                    ("ContentDirection=RightToLeft",
+                        Xaml("<StackPanel Width=\"170\">"
+                             + string.Format(RadioGroup, @"mah:ToggleButtonHelper.ContentDirection=""RightToLeft""")
+                             + "</StackPanel>"))));
         }
 
         private static async Task ButtonFiguresAsync()
