@@ -256,12 +256,123 @@ Text
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>Two ways to put a line of text on screen, and MahApps treats them very differently: <code>Label</code> gets a full style and a template, <code>TextBlock</code> deliberately gets almost nothing.</p>
+<p><img src="images/text-label-textblock.png" alt="A Label and a TextBlock with the same text" /></p>
+<p>The colour and the size match, because both come from the window rather than from either style. The <code>Label</code> is a <code>ContentControl</code> and brings WPF's five units of padding with it; the <code>TextBlock</code> sits flush.</p>
+<h2 id="textblock">TextBlock</h2>
+<div class="alert alert-warning"><p><strong><code>MahApps.Styles.TextBlock</code> is empty.</strong> It has no setters at all:</p>
+<pre><code class="language-xml">&lt;!--  never ever make a default style for TextBlock in App.xaml !!!  --&gt;
+&lt;Style x:Key=&quot;MahApps.Styles.TextBlock&quot; TargetType=&quot;{x:Type TextBlock}&quot; /&gt;
+</code></pre>
+<p>That comment, capitals and all, is in <code>Styles/Controls.TextBlock.xaml</code>, and it is the reason there is no implicit <code>TextBlock</code> style. A <code>TextBlock</code> is not just your text — it is inside almost every control template in WPF, in combo box items, data grid cells, headers, menu items, tooltips. An implicit style reaches all of them and there is no way to scope it back out. MahApps will not do that to you, and neither should you.</p>
+</div>
+<p>So why does plain text look right without a style? Because the <code>MetroWindow</code> style sets two inherited values and every <code>TextBlock</code> under it picks them up:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Foreground</code></td>
+<td><code>MahApps.Brushes.ThemeForeground</code></td>
+</tr>
+<tr>
+<td><code>TextElement.FontSize</code></td>
+<td><code>MahApps.Font.Size.Content</code>, which is 12</td>
+</tr>
+</tbody>
+</table>
+<p>A plain <code>Window</code> sets neither, which is worth knowing if a dialog of yours comes out in the wrong size or colour.</p>
+<p>To style your own text blocks, give them an <code>x:Key</code>ed style and apply it where you mean to. <code>MahApps.Styles.TextBlock</code> exists to be the <code>BasedOn</code> for those:</p>
+<pre><code class="language-xml">&lt;Style x:Key=&quot;MyCaption&quot; BasedOn=&quot;{StaticResource MahApps.Styles.TextBlock}&quot; TargetType=&quot;{x:Type TextBlock}&quot;&gt;
+    &lt;Setter Property=&quot;FontSize&quot; Value=&quot;{DynamicResource MahApps.Font.Size.Default}&quot; /&gt;
+    &lt;Setter Property=&quot;Opacity&quot; Value=&quot;0.7&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<h3 id="the-two-variants">The two variants</h3>
+<p><img src="images/text-textblock-styles.png" alt="The base style, Watermark and AutoCollapsing" /></p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.TextBlock.Watermark</code></td>
+<td><code>Opacity</code> 0.6 and <code>IsHitTestVisible=&quot;False&quot;</code>, so it sits behind whatever it labels without swallowing clicks</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TextBlock.AutoCollapsing</code></td>
+<td><code>Opacity</code> 0.6, <code>FontSize</code> from <code>MahApps.Font.Size.FloatingWatermark</code>, and collapses itself when <code>Text</code> is empty</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;TextBlock Text=&quot;{Binding Hint}&quot; Style=&quot;{DynamicResource MahApps.Styles.TextBlock.AutoCollapsing}&quot; /&gt;
+</code></pre>
+<p>The fourth panel above is an <code>AutoCollapsing</code> block with <code>Text=&quot;&quot;</code> — nothing at all, not blank space, because the trigger sets <code>Visibility=&quot;Collapsed&quot;</code>. That is what makes it useful for optional captions: the layout closes up instead of leaving a gap.</p>
+<p>Both are what the <a href="textbox">TextBox</a> watermark and floating watermark are drawn with.</p>
+<h2 id="label">Label</h2>
+<p><code>MahApps.Styles.Label</code> <strong>is</strong> applied implicitly by <code>Styles/Controls.xaml</code>, so every <code>Label</code> gets it. Beyond <code>Foreground</code> and <code>SnapsToDevicePixels</code> the style is one template, and what that template adds over WPF's own is four things.</p>
+<h3 id="character-casing">Character casing</h3>
+<p><img src="images/text-label-casing.png" alt="Normal, Upper and Lower" /></p>
+<pre><code class="language-xml">&lt;Label Content=&quot;Sample text&quot; mah:ControlsHelper.ContentCharacterCasing=&quot;Upper&quot; /&gt;
+</code></pre>
+<p>Unlike the <a href="groupbox">GroupBox</a> and <a href="expander">Expander</a> headers, a <code>Label</code> is left at <code>Normal</code>, so this one only does something when you ask for it.</p>
+<h3 id="access-keys">Access keys</h3>
+<p><img src="images/text-label-accesskey.png" alt="The underscore consumed, and shown literally" /></p>
+<p><code>ControlsHelper.RecognizesAccessKey</code> defaults to <code>True</code>, which is what makes the underscore in <code>Content=&quot;_Name&quot;</code> an access key rather than a character — WPF underlines the <em>N</em> while Alt is held, and Alt+N moves focus to whatever the <code>Target</code> points at. This is the one thing a <code>Label</code> does that a <code>TextBlock</code> cannot, and the reason to use one for form captions:</p>
+<pre><code class="language-xml">&lt;Label Content=&quot;_Name&quot; Target=&quot;{Binding ElementName=nameBox}&quot; /&gt;
+&lt;TextBox x:Name=&quot;nameBox&quot; /&gt;
+</code></pre>
+<p>Set it to <code>False</code> when the text is data rather than a caption and an underscore should stay an underscore.</p>
+<h3 id="corners-and-the-disabled-colour">Corners and the disabled colour</h3>
+<p><code>ControlsHelper.CornerRadius</code> rounds the border the template draws, which — with a <code>Background</code> and a little <code>Padding</code> — turns a <code>Label</code> into a serviceable chip or badge without a control of its own:</p>
+<p><img src="images/text-label-chip.png" alt="A plain label, a chip, and a disabled label" /></p>
+<pre><code class="language-xml">&lt;Label Content=&quot;Draft&quot;
+       Background=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+       Foreground=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot;
+       Padding=&quot;10 3&quot;
+       mah:ControlsHelper.CornerRadius=&quot;8&quot; /&gt;
+</code></pre>
+<p>A disabled <code>Label</code> goes to the system grey-text colour. Note that this is one of the few places MahApps reaches for a <code>SystemColors</code> brush rather than a theme one, so it does not follow the accent or the light/dark base.</p>
+<p>See <a href="../helper/controlshelper">ControlsHelper</a> for the three attached properties in full.</p>
+<h2 id="fonts-and-sizes">Fonts and sizes</h2>
+<p><code>Styles/Fonts.xaml</code> holds the font families and the size scale. The <a href="../guides/quick-start">quick start</a> merges it, and it has to be merged — the keys are not reachable from your own XAML otherwise.</p>
+<p><img src="images/text-font-sizes.png" alt="The size scale rendered" /></p>
+<p>The general-purpose sizes are <code>MahApps.Font.Size.Header</code> (40), <code>.SubHeader</code> (29.333), <code>.Window.Title</code> (16), <code>.Default</code> (14), <code>.Content</code> (12) and <code>.FloatingWatermark</code> (10). The rest are per control — <code>.Button</code>, <code>.Menu</code>, <code>.StatusBar</code>, <code>.Dialog.Title</code> and so on — and are there so a control can be resized in one place rather than so you can use them directly.</p>
+<pre><code class="language-xml">&lt;TextBlock Text=&quot;Settings&quot; FontSize=&quot;{DynamicResource MahApps.Font.Size.SubHeader}&quot; /&gt;
+</code></pre>
+<p>Families are <code>MahApps.Fonts.Family.Control</code> and <code>.Button</code> (Segoe UI), <code>.Header</code> and <code>.Window.Title</code> (Segoe UI Light), and <code>MahApps.Fonts.Family.SymbolTheme</code>, which is the Segoe MDL2 Assets icon font the library ships so the icons work on Windows versions that do not have it — see <a href="../controls/FontIcon">FontIcon</a>.</p>
+<p>MahApps sets no font family for ordinary text, only the size, so plain text uses whatever the window inherits from the system.</p>
+<h2 id="which-to-use">Which to use</h2>
+<p>Reach for a <code>Label</code> when the text is a caption for another control and should carry its access key, or when you want the border, background and rounded corners its template gives you. Reach for a <code>TextBlock</code> for everything else: it is lighter, it wraps and trims, and it is what the rest of WPF expects inside item templates.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#textblock">TextBlock</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#the-two-variants">The two variants</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#label">Label</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#character-casing">Character casing</a></div>
+                                <div class="sidebar-nav-item"><a href="#access-keys">Access keys</a></div>
+                                <div class="sidebar-nav-item"><a href="#corners-and-the-disabled-colour">Corners and the disabled colour</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#fonts-and-sizes">Fonts and sizes</a></div>
+                    <div class="sidebar-nav-item"><a href="#which-to-use">Which to use</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/text.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

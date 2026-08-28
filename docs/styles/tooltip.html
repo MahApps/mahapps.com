@@ -256,13 +256,151 @@ ToolTip
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>ToolTip</code> is like the built-in tool tip but, of course, restyled.</p>
-<p>The tooltip will fade while opening/closing, and it will use the current theme's styles.</p>
+<p>One style, applied implicitly, that turns WPF's tooltip into a flat bordered card in the theme colours and fades it in and out.</p>
+<p><img src="images/tooltip-default.png" alt="The default tooltip" /></p>
+<pre><code class="language-xml">&lt;Button Content=&quot;Save&quot; ToolTip=&quot;Save the current document&quot; /&gt;
+</code></pre>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.ToolTip</code> to every <code>ToolTip</code>, so the <a href="../guides/quick-start">quick start</a> is all the setup there is. There is no second style and no variant.</p>
+<h2 id="what-the-style-sets">What the style sets</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Set to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Background</code></td>
+<td><code>MahApps.Brushes.Control.Background</code></td>
+</tr>
+<tr>
+<td><code>BorderBrush</code></td>
+<td><code>MahApps.Brushes.Gray7</code></td>
+</tr>
+<tr>
+<td><code>BorderThickness</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>Foreground</code></td>
+<td><code>MahApps.Brushes.ThemeForeground</code></td>
+</tr>
+<tr>
+<td><code>FontSize</code></td>
+<td><code>MahApps.Font.Size.Tooltip</code>, which is 12</td>
+</tr>
+<tr>
+<td><code>Padding</code></td>
+<td><code>6 3</code></td>
+</tr>
+<tr>
+<td><code>SnapsToDevicePixels</code></td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+<p>All seven are ordinary properties on a border the template draws, so all seven can be changed on the control:</p>
+<p><img src="images/tooltip-colours.png" alt="The default tooltip, a recoloured one, and one without a border" /></p>
+<pre><code class="language-xml">&lt;Button Content=&quot;Save&quot;&gt;
+    &lt;Button.ToolTip&gt;
+        &lt;ToolTip Content=&quot;Save the document&quot;
+                 Background=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+                 BorderBrush=&quot;{DynamicResource MahApps.Brushes.AccentBase}&quot;
+                 Foreground=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot; /&gt;
+    &lt;/Button.ToolTip&gt;
+&lt;/Button&gt;
+</code></pre>
+<p>Note what is missing: the template's border has no <code>CornerRadius</code> binding, so a tooltip is always square-cornered — <code>ControlsHelper.CornerRadius</code> does nothing here, unlike on a <a href="text">Label</a> or a <a href="buttons">Button</a>. There is no drop shadow either.</p>
+<div class="alert alert-info"><p>Both are already fixed in <code>develop</code> and will arrive with the next release: the border gets <code>CornerRadius=&quot;{TemplateBinding mah:ControlsHelper.CornerRadius}&quot;</code>, and a <code>HasDropShadow</code> setter — <code>True</code> by default — applies a new <code>MahApps.DropShadowEffect.ToolTip</code>. Until then, rounding a tooltip means replacing the template, and if you do, mind the visual states below.</p>
+</div>
+<h2 id="the-fade">The fade</h2>
+<div class="alert alert-warning"><p>The template's root border is written as <code>Opacity=&quot;0&quot;</code>, and an <code>OpenStates</code> visual state group fades it to 1 over 0.3 seconds when the tooltip opens, then back to 0 over 0.4 on close.</p>
+<p>That means <strong>a replacement template must keep those visual states</strong>. Drop them and you get a tooltip that is measured, positioned and completely invisible — with no error to tell you why. If you write your own, copy the <code>VisualStateManager.VisualStateGroups</code> block across with it, or start the root at <code>Opacity=&quot;1&quot;</code> and give up the fade.</p>
+</div>
+<h2 id="content">Content</h2>
+<p>The template's presenter is a <code>mah:ContentControlEx</code>, which is what makes <code>ControlsHelper.ContentCharacterCasing</code> work on a tooltip:</p>
+<p><img src="images/tooltip-casing.png" alt="Normal, Upper and Lower casing" /></p>
+<pre><code class="language-xml">&lt;ToolTip Content=&quot;Save the document&quot; mah:ControlsHelper.ContentCharacterCasing=&quot;Upper&quot; /&gt;
+</code></pre>
+<p>Being a <code>ContentControl</code>, a tooltip is not limited to a string. <code>ContentTemplate</code> and <code>ContentStringFormat</code> are template-bound, and anything you put in the content is laid out normally:</p>
+<p><img src="images/tooltip-content.png" alt="A tooltip holding a panel" /></p>
+<pre><code class="language-xml">&lt;Button Content=&quot;Save&quot;&gt;
+    &lt;Button.ToolTip&gt;
+        &lt;ToolTip&gt;
+            &lt;StackPanel MaxWidth=&quot;220&quot;&gt;
+                &lt;TextBlock FontWeight=&quot;SemiBold&quot; Text=&quot;Save&quot; /&gt;
+                &lt;TextBlock Margin=&quot;0 2 0 0&quot;
+                           TextWrapping=&quot;Wrap&quot;
+                           Text=&quot;Writes the current document to disk. Ctrl+S does the same.&quot; /&gt;
+            &lt;/StackPanel&gt;
+        &lt;/ToolTip&gt;
+    &lt;/Button.ToolTip&gt;
+&lt;/Button&gt;
+</code></pre>
+<p>A tooltip does not size itself, so give a wrapping block a <code>MaxWidth</code> or a long sentence turns into one very long line.</p>
+<h2 id="timing-and-placement">Timing and placement</h2>
+<p>None of this is MahApps — the style changes how a tooltip looks, not when it appears. That stays with WPF's <code>ToolTipService</code>, and the library sets no defaults for it:</p>
+<table>
+<thead>
+<tr>
+<th>Attached property</th>
+<th>WPF default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InitialShowDelay</code></td>
+<td>system, ~1000 ms</td>
+<td>how long the pointer has to rest first</td>
+</tr>
+<tr>
+<td><code>ShowDuration</code></td>
+<td>5000 ms</td>
+<td>how long it stays; raise it for anything worth reading</td>
+</tr>
+<tr>
+<td><code>BetweenShowDelay</code></td>
+<td>system, ~100 ms</td>
+<td>grace period in which the next tooltip appears at once</td>
+</tr>
+<tr>
+<td><code>ShowOnDisabled</code></td>
+<td><code>False</code></td>
+<td>set it to show <em>why</em> a control is disabled</td>
+</tr>
+<tr>
+<td><code>Placement</code>, <code>PlacementTarget</code></td>
+<td><code>Mouse</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;Button Content=&quot;Save&quot;
+        IsEnabled=&quot;False&quot;
+        ToolTip=&quot;Nothing to save yet&quot;
+        ToolTipService.ShowOnDisabled=&quot;True&quot;
+        ToolTipService.ShowDuration=&quot;20000&quot; /&gt;
+</code></pre>
+<p><code>ShowOnDisabled</code> is the one worth remembering: a disabled control with an unexplained reason is exactly where a tooltip earns its keep, and by default it will not show one.</p>
+<h2 id="related">Related</h2>
+<p><a href="slider">Slider</a> and <a href="../controls/rangeslider">RangeSlider</a> have their own value tooltip through <code>AutoToolTipPlacement</code>, which is a separate mechanism and does not use this style. Validation errors are drawn by <code>CustomValidationPopup</code> rather than by a tooltip — see <a href="validation">Validation</a>.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#what-the-style-sets">What the style sets</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-fade">The fade</a></div>
+                    <div class="sidebar-nav-item"><a href="#content">Content</a></div>
+                    <div class="sidebar-nav-item"><a href="#timing-and-placement">Timing and placement</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/tooltip.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

@@ -1,0 +1,205 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!--
+        The square Windows 10 scrollbar: a filled track, a square thumb and two
+        chevron buttons that are always there. Everything is a theme brush, so
+        it follows the light and dark base themes.
+
+        Drop-in: merge this dictionary after Controls.xaml and give ScrollBar an
+        implicit style based on MahApps.Styles.ScrollBar.Win10.
+    -->
+
+    <system:Double x:Key="MahApps.Sizes.ScrollBar.Win10">16</system:Double>
+    <system:Double x:Key="MahApps.Sizes.ScrollBar.Win10.Thumb.MinLength">24</system:Double>
+
+    <Geometry x:Key="MahApps.Geometry.ScrollBar.Win10.Up">M 0,4 L 4,0 L 8,4</Geometry>
+    <Geometry x:Key="MahApps.Geometry.ScrollBar.Win10.Down">M 0,0 L 4,4 L 8,0</Geometry>
+    <Geometry x:Key="MahApps.Geometry.ScrollBar.Win10.Left">M 4,0 L 0,4 L 4,8</Geometry>
+    <Geometry x:Key="MahApps.Geometry.ScrollBar.Win10.Right">M 0,0 L 4,4 L 0,8</Geometry>
+
+    <!--  The chevron buttons at either end.  -->
+    <Style x:Key="MahApps.Styles.RepeatButton.ScrollBar.Win10.Line" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+        <Setter Property="Interval" Value="50" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border x:Name="Visual"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="True">
+                        <Path x:Name="Glyph"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Data="{TemplateBinding Content}"
+                              SnapsToDevicePixels="True"
+                              Stroke="{TemplateBinding Foreground}"
+                              StrokeEndLineCap="Round"
+                              StrokeStartLineCap="Round"
+                              StrokeThickness="1" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Visual" Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                            <Setter TargetName="Glyph" Property="Stroke" Value="{DynamicResource MahApps.Brushes.Gray1}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Visual" Property="Background" Value="{DynamicResource MahApps.Brushes.Gray2}" />
+                            <Setter TargetName="Glyph" Property="Stroke" Value="{DynamicResource MahApps.Brushes.ThemeBackground}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Glyph" Property="Opacity" Value="0.4" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--  The page area either side of the thumb, which is where the track shows.  -->
+    <Style x:Key="MahApps.Styles.RepeatButton.ScrollBar.Win10.Page" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Rectangle Fill="{TemplateBinding Background}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MahApps.Styles.Thumb.ScrollBar.Win10" TargetType="{x:Type Thumb}">
+        <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Gray6}" />
+        <Setter Property="IsTabStop" Value="False" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border x:Name="Visual"
+                            Margin="4"
+                            Background="{TemplateBinding Background}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Visual" Property="Background" Value="{DynamicResource MahApps.Brushes.Gray3}" />
+                            <Setter TargetName="Visual" Property="Margin" Value="2" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="Visual" Property="Background" Value="{DynamicResource MahApps.Brushes.Gray1}" />
+                            <Setter TargetName="Visual" Property="Margin" Value="2" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Visual" Property="Opacity" Value="0" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="MahApps.Templates.ScrollBar.Win10.Vertical" TargetType="{x:Type ScrollBar}">
+        <Grid x:Name="Root" Background="{DynamicResource MahApps.Brushes.Gray10}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <RepeatButton Grid.Row="0"
+                          Height="{DynamicResource MahApps.Sizes.ScrollBar.Win10}"
+                          Command="ScrollBar.LineUpCommand"
+                          Content="{StaticResource MahApps.Geometry.ScrollBar.Win10.Up}"
+                          Style="{DynamicResource MahApps.Styles.RepeatButton.ScrollBar.Win10.Line}" />
+            <Track x:Name="PART_Track" Grid.Row="1" IsDirectionReversed="True">
+                <Track.Resources>
+                    <system:Double x:Key="{x:Static SystemParameters.VerticalScrollBarButtonHeightKey}">24</system:Double>
+                </Track.Resources>
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageUpCommand" Style="{DynamicResource MahApps.Styles.RepeatButton.ScrollBar.Win10.Page}" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <mah:MetroThumb Style="{DynamicResource MahApps.Styles.Thumb.ScrollBar.Win10}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageDownCommand" Style="{DynamicResource MahApps.Styles.RepeatButton.ScrollBar.Win10.Page}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+            <RepeatButton Grid.Row="2"
+                          Height="{DynamicResource MahApps.Sizes.ScrollBar.Win10}"
+                          Command="ScrollBar.LineDownCommand"
+                          Content="{StaticResource MahApps.Geometry.ScrollBar.Win10.Down}"
+                          Style="{DynamicResource MahApps.Styles.RepeatButton.ScrollBar.Win10.Line}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Root" Property="Opacity" Value="0.5" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="MahApps.Templates.ScrollBar.Win10.Horizontal" TargetType="{x:Type ScrollBar}">
+        <Grid x:Name="Root" Background="{DynamicResource MahApps.Brushes.Gray10}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <RepeatButton Grid.Column="0"
+                          Width="{DynamicResource MahApps.Sizes.ScrollBar.Win10}"
+                          Command="ScrollBar.LineLeftCommand"
+                          Content="{StaticResource MahApps.Geometry.ScrollBar.Win10.Left}"
+                          Style="{DynamicResource MahApps.Styles.RepeatButton.ScrollBar.Win10.Line}" />
+            <Track x:Name="PART_Track" Grid.Column="1" IsDirectionReversed="False">
+                <Track.Resources>
+                    <system:Double x:Key="{x:Static SystemParameters.HorizontalScrollBarButtonWidthKey}">24</system:Double>
+                </Track.Resources>
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageLeftCommand" Style="{DynamicResource MahApps.Styles.RepeatButton.ScrollBar.Win10.Page}" />
+                </Track.DecreaseRepeatButton>
+                <Track.Thumb>
+                    <mah:MetroThumb Style="{DynamicResource MahApps.Styles.Thumb.ScrollBar.Win10}" />
+                </Track.Thumb>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="ScrollBar.PageRightCommand" Style="{DynamicResource MahApps.Styles.RepeatButton.ScrollBar.Win10.Page}" />
+                </Track.IncreaseRepeatButton>
+            </Track>
+            <RepeatButton Grid.Column="2"
+                          Width="{DynamicResource MahApps.Sizes.ScrollBar.Win10}"
+                          Command="ScrollBar.LineRightCommand"
+                          Content="{StaticResource MahApps.Geometry.ScrollBar.Win10.Right}"
+                          Style="{DynamicResource MahApps.Styles.RepeatButton.ScrollBar.Win10.Line}" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter TargetName="Root" Property="Opacity" Value="0.5" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="MahApps.Styles.ScrollBar.Win10" TargetType="{x:Type ScrollBar}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Height" Value="{DynamicResource MahApps.Sizes.ScrollBar.Win10}" />
+                <Setter Property="Template" Value="{DynamicResource MahApps.Templates.ScrollBar.Win10.Horizontal}" />
+                <Setter Property="Width" Value="Auto" />
+            </Trigger>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Height" Value="Auto" />
+                <Setter Property="Template" Value="{DynamicResource MahApps.Templates.ScrollBar.Win10.Vertical}" />
+                <Setter Property="Width" Value="{DynamicResource MahApps.Sizes.ScrollBar.Win10}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+</ResourceDictionary>

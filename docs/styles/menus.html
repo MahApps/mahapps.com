@@ -256,45 +256,136 @@ Menus
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>You can use the ContextMenu as you are familiar with it:</p>
+<p>Three styles, all applied implicitly by <code>Styles/Controls.xaml</code>: <code>MahApps.Styles.Menu</code> for the bar, <code>MahApps.Styles.ContextMenu</code> for the popup, and <code>MahApps.Styles.MenuItem</code> for what goes in either. The <a href="../guides/quick-start">quick start</a> is the whole setup.</p>
+<p><img src="images/menus-menubar.png" alt="A menu bar" /></p>
+<pre><code class="language-xml">&lt;Menu&gt;
+    &lt;MenuItem Header=&quot;_File&quot; /&gt;
+    &lt;MenuItem Header=&quot;_Edit&quot; /&gt;
+    &lt;MenuItem Header=&quot;_View&quot; /&gt;
+    &lt;MenuItem Header=&quot;_Help&quot; /&gt;
+&lt;/Menu&gt;
+</code></pre>
+<h2 id="menu-items">Menu items</h2>
+<p><code>MahApps.Styles.MenuItem</code> picks a template per <code>Role</code> — top-level header, top-level item, submenu header, submenu item — and each of those handles the icon, the check mark, the gesture text and the submenu arrow:</p>
+<p><img src="images/menus-contextmenu.png" alt="A context menu with an icon, gesture text, check marks, separators, a submenu and a disabled item" /></p>
 <pre><code class="language-xml">&lt;ContextMenu&gt;
-  &lt;MenuItem Command=&quot;ApplicationCommands.New&quot; /&gt;
-  &lt;MenuItem Command=&quot;ApplicationCommands.Delete&quot; /&gt;
-  &lt;MenuItem Command=&quot;ApplicationCommands.Print&quot; /&gt;
+    &lt;MenuItem Header=&quot;New&quot; InputGestureText=&quot;Ctrl+N&quot;&gt;
+        &lt;MenuItem.Icon&gt;
+            &lt;TextBlock FontFamily=&quot;{DynamicResource MahApps.Fonts.Family.SymbolTheme}&quot; Text=&quot;&amp;#xE8A5;&quot; /&gt;
+        &lt;/MenuItem.Icon&gt;
+    &lt;/MenuItem&gt;
+    &lt;MenuItem Header=&quot;Open&quot; InputGestureText=&quot;Ctrl+O&quot; /&gt;
+    &lt;Separator /&gt;
+    &lt;MenuItem Header=&quot;Word wrap&quot; IsCheckable=&quot;True&quot; IsChecked=&quot;True&quot; /&gt;
+    &lt;MenuItem Header=&quot;Show line numbers&quot; IsCheckable=&quot;True&quot; /&gt;
+    &lt;Separator /&gt;
+    &lt;MenuItem Header=&quot;Export as&quot;&gt;
+        &lt;MenuItem Header=&quot;PDF&quot; /&gt;
+        &lt;MenuItem Header=&quot;HTML&quot; /&gt;
+    &lt;/MenuItem&gt;
+    &lt;MenuItem Header=&quot;Print&quot; InputGestureText=&quot;Ctrl+P&quot; IsEnabled=&quot;False&quot; /&gt;
 &lt;/ContextMenu&gt;
 </code></pre>
-<h2 id="contextmenu-with-compositecollection">ContextMenu with CompositeCollection</h2>
-<p>If you want to use a part of the ContextMenu which is declared as resource and is shared you have to use a <code>CompositeCollection</code> as follows:</p>
-<pre><code class="language-xml">&lt;CompositeCollection x:Key=&quot;ContextMenuBase&quot;
-                     x:Shared=&quot;False&quot;&gt;
-  &lt;MenuItem Command=&quot;ApplicationCommands.New&quot; /&gt;
-  &lt;MenuItem Command=&quot;ApplicationCommands.Delete&quot; /&gt;
-  &lt;Separator /&gt;
-  &lt;StaticResource ResourceKey=&quot;ContextMenuItemRefresh&quot; /&gt;
-  &lt;Separator /&gt;
+<p>Everything in that figure comes out of the box — none of it needs a style of its own. The columns line up because the <code>ContextMenu</code> style sets <code>Grid.IsSharedSizeScope=&quot;True&quot;</code>, so the icon, text and gesture columns are measured across all the items at once. <code>InputGestureText</code> is only a label: it does not create the shortcut, your <code>KeyBinding</code> or <code>RoutedCommand</code> does.</p>
+<p>Padding differs by role — <code>7 5 8 6</code> for the two top-level ones, <code>2 6 2 6</code> in a submenu — which is why a bar item is wider than tall and a popup item the other way round.</p>
+<p>The separator is styled through <code>{x:Static MenuItem.SeparatorStyleKey}</code> and is a two-pixel groove inset 20 units from the left, so it starts past the icon column rather than cutting across it.</p>
+<h2 id="the-popup">The popup</h2>
+<p><code>MahApps.Styles.ContextMenu</code> sets <code>HasDropShadow=&quot;True&quot;</code> and its template applies <code>MahApps.DropShadowEffect.Menu</code>, offsetting the border by <code>0 0 6 6</code> to leave room for it. It also sets <code>OverridesDefaultStyle=&quot;True&quot;</code>, so it does not inherit anything from WPF's own context menu style.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Set to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Background</code></td>
+<td><code>MahApps.Brushes.ContextMenu.Background</code></td>
+</tr>
+<tr>
+<td><code>BorderBrush</code></td>
+<td><code>MahApps.Brushes.ContextMenu.Border</code></td>
+</tr>
+<tr>
+<td><code>FontSize</code></td>
+<td><code>MahApps.Font.Size.ContextMenu</code>, 14</td>
+</tr>
+<tr>
+<td><code>HasDropShadow</code></td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>Grid.IsSharedSizeScope</code></td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>VerticalContentAlignment</code></td>
+<td><code>Center</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="system-keys">System keys</h2>
+<p>Both styles reach for system resources rather than theme ones:</p>
+<pre><code class="language-xml">&lt;Setter Property=&quot;Foreground&quot; Value=&quot;{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}&quot; /&gt;
+&lt;Setter Property=&quot;FontFamily&quot; Value=&quot;{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}&quot; /&gt;
+</code></pre>
+<p>The colour still follows the theme, because MahApps <strong>redefines that system key</strong> in the theme dictionary — <code>SystemColors.MenuTextBrushKey</code> is given <code>MahApps.Colors.ThemeForeground</code> there. Change the base theme and menu text changes with it.</p>
+<p>The fonts are a different matter. MahApps does not redefine the <code>SystemFonts.Menu*</code> keys, so the family, style and weight of menu text come from the reader's <strong>Windows</strong> settings, not from <code>Fonts.xaml</code>. Menus are the one place in a MahApps window where that is true, and it is deliberate — menus are a shell affordance. Only the size is the library's, from <code>MahApps.Font.Size.Menu</code> and <code>.ContextMenu</code>.</p>
+<h2 id="the-text-box-context-menu">The text box context menu</h2>
+<p><code>Controls.ContextMenu.xaml</code> also holds a ready-made menu:</p>
+<pre><code class="language-xml">&lt;ContextMenu x:Key=&quot;MahApps.TextBox.ContextMenu&quot; x:Shared=&quot;False&quot;&gt;
+    &lt;MenuItem Command=&quot;ApplicationCommands.Cut&quot; /&gt;
+    &lt;MenuItem Command=&quot;ApplicationCommands.Copy&quot; /&gt;
+    &lt;MenuItem Command=&quot;ApplicationCommands.Paste&quot; /&gt;
+&lt;/ContextMenu&gt;
+</code></pre>
+<p>The styles for <a href="textbox">TextBox</a>, <a href="passwordbox">PasswordBox</a>, <a href="datepicker">DatePicker</a>, <code>DateTimePicker</code> and <code>HotKeyBox</code> all point their <code>ContextMenu</code> at it. <code>x:Shared=&quot;False&quot;</code> gives each control its own instance, which a context menu needs.</p>
+<p>Redefining that key in <code>App.xaml</code> — after the MahApps dictionaries — swaps the context menu of every one of those controls at once, which is easier than setting <code>ContextMenu</code> on each.</p>
+<h2 id="spell-checking">Spell checking</h2>
+<p><code>TextBoxHelper.IsSpellCheckContextMenuEnabled</code> turns on the spell-check entries for a <code>TextBox</code> or <code>RichTextBox</code>, and MahApps styles them through four <code>ComponentResourceKey</code>s on <code>mah:Spelling</code>: <code>SuggestionMenuItemStyleKey</code> (bold, header bound to the suggestion), <code>IgnoreAllMenuItemStyleKey</code>, <code>NoSuggestionsMenuItemStyleKey</code> and <code>SeparatorStyleKey</code>.</p>
+<pre><code class="language-xml">&lt;TextBox SpellCheck.IsEnabled=&quot;True&quot;
+         mah:TextBoxHelper.IsSpellCheckContextMenuEnabled=&quot;True&quot; /&gt;
+</code></pre>
+<p>See <a href="../helper/textboxhelper">TextBoxHelper</a>.</p>
+<h2 id="visual-studio-variants">Visual Studio variants</h2>
+<p><img src="images/menus-visualstudio.png" alt="The Visual Studio menu styles on a dark ground" /></p>
+<p><code>Styles/VS/</code> holds <code>MahApps.Styles.Menu.VisualStudio</code>, <code>MahApps.Styles.MenuItem.VisualStudio</code> and <code>MahApps.Styles.ContextMenu.VisualStudio</code>, plus its own <code>MenuItem.SeparatorStyleKey</code> and its own <code>MahApps.TextBox.ContextMenu</code>.</p>
+<div class="alert alert-warning"><p>These are <strong>not</strong> merged by <code>Controls.xaml</code>. Add <code>Styles/VS/Controls.xaml</code> and <code>Styles/VS/Colors.xaml</code> first, and note that they are drawn for the dark Visual Studio shell — which is why the figure sits on a dark ground.</p>
+<p><code>MahApps.Styles.Menu.VisualStudio</code> is only two setters, a background and a foreground, with no <code>Template</code> and no <code>BasedOn</code>. Applying it therefore <em>replaces</em> the MahApps menu template with WPF's default rather than restyling it. If you want the MahApps bar in Visual Studio colours, base your own style on <code>MahApps.Styles.Menu</code> and set the background yourself.</p>
+</div>
+<h2 id="items-from-a-compositecollection">Items from a CompositeCollection</h2>
+<p>To share part of a menu, declare it as a <code>CompositeCollection</code> resource and pull it in through <code>ItemsSource</code>:</p>
+<pre><code class="language-xml">&lt;CompositeCollection x:Key=&quot;ContextMenuBase&quot; x:Shared=&quot;False&quot;&gt;
+    &lt;MenuItem Command=&quot;ApplicationCommands.New&quot; /&gt;
+    &lt;MenuItem Command=&quot;ApplicationCommands.Delete&quot; /&gt;
+    &lt;Separator /&gt;
 &lt;/CompositeCollection&gt;
-
-
-&lt;ContextMenu&gt;
-  &lt;ContextMenu.ItemsSource&gt;
-    &lt;CompositeCollection&gt;
-      &lt;CollectionContainer Collection=&quot;{StaticResource ContextMenuBase}&quot;&gt;&lt;/CollectionContainer&gt;
-      &lt;MenuItem Command=&quot;ApplicationCommands.Print&quot; /&gt;
-    &lt;/CompositeCollection&gt;
-  &lt;/ContextMenu.ItemsSource&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;ContextMenu&gt;
+    &lt;ContextMenu.ItemsSource&gt;
+        &lt;CompositeCollection&gt;
+            &lt;CollectionContainer Collection=&quot;{StaticResource ContextMenuBase}&quot; /&gt;
+            &lt;MenuItem Command=&quot;ApplicationCommands.Print&quot; /&gt;
+        &lt;/CompositeCollection&gt;
+    &lt;/ContextMenu.ItemsSource&gt;
 &lt;/ContextMenu&gt;
 </code></pre>
-<p>When you run the application it could be that you will get a lot of binding errors like this:</p>
+<p>That works, but floods the output window:</p>
 <div class="alert alert-danger"><p>System.Windows.Data Error: 4 : Cannot find source for binding with reference 'RelativeSource FindAncestor, AncestorType='System.Windows.Controls.ItemsControl', AncestorLevel='1''. BindingExpression:Path=VerticalContentAlignment; DataItem=null; target element is 'MenuItem' (Name=''); target property is 'VerticalContentAlignment' (type 'VerticalAlignment')</p>
 </div>
-<p>This is a known issue in WPF and can be fixed with this workaround:</p>
-<pre><code class="language-xml">&lt;Style TargetType=&quot;{x:Type MenuItem}&quot;
-       BasedOn=&quot;{StaticResource {x:Type MenuItem}}&quot;&gt;
-  &lt;Setter Property=&quot;HorizontalContentAlignment&quot; Value=&quot;Left&quot; /&gt;
-  &lt;Setter Property=&quot;VerticalContentAlignment&quot; Value=&quot;Center&quot; /&gt;
+<p>The two bindings it is complaining about are in <code>MahApps.Styles.MenuItem</code> itself:</p>
+<pre><code class="language-xml">&lt;Setter Property=&quot;HorizontalContentAlignment&quot; Value=&quot;{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}&quot; /&gt;
+&lt;Setter Property=&quot;VerticalContentAlignment&quot; Value=&quot;{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}&quot; /&gt;
+</code></pre>
+<p>They are what lets a <code>ContextMenu</code> set the alignment for all of its items — the same pattern WPF's own item styles use. A <code>MenuItem</code> declared inside a <code>CompositeCollection</code> resource, though, is built before it belongs to anything, so the ancestor lookup finds no <code>ItemsControl</code> and logs. The menu itself is fine; only the log is noisy.</p>
+<p>Replacing the two bindings with fixed values silences it:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource {x:Type MenuItem}}&quot; TargetType=&quot;{x:Type MenuItem}&quot;&gt;
+    &lt;Setter Property=&quot;HorizontalContentAlignment&quot; Value=&quot;Left&quot; /&gt;
+    &lt;Setter Property=&quot;VerticalContentAlignment&quot; Value=&quot;Center&quot; /&gt;
 &lt;/Style&gt;
 </code></pre>
-<p>The drawback is that you loose the ability to contol the content-alignment of the MenuItem by setting the content-alignment properties on a <code>ContextMenu</code>.</p>
+<p>The cost is the feature those bindings provided: alignment set on a <code>ContextMenu</code> no longer reaches its items.</p>
 
 
                                         </div>
@@ -303,7 +394,13 @@ Menus
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#contextmenu-with-compositecollection">ContextMenu with CompositeCollection</a></div>
+                    <div class="sidebar-nav-item"><a href="#menu-items">Menu items</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-popup">The popup</a></div>
+                    <div class="sidebar-nav-item"><a href="#system-keys">System keys</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-text-box-context-menu">The text box context menu</a></div>
+                    <div class="sidebar-nav-item"><a href="#spell-checking">Spell checking</a></div>
+                    <div class="sidebar-nav-item"><a href="#visual-studio-variants">Visual Studio variants</a></div>
+                    <div class="sidebar-nav-item"><a href="#items-from-a-compositecollection">Items from a CompositeCollection</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/menus.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
