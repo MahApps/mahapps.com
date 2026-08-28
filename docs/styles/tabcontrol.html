@@ -256,26 +256,74 @@ TabControl
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>There are three included tab styles</p>
-<ul>
-<li>Default <code>TabControl</code> style</li>
-<li><code>AnimatedTabControl</code> style</li>
-<li><code>SingleRowAnimatedTabControl</code> style</li>
-</ul>
-<p>All styles are included by default and can be set by using the desired style.</p>
-<h2 id="default">Default</h2>
-<p><img src="images/default_tab_control.png" alt="" /></p>
-<p>This shows the three states - selected/active tab, hover and inactive.</p>
-<h2 id="animatedtabcontrol">AnimatedTabControl</h2>
-<pre><code class="language-xml">&lt;TabControl Style=&quot;{DynamicResource MahApps.Styles.TabControl.Animated}&quot;&gt;
+<p>Two implicit styles cover a plain WPF <code>TabControl</code> — the control and its items — plus two keyed variants that animate the page change. <code>Styles/Controls.xaml</code> applies the implicit pair.</p>
+<p><img src="images/tabcontrol-default.png" alt="Three tabs, the second selected" /></p>
+<pre><code class="language-xml">&lt;TabControl SelectedIndex=&quot;1&quot;&gt;
+    &lt;TabItem Header=&quot;General&quot;&gt;&lt;TextBlock Margin=&quot;10&quot; Text=&quot;First page&quot; /&gt;&lt;/TabItem&gt;
+    &lt;TabItem Header=&quot;Display&quot;&gt;&lt;TextBlock Margin=&quot;10&quot; Text=&quot;Second page&quot; /&gt;&lt;/TabItem&gt;
+    &lt;TabItem Header=&quot;Advanced&quot;&gt;&lt;TextBlock Margin=&quot;10&quot; Text=&quot;Third page&quot; /&gt;&lt;/TabItem&gt;
+&lt;/TabControl&gt;
 </code></pre>
-<p>Functioning just like the regular <code>TabControl</code>, except it animates every tab change by wrapping everything in a <code>MetroContentControl</code>.</p>
-<h2 id="animatedsinglerowtabcontrol">AnimatedSingleRowTabControl</h2>
-<pre><code class="language-xml">&lt;TabControl Style=&quot;{DynamicResource MahApps.Styles.TabControl.AnimatedSingleRow}&quot;&gt;
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.TabControl</code></td>
+<td>the implicit one</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TabItem</code></td>
+<td>the implicit item style</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TabControl.Animated</code></td>
+<td>the page fades in when the tab changes</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TabControl.AnimatedSingleRow</code></td>
+<td>the same, with a strip that scrolls instead of wrapping</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-info"><p>Tab headers are <strong>large</strong> — the font size comes from <code>HeaderedControlHelper.HeaderFontSize</code>, which the theme puts well above body text. That is the Metro look, and it is the first thing people want to change:</p>
+<pre><code class="language-xml">&lt;TabItem Header=&quot;General&quot; mah:HeaderedControlHelper.HeaderFontSize=&quot;16&quot; /&gt;
 </code></pre>
-<p><code>AnimatedSingleRowTabControl</code> functions exactly the same as the <code>AnimatedTabControl</code> except the tabs will only appear on a single line rather than wrapping.
-Instead of wrapping, arrows (left/right) are presented.</p>
-<p><img src="images/singlerow_tab_control.png" alt="" /></p>
+<p>Every figure on this page sets it to 16, or three tabs would not fit in the width shown.</p>
+</div>
+<h2 id="the-two-animated-variants">The two animated variants</h2>
+<pre><code class="language-xml">&lt;TabControl Style=&quot;{StaticResource MahApps.Styles.TabControl.Animated}&quot; /&gt;
+</code></pre>
+<p><code>Animated</code> wraps the content in a <code>MetroContentControl</code>, so switching tabs fades and slides the new page in instead of swapping it instantly.</p>
+<p><code>AnimatedSingleRow</code> does the same and additionally keeps the header strip on one line. Where the default <code>TabPanel</code> wraps overflowing tabs onto a second row, this one puts them in a scroll viewer with a left and a right button:</p>
+<pre><code class="language-xml">&lt;TabControl Style=&quot;{StaticResource MahApps.Styles.TabControl.AnimatedSingleRow}&quot; /&gt;
+</code></pre>
+<p>Both are keyed, so they have to be asked for. They are ordinary <code>TabControl</code> styles — for the MahApps controls that do the same thing, see <a href="../controls/MetroTabControl">MetroTabControl</a>.</p>
+<h2 id="where-the-strip-sits">Where the strip sits</h2>
+<p><img src="images/tabcontrol-placement.png" alt="Top, Bottom, Left and Right" /></p>
+<p><code>TabStripPlacement</code> is WPF's, and the item template has a trigger for each of the four values, so the selected tab and its underline turn to face the content whichever side the strip is on.</p>
+<h2 id="the-underline">The underline</h2>
+<p><img src="images/tabcontrol-underline.png" alt="Underlined None, SelectedTabItem and TabPanel" /></p>
+<p>The marker under the selected tab is off by default. It comes from <a href="../helper/tabcontrolhelper">TabControlHelper</a>, which has four values for <code>Underlined</code> and a brush for each state:</p>
+<pre><code class="language-xml">&lt;TabControl mah:TabControlHelper.Underlined=&quot;SelectedTabItem&quot;
+            mah:TabControlHelper.UnderlineSelectedBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot; /&gt;
+</code></pre>
+<p><code>TabPanel</code> — the third panel — draws a hairline under the whole strip as well as the coloured marker, which is the more familiar look. The <code>mah:Underline</code> element that draws it is part of both templates, the control's and the item's, which is why one attached property on the <code>TabControl</code> reaches everything.</p>
+<p>That helper also carries the <code>Transition</code> for the page change and the properties for closable tabs; its page has the full list.</p>
+<h2 id="what-the-styles-set">What the styles set</h2>
+<p><code>MahApps.Styles.TabControl</code> is short: a <code>ThemeBackground</code>, a <strong><code>{x:Null}</code> <code>BorderBrush</code></strong> — so there is no frame around the content, unlike WPF's default — and the template.</p>
+<p><code>MahApps.Styles.TabItem</code> is the interesting one. Its <code>Background</code> is bound to the parent <code>TabControl</code>'s, so a recoloured control carries its tabs with it:</p>
+<pre><code class="language-xml">&lt;Setter Property=&quot;Background&quot;
+        Value=&quot;{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type TabControl}}, Path=Background, Mode=OneWay, FallbackValue=Transparent}&quot; /&gt;
+</code></pre>
+<p><code>BorderThickness</code> is <code>0</code> while <code>BorderBrush</code> is the accent — the border is what the selected-tab marker uses, so switching the thickness on gives you an accent frame rather than a hairline.</p>
+<p>The header sits in a <code>mah:ContentControlEx</code>, so <code>ControlsHelper.ContentCharacterCasing</code> works on a tab header, and <code>HeaderedControlHelper</code> supplies the font.</p>
+<h2 id="related">Related</h2>
+<p><a href="../controls/MetroTabControl">MetroTabControl</a> is the MahApps control with closable tabs and a choice about whether tab contents stay in memory; <a href="../controls/MetroTabItem">MetroTabItem</a> is its item.</p>
 
 
                                         </div>
@@ -284,9 +332,11 @@ Instead of wrapping, arrows (left/right) are presented.</p>
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#default">Default</a></div>
-                    <div class="sidebar-nav-item"><a href="#animatedtabcontrol">AnimatedTabControl</a></div>
-                    <div class="sidebar-nav-item"><a href="#animatedsinglerowtabcontrol">AnimatedSingleRowTabControl</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-two-animated-variants">The two animated variants</a></div>
+                    <div class="sidebar-nav-item"><a href="#where-the-strip-sits">Where the strip sits</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-underline">The underline</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-the-styles-set">What the styles set</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/tabcontrol.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

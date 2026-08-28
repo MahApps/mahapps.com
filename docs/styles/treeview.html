@@ -256,12 +256,115 @@ TreeView
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>Two implicit styles, one for the tree and one for its nodes, applied by <code>Styles/Controls.xaml</code>.</p>
+<p><img src="images/treeview-default.png" alt="A tree with one branch open and a node selected" /></p>
+<pre><code class="language-xml">&lt;TreeView&gt;
+    &lt;TreeViewItem Header=&quot;Documents&quot; IsExpanded=&quot;True&quot;&gt;
+        &lt;TreeViewItem Header=&quot;Invoices&quot; IsSelected=&quot;True&quot; /&gt;
+        &lt;TreeViewItem Header=&quot;Contracts&quot; /&gt;
+    &lt;/TreeViewItem&gt;
+    &lt;TreeViewItem Header=&quot;Pictures&quot;&gt;
+        &lt;TreeViewItem Header=&quot;Holiday&quot; /&gt;
+    &lt;/TreeViewItem&gt;
+    &lt;TreeViewItem Header=&quot;Music&quot; /&gt;
+&lt;/TreeView&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.TreeView</code></td>
+<td>the implicit one</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TreeViewItem</code></td>
+<td>the implicit node style</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TreeView.Virtualized</code></td>
+<td>the same tree with recycling virtualisation</td>
+</tr>
+</tbody>
+</table>
+<p>The node states — the two selection colours, hover, disabled — are the same <a href="../helper/itemhelper">ItemHelper</a> brushes with the same defaults as a <a href="listbox">ListBox</a>, so that page covers them. What follows is what a tree adds.</p>
+<h2 id="the-selection-spans-the-row">The selection spans the row</h2>
+<p>Look at the figure: the highlight behind <em>Invoices</em> runs the full width of the tree, indent and all, not just behind the text. The node template wraps the whole row in the border that carries the background, which is what most file managers do and what makes a deep tree readable.</p>
+<p>It also means <code>HorizontalContentAlignment</code> on the tree reaches the nodes — the style binds it from the ancestor <code>ItemsControl</code>, defaulting to <code>Stretch</code>.</p>
+<h2 id="no-border">No border</h2>
+<p>As with <a href="listbox">ListBox</a>, <code>BorderThickness</code> is <strong><code>0</code></strong> — the same <code>&lt;!-- default to 0 --&gt;</code> in the source — while <code>BorderBrush</code> is <code>MahApps.Brushes.ThemeForeground</code>. Switching the frame on without also setting the brush gives a black box:</p>
+<pre><code class="language-xml">&lt;TreeView BorderThickness=&quot;1&quot;
+          BorderBrush=&quot;{DynamicResource MahApps.Brushes.Control.Border}&quot;
+          mah:ControlsHelper.CornerRadius=&quot;4&quot; /&gt;
+</code></pre>
+<p>A rounded corner is bitten out at the top for the same reason it is on a <a href="listbox">ListBox</a> — the template root is a plain <code>Border</code> and the opaque item background covers the arc. That page has the two workarounds.</p>
+<h2 id="indentation">Indentation</h2>
+<p>Nodes are indented by a <code>TreeViewMarginConverter</code> with <code>Length=&quot;12&quot;</code>, which walks up the parent chain and multiplies. Twelve units per level is baked into the converter instance in the dictionary, so changing it means replacing the node template — there is no property for it.</p>
+<h2 id="the-expander-button">The expander button</h2>
+<p><img src="images/treeview-toggle.png" alt="The default expander and a custom one" /></p>
+<p>The little triangle is a <code>ToggleButton</code> bound two-way to <code>IsExpanded</code>, and the style it uses comes from an attached property, so it can be replaced without touching the node template:</p>
+<pre><code class="language-xml">&lt;TreeView.ItemContainerStyle&gt;
+    &lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.TreeViewItem}&quot; TargetType=&quot;{x:Type TreeViewItem}&quot;&gt;
+        &lt;Setter Property=&quot;mah:TreeViewItemHelper.ToggleButtonStyle&quot; Value=&quot;{StaticResource MyExpander}&quot; /&gt;
+    &lt;/Style&gt;
+&lt;/TreeView.ItemContainerStyle&gt;
+</code></pre>
+<p>The default is <code>MahApps.Styles.ToggleButton.TreeViewItem.ExpandCollapse</code>, a filled triangle from the <code>TreeArrow</code> geometry that rotates when the node opens. The right-hand figure replaces it with plus and minus glyphs from the symbol font:</p>
+<pre><code class="language-xml">&lt;Style x:Key=&quot;MyExpander&quot; TargetType=&quot;{x:Type ToggleButton}&quot;&gt;
+    &lt;Setter Property=&quot;Focusable&quot; Value=&quot;False&quot; /&gt;
+    &lt;Setter Property=&quot;Width&quot; Value=&quot;20&quot; /&gt;
+    &lt;Setter Property=&quot;Template&quot;&gt;
+        &lt;Setter.Value&gt;
+            &lt;ControlTemplate TargetType=&quot;{x:Type ToggleButton}&quot;&gt;
+                &lt;Border Background=&quot;Transparent&quot;&gt;
+                    &lt;TextBlock x:Name=&quot;Glyph&quot;
+                               HorizontalAlignment=&quot;Center&quot;
+                               VerticalAlignment=&quot;Center&quot;
+                               FontFamily=&quot;{DynamicResource MahApps.Fonts.Family.SymbolTheme}&quot;
+                               FontSize=&quot;12&quot;
+                               Foreground=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+                               Text=&quot;&amp;#xE710;&quot; /&gt;
+                &lt;/Border&gt;
+                &lt;ControlTemplate.Triggers&gt;
+                    &lt;Trigger Property=&quot;IsChecked&quot; Value=&quot;True&quot;&gt;
+                        &lt;Setter TargetName=&quot;Glyph&quot; Property=&quot;Text&quot; Value=&quot;&amp;#xE738;&quot; /&gt;
+                    &lt;/Trigger&gt;
+                &lt;/ControlTemplate.Triggers&gt;
+            &lt;/ControlTemplate&gt;
+        &lt;/Setter.Value&gt;
+    &lt;/Setter&gt;
+&lt;/Style&gt;
+</code></pre>
+<p><code>Background=&quot;Transparent&quot;</code> on the border matters — without it only the glyph itself answers clicks, and hitting a 12-unit triangle is fiddly. See <a href="../helper/treeviewitemhelper">TreeViewItemHelper</a>.</p>
+<p>A node with no children hides the button rather than drawing a disabled one: the template has a <code>HasItems=&quot;False&quot;</code> trigger for that, which is why <em>Music</em> in the figure has no triangle.</p>
+<h2 id="virtualisation">Virtualisation</h2>
+<p>A tree is the control where this matters most, because every expanded branch adds nodes:</p>
+<pre><code class="language-xml">&lt;TreeView Style=&quot;{StaticResource MahApps.Styles.TreeView.Virtualized}&quot; ItemsSource=&quot;{Binding Roots}&quot; /&gt;
+</code></pre>
+<p>The variant sets <code>VirtualizingStackPanel.IsVirtualizing</code> and <code>VirtualizationMode=&quot;Recycling&quot;</code>. The base style watches the first of those and swaps its <code>ItemsPanel</code> for a <code>VirtualizingStackPanel</code> and <code>CanContentScroll</code> to <code>True</code> when it sees it, so setting the property by hand works too.</p>
+<p>Note that the node style carries the same trigger for its own child panel — a tree has to virtualise at every level, not just the root.</p>
+<h2 id="related">Related</h2>
+<p><a href="listbox">ListBox</a> shares the item brushes, and <a href="../helper/itemhelper">ItemHelper</a> documents all of them.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-selection-spans-the-row">The selection spans the row</a></div>
+                    <div class="sidebar-nav-item"><a href="#no-border">No border</a></div>
+                    <div class="sidebar-nav-item"><a href="#indentation">Indentation</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-expander-button">The expander button</a></div>
+                    <div class="sidebar-nav-item"><a href="#virtualisation">Virtualisation</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/treeview.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

@@ -256,26 +256,23 @@ Usage
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>This guide will introduce you to the themes that <code>MahApps.Metro</code> has and how to create your own.</p>
-<p>All of <code>MahApps.Metro</code>'s themes are contained within separate resource dictionaries.</p>
-<h2 id="how-to-use-the-themes">How to use the themes</h2>
-<p>You can choose between these available color schemes:</p>
-<blockquote>
-<p>&quot;Red&quot;, &quot;Green&quot;, &quot;Blue&quot;, &quot;Purple&quot;, &quot;Orange&quot;, &quot;Lime&quot;, &quot;Emerald&quot;, &quot;Teal&quot;, &quot;Cyan&quot;, &quot;Cobalt&quot;, &quot;Indigo&quot;, &quot;Violet&quot;, &quot;Pink&quot;, &quot;Magenta&quot;, &quot;Crimson&quot;, &quot;Amber&quot;, &quot;Yellow&quot;, &quot;Brown&quot;, &quot;Olive&quot;, &quot;Steel&quot;, &quot;Mauve&quot;, &quot;Taupe&quot;, &quot;Sienna&quot;</p>
-</blockquote>
-<p>and these base themes:</p>
-<blockquote>
-<p>&quot;Light&quot;, &quot;Dark&quot;</p>
-</blockquote>
-<p>So putting all together, the resource names should be:</p>
-<blockquote>
-<p>&quot;Light.Blue&quot; or &quot;Dark.Blue&quot;</p>
-</blockquote>
-<div class="alert alert-info"><p><em><strong>Note</strong></em><br />
-Make sure that all resource file names are Case Sensitive!</p>
+<p>A MahApps theme is two choices: a <strong>base theme</strong>, which decides whether the application is light or dark, and a <strong>colour scheme</strong>, which decides the accent. Two base themes times twenty-three schemes gives forty-six resource dictionaries, and picking one is a single line in <code>App.xaml</code>.</p>
+<h2 id="the-colour-schemes">The colour schemes</h2>
+<p><img src="images/themes-schemes.png" alt="The twenty-three colour schemes" /></p>
+<p><code>Amber</code>, <code>Blue</code>, <code>Brown</code>, <code>Cobalt</code>, <code>Crimson</code>, <code>Cyan</code>, <code>Emerald</code>, <code>Green</code>, <code>Indigo</code>, <code>Lime</code>, <code>Magenta</code>, <code>Mauve</code>, <code>Olive</code>, <code>Orange</code>, <code>Pink</code>, <code>Purple</code>, <code>Red</code>, <code>Sienna</code>, <code>Steel</code>, <code>Taupe</code>, <code>Teal</code>, <code>Violet</code>, <code>Yellow</code>.</p>
+<p>Each one sets six colours: <code>MahApps.Colors.AccentBase</code> — the swatch above — then <code>Accent</code>, <code>Accent2</code>, <code>Accent3</code> and <code>Accent4</code>, which are the same colour at 80, 60, 40 and 20 per cent, and a darker <code>MahApps.Colors.Highlight</code>. Everything accent-coloured in the library comes from those six.</p>
+<h2 id="the-base-themes">The base themes</h2>
+<p><code>Light</code> and <code>Dark</code>. The base theme changes the backgrounds, the greys and the text colour; it does <strong>not</strong> change the accent:</p>
+<p><img src="images/themes-base.png" alt="Light.Blue, Dark.Blue and Light.Emerald" /></p>
+<p>The first two panels are the same scheme on different bases — same blue, different surroundings. The third is a different scheme on the same base.</p>
+<h2 id="naming">Naming</h2>
+<p>A theme is named <code>Base.Scheme</code>, and the dictionary is at</p>
+<pre><code>pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml
+</code></pre>
+<div class="alert alert-warning"><p><strong>Pack URIs are case sensitive.</strong> <code>light.blue.xaml</code> fails, and it fails at run time rather than at build time — the application starts and the controls come out unstyled.</p>
 </div>
-<h3 id="use-a-theme-via-app.xaml">Use a theme via App.xaml</h3>
-<p>The fastest way is to specify the theme resource in the App.xaml.</p>
+<h2 id="choosing-one-in-app.xaml">Choosing one in App.xaml</h2>
+<p>The usual way. The theme dictionary goes last, after <code>Controls.xaml</code> and <code>Fonts.xaml</code>:</p>
 <pre><code class="language-xml">&lt;Application x:Class=&quot;SampleApp&quot;
              xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
              xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
@@ -293,49 +290,34 @@ Make sure that all resource file names are Case Sensitive!</p>
   &lt;/Application.Resources&gt;
 &lt;/Application&gt;
 </code></pre>
-<p><img src="../guides/images/metrowindow.png" alt="theme" /></p>
-<h3 id="use-a-theme-via-thememanager">Use a theme via ThemeManager</h3>
-<p><code>MahApps.Metro</code> has a <a href="thememanager">ThemeManager</a> class that lets you change the theme using code-behind. It can be done in 1 line, like so:</p>
+<p>That is enough for an application whose theme never changes. Everything beyond it — switching at run time, giving one window a theme of its own, following the Windows setting, building a scheme that is not in the list — is the <a href="thememanager">ThemeManager</a>'s job, and that page covers all four.</p>
 <pre><code class="language-csharp">using ControlzEx.Theming;
 
-public partial class SampleApp : Application
-{
-    protected override void OnStartup(StartupEventArgs e)
-    {
-        base.OnStartup(e);
-
-        // Set the application theme to Dark.Green
-        ThemeManager.Current.ChangeTheme(this, &quot;Dark.Green&quot;);
-    }
-}
+ThemeManager.Current.ChangeTheme(Application.Current, &quot;Dark.Green&quot;);
 </code></pre>
-<h3 id="on-a-window-different-to-your-applications-main-window">On a window different to your application's main window</h3>
-<p>With <code>MahApps.Metro</code> you can have a different theme for a <code>MetroWindow</code>. The main window or any other <code>MetroWindow</code> will keep the specified theme in the App.xaml or window xaml.</p>
-<pre><code class="language-xml">&lt;Controls:MetroWindow.Resources&gt;
-    &lt;ResourceDictionary&gt;
-        &lt;ResourceDictionary.MergedDictionaries&gt;
-            &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Red.xaml&quot; /&gt;
-        &lt;/ResourceDictionary.MergedDictionaries&gt;
-    &lt;/ResourceDictionary&gt;
-&lt;/Controls:MetroWindow.Resources&gt;
-</code></pre>
-<p>You can do this also with the <a href="thememanager">ThemeManager</a>, like so:</p>
-<pre><code class="language-csharp">using ControlzEx.Theming;
-
-public partial class MainWindow : MetroWindow
-{
-    public void MainWindow()
-    {
-        InitializeComponent();
-
-        // Set the window theme to Dark.Red
-        ThemeManager.Current.ChangeTheme(this, &quot;Dark.Red&quot;);
-    }
-}
-</code></pre>
-<h3 id="creating-custom-themes">Creating custom Themes</h3>
-<p>Another nice feature of <code>MahApps.Metro</code> is to use custom created themes or runtime created themes.</p>
-<p>Please open the <a href="thememanager">ThemeManager</a> guide for further notice.</p>
+<h2 id="where-the-dictionaries-come-from">Where the dictionaries come from</h2>
+<p>There is no <code>Light.Blue.xaml</code> in the MahApps source tree, and looking for one is a common wrong turn. The forty-six dictionaries are <strong>generated during the build</strong> by <code>XamlColorSchemeGenerator</code> from two files:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Styles/Themes/Theme.Template.xaml</code></td>
+<td>every brush and colour a theme defines, with <code>{{Placeholders}}</code> for the parts that vary</td>
+</tr>
+<tr>
+<td><code>Styles/Themes/GeneratorParameters.json</code></td>
+<td>the two base themes and the twenty-three schemes, each supplying values for those placeholders</td>
+</tr>
+</tbody>
+</table>
+<p>That template is the reference for what a theme can set. It defines over four hundred keyed colours and brushes, of which seventy-nine are placeholders that vary by theme; the rest are the same everywhere. It is the file to read when you want to know which brush a control is actually using. The <a href="thememanager">ThemeManager</a> page shows how to build a theme of your own from the same template without rebuilding the library.</p>
+<h2 id="related">Related</h2>
+<p><a href="thememanager">ThemeManager</a> for anything at run time. The <a href="../guides/quick-start">quick start</a> shows the three dictionaries in place in a new project.</p>
 
 
                                         </div>
@@ -344,13 +326,12 @@ public partial class MainWindow : MetroWindow
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#how-to-use-the-themes">How to use the themes</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#use-a-theme-via-app.xaml">Use a theme via App.xaml</a></div>
-                                <div class="sidebar-nav-item"><a href="#use-a-theme-via-thememanager">Use a theme via ThemeManager</a></div>
-                                <div class="sidebar-nav-item"><a href="#on-a-window-different-to-your-applications-main-window">On a window different to your application&#x27;s main window</a></div>
-                                <div class="sidebar-nav-item"><a href="#creating-custom-themes">Creating custom Themes</a></div>
-                        </div>
+                    <div class="sidebar-nav-item"><a href="#the-colour-schemes">The colour schemes</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-base-themes">The base themes</a></div>
+                    <div class="sidebar-nav-item"><a href="#naming">Naming</a></div>
+                    <div class="sidebar-nav-item"><a href="#choosing-one-in-app.xaml">Choosing one in App.xaml</a></div>
+                    <div class="sidebar-nav-item"><a href="#where-the-dictionaries-come-from">Where the dictionaries come from</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/themes/usage.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

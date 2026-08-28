@@ -256,12 +256,108 @@ ToolBar
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>Two implicit styles — the bar and the tray it sits in — plus a set of styles for the controls that go inside one, which WPF applies for you through its own style keys.</p>
+<p><img src="images/toolbar-default.png" alt="A toolbar in a tray" /></p>
+<pre><code class="language-xml">&lt;ToolBarTray&gt;
+    &lt;ToolBar&gt;
+        &lt;Button Content=&quot;New&quot; /&gt;
+        &lt;Button Content=&quot;Open&quot; /&gt;
+        &lt;Separator /&gt;
+        &lt;ToggleButton Content=&quot;Bold&quot; IsChecked=&quot;True&quot; /&gt;
+        &lt;ToggleButton Content=&quot;Italic&quot; /&gt;
+    &lt;/ToolBar&gt;
+&lt;/ToolBarTray&gt;
+</code></pre>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.ToolBar</code> and <code>MahApps.Styles.ToolBarTray</code>, so the <a href="../guides/quick-start">quick start</a> is the whole setup.</p>
+<h2 id="controls-inside-a-toolbar-are-restyled-for-you">Controls inside a toolbar are restyled for you</h2>
+<p>A <code>ToolBar</code> re-styles its children through eight style keys that WPF looks up by name. MahApps fills in six of them:</p>
+<table>
+<thead>
+<tr>
+<th>WPF key</th>
+<th>MahApps style</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ToolBar.ButtonStyleKey</code></td>
+<td><code>MahApps.Styles.Button.ToolBar</code></td>
+</tr>
+<tr>
+<td><code>ToolBar.ToggleButtonStyleKey</code></td>
+<td><code>MahApps.Styles.ToggleButton.ToolBar</code></td>
+</tr>
+<tr>
+<td><code>ToolBar.CheckBoxStyleKey</code></td>
+<td><code>MahApps.Styles.ToggleButton.ToolBar</code></td>
+</tr>
+<tr>
+<td><code>ToolBar.RadioButtonStyleKey</code></td>
+<td><code>MahApps.Styles.ToggleButton.ToolBar</code></td>
+</tr>
+<tr>
+<td><code>ToolBar.TextBoxStyleKey</code></td>
+<td><code>MahApps.Styles.TextBox</code></td>
+</tr>
+<tr>
+<td><code>ToolBar.ComboBoxStyleKey</code></td>
+<td><code>MahApps.Styles.ComboBox</code></td>
+</tr>
+</tbody>
+</table>
+<p>Note rows three and four: a <code>CheckBox</code> or a <code>RadioButton</code> dropped into a toolbar is given the <strong>toggle button</strong> style. It loses its box or its dot and becomes a button that stays pressed:</p>
+<p><img src="images/toolbar-items.png" alt="Button, ToggleButton, CheckBox and RadioButton in a toolbar" /></p>
+<p>All four items in that figure are different control types, and three of them look identical because three keys point at the same style.</p>
+<div class="alert alert-info"><p>That is WPF's behaviour, not a MahApps decision. The stock Aero theme maps <code>CheckBoxStyleKey</code> and <code>RadioButtonStyleKey</code> to the same toolbar button appearance, so a check box in a plain WPF toolbar loses its tick as well — MahApps only supplies its own look for it. A toolbar wants latching buttons, the way <em>Bold</em> and <em>Italic</em> work, so if you need a visible tick or dot, put the control next to the toolbar rather than in it.</p>
+</div>
+<p><code>ToolBar.MenuStyleKey</code> and <code>ToolBar.SeparatorStyleKey</code> are the two MahApps leaves alone, so a <code>Menu</code> or a <code>Separator</code> inside a toolbar keeps WPF's own look. The separator is a plain vertical line, which fits; a <code>Menu</code> is worth styling yourself if you put one there.</p>
+<h2 id="background-belongs-on-the-tray">Background belongs on the tray</h2>
+<div class="alert alert-warning"><p><strong>Setting <code>Background</code> on a <code>ToolBar</code> does nothing.</strong> The template's root border hardcodes both its brushes:</p>
+<pre><code class="language-xml">&lt;Border x:Name=&quot;Border&quot;
+        Background=&quot;{DynamicResource MahApps.Brushes.Transparent}&quot;
+        BorderBrush=&quot;{DynamicResource MahApps.Brushes.Transparent}&quot;
+        BorderThickness=&quot;1&quot;
+        CornerRadius=&quot;2&quot;&gt;
+</code></pre>
+<p>Neither is a <code>TemplateBinding</code>, so <code>Background</code> and <code>BorderBrush</code> on the control are ignored. The colour behind a toolbar is the tray's:</p>
+</div>
+<p><img src="images/toolbar-background.png" alt="Background set on the ToolBar and on the ToolBarTray" /></p>
+<pre><code class="language-xml">&lt;ToolBarTray Background=&quot;{DynamicResource MahApps.Brushes.Gray10}&quot;&gt;
+    &lt;ToolBar&gt;
+        &lt;!-- items --&gt;
+    &lt;/ToolBar&gt;
+&lt;/ToolBarTray&gt;
+</code></pre>
+<p><code>MahApps.Styles.ToolBarTray</code> is one setter — a <code>Background</code> of <code>MahApps.Brushes.Window.Background</code> — so that is the only place the colour comes from unless you change it.</p>
+<p>To colour a single bar rather than the whole tray, base a style on <code>MahApps.Styles.ToolBar</code> and replace the template, or put the bar in a tray of its own.</p>
+<h2 id="the-drag-grip">The drag grip</h2>
+<p><img src="images/toolbar-thumb.png" alt="The tray unlocked and locked" /></p>
+<p>The dotted grip on the left is a <code>Thumb</code> with a <code>SizeAll</code> cursor, and it is what lets the user drag a bar to another row of the tray. <code>ToolBarTray.IsLocked</code> collapses it:</p>
+<pre><code class="language-xml">&lt;ToolBarTray IsLocked=&quot;True&quot; /&gt;
+</code></pre>
+<p>The template also disables the grip while the overflow popup is open, so a bar cannot be dragged out from under its own menu.</p>
+<h2 id="overflow">Overflow</h2>
+<p>When the bar is narrower than its items, the ones that do not fit move into a popup behind a chevron at the right-hand end. That button is <code>MahApps.Styles.ToggleButton.ToolBarOverflow</code>; it is disabled while <code>HasOverflowItems</code> is false, so it only lights up when there is something to show.</p>
+<p>The popup itself is a bordered panel in <code>MahApps.Brushes.Control.Background</code> with a <code>ToolBarOverflowPanel</code> that wraps at 200 units. Mark an item as always overflowing, or never, with WPF's own attached property:</p>
+<pre><code class="language-xml">&lt;Button Content=&quot;Rarely used&quot; ToolBar.OverflowMode=&quot;Always&quot; /&gt;
+</code></pre>
+<h2 id="related">Related</h2>
+<p>The toolbar button styles are variants of the ones on the <a href="buttons">Buttons</a> page, and the text box and combo box inside a toolbar are the ordinary <a href="textbox">TextBox</a> and <a href="combobox">ComboBox</a> styles.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#controls-inside-a-toolbar-are-restyled-for-you">Controls inside a toolbar are restyled for you</a></div>
+                    <div class="sidebar-nav-item"><a href="#background-belongs-on-the-tray">Background belongs on the tray</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-drag-grip">The drag grip</a></div>
+                    <div class="sidebar-nav-item"><a href="#overflow">Overflow</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/toolbar.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

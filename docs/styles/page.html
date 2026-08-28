@@ -256,7 +256,7 @@ Page
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>To style a <code>Page</code> you can set the <code>Style</code> property.</p>
+<p><code>MahApps.Styles.Page</code> is three setters and no template, and it is the one style on this site you have to apply by hand — <code>Styles/Controls.xaml</code> does not make it implicit.</p>
 <pre><code class="language-xml">&lt;Page x:Class=&quot;MetroDemo.Navigation.InterestingPage&quot;
       xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
       xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
@@ -268,11 +268,57 @@ Page
     &lt;/StackPanel&gt;
 &lt;/Page&gt;
 </code></pre>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Set to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Background</code></td>
+<td><code>MahApps.Brushes.ThemeBackground</code></td>
+</tr>
+<tr>
+<td><code>Foreground</code></td>
+<td><code>MahApps.Brushes.ThemeForeground</code></td>
+</tr>
+<tr>
+<td><code>TextElement.FontSize</code></td>
+<td><code>MahApps.Font.Size.Content</code></td>
+</tr>
+</tbody>
+</table>
+<p>Those three will look familiar: they are exactly what the <code>MetroWindow</code> style hands down to everything inside it — see <a href="text">Text</a>. The <code>Page</code> style exists because a page does not get them.</p>
+<h2 id="a-frame-is-a-wall">A Frame is a wall</h2>
+<p>A <code>Page</code> is hosted by a <code>Frame</code>, whether directly or inside a <a href="../controls/MetroNavigationWindow">MetroNavigationWindow</a>, and a <code>Frame</code> is a boundary for <strong>property value inheritance</strong>. <code>Foreground</code> and <code>TextElement.FontSize</code> set on the window stop there; the page starts again from WPF's own defaults.</p>
+<p>It is a boundary for <strong>resource lookup</strong> as well. A <code>ResourceDictionary</code> merged into an element above the frame does not reach the page inside it — a <code>DynamicResource</code> in the page resolves from <code>Application.Resources</code> instead.</p>
+<p><img src="images/page-style.png" alt="A page with and without the style, on a dark surface" /></p>
+<p>Both frames above sit on the same dark surface. The left page has no style, so it has no background and keeps WPF's near-black default text — invisible against it. The right one is the same page with <code>MahApps.Styles.Page</code>, which gives it the theme background and the theme foreground.</p>
+<div class="alert alert-info"><p>Under the <strong>light</strong> base theme the difference is easy to miss: WPF's default font size is 12 and <code>MahApps.Font.Size.Content</code> is also 12, and WPF's default foreground is black where <code>MahApps.Brushes.ThemeForeground</code> is near-black. Only the background differs, and against a light window even that hardly shows.</p>
+<p>Switch to a dark theme, or put the page on any dark surface, and an unstyled page becomes unreadable. That is the case the style is for, and it is why applying it is worth the line even when the light theme looks fine without it.</p>
+</div>
+<h2 id="applying-it-everywhere">Applying it everywhere</h2>
+<p>Since the style is keyed rather than implicit, every page needs the attribute. One implicit style in <code>App.xaml</code>, after the MahApps dictionaries, saves repeating it:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.Page}&quot; TargetType=&quot;{x:Type Page}&quot; /&gt;
+</code></pre>
+<p>There is nothing in the style that makes this unsafe — it sets no template and touches no layout, so an implicit <code>Page</code> style has none of the reach an implicit <a href="text">TextBlock</a> style would.</p>
+<h2 id="related">Related</h2>
+<p><a href="../controls/MetroNavigationWindow">MetroNavigationWindow</a> is the window that hosts pages, and <a href="text">Text</a> explains where the same three values come from for everything that is not behind a frame.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#a-frame-is-a-wall">A Frame is a wall</a></div>
+                    <div class="sidebar-nav-item"><a href="#applying-it-everywhere">Applying it everywhere</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/page.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

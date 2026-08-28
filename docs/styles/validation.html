@@ -256,12 +256,98 @@ Validation
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>WPF marks a control whose binding failed validation by drawing an <em>adorner</em> over it, and which adorner is up to <code>Validation.ErrorTemplate</code>. MahApps supplies one — <code>MahApps.Templates.ValidationError</code> — and sets it on the input controls it styles.</p>
+<p><img src="images/validation-adornment.png" alt="A valid text box and one with a validation error" /></p>
+<pre><code class="language-xml">&lt;TextBox Text=&quot;{Binding Age, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}&quot; /&gt;
+</code></pre>
+<p>Nothing to switch on: the template is already set. It draws two things — a border in <code>MahApps.Brushes.Control.Validation</code> around the control, and a small red triangle in the top-right corner, which is the handle for the message.</p>
+<h2 id="which-controls-have-it">Which controls have it</h2>
+<p><code>Validation.ErrorTemplate</code> is set to the MahApps template by the styles for <code>TextBox</code>, <code>RichTextBox</code>, <code>PasswordBox</code>, <code>ComboBox</code>, <code>DatePicker</code>, <code>DateTimePicker</code>, <code>TimePicker</code>, <code>NumericUpDown</code>, <code>HotKeyBox</code>, <code>ToggleSwitch</code> and the <code>ColorPicker</code>.</p>
+<div class="alert alert-info"><p><code>DataGrid</code> is the exception, and deliberately so: its style sets <code>Validation.ErrorTemplate</code> to <code>{x:Null}</code>. A grid draws its own row-level error indicator, and an adorner per cell on top of that would be noise. See <a href="datagrid">DataGrid</a>.</p>
+</div>
+<p>Anything else — a control of your own, a <code>CheckBox</code>, a panel — gets WPF's default red rectangle unless you set the template yourself:</p>
+<pre><code class="language-xml">&lt;Slider Validation.ErrorTemplate=&quot;{DynamicResource MahApps.Templates.ValidationError}&quot; /&gt;
+</code></pre>
+<h2 id="the-popup">The popup</h2>
+<p><img src="images/validation-popup.png" alt="The popup with one error and with three" /></p>
+<p>The message is not printed next to the control; it appears in a popup, and the popup is a <code>mah:CustomValidationPopup</code> placed to the right of the control. Five borders stacked with one-unit offsets and shrinking corner radii — <code>MahApps.Brushes.Validation1</code> through <code>Validation5</code> — give it its layered edge, and the text is <code>MahApps.Brushes.Text.Validation</code>, wrapping at 250 units.</p>
+<p>It opens on any of three conditions, all of which also require the control to actually have an error:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the control has keyboard focus within it</td>
+<td>the default: tab into a bad field and the message appears</td>
+</tr>
+<tr>
+<td>the pointer is over the red triangle, with <code>ValidationHelper.ShowValidationErrorOnMouseOver</code></td>
+<td>opt in per control</td>
+</tr>
+<tr>
+<td>the pointer is over the triangle, with <code>ShowValidationErrorOnMouseOver</code> on the popup</td>
+<td>the same, set on the popup instead</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;TextBox Text=&quot;{Binding Age, ValidatesOnDataErrors=True}&quot;
+         mah:ValidationHelper.ShowValidationErrorOnMouseOver=&quot;True&quot; /&gt;
+</code></pre>
+<p><a href="../helper/validationhelper">ValidationHelper</a> also has <code>CloseOnMouseLeftButtonDown</code>, which dismisses the popup on any click.</p>
+<div class="alert alert-info"><p>Hover the popup itself and it fades to 15% opacity over a tenth of a second, then back when you leave. That is deliberate: the message sits to the right of the field, often over something you were about to read or click, and moving the pointer onto it gets it out of the way rather than requiring a dismissal.</p>
+</div>
+<h2 id="every-error-not-just-the-first">Every error, not just the first</h2>
+<p>The right-hand panel above is one text box with three errors. The popup's content is an <code>ItemsControl</code> bound to the whole <code>Validation.Errors</code> collection with a <code>DataTemplate</code> for <code>ValidationError</code>, so each one gets its own line. WPF's own habit of binding to <code>(Validation.Errors)[0]</code> — and the debug spew that comes with it when the collection is empty — is avoided here.</p>
+<p>Getting several errors at once takes a source that offers them. A binding stops at the first <code>ValidationRule</code> that fails, so rules give you one message; <code>INotifyDataErrorInfo</code> can return a whole list for one property, and every entry becomes a <code>ValidationError</code>:</p>
+<pre><code class="language-csharp">public IEnumerable GetErrors(string propertyName)
+{
+    if (propertyName == nameof(this.Age))
+    {
+        if (!int.TryParse(this.Age, out var value))
+        {
+            yield return &quot;Must be a whole number.&quot;;
+        }
+        else if (value &lt; 1 || value &gt; 99)
+        {
+            yield return &quot;Must be between 1 and 99.&quot;;
+        }
+    }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;TextBox Text=&quot;{Binding Age, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}&quot; /&gt;
+</code></pre>
+<p>The popup grows with the list, so a control with a long set of rules is worth collapsing into one message rather than five.</p>
+<h2 id="restyling-it">Restyling it</h2>
+<p><code>MahApps.Templates.ValidationError</code> is a keyed <code>ControlTemplate</code>, so the whole adornment can be replaced at once by defining that key again after the MahApps dictionaries:</p>
+<pre><code class="language-xml">&lt;ControlTemplate x:Key=&quot;MahApps.Templates.ValidationError&quot;&gt;
+    &lt;AdornedElementPlaceholder&gt;
+        &lt;Border BorderBrush=&quot;{DynamicResource MahApps.Brushes.Control.Validation}&quot; BorderThickness=&quot;2&quot; /&gt;
+    &lt;/AdornedElementPlaceholder&gt;
+&lt;/ControlTemplate&gt;
+</code></pre>
+<p>For a change of colour only, the six brushes are enough: <code>MahApps.Brushes.Control.Validation</code> for the border, <code>Validation1</code> to <code>Validation5</code> for the popup's layers, and <code>MahApps.Brushes.Text.Validation</code> for the message.</p>
+<p>The template also reads <code>ControlsHelper.CornerRadius</code> from the adorned control and rounds its top-right corner to match, so a rounded text box keeps its shape when it goes red.</p>
+<h2 id="related">Related</h2>
+<p><a href="textbox">TextBox</a>, <a href="combobox">ComboBox</a> and <a href="datepicker">DatePicker</a> are the controls that carry the template; <a href="../helper/validationhelper">ValidationHelper</a> has the two attached properties.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#which-controls-have-it">Which controls have it</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-popup">The popup</a></div>
+                    <div class="sidebar-nav-item"><a href="#every-error-not-just-the-first">Every error, not just the first</a></div>
+                    <div class="sidebar-nav-item"><a href="#restyling-it">Restyling it</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/validation.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

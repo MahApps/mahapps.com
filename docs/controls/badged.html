@@ -331,25 +331,61 @@ Badged Control
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>Badged</code> control renders a badge overlay on a given control.
-The badge location can be set by the <code>BadgePlacementMode</code> property.</p>
-<h2 id="examples">Examples</h2>
+<p><code>Badged</code> wraps a control and draws a small badge over one of its corners or edges — an unread count, a status, a short word.</p>
+<p><img src="images/badged-placement.png" alt="The eight placement modes" /></p>
 <pre><code class="language-xml">&lt;mah:Badged Badge=&quot;42&quot;&gt;
-  &lt;!-- Control to wrap goes here --&gt;
-  &lt;Button Content=&quot;Notifications&quot; /&gt;
+    &lt;Button Content=&quot;Notifications&quot; /&gt;
 &lt;/mah:Badged&gt;
 </code></pre>
-<p><img src="images/badged-control-button.png" alt="" /></p>
-<pre><code class="language-xml">&lt;mah:Badged Badge=&quot;{Binding Path=BadgeValue}&quot; BadgePlacementMode=&quot;BottomRight&quot;&gt;
-  &lt;!-- Control to wrap goes here --&gt;
-  &lt;Button&gt;
-    &lt;iconPacks:PackIconFontAwesome Kind=&quot;CommentOutline&quot; /&gt;
-  &lt;/Button&gt;
+<p>The badge is placed by <code>BadgePlacementMode</code>, which defaults to <code>TopRight</code>:</p>
+<pre><code class="language-xml">&lt;mah:Badged Badge=&quot;{Binding UnreadCount}&quot; BadgePlacementMode=&quot;BottomRight&quot;&gt;
+    &lt;Button&gt;
+        &lt;iconPacks:PackIconFontAwesome Kind=&quot;CommentOutline&quot; /&gt;
+    &lt;/Button&gt;
 &lt;/mah:Badged&gt;
 </code></pre>
-<p><img src="images/badged-control-button-icon.png" alt="" /></p>
-<div class="alert alert-info"><p><em><strong>Note</strong></em><br />
-The <code>IconPacks</code> control in the samples can be found <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">here</a>.</p>
+<div class="alert alert-info"><p>The <code>iconPacks</code> control in that sample comes from <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">MahApps.Metro.IconPacks</a>, a separate package.</p>
+</div>
+<h2 id="the-badge-content">The badge content</h2>
+<p><code>Badge</code> is an <code>object</code>, so it takes anything a <code>ContentControl</code> would — a number, a string, an element, or a view model with a <code>BadgeTemplate</code>.</p>
+<p><img src="images/badged-content.png" alt="A number, a word, a string format, and no badge" /></p>
+<pre><code class="language-xml">&lt;mah:Badged Badge=&quot;3&quot; BadgeStringFormat=&quot;{}{0} new&quot; /&gt;
+</code></pre>
+<p>The fourth panel has no <code>Badge</code> at all: when it is null or empty the badge is hidden and <code>IsBadgeSet</code> is <code>false</code>. Bind the count and the badge appears and disappears on its own — there is no visibility to manage.</p>
+<h2 id="styling-the-badge">Styling the badge</h2>
+<p><img src="images/badged-styling.png" alt="The default badge, a restyled one, and a disabled control" /></p>
+<pre><code class="language-xml">&lt;mah:Badged Badge=&quot;42&quot;
+            BadgeBackground=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+            BadgeForeground=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot;
+            BadgeBorderBrush=&quot;{DynamicResource MahApps.Brushes.ThemeBackground}&quot;
+            BadgeBorderThickness=&quot;2&quot;
+            BadgeFontSize=&quot;13&quot;&gt;
+    &lt;Button Content=&quot;Notifications&quot; /&gt;
+&lt;/mah:Badged&gt;
+</code></pre>
+<p>A border in the window's background colour is the usual trick for a badge that overlaps busy content — it gives the disc a ring of clear space.</p>
+<h2 id="the-pop-when-the-value-changes">The pop when the value changes</h2>
+<p>This is the one property MahApps adds; everything else on this page comes from <code>BadgedEx</code> in ControlzEx, which <code>Badged</code> derives from.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BadgeChangedStoryboard</code></td>
+<td><code>Storyboard</code></td>
+<td>a scale animation</td>
+</tr>
+</tbody>
+</table>
+<p>When <code>Badge</code> changes, the storyboard is started on the badge container, so the disc springs briefly as the number goes up. The default scales X and Y through a <code>SineEase</code>; replace it to change the gesture, or set it to <code>{x:Null}</code> for no animation at all:</p>
+<pre><code class="language-xml">&lt;mah:Badged Badge=&quot;{Binding UnreadCount}&quot; BadgeChangedStoryboard=&quot;{x:Null}&quot; /&gt;
+</code></pre>
+<div class="alert alert-warning"><p>A storyboard that cannot run on the badge container — one targeting a property the container does not have, for instance — is not swallowed. <code>Badged</code> catches the failure and rethrows it as a <code>MahAppsException</code> with the message <em>&quot;Uups, it seems like there is something wrong with the given Storyboard.&quot;</em>, so a bad animation surfaces at the first badge change rather than silently doing nothing.</p>
 </div>
 <h2 id="properties">Properties</h2>
 <table>
@@ -357,101 +393,94 @@ The <code>IconPacks</code> control in the samples can be found <a href="https://
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Badge</td>
-<td>object</td>
-<td>Gets or sets the Badge content to display.</td>
-</tr>
-<tr>
-<td>BadgeBackground</td>
-<td>Brush</td>
-<td>Gets or sets the background brush for the Badge.</td>
-</tr>
-<tr>
-<td>BadgeForeground</td>
-<td>Brush</td>
-<td>Gets or sets the foreground brush for the Badge.</td>
-</tr>
-<tr>
-<td>BadgePlacementMode</td>
-<td>BadgePlacementMode</td>
-<td>Gets or sets the placement of the Badge relative to its content.</td>
-</tr>
-<tr>
-<td>BadgeMargin</td>
-<td>Thickness</td>
-<td>Gets or sets a margin which can be used to make minor adjustments to the placement of the Badge.</td>
-</tr>
-<tr>
-<td>IsBadgeSet</td>
-<td>bool (readonly)</td>
-<td>Indicates whether the Badge has content to display.</td>
-</tr>
-<tr>
-<td>BadgeChanged</td>
-<td>RoutedEvent</td>
-<td>Occurs if the Badge property was changed.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="badgeplacementmode-enum">BadgePlacementMode enum</h2>
-<p>Specifies the position of the badge.</p>
-<h3 id="fields">Fields</h3>
-<table>
-<thead>
-<tr>
-<th>Value</th>
+<th>Default</th>
 <th></th>
-<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>TopLeft</td>
-<td>0</td>
-<td>Shows the badge on the top left corner.</td>
+<td><code>Badge</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+<td>what the badge shows</td>
 </tr>
 <tr>
-<td>Top</td>
-<td>1</td>
-<td>Shows the badge on top.</td>
+<td><code>BadgePlacementMode</code></td>
+<td><code>BadgePlacementMode</code></td>
+<td><code>TopRight</code></td>
+<td>where it sits</td>
 </tr>
 <tr>
-<td>TopRight</td>
-<td>2</td>
-<td>Shows the badge on the top right corner.</td>
+<td><code>BadgeMargin</code></td>
+<td><code>Thickness</code></td>
+<td><code>1 0</code></td>
+<td>nudges the badge from that position</td>
 </tr>
 <tr>
-<td>Right</td>
-<td>3</td>
-<td>Shows the bage on the right side.</td>
+<td><code>BadgeBackground</code></td>
+<td><code>Brush</code></td>
+<td><code>MahApps.Brushes.Badged.Background</code></td>
+<td></td>
 </tr>
 <tr>
-<td>BottomRight</td>
-<td>4</td>
-<td>Shows the badge on the bottom right corner.</td>
+<td><code>BadgeForeground</code></td>
+<td><code>Brush</code></td>
+<td><code>MahApps.Brushes.Badged.Foreground</code></td>
+<td></td>
 </tr>
 <tr>
-<td>Bottom</td>
-<td>5</td>
-<td>Shows the badge on bottom.</td>
+<td><code>BadgeBorderBrush</code></td>
+<td><code>Brush</code></td>
+<td><code>null</code></td>
+<td></td>
 </tr>
 <tr>
-<td>BottomLeft</td>
-<td>6</td>
-<td>Shows the  badge on the bottom left corner.</td>
+<td><code>BadgeBorderThickness</code></td>
+<td><code>Thickness</code></td>
+<td><code>0</code></td>
+<td></td>
 </tr>
 <tr>
-<td>Left</td>
-<td>7</td>
-<td>Shows the badge on the left side.</td>
+<td><code>BadgeFontFamily</code>, <code>BadgeFontSize</code>, <code>BadgeFontStyle</code>, <code>BadgeFontStretch</code>, <code>BadgeFontWeight</code></td>
+<td></td>
+<td><code>11</code>, <code>DemiBold</code> for the last two</td>
+<td>the badge's own font, independent of the content's</td>
+</tr>
+<tr>
+<td><code>BadgeStringFormat</code></td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>format for a non-string <code>Badge</code></td>
+</tr>
+<tr>
+<td><code>BadgeTemplate</code>, <code>BadgeTemplateSelector</code></td>
+<td></td>
+<td><code>null</code></td>
+<td>for a badge that is more than text</td>
+</tr>
+<tr>
+<td><code>BadgeChangedStoryboard</code></td>
+<td><code>Storyboard</code></td>
+<td>a scale animation</td>
+<td>see above</td>
+</tr>
+<tr>
+<td><code>IsBadgeSet</code></td>
+<td><code>bool</code>, read-only</td>
+<td></td>
+<td>whether there is anything to show</td>
+</tr>
+<tr>
+<td><code>BadgeChanged</code></td>
+<td><code>RoutedEvent</code></td>
+<td></td>
+<td>raised when <code>Badge</code> changes</td>
 </tr>
 </tbody>
 </table>
+<h2 id="badgeplacementmode">BadgePlacementMode</h2>
+<p>Eight values, all shown in the first figure: <code>TopLeft</code>, <code>Top</code>, <code>TopRight</code>, <code>Right</code>, <code>BottomRight</code>, <code>Bottom</code>, <code>BottomLeft</code>, <code>Left</code>.</p>
+<p>The corner modes put the badge outside the control's corner; the edge modes centre it on that edge. Either way the badge overhangs, so leave a little room around a <code>Badged</code> or the badge will be clipped by a tight container.</p>
 
 
                                         </div>
@@ -460,12 +489,11 @@ The <code>IconPacks</code> control in the samples can be found <a href="https://
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#examples">Examples</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-badge-content">The badge content</a></div>
+                    <div class="sidebar-nav-item"><a href="#styling-the-badge">Styling the badge</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-pop-when-the-value-changes">The pop when the value changes</a></div>
                     <div class="sidebar-nav-item"><a href="#properties">Properties</a></div>
-                    <div class="sidebar-nav-item"><a href="#badgeplacementmode-enum">BadgePlacementMode enum</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#fields">Fields</a></div>
-                        </div>
+                    <div class="sidebar-nav-item"><a href="#badgeplacementmode">BadgePlacementMode</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/Badged.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

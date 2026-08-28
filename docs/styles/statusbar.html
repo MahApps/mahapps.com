@@ -256,12 +256,119 @@ StatusBar
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>Two implicit styles, applied by <code>Styles/Controls.xaml</code>. A MahApps status bar is not a grey strip at the bottom of the window — it is a second title bar, in the accent colour, and it dims with the window.</p>
+<p><img src="images/statusbar-default.png" alt="A status bar in an active MetroWindow" /></p>
+<pre><code class="language-xml">&lt;mah:MetroWindow&gt;
+    &lt;DockPanel&gt;
+        &lt;StatusBar DockPanel.Dock=&quot;Bottom&quot;&gt;
+            &lt;StatusBarItem Content=&quot;Ready&quot; /&gt;
+            &lt;Separator Style=&quot;{StaticResource MahApps.Styles.Separator.StatusBar}&quot; /&gt;
+            &lt;StatusBarItem Content=&quot;Ln 42, Col 7&quot; /&gt;
+            &lt;Separator Style=&quot;{StaticResource MahApps.Styles.Separator.StatusBar}&quot; /&gt;
+            &lt;StatusBarItem Content=&quot;UTF-8&quot; /&gt;
+        &lt;/StatusBar&gt;
+        &lt;!-- content --&gt;
+    &lt;/DockPanel&gt;
+&lt;/mah:MetroWindow&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.StatusBar</code></td>
+<td>the implicit one</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.StatusBarItem</code></td>
+<td>the implicit item style</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Separator.StatusBar</code></td>
+<td>the separator between items — <strong>keyed, see below</strong></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.StatusBar.Clean</code></td>
+<td>the Clean variant, dark text instead of light</td>
+</tr>
+</tbody>
+</table>
+<h2 id="it-borrows-the-window-title-colour">It borrows the window title colour</h2>
+<p>The style has no <code>Background</code> setter. Two <code>MultiDataTrigger</code>s supply one by reaching up to the <code>MetroWindow</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Window</th>
+<th>Background</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>active</td>
+<td>the window's <code>WindowTitleBrush</code></td>
+</tr>
+<tr>
+<td>not active</td>
+<td>its <code>NonActiveWindowTitleBrush</code></td>
+</tr>
+</tbody>
+</table>
+<p>So the bar matches the title bar, accent and all, and greys out with it when the window loses focus. That is also why <code>Foreground</code> is <code>MahApps.Brushes.IdealForeground</code> — the colour picked to read against the accent — and why the separator and the item border use it too.</p>
+<div class="alert alert-warning"><p><strong>Outside a <code>MetroWindow</code> the bar disappears.</strong> The two triggers bind through <code>FindAncestor</code> to a <code>MetroWindow</code>; with none above it they supply nothing, the background stays unset, and light text is left on the page:</p>
+<p><img src="images/statusbar-nowindow.png" alt="The same bar with and without a MetroWindow above it" /></p>
+<p>Both panels are the same markup. If you need a status bar in a plain <code>Window</code>, in a dialog, or anywhere else outside the window chrome, set <code>Background</code> and <code>Foreground</code> yourself:</p>
+<pre><code class="language-xml">&lt;StatusBar Background=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+           Foreground=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot; /&gt;
+</code></pre>
+</div>
+<h2 id="the-separator-is-not-applied-for-you">The separator is not applied for you</h2>
+<p><img src="images/statusbar-separator.png" alt="A bare separator and a styled one" /></p>
+<p>A <code>&lt;Separator/&gt;</code> inside a <code>StatusBar</code> takes its style from <code>StatusBar.SeparatorStyleKey</code>, and <strong>MahApps does not define that key</strong>. The bar therefore gets WPF's default separator — a dark grey line, which on an accent-coloured strip is the wrong end of the palette. The MahApps one is <code>IdealForeground</code> at 0.75 opacity, which is what belongs there.</p>
+<p><code>MahApps.Styles.Separator.StatusBar</code> exists; it just has to be asked for, on every separator:</p>
+<pre><code class="language-xml">&lt;Separator Style=&quot;{StaticResource MahApps.Styles.Separator.StatusBar}&quot; /&gt;
+</code></pre>
+<p>One line in the bar's resources does it for all of them:</p>
+<pre><code class="language-xml">&lt;StatusBar.Resources&gt;
+    &lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.Separator.StatusBar}&quot; TargetType=&quot;{x:Type Separator}&quot; /&gt;
+&lt;/StatusBar.Resources&gt;
+</code></pre>
+<h2 id="fonts">Fonts</h2>
+<p>Like <a href="menus">menus</a>, the status bar takes its font family, style and weight from the Windows shell settings rather than from <code>Fonts.xaml</code>:</p>
+<pre><code class="language-xml">&lt;Setter Property=&quot;FontFamily&quot; Value=&quot;{DynamicResource {x:Static SystemFonts.StatusFontFamilyKey}}&quot; /&gt;
+</code></pre>
+<p>Only the size is the library's, <code>MahApps.Font.Size.StatusBar</code>, which is 12. MahApps redefines the system <em>colour</em> keys in its themes but not the system <em>font</em> keys, so this really is the user's status-bar font.</p>
+<h2 id="items">Items</h2>
+<p><code>MahApps.Styles.StatusBarItem</code> is short: <code>Padding</code> of 3, content left-aligned and vertically centred, a <code>BorderBrush</code> of <code>IdealForeground</code> with no thickness, and a disabled foreground of <code>Gray2</code>.</p>
+<p>A <code>StatusBarItem</code> is a <code>ContentControl</code>, so anything goes in it — a <a href="progressbar">ProgressBar</a> for a background job is the usual second inhabitant of a status bar:</p>
+<pre><code class="language-xml">&lt;StatusBarItem&gt;
+    &lt;ProgressBar Width=&quot;120&quot; Height=&quot;10&quot; IsIndeterminate=&quot;True&quot; /&gt;
+&lt;/StatusBarItem&gt;
+</code></pre>
+<h2 id="the-clean-variant">The Clean variant</h2>
+<p><code>Styles/Clean/StatusBar.xaml</code> holds <code>MahApps.Styles.StatusBar.Clean</code> and <code>MahApps.Styles.Separator.Clean</code>. Each is the ordinary style with one setter changed — the foreground and the separator colour move from <code>IdealForeground</code> to <code>MahApps.Brushes.ThemeForeground</code>, so the text is dark rather than light.</p>
+<div class="alert alert-warning"><p>The dictionary is not merged by <code>Controls.xaml</code>; add <code>Styles/Clean/StatusBar.xaml</code> first. And note that the variant does <strong>not</strong> change the background — the window-title triggers are inherited along with everything else, so on a dark accent you would be putting dark text on it. It is meant for the Clean style set, where the title brush is light.</p>
+</div>
+<pre><code class="language-xml">&lt;StatusBar Style=&quot;{DynamicResource MahApps.Styles.StatusBar.Clean}&quot; /&gt;
+</code></pre>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#it-borrows-the-window-title-colour">It borrows the window title colour</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-separator-is-not-applied-for-you">The separator is not applied for you</a></div>
+                    <div class="sidebar-nav-item"><a href="#fonts">Fonts</a></div>
+                    <div class="sidebar-nav-item"><a href="#items">Items</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-clean-variant">The Clean variant</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/statusbar.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

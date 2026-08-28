@@ -331,12 +331,162 @@ MetroTabControl
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>MetroTabControl</code> looks like a styled <a href="../styles/tabcontrol">TabControl</a> and adds three things: a close button per tab, a say in whether tab contents survive a switch, and a margin for the strip.</p>
+<p><img src="images/metrotabcontrol-default.png" alt="A MetroTabControl with close buttons" /></p>
+<pre><code class="language-xml">&lt;mah:MetroTabControl&gt;
+    &lt;mah:MetroTabItem Header=&quot;General&quot; CloseButtonEnabled=&quot;True&quot;&gt;
+        &lt;TextBlock Margin=&quot;10&quot; Text=&quot;First page&quot; /&gt;
+    &lt;/mah:MetroTabItem&gt;
+    &lt;mah:MetroTabItem Header=&quot;Display&quot; CloseButtonEnabled=&quot;True&quot;&gt;
+        &lt;TextBlock Margin=&quot;10&quot; Text=&quot;Second page&quot; /&gt;
+    &lt;/mah:MetroTabItem&gt;
+&lt;/mah:MetroTabControl&gt;
+</code></pre>
+<p>Its style is based on <code>MahApps.Styles.TabControl</code>, so everything on the <a href="../styles/tabcontrol">TabControl styles</a> page applies: the placement triggers, the underline through <a href="../helper/tabcontrolhelper">TabControlHelper</a>, the large header font.</p>
+<p>Bind <code>ItemsSource</code> and you do not have to make the items yourself — <code>GetContainerForItemOverride</code> hands back a <a href="MetroTabItem">MetroTabItem</a>, not a plain <code>TabItem</code>, so the close button is available either way.</p>
+<h2 id="keeping-the-visual-tree">Keeping the visual tree</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>KeepVisualTreeInMemoryWhenChangingTabs</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>keep every tab's content alive instead of rebuilding it</td>
+</tr>
+</tbody>
+</table>
+<p>This is the property worth knowing about, and it works by swapping the template outright:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>template</th>
+<th>what the content is</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>False</code></td>
+<td><code>MahApps.Templates.MetroTabControl.DoNotKeepVisualTreeInMemory</code></td>
+<td>a <code>ContentPresenter</code> bound to <code>SelectedContent</code>, as WPF does it — the old page is discarded on every switch</td>
+</tr>
+<tr>
+<td><code>True</code></td>
+<td><code>MahApps.Templates.MetroTabControl.KeepVisualTreeInMemory</code></td>
+<td>a <code>PART_ItemsHolder</code> that the <code>TabControlEx</code> base fills with one container per tab and shows or hides</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;mah:MetroTabControl KeepVisualTreeInMemoryWhenChangingTabs=&quot;True&quot; /&gt;
+</code></pre>
+<div class="alert alert-info"><p>Turn it on when rebuilding a page is expensive or throws away state — a half-filled form, a scroll position, a loaded document, a <code>WebView</code>. Leave it off when the tabs are many or heavy, because every one of them then stays realised for the lifetime of the control.</p>
+<p><code>MetroTabControl</code> derives from <code>TabControlEx</code> (ControlzEx), which is where the holder mechanism comes from. Note that it is the <em>template</em> that decides: a template of your own without <code>PART_ItemsHolder</code> will not keep anything, whatever the property says.</p>
+</div>
+<h2 id="closing-tabs">Closing tabs</h2>
+<p><code>CloseTabCommand</code> on the control replaces the whole removal:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CloseTabCommand</code></td>
+<td><code>ICommand</code></td>
+<td>run instead of removing the tab</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;mah:MetroTabControl CloseTabCommand=&quot;{Binding CloseDocumentCommand}&quot; /&gt;
+</code></pre>
+<p>The parameter is the item's <code>CloseTabCommandParameter</code> if it has one, otherwise the <code>MetroTabItem</code> itself.</p>
+<div class="alert alert-warning"><p>When this command is set, <strong>the control does not remove the tab and does not raise <code>TabItemClosingEvent</code></strong> — it runs the command and stops. Removing the item is then yours to do.</p>
+</div>
+<p>With no command set, the control raises a cancellable event instead:</p>
+<pre><code class="language-csharp">private void OnTabItemClosing(object sender, BaseMetroTabControl.TabItemClosingEventArgs e)
+{
+    if (e.ClosingTabItem.Header.ToString() == &quot;Home&quot;)
+    {
+        e.Cancel = true;
+    }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;mah:MetroTabControl TabItemClosingEvent=&quot;OnTabItemClosing&quot; /&gt;
+</code></pre>
+<p><code>TabItemClosingEventArgs</code> derives from <code>CancelEventArgs</code>, so <code>e.Cancel = true</code> keeps the tab. Left alone, the control removes the item — from <code>Items</code> when there is no <code>ItemsSource</code>, and from the bound collection otherwise, matching either the container or its <code>DataContext</code>.</p>
+<p>The whole order, once a close button is clicked:</p>
+<ol>
+<li>the item's own <code>CloseTabCommand</code>, if set, runs — see <a href="MetroTabItem">MetroTabItem</a>;</li>
+<li>the control's <code>CloseTabCommand</code>, if set, runs and nothing further happens;</li>
+<li>otherwise <code>TabItemClosingEvent</code> is raised, and unless it is cancelled the item is removed.</li>
+</ol>
+<h2 id="tabstripmargin">TabStripMargin</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TabStripMargin</code></td>
+<td><code>Thickness</code></td>
+<td><code>0</code></td>
+<td>margin around the header strip</td>
+</tr>
+</tbody>
+</table>
+<p>Room around the tabs without moving the content — useful when the strip shares a row with something of your own, such as a &quot;new tab&quot; button.</p>
+<h2 id="the-animated-siblings">The animated siblings</h2>
+<p>Two more controls share the same base, <code>BaseMetroTabControl</code>, and therefore the same closing behaviour, <code>TabStripMargin</code> and item type:</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MetroAnimatedTabControl</code></td>
+<td>fades the page in when the tab changes</td>
+</tr>
+<tr>
+<td><code>MetroAnimatedSingleRowTabControl</code></td>
+<td>the same, with a strip that scrolls rather than wraps</td>
+</tr>
+</tbody>
+</table>
+<p>They are separate controls, not styles. The equivalents for a plain <code>TabControl</code> are <code>MahApps.Styles.TabControl.Animated</code> and <code>MahApps.Styles.TabControl.AnimatedSingleRow</code> — see <a href="../styles/tabcontrol">TabControl</a>.</p>
+<p>Neither of those two exposes <code>KeepVisualTreeInMemoryWhenChangingTabs</code>; it is declared on <code>MetroTabControl</code> itself.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#keeping-the-visual-tree">Keeping the visual tree</a></div>
+                    <div class="sidebar-nav-item"><a href="#closing-tabs">Closing tabs</a></div>
+                    <div class="sidebar-nav-item"><a href="#tabstripmargin">TabStripMargin</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-animated-siblings">The animated siblings</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/MetroTabControl.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

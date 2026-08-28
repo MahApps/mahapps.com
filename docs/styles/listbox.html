@@ -256,12 +256,164 @@ ListBox
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>Two implicit styles, one for the list and one for the items in it. <code>Styles/Controls.xaml</code> applies both, so the <a href="../guides/quick-start">quick start</a> is the whole setup.</p>
+<p><img src="images/listbox-default.png" alt="A list with an item selected and one disabled" /></p>
+<pre><code class="language-xml">&lt;ListBox&gt;
+    &lt;ListBoxItem Content=&quot;Ada Lovelace&quot; /&gt;
+    &lt;ListBoxItem Content=&quot;Grace Hopper&quot; IsSelected=&quot;True&quot; /&gt;
+    &lt;ListBoxItem Content=&quot;Alan Turing&quot; /&gt;
+    &lt;ListBoxItem Content=&quot;Edsger Dijkstra&quot; IsEnabled=&quot;False&quot; /&gt;
+    &lt;ListBoxItem Content=&quot;Barbara Liskov&quot; /&gt;
+&lt;/ListBox&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.ListBox</code></td>
+<td>the implicit one</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ListBoxItem</code></td>
+<td>the implicit item style</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ListBox.Virtualized</code></td>
+<td>the same list with recycling virtualisation switched on</td>
+</tr>
+</tbody>
+</table>
+<h2 id="no-border">No border</h2>
+<div class="alert alert-warning"><p><code>BorderThickness</code> is <strong><code>0</code></strong> — the source even says so in a comment. A MahApps list has no frame, which surprises people coming from WPF's default. <code>BorderBrush</code>, meanwhile, is <code>MahApps.Brushes.ThemeForeground</code>, so switching the border on gives you a black box rather than the grey hairline you probably wanted. Set both.</p>
+</div>
+<p><img src="images/listbox-border.png" alt="The default and a bordered list" /></p>
+<pre><code class="language-xml">&lt;ListBox BorderThickness=&quot;1&quot;
+         BorderBrush=&quot;{DynamicResource MahApps.Brushes.Control.Border}&quot;
+         mah:ControlsHelper.CornerRadius=&quot;4&quot; /&gt;
+</code></pre>
+<p><code>ControlsHelper.CornerRadius</code> is template-bound on the border, so a rounded list costs one attached property — with a caveat.</p>
+<div class="alert alert-warning"><p><strong>Rounded corners are bitten out at the top.</strong> The template root is a plain <code>Border</code>, and a <code>Border</code> clips its own background to its <code>CornerRadius</code> but <strong>not its child</strong>. The item style paints an opaque <code>MahApps.Brushes.ThemeBackground</code> behind every item, so the first item's square corners cover the arc:</p>
+<p><img src="images/listbox-cornerradius.png" alt="CornerRadius 8 with the default item background and with transparent items" /></p>
+<p>The bottom corners survive in the figure only because the last item ends above them.</p>
+<p>The one-line fix is to stop the items painting, and let the list's own background show through:</p>
+<pre><code class="language-xml">&lt;ListBox.ItemContainerStyle&gt;
+    &lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.ListBoxItem}&quot; TargetType=&quot;{x:Type ListBoxItem}&quot;&gt;
+        &lt;Setter Property=&quot;Background&quot; Value=&quot;Transparent&quot; /&gt;
+    &lt;/Style&gt;
+&lt;/ListBox.ItemContainerStyle&gt;
+</code></pre>
+<p>Or wrap the list in a <code>mah:ClipBorder</code>, which does clip its child, and leave the <code>ListBox</code> square:</p>
+<pre><code class="language-xml">&lt;mah:ClipBorder BorderBrush=&quot;{DynamicResource MahApps.Brushes.Control.Border}&quot;
+                BorderThickness=&quot;1&quot;
+                CornerRadius=&quot;4&quot;&gt;
+    &lt;ListBox BorderThickness=&quot;0&quot; /&gt;
+&lt;/mah:ClipBorder&gt;
+</code></pre>
+<p><a href="listview">ListView</a> and <a href="treeview">TreeView</a> have the same template shape and the same caveat.</p>
+</div>
+<h2 id="two-selection-colours">Two selection colours</h2>
+<p><img src="images/listbox-selection.png" alt="The same list focused and unfocused" /></p>
+<p>A selected item is drawn one way while the list has focus and another way when focus is elsewhere — the accent proper against a lighter tint of it. That is WPF's <code>Selector.IsSelectionActive</code> and MahApps gives the two states different brushes:</p>
+<table>
+<thead>
+<tr>
+<th>State</th>
+<th>Brush</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>selected, list focused</td>
+<td><code>ItemHelper.ActiveSelectionBackgroundBrush</code></td>
+<td><code>MahApps.Brushes.Accent</code></td>
+</tr>
+<tr>
+<td>selected, focus elsewhere</td>
+<td><code>ItemHelper.SelectedBackgroundBrush</code></td>
+<td><code>MahApps.Brushes.Accent2</code></td>
+</tr>
+</tbody>
+</table>
+<p>Recolouring only one of the two is the usual mistake: the list looks right until the user clicks somewhere else.</p>
+<h2 id="the-item-states">The item states</h2>
+<p>Everything the item template draws comes from <a href="../helper/itemhelper">ItemHelper</a> — a pair of brushes, background and foreground, for each state. The style fills in eleven of them:</p>
+<table>
+<thead>
+<tr>
+<th>Set by the style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ActiveSelection*</code></td>
+<td>accent, ideal foreground</td>
+</tr>
+<tr>
+<td><code>Selected*</code></td>
+<td><code>Accent2</code></td>
+</tr>
+<tr>
+<td><code>Hover*</code></td>
+<td><code>Accent3</code>, ordinary text colour</td>
+</tr>
+<tr>
+<td><code>HoverSelected*</code></td>
+<td>accent</td>
+</tr>
+<tr>
+<td><code>DisabledForegroundBrush</code></td>
+<td><code>MahApps.Brushes.Gray</code></td>
+</tr>
+<tr>
+<td><code>DisabledSelected*</code></td>
+<td><code>Gray7</code></td>
+</tr>
+</tbody>
+</table>
+<p>Five are deliberately left unset: <code>DisabledBackgroundBrush</code> and the two pairs for <code>MouseLeftButtonPressed*</code> and <code>MouseRightButtonPressed*</code>. That is not an oversight — <code>ItemHelper</code> only attaches the mouse handlers that track the pressed state <strong>when one of those brushes is set</strong>, so an item that does not want a pressed colour costs nothing:</p>
+<pre><code class="language-xml">&lt;ListBox.ItemContainerStyle&gt;
+    &lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.ListBoxItem}&quot; TargetType=&quot;{x:Type ListBoxItem}&quot;&gt;
+        &lt;Setter Property=&quot;mah:ItemHelper.MouseLeftButtonPressedBackgroundBrush&quot; Value=&quot;{DynamicResource MahApps.Brushes.AccentBase}&quot; /&gt;
+        &lt;Setter Property=&quot;mah:ItemHelper.MouseLeftButtonPressedForegroundBrush&quot; Value=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot; /&gt;
+    &lt;/Style&gt;
+&lt;/ListBox.ItemContainerStyle&gt;
+</code></pre>
+<div class="alert alert-info"><p>Set these on the <strong>item</strong>, through <code>ItemContainerStyle</code>, not on the <code>ListBox</code>. The properties inherit, so setting them on the list looks like it should work — but the item style already sets most of them, and a style setter on the item beats a value inherited from its parent. <a href="../helper/itemhelper">ItemHelper</a> has the full list of twenty-odd brushes.</p>
+</div>
+<h2 id="scrolling-and-virtualisation">Scrolling and virtualisation</h2>
+<p>The style bakes in the scroll settings, so a <code>ScrollViewer</code> of your own around a <code>ListBox</code> is never needed: both bars are <code>Auto</code>, <code>CanContentScroll</code> is <code>True</code> — item-by-item scrolling — and <code>PanningMode</code> is <code>Both</code> for touch, with <code>Stylus.IsFlicksEnabled</code> off.</p>
+<p><code>MahApps.Styles.ListBox.Virtualized</code> adds the four properties that turn on a recycling <code>VirtualizingStackPanel</code>:</p>
+<pre><code class="language-xml">&lt;ListBox Style=&quot;{StaticResource MahApps.Styles.ListBox.Virtualized}&quot; ItemsSource=&quot;{Binding ManyItems}&quot; /&gt;
+</code></pre>
+<p>The base style already swaps in a virtualising panel if you set <code>VirtualizingStackPanel.IsVirtualizing=&quot;True&quot;</code> yourself; the variant is the same thing with the other three properties along for the ride.</p>
+<p>Grouping is the exception the template handles for you: with <code>IsGrouping</code> on and <code>IsVirtualizingWhenGrouping</code> off, it turns <code>CanContentScroll</code> back off, because item-based scrolling and non-virtualised groups do not mix.</p>
+<h2 id="visual-studio">Visual Studio</h2>
+<p><code>Styles/VS/ListBox.xaml</code> holds <code>MahApps.Styles.ListBox.VisualStudio</code> and <code>MahApps.Styles.ListBoxItem.VisualStudio</code>. As with the other Visual Studio styles they are not merged by <code>Controls.xaml</code> — add <code>Styles/VS/Controls.xaml</code> and <code>Styles/VS/Colors.xaml</code> — and they are drawn for the dark shell.</p>
+<h2 id="related">Related</h2>
+<p><a href="listview">ListView</a> is the same idea with columns, and <a href="combobox">ComboBox</a> drop-downs use <code>ListBoxItem</code> too, so the brushes above colour them as well. The <a href="../controls/HamburgerMenu">HamburgerMenu</a> pane is a <code>ListBox</code> with its own item styles.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#no-border">No border</a></div>
+                    <div class="sidebar-nav-item"><a href="#two-selection-colours">Two selection colours</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-item-states">The item states</a></div>
+                    <div class="sidebar-nav-item"><a href="#scrolling-and-virtualisation">Scrolling and virtualisation</a></div>
+                    <div class="sidebar-nav-item"><a href="#visual-studio">Visual Studio</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/listbox.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

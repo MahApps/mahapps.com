@@ -331,12 +331,98 @@ MetroTabItem
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>MetroTabItem</code> is a <code>TabItem</code> with a close button and the four properties around it. It is what <a href="MetroTabControl">MetroTabControl</a> creates for you when you bind <code>ItemsSource</code>, and its style is based on <code>MahApps.Styles.TabItem</code>, so everything on the <a href="../styles/tabcontrol">TabControl styles</a> page applies here too.</p>
+<p><img src="images/metrotabitem-closebutton.png" alt="CloseButtonEnabled off and on" /></p>
+<pre><code class="language-xml">&lt;mah:MetroTabControl&gt;
+    &lt;mah:MetroTabItem Header=&quot;General&quot; CloseButtonEnabled=&quot;True&quot;&gt;
+        &lt;TextBlock Margin=&quot;10&quot; Text=&quot;First page&quot; /&gt;
+    &lt;/mah:MetroTabItem&gt;
+&lt;/mah:MetroTabControl&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CloseButtonEnabled</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>whether the tab has a close button at all</td>
+</tr>
+<tr>
+<td><code>CloseButtonMargin</code></td>
+<td><code>Thickness</code></td>
+<td><code>0</code></td>
+<td>where that button sits</td>
+</tr>
+<tr>
+<td><code>CloseTabCommand</code></td>
+<td><code>ICommand</code></td>
+<td><code>null</code></td>
+<td>run when the button is clicked</td>
+</tr>
+<tr>
+<td><code>CloseTabCommandParameter</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+<td>what the command is handed</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-button-appears-on-the-selected-tab">The button appears on the selected tab</h2>
+<p>Look at the figure: only <em>Display</em> has a cross, and all three tabs have <code>CloseButtonEnabled=&quot;True&quot;</code>.</p>
+<p><code>CloseButtonEnabled</code> alone puts the button in the layout but leaves it <code>Hidden</code> — it takes up its space so the header does not jump. Two triggers make it <code>Visible</code>: the tab being <strong>selected</strong>, and the pointer being <strong>over</strong> it. That is the usual pattern for closable tabs, and it is why the figure shows one cross rather than three.</p>
+<p>The button's size follows <code>HeaderedControlHelper.HeaderFontSize</code> through a converter, so it stays in proportion when you shrink the tab headers.</p>
+<div class="alert alert-info"><p><code>CloseButtonEnabled</code> and <code>CloseButtonMargin</code> are declared with <code>FrameworkPropertyMetadataOptions.Inherits</code>, but they are properties of <code>MetroTabItem</code>, not attached properties — you cannot write them on the <code>MetroTabControl</code>. Put them on each item, or in an <code>ItemContainerStyle</code>:</p>
+<pre><code class="language-xml">&lt;mah:MetroTabControl.ItemContainerStyle&gt;
+    &lt;Style BasedOn=&quot;{StaticResource {x:Type mah:MetroTabItem}}&quot; TargetType=&quot;{x:Type mah:MetroTabItem}&quot;&gt;
+        &lt;Setter Property=&quot;CloseButtonEnabled&quot; Value=&quot;True&quot; /&gt;
+    &lt;/Style&gt;
+&lt;/mah:MetroTabControl.ItemContainerStyle&gt;
+</code></pre>
+</div>
+<h2 id="what-the-close-button-does">What the close button does</h2>
+<p>The button raises no <code>Click</code> you can handle — a <code>CloseTabItemAction</code> behaviour is attached to it, and that runs a fixed sequence:</p>
+<ol>
+<li><strong>The item's <code>CloseTabCommand</code></strong> executes, if it is set and <code>CanExecute</code> allows it.</li>
+<li>Then the control's <code>CloseThisTabItem</code> runs, which either executes the <strong>control's</strong> <code>CloseTabCommand</code> and stops, or raises the cancellable <code>TabItemClosingEvent</code> and removes the tab.</li>
+</ol>
+<div class="alert alert-warning"><p>The two commands are not alternatives, and this is the part that catches people:</p>
+<p><strong>The item's command cannot stop the tab from closing.</strong> It runs first, the sequence continues regardless, and a <code>CanExecute</code> that returns <code>false</code> only means the command does not run — the tab still goes. Use it for the side effect: save the document, log the close, release a handle.</p>
+<p>To <em>prevent</em> a close you need one of the other two: set <code>CloseTabCommand</code> on the <a href="MetroTabControl">MetroTabControl</a>, which replaces the removal entirely, or handle <code>TabItemClosingEvent</code> and set <code>e.Cancel</code>.</p>
+</div>
+<pre><code class="language-xml">&lt;mah:MetroTabItem Header=&quot;Report&quot;
+                  CloseButtonEnabled=&quot;True&quot;
+                  CloseTabCommand=&quot;{Binding SaveBeforeCloseCommand}&quot;
+                  CloseTabCommandParameter=&quot;{Binding RelativeSource={RelativeSource Self}, Path=Header}&quot; /&gt;
+</code></pre>
+<p><code>CloseTabCommandParameter</code> does double duty: it is the parameter for the item's command, and — when the item's command is not set — the control's <code>CloseTabCommand</code> receives it too, falling back to the <code>MetroTabItem</code> itself.</p>
+<h2 id="the-plain-tabitem-alternative">The plain TabItem alternative</h2>
+<p><code>TabControlHelper</code> has <code>CloseButtonEnabled</code>, <code>CloseTabCommand</code> and <code>CloseTabCommandParameter</code> as attached properties that work on an ordinary <code>TabItem</code>.</p>
+<div class="alert alert-warning"><p>Those three are read <strong>only by the Visual Studio tab style</strong> in <code>Styles/VS/TabControl.xaml</code>. Under the ordinary MahApps styles they do nothing, and the close button in the figure above comes from <code>MetroTabItem</code>'s own properties. If you want closable tabs without the Visual Studio look, use <code>MetroTabItem</code>.</p>
+</div>
+<h2 id="related">Related</h2>
+<p><a href="MetroTabControl">MetroTabControl</a> for the closing pipeline seen from the other end, <a href="../styles/tabcontrol">TabControl</a> for the look, and <a href="../helper/tabcontrolhelper">TabControlHelper</a> for the underline and the transition.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-button-appears-on-the-selected-tab">The button appears on the selected tab</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-the-close-button-does">What the close button does</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-plain-tabitem-alternative">The plain TabItem alternative</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/MetroTabItem.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

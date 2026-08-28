@@ -256,12 +256,121 @@ ListView
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>Three implicit styles cover a <code>ListView</code>: the list, its rows, and the column headers a <code>GridView</code> puts above them. <code>Styles/Controls.xaml</code> applies all three.</p>
+<p><img src="images/listview-gridview.png" alt="A ListView with a GridView" /></p>
+<pre><code class="language-xml">&lt;ListView ItemsSource=&quot;{Binding Albums}&quot;&gt;
+    &lt;ListView.View&gt;
+        &lt;GridView&gt;
+            &lt;GridViewColumn Width=&quot;150&quot; Header=&quot;Title&quot; DisplayMemberBinding=&quot;{Binding Title}&quot; /&gt;
+            &lt;GridViewColumn Width=&quot;90&quot; Header=&quot;Genre&quot; DisplayMemberBinding=&quot;{Binding Genre}&quot; /&gt;
+            &lt;GridViewColumn Width=&quot;60&quot; Header=&quot;Price&quot; DisplayMemberBinding=&quot;{Binding Price}&quot; /&gt;
+        &lt;/GridView&gt;
+    &lt;/ListView.View&gt;
+&lt;/ListView&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.ListView</code></td>
+<td>the implicit one</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ListViewItem</code></td>
+<td>the implicit row style</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.GridViewColumnHeader</code></td>
+<td>the implicit header style</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ListView.Virtualized</code></td>
+<td>the same list with recycling virtualisation</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ListViewItem.NonSelectable</code></td>
+<td>rows that cannot be selected</td>
+</tr>
+</tbody>
+</table>
+<p>Everything about the row states — the two selection colours, hover, disabled — works exactly as it does on a <a href="listbox">ListBox</a>, through the same <a href="../helper/itemhelper">ItemHelper</a> brushes, with the same defaults. That page has the detail; only what is different here is below.</p>
+<h2 id="column-headers">Column headers</h2>
+<p>The headers are upper-cased. <code>MahApps.Styles.GridViewColumnHeader</code> sets <code>ControlsHelper.ContentCharacterCasing</code> to <code>Upper</code> and the weight to <code>SemiBold</code>, so <code>Header=&quot;Title&quot;</code> comes out as <em>TITLE</em>. Set the casing back if you would rather it did not:</p>
+<pre><code class="language-xml">&lt;GridViewColumn Header=&quot;Title&quot;&gt;
+    &lt;GridViewColumn.HeaderContainerStyle&gt;
+        &lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.GridViewColumnHeader}&quot; TargetType=&quot;{x:Type GridViewColumnHeader}&quot;&gt;
+            &lt;Setter Property=&quot;mah:ControlsHelper.ContentCharacterCasing&quot; Value=&quot;Normal&quot; /&gt;
+        &lt;/Style&gt;
+    &lt;/GridViewColumn.HeaderContainerStyle&gt;
+&lt;/GridViewColumn&gt;
+</code></pre>
+<p>The header content sits in a <code>mah:ContentControlEx</code>, which is what makes the casing work, and a <code>Thumb</code> on the right edge is the resize gripper.</p>
+<p>The list's own template wraps everything in <code>MahApps.Styles.ScrollViewer.GridView</code> rather than the ordinary scroll viewer — that is the one that keeps the header row in place while the rows scroll under it. See <a href="scrollbars">ScrollBar</a>.</p>
+<h2 id="pixel-scrolling-by-default">Pixel scrolling by default</h2>
+<div class="alert alert-info"><p><code>MahApps.Styles.ListView</code> sets <code>ScrollViewer.CanContentScroll</code> to <strong><code>False</code></strong>, where <a href="listbox">ListBox</a> sets it to <code>True</code>. A <code>ListView</code> therefore scrolls by pixel, which is smooth and right for rows of differing heights, and it means the list is <strong>not</strong> virtualised: every row is realised up front.</p>
+<p>For a long list use <code>MahApps.Styles.ListView.Virtualized</code>, which turns <code>CanContentScroll</code> back on together with recycling virtualisation and deferred scrolling:</p>
+<pre><code class="language-xml">&lt;ListView Style=&quot;{StaticResource MahApps.Styles.ListView.Virtualized}&quot; ItemsSource=&quot;{Binding ManyRows}&quot; /&gt;
+</code></pre>
+</div>
+<p>The rest of the list style is the same as the <code>ListBox</code> one: <code>BorderThickness</code> <code>0</code> with <code>BorderBrush</code> on <code>ThemeForeground</code>, <code>ControlsHelper.CornerRadius</code> on the border, both scrollbars <code>Auto</code>.</p>
+<p>A rounded corner is bitten out at the top for the same reason it is on a <a href="listbox">ListBox</a> — the template root is a plain <code>Border</code> and the opaque item background covers the arc. That page has the two workarounds.</p>
+<h2 id="rows-that-cannot-be-selected">Rows that cannot be selected</h2>
+<p><code>MahApps.Styles.ListViewItem.NonSelectable</code> is for a grid that only displays. It drops the selection triggers, sets <code>IsTabStop</code> to <code>False</code> and leaves one hover colour:</p>
+<p><img src="images/listview-nonselectable.png" alt="The default rows and non-selectable ones" /></p>
+<pre><code class="language-xml">&lt;ListView ItemContainerStyle=&quot;{StaticResource MahApps.Styles.ListViewItem.NonSelectable}&quot; /&gt;
+</code></pre>
+<div class="alert alert-warning"><p>Two things about this style are worth knowing before you reach for it.</p>
+<p>Its hover colour is the literal <strong><code>#e0eff8</code></strong> — a pale blue written into the template rather than a theme brush. Under the dark base theme it stays pale blue.</p>
+<p>It also carries <code>AlternationIndex</code> triggers meant to shade every other row, and they point at <code>AlternateRow1BackgroundBrush</code> and <code>AlternateRow2BackgroundBrush</code> — <strong>resource keys that do not exist anywhere in MahApps.Metro v2</strong>. They are v1.x names that survived the rename. The <code>DynamicResource</code> finds nothing, so the rows are not striped.</p>
+</div>
+<div class="alert alert-info"><p>Both are already fixed in <code>develop</code> and will arrive with the next release: <code>MahApps.Styles.ListViewItem.NonSelectable</code> is now based on <code>MahApps.Styles.ListViewItem</code> and uses theme brushes throughout, which removes the hardcoded colour and the two dead keys along with the triggers that used them.</p>
+</div>
+<h2 id="striping-the-rows">Striping the rows</h2>
+<p><code>AlternationCount</code> is <code>2</code> on the list style, so the index is being counted for you — the ordinary row style simply has no trigger reading it. Two routes get you stripes:</p>
+<p><img src="images/listview-alternation.png" alt="Plain rows, an AlternationIndex trigger, and the missing keys supplied" /></p>
+<p>The middle panel adds a trigger of its own, which is the one to use — it works today and after the fix above:</p>
+<pre><code class="language-xml">&lt;ListView.ItemContainerStyle&gt;
+    &lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.ListViewItem}&quot; TargetType=&quot;{x:Type ListViewItem}&quot;&gt;
+        &lt;Style.Triggers&gt;
+            &lt;Trigger Property=&quot;ItemsControl.AlternationIndex&quot; Value=&quot;1&quot;&gt;
+                &lt;Setter Property=&quot;Background&quot; Value=&quot;{DynamicResource MahApps.Brushes.Gray8}&quot; /&gt;
+            &lt;/Trigger&gt;
+        &lt;/Style.Triggers&gt;
+    &lt;/Style&gt;
+&lt;/ListView.ItemContainerStyle&gt;
+</code></pre>
+<p>The right-hand panel is the non-selectable style with the two missing keys defined, which brings its own triggers to life and is what pins the diagnosis:</p>
+<pre><code class="language-xml">&lt;ListView.Resources&gt;
+    &lt;SolidColorBrush x:Key=&quot;AlternateRow1BackgroundBrush&quot; Color=&quot;Transparent&quot; /&gt;
+    &lt;SolidColorBrush x:Key=&quot;AlternateRow2BackgroundBrush&quot; Color=&quot;{StaticResource MahApps.Colors.Gray8}&quot; /&gt;
+&lt;/ListView.Resources&gt;
+</code></pre>
+<p>That second route stops working once the fix ships, since the triggers go with it. Prefer the first.</p>
+<div class="alert alert-info"><p>Pick the grey with care. <code>MahApps.Brushes.Gray10</code> is the obvious-looking choice and it is <strong><code>#F7F7F7</code></strong> under the light theme — eight steps off white, which is invisible on most screens. <code>Gray8</code> is <code>#E0E0E0</code> and reads as a stripe, and it inverts sensibly in the dark theme, where it is <code>#454545</code>.</p>
+</div>
+<p>Note in the middle panel that the selected row keeps its selection colour: <code>Background</code> is what the trigger sets, and the selection brushes are applied on top of it by the template.</p>
+<h2 id="related">Related</h2>
+<p><a href="listbox">ListBox</a> is the same list without columns, and <a href="datagrid">DataGrid</a> is the editable, sortable one — reach for that when the rows are data rather than a list of things.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#column-headers">Column headers</a></div>
+                    <div class="sidebar-nav-item"><a href="#pixel-scrolling-by-default">Pixel scrolling by default</a></div>
+                    <div class="sidebar-nav-item"><a href="#rows-that-cannot-be-selected">Rows that cannot be selected</a></div>
+                    <div class="sidebar-nav-item"><a href="#striping-the-rows">Striping the rows</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/listview.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
