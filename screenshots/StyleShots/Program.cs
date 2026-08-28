@@ -47,6 +47,7 @@ namespace StyleShots
                     try
                     {
                         LoadCalendarStyles();
+                        await HyperlinkFiguresAsync();
                         await GridSplitterFiguresAsync();
                         await GroupBoxFiguresAsync();
                         await ExpanderFiguresAsync();
@@ -517,6 +518,28 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task HyperlinkFiguresAsync()
+        {
+            // IsMouseOver cannot be forced on a Hyperlink and an off-screen
+            // render has no pointer, so the middle panel paints the brush the
+            // trigger would apply rather than pretending to be a real hover.
+            // The caption says so.
+            await CaptureAsync("styles", "hyperlink-states",
+                Showcase(
+                    ("normal", Xaml(@"<TextBlock FontSize=""14""><Hyperlink>MahApps.Metro</Hyperlink></TextBlock>")),
+                    ("mouse over, the brush the trigger applies",
+                        Xaml(@"<TextBlock FontSize=""14""><Hyperlink Foreground=""{DynamicResource MahApps.Brushes.Highlight}"">MahApps.Metro</Hyperlink></TextBlock>")),
+                    ("disabled", Xaml(@"<TextBlock FontSize=""14""><Hyperlink IsEnabled=""False"">MahApps.Metro</Hyperlink></TextBlock>"))));
+
+            await CaptureAsync("styles", "hyperlink-inline",
+                Showcase(
+                    ("a link inside running text",
+                        Xaml(@"<TextBlock Width=""330"" FontSize=""14"" TextWrapping=""Wrap"">
+                                 The source code is <Hyperlink>hosted on GitHub</Hyperlink> and includes
+                                 everything needed to build it yourself.
+                               </TextBlock>"))));
+        }
 
         private static async Task GridSplitterFiguresAsync()
         {
