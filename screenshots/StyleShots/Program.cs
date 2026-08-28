@@ -47,6 +47,7 @@ namespace StyleShots
                     try
                     {
                         LoadCalendarStyles();
+                        await GridSplitterFiguresAsync();
                         await GroupBoxFiguresAsync();
                         await ExpanderFiguresAsync();
                         await DataGridFiguresAsync();
@@ -516,6 +517,67 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task GridSplitterFiguresAsync()
+        {
+            await CaptureAsync("styles", "gridsplitter-directions",
+                Showcase(
+                    ("between columns, Width set", Xaml(@"
+                        <Grid Width=""260"" Height=""110"">
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=""*"" />
+                            <ColumnDefinition Width=""Auto"" />
+                            <ColumnDefinition Width=""*"" />
+                          </Grid.ColumnDefinitions>
+                          <Border Background=""{DynamicResource MahApps.Brushes.Gray10}"">
+                            <TextBlock Margin=""10"" VerticalAlignment=""Center"" Text=""left"" />
+                          </Border>
+                          <GridSplitter Grid.Column=""1"" Width=""4"" />
+                          <Border Grid.Column=""2"" Background=""{DynamicResource MahApps.Brushes.Gray10}"">
+                            <TextBlock Margin=""10"" VerticalAlignment=""Center"" Text=""right"" />
+                          </Border>
+                        </Grid>")),
+                    ("between rows, Height set", Xaml(@"
+                        <Grid Width=""200"" Height=""130"">
+                          <Grid.RowDefinitions>
+                            <RowDefinition Height=""*"" />
+                            <RowDefinition Height=""Auto"" />
+                            <RowDefinition Height=""*"" />
+                          </Grid.RowDefinitions>
+                          <Border Background=""{DynamicResource MahApps.Brushes.Gray10}"">
+                            <TextBlock Margin=""10"" VerticalAlignment=""Center"" Text=""top"" />
+                          </Border>
+                          <GridSplitter Grid.Row=""1"" Height=""4"" />
+                          <Border Grid.Row=""2"" Background=""{DynamicResource MahApps.Brushes.Gray10}"">
+                            <TextBlock Margin=""10"" VerticalAlignment=""Center"" Text=""bottom"" />
+                          </Border>
+                        </Grid>"))));
+
+            await CaptureAsync("styles", "gridsplitter-look",
+                Showcase(
+                    ("default, 4 wide", Xaml(@"
+                        <Grid Width=""220"" Height=""90"">
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=""*"" />
+                            <ColumnDefinition Width=""Auto"" />
+                            <ColumnDefinition Width=""*"" />
+                          </Grid.ColumnDefinitions>
+                          <Border Background=""{DynamicResource MahApps.Brushes.Gray10}"" />
+                          <GridSplitter Grid.Column=""1"" Width=""4"" />
+                          <Border Grid.Column=""2"" Background=""{DynamicResource MahApps.Brushes.Gray10}"" />
+                        </Grid>")),
+                    ("wider and recoloured", Xaml(@"
+                        <Grid Width=""220"" Height=""90"">
+                          <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=""*"" />
+                            <ColumnDefinition Width=""Auto"" />
+                            <ColumnDefinition Width=""*"" />
+                          </Grid.ColumnDefinitions>
+                          <Border Background=""{DynamicResource MahApps.Brushes.Gray10}"" />
+                          <GridSplitter Grid.Column=""1"" Width=""10"" Background=""{DynamicResource MahApps.Brushes.Accent}"" />
+                          <Border Grid.Column=""2"" Background=""{DynamicResource MahApps.Brushes.Gray10}"" />
+                        </Grid>"))));
+        }
 
         private static async Task GroupBoxFiguresAsync()
         {
