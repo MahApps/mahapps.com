@@ -52,6 +52,7 @@ namespace StyleShots
                     try
                     {
                         LoadCalendarStyles();
+                        await TextFiguresAsync();
                         await RangeSliderFiguresAsync();
                         await SliderFiguresAsync();
                         await ProgressRingFiguresAsync();
@@ -537,6 +538,69 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task TextFiguresAsync()
+        {
+            await CaptureAsync("styles", "text-label-textblock",
+                Showcase(
+                    ("Label", Inherited(@"<Label Background=""#FFE3F2FD"" Content=""Sample text"" />")),
+                    ("TextBlock", Inherited(@"<TextBlock Background=""#FFE3F2FD"" Text=""Sample text"" />"))));
+
+            await CaptureAsync("styles", "text-label-casing",
+                Showcase(
+                    ("Normal, the default", Inherited(@"<Label Content=""Sample text"" mah:ControlsHelper.ContentCharacterCasing=""Normal"" />")),
+                    ("Upper", Inherited(@"<Label Content=""Sample text"" mah:ControlsHelper.ContentCharacterCasing=""Upper"" />")),
+                    ("Lower", Inherited(@"<Label Content=""Sample text"" mah:ControlsHelper.ContentCharacterCasing=""Lower"" />"))));
+
+            await CaptureAsync("styles", "text-label-accesskey",
+                Showcase(
+                    (@"Content=""_Name"", RecognizesAccessKey at its default of True",
+                        Inherited(@"<Label Content=""_Name"" />")),
+                    ("RecognizesAccessKey = False",
+                        Inherited(@"<Label Content=""_Name"" mah:ControlsHelper.RecognizesAccessKey=""False"" />"))));
+
+            await CaptureAsync("styles", "text-label-chip",
+                Showcase(
+                    ("a plain Label", Inherited(@"<Label Content=""Draft"" />")),
+                    ("Background, CornerRadius and Padding",
+                        Inherited(@"<Label Content=""Draft""
+                                          Background=""{DynamicResource MahApps.Brushes.Accent}""
+                                          Foreground=""{DynamicResource MahApps.Brushes.IdealForeground}""
+                                          Padding=""10 3""
+                                          mah:ControlsHelper.CornerRadius=""8"" />")),
+                    ("IsEnabled = False", Inherited(@"<Label Content=""Draft"" IsEnabled=""False"" />"))));
+
+            await CaptureAsync("styles", "text-textblock-styles",
+                Showcase(
+                    ("MahApps.Styles.TextBlock", Inherited(@"<TextBlock Text=""Sample text"" Style=""{DynamicResource MahApps.Styles.TextBlock}"" />")),
+                    (".Watermark", Inherited(@"<TextBlock Text=""Sample text"" Style=""{DynamicResource MahApps.Styles.TextBlock.Watermark}"" />")),
+                    (".AutoCollapsing", Inherited(@"<TextBlock Text=""Sample text"" Style=""{DynamicResource MahApps.Styles.TextBlock.AutoCollapsing}"" />")),
+                    (".AutoCollapsing with no text", Inherited(@"<TextBlock Text="""" Style=""{DynamicResource MahApps.Styles.TextBlock.AutoCollapsing}"" />"))));
+
+            await CaptureAsync("styles", "text-font-sizes",
+                Showcase(
+                    ("the sizes in Fonts.xaml",
+                        Inherited(@"<StackPanel>
+                                      <TextBlock Margin=""0 0 0 4"" FontSize=""{DynamicResource MahApps.Font.Size.Header}"" Text=""Header, 40"" />
+                                      <TextBlock Margin=""0 0 0 4"" FontSize=""{DynamicResource MahApps.Font.Size.SubHeader}"" Text=""SubHeader, 29.333"" />
+                                      <TextBlock Margin=""0 0 0 4"" FontSize=""{DynamicResource MahApps.Font.Size.Window.Title}"" Text=""Window.Title, 16"" />
+                                      <TextBlock Margin=""0 0 0 4"" FontSize=""{DynamicResource MahApps.Font.Size.Default}"" Text=""Default, 14"" />
+                                      <TextBlock Margin=""0 0 0 4"" FontSize=""{DynamicResource MahApps.Font.Size.Content}"" Text=""Content, 12 - what a MetroWindow hands down"" />
+                                      <TextBlock FontSize=""{DynamicResource MahApps.Font.Size.FloatingWatermark}"" Text=""FloatingWatermark, 10"" />
+                                    </StackPanel>"))));
+        }
+
+        // A bare Window is not a MetroWindow, so nothing hands the figures the
+        // font size and foreground that plain text actually inherits in an
+        // application. These two attached values are what the MetroWindow style
+        // sets, so the figures show what a reader would really see.
+        private static FrameworkElement Inherited(string inner)
+        {
+            return Xaml($@"<Grid TextElement.FontSize=""{{DynamicResource MahApps.Font.Size.Content}}""
+                                TextElement.Foreground=""{{DynamicResource MahApps.Brushes.ThemeForeground}}"">
+                             {inner}
+                           </Grid>");
+        }
 
         private static async Task RangeSliderFiguresAsync()
         {
