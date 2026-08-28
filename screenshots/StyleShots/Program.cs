@@ -575,6 +575,22 @@ namespace StyleShots
                     ("BorderThickness and a corner radius",
                         Listing(@"BorderThickness=""1"" mah:ControlsHelper.CornerRadius=""4"""))));
 
+            await CaptureAsync("styles", "listbox-cornerradius",
+                Showcase(
+                    ("CornerRadius 8, default item background",
+                        Listing(@"BorderThickness=""1"" mah:ControlsHelper.CornerRadius=""8""")),
+                    ("the same, items made transparent",
+                        Xaml(@"<ListBox Width=""190"" Height=""130"" BorderThickness=""1"" mah:ControlsHelper.CornerRadius=""8"">
+                                 <ListBox.ItemContainerStyle>
+                                   <Style BasedOn=""{StaticResource MahApps.Styles.ListBoxItem}"" TargetType=""{x:Type ListBoxItem}"">
+                                     <Setter Property=""Background"" Value=""Transparent"" />
+                                   </Style>
+                                 </ListBox.ItemContainerStyle>
+                                 <ListBoxItem Content=""Ada Lovelace"" />
+                                 <ListBoxItem Content=""Grace Hopper"" />
+                                 <ListBoxItem Content=""Alan Turing"" />
+                               </ListBox>"))));
+
             await CaptureAsync("styles", "listview-gridview",
                 Showcase(
                     ("a ListView with a GridView", View(string.Empty))));
@@ -584,6 +600,26 @@ namespace StyleShots
                     ("the default item style", View(string.Empty)),
                     ("MahApps.Styles.ListViewItem.NonSelectable",
                         View(@"ItemContainerStyle=""{StaticResource MahApps.Styles.ListViewItem.NonSelectable}"""))));
+
+            await CaptureAsync("styles", "listview-alternation",
+                Showcase(
+                    ("the default rows", View(string.Empty)),
+                    ("an AlternationIndex trigger of your own",
+                        View(@"", @"<ListView.ItemContainerStyle>
+                                      <Style BasedOn=""{StaticResource MahApps.Styles.ListViewItem}"" TargetType=""{x:Type ListViewItem}"">
+                                        <Style.Triggers>
+                                          <Trigger Property=""ItemsControl.AlternationIndex"" Value=""1"">
+                                            <Setter Property=""Background"" Value=""{DynamicResource MahApps.Brushes.Gray8}"" />
+                                          </Trigger>
+                                        </Style.Triggers>
+                                      </Style>
+                                    </ListView.ItemContainerStyle>")),
+                    ("NonSelectable, with the two missing keys supplied",
+                        View(@"ItemContainerStyle=""{StaticResource MahApps.Styles.ListViewItem.NonSelectable}""",
+                             @"<ListView.Resources>
+                                 <SolidColorBrush x:Key=""AlternateRow1BackgroundBrush"" Color=""Transparent"" />
+                                 <SolidColorBrush x:Key=""AlternateRow2BackgroundBrush"" Color=""{StaticResource MahApps.Colors.Gray8}"" />
+                               </ListView.Resources>"))));
 
             await CaptureAsync("styles", "treeview-default",
                 Showcase(
@@ -613,9 +649,10 @@ namespace StyleShots
             return list;
         }
 
-        private static FrameworkElement View(string attributes)
+        private static FrameworkElement View(string attributes, string resources = "")
         {
             var view = (ListView)XamlReader.Parse($@"<ListView {Xmlns} Width=""330"" Height=""130"" {attributes}>
+                                                      {resources}
                                                       <ListView.View>
                                                         <GridView>
                                                           <GridViewColumn Width=""150"" Header=""Title"" DisplayMemberBinding=""{{Binding Title}}"" />

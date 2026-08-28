@@ -43,6 +43,8 @@ As with [ListBox](listbox), `BorderThickness` is **`0`** — the same `<!-- defa
           mah:ControlsHelper.CornerRadius="4" />
 ```
 
+A rounded corner is bitten out at the top for the same reason it is on a [ListBox](listbox) — the template root is a plain `Border` and the opaque item background covers the arc. That page has the two workarounds.
+
 ## Indentation
 
 Nodes are indented by a `TreeViewMarginConverter` with `Length="12"`, which walks up the parent chain and multiplies. Twelve units per level is baked into the converter instance in the dictionary, so changing it means replacing the node template — there is no property for it.

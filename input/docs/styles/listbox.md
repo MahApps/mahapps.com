@@ -36,7 +36,37 @@ Two implicit styles, one for the list and one for the items in it. `Styles/Contr
          mah:ControlsHelper.CornerRadius="4" />
 ```
 
-`ControlsHelper.CornerRadius` is template-bound on the border, so a rounded list costs one attached property.
+`ControlsHelper.CornerRadius` is template-bound on the border, so a rounded list costs one attached property — with a caveat.
+
+:::{.alert .alert-warning}
+**Rounded corners are bitten out at the top.** The template root is a plain `Border`, and a `Border` clips its own background to its `CornerRadius` but **not its child**. The item style paints an opaque `MahApps.Brushes.ThemeBackground` behind every item, so the first item's square corners cover the arc:
+
+![CornerRadius 8 with the default item background and with transparent items](images/listbox-cornerradius.png)
+
+The bottom corners survive in the figure only because the last item ends above them.
+
+The one-line fix is to stop the items painting, and let the list's own background show through:
+
+```xml
+<ListBox.ItemContainerStyle>
+    <Style BasedOn="{StaticResource MahApps.Styles.ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+</ListBox.ItemContainerStyle>
+```
+
+Or wrap the list in a `mah:ClipBorder`, which does clip its child, and leave the `ListBox` square:
+
+```xml
+<mah:ClipBorder BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
+                BorderThickness="1"
+                CornerRadius="4">
+    <ListBox BorderThickness="0" />
+</mah:ClipBorder>
+```
+
+[ListView](listview) and [TreeView](treeview) have the same template shape and the same caveat.
+:::
 
 ## Two selection colours
 
