@@ -52,6 +52,7 @@ namespace StyleShots
                     try
                     {
                         LoadCalendarStyles();
+                        await MenuFiguresAsync();
                         await ToolTipFiguresAsync();
                         await TextFiguresAsync();
                         await RangeSliderFiguresAsync();
@@ -540,6 +541,91 @@ namespace StyleShots
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
 
+        private static async Task MenuFiguresAsync()
+        {
+            await CaptureAsync("styles", "menus-menubar",
+                Showcase(
+                    ("a menu bar", MenuBar(string.Empty))));
+
+            await CaptureAsync("styles", "menus-contextmenu",
+                Showcase(
+                    ("everything a menu item can carry", await MenuAsync(string.Empty))));
+
+            await CaptureAsync("styles", "menus-visualstudio",
+                Dark(
+                    ("MahApps.Styles.Menu.VisualStudio",
+                        MenuBar(@"Style=""{DynamicResource MahApps.Styles.Menu.VisualStudio}""",
+                                @"Style=""{DynamicResource MahApps.Styles.MenuItem.VisualStudio}""",
+                                visualStudio: true)),
+                    ("MahApps.Styles.MenuItem.VisualStudio",
+                        await MenuAsync(@"Style=""{DynamicResource MahApps.Styles.ContextMenu.VisualStudio}""",
+                                        @"Style=""{DynamicResource MahApps.Styles.MenuItem.VisualStudio}""",
+                                        visualStudio: true))));
+        }
+
+        private static FrameworkElement MenuBar(string attributes, string itemStyle = "", bool visualStudio = false)
+        {
+            // The Visual Studio dictionaries are not merged by Controls.xaml,
+            // so a figure that uses them has to bring them along.
+            var resources = visualStudio
+                ? @"<Menu.Resources>
+                      <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                          <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml"" />
+                          <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
+                        </ResourceDictionary.MergedDictionaries>
+                      </ResourceDictionary>
+                    </Menu.Resources>"
+                : string.Empty;
+
+            return Xaml($@"<Menu Width=""260"" {attributes}>
+                             {resources}
+                             <MenuItem Header=""_File"" {itemStyle} />
+                             <MenuItem Header=""_Edit"" {itemStyle} />
+                             <MenuItem Header=""_View"" {itemStyle} />
+                             <MenuItem Header=""_Help"" {itemStyle} />
+                           </Menu>");
+        }
+
+        // A ContextMenu is a Popup and refuses a parent like a ToolTip does, so
+        // it is opened and photographed the same way. Opened on its own it has
+        // no ancestor to resolve resources through, which is why the Visual
+        // Studio dictionaries are merged into the menu itself.
+        private static async Task<FrameworkElement> MenuAsync(string attributes, string itemStyle = "", bool visualStudio = false)
+        {
+            var resources = visualStudio
+                ? @"<ContextMenu.Resources>
+                      <ResourceDictionary>
+                        <ResourceDictionary.MergedDictionaries>
+                          <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml"" />
+                          <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
+                        </ResourceDictionary.MergedDictionaries>
+                      </ResourceDictionary>
+                    </ContextMenu.Resources>"
+                : string.Empty;
+
+            var menu = (ContextMenu)XamlReader.Parse($@"<ContextMenu {Xmlns} {attributes}>
+                  {resources}
+                  <MenuItem Header=""New"" InputGestureText=""Ctrl+N"" {itemStyle}>
+                    <MenuItem.Icon>
+                      <TextBlock FontFamily=""{{DynamicResource MahApps.Fonts.Family.SymbolTheme}}"" Text=""&#xE8A5;"" />
+                    </MenuItem.Icon>
+                  </MenuItem>
+                  <MenuItem Header=""Open"" InputGestureText=""Ctrl+O"" {itemStyle} />
+                  <Separator />
+                  <MenuItem Header=""Word wrap"" IsCheckable=""True"" IsChecked=""True"" {itemStyle} />
+                  <MenuItem Header=""Show line numbers"" IsCheckable=""True"" {itemStyle} />
+                  <Separator />
+                  <MenuItem Header=""Export as"" {itemStyle}>
+                    <MenuItem Header=""PDF"" {itemStyle} />
+                    <MenuItem Header=""HTML"" {itemStyle} />
+                  </MenuItem>
+                  <MenuItem Header=""Print"" InputGestureText=""Ctrl+P"" IsEnabled=""False"" {itemStyle} />
+                </ContextMenu>");
+
+            return await OpenPopupAsync(menu, m => m.IsOpen = true, m => m.IsOpen = false);
+        }
+
         private static async Task ToolTipFiguresAsync()
         {
             await CaptureAsync("styles", "tooltip-default",
@@ -574,9 +660,7 @@ namespace StyleShots
         }
 
         // A ToolTip cannot be given a parent - WPF throws - so it has to be
-        // opened in the popup it makes for itself and photographed there. The
-        // bitmap then goes into a Showcase like any other element, at exactly
-        // the scale it was rendered at, so nothing is resampled.
+        // opened in the popup it makes for itself and photographed there.
         private static async Task<FrameworkElement> TipAsync(string attributes, string content = null)
         {
             var tip = (ToolTip)XamlReader.Parse(
@@ -584,6 +668,31 @@ namespace StyleShots
                     ? $@"<ToolTip {Xmlns} {attributes} />"
                     : $@"<ToolTip {Xmlns} {attributes}>{content}</ToolTip>");
 
+            return await OpenPopupAsync(
+                tip,
+                t => t.IsOpen = true,
+                t => t.IsOpen = false,
+                t =>
+                    {
+                        // The template root starts at Opacity 0 and the Open
+                        // visual state fades it in over 0.3s. Opening it is not
+                        // always enough to get that state to run off-screen, so
+                        // the fade is finished by hand - an open tooltip is
+                        // opaque.
+                        if (t.Template?.FindName("Root", t) is FrameworkElement root && root.Opacity < 1)
+                        {
+                            root.BeginAnimation(UIElement.OpacityProperty, null);
+                            root.Opacity = 1;
+                        }
+                    });
+        }
+
+        // Opens a control that lives in its own popup, photographs it, and
+        // hands back the bitmap wrapped in an Image so it can go into a
+        // Showcase at exactly the scale it was rendered at - nothing resampled.
+        private static async Task<FrameworkElement> OpenPopupAsync<T>(T control, Action<T> open, Action<T> close, Action<T> settle = null)
+            where T : FrameworkElement
+        {
             var anchor = new Border { Width = 10, Height = 10 };
             var host = new Window
                        {
@@ -602,29 +711,30 @@ namespace StyleShots
             host.Show();
             await rendered.Task;
 
-            tip.PlacementTarget = anchor;
-            tip.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
-            tip.IsOpen = true;
+            if (control is ToolTip tip)
+            {
+                tip.PlacementTarget = anchor;
+                tip.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            }
+            else if (control is ContextMenu menu)
+            {
+                menu.PlacementTarget = anchor;
+                menu.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            }
 
-            // The template root starts at Opacity 0 and the Open visual state
-            // fades it in over 0.3s. Opening it is not always enough to get
-            // that state to run off-screen, so once it has had its time the
-            // fade is finished by hand - an open tooltip is opaque.
+            open(control);
+
             await Task.Delay(600);
             await host.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
 
-            if (tip.Template?.FindName("Root", tip) is FrameworkElement root && root.Opacity < 1)
-            {
-                root.BeginAnimation(UIElement.OpacityProperty, null);
-                root.Opacity = 1;
-            }
+            settle?.Invoke(control);
 
             await host.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
-            tip.UpdateLayout();
+            control.UpdateLayout();
 
-            var bitmap = Render(tip);
+            var bitmap = Render(control);
 
-            tip.IsOpen = false;
+            close(control);
             host.Close();
 
             return new Image { Source = bitmap, Width = bitmap.Width, Height = bitmap.Height };
@@ -1580,6 +1690,21 @@ namespace StyleShots
         }
 
         // ---------------------------------------------------------------- capture
+
+        // Same layout as Showcase, on the dark ground the Visual Studio styles
+        // are drawn for - on white their text all but disappears.
+        private static FrameworkElement Dark(params (string Caption, FrameworkElement View)[] items)
+        {
+            var panel = (Border)Showcase(items);
+            panel.Background = new SolidColorBrush(Color.FromRgb(0x2D, 0x2D, 0x30));
+
+            foreach (var column in ((StackPanel)panel.Child).Children.OfType<StackPanel>())
+            {
+                ((TextBlock)column.Children[0]).Foreground = new SolidColorBrush(Color.FromRgb(0xD0, 0xD0, 0xD4));
+            }
+
+            return panel;
+        }
 
         private static FrameworkElement Showcase(params (string Caption, FrameworkElement View)[] items)
         {
