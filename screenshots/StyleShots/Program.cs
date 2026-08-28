@@ -46,6 +46,8 @@ namespace StyleShots
                 {
                     try
                     {
+                        LoadCalendarStyles();
+                        await CalendarFiguresAsync();
                         await CheckBoxFiguresAsync();
                         await RadioButtonFiguresAsync();
                         await ButtonFiguresAsync();
@@ -206,6 +208,63 @@ namespace StyleShots
                                 <RadioButton {0} Content=""Small"" />
                                 <RadioButton Margin=""0 8 0 0"" {0} Content=""Medium"" IsChecked=""True"" />
                                 <RadioButton Margin=""0 8 0 0"" {0} Content=""Large"" />";
+
+        // The WinUI calendar dictionary is loaded from the file the docs page
+        // links to, rather than restated here, so the figure cannot show
+        // something the reader would not get by using that file.
+        private static void LoadCalendarStyles()
+        {
+            // Win10 merges WinUI, so loading it brings both families in.
+            var path = Path.GetFullPath(Path.Combine("input", "assets", "xaml", "Controls.Calendar.Win10.xaml"));
+            if (!File.Exists(path))
+            {
+                Console.WriteLine("NOTE: Controls.Calendar.Win10.xaml not found, the calendar figures will be skipped. Run from the repository root.");
+                return;
+            }
+
+            Application.Current.Resources.MergedDictionaries.Add(
+                new ResourceDictionary { Source = new Uri(path, UriKind.Absolute) });
+        }
+
+        private static async Task CalendarFiguresAsync()
+        {
+            const string month = @"DisplayDate=""2020-06-15"" SelectedDate=""2020-06-15""";
+
+            await CaptureAsync("styles", "calendar-styles",
+                Showcase(
+                    ("MahApps.Styles.Calendar",
+                        Xaml($@"<Calendar Style=""{{StaticResource MahApps.Styles.Calendar}}"" {month} />")),
+                    ("MahApps.Styles.Calendar.WinUI",
+                        Xaml($@"<Calendar Style=""{{StaticResource MahApps.Styles.Calendar.WinUI}}"" {month} />"))));
+
+            await CaptureAsync("styles", "calendar-win10",
+                Showcase(
+                    ("MahApps.Styles.Calendar.Win10",
+                        Xaml($@"<Calendar Style=""{{StaticResource MahApps.Styles.Calendar.Win10}}"" {month} />")),
+                    ("MahApps.Styles.Calendar.WinUI",
+                        Xaml($@"<Calendar Style=""{{StaticResource MahApps.Styles.Calendar.WinUI}}"" {month} />"))));
+
+            await CaptureAsync("styles", "calendar-winui-modes",
+                Showcase(
+                    ("DisplayMode=Month",
+                        Xaml($@"<Calendar Style=""{{StaticResource MahApps.Styles.Calendar.WinUI}}"" {month} />")),
+                    ("DisplayMode=Year",
+                        Xaml($@"<Calendar Style=""{{StaticResource MahApps.Styles.Calendar.WinUI}}"" DisplayMode=""Year"" {month} />")),
+                    ("DisplayMode=Decade",
+                        Xaml($@"<Calendar Style=""{{StaticResource MahApps.Styles.Calendar.WinUI}}"" DisplayMode=""Decade"" {month} />"))));
+
+            await CaptureAsync("styles", "calendar-winui-states",
+                Showcase(
+                    ("blackout dates",
+                        Xaml($@"<Calendar Style=""{{StaticResource MahApps.Styles.Calendar.WinUI}}"" {month}>
+                                  <Calendar.BlackoutDates>
+                                    <CalendarDateRange Start=""2020-06-20"" End=""2020-06-21"" />
+                                    <CalendarDateRange Start=""2020-06-27"" End=""2020-06-28"" />
+                                  </Calendar.BlackoutDates>
+                                </Calendar>")),
+                    ("IsEnabled=False",
+                        Xaml($@"<Calendar Style=""{{StaticResource MahApps.Styles.Calendar.WinUI}}"" IsEnabled=""False"" {month} />"))));
+        }
 
         private static async Task RadioButtonFiguresAsync()
         {
