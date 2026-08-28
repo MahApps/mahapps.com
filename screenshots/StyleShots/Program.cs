@@ -47,6 +47,7 @@ namespace StyleShots
                     try
                     {
                         LoadCalendarStyles();
+                        await DataGridFiguresAsync();
                         await CalendarFiguresAsync();
                         await CheckBoxFiguresAsync();
                         await RadioButtonFiguresAsync();
@@ -456,6 +457,80 @@ namespace StyleShots
             public string Title { get; set; }
 
             public string Genre { get; set; }
+
+            public double Price { get; set; }
+
+            public bool InStock { get; set; }
+        }
+
+        private static Album[] Albums()
+        {
+            return new[]
+                   {
+                       new Album { Title = "Kind of Blue", Genre = "Jazz", Price = 12.99, InStock = true },
+                       new Album { Title = "A Love Supreme", Genre = "Jazz", Price = 14.50, InStock = false },
+                       new Album { Title = "Remain in Light", Genre = "Rock", Price = 11.00, InStock = true },
+                       new Album { Title = "OK Computer", Genre = "Rock", Price = 15.75, InStock = true }
+                   };
+        }
+
+        // A DataGrid needs real objects, so these scenarios set ItemsSource from
+        // code and leave the columns - the part the pages print - in the XAML.
+        private static FrameworkElement Grid(string attributes, string columns)
+        {
+            var grid = (DataGrid)XamlReader.Parse(
+                $@"<DataGrid {Xmlns} AutoGenerateColumns=""False"" CanUserAddRows=""False"" IsReadOnly=""False"" {attributes}>
+                     <DataGrid.Columns>{columns}</DataGrid.Columns>
+                   </DataGrid>");
+            grid.ItemsSource = Albums();
+            return grid;
+        }
+
+        private const string AlbumColumns = @"
+                       <DataGridTextColumn Width=""130"" Binding=""{Binding Title}"" Header=""Title"" />
+                       <DataGridComboBoxColumn Width=""90"" Header=""Genre"" SelectedValueBinding=""{Binding Genre}"">
+                         <DataGridComboBoxColumn.ItemsSource>
+                           <x:Array Type=""sys:String"">
+                             <sys:String>Jazz</sys:String>
+                             <sys:String>Rock</sys:String>
+                           </x:Array>
+                         </DataGridComboBoxColumn.ItemsSource>
+                       </DataGridComboBoxColumn>
+                       <mah:DataGridNumericUpDownColumn Width=""90"" Binding=""{Binding Price}""
+                                                        Header=""Price"" StringFormat=""C"" Minimum=""0"" />
+                       <DataGridCheckBoxColumn Width=""90"" Binding=""{Binding InStock}"" Header=""In stock"" />";
+
+        private static async Task DataGridFiguresAsync()
+        {
+            const string simple = @"
+                       <DataGridTextColumn Width=""140"" Binding=""{Binding Title}"" Header=""Title"" />
+                       <DataGridTextColumn Width=""90"" Binding=""{Binding Genre}"" Header=""Genre"" />
+                       <DataGridCheckBoxColumn Width=""90"" Binding=""{Binding InStock}"" Header=""In stock"" />";
+
+            await CaptureAsync("styles", "datagrid-styles",
+                Showcase(
+                    ("implicit style", Grid(@"Height=""150""", simple)),
+                    ("MahApps.Styles.DataGrid.Azure",
+                        Grid(@"Height=""150"" Style=""{StaticResource MahApps.Styles.DataGrid.Azure}""", simple))));
+
+            await CaptureAsync("styles", "datagrid-columns",
+                Showcase(
+                    ("four column types, no ElementStyle set",
+                        Grid(@"Height=""150""", AlbumColumns))));
+
+            // The editing styles are ordinary styles on ordinary controls, so
+            // they can be shown without driving a cell into edit mode.
+            await CaptureAsync("styles", "datagrid-editing",
+                Showcase(
+                    ("TextBox.DataGrid.Editing",
+                        Xaml(@"<TextBox Width=""150"" Style=""{StaticResource MahApps.Styles.TextBox.DataGrid.Editing}"" Text=""Kind of Blue"" />")),
+                    ("ComboBox.DataGrid.Editing",
+                        Xaml(@"<ComboBox Width=""110"" Style=""{StaticResource MahApps.Styles.ComboBox.DataGrid.Editing}"" SelectedIndex=""0"">
+                                 <ComboBoxItem Content=""Jazz"" />
+                                 <ComboBoxItem Content=""Rock"" />
+                               </ComboBox>")),
+                    ("NumericUpDown.DataGrid.Editing",
+                        Xaml(@"<mah:NumericUpDown Width=""110"" Style=""{StaticResource MahApps.Styles.NumericUpDown.DataGrid.Editing}"" Value=""12.99"" StringFormat=""C"" />"))));
         }
 
         private static async Task CaptureDropDownAsync(string section, string name, string comboXaml, Action<ComboBox> configure = null)
