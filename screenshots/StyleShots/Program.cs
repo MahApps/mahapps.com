@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,6 +10,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
@@ -52,6 +56,8 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await ValidationFiguresAsync();
+                        await PageFiguresAsync();
                         await ToolBarFiguresAsync();
                         await StatusBarFiguresAsync();
                         await TabFiguresAsync();
@@ -560,6 +566,220 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        // A validation adornment needs a real binding in error, so the controls
+        // are bound to a throwaway source and marked invalid once the window is
+        // up. The popup lives in the adorner layer, in its own HWND, so it is
+        // photographed the way tooltips and menus are.
+        private static readonly List<(Control Control, DependencyProperty Property, string Message)> pendingInvalid = new();
+
+        private sealed class Dummy
+        {
+            public string Value { get; set; } = string.Empty;
+        }
+
+        // One control, three errors. A binding stops at the first failing
+        // ValidationRule, so several errors at once come from a source that
+        // implements INotifyDataErrorInfo and returns them all.
+        private sealed class ManyErrors : INotifyDataErrorInfo
+        {
+            public string Value { get; set; } = "seventeen%";
+
+            public bool HasErrors => true;
+
+            public event EventHandler<DataErrorsChangedEventArgs> ErrorsChanged
+            {
+                add { }
+                remove { }
+            }
+
+            public IEnumerable GetErrors(string propertyName)
+            {
+                return new[]
+                       {
+                           "Must be a whole number.",
+                           "Must be between 1 and 99.",
+                           "Remove the percent sign."
+                       };
+            }
+        }
+
+        private static async Task ValidationFiguresAsync()
+        {
+            await CaptureAsync("styles", "validation-adornment",
+                Showcase(
+                    ("a valid text box", Invalid(null)),
+                    ("the same with a validation error", Invalid("Enter a number between 1 and 99."))));
+
+            await CaptureAsync("styles", "validation-popup",
+                Showcase(
+                    ("one error", await ValidationPopupAsync("Enter a number between 1 and 99.")),
+                    ("three errors on the same control", await ValidationPopupAsync(null))));
+        }
+
+        private static FrameworkElement Invalid(string message)
+        {
+            var box = new TextBox { Width = 170, VerticalAlignment = VerticalAlignment.Center };
+            box.SetBinding(TextBox.TextProperty, new Binding(nameof(Dummy.Value)) { Source = new Dummy(), Mode = BindingMode.TwoWay });
+
+            if (message is not null)
+            {
+                pendingInvalid.Add((box, TextBox.TextProperty, message));
+            }
+
+            // Two things the adornment needs: room around the control, because
+            // it is drawn outside it, and an AdornerDecorator inside what gets
+            // rendered - the window has one, but it sits above the element the
+            // figure is captured from, so its layer would not be in the shot.
+            return new AdornerDecorator { Child = new Border { Padding = new Thickness(10), Child = box } };
+        }
+
+        // A null message means the many-errors source; otherwise one error is
+        // put on the binding by hand.
+        private static async Task<FrameworkElement> ValidationPopupAsync(string message)
+        {
+            var box = new TextBox { Width = 170 };
+
+            if (message is null)
+            {
+                box.SetBinding(TextBox.TextProperty,
+                               new Binding(nameof(ManyErrors.Value))
+                               {
+                                   Source = new ManyErrors(),
+                                   Mode = BindingMode.TwoWay,
+                                   ValidatesOnNotifyDataErrors = true
+                               });
+            }
+            else
+            {
+                box.SetBinding(TextBox.TextProperty, new Binding(nameof(Dummy.Value)) { Source = new Dummy(), Mode = BindingMode.TwoWay });
+            }
+
+            var host = new Window
+                       {
+                           Content = new Border { Padding = new Thickness(20), Child = box },
+                           SizeToContent = SizeToContent.WidthAndHeight,
+                           WindowStyle = WindowStyle.None,
+                           ShowInTaskbar = false,
+                           WindowStartupLocation = WindowStartupLocation.Manual,
+                           Left = -20000,
+                           Top = -20000,
+                           Background = Brushes.White
+                       };
+
+            var rendered = new TaskCompletionSource<bool>();
+            host.ContentRendered += (_, _) => rendered.TrySetResult(true);
+            host.Show();
+            await rendered.Task;
+
+            if (message is not null)
+            {
+                MarkInvalid(box, TextBox.TextProperty, message);
+            }
+
+            box.Focus();
+
+            await Task.Delay(600);
+            await host.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+
+            var popup = FindAdornerChild<System.Windows.Controls.Primitives.Popup>(box);
+            FrameworkElement result = null;
+
+            if (popup?.Child is FrameworkElement child)
+            {
+                child.UpdateLayout();
+                var bitmap = Render(child);
+                result = new Image { Source = bitmap, Width = bitmap.Width, Height = bitmap.Height };
+            }
+            else
+            {
+                Console.WriteLine("  validation popup not found");
+            }
+
+            host.Close();
+            return result ?? new Border { Width = 10, Height = 10 };
+        }
+
+        private static void MarkInvalid(FrameworkElement element, DependencyProperty property, string message)
+        {
+            var expression = element.GetBindingExpression(property);
+
+            if (expression is null)
+            {
+                return;
+            }
+
+            Validation.MarkInvalid(expression, new ValidationError(new ExceptionValidationRule(), expression) { ErrorContent = message });
+        }
+
+        private static T FindAdornerChild<T>(UIElement adorned)
+            where T : DependencyObject
+        {
+            var adorners = AdornerLayer.GetAdornerLayer(adorned)?.GetAdorners(adorned);
+
+            if (adorners is null)
+            {
+                return null;
+            }
+
+            foreach (var adorner in adorners)
+            {
+                if (FindVisualChild<T>(adorner) is { } found)
+                {
+                    return found;
+                }
+            }
+
+            return null;
+        }
+
+        private static T FindVisualChild<T>(DependencyObject root)
+            where T : DependencyObject
+        {
+            if (root is T match)
+            {
+                return match;
+            }
+
+            for (var i = 0; i < VisualTreeHelper.GetChildrenCount(root); i++)
+            {
+                if (FindVisualChild<T>(VisualTreeHelper.GetChild(root, i)) is { } found)
+                {
+                    return found;
+                }
+            }
+
+            return null;
+        }
+
+        private static async Task PageFiguresAsync()
+        {
+            // A Frame is a boundary for both property value inheritance and
+            // resource lookup: neither the surrounding TextElement values nor a
+            // locally merged theme reach the Page inside it. So the figure puts
+            // the frames on a dark surface instead, where a Page that brings no
+            // background of its own is plain to see.
+            await CaptureAsync("styles", "page-style",
+                Dark(
+                    ("a Page with no style", Paged(string.Empty)),
+                    ("Style=\"{DynamicResource MahApps.Styles.Page}\"", Paged(@"Style=""{DynamicResource MahApps.Styles.Page}"""))));
+        }
+
+        private static FrameworkElement Paged(string attributes)
+        {
+            return Xaml($@"<Border Width=""230"" Height=""110"">
+                             <Frame NavigationUIVisibility=""Hidden"">
+                               <Frame.Content>
+                                 <Page {attributes}>
+                                   <StackPanel Margin=""10"">
+                                     <TextBlock Text=""Text on a page"" />
+                                     <TextBlock Margin=""0 4 0 0"" Text=""Second line"" />
+                                   </StackPanel>
+                                 </Page>
+                               </Frame.Content>
+                             </Frame>
+                           </Border>");
+        }
 
         private static async Task ToolBarFiguresAsync()
         {
@@ -2326,6 +2546,13 @@ namespace StyleShots
             }
 
             pendingExpand.Clear();
+
+            foreach (var (control, property, message) in pendingInvalid)
+            {
+                MarkInvalid(control, property, message);
+            }
+
+            pendingInvalid.Clear();
 
             foreach (var (control, state, at) in pendingSeeks)
             {
