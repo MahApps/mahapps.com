@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using MahApps.Metro.Controls;
 
 namespace StyleShots
 {
@@ -47,6 +50,7 @@ namespace StyleShots
                     try
                     {
                         LoadCalendarStyles();
+                        await MetroProgressBarFiguresAsync();
                         await ProgressBarFiguresAsync();
                         await HyperlinkFiguresAsync();
                         await GridSplitterFiguresAsync();
@@ -105,6 +109,13 @@ namespace StyleShots
         // an off-screen render never triggers. Driving the same part directly
         // is the only way to photograph the state.
         private static readonly List<PasswordBox> pendingCapsLock = new();
+
+        // The dot animation is a VisualState storyboard the MetroProgressBar
+        // starts on itself once it is loaded, and it starts it controllable.
+        // Left running, the dots land wherever the render happens to catch
+        // them and the figure changes on every run; seeking the clock to a
+        // fixed time and pausing it pins them.
+        private static readonly List<MetroProgressBar> pendingSeeks = new();
 
         private static FrameworkElement Box(string attributes, string password = null, bool capsLock = false, double width = 190)
         {
@@ -519,6 +530,77 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task MetroProgressBarFiguresAsync()
+        {
+            await CaptureAsync("controls", "metroprogressbar-values",
+                Showcase(
+                    ("Value = 0", MetroBar(@"Value=""0""")),
+                    ("Value = 35", MetroBar(@"Value=""35""")),
+                    ("Value = 70", MetroBar(@"Value=""70""")),
+                    ("Value = 100", MetroBar(@"Value=""100"""))));
+
+            await CaptureAsync("controls", "metroprogressbar-vs-progressbar",
+                Showcase(
+                    ("ProgressBar", Xaml(@"<ProgressBar Width=""190"" Height=""12"" Value=""70"" />")),
+                    ("MetroProgressBar", MetroBar(@"Value=""70"""))));
+
+            await CaptureAsync("controls", "metroprogressbar-track",
+                Showcase(
+                    ("default", MetroBar(@"Value=""55""")),
+                    ("Background", MetroBar(@"Value=""55"" Background=""{DynamicResource MahApps.Brushes.Gray8}""")),
+                    ("Foreground", MetroBar(@"Value=""55"" Background=""{DynamicResource MahApps.Brushes.Gray8}"" Foreground=""#FF107C10"""))));
+
+            await CaptureAsync("controls", "metroprogressbar-indeterminate",
+                Showcase(
+                    ("IsIndeterminate", Dots(@""))));
+
+            await CaptureAsync("controls", "metroprogressbar-ellipses",
+                Showcase(
+                    ("automatic", Dots(@"")),
+                    ("EllipseDiameter = 8", Dots(@"EllipseDiameter=""8""")),
+                    ("EllipseDiameter = 8, EllipseOffset = 16", Dots(@"EllipseDiameter=""8"" EllipseOffset=""16"""))));
+
+            await CaptureAsync("controls", "metroprogressbar-vertical",
+                Showcase(
+                    ("Horizontal", MetroBar(@"Value=""60""")),
+                    ("Vertical",
+                        Xaml(@"<mah:MetroProgressBar Width=""6"" Height=""90"" Orientation=""Vertical"" Value=""60""
+                                                    Background=""{DynamicResource MahApps.Brushes.Gray8}"" />"))));
+        }
+
+        private static FrameworkElement MetroBar(string attributes)
+        {
+            return Xaml($@"<mah:MetroProgressBar Width=""190"" {attributes} />");
+        }
+
+        // No Background here: the indeterminate storyboard fades DeterminateRoot
+        // - which is what holds PART_Track - to zero, so the track is not on
+        // screen at all while the dots run.
+        private static FrameworkElement Dots(string attributes)
+        {
+            var bar = (MetroProgressBar)XamlReader.Parse(
+                $@"<mah:MetroProgressBar {Xmlns} Width=""190"" Height=""12"" IsIndeterminate=""True"" {attributes} />");
+            pendingSeeks.Add(bar);
+            return bar;
+        }
+
+        private static void SeekDots(MetroProgressBar bar, TimeSpan at)
+        {
+            if (bar.Template?.FindName("ContainingGrid", bar) is not FrameworkElement grid)
+            {
+                return;
+            }
+
+            var storyboard = VisualStateManager.GetVisualStateGroups(grid)
+                                               ?.OfType<VisualStateGroup>()
+                                               .SelectMany(group => group.States.OfType<VisualState>())
+                                               .FirstOrDefault(state => state.Name == "Indeterminate")
+                                               ?.Storyboard;
+
+            storyboard?.SeekAlignedToLastTick(grid, at, TimeSeekOrigin.BeginTime);
+            storyboard?.Pause(grid);
+        }
 
         private static async Task ProgressBarFiguresAsync()
         {
@@ -1174,6 +1256,13 @@ namespace StyleShots
 
             pendingPasswords.Clear();
             pendingCapsLock.Clear();
+
+            foreach (var bar in pendingSeeks)
+            {
+                SeekDots(bar, TimeSpan.FromSeconds(1.5));
+            }
+
+            pendingSeeks.Clear();
 
             // Nothing here animates, but the floating watermark and the reveal
             // button appear through the bindings above; let them settle.
