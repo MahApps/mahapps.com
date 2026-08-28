@@ -52,6 +52,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await ListFiguresAsync();
                         await ScrollBarFiguresAsync();
                         await MenuFiguresAsync();
                         await ToolTipFiguresAsync();
@@ -127,6 +128,11 @@ namespace StyleShots
         // figure changes on every run; seeking the clock to a fixed time and
         // pausing it pins them.
         private static readonly List<(Control Control, string State, TimeSpan At)> pendingSeeks = new();
+
+        // A selected item is drawn with ActiveSelectionBackgroundBrush only
+        // while Selector.IsSelectionActive is true, which needs focus inside
+        // the list. Every other figure has its focus cleared on purpose.
+        private static readonly List<System.Windows.Controls.Primitives.Selector> pendingFocus = new();
 
         private static FrameworkElement Box(string attributes, string password = null, bool capsLock = false, double width = 190)
         {
@@ -551,6 +557,127 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task ListFiguresAsync()
+        {
+            await CaptureAsync("styles", "listbox-default",
+                Showcase(
+                    ("a list with an item selected and one disabled", Listing(string.Empty))));
+
+            await CaptureAsync("styles", "listbox-selection",
+                Showcase(
+                    ("the list has focus", Listing(string.Empty, focus: true)),
+                    ("focus is elsewhere", Listing(string.Empty))));
+
+            await CaptureAsync("styles", "listbox-border",
+                Showcase(
+                    ("the default, BorderThickness 0", Listing(string.Empty)),
+                    ("BorderThickness and a corner radius",
+                        Listing(@"BorderThickness=""1"" mah:ControlsHelper.CornerRadius=""4"""))));
+
+            await CaptureAsync("styles", "listview-gridview",
+                Showcase(
+                    ("a ListView with a GridView", View(string.Empty))));
+
+            await CaptureAsync("styles", "listview-nonselectable",
+                Showcase(
+                    ("the default item style", View(string.Empty)),
+                    ("MahApps.Styles.ListViewItem.NonSelectable",
+                        View(@"ItemContainerStyle=""{StaticResource MahApps.Styles.ListViewItem.NonSelectable}"""))));
+
+            await CaptureAsync("styles", "treeview-default",
+                Showcase(
+                    ("a tree with one branch open and a node selected", Tree(string.Empty))));
+
+            await CaptureAsync("styles", "treeview-toggle",
+                Showcase(
+                    ("the default expander", Tree(string.Empty)),
+                    ("a ToggleButtonStyle of its own", Tree(string.Empty, bigExpander: true))));
+        }
+
+        private static FrameworkElement Listing(string attributes, bool focus = false)
+        {
+            var list = (ListBox)XamlReader.Parse($@"<ListBox {Xmlns} Width=""190"" Height=""130"" {attributes}>
+                                                     <ListBoxItem Content=""Ada Lovelace"" />
+                                                     <ListBoxItem Content=""Grace Hopper"" IsSelected=""True"" />
+                                                     <ListBoxItem Content=""Alan Turing"" />
+                                                     <ListBoxItem Content=""Edsger Dijkstra"" IsEnabled=""False"" />
+                                                     <ListBoxItem Content=""Barbara Liskov"" />
+                                                   </ListBox>");
+
+            if (focus)
+            {
+                pendingFocus.Add(list);
+            }
+
+            return list;
+        }
+
+        private static FrameworkElement View(string attributes)
+        {
+            var view = (ListView)XamlReader.Parse($@"<ListView {Xmlns} Width=""330"" Height=""130"" {attributes}>
+                                                      <ListView.View>
+                                                        <GridView>
+                                                          <GridViewColumn Width=""150"" Header=""Title"" DisplayMemberBinding=""{{Binding Title}}"" />
+                                                          <GridViewColumn Width=""90"" Header=""Genre"" DisplayMemberBinding=""{{Binding Genre}}"" />
+                                                          <GridViewColumn Width=""60"" Header=""Price"" DisplayMemberBinding=""{{Binding Price}}"" />
+                                                        </GridView>
+                                                      </ListView.View>
+                                                    </ListView>");
+
+            view.ItemsSource = Albums();
+            view.SelectedIndex = 1;
+            return view;
+        }
+
+        private static FrameworkElement Tree(string attributes, bool bigExpander = false)
+        {
+            var toggle = bigExpander
+                ? @"<TreeView.ItemContainerStyle>
+                      <Style BasedOn=""{StaticResource MahApps.Styles.TreeViewItem}"" TargetType=""{x:Type TreeViewItem}"">
+                        <Setter Property=""mah:TreeViewItemHelper.ToggleButtonStyle"">
+                          <Setter.Value>
+                            <Style TargetType=""{x:Type ToggleButton}"">
+                              <Setter Property=""Focusable"" Value=""False"" />
+                              <Setter Property=""Width"" Value=""20"" />
+                              <Setter Property=""Template"">
+                                <Setter.Value>
+                                  <ControlTemplate TargetType=""{x:Type ToggleButton}"">
+                                    <Border Background=""Transparent"">
+                                      <TextBlock x:Name=""Glyph""
+                                                 HorizontalAlignment=""Center"" VerticalAlignment=""Center""
+                                                 FontFamily=""{DynamicResource MahApps.Fonts.Family.SymbolTheme}""
+                                                 FontSize=""12""
+                                                 Foreground=""{DynamicResource MahApps.Brushes.Accent}""
+                                                 Text=""&#xE710;"" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                      <Trigger Property=""IsChecked"" Value=""True"">
+                                        <Setter TargetName=""Glyph"" Property=""Text"" Value=""&#xE738;"" />
+                                      </Trigger>
+                                    </ControlTemplate.Triggers>
+                                  </ControlTemplate>
+                                </Setter.Value>
+                              </Setter>
+                            </Style>
+                          </Setter.Value>
+                        </Setter>
+                      </Style>
+                    </TreeView.ItemContainerStyle>"
+                : string.Empty;
+
+            return Xaml($@"<TreeView Width=""190"" Height=""150"" {attributes}>
+                             {toggle}
+                             <TreeViewItem Header=""Documents"" IsExpanded=""True"">
+                               <TreeViewItem Header=""Invoices"" IsSelected=""True"" />
+                               <TreeViewItem Header=""Contracts"" />
+                             </TreeViewItem>
+                             <TreeViewItem Header=""Pictures"">
+                               <TreeViewItem Header=""Holiday"" />
+                             </TreeViewItem>
+                             <TreeViewItem Header=""Music"" />
+                           </TreeView>");
+        }
 
         private static async Task ScrollBarFiguresAsync()
         {
@@ -2037,6 +2164,22 @@ namespace StyleShots
             // focus landed, which is not something the scenario says. Clear it.
             Keyboard.ClearFocus();
             FocusManager.SetFocusedElement(window, null);
+
+            foreach (var selector in pendingFocus)
+            {
+                selector.Focus();
+
+                if (selector.ItemContainerGenerator.ContainerFromIndex(selector.SelectedIndex) is UIElement container)
+                {
+                    container.Focus();
+                }
+            }
+
+            if (pendingFocus.Count > 0)
+            {
+                pendingFocus.Clear();
+                await window.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+            }
 
             await window.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
 
