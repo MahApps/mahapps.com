@@ -52,6 +52,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await ToolBarFiguresAsync();
                         await StatusBarFiguresAsync();
                         await TabFiguresAsync();
                         await ListFiguresAsync();
@@ -559,6 +560,48 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task ToolBarFiguresAsync()
+        {
+            await CaptureAsync("styles", "toolbar-default",
+                Showcase(
+                    ("a toolbar in a tray", Bar())));
+
+            await CaptureAsync("styles", "toolbar-items",
+                Showcase(
+                    ("Button, ToggleButton, CheckBox and RadioButton, all inside a ToolBar",
+                        Xaml(@"<ToolBarTray>
+                                 <ToolBar>
+                                   <Button Content=""Button"" />
+                                   <ToggleButton Content=""Toggle"" IsChecked=""True"" />
+                                   <CheckBox Content=""Check"" IsChecked=""True"" />
+                                   <RadioButton Content=""Radio"" IsChecked=""True"" />
+                                 </ToolBar>
+                               </ToolBarTray>"))));
+
+            await CaptureAsync("styles", "toolbar-background",
+                Showcase(
+                    ("Background on the ToolBar", Bar(@"Background=""#FFFFCDD2""", string.Empty)),
+                    ("Background on the ToolBarTray", Bar(string.Empty, @"Background=""#FFFFCDD2"""))));
+
+            await CaptureAsync("styles", "toolbar-thumb",
+                Showcase(
+                    ("the tray unlocked, the default", Bar()),
+                    ("ToolBarTray.IsLocked", Bar(string.Empty, @"IsLocked=""True"""))));
+        }
+
+        private static FrameworkElement Bar(string toolBar = "", string tray = "")
+        {
+            return Xaml($@"<ToolBarTray {tray}>
+                             <ToolBar {toolBar}>
+                               <Button Content=""New"" />
+                               <Button Content=""Open"" />
+                               <Separator />
+                               <ToggleButton Content=""Bold"" IsChecked=""True"" />
+                               <ToggleButton Content=""Italic"" />
+                             </ToolBar>
+                           </ToolBarTray>");
+        }
 
         private static async Task StatusBarFiguresAsync()
         {
