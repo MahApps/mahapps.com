@@ -43,6 +43,6 @@ Base your own on the built-in one for the direction you are replacing, or the ar
 | `ExpandStoryboard` | `Storyboard` | played when the expander opens |
 | `CollapseStoryboard` | `Storyboard` | played when it closes |
 
-Both are empty unless you set them. With a storyboard in place the expanded and collapsed events run it instead of switching over in one frame.
+The helper's own default for both is `null`, but the `Expander` style fills them in — `MahApps.Storyboard.Expander.Expand` and `.Collapse`, a quarter-second opacity fade on the content site. So an expander already animates, and setting these replaces that animation rather than adding one. Set them to `{x:Null}` to have the content switch over in a single frame instead.
 
 `ExpandSiteControl` is read-only and exists for the template's own use; it gives the content site the storyboards are applied to.

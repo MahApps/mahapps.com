@@ -47,6 +47,8 @@ namespace StyleShots
                     try
                     {
                         LoadCalendarStyles();
+                        await GroupBoxFiguresAsync();
+                        await ExpanderFiguresAsync();
                         await DataGridFiguresAsync();
                         await CalendarFiguresAsync();
                         await CheckBoxFiguresAsync();
@@ -499,6 +501,142 @@ namespace StyleShots
                        <mah:DataGridNumericUpDownColumn Width=""90"" Binding=""{Binding Price}""
                                                         Header=""Price"" StringFormat=""C"" Minimum=""0"" />
                        <DataGridCheckBoxColumn Width=""90"" Binding=""{Binding InStock}"" Header=""In stock"" />";
+
+        // The Clean and Visual Studio styles live in dictionaries Controls.xaml
+        // does not merge, and the VS one brings its own colours. Merging them
+        // globally would recolour every other figure, so each scenario carries
+        // the dictionary it needs - which is also how the pages tell you to do it.
+        private const string CleanResources = @"
+            <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/Clean/Controls.xaml"" />";
+
+        private const string VsResources = @"
+            <ResourceDictionary>
+              <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml"" />
+                <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
+              </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary>";
+
+        private static async Task GroupBoxFiguresAsync()
+        {
+            await CaptureAsync("styles", "groupbox-styles",
+                Showcase(
+                    ("implicit style", Xaml(@"<GroupBox Width=""190"" Header=""Details"">
+                                                <TextBlock Margin=""4"" Text=""some content"" />
+                                              </GroupBox>")),
+                    ("MahApps.Styles.GroupBox.Clean",
+                        Xaml($@"<GroupBox Width=""190"" Header=""Details"" Style=""{{DynamicResource MahApps.Styles.GroupBox.Clean}}"">
+                                  <GroupBox.Resources>{CleanResources}</GroupBox.Resources>
+                                  <TextBlock Margin=""4"" Text=""some content"" />
+                                </GroupBox>")),
+                    // The Visual Studio style is built for the dark VS theme -
+                    // on white its header all but disappears - so this panel
+                    // gets the backdrop it was drawn for.
+                    ("MahApps.Styles.GroupBox.VisualStudio, on a dark backdrop",
+                        Xaml($@"<Border Background=""#2D2D30"" Padding=""12"">
+                                  <GroupBox Width=""190"" Header=""Details"" Style=""{{DynamicResource MahApps.Styles.GroupBox.VisualStudio}}"">
+                                    <GroupBox.Resources>{VsResources}</GroupBox.Resources>
+                                    <TextBlock Margin=""4"" Text=""some content"" />
+                                  </GroupBox>
+                                </Border>"))));
+
+            await CaptureAsync("styles", "groupbox-casing",
+                Showcase(
+                    ("Upper (default)", Xaml(@"<GroupBox Width=""170"" Header=""Details"" mah:ControlsHelper.ContentCharacterCasing=""Upper"">
+                                                 <TextBlock Margin=""4"" Text=""some content"" />
+                                               </GroupBox>")),
+                    ("Normal", Xaml(@"<GroupBox Width=""170"" Header=""Details"" mah:ControlsHelper.ContentCharacterCasing=""Normal"">
+                                        <TextBlock Margin=""4"" Text=""some content"" />
+                                      </GroupBox>")),
+                    ("Lower", Xaml(@"<GroupBox Width=""170"" Header=""Details"" mah:ControlsHelper.ContentCharacterCasing=""Lower"">
+                                       <TextBlock Margin=""4"" Text=""some content"" />
+                                     </GroupBox>"))));
+
+            await CaptureAsync("styles", "groupbox-header",
+                Showcase(
+                    ("default", Xaml(@"<GroupBox Width=""190"" Header=""Details"">
+                                         <TextBlock Margin=""4"" Text=""some content"" />
+                                       </GroupBox>")),
+                    ("recoloured header", Xaml(@"<GroupBox Width=""190"" Header=""Details""
+                                                           mah:HeaderedControlHelper.HeaderBackground=""#2E7D32""
+                                                           mah:HeaderedControlHelper.HeaderForeground=""White""
+                                                           mah:HeaderedControlHelper.HeaderFontSize=""16""
+                                                           mah:HeaderedControlHelper.HeaderMargin=""10 6"">
+                                                    <TextBlock Margin=""4"" Text=""some content"" />
+                                                  </GroupBox>"))));
+        }
+
+        private static async Task ExpanderFiguresAsync()
+        {
+            await CaptureAsync("styles", "expander-styles",
+                Showcase(
+                    ("implicit style", Xaml(@"<Expander Width=""190"" Header=""Details"" IsExpanded=""True"">
+                                                <TextBlock Margin=""8"" Text=""some content"" />
+                                              </Expander>")),
+                    ("MahApps.Styles.Expander.VisualStudio, on a dark backdrop",
+                        Xaml($@"<Border Background=""#2D2D30"" Padding=""12"">
+                                  <Expander Width=""190"" Header=""Details"" IsExpanded=""True"" Style=""{{DynamicResource MahApps.Styles.Expander.VisualStudio}}"">
+                                    <Expander.Resources>{VsResources}</Expander.Resources>
+                                    <TextBlock Margin=""8"" Text=""some content"" />
+                                  </Expander>
+                                </Border>"))));
+
+            await CaptureAsync("styles", "expander-directions",
+                Showcase(
+                    ("Down (default)", Xaml(@"<Expander Width=""150"" Header=""Details"" IsExpanded=""True"">
+                                                <TextBlock Margin=""8"" Text=""content"" />
+                                              </Expander>")),
+                    ("Up", Xaml(@"<Expander Width=""150"" Header=""Details"" ExpandDirection=""Up"" IsExpanded=""True"">
+                                    <TextBlock Margin=""8"" Text=""content"" />
+                                  </Expander>")),
+                    ("Right", Xaml(@"<Expander Height=""110"" Header=""Details"" ExpandDirection=""Right"" IsExpanded=""True"">
+                                       <TextBlock Margin=""8"" VerticalAlignment=""Center"" Text=""content"" />
+                                     </Expander>")),
+                    ("Left", Xaml(@"<Expander Height=""110"" Header=""Details"" ExpandDirection=""Left"" IsExpanded=""True"">
+                                      <TextBlock Margin=""8"" VerticalAlignment=""Center"" Text=""content"" />
+                                    </Expander>"))));
+
+            // The built-in Left and Right header styles leave the text
+            // horizontal in a narrow vertical band. Rotating it is the caller's
+            // job. Doing it through HeaderTemplate rather than by putting a
+            // TextBlock in Header keeps both the inherited foreground and the
+            // style's upper-casing - an element assigned to Header loses both.
+            await CaptureAsync("styles", "expander-vertical-header",
+                Showcase(
+                    ("Right, header rotated -90", Xaml(@"<Expander Height=""170"" ExpandDirection=""Right"" IsExpanded=""True"" Header=""Details"">
+                                                           <Expander.HeaderTemplate>
+                                                             <DataTemplate>
+                                                               <TextBlock VerticalAlignment=""Center"" Text=""{Binding}"">
+                                                                 <TextBlock.LayoutTransform>
+                                                                   <RotateTransform Angle=""-90"" />
+                                                                 </TextBlock.LayoutTransform>
+                                                               </TextBlock>
+                                                             </DataTemplate>
+                                                           </Expander.HeaderTemplate>
+                                                           <TextBlock Margin=""12"" VerticalAlignment=""Center"" Text=""some content"" />
+                                                         </Expander>")),
+                    ("Left, header rotated 90", Xaml(@"<Expander Height=""170"" ExpandDirection=""Left"" IsExpanded=""True"" Header=""Details"">
+                                                         <Expander.HeaderTemplate>
+                                                           <DataTemplate>
+                                                             <TextBlock VerticalAlignment=""Center"" Text=""{Binding}"">
+                                                               <TextBlock.LayoutTransform>
+                                                                 <RotateTransform Angle=""90"" />
+                                                               </TextBlock.LayoutTransform>
+                                                             </TextBlock>
+                                                           </DataTemplate>
+                                                         </Expander.HeaderTemplate>
+                                                         <TextBlock Margin=""12"" VerticalAlignment=""Center"" Text=""some content"" />
+                                                       </Expander>"))));
+
+            await CaptureAsync("styles", "expander-collapsed",
+                Showcase(
+                    ("collapsed", Xaml(@"<Expander Width=""190"" Header=""Details"">
+                                           <TextBlock Margin=""8"" Text=""some content"" />
+                                         </Expander>")),
+                    ("expanded", Xaml(@"<Expander Width=""190"" Header=""Details"" IsExpanded=""True"">
+                                          <TextBlock Margin=""8"" Text=""some content"" />
+                                        </Expander>"))));
+        }
 
         private static async Task DataGridFiguresAsync()
         {
