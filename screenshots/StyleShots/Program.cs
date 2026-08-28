@@ -15,6 +15,7 @@ using System.Windows.Documents;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
+using ControlzEx.Theming;
 using MahApps.Metro.Controls;
 
 namespace StyleShots
@@ -644,11 +645,43 @@ namespace StyleShots
 
             await CaptureAsync("themes", "themes-schemes", Showcase(("the 23 colour schemes", swatches)));
 
+            await CaptureAsync("themes", "thememanager-runtime",
+                Showcase(
+                    ("#FF6A1B9A", await RuntimeThemedAsync("Light", Color.FromRgb(0x6A, 0x1B, 0x9A))),
+                    ("#FF00695C", await RuntimeThemedAsync("Light", Color.FromRgb(0x00, 0x69, 0x5C))),
+                    ("#FFBF360C, dark base", await RuntimeThemedAsync("Dark", Color.FromRgb(0xBF, 0x36, 0x0C)))));
+
             await CaptureAsync("themes", "themes-base",
                 Showcase(
                     ("Light.Blue", Themed("Light.Blue")),
                     ("Dark.Blue", Themed("Dark.Blue")),
                     ("Light.Emerald", Themed("Light.Emerald"))));
+        }
+
+        // RuntimeThemeGenerator builds a whole theme from one colour, and
+        // ChangeTheme can put it on a single element rather than the whole
+        // application - which is exactly what a figure needs.
+        private static async Task<FrameworkElement> RuntimeThemedAsync(string baseTheme, Color accent)
+        {
+            var theme = RuntimeThemeGenerator.Current.GenerateRuntimeTheme(baseTheme, accent);
+            var dark = baseTheme == "Dark";
+
+            var panel = (FrameworkElement)Xaml($@"<Border Width=""190"" Padding=""12"" Background=""{(dark ? "#FF252525" : "#FFFFFFFF")}"">
+                             <StackPanel>
+                               <TextBlock Margin=""0 0 0 8""
+                                          Foreground=""{{DynamicResource MahApps.Brushes.ThemeForeground}}""
+                                          Text=""Some text"" />
+                               <Button Margin=""0 0 0 8"" Content=""Button"" Style=""{{DynamicResource MahApps.Styles.Button.Square.Accent}}"" />
+                               <CheckBox Margin=""0 0 0 8"" Content=""Checked"" IsChecked=""True"" />
+                               <Slider Margin=""0 0 0 8"" Maximum=""100"" Value=""40"" />
+                               <ProgressBar Height=""8"" Maximum=""100"" Value=""60"" />
+                             </StackPanel>
+                           </Border>");
+
+            ThemeManager.Current.ChangeTheme(panel, theme);
+
+            await Task.Yield();
+            return panel;
         }
 
         private static FrameworkElement Themed(string theme)
