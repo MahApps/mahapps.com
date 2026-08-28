@@ -47,6 +47,7 @@ namespace StyleShots
                     try
                     {
                         LoadCalendarStyles();
+                        await ProgressBarFiguresAsync();
                         await HyperlinkFiguresAsync();
                         await GridSplitterFiguresAsync();
                         await GroupBoxFiguresAsync();
@@ -518,6 +519,53 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task ProgressBarFiguresAsync()
+        {
+            await CaptureAsync("styles", "progressbar-values",
+                Showcase(
+                    ("Value = 0", Bar(@"Value=""0""")),
+                    ("Value = 35", Bar(@"Value=""35""")),
+                    ("Value = 70", Bar(@"Value=""70""")),
+                    ("Value = 100", Bar(@"Value=""100"""))));
+
+            await CaptureAsync("styles", "progressbar-indeterminate",
+                Showcase(
+                    ("IsIndeterminate", Bar(@"IsIndeterminate=""True"""))));
+
+            // The template fills the indicator from MahApps.Brushes.Progress,
+            // not from a TemplateBinding on Foreground, so the middle panel is
+            // the point of the figure: nothing happens.
+            await CaptureAsync("styles", "progressbar-brushes",
+                Showcase(
+                    ("default", Bar(@"Value=""70""")),
+                    ("Foreground = Red", Bar(@"Value=""70"" Foreground=""Red""")),
+                    ("MahApps.Brushes.Progress replaced",
+                        Xaml(@"<ProgressBar Width=""190"" Height=""12"" Value=""70"">
+                                 <ProgressBar.Resources>
+                                   <SolidColorBrush x:Key=""MahApps.Brushes.Progress"" Color=""#FF107C10"" />
+                                 </ProgressBar.Resources>
+                               </ProgressBar>"))));
+
+            await CaptureAsync("styles", "progressbar-track",
+                Showcase(
+                    ("default", Bar(@"Value=""55""")),
+                    ("Background and BorderBrush",
+                        Bar(@"Value=""55"" Background=""#FFEDE7F6"" BorderBrush=""#FF7E57C2""")),
+                    ("BorderThickness = 0, Height = 6",
+                        Xaml(@"<ProgressBar Width=""190"" Height=""6"" Value=""55"" BorderThickness=""0"" />"))));
+
+            await CaptureAsync("styles", "progressbar-vertical",
+                Showcase(
+                    ("Horizontal", Bar(@"Value=""60""")),
+                    ("Vertical",
+                        Xaml(@"<ProgressBar Width=""12"" Height=""90"" Orientation=""Vertical"" Value=""60"" />"))));
+        }
+
+        private static FrameworkElement Bar(string attributes)
+        {
+            return Xaml($@"<ProgressBar Width=""190"" Height=""12"" {attributes} />");
+        }
 
         private static async Task HyperlinkFiguresAsync()
         {
