@@ -51,7 +51,8 @@ namespace StyleShots
                 {
                     try
                     {
-                        LoadCalendarStyles();
+                        LoadExtraStyles();
+                        await ScrollBarFiguresAsync();
                         await MenuFiguresAsync();
                         await ToolTipFiguresAsync();
                         await TextFiguresAsync();
@@ -239,18 +240,28 @@ namespace StyleShots
         // The WinUI calendar dictionary is loaded from the file the docs page
         // links to, rather than restated here, so the figure cannot show
         // something the reader would not get by using that file.
-        private static void LoadCalendarStyles()
+        private static void LoadExtraStyles()
         {
-            // Win10 merges WinUI, so loading it brings both families in.
-            var path = Path.GetFullPath(Path.Combine("input", "assets", "xaml", "Controls.Calendar.Win10.xaml"));
-            if (!File.Exists(path))
+            // The dictionaries the documentation ships as drop-in alternatives.
+            // Controls.Calendar.Win10.xaml merges the WinUI one, so loading it
+            // brings both calendar families in; the scrollbar pair is separate.
+            foreach (var file in new[]
+                     {
+                         "Controls.Calendar.Win10.xaml",
+                         "Controls.ScrollBar.WinUI.xaml",
+                         "Controls.ScrollBar.Win10.xaml"
+                     })
             {
-                Console.WriteLine("NOTE: Controls.Calendar.Win10.xaml not found, the calendar figures will be skipped. Run from the repository root.");
-                return;
-            }
+                var path = Path.GetFullPath(Path.Combine("input", "assets", "xaml", file));
+                if (!File.Exists(path))
+                {
+                    Console.WriteLine($"NOTE: {file} not found, the figures that need it will be skipped. Run from the repository root.");
+                    continue;
+                }
 
-            Application.Current.Resources.MergedDictionaries.Add(
-                new ResourceDictionary { Source = new Uri(path, UriKind.Absolute) });
+                Application.Current.Resources.MergedDictionaries.Add(
+                    new ResourceDictionary { Source = new Uri(path, UriKind.Absolute) });
+            }
         }
 
         private static async Task CalendarFiguresAsync()
@@ -540,6 +551,229 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task ScrollBarFiguresAsync()
+        {
+            await CaptureAsync("styles", "scrollbars-scrollviewer",
+                Showcase(
+                    ("a scroll viewer with both bars", ScrollBox(string.Empty))));
+
+            await CaptureAsync("styles", "scrollbars-parts",
+                Showcase(
+                    ("Orientation = Vertical",
+                        Xaml(@"<ScrollBar Height=""120"" Orientation=""Vertical""
+                                          Minimum=""0"" Maximum=""100"" Value=""30"" ViewportSize=""40"" />")),
+                    ("Orientation = Horizontal",
+                        Xaml(@"<ScrollBar Width=""160"" Orientation=""Horizontal""
+                                          Minimum=""0"" Maximum=""100"" Value=""30"" ViewportSize=""40"" />")),
+                    ("IsEnabled = False",
+                        Xaml(@"<ScrollBar Height=""120"" Orientation=""Vertical"" IsEnabled=""False""
+                                          Minimum=""0"" Maximum=""100"" Value=""30"" ViewportSize=""40"" />")),
+                    ("with a track of its own",
+                        Xaml(@"<ScrollBar Height=""120"" Orientation=""Vertical""
+                                          Minimum=""0"" Maximum=""100"" Value=""30"" ViewportSize=""40"">
+                                 <ScrollBar.Resources>
+                                   <Style x:Key=""MahApps.Styles.RepeatButton.ScrollBarLarge""
+                                          BasedOn=""{StaticResource MahApps.Styles.RepeatButton.ScrollBarLarge}""
+                                          TargetType=""{x:Type RepeatButton}"">
+                                     <Setter Property=""Background"" Value=""{DynamicResource MahApps.Brushes.Gray8}"" />
+                                   </Style>
+                                 </ScrollBar.Resources>
+                               </ScrollBar>"))));
+
+            await CaptureAsync("styles", "scrollbars-leftside",
+                Showcase(
+                    ("the default", ScrollBox(string.Empty)),
+                    ("VerticalScrollBarOnLeftSide", ScrollBox(@"mah:ScrollViewerHelper.VerticalScrollBarOnLeftSide=""True"""))));
+
+            await CaptureAsync("styles", "scrollbars-size",
+                Showcase(
+                    ("14, the default", ScrollBox(string.Empty)),
+                    ("all four size resources set to 22",
+                        Xaml(@"<ScrollViewer Width=""190"" Height=""110""
+                                             HorizontalScrollBarVisibility=""Visible""
+                                             VerticalScrollBarVisibility=""Visible"">
+                                 <ScrollViewer.Resources>
+                                   <sys:Double x:Key=""MahApps.Sizes.ScrollBar.Width"">22</sys:Double>
+                                   <sys:Double x:Key=""MahApps.Sizes.ScrollBar.Height"">22</sys:Double>
+                                   <sys:Double x:Key=""MahApps.Sizes.ScrollBar.HorizontalRepeatButton.Width"">22</sys:Double>
+                                   <sys:Double x:Key=""MahApps.Sizes.ScrollBar.VerticalRepeatButton.Height"">22</sys:Double>
+                                 </ScrollViewer.Resources>
+                                 " + ScrollContent + @"
+                               </ScrollViewer>"))));
+
+            await CaptureAsync("styles", "scrollbars-alternatives",
+                Showcase(
+                    ("MahApps.Styles.ScrollBar, the built-in one", Alt(string.Empty)),
+                    ("MahApps.Styles.ScrollBar.Win10", Alt(@"MahApps.Styles.ScrollBar.Win10")),
+                    ("MahApps.Styles.ScrollBar.WinUI", Alt(@"MahApps.Styles.ScrollBar.WinUI", viewerStyleKey: @"MahApps.Styles.ScrollViewer.WinUI"))));
+
+            await CaptureAsync("styles", "scrollbars-winui-states",
+                Showcase(
+                    ("the panning indicator",
+                        Alt(@"MahApps.Styles.ScrollBar.WinUI", viewerStyleKey: @"MahApps.Styles.ScrollViewer.WinUI")),
+                    ("the scrollbar it morphs into, the state the trigger animates to",
+                        Alt(@"MahApps.Styles.ScrollBar.WinUI", expand: true, viewerStyleKey: @"MahApps.Styles.ScrollViewer.WinUI"))));
+
+            await CaptureAsync("styles", "scrollbars-winui-overlay",
+                Showcase(
+                    ("beside the content, the default ScrollViewer template",
+                        Alt(@"MahApps.Styles.ScrollBar.WinUI")),
+                    ("over it, MahApps.Styles.ScrollViewer.WinUI",
+                        Alt(@"MahApps.Styles.ScrollBar.WinUI", viewerStyleKey: @"MahApps.Styles.ScrollViewer.WinUI"))));
+
+            await CaptureAsync("styles", "scrollbars-alternatives-dark",
+                Dark(
+                    ("MahApps.Styles.ScrollBar.Win10", AltDark(@"MahApps.Styles.ScrollBar.Win10")),
+                    ("MahApps.Styles.ScrollBar.WinUI", AltDark(@"MahApps.Styles.ScrollBar.WinUI"))));
+
+            await CaptureAsync("styles", "scrollbars-visualstudio",
+                Dark(
+                    ("MahApps.Styles.ScrollBar.VisualStudio",
+                        Xaml(@"<Border Background=""#252526"" TextElement.Foreground=""#F1F1F1"">
+                                 <Border.Resources>
+                                   <ResourceDictionary>
+                                     <ResourceDictionary.MergedDictionaries>
+                                       <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml"" />
+                                       <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
+                                     </ResourceDictionary.MergedDictionaries>
+                                     <Style BasedOn=""{StaticResource MahApps.Styles.ScrollBar.VisualStudio}"" TargetType=""{x:Type ScrollBar}"" />
+                                   </ResourceDictionary>
+                                 </Border.Resources>
+                                 <ScrollViewer Width=""190"" Height=""110""
+                                               HorizontalScrollBarVisibility=""Visible""
+                                               VerticalScrollBarVisibility=""Visible"">
+                                   " + ScrollContent + @"
+                                 </ScrollViewer>
+                               </Border>"))));
+
+        }
+
+        // The WinUI bar expands on IsMouseOver, which an off-screen render never
+        // sets. The expanded panel photographs the values the trigger animates
+        // to, driven onto the same template parts by hand.
+        private static readonly List<ScrollViewer> pendingExpand = new();
+
+        private static FrameworkElement Alt(string styleKey, bool expand = false, string viewerStyleKey = null)
+        {
+            var styles = string.IsNullOrEmpty(styleKey)
+                ? string.Empty
+                : $@"<ScrollViewer.Resources>
+                       <Style BasedOn=""{{StaticResource {styleKey}}}"" TargetType=""{{x:Type ScrollBar}}"" />
+                     </ScrollViewer.Resources>";
+
+            var viewerStyle = viewerStyleKey is null
+                ? string.Empty
+                : $@"Style=""{{StaticResource {viewerStyleKey}}}""";
+
+            var viewer = (ScrollViewer)XamlReader.Parse($@"<ScrollViewer {Xmlns} Width=""190"" Height=""110""
+                                                                         HorizontalScrollBarVisibility=""Visible""
+                                                                         VerticalScrollBarVisibility=""Visible""
+                                                                         {viewerStyle}>
+                                                            {styles}
+                                                            {ScrollContent}
+                                                          </ScrollViewer>");
+
+            if (expand)
+            {
+                pendingExpand.Add(viewer);
+            }
+
+            return viewer;
+        }
+
+        private static FrameworkElement AltDark(string styleKey)
+        {
+            return Xaml($@"<Border Background=""#FF252525"" TextElement.Foreground=""#FFF9F9F9"">
+                             <Border.Resources>
+                               <ResourceDictionary>
+                                 <ResourceDictionary.MergedDictionaries>
+                                   <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml"" />
+                                 </ResourceDictionary.MergedDictionaries>
+                                 <Style BasedOn=""{{StaticResource {styleKey}}}"" TargetType=""{{x:Type ScrollBar}}"" />
+                               </ResourceDictionary>
+                             </Border.Resources>
+                             <ScrollViewer Width=""190"" Height=""110""
+                                           HorizontalScrollBarVisibility=""Visible""
+                                           VerticalScrollBarVisibility=""Visible"">
+                               {ScrollContent}
+                             </ScrollViewer>
+                           </Border>");
+        }
+
+        private static void ExpandWinUiScrollBars(ScrollViewer viewer)
+        {
+            foreach (var name in new[] { "PART_VerticalScrollBar", "PART_HorizontalScrollBar" })
+            {
+                if (viewer.Template?.FindName(name, viewer) is not System.Windows.Controls.Primitives.ScrollBar bar)
+                {
+                    continue;
+                }
+
+                bar.ApplyTemplate();
+
+                var vertical = bar.Orientation == Orientation.Vertical;
+
+                if (bar.Template?.FindName("Panel", bar) is FrameworkElement panel)
+                {
+                    panel.Opacity = 1;
+
+                    if (vertical)
+                    {
+                        panel.Width = 16;
+                    }
+                    else
+                    {
+                        panel.Height = 16;
+                    }
+                }
+
+                foreach (var button in vertical ? new[] { "LineUp", "LineDown" } : new[] { "LineLeft", "LineRight" })
+                {
+                    if (bar.Template?.FindName(button, bar) is FrameworkElement chevron)
+                    {
+                        chevron.Visibility = Visibility.Visible;
+                        chevron.Opacity = 1;
+                    }
+                }
+
+                if (bar.Template?.FindName("PART_Track", bar) is System.Windows.Controls.Primitives.Track { Thumb: { } thumb })
+                {
+                    if (vertical)
+                    {
+                        thumb.Margin = new Thickness(0, 0, 5, 0);
+                        thumb.Width = 6;
+                    }
+                    else
+                    {
+                        thumb.Margin = new Thickness(0, 0, 0, 5);
+                        thumb.Height = 6;
+                    }
+                }
+
+                bar.UpdateLayout();
+            }
+        }
+
+        private const string ScrollContent =
+            @"<StackPanel Margin=""8"">
+                <TextBlock Text=""A line that is wider than the viewport"" />
+                <TextBlock Text=""Second line"" />
+                <TextBlock Text=""Third line"" />
+                <TextBlock Text=""Fourth line"" />
+                <TextBlock Text=""Fifth line"" />
+                <TextBlock Text=""Sixth line"" />
+              </StackPanel>";
+
+        private static FrameworkElement ScrollBox(string attributes)
+        {
+            return Xaml($@"<ScrollViewer Width=""190"" Height=""110""
+                                         HorizontalScrollBarVisibility=""Visible""
+                                         VerticalScrollBarVisibility=""Visible""
+                                         {attributes}>
+                             {ScrollContent}
+                           </ScrollViewer>");
+        }
 
         private static async Task MenuFiguresAsync()
         {
@@ -1780,6 +2014,13 @@ namespace StyleShots
 
             pendingPasswords.Clear();
             pendingCapsLock.Clear();
+
+            foreach (var viewer in pendingExpand)
+            {
+                ExpandWinUiScrollBars(viewer);
+            }
+
+            pendingExpand.Clear();
 
             foreach (var (control, state, at) in pendingSeeks)
             {
