@@ -52,6 +52,7 @@ namespace StyleShots
                     try
                     {
                         LoadCalendarStyles();
+                        await ToolTipFiguresAsync();
                         await TextFiguresAsync();
                         await RangeSliderFiguresAsync();
                         await SliderFiguresAsync();
@@ -538,6 +539,96 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task ToolTipFiguresAsync()
+        {
+            await CaptureAsync("styles", "tooltip-default",
+                Showcase(
+                    ("the default tooltip", await TipAsync(@"Content=""Save the current document"""))));
+
+            await CaptureAsync("styles", "tooltip-casing",
+                Showcase(
+                    ("Normal, the default", await TipAsync(@"Content=""Save the document""")),
+                    ("Upper", await TipAsync(@"Content=""Save the document"" mah:ControlsHelper.ContentCharacterCasing=""Upper""")),
+                    ("Lower", await TipAsync(@"Content=""Save the document"" mah:ControlsHelper.ContentCharacterCasing=""Lower"""))));
+
+            await CaptureAsync("styles", "tooltip-colours",
+                Showcase(
+                    ("default", await TipAsync(@"Content=""Save the document""")),
+                    ("Background, BorderBrush and Foreground",
+                        await TipAsync(@"Content=""Save the document""
+                              Background=""{DynamicResource MahApps.Brushes.Accent}""
+                              BorderBrush=""{DynamicResource MahApps.Brushes.AccentBase}""
+                              Foreground=""{DynamicResource MahApps.Brushes.IdealForeground}""")),
+                    ("BorderThickness = 0, Padding = 10 6",
+                        await TipAsync(@"Content=""Save the document"" BorderThickness=""0"" Padding=""10 6"""))));
+
+            await CaptureAsync("styles", "tooltip-content",
+                Showcase(
+                    ("a panel instead of a string",
+                        await TipAsync(string.Empty, @"<StackPanel MaxWidth=""220"">
+                                              <TextBlock FontWeight=""SemiBold"" Text=""Save"" />
+                                              <TextBlock Margin=""0 2 0 0"" TextWrapping=""Wrap""
+                                                         Text=""Writes the current document to disk. Ctrl+S does the same."" />
+                                            </StackPanel>"))));
+        }
+
+        // A ToolTip cannot be given a parent - WPF throws - so it has to be
+        // opened in the popup it makes for itself and photographed there. The
+        // bitmap then goes into a Showcase like any other element, at exactly
+        // the scale it was rendered at, so nothing is resampled.
+        private static async Task<FrameworkElement> TipAsync(string attributes, string content = null)
+        {
+            var tip = (ToolTip)XamlReader.Parse(
+                content is null
+                    ? $@"<ToolTip {Xmlns} {attributes} />"
+                    : $@"<ToolTip {Xmlns} {attributes}>{content}</ToolTip>");
+
+            var anchor = new Border { Width = 10, Height = 10 };
+            var host = new Window
+                       {
+                           Content = anchor,
+                           SizeToContent = SizeToContent.WidthAndHeight,
+                           WindowStyle = WindowStyle.None,
+                           ShowInTaskbar = false,
+                           WindowStartupLocation = WindowStartupLocation.Manual,
+                           Left = -20000,
+                           Top = -20000,
+                           Background = Brushes.White
+                       };
+
+            var rendered = new TaskCompletionSource<bool>();
+            host.ContentRendered += (_, _) => rendered.TrySetResult(true);
+            host.Show();
+            await rendered.Task;
+
+            tip.PlacementTarget = anchor;
+            tip.Placement = System.Windows.Controls.Primitives.PlacementMode.Bottom;
+            tip.IsOpen = true;
+
+            // The template root starts at Opacity 0 and the Open visual state
+            // fades it in over 0.3s. Opening it is not always enough to get
+            // that state to run off-screen, so once it has had its time the
+            // fade is finished by hand - an open tooltip is opaque.
+            await Task.Delay(600);
+            await host.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+
+            if (tip.Template?.FindName("Root", tip) is FrameworkElement root && root.Opacity < 1)
+            {
+                root.BeginAnimation(UIElement.OpacityProperty, null);
+                root.Opacity = 1;
+            }
+
+            await host.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+            tip.UpdateLayout();
+
+            var bitmap = Render(tip);
+
+            tip.IsOpen = false;
+            host.Close();
+
+            return new Image { Source = bitmap, Width = bitmap.Width, Height = bitmap.Height };
+        }
 
         private static async Task TextFiguresAsync()
         {
@@ -1598,12 +1689,22 @@ namespace StyleShots
             return SaveToPathAsync(Path.Combine(directory, name + ".png"), element, quiet: false, label: $"{section}/{name}.png");
         }
 
+        private static RenderTargetBitmap Render(FrameworkElement element)
+        {
+            var bitmap = new RenderTargetBitmap((int)Math.Ceiling(element.ActualWidth * Scale),
+                                                (int)Math.Ceiling(element.ActualHeight * Scale),
+                                                96 * Scale,
+                                                96 * Scale,
+                                                PixelFormats.Pbgra32);
+            bitmap.Render(element);
+            return bitmap;
+        }
+
         private static Task SaveToPathAsync(string path, FrameworkElement element, bool quiet, string label = null)
         {
-            var width = (int)Math.Ceiling(element.ActualWidth * Scale);
-            var height = (int)Math.Ceiling(element.ActualHeight * Scale);
-            var bitmap = new RenderTargetBitmap(width, height, 96 * Scale, 96 * Scale, PixelFormats.Pbgra32);
-            bitmap.Render(element);
+            var bitmap = Render(element);
+            var width = bitmap.PixelWidth;
+            var height = bitmap.PixelHeight;
 
             var encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(bitmap));
