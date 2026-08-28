@@ -256,12 +256,138 @@ Expander
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>An <code>Expander</code> gets the same accent header band as a <a href="groupbox">GroupBox</a>, plus a toggle arrow and a fade when it opens. Its header is a <code>ToggleButton</code>, and which way that button points depends on <code>ExpandDirection</code> — which is why the style carries four header styles rather than one.</p>
+<p><img src="images/expander-styles.png" alt="The default Expander and the Visual Studio variant" /></p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.Expander</code> to every <code>Expander</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+</code></pre>
+<h2 id="the-two-styles">The two styles</h2>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Lives in</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Expander</code></td>
+<td><code>Controls.xaml</code></td>
+<td>the implicit one</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Expander.VisualStudio</code></td>
+<td><code>Styles/VS/Controls.xaml</code></td>
+<td>the Visual Studio tool-window look</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p>As with the <a href="groupbox">GroupBox</a>, the Visual Studio style is not merged by <code>Controls.xaml</code> — add <code>Styles/VS/Controls.xaml</code> and <code>Styles/VS/Colors.xaml</code> first — and it is drawn for the dark Visual Studio theme, which is why the figure shows it on a dark backdrop.</p>
+</div>
+<h2 id="open-and-closed">Open and closed</h2>
+<p><img src="images/expander-collapsed.png" alt="An expander closed and open" /></p>
+<p>Opening and closing is animated: the style points <code>ExpanderHelper.ExpandStoryboard</code> and <code>CollapseStoryboard</code> at <code>MahApps.Storyboard.Expander.Expand</code> and <code>.Collapse</code>, a quarter-second opacity fade on the content. Setting those properties <strong>replaces</strong> that animation rather than adding one, and setting them to <code>{x:Null}</code> makes the content switch over in a single frame.</p>
+<h2 id="the-four-directions">The four directions</h2>
+<p><code>ExpandDirection</code> decides which edge the content unfolds from, and the header rotates to match:</p>
+<p><img src="images/expander-directions.png" alt="An expander opening down, up, right and left" /></p>
+<h3 id="turning-the-header-text-on-its-side">Turning the header text on its side</h3>
+<p>Look at the last two panels above: with <code>Left</code> and <code>Right</code> the band is vertical but the text stays horizontal, so a longer header runs out of room. The built-in styles do not rotate it — that is left to you, with a <code>LayoutTransform</code> on the header content:</p>
+<p><img src="images/expander-vertical-header.png" alt="The header text rotated for Right and Left" /></p>
+<pre><code class="language-xml">&lt;Expander ExpandDirection=&quot;Right&quot; IsExpanded=&quot;True&quot; Height=&quot;170&quot; Header=&quot;Details&quot;&gt;
+    &lt;Expander.HeaderTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;TextBlock VerticalAlignment=&quot;Center&quot; Text=&quot;{Binding}&quot;&gt;
+                &lt;TextBlock.LayoutTransform&gt;
+                    &lt;RotateTransform Angle=&quot;-90&quot; /&gt;
+                &lt;/TextBlock.LayoutTransform&gt;
+            &lt;/TextBlock&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/Expander.HeaderTemplate&gt;
+    &lt;TextBlock Margin=&quot;12&quot; VerticalAlignment=&quot;Center&quot; Text=&quot;some content&quot; /&gt;
+&lt;/Expander&gt;
+</code></pre>
+<p>For <code>ExpandDirection=&quot;Left&quot;</code> — the band on the right-hand side — use <code>Angle=&quot;90&quot;</code> instead, so the text reads downwards rather than upwards.</p>
+<p>Use <code>LayoutTransform</code> rather than <code>RenderTransform</code>: the former rotates before layout, so the band ends up as narrow as the rotated text is tall. A <code>RenderTransform</code> would turn the text but leave the band sized for the horizontal version.</p>
+<div class="alert alert-info"><p>Rotate through <code>HeaderTemplate</code>, not by assigning a <code>TextBlock</code> to <code>Header</code>. Both put a rotated text block in the band, but a template keeps the header a string, so the style's upper-casing still applies and the white foreground still inherits — the figure above sets neither, and <code>Header=&quot;Details&quot;</code> still comes out as <em>DETAILS</em> in white. Hand <code>Header</code> an element instead and you lose both: the casing no longer applies, and the text falls back to the dark default, which then has to be set back to <code>MahApps.Brushes.IdealForeground</code> by hand.</p>
+</div>
+<p>Each direction has its own header style, and the <code>Expander</code> style fills in all four:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Applies when</th>
+<th>Style it is given</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ExpanderHelper.HeaderDownStyle</code></td>
+<td><code>ExpandDirection=&quot;Down&quot;</code></td>
+<td><code>MahApps.Styles.ToggleButton.ExpanderHeader.Down</code></td>
+</tr>
+<tr>
+<td><code>ExpanderHelper.HeaderUpStyle</code></td>
+<td><code>Up</code></td>
+<td><code>...ExpanderHeader.Up</code></td>
+</tr>
+<tr>
+<td><code>ExpanderHelper.HeaderLeftStyle</code></td>
+<td><code>Left</code></td>
+<td><code>...ExpanderHeader.Left</code></td>
+</tr>
+<tr>
+<td><code>ExpanderHelper.HeaderRightStyle</code></td>
+<td><code>Right</code></td>
+<td><code>...ExpanderHeader.Right</code></td>
+</tr>
+</tbody>
+</table>
+<p>Replacing one changes only that direction, so an expander whose direction is bound needs the matching styles set for every value it can take:</p>
+<pre><code class="language-xml">&lt;Expander Header=&quot;Details&quot;
+          mah:ExpanderHelper.HeaderDownStyle=&quot;{StaticResource QuietExpanderHeader}&quot;&gt;
+    &lt;TextBlock Margin=&quot;8&quot; Text=&quot;some content&quot; /&gt;
+&lt;/Expander&gt;
+</code></pre>
+<p>Base your own on the built-in one for that direction, or the arrow and the layout go with it:</p>
+<pre><code class="language-xml">&lt;Style x:Key=&quot;QuietExpanderHeader&quot;
+       BasedOn=&quot;{StaticResource MahApps.Styles.ToggleButton.ExpanderHeader.Down}&quot;
+       TargetType=&quot;{x:Type ToggleButton}&quot;&gt;
+    &lt;Setter Property=&quot;Background&quot; Value=&quot;{DynamicResource MahApps.Brushes.Gray10}&quot; /&gt;
+    &lt;Setter Property=&quot;Foreground&quot; Value=&quot;{DynamicResource MahApps.Brushes.Text}&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>The four all derive from <code>MahApps.Styles.ToggleButton.ExpanderHeader.Base</code>, so a change meant for every direction belongs there instead.</p>
+<h2 id="header-casing-and-colours">Header casing and colours</h2>
+<p>As on a <code>GroupBox</code>, the style sets <code>ControlsHelper.ContentCharacterCasing</code> to <code>Upper</code>, and the header's colours and font come from <code>HeaderedControlHelper</code>:</p>
+<pre><code class="language-xml">&lt;Expander Header=&quot;Details&quot;
+          mah:ControlsHelper.ContentCharacterCasing=&quot;Normal&quot;
+          mah:HeaderedControlHelper.HeaderBackground=&quot;{DynamicResource MahApps.Brushes.Gray10}&quot;
+          mah:HeaderedControlHelper.HeaderForeground=&quot;{DynamicResource MahApps.Brushes.Text}&quot; /&gt;
+</code></pre>
+<p>See <a href="../helper/headeredcontrolhelper">HeaderedControlHelper</a> for the full list, and <a href="../helper/expanderhelper">ExpanderHelper</a> for the header styles and storyboards.</p>
+<h2 id="related">Related</h2>
+<p><a href="groupbox">GroupBox</a> is the same header on a control that does not fold, and a <code>DataGrid</code> group header uses <code>MahApps.Styles.ToggleButton.ExpanderHeader.Down.DataGrid.GroupItem</code>, a fifth variant of the same base — see <a href="datagrid">DataGrid</a>.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-two-styles">The two styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#open-and-closed">Open and closed</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-four-directions">The four directions</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#turning-the-header-text-on-its-side">Turning the header text on its side</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#header-casing-and-colours">Header casing and colours</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/expander.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

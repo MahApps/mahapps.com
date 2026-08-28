@@ -256,12 +256,94 @@ GridSplitter
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>GridSplitter</code> is the bar a user drags to resize two panes of a <code>Grid</code>. MahApps keeps WPF's template and changes four things: the colour, both alignments, and — a behavioural one — the drag preview.</p>
+<p><img src="images/gridsplitter-directions.png" alt="A splitter between two columns and between two rows" /></p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.GridSplitter</code> to every <code>GridSplitter</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+</code></pre>
+<p>There is no second style. The whole thing is five setters:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Set to</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Background</code></td>
+<td><code>MahApps.Brushes.Gray8</code></td>
+<td>the bar itself; WPF's default is a system brush</td>
+</tr>
+<tr>
+<td><code>HorizontalAlignment</code></td>
+<td><code>Stretch</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>VerticalAlignment</code></td>
+<td><code>Stretch</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ShowsPreview</code></td>
+<td><code>True</code></td>
+<td>drag shows a ghost bar and resizes on release</td>
+</tr>
+<tr>
+<td><code>PreviewStyle</code></td>
+<td><code>MahApps.Styles.GridSplitter.Preview</code></td>
+<td>what that ghost bar looks like</td>
+</tr>
+</tbody>
+</table>
+<h2 id="give-it-a-width-or-a-height">Give it a Width or a Height</h2>
+<div class="alert alert-warning"><p>This is the one that catches people. <code>GridSplitter.ResizeDirection</code> defaults to <code>Auto</code>, and WPF resolves that by looking first at the alignments: a non-stretched <code>HorizontalAlignment</code> means it resizes columns, a non-stretched <code>VerticalAlignment</code> means rows. <strong>MahApps sets both to <code>Stretch</code></strong>, so neither test applies and WPF falls through to comparing the rendered size — columns if it is taller than wide, rows otherwise.</p>
+<p>That works out only if you give the splitter a size. Set <code>Width</code> for a splitter between columns and <code>Height</code> for one between rows, as both figures here do, or set <code>ResizeDirection</code> explicitly.</p>
+</div>
+<pre><code class="language-xml">&lt;Grid&gt;
+    &lt;Grid.ColumnDefinitions&gt;
+        &lt;ColumnDefinition Width=&quot;*&quot; /&gt;
+        &lt;ColumnDefinition Width=&quot;Auto&quot; /&gt;
+        &lt;ColumnDefinition Width=&quot;*&quot; /&gt;
+    &lt;/Grid.ColumnDefinitions&gt;
+
+    &lt;Border Grid.Column=&quot;0&quot; /&gt;
+    &lt;GridSplitter Grid.Column=&quot;1&quot; Width=&quot;4&quot; /&gt;
+    &lt;Border Grid.Column=&quot;2&quot; /&gt;
+&lt;/Grid&gt;
+</code></pre>
+<p>Note the <code>Auto</code> column the splitter sits in: giving the splitter its own definition rather than overlaying it on a pane keeps the two panes from resizing under it.</p>
+<p>WPF's own default style sets <code>HorizontalAlignment</code> to <code>Right</code>, so a splitter that resized columns without a <code>Width</code> under the plain WPF style needs one under this style.</p>
+<h2 id="the-drag-preview">The drag preview</h2>
+<p><code>ShowsPreview</code> is <code>True</code> here where WPF defaults it to <code>False</code>. The difference is when the panes move: with the preview on, dragging shows a translucent bar and the panes jump to the new sizes when the mouse is released; with it off, they follow the pointer live.</p>
+<p><code>MahApps.Styles.GridSplitter.Preview</code> is what that bar looks like — a rectangle in the theme foreground at half opacity. Both are ordinary properties, so either can be changed:</p>
+<pre><code class="language-xml">&lt;GridSplitter Width=&quot;4&quot; ShowsPreview=&quot;False&quot; /&gt;
+</code></pre>
+<h2 id="changing-the-look">Changing the look</h2>
+<p>There is no template to replace: the bar is just the control's <code>Background</code>, and its thickness is the <code>Width</code> or <code>Height</code> you gave it.</p>
+<p><img src="images/gridsplitter-look.png" alt="The default bar and a wider, accent-coloured one" /></p>
+<pre><code class="language-xml">&lt;GridSplitter Grid.Column=&quot;1&quot;
+              Width=&quot;10&quot;
+              Background=&quot;{DynamicResource MahApps.Brushes.Accent}&quot; /&gt;
+</code></pre>
+<p>A wider bar is easier to grab. If you want a slim line that is still easy to hit, keep the <code>Width</code> generous and draw the line with a <code>Border</code> inside a template of your own rather than making the control itself thin.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#give-it-a-width-or-a-height">Give it a Width or a Height</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-drag-preview">The drag preview</a></div>
+                    <div class="sidebar-nav-item"><a href="#changing-the-look">Changing the look</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/gridsplitter.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

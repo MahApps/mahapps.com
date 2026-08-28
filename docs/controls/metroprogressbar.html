@@ -331,25 +331,147 @@ MetroProgressBar
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>MetroProgressBar</code> is an alternative progress bar with a different indeterminate style. Instead of creating a normal <code>ProgressBar</code> use:</p>
-<pre><code class="language-xml">&lt;mah:MetroProgressBar Width=&quot;250&quot;
-                      Margin=&quot;4&quot;
-                      Maximum=&quot;100&quot;
-                      Minimum=&quot;0&quot;
-                      Value=&quot;42&quot; /&gt;
+<p><code>MetroProgressBar</code> derives from <code>ProgressBar</code> and replaces its template. Determinate, it is a flat bar without a frame; indeterminate, it is five dots sweeping across instead of a striped fill.</p>
+<p><img src="images/metroprogressbar-values.png" alt="A MetroProgressBar at 0, 35, 70 and 100 percent" /></p>
+<pre><code class="language-xml">&lt;mah:MetroProgressBar Width=&quot;190&quot; Value=&quot;70&quot; /&gt;
 </code></pre>
-<p>or</p>
-<pre><code class="language-xml">&lt;mah:MetroProgressBar Width=&quot;250&quot;
-                      Margin=&quot;4&quot;
-                      IsIndeterminate=&quot;True&quot; /&gt;
+<p>Everything about the value is inherited, so <code>Minimum</code>, <code>Maximum</code>, <code>Value</code> and <code>IsIndeterminate</code> work exactly as on a <code>ProgressBar</code>.</p>
+<h2 id="against-the-styled-progressbar">Against the styled ProgressBar</h2>
+<p><img src="images/metroprogressbar-vs-progressbar.png" alt="A ProgressBar and a MetroProgressBar at the same value" /></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>ProgressBar</code></th>
+<th><code>MetroProgressBar</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>indicator</td>
+<td>gradient, <code>MahApps.Brushes.Progress</code></td>
+<td>flat, <code>Foreground</code></td>
+</tr>
+<tr>
+<td><code>Foreground</code></td>
+<td>ignored, see <a href="../styles/progressbar">ProgressBar</a></td>
+<td>honoured</td>
+</tr>
+<tr>
+<td>track</td>
+<td><code>MahApps.Brushes.Gray5</code></td>
+<td><code>#1FFFFFFF</code></td>
+</tr>
+<tr>
+<td>frame</td>
+<td>1px <code>MahApps.Brushes.Control.Border</code></td>
+<td>none</td>
+</tr>
+<tr>
+<td><code>MinHeight</code></td>
+<td>10</td>
+<td>6</td>
+</tr>
+<tr>
+<td>indeterminate</td>
+<td>scrolling diagonal stripes</td>
+<td>five sweeping dots</td>
+</tr>
+<tr>
+<td><code>Padding</code></td>
+<td>ignored</td>
+<td>insets the determinate bar</td>
+</tr>
+</tbody>
+</table>
+<p>Neither is a variant of the other: <code>MahApps.Styles.MetroProgressBar</code> lives in <code>Themes/MetroProgressBar.xaml</code> and is applied as the control's default style through <code>Generic.xaml</code>, so it needs no <code>Style</code> reference.</p>
+<h2 id="the-invisible-track">The invisible track</h2>
+<div class="alert alert-warning"><p>The style sets <code>Background</code> to <code>#1FFFFFFF</code> — white at 12% opacity. That reads as a faint lightening on a dark surface, which is what it was drawn for, and as nothing at all on a light one. Look at the <code>Value = 0</code> panel in the first figure: there is no bar there, just an empty strip. Give the control a <code>Background</code> of your own whenever it sits on a light background.</p>
+</div>
+<p><img src="images/metroprogressbar-track.png" alt="The default track, a visible one, and a recoloured indicator" /></p>
+<pre><code class="language-xml">&lt;mah:MetroProgressBar Width=&quot;190&quot;
+                      Value=&quot;55&quot;
+                      Background=&quot;{DynamicResource MahApps.Brushes.Gray8}&quot;
+                      Foreground=&quot;#FF107C10&quot; /&gt;
 </code></pre>
-<p>Its indeterminate state looks like a <code>ProgressRing</code> but not circular.</p>
-<p><img src="images/metroprogressbar.png" alt="" /></p>
+<p><code>Background</code>, <code>BorderBrush</code>, <code>BorderThickness</code> and <code>Foreground</code> are all template bindings here, so all four work. <code>Padding</code> is bound to the margin of the determinate part, which insets the bar inside the control's own bounds.</p>
+<h2 id="indeterminate">Indeterminate</h2>
+<p><img src="images/metroprogressbar-indeterminate.gif" alt="The five dots sweeping across" /></p>
+<pre><code class="language-xml">&lt;mah:MetroProgressBar Width=&quot;190&quot; IsIndeterminate=&quot;True&quot; /&gt;
+</code></pre>
+<p>Five ellipses ease in from the left one after another, cross the bar together, and leave to the right, on a loop just under four seconds long. They are filled from <code>Foreground</code>, like the determinate bar.</p>
+<p>The track is not merely covered while this runs — the animation fades the whole determinate part to zero, so <code>Background</code> and <code>BorderBrush</code> have nothing to paint. An indeterminate <code>MetroProgressBar</code> is the dots and nothing else.</p>
+<p>For the same idea as a spinner rather than a strip, see <a href="progressring">ProgressRing</a>.</p>
+<h3 id="ellipsediameter-and-ellipseoffset">EllipseDiameter and EllipseOffset</h3>
+<p>The two properties the control adds are the size of the dots and the gap between them:</p>
+<p><img src="images/metroprogressbar-ellipses.png" alt="Dots at the automatic size and at two larger ones" /></p>
+<p><em>A single frame of the sweep, so the three are directly comparable.</em></p>
+<pre><code class="language-xml">&lt;mah:MetroProgressBar Width=&quot;190&quot;
+                      IsIndeterminate=&quot;True&quot;
+                      EllipseDiameter=&quot;8&quot;
+                      EllipseOffset=&quot;16&quot; /&gt;
+</code></pre>
+<p>Left alone, both are picked from the bar's own length:</p>
+<table>
+<thead>
+<tr>
+<th>Length</th>
+<th><code>EllipseDiameter</code></th>
+<th><code>EllipseOffset</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>up to 180</td>
+<td>4</td>
+<td>4</td>
+</tr>
+<tr>
+<td>up to 280</td>
+<td>5</td>
+<td>7</td>
+</tr>
+<tr>
+<td>longer</td>
+<td>6</td>
+<td>9</td>
+</tr>
+</tbody>
+</table>
+<p>The control only fills them in while they are still <code>0</code>, and it does so with <code>SetCurrentValue</code>, so a value you set — or a binding — survives. Setting either back to <code>0</code> hands it to the automatic sizing again.</p>
+<p>The control's height is a minimum (<code>MahApps.Sizes.ProgressBar.MinHeight</code>, 6), not a fixed size, so dots larger than that make the bar taller rather than being clipped.</p>
+<h2 id="vertical">Vertical</h2>
+<p><img src="images/metroprogressbar-vertical.png" alt="A horizontal and a vertical MetroProgressBar" /></p>
+<pre><code class="language-xml">&lt;mah:MetroProgressBar Width=&quot;6&quot;
+                      Height=&quot;90&quot;
+                      Orientation=&quot;Vertical&quot;
+                      Value=&quot;60&quot;
+                      Background=&quot;{DynamicResource MahApps.Brushes.Gray8}&quot; /&gt;
+</code></pre>
+<p><code>Orientation=&quot;Vertical&quot;</code> rotates the template by -90°, so the bar fills from the bottom and the dots sweep upwards. The trigger also swaps the minimum, putting the 6 on <code>MinWidth</code>; give the control the <code>Width</code> and <code>Height</code> you want, the rotation happens inside.</p>
+<h2 id="resizing">Resizing</h2>
+<p>The sweep is a storyboard whose travel distances are computed from the actual length of the bar, so the control rebuilds and restarts it whenever the size changes, and again when it becomes visible after being hidden. That is handled for you — worth knowing only if you wonder why an indeterminate bar restarts its loop when its container is re-laid out.</p>
+<h2 id="where-it-is-used">Where it is used</h2>
+<p>The <a href="../dialogs/progress-dialogs">progress dialog</a> is built on a <code>MetroProgressBar</code>, and its <code>ProgressBarForeground</code> binds straight to this control's <code>Foreground</code> — which works precisely because this template honours it.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#against-the-styled-progressbar">Against the styled ProgressBar</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-invisible-track">The invisible track</a></div>
+                    <div class="sidebar-nav-item"><a href="#indeterminate">Indeterminate</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#ellipsediameter-and-ellipseoffset">EllipseDiameter and EllipseOffset</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#vertical">Vertical</a></div>
+                    <div class="sidebar-nav-item"><a href="#resizing">Resizing</a></div>
+                    <div class="sidebar-nav-item"><a href="#where-it-is-used">Where it is used</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/metroprogressbar.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

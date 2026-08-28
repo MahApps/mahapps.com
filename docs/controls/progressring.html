@@ -331,16 +331,125 @@ ProgressRing
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>ProgressRing</code> control is styled after a similar control in Windows 8 to indicate activity rather than a percentage of progress completed.</p>
-<pre><code class="language-xml">&lt;mah:ProgressRing Foreground=&quot;{DynamicResource AccentColorBrush}&quot;
-                  IsActive=&quot;True&quot; /&gt;
+<p><code>ProgressRing</code> is the Windows 8 activity indicator: dots chasing each other around a circle. It shows that something is happening, not how far along it is — there is no <code>Value</code>, and it derives from <code>Control</code>, not from <code>ProgressBar</code>.</p>
+<p><img src="images/progressring.gif" alt="The default ProgressRing, animating" /></p>
+<pre><code class="language-xml">&lt;mah:ProgressRing /&gt;
 </code></pre>
-<p><img src="images/progress_ring.gif" alt="" /></p>
+<p>That is the whole minimum. <code>IsActive</code> defaults to <code>True</code>, so a ring you place starts spinning; the style gives it a size and the accent colour. The loop runs four and a bit seconds: the dots appear one after another, chase each other round, and fade out again before it starts over.</p>
+<p>The figures below are single frames of that loop, which is why the dots always sit part-way round rather than evenly spaced.</p>
+<h2 id="the-style">The style</h2>
+<p><code>Themes/ProgressRing.xaml</code> holds it, and it is applied as the control's default style, so nothing needs merging and nothing needs a <code>Style</code> reference.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Set to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Foreground</code></td>
+<td><code>MahApps.Brushes.Accent</code></td>
+</tr>
+<tr>
+<td><code>Width</code>, <code>Height</code></td>
+<td><code>60</code></td>
+</tr>
+<tr>
+<td><code>MinWidth</code>, <code>MinHeight</code></td>
+<td><code>20</code></td>
+</tr>
+<tr>
+<td><code>HorizontalAlignment</code>, <code>VerticalAlignment</code></td>
+<td><code>Center</code></td>
+</tr>
+<tr>
+<td><code>IsTabStop</code></td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-info"><p>The style is written without an <code>x:Key</code>, unlike the rest of the library — there is no <code>MahApps.Styles.ProgressRing</code> to reference. To derive from it, base your style on the type instead:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource {x:Type mah:ProgressRing}}&quot; TargetType=&quot;{x:Type mah:ProgressRing}&quot;&gt;
+    &lt;Setter Property=&quot;Width&quot; Value=&quot;32&quot; /&gt;
+    &lt;Setter Property=&quot;Height&quot; Value=&quot;32&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+</div>
+<p>Because the style sets <code>Width</code> and <code>Height</code> outright, the ring does not grow to fill its container. Set both yourself when you want another size.</p>
+<h2 id="islarge-is-a-dot-count">IsLarge is a dot count</h2>
+<div class="alert alert-warning"><p><code>IsLarge</code> does <strong>not</strong> change the size. It switches the sixth dot on and off — six dots when <code>True</code> (the default), five when <code>False</code>. The ring is exactly as big either way.</p>
+</div>
+<p><img src="images/progressring-islarge.png" alt="Six dots and five dots at the same size" /></p>
+<pre><code class="language-xml">&lt;mah:ProgressRing IsLarge=&quot;False&quot; /&gt;
+</code></pre>
+<p>Size is <code>Width</code> and <code>Height</code>, and the dots scale with them:</p>
+<p><img src="images/progressring-sizes.png" alt="The ring at 24, 40, 60 and 100" /></p>
+<pre><code class="language-xml">&lt;mah:ProgressRing Width=&quot;24&quot; Height=&quot;24&quot; /&gt;
+</code></pre>
+<p>Everything about the geometry is derived from the control's <strong>width</strong> alone, through read-only properties the control keeps up to date as it is resized:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EllipseDiameter</code></td>
+<td>width ÷ 8, times <code>EllipseDiameterScale</code></td>
+</tr>
+<tr>
+<td><code>EllipseOffset</code></td>
+<td>a top margin of width ÷ 2, which is what puts each dot on its orbit</td>
+</tr>
+<tr>
+<td><code>MaxSideLength</code></td>
+<td>the width, but never below 20 — it keeps the ring square</td>
+</tr>
+<tr>
+<td><code>BindableWidth</code></td>
+<td>the current <code>ActualWidth</code>, which the other three are computed from</td>
+</tr>
+</tbody>
+</table>
+<p>Since the height plays no part in that, keep <code>Width</code> and <code>Height</code> equal.</p>
+<p><code>EllipseDiameterScale</code> is the one of the five you can set, and the way to make the dots heavier or finer without changing the ring:</p>
+<p><img src="images/progressring-scale.png" alt="Dot scale at 0.5, 1 and 2" /></p>
+<pre><code class="language-xml">&lt;mah:ProgressRing Width=&quot;60&quot; Height=&quot;60&quot; EllipseDiameterScale=&quot;2&quot; /&gt;
+</code></pre>
+<div class="alert alert-info"><p><a href="metroprogressbar">MetroProgressBar</a> has properties called <code>EllipseDiameter</code> and <code>EllipseOffset</code> too, but there they are writable, <code>EllipseOffset</code> is a plain gap between dots rather than an orbit radius, and there is no <code>EllipseDiameterScale</code>. The two controls only look related.</p>
+</div>
+<h2 id="stopping-it">Stopping it</h2>
+<p><img src="images/progressring-isactive.png" alt="An active and an inactive ring" /></p>
+<pre><code class="language-xml">&lt;mah:ProgressRing IsActive=&quot;{Binding IsBusy}&quot; /&gt;
+</code></pre>
+<p>An inactive ring is not a still ring — the template collapses it, so nothing is drawn. The control keeps its 60×60 of layout, though, so the space stays reserved and the surrounding layout does not jump when the work starts.</p>
+<p><code>Visibility</code> and <code>IsActive</code> are wired together: whenever <code>Visibility</code> changes, the control writes the matching value into <code>IsActive</code>, so hiding a ring also stops its animation. The link runs one way only — an inactive ring is still <code>Visible</code> as far as layout is concerned — and it writes with <code>SetCurrentValue</code>, so a binding on <code>IsActive</code> survives it but will be overridden until the source pushes a new value. Drive one or the other, not both.</p>
+<h2 id="colours">Colours</h2>
+<p><img src="images/progressring-brushes.png" alt="The default ring, a recoloured one, and one with a frame" /></p>
+<pre><code class="language-xml">&lt;mah:ProgressRing Foreground=&quot;#FF107C10&quot; /&gt;
+</code></pre>
+<p><code>Foreground</code> fills the dots. <code>Background</code>, <code>BorderBrush</code> and <code>BorderThickness</code> paint the box the ring sits in — the control is a <code>Border</code> around the ring, so they frame it rather than touching the dots.</p>
+<p><code>Padding</code> shrinks the ring inside that box, but the offsets that place the dots are still computed from the control's full width, so a padded ring is both smaller and no longer centred. Prefer a smaller <code>Width</code> and <code>Height</code> over padding.</p>
+<h2 id="related">Related</h2>
+<p><a href="metroprogressbar">MetroProgressBar</a> is the same idea as a strip rather than a circle, and <a href="../styles/progressbar">ProgressBar</a> is the determinate one.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-style">The style</a></div>
+                    <div class="sidebar-nav-item"><a href="#islarge-is-a-dot-count">IsLarge is a dot count</a></div>
+                    <div class="sidebar-nav-item"><a href="#stopping-it">Stopping it</a></div>
+                    <div class="sidebar-nav-item"><a href="#colours">Colours</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/progressring.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

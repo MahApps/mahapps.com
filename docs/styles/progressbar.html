@@ -256,14 +256,112 @@ ProgressBar
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>ProgressBar</code> is like the built-in progress bar but, of course, restyled.</p>
-<p><img src="images/progressbar.png" alt="" /></p>
-<p>The upper two bars are the <code>ProgressBar</code> with different progress states. The third bar has <code>IsIndeterminate</code> set to <code>True</code></p>
+<p>WPF's <code>ProgressBar</code> gets a flat track and a gradient indicator, plus a striped indeterminate state in place of the sliding block.</p>
+<p><img src="images/progressbar-values.png" alt="A progress bar at 0, 35, 70 and 100 percent" /></p>
+<p>The gradient runs across the <em>indicator</em>, not across the track, so it is fully traversed at every value — the bar always ends in the darker blue.</p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.ProgressBar</code> to every <code>ProgressBar</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;ProgressBar Width=&quot;190&quot; Height=&quot;12&quot; Value=&quot;70&quot; /&gt;
+</code></pre>
+<p>There is no second style for <code>ProgressBar</code>. What the style sets beyond the template:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Set to</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Background</code></td>
+<td><code>MahApps.Brushes.Gray5</code></td>
+<td>the track</td>
+</tr>
+<tr>
+<td><code>BorderBrush</code></td>
+<td><code>MahApps.Brushes.Control.Border</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>BorderThickness</code></td>
+<td><code>1</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Foreground</code></td>
+<td><code>MahApps.Brushes.Highlight</code></td>
+<td>see the warning below — the template ignores it</td>
+</tr>
+<tr>
+<td><code>IsTabStop</code></td>
+<td><code>False</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Maximum</code></td>
+<td><code>100</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>MinHeight</code>, <code>MinWidth</code></td>
+<td><code>10</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="colours">Colours</h2>
+<p>The track and its frame are ordinary template bindings, so <code>Background</code>, <code>BorderBrush</code> and <code>BorderThickness</code> work as you would expect:</p>
+<p><img src="images/progressbar-track.png" alt="The default bar, a recoloured track and a borderless one" /></p>
+<pre><code class="language-xml">&lt;ProgressBar Width=&quot;190&quot; Height=&quot;12&quot; Value=&quot;55&quot;
+             Background=&quot;#FFEDE7F6&quot;
+             BorderBrush=&quot;#FF7E57C2&quot; /&gt;
+</code></pre>
+<p>The indicator is a different matter:</p>
+<div class="alert alert-warning"><p><strong><code>Foreground</code> does nothing on a <code>ProgressBar</code>.</strong> The template fills both the determinate indicator and the indeterminate stripes from <code>{DynamicResource MahApps.Brushes.Progress}</code> rather than from a template binding, so the style's own <code>Foreground</code> setter is dead and so is any value you set. This is unlike WPF's default template, and unlike <a href="../controls/metroprogressbar">MetroProgressBar</a>, whose template does bind <code>Foreground</code>.</p>
+</div>
+<p><img src="images/progressbar-brushes.png" alt="Foreground has no effect; replacing the brush resource does" /></p>
+<p>Because the lookup is a <code>DynamicResource</code>, the way to recolour a single bar is to put a <code>MahApps.Brushes.Progress</code> of your own in its resources:</p>
+<pre><code class="language-xml">&lt;ProgressBar Width=&quot;190&quot; Height=&quot;12&quot; Value=&quot;70&quot;&gt;
+    &lt;ProgressBar.Resources&gt;
+        &lt;SolidColorBrush x:Key=&quot;MahApps.Brushes.Progress&quot; Color=&quot;#FF107C10&quot; /&gt;
+    &lt;/ProgressBar.Resources&gt;
+&lt;/ProgressBar&gt;
+</code></pre>
+<p>The same key in <code>App.xaml</code> — or in the resources of any ancestor — recolours everything below it. <code>MahApps.Brushes.Progress</code> is a <code>LinearGradientBrush</code> in the theme, from <code>MahApps.Colors.Highlight</code> to <code>MahApps.Colors.Accent3</code>; a plain <code>SolidColorBrush</code> is a perfectly good replacement, as above.</p>
+<h2 id="indeterminate">Indeterminate</h2>
+<p><img src="images/progressbar-indeterminate.gif" alt="The indeterminate stripes scrolling" /></p>
+<pre><code class="language-xml">&lt;ProgressBar Width=&quot;190&quot; Height=&quot;12&quot; IsIndeterminate=&quot;True&quot; /&gt;
+</code></pre>
+<p><code>IsIndeterminate</code> swaps the indicator for a full-width fill in the same progress brush, overlaid with a skewed, repeating gradient that scrolls sideways — diagonal stripes rather than WPF's single travelling block. The four stops of that overlay come from <code>MahApps.Colors.ProgressIndeterminate1</code> through <code>4</code>; they are translucent greys, so they darken and lighten whatever is underneath instead of bringing a colour of their own.</p>
+<p>For an activity indicator that is not a bar, see <a href="../controls/progressring">ProgressRing</a>.</p>
+<h2 id="vertical">Vertical</h2>
+<p><img src="images/progressbar-vertical.png" alt="A horizontal and a vertical bar" /></p>
+<pre><code class="language-xml">&lt;ProgressBar Width=&quot;12&quot; Height=&quot;90&quot; Orientation=&quot;Vertical&quot; Value=&quot;60&quot; /&gt;
+</code></pre>
+<p><code>Orientation=&quot;Vertical&quot;</code> rotates the whole template by -90°, so the bar fills from the bottom up. Swap <code>Width</code> and <code>Height</code> when you turn it: the rotation is a <code>LayoutTransform</code> applied inside the template, so the control's own <code>Width</code> is still the thin dimension.</p>
+<h2 id="metroprogressbar">MetroProgressBar</h2>
+<p><code>MetroProgressBar</code> is a separate control with its own template, not a variant of this style. It looks the same when determinate, but its indeterminate state is a row of five dots sweeping across — and it does honour <code>Foreground</code>. See <a href="../controls/metroprogressbar">MetroProgressBar</a>.</p>
+<pre><code class="language-xml">&lt;mah:MetroProgressBar Width=&quot;190&quot; IsIndeterminate=&quot;True&quot; /&gt;
+</code></pre>
+<p>It is also what the <a href="../dialogs/progress-dialogs">progress dialog</a> uses.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#colours">Colours</a></div>
+                    <div class="sidebar-nav-item"><a href="#indeterminate">Indeterminate</a></div>
+                    <div class="sidebar-nav-item"><a href="#vertical">Vertical</a></div>
+                    <div class="sidebar-nav-item"><a href="#metroprogressbar">MetroProgressBar</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/progressbar.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

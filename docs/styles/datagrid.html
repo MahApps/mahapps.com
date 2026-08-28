@@ -256,50 +256,106 @@ DataGrid
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>DataGrid</code> is a control that ships with .NET by default and provides support for filtering, grouping, sorting and other standard features that you would expect of a <code>DataGrid</code>.</p>
-<p>MahApps.Metro adds styles for a <code>Checkbox</code> on <code>DataGridCheckBoxColumn</code> and a custom <code>DataGridNumberNumericUpDownColumn</code>.</p>
-<h2 id="getting-started">Getting Started</h2>
-<p>In order for the style to be applied, you will have to include references to the styles and controls resource dictionary in your <code>App.xaml</code> and the namespace <code>xmlns:controls=&quot;clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro&quot;</code> in the window you are using. Instructions on how to do this can be found in the <a href="../guides/quick-start">Quick Start Guide</a>.</p>
-<p>After including the references, any <code>DataGrid</code> that you place in XAML will follow the style displayed above.</p>
-<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding People}&quot; /&gt;
+<p><code>DataGrid</code> ships with WPF; MahApps restyles it and everything inside it. There is one alternative style, and a set of properties for the parts of a grid that WPF gives you no other way to reach.</p>
+<p><img src="images/datagrid-styles.png" alt="The default DataGrid and the Azure variant" /></p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.DataGrid</code> to every <code>DataGrid</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
 </code></pre>
-<p><img src="images/default_datagrid_style.png" alt="" /></p>
-<h2 id="alternative-style">Alternative Style</h2>
-<p>MahApps.Metro also provides an alternative style, <code>MahApps.Styles.DataGrid.Azure</code> that attempts to mimic the DataGrid found on Microsoft Azure. To use it instead of the default style, simple set the DataGrid's <code>Style</code> property to <code>{StaticResource MahApps.Styles.DataGrid.Azure}</code>. As usual, make sure that you have your references defined.</p>
-<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding People}&quot; Style=&quot;{StaticResource MahApps.Styles.DataGrid.Azure}&quot; /&gt;
+<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding Albums}&quot; /&gt;
 </code></pre>
-<p>The <code>AzureDataGrid</code> style will look something like this:</p>
-<p><img src="images/azure_datagrid_style.png" alt="" /></p>
-<h2 id="datagrid-numericupdown-control">DataGrid NumericUpdown Control</h2>
-<p>In addition to styling the DataGrid, MahApps.Metro also provides a control that allows users to add a <code>NumericUpDown</code> as one of their <code>DataGrid</code>'s columns. To add the custom column to your <code>DataGrid</code>, add <code>DataGridNumericUpDownColumn</code> under the MahApps namespace to your <code>DataGrid.Columns</code> properties. Be sure to set <code>AutoGenerateColumns</code> to <code>False</code> if you have not already done so.</p>
-<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding Path=Albums}&quot;
-          AutoGenerateColumns=&quot;False&quot;&gt;
-  &lt;DataGrid.Columns&gt;
-    &lt;DataGridTextColumn Header=&quot;Genre&quot;
-                        Binding=&quot;{Binding Genre.Name}&quot; /&gt;
-    &lt;controls:DataGridNumericUpDownColumn Header=&quot;Price&quot;
-                                          Binding=&quot;{Binding Price}&quot;
-                                          StringFormat=&quot;C&quot;
-                                          Minimum=&quot;0&quot; /&gt;
-  &lt;/DataGrid.Columns&gt;
+<p>Only the <code>DataGrid</code> itself has an implicit style. Everything inside it — rows, cells, headers — is styled because the grid's style hands those styles down:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Style</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RowStyle</code></td>
+<td><code>MahApps.Styles.DataGridRow</code></td>
+</tr>
+<tr>
+<td><code>CellStyle</code></td>
+<td><code>MahApps.Styles.DataGridCell</code></td>
+</tr>
+<tr>
+<td><code>ColumnHeaderStyle</code></td>
+<td><code>MahApps.Styles.DataGridColumnHeader</code></td>
+</tr>
+<tr>
+<td><code>RowHeaderStyle</code></td>
+<td><code>MahApps.Styles.DataGridRowHeader</code></td>
+</tr>
+</tbody>
+</table>
+<p>So restyling one part means replacing that one property, not the grid:</p>
+<pre><code class="language-xml">&lt;DataGrid CellStyle=&quot;{StaticResource MyCell}&quot; /&gt;
+</code></pre>
+<p>Along with the look the style also sets some behaviour: <code>GridLinesVisibility</code> to <code>None</code>, <code>HeadersVisibility</code> to <code>Column</code> — so no row headers unless you ask — and <code>MinRowHeight</code> to 25.</p>
+<h2 id="the-azure-style">The Azure style</h2>
+<p><code>MahApps.Styles.DataGrid.Azure</code> is a variant modelled on the grids in the Azure portal. It swaps in Azure versions of the same four styles:</p>
+<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding Albums}&quot;
+          Style=&quot;{StaticResource MahApps.Styles.DataGrid.Azure}&quot; /&gt;
+</code></pre>
+<div class="alert alert-info"><p>The Azure look tints the <strong>first column</strong> with the accent colour, as a stand-in for a row header. It is keyed on <code>Column.DisplayIndex</code> being <code>0</code>, not on the order you declared the columns in — so if the user drags a column to the front, the tint follows it.</p>
+</div>
+<p>There is also <code>MahApps.Styles.DataGridRow.AzureWithMargin</code>, the Azure row with a one-pixel bottom margin, which separates the rows into cards rather than a continuous table:</p>
+<pre><code class="language-xml">&lt;DataGrid Style=&quot;{StaticResource MahApps.Styles.DataGrid.Azure}&quot;
+          RowStyle=&quot;{StaticResource MahApps.Styles.DataGridRow.AzureWithMargin}&quot; /&gt;
+</code></pre>
+<h2 id="padding-and-selection">Padding and selection</h2>
+<p><code>DataGridHelper</code> carries what WPF leaves out. The full table is on the <a href="../helper/datagridhelper">DataGridHelper</a> page; the four that matter most here:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CellPadding</code></td>
+<td><code>0</code></td>
+<td>padding inside every cell</td>
+</tr>
+<tr>
+<td><code>ColumnHeaderPadding</code></td>
+<td><code>10 0 4 0</code></td>
+<td>padding inside every column header</td>
+</tr>
+<tr>
+<td><code>SelectionUnit</code></td>
+<td><code>FullRow</code></td>
+<td>which unit the MahApps styles draw as selected</td>
+</tr>
+<tr>
+<td><code>EnableCellEditAssist</code></td>
+<td><code>false</code></td>
+<td>a click straight onto a cell's editing control uses it right away</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;DataGrid mah:DataGridHelper.CellPadding=&quot;10 6&quot;
+          mah:DataGridHelper.ColumnHeaderPadding=&quot;10 8&quot; /&gt;
+</code></pre>
+<p><code>EnableCellEditAssist</code> is the one that changes how the grid feels: without it, a check box column needs one click to select the cell and another to hit the box.</p>
+<div class="alert alert-warning"><p><code>DataGridHelper.SelectionUnit</code> is not <code>DataGrid.SelectionUnit</code>. The MahApps cell and row styles read the attached one to decide what to highlight; WPF's own property still decides what selection actually does. Set both when you change it.</p>
+</div>
+<h2 id="grouping">Grouping</h2>
+<p>Grouping is WPF's own, and MahApps styles the group headers through <code>MahApps.Styles.GroupItem.DataGrid</code>, whose expander uses <code>MahApps.Styles.ToggleButton.ExpanderHeader.Down.DataGrid.GroupItem</code>. Point the grid's <code>GroupStyle</code> at it:</p>
+<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding GroupedAlbums}&quot;&gt;
+    &lt;DataGrid.GroupStyle&gt;
+        &lt;GroupStyle ContainerStyle=&quot;{StaticResource MahApps.Styles.GroupItem.DataGrid}&quot; /&gt;
+    &lt;/DataGrid.GroupStyle&gt;
 &lt;/DataGrid&gt;
 </code></pre>
-<p>The end result will look something like this:</p>
-<p><img src="images/datagrid_numeric_up_down.png" alt="" /></p>
-<h2 id="datagrid-checkbox">DataGrid Checkbox</h2>
-<p>Lastly, MahApps.Metro provides an <code>ElementStyle</code> for the <code>DataGridCheckBoxColumn</code>. In order to apply the style, you will have to set the <code>ElementStyle</code> property of the <code>DataGridCheckBoxColumn</code> to <code>{DynamicResource MetroDataGridCheckBox}</code> as shown in the code sample below.</p>
-<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding Path=Albums}&quot;
-          AutoGenerateColumns=&quot;False&quot;&gt;
-  &lt;DataGrid.Columns&gt;
-    &lt;DataGridCheckBoxColumn ElementStyle=&quot;{DynamicResource MetroDataGridCheckBox}&quot;
-                            EditingElementStyle=&quot;{DynamicResource MetroDataGridCheckBox}&quot;
-                            Header=&quot;IsSelected&quot;
-                            Binding=&quot;{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}&quot; /&gt;
-  &lt;/DataGrid.Columns&gt;
-&lt;/DataGrid&gt;
-</code></pre>
-<p>The end result will look something like this:</p>
-<p><img src="images/datagrid_checkbox.png" alt="" /></p>
+<p>As with a <a href="combobox">ComboBox</a>, the grouping itself comes from the bound collection being a grouped view, not from the grid.</p>
+<h2 id="related">Related</h2>
+<p>The columns and the controls inside them have a page of their own: <a href="datagridcolumns">DataGrid Columns</a>.</p>
 
 
                                         </div>
@@ -308,10 +364,11 @@ DataGrid
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#getting-started">Getting Started</a></div>
-                    <div class="sidebar-nav-item"><a href="#alternative-style">Alternative Style</a></div>
-                    <div class="sidebar-nav-item"><a href="#datagrid-numericupdown-control">DataGrid NumericUpdown Control</a></div>
-                    <div class="sidebar-nav-item"><a href="#datagrid-checkbox">DataGrid Checkbox</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-azure-style">The Azure style</a></div>
+                    <div class="sidebar-nav-item"><a href="#padding-and-selection">Padding and selection</a></div>
+                    <div class="sidebar-nav-item"><a href="#grouping">Grouping</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/datagrid.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

@@ -256,12 +256,86 @@ Hyperlink
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>A <code>Hyperlink</code> is an inline, not a control, so it lives inside a <code>TextBlock</code> and is styled rather than templated. MahApps gives it the Metro treatment: underlined, in the ordinary text colour, and only coloured once the pointer is over it.</p>
+<p><img src="images/hyperlink-states.png" alt="A hyperlink at rest, under the pointer and disabled" /></p>
+<div class="alert alert-info"><p>Note the first panel. A MahApps hyperlink is <strong>not</strong> blue at rest — it takes <code>MahApps.Brushes.Text</code>, the same colour as the words around it, and relies on the underline to mark it as a link. The accent-ish colour is the hover state. That is a deliberate part of the look, but it surprises people expecting the browser convention.</p>
+</div>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.Hyperlink</code> to every <code>Hyperlink</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;TextBlock&gt;
+    The source code is &lt;Hyperlink NavigateUri=&quot;https://github.com/MahApps/MahApps.Metro&quot;&gt;hosted on GitHub&lt;/Hyperlink&gt;
+    and includes everything needed to build it yourself.
+&lt;/TextBlock&gt;
+</code></pre>
+<p><img src="images/hyperlink-inline.png" alt="A link inside running text" /></p>
+<h2 id="what-the-style-does">What the style does</h2>
+<p><code>MahApps.Styles.Hyperlink</code> is based on WPF's own default hyperlink style rather than replacing it, and adds two setters and three triggers:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Foreground</code></td>
+<td><code>MahApps.Brushes.Text</code></td>
+</tr>
+<tr>
+<td><code>TextDecorations</code></td>
+<td><code>Underline</code></td>
+</tr>
+<tr>
+<td>on <code>IsMouseOver</code></td>
+<td><code>Foreground</code> becomes <code>MahApps.Brushes.Highlight</code></td>
+</tr>
+<tr>
+<td>on <code>IsEnabled=&quot;False&quot;</code></td>
+<td><code>Foreground</code> becomes the system grey-text colour</td>
+</tr>
+<tr>
+<td>on <code>IsEnabled=&quot;True&quot;</code></td>
+<td><code>Cursor</code> becomes <code>Hand</code>, with <code>ForceCursor=&quot;True&quot;</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>ForceCursor</code> is the one worth knowing about: it makes the hand cursor win over whatever the surrounding control would otherwise show, so a link inside a control with its own cursor still looks clickable.</p>
+<p>To make links read as links in the browser sense, override the foreground — either on the link or through a style of your own:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.Hyperlink}&quot; TargetType=&quot;{x:Type Hyperlink}&quot;&gt;
+    &lt;Setter Property=&quot;Foreground&quot; Value=&quot;{DynamicResource MahApps.Brushes.Accent}&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Keep the <code>BasedOn</code>, or the underline, the hover colour and the hand cursor go with it.</p>
+<h2 id="navigating">Navigating</h2>
+<p>The style does nothing about navigation — that is WPF's job, and WPF does not open a browser for you. Handle <code>RequestNavigate</code>:</p>
+<pre><code class="language-csharp">private void OnRequestNavigate(object sender, RequestNavigateEventArgs e)
+{
+    Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri) { UseShellExecute = true });
+    e.Handled = true;
+}
+</code></pre>
+<pre><code class="language-xml">&lt;Hyperlink NavigateUri=&quot;https://mahapps.com&quot; RequestNavigate=&quot;OnRequestNavigate&quot;&gt;mahapps.com&lt;/Hyperlink&gt;
+</code></pre>
+<h2 id="in-a-datagrid">In a DataGrid</h2>
+<p><code>MahApps.Styles.Hyperlink.DataGrid</code> is what a <code>DataGridHyperlinkColumn</code> uses for its cells. Despite the name it targets <strong><code>TextBlock</code></strong>, not <code>Hyperlink</code>: a hyperlink column puts a <code>TextBlock</code> in the cell and the link inside it, so the style dresses the block and carries a nested <code>Hyperlink</code> style in its <code>Style.Resources</code> for the link itself.</p>
+<p>You do not need to set it — the <code>DataGrid</code> style wires it up through <code>DataGridHelper</code>, as it does for every other column type. See <a href="datagridcolumns">DataGrid Columns</a>.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-the-style-does">What the style does</a></div>
+                    <div class="sidebar-nav-item"><a href="#navigating">Navigating</a></div>
+                    <div class="sidebar-nav-item"><a href="#in-a-datagrid">In a DataGrid</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/hyperlink.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

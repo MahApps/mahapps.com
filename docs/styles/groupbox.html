@@ -256,69 +256,78 @@ GroupBox
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<h2 id="character-casing-of-header">Character Casing of <code>Header</code></h2>
-<p>The default character casing for the <code>Header</code> property is <code>Upper</code>.</p>
-<p>You can change this by setting the property <code>ContentCharacterCasing</code> of <code>ControlsHelper</code> to a different value. This is similar to the documentation of <code>ContentControlEx</code>.</p>
-<h3 id="example">Example</h3>
-<pre><code class="language-xml">&lt;!-- xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot; --&gt;
-
-&lt;StackPanel&gt;
-    &lt;GroupBox Header=&quot;My upper Header&quot;
-              mah:ControlsHelper.ContentCharacterCasing=&quot;Upper&quot;
-              Margin=&quot;5&quot; /&gt;
-    &lt;GroupBox Header=&quot;My normal Header&quot;
-              mah:ControlsHelper.ContentCharacterCasing=&quot;Normal&quot;
-              Margin=&quot;5&quot; /&gt;
-    &lt;GroupBox Header=&quot;My lower Header&quot;
-              mah:ControlsHelper.ContentCharacterCasing=&quot;Lower&quot;
-              Margin=&quot;5&quot; /&gt;
-&lt;/StackPanel&gt;
+<p>A <code>GroupBox</code> gets an accent-filled header band and a bordered body. There are two alternative styles, and the header is reachable through attached properties rather than a template.</p>
+<p><img src="images/groupbox-styles.png" alt="The three GroupBox styles" /></p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.GroupBox</code> to every <code>GroupBox</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
 </code></pre>
-<p><img src="images/groupbox_charactercasing.png" alt="image of GroupBoxes with different character casing" /></p>
-<h2 id="different-styles-of-groupbox">Different Styles of <code>GroupBox</code></h2>
-<p>There are different styles available for <code>GroupBox</code>. You can change this by setting the property <code>Style</code>.</p>
-<p>The style <code>Visual Studio</code> is optimized for a dark theme.</p>
-<h3 id="example-1">Example</h3>
-<pre><code class="language-xml">&lt;StackPanel Margin=&quot;10&quot;&gt;
-    &lt;GroupBox Header=&quot;GroupBox Header (default)&quot;
-              Margin=&quot;5&quot;&gt;
-        &lt;TextBlock Text=&quot;some content&quot; /&gt;
-    &lt;/GroupBox&gt;
-
-    &lt;GroupBox Margin=&quot;5&quot;
-              Header=&quot;GroupBox Header (Clean)&quot;
-              Style=&quot;{DynamicResource MahApps.Styles.GroupBox.Clean}&quot;&gt;
-        &lt;GroupBox.Resources&gt;
-            &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Clean/Controls.xaml&quot; /&gt;
-        &lt;/GroupBox.Resources&gt;
-        &lt;TextBlock Text=&quot;some content&quot; /&gt;
-    &lt;/GroupBox&gt;
-
-    &lt;GroupBox Margin=&quot;5&quot;
-              Header=&quot;GroupBox Header (VisualStudio)&quot;
-              Style=&quot;{DynamicResource MahApps.Styles.GroupBox.VisualStudio}&quot;&gt;
-        &lt;GroupBox.Resources&gt;
-            &lt;ResourceDictionary&gt;
-                &lt;ResourceDictionary.MergedDictionaries&gt;
-                    &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml&quot; /&gt;
-                    &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml&quot; /&gt;
-                &lt;/ResourceDictionary.MergedDictionaries&gt;
-            &lt;/ResourceDictionary&gt;
-        &lt;/GroupBox.Resources&gt;
-        &lt;TextBlock Text=&quot;some content&quot; /&gt;
-    &lt;/GroupBox&gt;
-&lt;/StackPanel&gt;
+<h2 id="the-three-styles">The three styles</h2>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Lives in</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.GroupBox</code></td>
+<td><code>Controls.xaml</code></td>
+<td>the implicit one: accent header band, bordered body</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.GroupBox.Clean</code></td>
+<td><code>Styles/Clean/Controls.xaml</code></td>
+<td>no band; the header is plain text above a hairline</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.GroupBox.VisualStudio</code></td>
+<td><code>Styles/VS/Controls.xaml</code></td>
+<td>the Visual Studio tool-window look</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p>The last two are <strong>not</strong> merged by <code>Controls.xaml</code>. Add the dictionary they live in before using them, or the <code>Style</code> reference resolves to nothing. The Visual Studio one also needs <code>Styles/VS/Colors.xaml</code>, and it is drawn for the dark Visual Studio theme — on a light background its header all but disappears, which is why the figure above puts it on a dark backdrop.</p>
+</div>
+<pre><code class="language-xml">&lt;GroupBox Header=&quot;Details&quot; Style=&quot;{DynamicResource MahApps.Styles.GroupBox.Clean}&quot;&gt;
+    &lt;GroupBox.Resources&gt;
+        &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Clean/Controls.xaml&quot; /&gt;
+    &lt;/GroupBox.Resources&gt;
+    &lt;TextBlock Text=&quot;some content&quot; /&gt;
+&lt;/GroupBox&gt;
 </code></pre>
-<h4 id="light-theme">Light theme</h4>
-<pre><code class="language-xml">&lt;!-- Theme setting in App.xaml--&gt;
-&lt;!-- &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml&quot; /&gt; --&gt;
+<pre><code class="language-xml">&lt;GroupBox Header=&quot;Details&quot; Style=&quot;{DynamicResource MahApps.Styles.GroupBox.VisualStudio}&quot;&gt;
+    &lt;GroupBox.Resources&gt;
+        &lt;ResourceDictionary&gt;
+            &lt;ResourceDictionary.MergedDictionaries&gt;
+                &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml&quot; /&gt;
+                &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml&quot; /&gt;
+            &lt;/ResourceDictionary.MergedDictionaries&gt;
+        &lt;/ResourceDictionary&gt;
+    &lt;/GroupBox.Resources&gt;
+    &lt;TextBlock Text=&quot;some content&quot; /&gt;
+&lt;/GroupBox&gt;
 </code></pre>
-<p><img src="images/groupbox_styles_light.png" alt="image of GroupBoxes with different styles in a light theme" /></p>
-<h4 id="dark-theme">Dark theme</h4>
-<pre><code class="language-xml">&lt;!-- Theme setting in App.xaml--&gt;
-&lt;!-- &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml&quot; /&gt; --&gt;
+<p>Merging the dictionary once in <code>App.xaml</code> is tidier than per control; it is shown here on the control only to keep the sample self-contained.</p>
+<h2 id="header-casing">Header casing</h2>
+<p>The style sets <code>ControlsHelper.ContentCharacterCasing</code> to <code>Upper</code>, so a header reads as capitals whatever you typed. Set it back to have the text as written:</p>
+<p><img src="images/groupbox-casing.png" alt="Upper, Normal and Lower header casing" /></p>
+<pre><code class="language-xml">&lt;GroupBox Header=&quot;Details&quot; mah:ControlsHelper.ContentCharacterCasing=&quot;Normal&quot; /&gt;
 </code></pre>
-<p><img src="images/groupbox_styles_dark.png" alt="image of GroupBoxes with different styles in a dark theme" /></p>
+<h2 id="restyling-the-header">Restyling the header</h2>
+<p>The header's colours, font and padding come from <code>HeaderedControlHelper</code>, so they can be changed without replacing the template:</p>
+<p><img src="images/groupbox-header.png" alt="The default header and a recoloured one" /></p>
+<pre><code class="language-xml">&lt;GroupBox Header=&quot;Details&quot;
+          mah:HeaderedControlHelper.HeaderBackground=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+          mah:HeaderedControlHelper.HeaderForeground=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot;
+          mah:HeaderedControlHelper.HeaderFontSize=&quot;16&quot;
+          mah:HeaderedControlHelper.HeaderMargin=&quot;10 6&quot; /&gt;
+</code></pre>
+<p>The style sets three of these itself: <code>HeaderBackground</code> to the accent brush, <code>HeaderFontSize</code> to the content size, and <code>HeaderForeground</code> deliberately to <code>{x:Null}</code> so the template can pick a foreground that reads against the band. The full list is on the <a href="../helper/headeredcontrolhelper">HeaderedControlHelper</a> page.</p>
+<h2 id="related">Related</h2>
+<p><a href="expander">Expander</a> is the same header on a control that folds away, and uses the same helper.</p>
 
 
                                         </div>
@@ -327,14 +336,11 @@ GroupBox
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#character-casing-of-header">Character Casing of</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#example">Example</a></div>
-                        </div>
-                    <div class="sidebar-nav-item"><a href="#different-styles-of-groupbox">Different Styles of</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#example-1">Example</a></div>
-                        </div>
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-three-styles">The three styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#header-casing">Header casing</a></div>
+                    <div class="sidebar-nav-item"><a href="#restyling-the-header">Restyling the header</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/groupbox.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

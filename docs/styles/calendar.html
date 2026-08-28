@@ -256,12 +256,205 @@ Calendar
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>The <code>Calendar</code> is styled without any markup on your side, and the same style is what a <a href="datepicker">DatePicker</a> drops down. Because a calendar is assembled from four controls rather than one, restyling it is a matter of knowing which of the four draws the part you want to change.</p>
+<h2 id="the-implicit-style">The implicit style</h2>
+<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.Calendar</code> to every <code>Calendar</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+</code></pre>
+<h2 id="four-controls-four-styles">Four controls, four styles</h2>
+<p>A <code>Calendar</code> hosts a <code>CalendarItem</code>, which lays out the header and the grid and fills that grid with <code>CalendarDayButton</code>s in month mode and <code>CalendarButton</code>s in year and decade mode. Each has its own style, and the <code>Calendar</code> style hands them down through three properties:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Style</th>
+<th>Draws</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CalendarItemStyle</code></td>
+<td><code>MahApps.Styles.CalendarItem</code></td>
+<td>the frame: header bar, day-of-week titles, the grids</td>
+</tr>
+<tr>
+<td><code>CalendarDayButtonStyle</code></td>
+<td><code>MahApps.Styles.CalendarDayButton</code></td>
+<td>one day cell</td>
+</tr>
+<tr>
+<td><code>CalendarButtonStyle</code></td>
+<td><code>MahApps.Styles.CalendarButton</code></td>
+<td>one month or year cell</td>
+</tr>
+</tbody>
+</table>
+<p>So changing how a single day looks means replacing <code>CalendarDayButtonStyle</code>, not the whole calendar:</p>
+<pre><code class="language-xml">&lt;Calendar CalendarDayButtonStyle=&quot;{StaticResource MyDayButton}&quot; /&gt;
+</code></pre>
+<p>The header's three buttons are styled separately again, by <code>MahApps.Styles.Button.Calendar.Previous</code>, <code>.Next</code> and <code>.Header</code>, which the <code>CalendarItem</code> template references by key.</p>
+<h3 id="the-three-calendar-styles">The three calendar styles</h3>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Calendar.Base</code></td>
+<td>the frame and the three style properties, without a font</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Calendar</code></td>
+<td>the base plus the control font and size; the implicit style</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Calendar.DateTimePicker</code></td>
+<td>the base with a quieter border, for a picker's drop-down</td>
+</tr>
+</tbody>
+</table>
+<h2 id="a-winui-look">A WinUI look</h2>
+<p>The built-in calendar is the Metro design the library was named for: a solid accent header bar, bold day titles and square cells. Here is what the same control looks like with a WinUI-flavoured style beside it:</p>
+<p><img src="images/calendar-styles.png" alt="The built-in calendar and the WinUI variant" /></p>
+<p>The right-hand one is <code>MahApps.Styles.Calendar.WinUI</code>, a drop-in dictionary this site ships as a <strong><a href="../../assets/xaml/Controls.Calendar.WinUI.xaml">downloadable file</a></strong>. It is not part of MahApps.Metro; it is a worked example of how far these four styles can be taken.</p>
+<p>It is called <em>WinUI</em> rather than <em>Win10</em> on purpose. Rounded corners and circular day cells are <strong>Fluent 2</strong>, the refresh that arrived with WinUI 2.6 and Windows 11. The Windows 10 era of Fluent was square throughout — which is what the library's existing <code>MahApps.Styles.CheckBox.Win10</code> and <code>RadioButton.Win10</code> follow, neither of which sets a corner radius. There is a square variant below.</p>
+<p>What it changes:</p>
+<ul>
+<li>no accent header bar — the month button and two chevrons sit on the calendar's own background, as WinUI's <code>CalendarView</code> does</li>
+<li>round day cells of a fixed 40×40, so the grid is even and the selection reads as a disc</li>
+<li><strong>today</strong> is an accent-filled disc, a <strong>selected</strong> day an accent ring, and a day that is both keeps the fill and gains a contrasting ring</li>
+<li>hover and pressed are neutral greys, so the accent only ever means <em>today</em> or <em>selected</em></li>
+<li>muted day-of-week titles with a hairline under the row</li>
+<li>rounded outer corners, and month and year cells as rounded rectangles</li>
+</ul>
+<p>Every colour comes from the theme brushes, so it follows the accent and works in the light and dark themes.</p>
+<h3 id="using-it">Using it</h3>
+<p>Merge the dictionary and set the style by key:</p>
+<pre><code class="language-xml">&lt;Application.Resources&gt;
+    &lt;ResourceDictionary&gt;
+        &lt;ResourceDictionary.MergedDictionaries&gt;
+            &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+            &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml&quot; /&gt;
+            &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml&quot; /&gt;
+            &lt;ResourceDictionary Source=&quot;Controls.Calendar.WinUI.xaml&quot; /&gt;
+        &lt;/ResourceDictionary.MergedDictionaries&gt;
+    &lt;/ResourceDictionary&gt;
+&lt;/Application.Resources&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;Calendar Style=&quot;{StaticResource MahApps.Styles.Calendar.WinUI}&quot; /&gt;
+</code></pre>
+<p>To give a <code>DatePicker</code> the same drop-down, hand it to <code>CalendarStyle</code>:</p>
+<pre><code class="language-xml">&lt;DatePicker CalendarStyle=&quot;{StaticResource MahApps.Styles.Calendar.WinUI}&quot; /&gt;
+</code></pre>
+<p>And to make it the default for every calendar in the application, add a keyless style based on it:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.Calendar.WinUI}&quot; TargetType=&quot;{x:Type Calendar}&quot; /&gt;
+</code></pre>
+<h3 id="all-three-display-modes">All three display modes</h3>
+<p><code>DisplayMode</code> switches the grid between days, months and years. The same rules carry over: the cell holding the selection gets a ring, and the cell is a rounded rectangle rather than a disc.</p>
+<p><img src="images/calendar-winui-modes.png" alt="The WinUI calendar in month, year and decade mode" /></p>
+<p>The header button is disabled in decade mode — there is nothing above a decade to zoom out to — which is why it is dimmed in the third panel.</p>
+<h3 id="blackout-and-disabled">Blackout and disabled</h3>
+<p><img src="images/calendar-winui-states.png" alt="Blacked-out dates and a disabled calendar" /></p>
+<p>A blacked-out date keeps its number and gets a line through it rather than the cross the built-in style draws, which reads better at the size WinUI cells are.</p>
+<pre><code class="language-xml">&lt;Calendar Style=&quot;{StaticResource MahApps.Styles.Calendar.WinUI}&quot;&gt;
+    &lt;Calendar.BlackoutDates&gt;
+        &lt;CalendarDateRange Start=&quot;2020-06-20&quot; End=&quot;2020-06-21&quot; /&gt;
+    &lt;/Calendar.BlackoutDates&gt;
+&lt;/Calendar&gt;
+</code></pre>
+<h2 id="the-square-windows-10-look">The square Windows 10 look</h2>
+<p>Windows 10's design language was square: no rounded corners anywhere, and a selected day marked by a rectangle rather than a disc. <code>MahApps.Styles.Calendar.Win10</code> is that variant, in a <strong><a href="../../assets/xaml/Controls.Calendar.Win10.xaml">second file</a></strong> that sits alongside the first.</p>
+<p><img src="images/calendar-win10.png" alt="The square Win10 calendar beside the rounded WinUI one" /></p>
+<p>It matches the naming and the flat look of the library's existing <code>CheckBox.Win10</code> and <code>RadioButton.Win10</code>, so the three can be used together without the calendar looking out of period.</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;Controls.Calendar.Win10.xaml&quot; /&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;Calendar Style=&quot;{StaticResource MahApps.Styles.Calendar.Win10}&quot; /&gt;
+</code></pre>
+<p>The Win10 file merges the WinUI one, so adding it brings both families in and you can pick per calendar.</p>
+<h3 id="the-difference-is-one-number">The difference is one number</h3>
+<p>Writing the second style turned out to be a five-line job, because the two eras differ in nothing but the corner radius — the selection ring, the today fill, the hover greys and the layout are the same in both. Rather than repeat four templates, the radius reaches them through <code>ControlsHelper.CornerRadius</code>, and the Win10 dictionary sets it to zero:</p>
+<pre><code class="language-xml">&lt;Style x:Key=&quot;MahApps.Styles.CalendarDayButton.Win10&quot;
+       BasedOn=&quot;{StaticResource MahApps.Styles.CalendarDayButton.WinUI}&quot;
+       TargetType=&quot;{x:Type CalendarDayButton}&quot;&gt;
+    &lt;Setter Property=&quot;mah:ControlsHelper.CornerRadius&quot; Value=&quot;0&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>That works in the other direction too — give any of these styles a radius of your own and the cells follow, without touching a template:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.CalendarDayButton.WinUI}&quot; TargetType=&quot;{x:Type CalendarDayButton}&quot;&gt;
+    &lt;Setter Property=&quot;mah:ControlsHelper.CornerRadius&quot; Value=&quot;6&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>The header buttons take their radius from the <code>CalendarItem</code> rather than carrying their own, so squaring the calendar squares them along with it.</p>
+<h3 id="what-is-inside-the-file">What is inside the file</h3>
+<p>The dictionary defines only keyed resources and merges <code>Controls.Calendar.xaml</code>, so it can be dropped into an application on its own. It contains:</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Calendar.WinUI</code></td>
+<td>the calendar, wiring up the three below</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.CalendarItem.WinUI</code></td>
+<td>header, day titles, separator, the two grids</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.CalendarDayButton.WinUI</code></td>
+<td>the round day cell</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.CalendarButton.WinUI</code></td>
+<td>the rounded month and year cell</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.Calendar.Header.WinUI</code>, <code>.Previous.WinUI</code>, <code>.Next.WinUI</code></td>
+<td>the three header buttons</td>
+</tr>
+<tr>
+<td><code>MahApps.Sizes.CalendarDayButton.WinUI</code>, three <code>MahApps.CornerRadius.*</code></td>
+<td>the sizes, so they can be overridden in one place</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-info"><p>One thing worth knowing if you write a calendar style yourself: a <code>CalendarDayButton</code> has <code>IsToday</code>, <code>IsSelected</code>, <code>IsInactive</code>, <code>IsBlackedOut</code> and <code>IsHighlighted</code>, but a <code>CalendarButton</code> — the month and year cell — has <strong>no <code>IsSelected</code></strong>. The property that says it holds the current selection is <code>HasSelectedDays</code>. A trigger on <code>IsSelected</code> there fails at load time with <em>Property can not be null on Trigger</em>.</p>
+</div>
+<h2 id="related">Related</h2>
+<p>The <a href="datepicker">DatePicker</a> page covers how the calendar reaches a picker's drop-down and what else that control's style sets.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
+                    <div class="sidebar-nav-item"><a href="#four-controls-four-styles">Four controls, four styles</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#the-three-calendar-styles">The three calendar styles</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#a-winui-look">A WinUI look</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#using-it">Using it</a></div>
+                                <div class="sidebar-nav-item"><a href="#all-three-display-modes">All three display modes</a></div>
+                                <div class="sidebar-nav-item"><a href="#blackout-and-disabled">Blackout and disabled</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#the-square-windows-10-look">The square Windows 10 look</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#the-difference-is-one-number">The difference is one number</a></div>
+                                <div class="sidebar-nav-item"><a href="#what-is-inside-the-file">What is inside the file</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/calendar.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

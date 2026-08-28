@@ -331,47 +331,171 @@ RangeSlider
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>RangeSlider</code> control was taken from the <a href="https://avaloncontrolslib.codeplex.com/">Avalon Controls Library</a> (MS-PL) <a href="https://github.com/jogibear9988/avaloncontrolslib">GitHub fork</a>. It lets you select a range of values with a slider and 2 range bars, rather than a single value.</p>
-<p><img src="images/rangeslider.png" alt="" /></p>
-<h1 id="properties">Properties</h1>
-<ul>
-<li>Orientation: RangeSlider support vertical orientation</li>
-<li><code>IsMoveToPointEnabled</code> feature work like for Slider</li>
-<li>SmallChange / LargeChange: when <code>IsMoveToPointEnabled = False</code> thumbs will move on the value you set in Small / LargeChange</li>
-<li><code>Interval</code>: This property will set interval between changing values when using Small / Larnge change.</li>
-<li><code>IsSnapToTickEnabled</code>:  If set to true, thumbs will snap to ticks like in standard Slider.</li>
-<li>TickBars and Tickplacement: RangeSlider receive support for displaying / hiding ticks and change its ticks width according to minimum and maximum values changed</li>
-<li><code>ExtendedMode</code>: If it set <code>ExtendedMode = False</code> you <strong>cannot</strong> do any manipulations <strong>inside</strong> range except moving thumbs closer/farther to each other with mouse, but if it enabled you <strong>can</strong> use MoveToPoint or Small/Large change <strong>inside</strong> range by clicking <strong>Left mouse button + left or right control button</strong> to move left thumb and <strong>Right mouse button + left or right control button to move right thumb inside range</strong>. If Extended mode = true you also can without problems move whole range by clicking leftmouse button</li>
-<li><code>MoveWholeRange</code>: This property will let you move whole range when using MoveToPoint or Small/Large change (working also inside range)</li>
-<li><code>MinRangeWidth</code>: Sets minimum width of <strong>central</strong> Thumb. It can be in range <strong>from 0 to range_slider_width/2</strong>.</li>
-<li><code>AutoToolTipPlacement</code> will display tooltip, which will move with Thumb and display current value. Implemented for left/central/right thumbs.</li>
-<li><code>AutotoolTipPrecision</code> set the number of digits, which will be shown after dot in autotooltip.</li>
-</ul>
-<pre><code class="language-xml">&lt;mah:RangeSlider Width=&quot;200&quot;
-                 Margin=&quot;4&quot;
-                 mah:SliderHelper.ChangeValueBy=&quot;LargeChange&quot;
-                 mah:SliderHelper.EnableMouseWheel=&quot;MouseHover&quot;
-                 AutoToolTipPlacement=&quot;TopLeft&quot;
-                 LargeChange=&quot;10&quot;
-                 LowerValue=&quot;40&quot;
-                 Maximum=&quot;100&quot;
+<p><code>RangeSlider</code> picks a range rather than a value. It has three thumbs — one at each end and one for the band between them — and derives from <code>RangeBase</code>, so <code>Minimum</code>, <code>Maximum</code>, <code>SmallChange</code> and <code>LargeChange</code> are the familiar ones. The range itself is <code>LowerValue</code> and <code>UpperValue</code>.</p>
+<p><img src="images/rangeslider-styles.png" alt="The Win10 and default RangeSlider styles" /></p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Width=&quot;190&quot;
                  Minimum=&quot;0&quot;
-                 Orientation=&quot;Horizontal&quot;
-                 SmallChange=&quot;1&quot;
-                 Style=&quot;{DynamicResource MahApps.Styles.RangeSlider.Win10}&quot;
-                 UpperValue=&quot;60&quot;&gt;
-  &lt;mah:RangeSlider.AutoToolTipRangeValuesTemplate&gt;
-    &lt;DataTemplate DataType=&quot;mah:RangeSliderAutoTooltipValues&quot;&gt;
-      &lt;UniformGrid Columns=&quot;2&quot; Rows=&quot;2&quot;&gt;
-        &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;From:&quot; /&gt;
-        &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;{Binding LowerValue, StringFormat='{}{0:N2}'}&quot; /&gt;
-        &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;To:&quot; /&gt;
-        &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;{Binding UpperValue, StringFormat='{}{0:N2}'}&quot; /&gt;
-      &lt;/UniformGrid&gt;
-    &lt;/DataTemplate&gt;
-  &lt;/mah:RangeSlider.AutoToolTipRangeValuesTemplate&gt;
+                 Maximum=&quot;100&quot;
+                 LowerValue=&quot;30&quot;
+                 UpperValue=&quot;70&quot; /&gt;
+</code></pre>
+<div class="alert alert-warning"><p>Set <code>Minimum</code> and <code>Maximum</code>. Unlike the <a href="../styles/slider">Slider</a> styles, neither <code>RangeSlider</code> style sets them, so they come straight from <code>RangeBase</code> as <strong>0 and 1</strong> — a range slider without them clamps everything you give it to 1.</p>
+</div>
+<h2 id="the-two-styles">The two styles</h2>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.RangeSlider.Win10</code></td>
+<td><strong>the implicit one</strong> — a 2px track and tall rounded thumbs</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.RangeSlider</code></td>
+<td>a thicker track and small grey thumbs</td>
+</tr>
+</tbody>
+</table>
+<p>Both live in <code>Themes/RangeSlider.xaml</code> and the implicit one is applied through <code>Generic.xaml</code>, so neither needs a dictionary merged. As with the plain slider, the Win10 style additionally sets <code>IsMoveToPointEnabled=&quot;True&quot;</code>.</p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Style=&quot;{DynamicResource MahApps.Styles.RangeSlider}&quot; /&gt;
+</code></pre>
+<h2 id="minrange-and-minrangewidth">MinRange and MinRangeWidth</h2>
+<p>These two sound alike and are not:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MinRange</code></td>
+<td>in value units</td>
+<td>how close <code>LowerValue</code> and <code>UpperValue</code> may get. Default <code>0</code></td>
+</tr>
+<tr>
+<td><code>MinRangeWidth</code></td>
+<td>in pixels</td>
+<td>the minimum width of the middle thumb. Default <code>30</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>MinRangeWidth</code> is the one that surprises people, because it is a floor on the <em>drawn</em> band, not on the values:</p>
+<p><img src="images/rangeslider-minrangewidth.png" alt="The two thumbs at the same value, with and without MinRangeWidth" /></p>
+<p>Both panels have <code>LowerValue</code> and <code>UpperValue</code> at 50. On the left, the default <code>MinRangeWidth</code> of 30 keeps thirty pixels of filled track between the thumbs anyway; only <code>MinRangeWidth=&quot;0&quot;</code> lets them meet.</p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Minimum=&quot;0&quot; Maximum=&quot;100&quot;
+                 LowerValue=&quot;50&quot; UpperValue=&quot;50&quot;
+                 MinRangeWidth=&quot;0&quot; /&gt;
+</code></pre>
+<p>It is also coerced: it can never exceed half the track length once the side thumbs are accounted for. The value-to-pixel mapping subtracts it from the usable width, which is why the thumbs above straddle the midpoint rather than sitting on it.</p>
+<div class="alert alert-info"><p>The XML documentation on <code>MinRangeWidth</code> in the library reads <em>&quot;Get/sets the minimal distance between two thumbs&quot;</em>, which describes <code>MinRange</code> instead. The API reference repeats it, so go by the table above.</p>
+</div>
+<h2 id="colours">Colours</h2>
+<p>Both styles take their brushes from <a href="../helper/sliderhelper">SliderHelper</a>, the same twelve as the plain slider — thumb, track and filled track, each with a hover, pressed and disabled variant. The middle thumb is painted from the <code>TrackValue</code> set.</p>
+<p><img src="images/rangeslider-brushes.png" alt="The default colours, a green set, and the disabled state" /></p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Minimum=&quot;0&quot; Maximum=&quot;100&quot; LowerValue=&quot;30&quot; UpperValue=&quot;70&quot;
+                 mah:SliderHelper.ThumbFillBrush=&quot;#FF1B5E20&quot;
+                 mah:SliderHelper.TrackValueFillBrush=&quot;#FF43A047&quot;
+                 mah:SliderHelper.TrackFillBrush=&quot;#FFC8E6C9&quot; /&gt;
+</code></pre>
+<p>Set the <code>Hover</code> and <code>Pressed</code> variants too, or the slider goes back to the theme colour as soon as the pointer is over it.</p>
+<p><code>Foreground</code> is the tick colour here, not the track colour.</p>
+<h2 id="ticks-and-the-selection-range">Ticks and the selection range</h2>
+<p><img src="images/rangeslider-ticks.png" alt="No ticks, ticks on both sides, and a selection range" /></p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Minimum=&quot;0&quot; Maximum=&quot;100&quot; LowerValue=&quot;30&quot; UpperValue=&quot;70&quot;
+                 TickFrequency=&quot;10&quot;
+                 TickPlacement=&quot;Both&quot; /&gt;
+</code></pre>
+<p><code>TickFrequency</code>, <code>Ticks</code>, <code>TickPlacement</code> and <code>IsSnapToTickEnabled</code> behave as they do on a <code>Slider</code>. <code>IsSnapToTickEnabled</code> makes both thumbs land on ticks.</p>
+<p><code>IsSelectionRangeEnabled</code> together with <code>SelectionStart</code> and <code>SelectionEnd</code> marks a sub-range — the grey wedges in the third panel. Those markers are drawn <strong>on the tick bars</strong>, so they are invisible unless <code>TickPlacement</code> is also set.</p>
+<h2 id="interaction">Interaction</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsMoveToPointEnabled</code></td>
+<td><code>False</code>, but <code>True</code> in the Win10 style</td>
+<td>clicking the track jumps the nearest thumb there instead of stepping</td>
+</tr>
+<tr>
+<td><code>Interval</code></td>
+<td><code>100</code></td>
+<td>milliseconds between steps while the button is held, when <code>IsMoveToPointEnabled</code> is off</td>
+</tr>
+<tr>
+<td><code>MoveWholeRange</code></td>
+<td><code>False</code></td>
+<td>a click outside the range moves the whole band instead of just the near thumb</td>
+</tr>
+<tr>
+<td><code>ExtendedMode</code></td>
+<td><code>False</code></td>
+<td>see below</td>
+</tr>
+<tr>
+<td><code>AutoToolTipPlacement</code></td>
+<td><code>None</code></td>
+<td><code>TopLeft</code> or <code>BottomRight</code> to show the value while dragging</td>
+</tr>
+<tr>
+<td><code>AutoToolTipPrecision</code></td>
+<td><code>0</code></td>
+<td>decimal places in that tooltip</td>
+</tr>
+</tbody>
+</table>
+<p>Without <code>ExtendedMode</code>, clicking inside the range only drags the band. With it on, <strong>Ctrl + left click</strong> inside the range moves the lower thumb and <strong>Ctrl + right click</strong> moves the upper one, so both ends stay reachable without leaving the band.</p>
+<p>The middle mouse button toggles <code>MoveWholeRange</code> — undocumented in the library, but it is there.</p>
+<h2 id="vertical">Vertical</h2>
+<p><img src="images/rangeslider-vertical.png" alt="Both styles turned vertical" /></p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Height=&quot;110&quot;
+                 Orientation=&quot;Vertical&quot;
+                 Minimum=&quot;0&quot; Maximum=&quot;100&quot;
+                 LowerValue=&quot;30&quot; UpperValue=&quot;70&quot; /&gt;
+</code></pre>
+<p>Each style carries a second template and swaps to it on <code>Orientation=&quot;Vertical&quot;</code> through a trigger. That trigger beats a <code>Template</code> setter in a style derived from it — see the warning under <a href="../styles/slider#vertical">Slider</a>, which applies here word for word.</p>
+<h2 id="the-drag-tooltip">The drag tooltip</h2>
+<p><code>AutoToolTipPlacement</code> shows the value being dragged. Three templates shape it: <code>AutoToolTipLowerValueTemplate</code> and <code>AutoToolTipUpperValueTemplate</code> for the end thumbs, and <code>AutoToolTipRangeValuesTemplate</code> for the middle one, whose data context is a <code>RangeSliderAutoTooltipValues</code> carrying both values.</p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Width=&quot;190&quot;
+                 Minimum=&quot;0&quot; Maximum=&quot;100&quot;
+                 LowerValue=&quot;30&quot; UpperValue=&quot;70&quot;
+                 AutoToolTipPlacement=&quot;TopLeft&quot;
+                 AutoToolTipPrecision=&quot;2&quot;&gt;
+    &lt;mah:RangeSlider.AutoToolTipRangeValuesTemplate&gt;
+        &lt;DataTemplate DataType=&quot;mah:RangeSliderAutoTooltipValues&quot;&gt;
+            &lt;UniformGrid Columns=&quot;2&quot; Rows=&quot;2&quot;&gt;
+                &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;From:&quot; /&gt;
+                &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;{Binding LowerValue, StringFormat='{}{0:N2}'}&quot; /&gt;
+                &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;To:&quot; /&gt;
+                &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;{Binding UpperValue, StringFormat='{}{0:N2}'}&quot; /&gt;
+            &lt;/UniformGrid&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/mah:RangeSlider.AutoToolTipRangeValuesTemplate&gt;
 &lt;/mah:RangeSlider&gt;
 </code></pre>
+<h2 id="events">Events</h2>
+<p><code>LowerValueChanged</code> and <code>UpperValueChanged</code> fire for the individual ends, <code>RangeSelectionChanged</code> for the range as a whole. Each of the three thumbs also raises its own <code>DragStarted</code>, <code>DragDelta</code> and <code>DragCompleted</code> — <code>LowerThumbDragStarted</code>, <code>CentralThumbDragDelta</code>, <code>UpperThumbDragCompleted</code> and so on — which is what to hang expensive work off, rather than recomputing on every value change while a thumb is moving.</p>
+<h2 id="mouse-wheel">Mouse wheel</h2>
+<p><a href="../helper/sliderhelper">SliderHelper</a> applies here as well:</p>
+<pre><code class="language-xml">&lt;mah:RangeSlider mah:SliderHelper.EnableMouseWheel=&quot;MouseHover&quot;
+                 mah:SliderHelper.ChangeValueBy=&quot;LargeChange&quot;
+                 SmallChange=&quot;1&quot;
+                 LargeChange=&quot;10&quot; /&gt;
+</code></pre>
+<h2 id="origin">Origin</h2>
+<p>The control came from the Avalon Controls Library (MS-PL) by way of <a href="https://github.com/jogibear9988/avaloncontrolslib">this fork</a>; the original CodePlex site is gone. It has been rewritten considerably since.</p>
 
 
                                         </div>
@@ -380,7 +504,16 @@ RangeSlider
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#properties">Properties</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-two-styles">The two styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#minrange-and-minrangewidth">MinRange and MinRangeWidth</a></div>
+                    <div class="sidebar-nav-item"><a href="#colours">Colours</a></div>
+                    <div class="sidebar-nav-item"><a href="#ticks-and-the-selection-range">Ticks and the selection range</a></div>
+                    <div class="sidebar-nav-item"><a href="#interaction">Interaction</a></div>
+                    <div class="sidebar-nav-item"><a href="#vertical">Vertical</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-drag-tooltip">The drag tooltip</a></div>
+                    <div class="sidebar-nav-item"><a href="#events">Events</a></div>
+                    <div class="sidebar-nav-item"><a href="#mouse-wheel">Mouse wheel</a></div>
+                    <div class="sidebar-nav-item"><a href="#origin">Origin</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/rangeslider.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

@@ -401,7 +401,7 @@ ExpanderHelper
 </tr>
 </tbody>
 </table>
-<p>Both are empty unless you set them. With a storyboard in place the expanded and collapsed events run it instead of switching over in one frame.</p>
+<p>The helper's own default for both is <code>null</code>, but the <code>Expander</code> style fills them in — <code>MahApps.Storyboard.Expander.Expand</code> and <code>.Collapse</code>, a quarter-second opacity fade on the content site. So an expander already animates, and setting these replaces that animation rather than adding one. Set them to <code>{x:Null}</code> to have the content switch over in a single frame instead.</p>
 <p><code>ExpandSiteControl</code> is read-only and exists for the template's own use; it gives the content site the storyboards are applied to.</p>
 
 

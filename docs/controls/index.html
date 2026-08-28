@@ -501,7 +501,7 @@ It's derived from <code>HeaderedContentControl</code> and has the ability to sli
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/metroprogressbar">MetroProgressBar</a></h4>
 
-            <div class="font-size-sm"><p>The <code>MetroProgressBar</code> is an alternative progress bar with a different indeterminate style. Instead of creating a normal <code>ProgressBar</code> use:</p></div>
+            <div class="font-size-sm"><p><code>MetroProgressBar</code> derives from <code>ProgressBar</code> and replaces its template. Determinate, it is a flat bar without a frame; indeterminate, it is five dots sweeping across instead of a striped fill.</p></div>
 
     </div>
 
@@ -571,7 +571,7 @@ It's derived from <code>HeaderedContentControl</code> and has the ability to sli
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/progressring">ProgressRing</a></h4>
 
-            <div class="font-size-sm"><p>The <code>ProgressRing</code> control is styled after a similar control in Windows 8 to indicate activity rather than a percentage of progress completed.</p></div>
+            <div class="font-size-sm"><p><code>ProgressRing</code> is the Windows 8 activity indicator: dots chasing each other around a circle. It shows that something is happening, not how far along it is — there is no <code>Value</code>, and it derives from <code>Control</code>, not from <code>ProgressBar</code>.</p></div>
 
     </div>
 
@@ -581,7 +581,7 @@ It's derived from <code>HeaderedContentControl</code> and has the ability to sli
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/rangeslider">RangeSlider</a></h4>
 
-            <div class="font-size-sm"><p>The <code>RangeSlider</code> control was taken from the <a href="https://avaloncontrolslib.codeplex.com/">Avalon Controls Library</a> (MS-PL) <a href="https://github.com/jogibear9988/avaloncontrolslib">GitHub fork</a>. It lets you select a range of values with a slider and 2 range bars, rather than a single value.</p></div>
+            <div class="font-size-sm"><p><code>RangeSlider</code> picks a range rather than a value. It has three thumbs — one at each end and one for the band between them — and derives from <code>RangeBase</code>, so <code>Minimum</code>, <code>Maximum</code>, <code>SmallChange</code> and <code>LargeChange</code> are the familiar ones. The range itself is <code>LowerValue</code> and <code>UpperValue</code>.</p></div>
 
     </div>
 

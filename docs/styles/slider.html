@@ -256,19 +256,111 @@ Slider
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>This control has several styles in MahApps.Metro:</p>
-<h2 id="default">Default</h2>
-<p><img src="images/slider_standard.png" alt="" /></p>
-<p>This is the basic style for the <code>Slider</code>. It applies automatically if you don't use a custom style.
-If you want to base your custom style on that style, you need to add <code>BasedOn=&quot;{StaticResource MetroSlider}&quot;</code></p>
-<h2 id="flatslider">FlatSlider</h2>
-<p><img src="images/slider_cube.png" alt="" /></p>
-<p>To use that style you need to load resource dictionary
-<code>&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.FlatSlider.xaml&quot; /&gt;</code>
-and explicitly set the style of the <code>Slider</code> to <code>Style=&quot;{DynamicResource FlatSlider}&quot;</code></p>
-<p>This style could be dynamically changed to:</p>
-<p><img src="images/slider_tick.png" alt="" /></p>
-<p>For that you need just to change TickPlacement property from None to any other.</p>
+<p>Three styles, all in <code>Controls.xaml</code> and all ready to use without loading anything extra.</p>
+<p><img src="images/slider-styles.png" alt="The Win10, default and flat slider styles" /></p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Slider.Win10</code></td>
+<td><strong>the implicit one</strong> — a 2px track and a tall rounded thumb</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Slider</code></td>
+<td>a thicker track and a small grey thumb</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Slider.Flat</code></td>
+<td>a solid block with a rectangular thumb cut into it</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p>Note which one is implicit. <code>Styles/Controls.xaml</code> applies <strong><code>MahApps.Styles.Slider.Win10</code></strong> to every <code>Slider</code> — <code>MahApps.Styles.Slider</code>, despite the plainer name, is the one you have to ask for. Basing a style of your own on <code>MahApps.Styles.Slider</code> therefore changes the look as well as whatever you meant to change.</p>
+</div>
+<pre><code class="language-xml">&lt;Slider Width=&quot;190&quot; Value=&quot;40&quot; /&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;Slider Width=&quot;190&quot; Value=&quot;40&quot; Style=&quot;{DynamicResource MahApps.Styles.Slider}&quot; /&gt;
+</code></pre>
+<p>Both <code>Controls.Slider.xaml</code> and <code>Controls.FlatSlider.xaml</code> are merged by <code>Controls.xaml</code>, so the <a href="../guides/quick-start">quick start</a> is all the setup any of the three needs.</p>
+<p>Besides the look, the Win10 style sets <code>IsMoveToPointEnabled=&quot;True&quot;</code>, which the other two leave at WPF's <code>False</code>: clicking the track jumps the thumb to where you clicked instead of paging by <code>LargeChange</code>.</p>
+<p>All three set <code>Minimum=&quot;0&quot;</code>, <code>Maximum=&quot;100&quot;</code> and <code>Value=&quot;0&quot;</code>, so a slider without a range still shows something sensible.</p>
+<h2 id="colours">Colours</h2>
+<p>The Win10 and default styles get their colours from <a href="../helper/sliderhelper">SliderHelper</a> — twelve attached brushes covering the thumb, the track and the filled part of the track, each in a resting, hover, pressed and disabled variant.</p>
+<p><img src="images/slider-brushes.png" alt="The default colours, a green set, and the disabled state" /></p>
+<pre><code class="language-xml">&lt;Slider Width=&quot;190&quot; Value=&quot;40&quot;
+        mah:SliderHelper.ThumbFillBrush=&quot;#FF1B5E20&quot;
+        mah:SliderHelper.TrackValueFillBrush=&quot;#FF43A047&quot;
+        mah:SliderHelper.TrackFillBrush=&quot;#FFC8E6C9&quot; /&gt;
+</code></pre>
+<p>The styles fill in all twelve, so a slider recoloured with only the three above reverts to the theme colour under the pointer. Set the <code>Hover</code> and <code>Pressed</code> variants too if it should stay green while it is being dragged.</p>
+<p><code>Foreground</code> is not the track colour on these two — it is what the tick marks are drawn in.</p>
+<h2 id="ticks">Ticks</h2>
+<p><code>TickPlacement</code> is off by default and needs <code>TickFrequency</code> to be worth switching on:</p>
+<p><img src="images/slider-ticks.png" alt="TickPlacement None, TopLeft, BottomRight and Both" /></p>
+<pre><code class="language-xml">&lt;Slider Width=&quot;190&quot; Value=&quot;40&quot; TickFrequency=&quot;10&quot; TickPlacement=&quot;Both&quot; /&gt;
+</code></pre>
+<p>The tick bars are part of the template, above and below the track, so turning them on makes the control taller rather than crowding the groove.</p>
+<h2 id="the-flat-style">The flat style</h2>
+<p><img src="images/slider-flat.png" alt="The flat slider plain, with ticks, and recoloured" /></p>
+<pre><code class="language-xml">&lt;Slider Width=&quot;190&quot; Value=&quot;40&quot; Style=&quot;{DynamicResource MahApps.Styles.Slider.Flat}&quot; /&gt;
+</code></pre>
+<p>This one is built differently and the difference shows when you try to change it. It sets <code>OverridesDefaultStyle=&quot;True&quot;</code> and <strong>ignores <code>SliderHelper</code> completely</strong> — its three parts come from three ordinary properties of the slider:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Foreground</code></td>
+<td>the filled part of the bar</td>
+</tr>
+<tr>
+<td><code>Background</code></td>
+<td>the rest of it</td>
+</tr>
+<tr>
+<td><code>BorderBrush</code></td>
+<td>the thumb</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;Slider Width=&quot;190&quot; Value=&quot;40&quot;
+        Style=&quot;{DynamicResource MahApps.Styles.Slider.Flat}&quot;
+        Foreground=&quot;#FF66BB6A&quot;
+        Background=&quot;#FFC8E6C9&quot;
+        BorderBrush=&quot;#FF1B5E20&quot; /&gt;
+</code></pre>
+<div class="alert alert-warning"><p><code>BorderBrush</code> for the thumb is easy to miss, and the same trap as above applies here in a sharper form: the style's own <code>IsMouseOver</code> trigger reassigns <code>Background</code> and <code>Foreground</code> from the theme, so a hand-coloured flat slider goes back to grey and accent the moment the pointer is over it. To keep a colour, base a style on this one and override the trigger rather than setting the properties on the control.</p>
+</div>
+<p>The bar is 12 units thick by default, from <code>MahApps.Sizes.Slider.Flat.Horizontal.MinHeight</code>, and the thumb is a square of that size. Its tick bars are its own — 6 units, in the disabled-thumb grey rather than in <code>Foreground</code>.</p>
+<h2 id="vertical">Vertical</h2>
+<p><img src="images/slider-vertical.png" alt="The three styles turned vertical" /></p>
+<pre><code class="language-xml">&lt;Slider Height=&quot;110&quot; Orientation=&quot;Vertical&quot; Value=&quot;40&quot; /&gt;
+</code></pre>
+<p>Each style carries a second template and a trigger that swaps to it on <code>Orientation=&quot;Vertical&quot;</code>, so the thumb turns with the slider and the fill runs from the bottom.</p>
+<div class="alert alert-warning"><p>That trigger is why a derived style cannot replace the template with a single setter. A <code>Setter</code> for <code>Template</code> is beaten by the inherited trigger's setter, so a custom template applies horizontally and is silently discarded the moment the slider is vertical:</p>
+<p><img src="images/slider-custom-template.png" alt="A custom template applied horizontally but not vertically" /></p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.Slider.Win10}&quot; TargetType=&quot;{x:Type Slider}&quot;&gt;
+    &lt;Setter Property=&quot;Template&quot; Value=&quot;{StaticResource MyTemplate}&quot; /&gt;
+    &lt;Style.Triggers&gt;
+        &lt;Trigger Property=&quot;Orientation&quot; Value=&quot;Vertical&quot;&gt;
+            &lt;Setter Property=&quot;Template&quot; Value=&quot;{StaticResource MyVerticalTemplate}&quot; /&gt;
+        &lt;/Trigger&gt;
+    &lt;/Style.Triggers&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>Repeat the trigger, as above, or drop the <code>BasedOn</code> and start from <code>{x:Type Slider}</code>.</p>
+</div>
+<h2 id="related">Related</h2>
+<p><a href="../controls/rangeslider">RangeSlider</a> is the two-thumb version and uses the same <code>SliderHelper</code> brushes. The colour picker's channel sliders are <code>MahApps.Styles.Slider.ColorComponent</code> and its variants, which are not meant to be used on their own — see <a href="../controls/ColorPicker">ColorPicker</a>.</p>
 
 
                                         </div>
@@ -277,8 +369,11 @@ and explicitly set the style of the <code>Slider</code> to <code>Style=&quot;{Dy
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#default">Default</a></div>
-                    <div class="sidebar-nav-item"><a href="#flatslider">FlatSlider</a></div>
+                    <div class="sidebar-nav-item"><a href="#colours">Colours</a></div>
+                    <div class="sidebar-nav-item"><a href="#ticks">Ticks</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-flat-style">The flat style</a></div>
+                    <div class="sidebar-nav-item"><a href="#vertical">Vertical</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/slider.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
