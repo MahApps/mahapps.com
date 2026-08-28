@@ -52,6 +52,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await StatusBarFiguresAsync();
                         await TabFiguresAsync();
                         await ListFiguresAsync();
                         await ScrollBarFiguresAsync();
@@ -558,6 +559,44 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task StatusBarFiguresAsync()
+        {
+            // The style takes its background from the MetroWindow's title
+            // brush through a MultiDataTrigger, and the figure host is a plain
+            // Window, so the brush is applied here directly. It is the value
+            // the trigger supplies for an active window.
+            const string titleBrush = @"Background=""{DynamicResource MahApps.Brushes.WindowTitle}""";
+
+            await CaptureAsync("styles", "statusbar-default",
+                Showcase(
+                    ("in an active MetroWindow", Status(titleBrush, styledSeparator: true))));
+
+            await CaptureAsync("styles", "statusbar-nowindow",
+                Showcase(
+                    ("in a MetroWindow", Status(titleBrush, styledSeparator: true)),
+                    ("with no MetroWindow above it", Status(string.Empty, styledSeparator: true))));
+
+            await CaptureAsync("styles", "statusbar-separator",
+                Showcase(
+                    ("a bare Separator", Status(titleBrush)),
+                    ("MahApps.Styles.Separator.StatusBar", Status(titleBrush, styledSeparator: true))));
+        }
+
+        private static FrameworkElement Status(string attributes, bool styledSeparator = false)
+        {
+            var sep = styledSeparator
+                ? @"<Separator Style=""{StaticResource MahApps.Styles.Separator.StatusBar}"" />"
+                : @"<Separator />";
+
+            return Xaml($@"<StatusBar Width=""300"" {attributes}>
+                             <StatusBarItem Content=""Ready"" />
+                             {sep}
+                             <StatusBarItem Content=""Ln 42, Col 7"" />
+                             {sep}
+                             <StatusBarItem Content=""UTF-8"" />
+                           </StatusBar>");
+        }
 
         private static async Task TabFiguresAsync()
         {
