@@ -52,6 +52,8 @@ namespace StyleShots
                     try
                     {
                         LoadCalendarStyles();
+                        await RangeSliderFiguresAsync();
+                        await SliderFiguresAsync();
                         await ProgressRingFiguresAsync();
                         await GifFramesAsync();
                         await MetroProgressBarFiguresAsync();
@@ -535,6 +537,128 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task RangeSliderFiguresAsync()
+        {
+            await CaptureAsync("controls", "rangeslider-styles",
+                Showcase(
+                    ("MahApps.Styles.RangeSlider.Win10, the implicit one", Range(string.Empty)),
+                    ("MahApps.Styles.RangeSlider", Range(@"Style=""{DynamicResource MahApps.Styles.RangeSlider}"""))));
+
+            await CaptureAsync("controls", "rangeslider-ticks",
+                Showcase(
+                    ("None", Range(@"TickFrequency=""10""")),
+                    ("Both", Range(@"TickFrequency=""10"" TickPlacement=""Both""")),
+                    ("IsSelectionRangeEnabled, 20 to 80",
+                        Range(@"TickFrequency=""10"" TickPlacement=""Both""
+                                IsSelectionRangeEnabled=""True"" SelectionStart=""20"" SelectionEnd=""80"""))));
+
+            await CaptureAsync("controls", "rangeslider-minrangewidth",
+                Showcase(
+                    ("LowerValue = UpperValue = 50, MinRangeWidth at its default of 30",
+                        Range(string.Empty, @"LowerValue=""50"" UpperValue=""50""")),
+                    ("the same, MinRangeWidth = 0",
+                        Range(@"MinRangeWidth=""0""", @"LowerValue=""50"" UpperValue=""50"""))));
+
+            await CaptureAsync("controls", "rangeslider-brushes",
+                Showcase(
+                    ("default", Range(string.Empty)),
+                    ("SliderHelper brushes",
+                        Range(@"mah:SliderHelper.ThumbFillBrush=""#FF1B5E20""
+                                mah:SliderHelper.TrackValueFillBrush=""#FF43A047""
+                                mah:SliderHelper.TrackFillBrush=""#FFC8E6C9""")),
+                    ("IsEnabled = False", Range(@"IsEnabled=""False"""))));
+
+            await CaptureAsync("controls", "rangeslider-vertical",
+                Showcase(
+                    ("Win10",
+                        Xaml(@"<mah:RangeSlider Height=""110"" Orientation=""Vertical""
+                                                Minimum=""0"" Maximum=""100"" LowerValue=""30"" UpperValue=""70"" />")),
+                    ("MahApps.Styles.RangeSlider",
+                        Xaml(@"<mah:RangeSlider Height=""110"" Orientation=""Vertical""
+                                                Minimum=""0"" Maximum=""100"" LowerValue=""30"" UpperValue=""70""
+                                                Style=""{DynamicResource MahApps.Styles.RangeSlider}"" />"))));
+        }
+
+        private static FrameworkElement Range(string attributes, string values = @"LowerValue=""30"" UpperValue=""70""")
+        {
+            // Minimum and Maximum spelled out every time: unlike the Slider
+            // styles, neither RangeSlider style sets them, so they come from
+            // RangeBase as 0 and 1.
+            return Xaml($@"<mah:RangeSlider Width=""190"" Minimum=""0"" Maximum=""100""
+                                            {values} {attributes} />");
+        }
+
+        private static async Task SliderFiguresAsync()
+        {
+            await CaptureAsync("styles", "slider-styles",
+                Showcase(
+                    ("MahApps.Styles.Slider.Win10, the implicit one", Slide(@"Value=""40""")),
+                    ("MahApps.Styles.Slider", Slide(@"Value=""40"" Style=""{DynamicResource MahApps.Styles.Slider}""")),
+                    ("MahApps.Styles.Slider.Flat", Slide(@"Value=""40"" Style=""{DynamicResource MahApps.Styles.Slider.Flat}"""))));
+
+            await CaptureAsync("styles", "slider-ticks",
+                Showcase(
+                    ("None", Slide(@"Value=""40"" TickFrequency=""10""")),
+                    ("TopLeft", Slide(@"Value=""40"" TickFrequency=""10"" TickPlacement=""TopLeft""")),
+                    ("BottomRight", Slide(@"Value=""40"" TickFrequency=""10"" TickPlacement=""BottomRight""")),
+                    ("Both", Slide(@"Value=""40"" TickFrequency=""10"" TickPlacement=""Both"""))));
+
+            await CaptureAsync("styles", "slider-flat",
+                Showcase(
+                    ("no ticks",
+                        Slide(@"Value=""40"" Style=""{DynamicResource MahApps.Styles.Slider.Flat}""")),
+                    ("TickPlacement = Both",
+                        Slide(@"Value=""40"" TickFrequency=""10"" TickPlacement=""Both"" Style=""{DynamicResource MahApps.Styles.Slider.Flat}""")),
+                    ("recoloured through BorderBrush and Foreground",
+                        Slide(@"Value=""40"" Style=""{DynamicResource MahApps.Styles.Slider.Flat}""
+                                BorderBrush=""#FF1B5E20"" Foreground=""#FF66BB6A"" Background=""#FFC8E6C9"""))));
+
+            await CaptureAsync("styles", "slider-brushes",
+                Showcase(
+                    ("default", Slide(@"Value=""40""")),
+                    ("SliderHelper brushes",
+                        Slide(@"Value=""40""
+                                mah:SliderHelper.ThumbFillBrush=""#FF1B5E20""
+                                mah:SliderHelper.TrackValueFillBrush=""#FF43A047""
+                                mah:SliderHelper.TrackFillBrush=""#FFC8E6C9""")),
+                    ("IsEnabled = False", Slide(@"Value=""40"" IsEnabled=""False"""))));
+
+            await CaptureAsync("styles", "slider-custom-template",
+                Showcase(
+                    ("a derived style whose own Template only survives horizontally",
+                        Xaml(@"<StackPanel>
+                                 <StackPanel.Resources>
+                                   <Style x:Key=""Probe"" BasedOn=""{StaticResource MahApps.Styles.Slider.Win10}"" TargetType=""Slider"">
+                                     <Setter Property=""Template"">
+                                       <Setter.Value>
+                                         <ControlTemplate TargetType=""Slider"">
+                                           <Border Background=""Red"" />
+                                         </ControlTemplate>
+                                       </Setter.Value>
+                                     </Setter>
+                                   </Style>
+                                 </StackPanel.Resources>
+                                 <Slider Width=""120"" Height=""14"" Margin=""0 0 0 8"" Value=""40"" Style=""{StaticResource Probe}"" />
+                                 <Slider Width=""14"" Height=""80"" Orientation=""Vertical"" Value=""40"" Style=""{StaticResource Probe}"" />
+                               </StackPanel>"))));
+
+            await CaptureAsync("styles", "slider-vertical",
+                Showcase(
+                    ("Win10",
+                        Xaml(@"<Slider Height=""110"" Orientation=""Vertical"" Value=""40"" />")),
+                    ("MahApps.Styles.Slider",
+                        Xaml(@"<Slider Height=""110"" Orientation=""Vertical"" Value=""40""
+                                       Style=""{DynamicResource MahApps.Styles.Slider}"" />")),
+                    ("MahApps.Styles.Slider.Flat",
+                        Xaml(@"<Slider Height=""110"" Orientation=""Vertical"" Value=""40""
+                                       Style=""{DynamicResource MahApps.Styles.Slider.Flat}"" />"))));
+        }
+
+        private static FrameworkElement Slide(string attributes)
+        {
+            return Xaml($@"<Slider Width=""190"" {attributes} />");
+        }
 
         private static async Task ProgressRingFiguresAsync()
         {
