@@ -52,6 +52,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await TabFiguresAsync();
                         await ListFiguresAsync();
                         await ScrollBarFiguresAsync();
                         await MenuFiguresAsync();
@@ -557,6 +558,64 @@ namespace StyleShots
                 <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml"" />
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
+
+        private static async Task TabFiguresAsync()
+        {
+            await CaptureAsync("styles", "tabcontrol-default",
+                Showcase(
+                    ("three tabs, the second selected", TabStrip(string.Empty))));
+
+            await CaptureAsync("styles", "tabcontrol-placement",
+                Showcase(
+                    ("Top, the default", TabStrip(string.Empty)),
+                    ("Bottom", TabStrip(@"TabStripPlacement=""Bottom""")),
+                    ("Left", TabStrip(@"TabStripPlacement=""Left""")),
+                    ("Right", TabStrip(@"TabStripPlacement=""Right"""))));
+
+            await CaptureAsync("styles", "tabcontrol-underline",
+                Showcase(
+                    ("None, the default", TabStrip(string.Empty)),
+                    ("SelectedTabItem", TabStrip(@"mah:TabControlHelper.Underlined=""SelectedTabItem""")),
+                    ("TabPanel", TabStrip(@"mah:TabControlHelper.Underlined=""TabPanel"""))));
+
+            await CaptureAsync("controls", "metrotabcontrol-default",
+                Showcase(
+                    ("MetroTabControl with close buttons", MetroTabs(string.Empty, closable: true))));
+
+            await CaptureAsync("controls", "metrotabitem-closebutton",
+                Showcase(
+                    ("CloseButtonEnabled = False, the default", MetroTabs(string.Empty)),
+                    ("CloseButtonEnabled = True", MetroTabs(string.Empty, closable: true))));
+        }
+
+        private static FrameworkElement TabStrip(string attributes)
+        {
+            // The tab header font is large by default, so the strip wraps in a
+            // figure-sized control. HeaderFontSize is what the item template
+            // reads for it.
+            const string size = @"mah:HeaderedControlHelper.HeaderFontSize=""16""";
+
+            return Xaml($@"<TabControl Width=""300"" Height=""120"" SelectedIndex=""1"" {attributes}>
+                             <TabItem Header=""General"" {size}><TextBlock Margin=""10"" Text=""First page"" /></TabItem>
+                             <TabItem Header=""Display"" {size}><TextBlock Margin=""10"" Text=""Second page"" /></TabItem>
+                             <TabItem Header=""Advanced"" {size}><TextBlock Margin=""10"" Text=""Third page"" /></TabItem>
+                           </TabControl>");
+        }
+
+        // CloseButtonEnabled lives on MetroTabItem, not on the control, so it
+        // goes on each item.
+        private static FrameworkElement MetroTabs(string attributes, bool closable = false)
+        {
+            var close = closable ? @"CloseButtonEnabled=""True""" : string.Empty;
+
+            const string size = @"mah:HeaderedControlHelper.HeaderFontSize=""16""";
+
+            return Xaml($@"<mah:MetroTabControl Width=""330"" Height=""120"" SelectedIndex=""1"" {attributes}>
+                             <mah:MetroTabItem Header=""General"" {size} {close}><TextBlock Margin=""10"" Text=""First page"" /></mah:MetroTabItem>
+                             <mah:MetroTabItem Header=""Display"" {size} {close}><TextBlock Margin=""10"" Text=""Second page"" /></mah:MetroTabItem>
+                             <mah:MetroTabItem Header=""Advanced"" {size} {close}><TextBlock Margin=""10"" Text=""Third page"" /></mah:MetroTabItem>
+                           </mah:MetroTabControl>");
+        }
 
         private static async Task ListFiguresAsync()
         {
