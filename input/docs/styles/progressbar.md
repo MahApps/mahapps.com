@@ -66,7 +66,7 @@ The same key in `App.xaml` — or in the resources of any ancestor — recolours
 
 ## Indeterminate
 
-![The indeterminate state](images/progressbar-indeterminate.png)
+![The indeterminate stripes scrolling](images/progressbar-indeterminate.gif)
 
 ```xml
 <ProgressBar Width="190" Height="12" IsIndeterminate="True" />

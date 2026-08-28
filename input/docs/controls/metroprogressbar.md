@@ -47,7 +47,7 @@ The style sets `Background` to `#1FFFFFFF` — white at 12% opacity. That reads 
 
 ## Indeterminate
 
-![The five dots](images/metroprogressbar-indeterminate.png)
+![The five dots sweeping across](images/metroprogressbar-indeterminate.gif)
 
 ```xml
 <mah:MetroProgressBar Width="190" IsIndeterminate="True" />
@@ -64,6 +64,8 @@ For the same idea as a spinner rather than a strip, see [ProgressRing](progressr
 The two properties the control adds are the size of the dots and the gap between them:
 
 ![Dots at the automatic size and at two larger ones](images/metroprogressbar-ellipses.png)
+
+*A single frame of the sweep, so the three are directly comparable.*
 
 ```xml
 <mah:MetroProgressBar Width="190"

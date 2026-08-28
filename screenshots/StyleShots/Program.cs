@@ -27,11 +27,13 @@ namespace StyleShots
     {
         private const double Scale = 2.0;
         private static string outputRoot;
+        private static string frameRoot;
 
         [STAThread]
         public static void Main(string[] args)
         {
             outputRoot = Array.Find(args, a => !a.StartsWith("--")) ?? "shots";
+            frameRoot = Array.Find(args, a => a.StartsWith("--frames="))?.Substring("--frames=".Length);
 
             var app = new Application { ShutdownMode = ShutdownMode.OnExplicitShutdown };
             foreach (var source in new[]
@@ -50,6 +52,8 @@ namespace StyleShots
                     try
                     {
                         LoadCalendarStyles();
+                        await ProgressRingFiguresAsync();
+                        await GifFramesAsync();
                         await MetroProgressBarFiguresAsync();
                         await ProgressBarFiguresAsync();
                         await HyperlinkFiguresAsync();
@@ -110,12 +114,13 @@ namespace StyleShots
         // is the only way to photograph the state.
         private static readonly List<PasswordBox> pendingCapsLock = new();
 
-        // The dot animation is a VisualState storyboard the MetroProgressBar
-        // starts on itself once it is loaded, and it starts it controllable.
-        // Left running, the dots land wherever the render happens to catch
-        // them and the figure changes on every run; seeking the clock to a
-        // fixed time and pausing it pins them.
-        private static readonly List<MetroProgressBar> pendingSeeks = new();
+        // MetroProgressBar and ProgressRing both animate from a VisualState
+        // storyboard, and both are started controllable - the first by the
+        // control itself, the second by the VisualStateManager. Left running,
+        // the dots land wherever the render happens to catch them and the
+        // figure changes on every run; seeking the clock to a fixed time and
+        // pausing it pins them.
+        private static readonly List<(Control Control, string State, TimeSpan At)> pendingSeeks = new();
 
         private static FrameworkElement Box(string attributes, string password = null, bool capsLock = false, double width = 190)
         {
@@ -531,6 +536,113 @@ namespace StyleShots
               </ResourceDictionary.MergedDictionaries>
             </ResourceDictionary>";
 
+        private static async Task ProgressRingFiguresAsync()
+        {
+            await CaptureAsync("controls", "progressring-islarge",
+                Showcase(
+                    (@"IsLarge=""True"" (the default)", Ring(@"IsLarge=""True""")),
+                    (@"IsLarge=""False""", Ring(@"IsLarge=""False"""))));
+
+            await CaptureAsync("controls", "progressring-isactive",
+                Showcase(
+                    (@"IsActive=""True"" (the default)", Ring(@"IsActive=""True""")),
+                    (@"IsActive=""False""", Ring(@"IsActive=""False"""))));
+
+            await CaptureAsync("controls", "progressring-sizes",
+                Showcase(
+                    ("24", Ring(@"Width=""24"" Height=""24""")),
+                    ("40", Ring(@"Width=""40"" Height=""40""")),
+                    ("60, the default", Ring(string.Empty)),
+                    ("100", Ring(@"Width=""100"" Height=""100"""))));
+
+            await CaptureAsync("controls", "progressring-scale",
+                Showcase(
+                    ("0.5", Ring(@"EllipseDiameterScale=""0.5""")),
+                    ("1, the default", Ring(string.Empty)),
+                    ("2", Ring(@"EllipseDiameterScale=""2"""))));
+
+            await CaptureAsync("controls", "progressring-brushes",
+                Showcase(
+                    ("default", Ring(string.Empty)),
+                    ("Foreground", Ring(@"Foreground=""#FF107C10""")),
+                    ("Background, BorderBrush, BorderThickness, Padding",
+                        Ring(@"Background=""{DynamicResource MahApps.Brushes.Gray10}""
+                               BorderBrush=""{DynamicResource MahApps.Brushes.Accent}""
+                               BorderThickness=""1""
+                               Padding=""8"""))));
+        }
+
+        // Frames for the animated figures. Off by default - pass
+        // --frames=<dir> - because it renders a window per frame and the GIFs
+        // are assembled from the PNGs afterwards by make-gif.py.
+        //
+        // The period of each one is the natural duration of the storyboard
+        // that drives it, so sampling exactly that span makes the loop
+        // seamless. Delays are centiseconds in a GIF, so the frame counts are
+        // chosen to land on a whole number of 50ms steps.
+        private static async Task GifFramesAsync()
+        {
+            if (string.IsNullOrEmpty(frameRoot))
+            {
+                return;
+            }
+
+            // ProgressRing: the last child of the Active storyboard to finish
+            // is E6's opacity animation, which begins at 0.835 and runs 3.47.
+            await FramesAsync("progressring", 86, 4.305, at =>
+                {
+                    var ring = (ProgressRing)XamlReader.Parse($@"<mah:ProgressRing {Xmlns} />");
+                    pendingSeeks.Add((ring, "Active", at));
+                    return ring;
+                });
+
+            // MetroProgressBar: MainDoubleAnim is the longest child at 3.917.
+            await FramesAsync("metroprogressbar", 78, 3.917, at =>
+                {
+                    var bar = (MetroProgressBar)XamlReader.Parse(
+                        $@"<mah:MetroProgressBar {Xmlns} Width=""190"" Height=""12"" IsIndeterminate=""True"" />");
+                    pendingSeeks.Add((bar, "Indeterminate", at));
+                    return bar;
+                });
+
+            // ProgressBar: one pass of the gradient, 20px in 0.35s.
+            await FramesAsync("progressbar", 7, 0.35, at =>
+                {
+                    var bar = (ProgressBar)XamlReader.Parse(
+                        $@"<ProgressBar {Xmlns} Width=""190"" Height=""12"" IsIndeterminate=""True"" />");
+                    pendingSeeks.Add((bar, "Indeterminate", at));
+                    return bar;
+                });
+        }
+
+        private static async Task FramesAsync(string name, int count, double period, Func<TimeSpan, FrameworkElement> make)
+        {
+            var directory = Path.Combine(frameRoot, name);
+
+            for (var i = 0; i < count; i++)
+            {
+                await CaptureFrameAsync(
+                    Path.Combine(directory, $"frame{i:D3}.png"),
+                    new Border
+                    {
+                        Background = new SolidColorBrush(Color.FromRgb(0xF8, 0xF9, 0xFA)),
+                        Padding = new Thickness(8),
+                        Child = make(TimeSpan.FromSeconds(period * i / count))
+                    });
+            }
+
+            Console.WriteLine($"{count} {name} frames -> {directory}");
+        }
+
+        private static FrameworkElement Ring(string attributes)
+        {
+            var ring = (ProgressRing)XamlReader.Parse($@"<mah:ProgressRing {Xmlns} {attributes} />");
+            // 1.9s is the point in the loop where the dots are spread
+            // widest; earlier they bunch into a short arc.
+            pendingSeeks.Add((ring, "Active", TimeSpan.FromSeconds(1.9)));
+            return ring;
+        }
+
         private static async Task MetroProgressBarFiguresAsync()
         {
             await CaptureAsync("controls", "metroprogressbar-values",
@@ -550,10 +662,6 @@ namespace StyleShots
                     ("default", MetroBar(@"Value=""55""")),
                     ("Background", MetroBar(@"Value=""55"" Background=""{DynamicResource MahApps.Brushes.Gray8}""")),
                     ("Foreground", MetroBar(@"Value=""55"" Background=""{DynamicResource MahApps.Brushes.Gray8}"" Foreground=""#FF107C10"""))));
-
-            await CaptureAsync("controls", "metroprogressbar-indeterminate",
-                Showcase(
-                    ("IsIndeterminate", Dots(@""))));
 
             await CaptureAsync("controls", "metroprogressbar-ellipses",
                 Showcase(
@@ -581,25 +689,31 @@ namespace StyleShots
         {
             var bar = (MetroProgressBar)XamlReader.Parse(
                 $@"<mah:MetroProgressBar {Xmlns} Width=""190"" Height=""12"" IsIndeterminate=""True"" {attributes} />");
-            pendingSeeks.Add(bar);
+            pendingSeeks.Add((bar, "Indeterminate", TimeSpan.FromSeconds(1.5)));
             return bar;
         }
 
-        private static void SeekDots(MetroProgressBar bar, TimeSpan at)
+        // Both templates hang their VisualStateGroups off their root element,
+        // which is where the storyboard's clock lives, so the same code pins
+        // either one.
+        private static void SeekState(Control control, string stateName, TimeSpan at)
         {
-            if (bar.Template?.FindName("ContainingGrid", bar) is not FrameworkElement grid)
+            control.ApplyTemplate();
+
+            if (VisualTreeHelper.GetChildrenCount(control) == 0
+                || VisualTreeHelper.GetChild(control, 0) is not FrameworkElement root)
             {
                 return;
             }
 
-            var storyboard = VisualStateManager.GetVisualStateGroups(grid)
+            var storyboard = VisualStateManager.GetVisualStateGroups(root)
                                                ?.OfType<VisualStateGroup>()
                                                .SelectMany(group => group.States.OfType<VisualState>())
-                                               .FirstOrDefault(state => state.Name == "Indeterminate")
+                                               .FirstOrDefault(state => state.Name == stateName)
                                                ?.Storyboard;
 
-            storyboard?.SeekAlignedToLastTick(grid, at, TimeSeekOrigin.BeginTime);
-            storyboard?.Pause(grid);
+            storyboard?.SeekAlignedToLastTick(root, at, TimeSeekOrigin.BeginTime);
+            storyboard?.Pause(root);
         }
 
         private static async Task ProgressBarFiguresAsync()
@@ -610,10 +724,6 @@ namespace StyleShots
                     ("Value = 35", Bar(@"Value=""35""")),
                     ("Value = 70", Bar(@"Value=""70""")),
                     ("Value = 100", Bar(@"Value=""100"""))));
-
-            await CaptureAsync("styles", "progressbar-indeterminate",
-                Showcase(
-                    ("IsIndeterminate", Bar(@"IsIndeterminate=""True"""))));
 
             // The template fills the indicator from MahApps.Brushes.Progress,
             // not from a TemplateBinding on Foreground, so the middle panel is
@@ -1220,7 +1330,17 @@ namespace StyleShots
                    };
         }
 
-        private static async Task CaptureAsync(string section, string name, FrameworkElement root)
+        private static Task CaptureAsync(string section, string name, FrameworkElement root)
+        {
+            return CaptureAsync(root, element => SaveAsync(section, name, element));
+        }
+
+        private static Task CaptureFrameAsync(string path, FrameworkElement root)
+        {
+            return CaptureAsync(root, element => SaveToPathAsync(path, element, quiet: true));
+        }
+
+        private static async Task CaptureAsync(FrameworkElement root, Func<FrameworkElement, Task> save)
         {
             var window = new Window
                          {
@@ -1257,9 +1377,9 @@ namespace StyleShots
             pendingPasswords.Clear();
             pendingCapsLock.Clear();
 
-            foreach (var bar in pendingSeeks)
+            foreach (var (control, state, at) in pendingSeeks)
             {
-                SeekDots(bar, TimeSpan.FromSeconds(1.5));
+                SeekState(control, state, at);
             }
 
             pendingSeeks.Clear();
@@ -1277,12 +1397,20 @@ namespace StyleShots
 
             root.UpdateLayout();
 
-            await SaveAsync(section, name, root);
+            await save(root);
 
             window.Close();
         }
 
         private static Task SaveAsync(string section, string name, FrameworkElement element)
+        {
+            var directory = Path.Combine(outputRoot, section, "images");
+            Directory.CreateDirectory(directory);
+
+            return SaveToPathAsync(Path.Combine(directory, name + ".png"), element, quiet: false, label: $"{section}/{name}.png");
+        }
+
+        private static Task SaveToPathAsync(string path, FrameworkElement element, bool quiet, string label = null)
         {
             var width = (int)Math.Ceiling(element.ActualWidth * Scale);
             var height = (int)Math.Ceiling(element.ActualHeight * Scale);
@@ -1292,16 +1420,18 @@ namespace StyleShots
             var encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(bitmap));
 
-            var directory = Path.Combine(outputRoot, section, "images");
-            Directory.CreateDirectory(directory);
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
 
-            var path = Path.Combine(directory, name + ".png");
             using (var stream = File.Create(path))
             {
                 encoder.Save(stream);
             }
 
-            Console.WriteLine($"{section}/{name}.png  {width}x{height}");
+            if (!quiet)
+            {
+                Console.WriteLine($"{label ?? path}  {width}x{height}");
+            }
+
             return Task.CompletedTask;
         }
     }
