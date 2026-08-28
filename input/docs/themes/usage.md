@@ -3,32 +3,39 @@ Title: Usage
 Description: How to work with the Themes of MahApps.Metro
 ---
 
-This guide will introduce you to the themes that `MahApps.Metro` has and how to create your own.
+A MahApps theme is two choices: a **base theme**, which decides whether the application is light or dark, and a **colour scheme**, which decides the accent. Two base themes times twenty-three schemes gives forty-six resource dictionaries, and picking one is a single line in `App.xaml`.
 
-All of `MahApps.Metro`'s themes are contained within separate resource dictionaries.
+## The colour schemes
 
-## How to use the themes
+![The twenty-three colour schemes](images/themes-schemes.png)
 
-You can choose between these available color schemes:
+`Amber`, `Blue`, `Brown`, `Cobalt`, `Crimson`, `Cyan`, `Emerald`, `Green`, `Indigo`, `Lime`, `Magenta`, `Mauve`, `Olive`, `Orange`, `Pink`, `Purple`, `Red`, `Sienna`, `Steel`, `Taupe`, `Teal`, `Violet`, `Yellow`.
 
-> "Red", "Green", "Blue", "Purple", "Orange", "Lime", "Emerald", "Teal", "Cyan", "Cobalt", "Indigo", "Violet", "Pink", "Magenta", "Crimson", "Amber", "Yellow", "Brown", "Olive", "Steel", "Mauve", "Taupe", "Sienna"
+Each one sets six colours: `MahApps.Colors.AccentBase` — the swatch above — then `Accent`, `Accent2`, `Accent3` and `Accent4`, which are the same colour at 80, 60, 40 and 20 per cent, and a darker `MahApps.Colors.Highlight`. Everything accent-coloured in the library comes from those six.
 
-and these base themes:
+## The base themes
 
-> "Light", "Dark"
+`Light` and `Dark`. The base theme changes the backgrounds, the greys and the text colour; it does **not** change the accent:
 
-So putting all together, the resource names should be:
+![Light.Blue, Dark.Blue and Light.Emerald](images/themes-base.png)
 
-> "Light.Blue" or "Dark.Blue"
+The first two panels are the same scheme on different bases — same blue, different surroundings. The third is a different scheme on the same base.
 
-:::{.alert .alert-info}
-***Note***  
-Make sure that all resource file names are Case Sensitive!
+## Naming
+
+A theme is named `Base.Scheme`, and the dictionary is at
+
+```
+pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml
+```
+
+:::{.alert .alert-warning}
+**Pack URIs are case sensitive.** `light.blue.xaml` fails, and it fails at run time rather than at build time — the application starts and the controls come out unstyled.
 :::
 
-### Use a theme via App.xaml
+## Choosing one in App.xaml
 
-The fastest way is to specify the theme resource in the App.xaml.
+The usual way. The theme dictionary goes last, after `Controls.xaml` and `Fonts.xaml`:
 
 ```xml
 <Application x:Class="SampleApp"
@@ -49,61 +56,25 @@ The fastest way is to specify the theme resource in the App.xaml.
 </Application>
 ```
 
-![theme](../guides/images/metrowindow.png)
-
-### Use a theme via ThemeManager
-
-`MahApps.Metro` has a [ThemeManager](thememanager) class that lets you change the theme using code-behind. It can be done in 1 line, like so:
+That is enough for an application whose theme never changes. Everything beyond it — switching at run time, giving one window a theme of its own, following the Windows setting, building a scheme that is not in the list — is the [ThemeManager](thememanager)'s job, and that page covers all four.
 
 ```csharp
 using ControlzEx.Theming;
 
-public partial class SampleApp : Application
-{
-    protected override void OnStartup(StartupEventArgs e)
-    {
-        base.OnStartup(e);
-
-        // Set the application theme to Dark.Green
-        ThemeManager.Current.ChangeTheme(this, "Dark.Green");
-    }
-}
+ThemeManager.Current.ChangeTheme(Application.Current, "Dark.Green");
 ```
 
-### On a window different to your application's main window
+## Where the dictionaries come from
 
-With `MahApps.Metro` you can have a different theme for a `MetroWindow`. The main window or any other `MetroWindow` will keep the specified theme in the App.xaml or window xaml.
+There is no `Light.Blue.xaml` in the MahApps source tree, and looking for one is a common wrong turn. The forty-six dictionaries are **generated during the build** by `XamlColorSchemeGenerator` from two files:
 
+| File | |
+| --- | --- |
+| `Styles/Themes/Theme.Template.xaml` | every brush and colour a theme defines, with `{{Placeholders}}` for the parts that vary |
+| `Styles/Themes/GeneratorParameters.json` | the two base themes and the twenty-three schemes, each supplying values for those placeholders |
 
-```xml
-<Controls:MetroWindow.Resources>
-    <ResourceDictionary>
-        <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Red.xaml" />
-        </ResourceDictionary.MergedDictionaries>
-    </ResourceDictionary>
-</Controls:MetroWindow.Resources>
-```
+That template is the reference for what a theme can set. It defines over four hundred keyed colours and brushes, of which seventy-nine are placeholders that vary by theme; the rest are the same everywhere. It is the file to read when you want to know which brush a control is actually using. The [ThemeManager](thememanager) page shows how to build a theme of your own from the same template without rebuilding the library.
 
-You can do this also with the [ThemeManager](thememanager), like so:
+## Related
 
-```csharp
-using ControlzEx.Theming;
-
-public partial class MainWindow : MetroWindow
-{
-    public void MainWindow()
-    {
-        InitializeComponent();
-
-        // Set the window theme to Dark.Red
-        ThemeManager.Current.ChangeTheme(this, "Dark.Red");
-    }
-}
-```
-
-### Creating custom Themes
-
-Another nice feature of `MahApps.Metro` is to use custom created themes or runtime created themes.
-
-Please open the [ThemeManager](thememanager) guide for further notice.
+[ThemeManager](thememanager) for anything at run time. The [quick start](../guides/quick-start) shows the three dictionaries in place in a new project.

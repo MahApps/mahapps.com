@@ -56,6 +56,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await ThemeFiguresAsync();
                         await ValidationFiguresAsync();
                         await PageFiguresAsync();
                         await ToolBarFiguresAsync();
@@ -602,6 +603,77 @@ namespace StyleShots
                            "Remove the percent sign."
                        };
             }
+        }
+
+        private static readonly string[] ColorSchemes =
+        {
+            "Amber", "Blue", "Brown", "Cobalt", "Crimson", "Cyan", "Emerald", "Green",
+            "Indigo", "Lime", "Magenta", "Mauve", "Olive", "Orange", "Pink", "Purple",
+            "Red", "Sienna", "Steel", "Taupe", "Teal", "Violet", "Yellow"
+        };
+
+        private static async Task ThemeFiguresAsync()
+        {
+            // The swatches come out of the theme dictionaries themselves rather
+            // than out of a hand-kept list, so the figure cannot drift from the
+            // library.
+            var swatches = new WrapPanel { Width = 720, Orientation = Orientation.Horizontal };
+
+            foreach (var scheme in ColorSchemes)
+            {
+                var dictionary = new ResourceDictionary
+                                 {
+                                     Source = new Uri($"pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.{scheme}.xaml", UriKind.Absolute)
+                                 };
+
+                var brush = new SolidColorBrush((Color)dictionary["MahApps.Colors.AccentBase"]);
+
+                var chip = new StackPanel { Orientation = Orientation.Horizontal, Margin = new Thickness(0, 0, 14, 10) };
+                chip.Children.Add(new Border { Width = 18, Height = 18, CornerRadius = new CornerRadius(3), Background = brush });
+                chip.Children.Add(new TextBlock
+                                  {
+                                      Text = scheme,
+                                      Margin = new Thickness(6, 0, 0, 0),
+                                      FontSize = 13,
+                                      Width = 68,
+                                      VerticalAlignment = VerticalAlignment.Center
+                                  });
+
+                swatches.Children.Add(chip);
+            }
+
+            await CaptureAsync("themes", "themes-schemes", Showcase(("the 23 colour schemes", swatches)));
+
+            await CaptureAsync("themes", "themes-base",
+                Showcase(
+                    ("Light.Blue", Themed("Light.Blue")),
+                    ("Dark.Blue", Themed("Dark.Blue")),
+                    ("Light.Emerald", Themed("Light.Emerald"))));
+        }
+
+        private static FrameworkElement Themed(string theme)
+        {
+            var dark = theme.StartsWith("Dark", StringComparison.Ordinal);
+            var ground = dark ? "#FF252525" : "#FFFFFFFF";
+
+            return Xaml($@"<Border Width=""190"" Padding=""12"" Background=""{ground}"">
+                             <Border.Resources>
+                               <ResourceDictionary>
+                                 <ResourceDictionary.MergedDictionaries>
+                                   <ResourceDictionary Source=""pack://application:,,,/MahApps.Metro;component/Styles/Themes/{theme}.xaml"" />
+                                 </ResourceDictionary.MergedDictionaries>
+                               </ResourceDictionary>
+                             </Border.Resources>
+                             <StackPanel>
+                               <TextBlock Margin=""0 0 0 8""
+                                          Foreground=""{{DynamicResource MahApps.Brushes.ThemeForeground}}""
+                                          Text=""Some text"" />
+                               <Button Margin=""0 0 0 8"" Content=""Button"" Style=""{{DynamicResource MahApps.Styles.Button.Square.Accent}}"" />
+                               <CheckBox Margin=""0 0 0 8"" Content=""Checked"" IsChecked=""True"" />
+                               <Slider Margin=""0 0 0 8"" Maximum=""100"" Value=""40"" />
+                               <ProgressBar Height=""8"" Maximum=""100"" Value=""60"" />
+                             </StackPanel>
+                           </Border>");
         }
 
         private static async Task ValidationFiguresAsync()
