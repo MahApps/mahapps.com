@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await BadgedFiguresAsync();
                         await ThemeFiguresAsync();
                         await ValidationFiguresAsync();
                         await PageFiguresAsync();
@@ -612,6 +613,55 @@ namespace StyleShots
             "Indigo", "Lime", "Magenta", "Mauve", "Olive", "Orange", "Pink", "Purple",
             "Red", "Sienna", "Steel", "Taupe", "Teal", "Violet", "Yellow"
         };
+
+        private static async Task BadgedFiguresAsync()
+        {
+            var modes = new[] { "TopLeft", "Top", "TopRight", "Right", "BottomRight", "Bottom", "BottomLeft", "Left" };
+            var grid = new System.Windows.Controls.Primitives.UniformGrid { Columns = 4, Rows = 2 };
+
+            foreach (var mode in modes)
+            {
+                var cell = new StackPanel { Margin = new Thickness(10, 6, 10, 10) };
+                cell.Children.Add(new TextBlock
+                                  {
+                                      Text = mode,
+                                      FontSize = 11,
+                                      Margin = new Thickness(0, 0, 0, 6),
+                                      HorizontalAlignment = HorizontalAlignment.Center,
+                                      Foreground = new SolidColorBrush(Color.FromRgb(0x49, 0x50, 0x57))
+                                  });
+                cell.Children.Add(Badge($@"Badge=""7"" BadgePlacementMode=""{mode}"""));
+                grid.Children.Add(cell);
+            }
+
+            await CaptureAsync("controls", "badged-placement", Showcase(("the eight placement modes", grid)));
+
+            await CaptureAsync("controls", "badged-content",
+                Showcase(
+                    ("a number", Badge(@"Badge=""42""")),
+                    ("any content", Badge(@"Badge=""new""")),
+                    ("BadgeStringFormat", Badge(@"Badge=""3"" BadgeStringFormat=""{}{0} new""")),
+                    ("no badge, IsBadgeSet is false", Badge(string.Empty))));
+
+            await CaptureAsync("controls", "badged-styling",
+                Showcase(
+                    ("the default", Badge(@"Badge=""42""")),
+                    ("brushes, border and font",
+                        Badge(@"Badge=""42""
+                                BadgeBackground=""{DynamicResource MahApps.Brushes.Accent}""
+                                BadgeForeground=""{DynamicResource MahApps.Brushes.IdealForeground}""
+                                BadgeBorderBrush=""{DynamicResource MahApps.Brushes.ThemeBackground}""
+                                BadgeBorderThickness=""2""
+                                BadgeFontSize=""13""")),
+                    ("IsEnabled = False", Badge(@"Badge=""42"" IsEnabled=""False"""))));
+        }
+
+        private static FrameworkElement Badge(string attributes)
+        {
+            return Xaml($@"<mah:Badged {attributes} Margin=""6"">
+                             <Button Width=""110"" Content=""Notifications"" />
+                           </mah:Badged>");
+        }
 
         private static async Task ThemeFiguresAsync()
         {
