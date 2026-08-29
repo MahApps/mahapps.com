@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await ToggleSwitchFiguresAsync();
                         await FontIconFiguresAsync();
                         await FlyoutFiguresAsync();
                         await FlipViewFiguresAsync();
@@ -659,6 +660,11 @@ namespace StyleShots
             window.Show();
             await rendered.Task;
 
+            // Without this the window sometimes renders inactive and the title
+            // bar comes out grey instead of accented, which differs from run to
+            // run and makes the figures disagree with each other.
+            window.Activate();
+
             // The slide-in is a storyboard; give it room to land.
             await Task.Delay(900);
             await window.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
@@ -668,6 +674,43 @@ namespace StyleShots
             window.Close();
 
             return new Image { Source = bitmap, Width = bitmap.Width, Height = bitmap.Height };
+        }
+
+        private static async Task ToggleSwitchFiguresAsync()
+        {
+            await CaptureAsync("controls", "toggleswitch-states",
+                Showcase(
+                    (@"IsOn=""False"", the default", Xaml(@"<mah:ToggleSwitch />")),
+                    (@"IsOn=""True""", Xaml(@"<mah:ToggleSwitch IsOn=""True"" />")),
+                    (@"IsEnabled=""False""", Xaml(@"<mah:ToggleSwitch IsOn=""True"" IsEnabled=""False"" />"))));
+
+            await CaptureAsync("controls", "toggleswitch-content",
+                Showcase(
+                    ("the defaults", Xaml(@"<mah:ToggleSwitch IsOn=""True"" />")),
+                    ("Header, OnContent and OffContent",
+                        Xaml(@"<mah:ToggleSwitch IsOn=""True"" Header=""Background sync""
+                                                 OnContent=""Working"" OffContent=""Do work"" />"))));
+
+            await CaptureAsync("controls", "toggleswitch-direction",
+                Showcase(
+                    (@"RightToLeft, what the style sets", Xaml(@"<mah:ToggleSwitch IsOn=""True"" Header=""Sync"" />")),
+                    (@"ContentDirection=""LeftToRight""",
+                        Xaml(@"<mah:ToggleSwitch IsOn=""True"" Header=""Sync"" ContentDirection=""LeftToRight"" />"))));
+
+            // MinWidth is 154 in the style, so a switch is far wider than it
+            // looks. Rendered on a tinted panel to make the box visible.
+            await CaptureAsync("controls", "toggleswitch-width",
+                Showcase(
+                    ("the default MinWidth of 154", Tinted(@"<mah:ToggleSwitch IsOn=""True"" />")),
+                    (@"MinWidth=""0""", Tinted(@"<mah:ToggleSwitch IsOn=""True"" MinWidth=""0"" />")),
+                    (@"MinWidth=""0"" and no On/Off content",
+                        Tinted(@"<mah:ToggleSwitch IsOn=""True"" MinWidth=""0"" OnContent=""{x:Null}"" OffContent=""{x:Null}"" />"))));
+        }
+
+        // A tinted backdrop, so a control's actual box can be seen.
+        private static FrameworkElement Tinted(string inner)
+        {
+            return Xaml($@"<Border Background=""#FFE3F2FD"" Padding=""0"">{inner}</Border>");
         }
 
         private static async Task FontIconFiguresAsync()
@@ -1143,7 +1186,10 @@ namespace StyleShots
 
         private static async Task CustomValidationPopupFiguresAsync()
         {
-            var box = new TextBox { Width = 170 };
+            // A transparent caret: the box must hold keyboard focus for the
+            // error popup to open, and a blinking caret otherwise lands in
+            // the figure on some runs and not others.
+            var box = new TextBox { Width = 170, CaretBrush = Brushes.Transparent };
             box.SetBinding(TextBox.TextProperty, new Binding(nameof(Dummy.Value)) { Source = new Dummy(), Mode = BindingMode.TwoWay });
 
             var decorator = new AdornerDecorator { Child = new Border { Padding = new Thickness(10), Child = box } };
@@ -1404,7 +1450,10 @@ namespace StyleShots
         // put on the binding by hand.
         private static async Task<FrameworkElement> ValidationPopupAsync(string message)
         {
-            var box = new TextBox { Width = 170 };
+            // A transparent caret: the box must hold keyboard focus for the
+            // error popup to open, and a blinking caret otherwise lands in
+            // the figure on some runs and not others.
+            var box = new TextBox { Width = 170, CaretBrush = Brushes.Transparent };
 
             if (message is null)
             {
