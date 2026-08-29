@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await CustomValidationPopupFiguresAsync();
                         await ContentControlExFiguresAsync();
                         await BadgedFiguresAsync();
                         await ThemeFiguresAsync();
@@ -614,6 +615,62 @@ namespace StyleShots
             "Indigo", "Lime", "Magenta", "Mauve", "Olive", "Orange", "Pink", "Purple",
             "Red", "Sienna", "Steel", "Taupe", "Teal", "Violet", "Yellow"
         };
+
+        // The field and the popup live in two different HWNDs, so one render
+        // cannot hold both. They are photographed separately and put side by
+        // side, which is where the style's Placement="Right" puts them anyway.
+        private static async Task CustomValidationPopupFiguresAsync()
+        {
+            var box = new TextBox { Width = 170 };
+            box.SetBinding(TextBox.TextProperty, new Binding(nameof(Dummy.Value)) { Source = new Dummy(), Mode = BindingMode.TwoWay });
+
+            var decorator = new AdornerDecorator { Child = new Border { Padding = new Thickness(10), Child = box } };
+
+            var host = new Window
+                       {
+                           Content = decorator,
+                           SizeToContent = SizeToContent.WidthAndHeight,
+                           WindowStyle = WindowStyle.None,
+                           ShowInTaskbar = false,
+                           WindowStartupLocation = WindowStartupLocation.Manual,
+                           Left = -20000,
+                           Top = -20000,
+                           Background = Brushes.White
+                       };
+
+            var rendered = new TaskCompletionSource<bool>();
+            host.ContentRendered += (_, _) => rendered.TrySetResult(true);
+            host.Show();
+            await rendered.Task;
+
+            MarkInvalid(box, TextBox.TextProperty, "Enter a number between 1 and 99.");
+            box.Focus();
+
+            await Task.Delay(600);
+            await host.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+
+            decorator.UpdateLayout();
+            var field = Render(decorator);
+
+            var row = new StackPanel { Orientation = Orientation.Horizontal, VerticalAlignment = VerticalAlignment.Center };
+            row.Children.Add(new Image { Source = field, Width = field.Width, Height = field.Height, VerticalAlignment = VerticalAlignment.Center });
+
+            if (FindAdornerChild<System.Windows.Controls.Primitives.Popup>(box)?.Child is FrameworkElement child)
+            {
+                child.UpdateLayout();
+                var card = Render(child);
+                row.Children.Add(new Image { Source = card, Width = card.Width, Height = card.Height, VerticalAlignment = VerticalAlignment.Center });
+            }
+            else
+            {
+                Console.WriteLine("  validation popup not found");
+            }
+
+            host.Close();
+
+            await CaptureAsync("controls", "customvalidationpopup-inplace",
+                Showcase(("the field and the popup it opens beside it", row)));
+        }
 
         private static async Task ContentControlExFiguresAsync()
         {
