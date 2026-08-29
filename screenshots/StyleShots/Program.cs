@@ -57,6 +57,8 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await DropDownButtonFiguresAsync();
+                        await SplitButtonFiguresAsync();
                         await DateTimePickerFiguresAsync();
                         await CustomValidationPopupFiguresAsync();
                         await ContentControlExFiguresAsync();
@@ -618,6 +620,175 @@ namespace StyleShots
             "Indigo", "Lime", "Magenta", "Mauve", "Olive", "Orange", "Pink", "Purple",
             "Red", "Sienna", "Steel", "Taupe", "Teal", "Violet", "Yellow"
         };
+
+        // Both controls take their items through the content property, so the
+        // scenarios can write them inline the way a page would.
+        private const string Artists = @"
+            <x:Array Type=""sys:String"">
+                <sys:String>Miles Davis</sys:String>
+                <sys:String>John Coltrane</sys:String>
+                <sys:String>Bill Evans</sys:String>
+                <sys:String>Charles Mingus</sys:String>
+            </x:Array>";
+
+        private static async Task DropDownButtonFiguresAsync()
+        {
+            await CaptureAsync("controls", "dropdownbutton-basic",
+                Showcase(
+                    ("Content only", DropDown(@"Content=""Artists""")),
+                    ("Content and Icon", DropDown(@"Content=""Artists""", Icon)),
+                    ("Icon only", DropDown(string.Empty, Icon))));
+
+            await CaptureMenuAsync("controls", "dropdownbutton-menu", @"Content=""Artists"" Width=""140""");
+
+            await CaptureAsync("controls", "dropdownbutton-orientation",
+                Showcase(
+                    (@"Horizontal, the default", DropDown(@"Content=""Artists""", Icon)),
+                    (@"Vertical", DropDown(@"Content=""Artists"" Orientation=""Vertical""", Icon))));
+
+            await CaptureAsync("controls", "dropdownbutton-arrow",
+                Showcase(
+                    ("the default arrow", DropDown(@"Content=""Artists""")),
+                    (@"ArrowBrush", DropDown(@"Content=""Artists"" ArrowBrush=""#FFE64A19""")),
+                    (@"ArrowVisibility=""Collapsed""", DropDown(@"Content=""Artists"" ArrowVisibility=""Collapsed"""))));
+        }
+
+        private static async Task SplitButtonFiguresAsync()
+        {
+            await CaptureAsync("controls", "splitbutton-basic",
+                Showcase(
+                    ("nothing selected", Split(@"Width=""150""")),
+                    (@"SelectedIndex=""0""", Split(@"Width=""150"" SelectedIndex=""0""")),
+                    ("and an Icon", Split(@"Width=""150"" SelectedIndex=""0""", Icon))));
+
+            await CaptureDropDownListAsync("controls", "splitbutton-dropdown", @"Width=""150"" SelectedIndex=""0""");
+
+            await CaptureAsync("controls", "splitbutton-orientation",
+                Showcase(
+                    ("Horizontal, the default", Split(@"Width=""150"" SelectedIndex=""0""", Icon)),
+                    ("Vertical", Split(@"Width=""150"" SelectedIndex=""0"" Orientation=""Vertical""", Icon))));
+
+            // The style switches Template from a trigger on Orientation, so a
+            // derived style that sets Template is beaten by that trigger the
+            // moment the button turns vertical. Photographed rather than
+            // asserted, because the precedence is easy to get backwards.
+            const string customTemplate = @"
+                <Grid.Resources>
+                    <Style x:Key=""Custom"" BasedOn=""{StaticResource {x:Type mah:SplitButton}}"" TargetType=""{x:Type mah:SplitButton}"">
+                        <Setter Property=""Template"">
+                            <Setter.Value>
+                                <ControlTemplate TargetType=""{x:Type mah:SplitButton}"">
+                                    <Border Background=""#FFFFE0B2"" BorderBrush=""#FFE64A19"" BorderThickness=""2"" Padding=""6 3"">
+                                        <TextBlock Foreground=""#FFE64A19"" Text=""a custom template"" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Grid.Resources>";
+
+            await CaptureAsync("controls", "splitbutton-template-trap",
+                Showcase(
+                    ("Horizontal", Xaml($@"{customTemplate}
+                        <mah:SplitButton Style=""{{StaticResource Custom}}"" Width=""150"" SelectedIndex=""0"">{Artists}</mah:SplitButton>")),
+                    ("the same style, Vertical", Xaml($@"{customTemplate}
+                        <mah:SplitButton Style=""{{StaticResource Custom}}"" Width=""150"" SelectedIndex=""0"" Orientation=""Vertical"">{Artists}</mah:SplitButton>"))));
+        }
+
+        private const string Icon = @"
+            <mah:DropDownButton.Icon>
+                <Path Width=""12"" Height=""12"" Margin=""6 0 0 0"" Stretch=""Uniform""
+                      Fill=""{DynamicResource MahApps.Brushes.ThemeForeground}""
+                      Data=""M12,3V13.55C11.41,13.21 10.73,13 10,13A3,3 0 0,0 7,16A3,3 0 0,0 10,19A3,3 0 0,0 13,16V7H17V5H12V3Z"" />
+            </mah:DropDownButton.Icon>";
+
+        private static FrameworkElement DropDown(string attributes, string icon = "")
+        {
+            return Xaml($@"<mah:DropDownButton {attributes}>{icon}{Artists}</mah:DropDownButton>");
+        }
+
+        private static FrameworkElement Split(string attributes, string icon = "")
+        {
+            // The Icon fragment names DropDownButton, so it is retargeted here
+            // rather than written out a second time.
+            return Xaml($@"<mah:SplitButton {attributes}>{icon.Replace("DropDownButton", "SplitButton")}{Artists}</mah:SplitButton>");
+        }
+
+        // The DropDownButton's list is a ContextMenu that hangs off PART_Button,
+        // so it is a second HWND and has to be photographed on its own.
+        private static async Task CaptureMenuAsync(string section, string name, string attributes)
+        {
+            var button = (DropDownButton)XamlReader.Parse(
+                $@"<mah:DropDownButton {Xmlns} {attributes}>{Artists}</mah:DropDownButton>");
+
+            var host = HostFor(button);
+            var rendered = new TaskCompletionSource<bool>();
+            host.ContentRendered += (_, _) => rendered.TrySetResult(true);
+            host.Show();
+            await rendered.Task;
+
+            button.SetCurrentValue(DropDownButton.IsExpandedProperty, true);
+            await Task.Delay(700);
+            await host.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+
+            if (button.Template?.FindName("PART_Menu", button) is ContextMenu menu)
+            {
+                menu.UpdateLayout();
+                await SaveAsync(section, name, menu);
+            }
+            else
+            {
+                Console.WriteLine($"{section}/{name}: PART_Menu not found");
+            }
+
+            button.SetCurrentValue(DropDownButton.IsExpandedProperty, false);
+            host.Close();
+        }
+
+        // The SplitButton's list is a Popup in the template - again its own HWND.
+        private static async Task CaptureDropDownListAsync(string section, string name, string attributes)
+        {
+            var button = (SplitButton)XamlReader.Parse(
+                $@"<mah:SplitButton {Xmlns} {attributes}>{Artists}</mah:SplitButton>");
+
+            var host = HostFor(button);
+            var rendered = new TaskCompletionSource<bool>();
+            host.ContentRendered += (_, _) => rendered.TrySetResult(true);
+            host.Show();
+            await rendered.Task;
+
+            button.SetCurrentValue(ComboBox.IsDropDownOpenProperty, true);
+            await Task.Delay(700);
+            await host.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+
+            if (button.Template?.FindName("PART_Popup", button) is System.Windows.Controls.Primitives.Popup { Child: FrameworkElement child })
+            {
+                child.UpdateLayout();
+                await SaveAsync(section, name, child);
+            }
+            else
+            {
+                Console.WriteLine($"{section}/{name}: PART_Popup not found");
+            }
+
+            button.SetCurrentValue(ComboBox.IsDropDownOpenProperty, false);
+            host.Close();
+        }
+
+        private static Window HostFor(FrameworkElement content)
+        {
+            return new Window
+                   {
+                       Content = new Border { Padding = new Thickness(16), Child = content },
+                       SizeToContent = SizeToContent.WidthAndHeight,
+                       WindowStyle = WindowStyle.None,
+                       ShowInTaskbar = false,
+                       WindowStartupLocation = WindowStartupLocation.Manual,
+                       Left = -20000,
+                       Top = -20000,
+                       Background = Brushes.White
+                   };
+        }
 
         // The field and the popup live in two different HWNDs, so one render
         // cannot hold both. They are photographed separately and put side by
