@@ -98,9 +98,9 @@ Both are **styles, not replacement templates**. Everything they change is someth
 
 with no `CornerRadius` and no `TemplateBinding` on any of the three. So the popup's corners, its background and its border colour cannot be reached from the control at all — only by replacing the four-hundred-line template or by redefining `MahApps.Brushes.Control.Background` and `.Border` for the whole application.
 
-The `ComboBox` template has the same shape: its `PopupBorder` also hardcodes both brushes and has no `CornerRadius`, so the little hour and minute lists are square for the same reason.
+It is the same on `develop`, and it is tracked as [#4582](https://github.com/MahApps/MahApps.Metro/issues/4582). Rounding the field but not its drop-down is visible in the WinUI figure above, and it is the one thing that keeps the variant from being finished.
 
-It is the same on `develop`. Rounding the field but not its drop-down is visible in the WinUI figure above, and it is the one thing that keeps the variant from being finished.
+The `ComboBox` popup behind the hour and minute lists had the same shape and is **already fixed on `develop`**: its `PopupBorder` is now a `ClipBorder` with a `CornerRadius`. In a released version those little lists are still square.
 :::
 
 ## A modern time selection
@@ -142,7 +142,9 @@ The `Label` entry is the `:` between the columns, which has no style of its own 
 That is the whole mechanism, and it is worth knowing for any control whose template contains unstyled children.
 
 :::{.alert .alert-info}
-Two things stay out of reach even so. The selected row is a rounded pill only because the dictionary carries a small `ComboBoxItem` template — the stock item's `Border` has no `CornerRadius` binding, so a setter alone cannot round it. And a true WinUI **looping selector**, with the columns scrolling under a fixed highlight band and an accept/dismiss row beneath, needs code to keep the selection centred; a resource dictionary cannot do it.
+The selected row is a rounded pill only because the dictionary carries a small `ComboBoxItem` template: in a released version the stock item's `Border` has no `CornerRadius` binding, so a setter alone cannot round it. That was fixed on `develop` by [#4288](https://github.com/MahApps/MahApps.Metro/issues/4288) — `ComboBoxItem` now binds `ControlsHelper.CornerRadius` — so once that ships, the little template can go and one setter will do.
+
+A true WinUI **looping selector** stays out of reach either way: the columns scrolling under a fixed highlight band, with an accept/dismiss row beneath, need code to keep the selection centred. A resource dictionary cannot do it.
 :::
 
 Prefer to keep the clock? It is one setter:
