@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await ContentControlExFiguresAsync();
                         await BadgedFiguresAsync();
                         await ThemeFiguresAsync();
                         await ValidationFiguresAsync();
@@ -613,6 +614,37 @@ namespace StyleShots
             "Indigo", "Lime", "Magenta", "Mauve", "Olive", "Orange", "Pink", "Purple",
             "Red", "Sienna", "Steel", "Taupe", "Teal", "Violet", "Yellow"
         };
+
+        private static async Task ContentControlExFiguresAsync()
+        {
+            await CaptureAsync("controls", "contentcontrolex-casing",
+                Showcase(
+                    ("Normal, the default", Cce(@"Content=""Save the document""")),
+                    ("Upper", Cce(@"Content=""Save the document"" ContentCharacterCasing=""Upper""")),
+                    ("Lower", Cce(@"Content=""Save the document"" ContentCharacterCasing=""Lower""")),
+                    ("inherited by a nested one",
+                        Xaml(@"<mah:ContentControlEx ContentCharacterCasing=""Upper"">
+                                 <mah:ContentControlEx Content=""Save the document"" />
+                               </mah:ContentControlEx>"))));
+
+            await CaptureAsync("controls", "contentcontrolex-nonstring",
+                Showcase(
+                    ("Upper on a string", Cce(@"Content=""Save the document"" ContentCharacterCasing=""Upper""")),
+                    ("Upper on anything else",
+                        Xaml(@"<mah:ContentControlEx ContentCharacterCasing=""Upper"">
+                                 <TextBlock Text=""Save the document"" />
+                               </mah:ContentControlEx>"))));
+
+            await CaptureAsync("controls", "contentcontrolex-accesskey",
+                Showcase(
+                    (@"RecognizesAccessKey = False, the default", Cce(@"Content=""_Save the document""")),
+                    (@"RecognizesAccessKey = True", Cce(@"Content=""_Save the document"" RecognizesAccessKey=""True"""))));
+        }
+
+        private static FrameworkElement Cce(string attributes)
+        {
+            return Xaml($@"<mah:ContentControlEx {attributes} />");
+        }
 
         private static async Task BadgedFiguresAsync()
         {
