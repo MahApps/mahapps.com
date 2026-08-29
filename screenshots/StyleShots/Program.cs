@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await FlyoutFiguresAsync();
                         await FlipViewFiguresAsync();
                         await DropDownButtonFiguresAsync();
                         await SplitButtonFiguresAsync();
@@ -631,6 +632,96 @@ namespace StyleShots
                 <sys:String>Bill Evans</sys:String>
                 <sys:String>Charles Mingus</sys:String>
             </x:Array>";
+
+        // A Flyout only behaves like one inside a MetroWindow: it finds its
+        // parent window to position itself, to dim the overlay and to adapt its
+        // theme. So the flyout figures are real MetroWindows rendered
+        // off-screen rather than the usual detached control.
+        private static async Task<FrameworkElement> FlyoutWindowAsync(string flyoutsXaml, string windowAttributes = "", int width = 360, int height = 230)
+        {
+            var window = (Window)XamlReader.Parse(
+                $@"<mah:MetroWindow {Xmlns}
+                       Width=""{width}"" Height=""{height}"" Title=""MahApps"" ShowInTaskbar=""False""
+                       WindowStartupLocation=""Manual"" Left=""-20000"" Top=""-20000"" {windowAttributes}>
+                       <mah:MetroWindow.Flyouts>
+                           <mah:FlyoutsControl>{flyoutsXaml}</mah:FlyoutsControl>
+                       </mah:MetroWindow.Flyouts>
+                       <Grid Background=""{{DynamicResource MahApps.Brushes.ThemeBackground}}"">
+                           <TextBlock Margin=""14"" VerticalAlignment=""Top""
+                                      Foreground=""{{DynamicResource MahApps.Brushes.Text}}""
+                                      Text=""Window content"" />
+                       </Grid>
+                   </mah:MetroWindow>");
+
+            var rendered = new TaskCompletionSource<bool>();
+            window.ContentRendered += (_, _) => rendered.TrySetResult(true);
+            window.Show();
+            await rendered.Task;
+
+            // The slide-in is a storyboard; give it room to land.
+            await Task.Delay(900);
+            await window.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+            window.UpdateLayout();
+
+            var bitmap = Render(window);
+            window.Close();
+
+            return new Image { Source = bitmap, Width = bitmap.Width, Height = bitmap.Height };
+        }
+
+        private static async Task FlyoutFiguresAsync()
+        {
+            await CaptureAsync("controls", "flyout-basic",
+                await FlyoutWindowAsync(
+                    $@"<mah:Flyout Header=""Settings"" Position=""Right"" Width=""190"" IsOpen=""True"">{FlyoutBody}</mah:Flyout>"));
+
+            await CaptureAsync("controls", "flyout-positions",
+                Showcase(
+                    (@"Left, the default", await Small($@"<mah:Flyout Header=""Left"" Position=""Left"" Width=""130"" IsOpen=""True"">{FlyoutBody}</mah:Flyout>")),
+                    (@"Right", await Small($@"<mah:Flyout Header=""Right"" Position=""Right"" Width=""130"" IsOpen=""True"">{FlyoutBody}</mah:Flyout>")),
+                    (@"Top", await Small($@"<mah:Flyout Header=""Top"" Position=""Top"" Height=""90"" IsOpen=""True"">{FlyoutBody}</mah:Flyout>")),
+                    (@"Bottom", await Small($@"<mah:Flyout Header=""Bottom"" Position=""Bottom"" Height=""90"" IsOpen=""True"">{FlyoutBody}</mah:Flyout>"))));
+
+            await CaptureAsync("controls", "flyout-themes",
+                Showcase(
+                    (@"Dark, the default", await Small(ThemedFlyout("Dark"))),
+                    (@"Light", await Small(ThemedFlyout("Light"))),
+                    (@"Adapt", await Small(ThemedFlyout("Adapt"))),
+                    (@"Inverse", await Small(ThemedFlyout("Inverse"))),
+                    (@"Accent", await Small(ThemedFlyout("Accent")))));
+
+            await CaptureAsync("controls", "flyout-modal",
+                Showcase(
+                    (@"IsModal=""False"", the default",
+                        await Small($@"<mah:Flyout Header=""Settings"" Position=""Right"" Width=""150"" IsOpen=""True"">{FlyoutBody}</mah:Flyout>")),
+                    (@"IsModal=""True""",
+                        await Small($@"<mah:Flyout Header=""Settings"" Position=""Right"" Width=""150"" IsOpen=""True"" IsModal=""True"">{FlyoutBody}</mah:Flyout>"))));
+
+            await CaptureAsync("controls", "flyout-chrome",
+                Showcase(
+                    (@"the default header row",
+                        await Small($@"<mah:Flyout Header=""Settings"" Position=""Right"" Width=""165"" IsOpen=""True"">{FlyoutBody}</mah:Flyout>")),
+                    (@"CloseButtonVisibility=""Collapsed""",
+                        await Small($@"<mah:Flyout Header=""Settings"" Position=""Right"" Width=""165"" IsOpen=""True"" CloseButtonVisibility=""Collapsed"">{FlyoutBody}</mah:Flyout>")),
+                    (@"TitleVisibility=""Collapsed""",
+                        await Small($@"<mah:Flyout Header=""Settings"" Position=""Right"" Width=""165"" IsOpen=""True"" TitleVisibility=""Collapsed"">{FlyoutBody}</mah:Flyout>"))));
+        }
+
+        private static string ThemedFlyout(string theme)
+        {
+            return $@"<mah:Flyout Header=""{theme}"" Position=""Right"" Width=""150"" IsOpen=""True"" Theme=""{theme}"">{FlyoutBody}</mah:Flyout>";
+        }
+
+        // Something inside the flyout, so a light one over a light window can
+        // still be told apart - BorderThickness is 0 by default, so there is no
+        // edge to see it by.
+        private const string FlyoutBody =
+            @"<TextBlock Margin=""14 6"" Text=""Flyout content"" />";
+
+        private static Task<FrameworkElement> Small(string flyoutsXaml)
+        {
+            return FlyoutWindowAsync(flyoutsXaml, width: 280, height: 175);
+        }
 
         // FlipView only settles its navigation buttons once loaded, so anything
         // that has to run against a live control is deferred to CaptureAsync.
