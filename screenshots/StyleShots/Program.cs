@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await FlipViewFiguresAsync();
                         await DropDownButtonFiguresAsync();
                         await SplitButtonFiguresAsync();
                         await DateTimePickerFiguresAsync();
@@ -630,6 +631,97 @@ namespace StyleShots
                 <sys:String>Bill Evans</sys:String>
                 <sys:String>Charles Mingus</sys:String>
             </x:Array>";
+
+        // FlipView only settles its navigation buttons once loaded, so anything
+        // that has to run against a live control is deferred to CaptureAsync.
+        private static readonly List<(FlipView View, Action<FlipView> Act)> pendingFlipViews = new();
+
+        private const string Slides = @"
+            <Grid Background=""#FF2E8DEF"">
+                <TextBlock HorizontalAlignment=""Center"" VerticalAlignment=""Center"" FontSize=""22"" Foreground=""White"" Text=""One"" />
+            </Grid>
+            <Grid Background=""#FF00A600"">
+                <TextBlock HorizontalAlignment=""Center"" VerticalAlignment=""Center"" FontSize=""22"" Foreground=""White"" Text=""Two"" />
+            </Grid>
+            <Grid Background=""#FFBF1E4B"">
+                <TextBlock HorizontalAlignment=""Center"" VerticalAlignment=""Center"" FontSize=""22"" Foreground=""White"" Text=""Three"" />
+            </Grid>";
+
+        private static FrameworkElement Flip(string attributes)
+        {
+            var wrapper = Xaml($@"<mah:FlipView Width=""230"" Height=""140"" {attributes}>{Slides}</mah:FlipView>");
+
+            // Registering with a no-op is what puts the figure through the
+            // FlipView settle path in CaptureAsync; see the comment there.
+            pendingFlipViews.Add((FirstFlipView(wrapper), _ => { }));
+            return wrapper;
+        }
+
+        private static async Task FlipViewFiguresAsync()
+        {
+            // SelectedIndex 1 so both navigation buttons are on screen: the
+            // template hides the one that would run off the end.
+            await CaptureAsync("controls", "flipview-basic",
+                Flip(@"SelectedIndex=""1"" BannerText=""The second slide"""));
+
+            await CaptureAsync("controls", "flipview-banner",
+                Showcase(
+                    (@"BannerText", Flip(@"SelectedIndex=""1"" BannerText=""The second slide""")),
+                    (@"IsBannerEnabled=""False""", Flip(@"SelectedIndex=""1"" IsBannerEnabled=""False""")),
+                    (@"a restyled banner", Flip(@"SelectedIndex=""1"" BannerText=""Restyled""
+                                                  BannerBackground=""#FF212121"" BannerForeground=""#FFFFC107"" BannerOpacity=""1"""))));
+
+            await CaptureAsync("controls", "flipview-bannerforeground",
+                Showcase(
+                    ("BannerForeground=Red", Flip(@"SelectedIndex=""1"" BannerText=""Probe"" BannerBackground=""White"" BannerOpacity=""1"" BannerForeground=""Red""")),
+                    ("Foreground=Red on the FlipView", Flip(@"SelectedIndex=""1"" BannerText=""Probe"" BannerBackground=""White"" BannerOpacity=""1"" Foreground=""Red""")),
+                    ("both", Flip(@"SelectedIndex=""1"" BannerText=""Probe"" BannerBackground=""White"" BannerOpacity=""1"" Foreground=""Blue"" BannerForeground=""Red"""))));
+
+            await CaptureAsync("controls", "flipview-index",
+                Showcase(
+                    (@"ShowIndex, Bottom by default", Flip(@"SelectedIndex=""1"" ShowIndex=""True"" IsBannerEnabled=""False""")),
+                    (@"IndexPlacement=""TopOverItem""",
+                        Flip(@"SelectedIndex=""1"" ShowIndex=""True"" IsBannerEnabled=""False"" IndexPlacement=""TopOverItem""")),
+                    (@"IndexPlacement=""Left""",
+                        Flip(@"SelectedIndex=""1"" ShowIndex=""True"" IsBannerEnabled=""False"" IndexPlacement=""Left"""))));
+
+            await CaptureAsync("controls", "flipview-buttons",
+                Showcase(
+                    (@"Inside, the default", Flip(@"SelectedIndex=""1"" IsBannerEnabled=""False""")),
+                    (@"NavigationButtonsPosition=""Outside""",
+                        Flip(@"SelectedIndex=""1"" IsBannerEnabled=""False"" NavigationButtonsPosition=""Outside""")),
+                    (@"IsNavigationEnabled=""False""",
+                        Flip(@"SelectedIndex=""1"" IsBannerEnabled=""False"" IsNavigationEnabled=""False"""))));
+
+            await CaptureAsync("controls", "flipview-orientation",
+                Showcase(
+                    (@"Horizontal, the default", Flip(@"SelectedIndex=""1"" IsBannerEnabled=""False""")),
+                    (@"Orientation=""Vertical""", Flip(@"SelectedIndex=""1"" IsBannerEnabled=""False"" Orientation=""Vertical"""))));
+
+            // HideControlButtons() only sets the visibility once. Anything that
+            // recomputes it - a selection change among them - brings the buttons
+            // straight back. Photographed rather than asserted.
+            var hiddenWrapper = Flip(@"SelectedIndex=""1"" IsBannerEnabled=""False""");
+            var flippedWrapper = Flip(@"SelectedIndex=""1"" IsBannerEnabled=""False""");
+
+            pendingFlipViews.Add((FirstFlipView(hiddenWrapper), v => v.HideControlButtons()));
+            pendingFlipViews.Add((FirstFlipView(flippedWrapper), v =>
+                                                                 {
+                                                                     v.HideControlButtons();
+                                                                     v.GoForward();
+                                                                 }));
+
+            await CaptureAsync("controls", "flipview-hidecontrolbuttons",
+                Showcase(
+                    ("after HideControlButtons()", hiddenWrapper),
+                    ("after HideControlButtons() and one flip", flippedWrapper)));
+        }
+
+        // Xaml() wraps every scenario in a Grid, so the control is its first child.
+        private static FlipView FirstFlipView(FrameworkElement wrapper)
+        {
+            return (FlipView)((Panel)wrapper).Children[0];
+        }
 
         private static async Task DropDownButtonFiguresAsync()
         {
@@ -1292,6 +1384,23 @@ namespace StyleShots
             }
 
             return null;
+        }
+
+        private static IEnumerable<T> FindVisualChildren<T>(DependencyObject root)
+            where T : DependencyObject
+        {
+            if (root is T match)
+            {
+                yield return match;
+            }
+
+            for (var i = 0; i < VisualTreeHelper.GetChildrenCount(root); i++)
+            {
+                foreach (var found in FindVisualChildren<T>(VisualTreeHelper.GetChild(root, i)))
+                {
+                    yield return found;
+                }
+            }
         }
 
         private static async Task PageFiguresAsync()
@@ -3103,9 +3212,38 @@ namespace StyleShots
 
             pendingSeeks.Clear();
 
+            // FlipView is handled after the settle delay below, because
+            // changing BannerText fades the banner label out and back in and
+            // GoForward starts a content transition. Both need to have run
+            // before anything is measured or forced.
+
             // Nothing here animates, but the floating watermark and the reveal
             // button appear through the bindings above; let them settle.
             await Task.Delay(400);
+
+            if (pendingFlipViews.Count > 0)
+            {
+                foreach (var (flipView, act) in pendingFlipViews)
+                {
+                    act(flipView);
+                }
+
+                pendingFlipViews.Clear();
+
+                // Let the banner fade and any content transition finish, then
+                // pin the banner label open by hand. Setting BannerText fades
+                // the label out, swaps the text on Completed and fades it back
+                // in; an off-screen render otherwise catches it mid-fade and
+                // the text comes out invisible rather than merely faint.
+                await Task.Delay(900);
+                await window.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+
+                foreach (var label in FindVisualChildren<Label>(root).Where(l => l.Name == "PART_BannerLabel"))
+                {
+                    label.BeginAnimation(UIElement.OpacityProperty, null);
+                    label.Opacity = 1;
+                }
+            }
 
             // Whether a control wears the focus border depends on where keyboard
             // focus landed, which is not something the scenario says. Clear it.

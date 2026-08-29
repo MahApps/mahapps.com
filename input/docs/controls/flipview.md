@@ -1,80 +1,170 @@
 Title: FlipView
-Description: A control with swipe navigation
+Description: A selector that shows one item at a time, with navigation and a banner
 ---
 
-The `FlipView` control behaves like an ItemsControl and shows items one by one on swipe gesture. Also navigation buttons will be available to navigate using mouse.
+`FlipView` shows one item at a time and flips between them with animated transitions. It derives from `Selector`, so it is an items control with a selection — `ItemsSource`, `Items`, `SelectedItem` and `SelectedIndex` all work as usual.
 
-It is inspired by Windows 8 / WinRT's control of the same name. However, ours was written from the ground-up to support the `MahApps.Metro` infrastructure. 
-
-## Getting started
-
-The `FlipView` control works similar to the regular `Selector` (`ItemsControl`) control. Place your content inside of it's `Items` property and it will allow to *flip* through them.
-
-The following code was taken from our main [MetroDemo](https://github.com/MahApps/MahApps.Metro).
+![A FlipView with its navigation buttons and banner](images/flipview-basic.png)
 
 ```xml
-<mah:FlipView x:Name="FlipView1st"
-              Height="200"
-              Margin="0 0 5 0"
-              Foreground="{DynamicResource MahApps.Brushes.ThemeBackground}"
-              SelectionChanged="FlipView_SelectionChanged">
-    <mah:FlipView.Items>
-        <Grid Background="#2E8DEF">
-            <iconPacks:PackIconModern Width="60"
-                                      Height="60"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"
-                                      Kind="FoodCupcake" />
-        </Grid>
-        <Grid Background="#00A600">
-            <iconPacks:PackIconModern Width="60"
-                                      Height="60"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"
-                                      Kind="Xbox" />
-        </Grid>
-        <Grid Background="#BF1E4B">
-            <iconPacks:PackIconModern Width="60"
-                                      Height="60"
-                                      HorizontalAlignment="Center"
-                                      VerticalAlignment="Center"
-                                      Kind="ChessHorse" />
-        </Grid>
-    </mah:FlipView.Items>
+<mah:FlipView Width="230" Height="140" BannerText="The second slide">
+    <Grid Background="#FF2E8DEF" />
+    <Grid Background="#FF00A600" />
+    <Grid Background="#FFBF1E4B" />
 </mah:FlipView>
 ```
 
-![flipview](images/flipview.png)
+It was inspired by the WinRT control of the same name but shares no code with it.
 
-## The Banner
+## Navigating
 
-The banner on the bottom of the `FlipView` can be shown and hidden using the `IsBannerEnabled` property. You may change the banner text using the `BannerText` property. We use that in code behind to change the banner based on the selected item.
+The user flips with the two buttons or with the arrow keys. In code:
+
+| | |
+| --- | --- |
+| `GoBack()` / `GoForward()` | one item, honouring `CircularNavigation` |
+| `SelectedIndex` | jump anywhere; the transition direction is worked out from the old and new index |
+| `CircularNavigation` | `False` by default; when `True`, the ends wrap around |
+
+Which button is visible is **computed, not fixed**. `DetectControlButtonsStatus` hides the back button on the first item and the forward button on the last, unless `CircularNavigation` is on — which is why the figures on this page sit on the middle slide.
+
+![Buttons inside, outside, and switched off](images/flipview-buttons.png)
+
+| Property | Type | Default | |
+| --- | --- | --- | --- |
+| `IsNavigationEnabled` | `bool` | `True` | hides both buttons when `False` |
+| `NavigationButtonsPosition` | `NavigationButtonsPosition` | `Inside` | `Inside` or `Outside` |
+| `NavigationButtonStyle` | `Style` | `MahApps.Styles.Button.FlipView.Navigation` | |
+| `ButtonBackContent` / `ButtonForwardContent` / `ButtonUpContent` / `ButtonDownContent` | `object` | chevrons | each with a matching `…Template` and `…StringFormat` |
+
+`Outside` puts the buttons beside the item instead of over it, which costs width — compare the second panel above with the first.
+
+:::{.alert .alert-info}
+**There is no swipe gesture.** `FlipView` handles `OnKeyDown` and `OnMouseDown` and nothing else — no manipulation or touch handling anywhere in the control. Older documentation said otherwise.
+
+The keyboard is also tied to the buttons: `OnKeyDown` only acts if the button for that direction is **visible and enabled**. So hiding the buttons — through `IsNavigationEnabled="False"` or `HideControlButtons()` — takes the arrow keys with it. `Left`/`Right` flip when horizontal, `Up`/`Down` when vertical.
+:::
+
+:::{.alert .alert-warning}
+**`HideControlButtons()` does not stick.** It is a one-shot: it sets the buttons' visibility once and changes no state.
 
 ```csharp
-private void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+public void HideControlButtons()
 {
-    var flipview = ((FlipView)sender);
-    switch (flipview.SelectedIndex)
-    {
-        case 0:
-            flipview.BannerText = "Cupcakes!";
-            break;
-        case 1:
-            flipview.BannerText = "Xbox!";
-            break;
-        case 2:
-            flipview.BannerText = "Chess!";
-            break;
-    }
+    this.ExecuteWhenLoaded(() => this.DetectControlButtonsStatus(Visibility.Hidden));
 }
 ```
 
-## The Control Buttons
+Anything that recomputes the buttons afterwards brings them back — a selection change among them, which is exactly what an automatic slideshow does:
 
-The *control buttons* (the next and previous buttons) allow the user to flip through the items using their mouse. The buttons can be disabled by calling `HideControlButtons` and renabled by calling `ShowControlButtons`.
+![After HideControlButtons, and after HideControlButtons plus one flip](images/flipview-hidecontrolbuttons.png)
 
-The user can also flip through the items using the arrows on their keyboard.
+Both panels called `HideControlButtons()`. The right one then flipped once, and the back button returned. (The forward button stays hidden because that panel is now on the last item.)
 
-## Automated scrolling (batteries not included)
+Use **`IsNavigationEnabled="False"`** instead. It is a dependency property, it is re-read on every recompute, and it survives.
+:::
 
-Disabling the control buttons is useful when you want to provide an automated scrolling experience. This can be implemented by using a timer and by incrementing `SelectedIndex`.
+## Transitions
+
+The animation between items is a `TransitioningContentControl`, and there is one `TransitionType` per direction:
+
+| Property | Default |
+| --- | --- |
+| `LeftTransition` | `LeftReplace` |
+| `RightTransition` | `RightReplace` |
+| `UpTransition` | `Up` |
+| `DownTransition` | `Down` |
+
+`Orientation` decides which pair is used: `Horizontal` uses left/right, `Vertical` uses up/down, and it also moves the buttons.
+
+![Horizontal and vertical](images/flipview-orientation.png)
+
+## The banner
+
+The strip along the bottom. It is on by default and slides open and shut.
+
+![BannerText, no banner, and a restyled one](images/flipview-banner.png)
+
+| Property | Type | Default | |
+| --- | --- | --- | --- |
+| `IsBannerEnabled` | `bool` | `True` | |
+| `BannerText` | `object` | `null` | plus `BannerTextTemplate`, `BannerTextTemplateSelector`, `BannerTextStringFormat` |
+| `BannerBackground` | `Brush` | `MahApps.Brushes.ThemeForeground` | |
+| `BannerForeground` | `Brush` | `MahApps.Brushes.ThemeBackground` | |
+| `BannerOpacity` | `double` | `0.8` | applies to the whole strip, text included |
+
+The banner does not follow the selection on its own — set `BannerText` from a `SelectionChanged` handler, or bind it:
+
+```xml
+<mah:FlipView ItemsSource="{Binding Slides}"
+              BannerText="{Binding SelectedItem.Caption, RelativeSource={RelativeSource Self}}" />
+```
+
+:::{.alert .alert-info}
+**The banner's text colour is `BannerForeground`, not `Foreground`.** Setting `Foreground` on the `FlipView` does nothing to the banner — the template binds the banner label to `BannerForeground`, which wins:
+
+![BannerForeground, Foreground, and both](images/flipview-bannerforeground.png)
+
+The middle panel sets `Foreground="Red"` and shows nothing at all, because `BannerForeground` is still its default of `MahApps.Brushes.ThemeBackground` — white text on the white banner. The third sets `Foreground="Blue"` and `BannerForeground="Red"` and comes out red.
+
+`Foreground` is not useless, though: the item container style binds each `FlipViewItem`'s foreground to its owner's, so `Foreground` reaches the **items**.
+:::
+
+Changing `BannerText` fades the label out, swaps the text and fades it back in, so the new text does not appear instantly.
+
+## The index
+
+A row of dots showing how many items there are and which one is current. It is **off by default**, and the old documentation never mentioned it.
+
+![ShowIndex at the bottom, over the item at the top, and on the left](images/flipview-index.png)
+
+```xml
+<mah:FlipView ShowIndex="True" IndexPlacement="TopOverItem" ItemsSource="{Binding Slides}" />
+```
+
+| Property | Type | Default | |
+| --- | --- | --- | --- |
+| `ShowIndex` | `bool` | `False` | |
+| `IndexPlacement` | `NavigationIndexPlacement` | `Bottom` | |
+| `IndexHorizontalAlignment` / `IndexVerticalAlignment` | | `Center` | within the strip |
+| `IndexItemContainerStyle` | `Style` | `MahApps.Styles.ListBoxItem.FlipView.Index` | the dots |
+
+`NavigationIndexPlacement` has eight values: `Left`, `Right`, `Top`, `Bottom`, and a `…OverItem` variant of each. The plain values give the index a strip of its own and shrink the item; the `OverItem` ones lay it over the item, as in the middle panel above.
+
+The index is a `ListBox` in the template and it is clickable, so it navigates as well as reports.
+
+## The hover border
+
+A border drawn over the item while the mouse is inside, to show the control has focus for the arrow keys.
+
+| Property | Type | Default |
+| --- | --- | --- |
+| `MouseHoverBorderEnabled` | `bool` | `True` |
+| `MouseHoverBorderBrush` | `Brush` | theme |
+| `MouseHoverBorderThickness` | `Thickness` | `4` |
+
+It does not appear in the figures on this page because an off-screen render has no mouse in it.
+
+## An automatic slideshow
+
+Increment `SelectedIndex` on a timer, with `CircularNavigation` so it wraps and `IsNavigationEnabled="False"` so the buttons stay away:
+
+```xml
+<mah:FlipView x:Name="Slideshow"
+              CircularNavigation="True"
+              IsNavigationEnabled="False"
+              ShowIndex="True"
+              ItemsSource="{Binding Slides}" />
+```
+
+```csharp
+var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(4) };
+timer.Tick += (_, _) => this.Slideshow.GoForward();
+timer.Start();
+```
+
+`GoForward()` wraps by itself once `CircularNavigation` is on, so there is no index arithmetic to get wrong.
+
+## Related
+
+`FlipViewItem` is the container, styled by `MahApps.Styles.FlipViewItem`. The transitions come from [TransitioningContentControl](transitioningcontentcontrol).
