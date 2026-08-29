@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await FontIconFiguresAsync();
                         await FlyoutFiguresAsync();
                         await FlipViewFiguresAsync();
                         await DropDownButtonFiguresAsync();
@@ -667,6 +668,46 @@ namespace StyleShots
             window.Close();
 
             return new Image { Source = bitmap, Width = bitmap.Width, Height = bitmap.Height };
+        }
+
+        private static async Task FontIconFiguresAsync()
+        {
+            // Segoe MDL2 Assets code points. Written as &#x...; so the figure
+            // and the page show the same markup.
+            await CaptureAsync("controls", "fonticon-glyphs",
+                Showcase(
+                    ("E713", Xaml(@"<mah:FontIcon Glyph=""&#xE713;"" />")),
+                    ("E721", Xaml(@"<mah:FontIcon Glyph=""&#xE721;"" />")),
+                    ("E74D", Xaml(@"<mah:FontIcon Glyph=""&#xE74D;"" />")),
+                    ("E70F", Xaml(@"<mah:FontIcon Glyph=""&#xE70F;"" />")),
+                    ("E734", Xaml(@"<mah:FontIcon Glyph=""&#xE734;"" />"))));
+
+            await CaptureAsync("controls", "fonticon-size",
+                Showcase(
+                    ("FontSize 12", Xaml(@"<mah:FontIcon Glyph=""&#xE734;"" FontSize=""12"" />")),
+                    ("20, the default", Xaml(@"<mah:FontIcon Glyph=""&#xE734;"" />")),
+                    ("32", Xaml(@"<mah:FontIcon Glyph=""&#xE734;"" FontSize=""32"" />")),
+                    ("48 and a Foreground",
+                        Xaml(@"<mah:FontIcon Glyph=""&#xE734;"" FontSize=""48"" Foreground=""#FFE64A19"" />"))));
+
+            await CaptureAsync("controls", "fonticon-in-controls",
+                Showcase(
+                    ("as Button content",
+                        Xaml(@"<Button Padding=""10 6""><mah:FontIcon Glyph=""&#xE713;"" FontSize=""16"" /></Button>")),
+                    ("beside a label",
+                        Xaml(@"<Button Padding=""10 6"">
+                                   <StackPanel Orientation=""Horizontal"">
+                                       <mah:FontIcon Margin=""0 0 8 0"" FontSize=""16"" Glyph=""&#xE74D;"" />
+                                       <TextBlock VerticalAlignment=""Center"" Text=""Delete"" />
+                                   </StackPanel>
+                               </Button>")),
+                    ("inheriting the Foreground",
+                        Xaml(@"<Button Padding=""10 6"" Foreground=""#FFE64A19"">
+                                   <StackPanel Orientation=""Horizontal"">
+                                       <mah:FontIcon Margin=""0 0 8 0"" FontSize=""16"" Glyph=""&#xE734;"" />
+                                       <TextBlock VerticalAlignment=""Center"" Text=""Favourite"" />
+                                   </StackPanel>
+                               </Button>"))));
         }
 
         private static async Task FlyoutFiguresAsync()
