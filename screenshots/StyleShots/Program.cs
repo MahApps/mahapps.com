@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await DateTimePickerFiguresAsync();
                         await CustomValidationPopupFiguresAsync();
                         await ContentControlExFiguresAsync();
                         await BadgedFiguresAsync();
@@ -268,6 +269,8 @@ namespace StyleShots
             foreach (var file in new[]
                      {
                          "Controls.Calendar.Win10.xaml",
+                         "Controls.DateTimePicker.WinUI.xaml",
+                         "Controls.DateTimePicker.Win10.xaml",
                          "Controls.ScrollBar.WinUI.xaml",
                          "Controls.ScrollBar.Win10.xaml"
                      })
@@ -619,6 +622,130 @@ namespace StyleShots
         // The field and the popup live in two different HWNDs, so one render
         // cannot hold both. They are photographed separately and put side by
         // side, which is where the style's Placement="Right" puts them anyway.
+        private static async Task DateTimePickerFiguresAsync()
+        {
+            await CaptureAsync("controls", "datetimepicker-closed",
+                Showcase(
+                    ("DateTimePicker", Picker("DateTimePicker", string.Empty)),
+                    ("TimePicker", Picker("TimePicker", string.Empty))));
+
+            await CaptureDropDownAsync("controls", "datetimepicker-dropdown", "DateTimePicker", string.Empty);
+
+            await CaptureAsync("controls", "datetimepicker-variants",
+                Showcase(
+                    ("the built-in style", Picker("DateTimePicker", string.Empty)),
+                    ("MahApps.Styles.DateTimePicker.Win10",
+                        Picker("DateTimePicker", @"Style=""{StaticResource MahApps.Styles.DateTimePicker.Win10}""")),
+                    ("MahApps.Styles.DateTimePicker.WinUI",
+                        Picker("DateTimePicker", @"Style=""{StaticResource MahApps.Styles.DateTimePicker.WinUI}"""))));
+
+            await CaptureDropDownAsync("controls", "datetimepicker-dropdown-winui", "DateTimePicker",
+                                       @"Style=""{StaticResource MahApps.Styles.DateTimePicker.WinUI}""");
+
+            await CaptureDropDownAsync("controls", "datetimepicker-dropdown-win10", "DateTimePicker",
+                                       @"Style=""{StaticResource MahApps.Styles.DateTimePicker.Win10}""");
+
+            // The time selection on its own, which is what the TimePicker
+            // drop-down is - no calendar to distract from it.
+            await CaptureDropDownAsync("controls", "timepicker-dropdown", "TimePicker", string.Empty);
+
+            // The Win10 row is the same picture at this size - the two only
+            // part company inside the open list, where one pill is rounded and
+            // the other square - so only the WinUI one is kept.
+            await CaptureDropDownAsync("controls", "timepicker-dropdown-winui", "TimePicker",
+                                       @"Style=""{StaticResource MahApps.Styles.TimePicker.WinUI}""");
+
+            // ... and one with a column open, so the rounded selection shows.
+            await CaptureDropDownAsync("controls", "timepicker-dropdown-winui-open", "TimePicker",
+                                       @"Style=""{StaticResource MahApps.Styles.TimePicker.WinUI}""", openHours: true);
+        }
+
+        private static FrameworkElement Picker(string type, string attributes)
+        {
+            // DisplayDate and IsTodayHighlighted pinned: otherwise the calendar
+            // shows the current month and the figure changes every day.
+            var dateProps = type == "DateTimePicker"
+                ? @"DisplayDate=""2020-06-15"" IsTodayHighlighted=""False"""
+                : string.Empty;
+
+            return Xaml($@"<mah:{type} Width=""190"" SelectedDateTime=""2020-06-15 14:30""
+                                       Culture=""en-US"" {dateProps} {attributes} />");
+        }
+
+        private static async Task CaptureDropDownAsync(string section, string name, string type, string attributes, bool openHours = false)
+        {
+            // Only DateTimePicker has the calendar half, so only it takes the
+            // DatePicker properties that pin the figure to a fixed month.
+            var dateProps = type == "DateTimePicker"
+                ? @"DisplayDate=""2020-06-15"" IsTodayHighlighted=""False"""
+                : string.Empty;
+
+            var picker = (Control)XamlReader.Parse(
+                $@"<mah:{type} {Xmlns} Width=""190"" SelectedDateTime=""2020-06-15 14:30""
+                                Culture=""en-US"" {dateProps} {attributes} />");
+
+            var host = new Window
+                       {
+                           Content = new Border { Padding = new Thickness(16), Child = picker },
+                           SizeToContent = SizeToContent.WidthAndHeight,
+                           WindowStyle = WindowStyle.None,
+                           ShowInTaskbar = false,
+                           WindowStartupLocation = WindowStartupLocation.Manual,
+                           Left = -20000,
+                           Top = -20000,
+                           Background = Brushes.White
+                       };
+
+            var rendered = new TaskCompletionSource<bool>();
+            host.ContentRendered += (_, _) => rendered.TrySetResult(true);
+            host.Show();
+            await rendered.Task;
+
+            picker.SetValue(System.Windows.Controls.DatePicker.IsDropDownOpenProperty, true);
+            await Task.Delay(700);
+            await host.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+
+            // The hour list is a ComboBox inside the picker's popup, so its own
+            // drop-down is a third HWND again - photographed on its own.
+            if (openHours)
+            {
+                if (picker.Template?.FindName("PART_HourPicker", picker) is ComboBox hours)
+                {
+                    hours.IsDropDownOpen = true;
+                    await Task.Delay(500);
+                    await host.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+
+                    if (hours.Template?.FindName("PART_Popup", hours) is System.Windows.Controls.Primitives.Popup { Child: FrameworkElement list })
+                    {
+                        list.UpdateLayout();
+                        await SaveAsync(section, name, list);
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{section}/{name}: the hour list's PART_Popup was not found");
+                    }
+
+                    hours.IsDropDownOpen = false;
+                }
+                else
+                {
+                    Console.WriteLine($"{section}/{name}: PART_HourPicker not found");
+                }
+            }
+            else if (picker.Template?.FindName("PART_Popup", picker) is System.Windows.Controls.Primitives.Popup { Child: FrameworkElement child })
+            {
+                child.UpdateLayout();
+                await SaveAsync(section, name, child);
+            }
+            else
+            {
+                Console.WriteLine($"{section}/{name}: PART_Popup not found");
+            }
+
+            picker.SetValue(System.Windows.Controls.DatePicker.IsDropDownOpenProperty, false);
+            host.Close();
+        }
+
         private static async Task CustomValidationPopupFiguresAsync()
         {
             var box = new TextBox { Width = 170 };
