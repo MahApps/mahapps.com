@@ -331,189 +331,249 @@ Flyouts
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>A <code>Flyout</code> is an overlay for the <a href="metrowindow">MetroWindow</a> that can render custom contents.
-It's derived from <code>HeaderedContentControl</code> and has the ability to slide in and out from any side of the window.</p>
-<div class="alert alert-info"><p><em><strong>Note</strong></em><br />
-It's strongly recommended to use any <code>Flyout</code> within the <code>FlyoutsControl</code>.</p>
-</div>
-<h2 id="flyoutscontrol">FlyoutsControl</h2>
-<p>The <code>FlyoutsControl</code> is an <code>ItemsControl</code> which contains all <code>Flyout</code> items for one <code>MetroWindow</code>. It must be assigned to the <code>Flyouts</code> property of the <a href="metrowindow">MetroWindow</a>.</p>
-<h2 id="example">Example</h2>
-<p>The following Xaml code creates two <code>Flyout</code> controls with a header and the position on the right side of the window.
-To open or close a <code>Flyout</code> set the <code>IsOpen</code> property or use a property on your ModelView at the DataContext of the window.</p>
+<p>A <code>Flyout</code> is a panel that slides in over a <a href="metrowindow">MetroWindow</a> from any of its four sides. It derives from <code>HeaderedContentControl</code>, so it has a <code>Header</code> and arbitrary content.</p>
+<p><img src="images/flyout-basic.png" alt="A MetroWindow with a flyout open on the right" /></p>
 <pre><code class="language-xml">&lt;mah:MetroWindow.Flyouts&gt;
     &lt;mah:FlyoutsControl&gt;
-      &lt;mah:Flyout x:Name=&quot;FirstFlyout&quot; Header=&quot;Settings&quot; Position=&quot;Right&quot; Width=&quot;250&quot;&gt;
-          &lt;!-- The content goes here --&gt;
-      &lt;/mah:Flyout&gt;
-
-      &lt;mah:Flyout Header=&quot;About&quot; IsOpen=&quot;{Binding IsAboutFlyoutOpen}&quot; Position=&quot;Right&quot; Width=&quot;300&quot;&gt;
-          &lt;!-- The content goes here --&gt;
-      &lt;/mah:Flyout&gt;
+        &lt;mah:Flyout Header=&quot;Settings&quot; Position=&quot;Right&quot; Width=&quot;190&quot; IsOpen=&quot;{Binding IsSettingsOpen}&quot;&gt;
+            &lt;!--  content  --&gt;
+        &lt;/mah:Flyout&gt;
     &lt;/mah:FlyoutsControl&gt;
 &lt;/mah:MetroWindow.Flyouts&gt;
 </code></pre>
-<p><img src="images/flyout-demo-dark.png" alt="" /></p>
-<h2 id="position-enum">Position enum</h2>
-<p>Specifies the position fo the <code>Flyout</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th></th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Left</td>
-<td>0</td>
-<td>Shows the <code>Flyout</code> on the left side.</td>
-</tr>
-<tr>
-<td>Right</td>
-<td>1</td>
-<td>Shows the <code>Flyout</code> on the right side.</td>
-</tr>
-<tr>
-<td>Top</td>
-<td>2</td>
-<td>Shows the <code>Flyout</code> on the top.</td>
-</tr>
-<tr>
-<td>Bottom</td>
-<td>3</td>
-<td>Shows the <code>Flyout</code> on the bottom.</td>
-</tr>
-</tbody>
-</table>
-<h2 id="flyouttheme-enum">FlyoutTheme enum</h2>
-<p>Specifies how a <code>Flyout</code> is being themed.</p>
-<h3 id="fields">Fields</h3>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th></th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Adapt</td>
-<td>0</td>
-<td>Adapts the <code>Flyout</code> theme to the theme of the host window or application.</td>
-</tr>
-<tr>
-<td>Inverse</td>
-<td>1</td>
-<td>Adapts the <code>Flyout</code> theme to the theme of the host window or application, but inverted. This theme can only be applied if the host window's theme abides the <code>Dark</code> and <code>Light</code> affix convention.</td>
-</tr>
-<tr>
-<td>Dark</td>
-<td>2</td>
-<td>Use the dark theme for the <code>Flyout</code>. This is the default theme.</td>
-</tr>
-<tr>
-<td>Light</td>
-<td>3</td>
-<td>Use the light theme for the <code>Flyout</code>.</td>
-</tr>
-<tr>
-<td>Accent</td>
-<td>4</td>
-<td>The <code>Flyout</code> theme will match the host window's accent color. This option needs more action by the user, such as using the correct Foreground for the controls inside the <code>Flyout</code>.</td>
-</tr>
-</tbody>
-</table>
-<p><img src="images/flyout-demo-accent.png" alt="" /></p>
-<h2 id="overlay-behavior">Overlay Behavior</h2>
-<p>The overlay behavior properties of the <code>MetroWindow</code> sets the visibility of the <code>Icon</code>, <code>LeftWindowCommands</code>, <code>RightWindowCommands</code> and <code>WindowButtonCommands</code> when a Flyout is shown.</p>
-<h3 id="metrowindow-properties">MetroWindow Properties</h3>
+<p>Every figure on this page is a real <code>MetroWindow</code>, because a <code>Flyout</code> only behaves like one inside one: it looks up its parent window to position itself, to dim the modal overlay and to adapt its theme.</p>
+<h2 id="flyoutscontrol">FlyoutsControl</h2>
+<p><code>FlyoutsControl</code> is the <code>ItemsControl</code> that holds the flyouts for one window, and it belongs in the window's <code>Flyouts</code> property. A flyout outside one will not work properly.</p>
+<p>It is a real items control, so <code>ItemsSource</code> works and each item is wrapped in a <code>Flyout</code> container. <code>ItemTemplate</code>, <code>ItemTemplateSelector</code> and <code>ItemStringFormat</code> are pushed onto each container's <strong>content</strong> properties, and <code>HeaderTemplate</code>, <code>HeaderTemplateSelector</code> and <code>HeaderStringFormat</code> set on a flyout are preserved when the container is prepared.</p>
+<p>It adds exactly two properties of its own, both of which override every flyout below it:</p>
 <table>
 <thead>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Description</th>
+<th>Default</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>LeftWindowCommandsOverlayBehavior</td>
-<td>WindowCommandsOverlayBehavior</td>
-<td>Gets or sets the overlay behavior for the <code>WindowCommands</code> on the left side of the title bar.</td>
+<td><code>OverrideIsPinned</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>when <code>True</code>, every flyout behaves as if <code>IsPinned</code> were <code>False</code></td>
 </tr>
 <tr>
-<td>RightWindowCommandsOverlayBehavior</td>
-<td>WindowCommandsOverlayBehavior</td>
-<td>Gets or sets the overlay behavior for the <code>WindowCommands</code> on the right side of the title bar.</td>
-</tr>
-<tr>
-<td>WindowButtonCommandsOverlayBehavior</td>
-<td>OverlayBehavior</td>
-<td>Gets or sets the overlay behavior for the <code>WindowButtonCommands</code> (Min / Max / Restore / Close) on the title bar.</td>
-</tr>
-<tr>
-<td>IconOverlayBehavior</td>
-<td>OverlayBehavior</td>
-<td>Gets or sets the overlay behavior for the icon on the title bar.</td>
+<td><code>OverrideExternalCloseButton</code></td>
+<td><code>MouseButton?</code></td>
+<td><code>null</code></td>
+<td>when set, every flyout closes on that button, whatever its own <code>ExternalCloseButton</code> says</td>
 </tr>
 </tbody>
 </table>
-<div class="alert alert-info"><p><em><strong>Note</strong></em><br />
-The <code>LeftWindowCommands</code>, <code>RightWindowCommands</code> and the <code>Icon</code> will never be shown over an opened <code>Flyout</code>.</p>
+<h2 id="opening-and-closing">Opening and closing</h2>
+<p><code>IsOpen</code> is the switch, and it is the one to bind. <code>IsShown</code> is a read-only companion, and <code>Owner</code> is the read-only back-reference to the <code>FlyoutsControl</code>.</p>
+<p>Three routed events mark the stages:</p>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsOpenChanged</code></td>
+<td><code>IsOpen</code> has changed; the animation is just starting</td>
+</tr>
+<tr>
+<td><code>OpeningFinished</code></td>
+<td>the slide-in has finished</td>
+</tr>
+<tr>
+<td><code>ClosingFinished</code></td>
+<td>the slide-out has finished</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p><strong>A flyout does not close when you click outside it — by default.</strong> <code>IsPinned</code> defaults to <strong><code>True</code></strong>, which means pinned, which means clicks elsewhere in the window are ignored. The old documentation never mentioned the property.</p>
+<p>The window's handler reads:</p>
+<pre><code class="language-csharp">foreach (var flyout in Flyouts.GetFlyouts()
+                              .Where(x =&gt; x.IsOpen
+                                          &amp;&amp; x.ExternalCloseButton == e.ChangedButton
+                                          &amp;&amp; (!x.IsPinned || Flyouts.OverrideIsPinned)))
+{
+    flyout.IsOpen = false;
+}
+</code></pre>
+<p>So for click-away-to-close, set <code>IsPinned=&quot;False&quot;</code> on the flyout, or <code>OverrideIsPinned=&quot;True&quot;</code> on the <code>FlyoutsControl</code> to do it for all of them.</p>
+<p><code>ExternalCloseButton</code> picks which button counts, and defaults to <code>MouseButton.Left</code>. Clicks on a flyout, on the modal overlay, on a dialog, on the window icon or on the window commands never count as &quot;outside&quot;.</p>
 </div>
-<h2 id="windowcommandsoverlaybehavior-enum">WindowCommandsOverlayBehavior enum</h2>
-<p>Specifies the visibility of the <code>WindowCommands</code>.</p>
-<h3 id="fields-1">Fields</h3>
+<h3 id="the-close-button">The close button</h3>
+<p><code>CloseCommand</code> runs when the <strong>close button</strong> is clicked, with <code>CloseCommandParameter</code>. It does <strong>not</strong> run when <code>IsOpen</code> is set to <code>false</code> in code or by a binding — the XML documentation says so explicitly, and it is easy to trip over if you expect it as a general &quot;flyout closed&quot; hook. Use <code>ClosingFinished</code> for that.</p>
+<p><code>CloseButtonIsCancel</code> makes the button respond to <kbd>Esc</kbd>. Although <code>CloseCommand</code> is registered with <code>RegisterAttached</code>, there are no static <code>GetCloseCommand</code>/<code>SetCloseCommand</code> accessors, so it cannot actually be used as an attached property in XAML — set it on the flyout.</p>
+<h3 id="closing-itself">Closing itself</h3>
 <table>
 <thead>
 <tr>
-<th>Value</th>
-<th>Description</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Never</td>
-<td>The <code>WindowCommands</code> will never be shown over a <code>Flyout</code> or hidden title bar.</td>
+<td><code>IsAutoCloseEnabled</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>close after a delay</td>
 </tr>
 <tr>
-<td>HiddenTitleBar</td>
-<td>The <code>WindowCommands</code> will be shown even if a title bar is hidden.</td>
+<td><code>AutoCloseInterval</code></td>
+<td><code>long</code></td>
+<td><code>5000</code></td>
+<td>milliseconds</td>
 </tr>
 </tbody>
 </table>
-<h2 id="overlaybehavior-enum">OverlayBehavior enum</h2>
-<p>Specifies the visibility of the <code>WindowButtonCommands</code> (Min, Max/Restore and Close Buttons) and the <code>Icon</code>.</p>
-<h3 id="fields-2">Fields</h3>
+<p>The timer starts when the flyout is open and the property is switched on, and stops when it is switched off.</p>
+<h2 id="position">Position</h2>
+<p><img src="images/flyout-positions.png" alt="Left, Right, Top and Bottom" /></p>
+<p><code>Position</code> is <code>Left</code>, <code>Right</code>, <code>Top</code> or <code>Bottom</code>, and <strong>defaults to <code>Left</code></strong>. Left and right flyouts take their <code>Width</code>, top and bottom ones their <code>Height</code>. The header row and its arrow button flip to match, so the arrow always points the way out.</p>
+<p><code>AnimateOnPositionChange</code> (default <code>True</code>) animates a change of <code>Position</code> while the flyout is open.</p>
+<h2 id="themes">Themes</h2>
+<p><img src="images/flyout-themes.png" alt="Dark, Light, Adapt, Inverse and Accent" /></p>
 <table>
 <thead>
 <tr>
 <th>Value</th>
-<th>Description</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Never</td>
-<td>The <code>WindowButtonCommands</code> or the icon will never be shown over a <code>Flyout</code> or hidden title bar.</td>
+<td><code>Dark</code></td>
+<td><strong>the default</strong></td>
 </tr>
 <tr>
-<td>Flyouts</td>
-<td>The <code>WindowButtonCommands</code> or the icon overlays all opened <code>Flyout</code>.</td>
+<td><code>Light</code></td>
+<td></td>
 </tr>
 <tr>
-<td>HiddenTitleBar</td>
-<td>The <code>WindowButtonCommands</code> or the icon will be shown even if a title bar is hidden.</td>
+<td><code>Adapt</code></td>
+<td>follows the host window's theme</td>
 </tr>
 <tr>
-<td>Always</td>
-<td>The <code>WindowButtonCommands</code> or the icon will always be shown.</td>
+<td><code>Inverse</code></td>
+<td>follows it, inverted</td>
+</tr>
+<tr>
+<td><code>Accent</code></td>
+<td>the accent colour; you have to pick readable foregrounds yourself</td>
 </tr>
 </tbody>
 </table>
+<p>The figure is rendered against a light application theme, which is why <code>Adapt</code> matches <code>Light</code> and <code>Inverse</code> matches <code>Dark</code>.</p>
+<div class="alert alert-info"><p><code>BorderThickness</code> on <code>MahApps.Styles.Flyout</code> is <strong><code>0</code></strong>. A <code>Light</code> or <code>Adapt</code> flyout over a light window therefore has no visible edge at all — in the figure above you can only tell where those two are by the text inside them. If that matters, give the flyout a <code>BorderThickness</code> and <code>BorderBrush</code>.</p>
+</div>
+<h2 id="modal">Modal</h2>
+<p><img src="images/flyout-modal.png" alt="A flyout and the same flyout modal" /></p>
+<p><code>IsModal</code> (default <code>False</code>) dims the rest of the window and blocks input to it. It also pushes the window icon and all three sets of window commands behind the overlay, which is why the minimise, maximise and close buttons are gone in the right-hand panel.</p>
+<h2 id="header-title-and-close-button">Header, title and close button</h2>
+<p><img src="images/flyout-chrome.png" alt="The default header row, without the close button, and without the title" /></p>
+<p><code>CloseButtonVisibility</code> and <code>TitleVisibility</code> are both <code>Visible</code> by default and each hides one part of the header row. Hiding the close button without giving the user another way out — a binding on <code>IsOpen</code>, <code>IsPinned=&quot;False&quot;</code>, or auto-close — leaves the flyout stuck open.</p>
+<h2 id="animation-and-focus">Animation and focus</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AreAnimationsEnabled</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>turn the slide off entirely</td>
+</tr>
+<tr>
+<td><code>AnimateOpacity</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>fade as well as slide</td>
+</tr>
+<tr>
+<td><code>AllowFocusElement</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>move focus into the flyout when it opens</td>
+</tr>
+<tr>
+<td><code>FocusedElement</code></td>
+<td><code>FrameworkElement</code></td>
+<td><code>null</code></td>
+<td>which element gets that focus</td>
+</tr>
+</tbody>
+</table>
+<h2 id="overlay-behaviour-on-the-window">Overlay behaviour on the window</h2>
+<p>These four live on the <a href="metrowindow">MetroWindow</a>, not on the flyout, and decide what stays visible above an open flyout:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LeftWindowCommandsOverlayBehavior</code></td>
+<td><code>WindowCommandsOverlayBehavior</code></td>
+<td><code>Never</code></td>
+</tr>
+<tr>
+<td><code>RightWindowCommandsOverlayBehavior</code></td>
+<td><code>WindowCommandsOverlayBehavior</code></td>
+<td><code>Never</code></td>
+</tr>
+<tr>
+<td><code>WindowButtonCommandsOverlayBehavior</code></td>
+<td><code>OverlayBehavior</code></td>
+<td><strong><code>Always</code></strong></td>
+</tr>
+<tr>
+<td><code>IconOverlayBehavior</code></td>
+<td><code>OverlayBehavior</code></td>
+<td><code>Never</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>WindowCommandsOverlayBehavior</code> is <code>Never</code> or <code>HiddenTitleBar</code>. <code>OverlayBehavior</code> is a <code>[Flags]</code> enum, and <code>Always</code> is not a state of its own but the combination of the other two:</p>
+<pre><code class="language-csharp">[Flags]
+public enum OverlayBehavior
+{
+    Never = 0,
+    Flyouts = 1 &lt;&lt; 0,
+    HiddenTitleBar = 1 &lt;&lt; 1,
+    Always = ~(-1 &lt;&lt; 2)
+}
+</code></pre>
+<p>The minimise, maximise and close buttons are drawn over the flyouts in the figures on this page because their default is <code>Always</code>, which carries the <code>Flyouts</code> flag.</p>
+<div class="alert alert-info"><p>The left and right window commands can never be drawn over an open flyout — <code>WindowCommandsOverlayBehavior</code> has no value for it.</p>
+<p><strong>The icon can</strong>, though, which older documentation denied. <code>IconOverlayBehavior</code> is an <code>OverlayBehavior</code>, and the window checks it per flyout:</p>
+<pre><code class="language-csharp">this.icon?.SetValue(Panel.ZIndexProperty,
+    flyout.IsModal &amp;&amp; flyout.IsOpen
+        ? 0
+        : (this.IconOverlayBehavior.HasFlag(OverlayBehavior.Flyouts) ? zIndex : 1));
+</code></pre>
+<p>So <code>IconOverlayBehavior=&quot;Flyouts&quot;</code> does put the icon above one. A modal flyout still wins over both.</p>
+</div>
+<h2 id="related">Related</h2>
+<p><a href="metrowindow">MetroWindow</a> hosts them and owns the overlay behaviour. <a href="customvalidationpopup">CustomValidationPopup</a> suppresses itself while a flyout is animating, which is what <code>Flyout</code>'s animation state is used for elsewhere.</p>
 
 
                                         </div>
@@ -523,24 +583,18 @@ The <code>LeftWindowCommands</code>, <code>RightWindowCommands</code> and the <c
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#flyoutscontrol">FlyoutsControl</a></div>
-                    <div class="sidebar-nav-item"><a href="#example">Example</a></div>
-                    <div class="sidebar-nav-item"><a href="#position-enum">Position enum</a></div>
-                    <div class="sidebar-nav-item"><a href="#flyouttheme-enum">FlyoutTheme enum</a></div>
+                    <div class="sidebar-nav-item"><a href="#opening-and-closing">Opening and closing</a></div>
                         <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#fields">Fields</a></div>
+                                <div class="sidebar-nav-item"><a href="#the-close-button">The close button</a></div>
+                                <div class="sidebar-nav-item"><a href="#closing-itself">Closing itself</a></div>
                         </div>
-                    <div class="sidebar-nav-item"><a href="#overlay-behavior">Overlay Behavior</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#metrowindow-properties">MetroWindow Properties</a></div>
-                        </div>
-                    <div class="sidebar-nav-item"><a href="#windowcommandsoverlaybehavior-enum">WindowCommandsOverlayBehavior enum</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#fields-1">Fields</a></div>
-                        </div>
-                    <div class="sidebar-nav-item"><a href="#overlaybehavior-enum">OverlayBehavior enum</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#fields-2">Fields</a></div>
-                        </div>
+                    <div class="sidebar-nav-item"><a href="#position">Position</a></div>
+                    <div class="sidebar-nav-item"><a href="#themes">Themes</a></div>
+                    <div class="sidebar-nav-item"><a href="#modal">Modal</a></div>
+                    <div class="sidebar-nav-item"><a href="#header-title-and-close-button">Header, title and close button</a></div>
+                    <div class="sidebar-nav-item"><a href="#animation-and-focus">Animation and focus</a></div>
+                    <div class="sidebar-nav-item"><a href="#overlay-behaviour-on-the-window">Overlay behaviour on the window</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/flyouts.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

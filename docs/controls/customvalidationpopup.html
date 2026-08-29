@@ -331,12 +331,147 @@ CustomValidationPopup
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>CustomValidationPopup</code> is the popup that carries a validation message next to the control that failed. You almost never place one: it is part of <code>MahApps.Templates.ValidationError</code>, so every styled input control already has one. See <a href="../styles/validation">Validation</a> for the error template as a whole.</p>
+<p><img src="images/customvalidationpopup-inplace.png" alt="A field in error with its popup beside it" /></p>
+<p>It derives from WPF's <code>Popup</code>, and the whole point of it is what a plain <code>Popup</code> will not do.</p>
+<h2 id="why-a-plain-popup-is-not-enough">Why a plain Popup is not enough</h2>
+<p>A <code>Popup</code> is its own top-level window. It has no idea what happens to the window it belongs to, which is exactly wrong for something anchored to a text box. <code>CustomValidationPopup</code> subscribes to everything that could move it or make it wrong, and reacts:</p>
+<table>
+<thead>
+<tr>
+<th>It watches</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the host window's <code>LocationChanged</code> and <code>SizeChanged</code></td>
+<td>repositions itself</td>
+</tr>
+<tr>
+<td>the <code>PlacementTarget</code>'s <code>SizeChanged</code></td>
+<td>repositions itself</td>
+</tr>
+<tr>
+<td>the window's <code>Activated</code> and <code>Deactivated</code></td>
+<td>becomes topmost with the window, and stops being topmost when the window loses focus, so it does not float over other applications</td>
+</tr>
+<tr>
+<td>the window's <code>StateChanged</code></td>
+<td>on restore from minimised, closes and forces the error adorner to be rebuilt</td>
+</tr>
+<tr>
+<td>the nearest ancestor <code>ScrollViewer</code></td>
+<td>repositions, and <strong>closes when the field scrolls out of view</strong></td>
+</tr>
+<tr>
+<td>an ancestor <code>MetroContentControl</code> or <code>TransitioningContentControl</code></td>
+<td>suppresses itself while a transition is running</td>
+</tr>
+<tr>
+<td>an ancestor <a href="flyouts">Flyout</a></td>
+<td>suppresses itself while the flyout is opening or closing</td>
+</tr>
+</tbody>
+</table>
+<p>All of it is unhooked again when the popup unloads.</p>
+<p>That last group is what <code>CanShow</code> reports.</p>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AdornedElement</code></td>
+<td><code>UIElement</code></td>
+<td><code>null</code></td>
+<td>the control the popup belongs to; the template binds it</td>
+</tr>
+<tr>
+<td><code>CanShow</code></td>
+<td><code>bool</code>, read-only</td>
+<td><code>False</code></td>
+<td>whether it is safe to open right now</td>
+</tr>
+<tr>
+<td><code>CloseOnMouseLeftButtonDown</code></td>
+<td><code>bool</code></td>
+<td><strong><code>True</code></strong></td>
+<td>clicking the popup dismisses it</td>
+</tr>
+<tr>
+<td><code>ShowValidationErrorOnMouseOver</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>open on hover, not only on focus</td>
+</tr>
+</tbody>
+</table>
+<p><code>CanShow</code> is the interesting one. It is <code>False</code> while an ancestor is animating — a flyout sliding in, a <code>MetroContentControl</code> transitioning — and the error template's trigger requires it before opening the popup:</p>
+<pre><code class="language-xml">&lt;MultiDataTrigger.Conditions&gt;
+    &lt;Condition Binding=&quot;{Binding ElementName=ValidationPopup, Path=CanShow}&quot; Value=&quot;True&quot; /&gt;
+    &lt;Condition Binding=&quot;{Binding ElementName=placeholder, Path=AdornedElement.IsKeyboardFocusWithin}&quot; Value=&quot;True&quot; /&gt;
+    &lt;Condition Binding=&quot;{Binding ElementName=placeholder, Path=AdornedElement.(Validation.HasError)}&quot; Value=&quot;True&quot; /&gt;
+&lt;/MultiDataTrigger.Conditions&gt;
+</code></pre>
+<p>Without it the message would appear pinned to where the field is going to be, halfway through the animation that puts it there.</p>
+<h2 id="two-properties-two-places">Two properties, two places</h2>
+<div class="alert alert-warning"><p><code>CloseOnMouseLeftButtonDown</code> and <code>ShowValidationErrorOnMouseOver</code> exist <strong>twice</strong>, once on this control and once on <a href="../helper/validationhelper">ValidationHelper</a> as attached properties, and their defaults disagree:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>on the popup</th>
+<th>on <code>ValidationHelper</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CloseOnMouseLeftButtonDown</code></td>
+<td><code>True</code></td>
+<td><code>False</code></td>
+</tr>
+<tr>
+<td><code>ShowValidationErrorOnMouseOver</code></td>
+<td><code>False</code></td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p>Set them through <code>ValidationHelper</code> on your control — that is the pair you can reach from XAML without replacing the template. The popup's own properties are what the template reads, and the click handler consults <strong>both</strong>: a click closes the popup if either the popup's <code>CloseOnMouseLeftButtonDown</code> is <code>True</code> or the helper's is set on the adorned element. If neither is, the click is swallowed rather than falling through to whatever is behind.</p>
+</div>
+<pre><code class="language-xml">&lt;TextBox Text=&quot;{Binding Age, ValidatesOnDataErrors=True}&quot;
+         mah:ValidationHelper.ShowValidationErrorOnMouseOver=&quot;True&quot;
+         mah:ValidationHelper.CloseOnMouseLeftButtonDown=&quot;True&quot; /&gt;
+</code></pre>
+<h2 id="the-style">The style</h2>
+<p><code>MahApps.Styles.CustomValidationPopup</code> is implicit, from <code>Styles/Controls.xaml</code>, and is five setters — <code>Placement=&quot;Right&quot;</code>, both offsets zero, <code>HorizontalAlignment=&quot;Right&quot;</code> and <code>PopupAnimation=&quot;Fade&quot;</code>. That is what puts the card to the right of the field, as in the figure.</p>
+<h2 id="a-detail-worth-knowing">A detail worth knowing</h2>
+<p>WPF has no method for &quot;recompute this popup's placement&quot;. <code>CustomValidationPopup</code> gets around it the way everyone does: it sets <code>HorizontalOffset</code> to one more than it is and back again, which forces the placement to be recalculated. If you build something similar on top of <code>Popup</code>, that is the trick.</p>
+<h2 id="related">Related</h2>
+<p><a href="../styles/validation">Validation</a> for the error template, the layered card and what opens it; <a href="../helper/validationhelper">ValidationHelper</a> for the two attached properties.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#why-a-plain-popup-is-not-enough">Why a plain Popup is not enough</a></div>
+                    <div class="sidebar-nav-item"><a href="#properties">Properties</a></div>
+                    <div class="sidebar-nav-item"><a href="#two-properties-two-places">Two properties, two places</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-style">The style</a></div>
+                    <div class="sidebar-nav-item"><a href="#a-detail-worth-knowing">A detail worth knowing</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/CustomValidationPopup.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

@@ -331,41 +331,131 @@ ToggleSwitch
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>ToggleSwitch</code> control originally appeared in Windows Phone 7, but has made its way into Windows 8 and 10.<br />
-The MahApps.Metro version of this control uses the Windows 10 visuals (from Win SDK 10.0.18362).
-The function is very similar to a CheckBox, but easier to differentiate and easier to use with touch interfaces.</p>
-<p>It represents a switch that can be toggled between two states.</p>
-<p>Use a ToggleSwitch control to let the user switch an option between on and off states. Use the <code>IsOn</code> property to determine the state of the switch. Handle the <code>Toggled</code> event to respond to changes in the state.</p>
-<p><img src="images/toggleswitch.png" alt="" /></p>
-<h2 id="example">Example</h2>
-<p>This example shows how to set the <code>Header</code>, <code>OnContent</code>, and <code>OffContent</code> properties of a toggle switch. The Toggled event is handled to turn a <a href="progressring">ProgressRing</a> control on or off.</p>
-<pre><code class="language-xml">&lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
-  &lt;mah:ToggleSwitch Header=&quot;Toggle Switch Sample&quot;
-                    OffContent=&quot;Do work&quot;
-                    OnContent=&quot;Working&quot;
-                    Toggled=&quot;ToggleSwitch_Toggled&quot; /&gt;
-
-  &lt;mah:ProgressRing x:Name=&quot;progress&quot; /&gt;
-&lt;/StackPanel&gt;
+<p><code>ToggleSwitch</code> is an on/off switch. It does the same job as a <code>CheckBox</code> but says its state in words as well as shape, and it is easier to hit with a finger. It derives from <code>HeaderedContentControl</code> and implements <code>ICommandSource</code>.</p>
+<p><img src="images/toggleswitch-states.png" alt="Off, on, and disabled" /></p>
+<pre><code class="language-xml">&lt;mah:ToggleSwitch Header=&quot;Background sync&quot; IsOn=&quot;{Binding SyncEnabled}&quot; /&gt;
 </code></pre>
-<pre><code class="language-csharp">private void ToggleSwitch_Toggled(object sender, RoutedEventArgs e)
+<p><code>IsOn</code> is the state and binds two-way by default. The knob can be clicked or dragged, and the switch is toggled by <kbd>Space</kbd> as well.</p>
+<h2 id="header-and-per-state-content">Header and per-state content</h2>
+<p><img src="images/toggleswitch-content.png" alt="The defaults, and a switch with all three set" /></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Header</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+<td>a label above the switch, from <code>HeaderedContentControl</code></td>
+</tr>
+<tr>
+<td><code>OnContent</code></td>
+<td><code>object</code></td>
+<td><strong><code>&quot;On&quot;</code></strong></td>
+<td>shown beside the switch while on</td>
+</tr>
+<tr>
+<td><code>OffContent</code></td>
+<td><code>object</code></td>
+<td><strong><code>&quot;Off&quot;</code></strong></td>
+<td>shown beside the switch while off</td>
+</tr>
+</tbody>
+</table>
+<p><code>OnContent</code> and <code>OffContent</code> each have a matching <code>…Template</code>, <code>…TemplateSelector</code> and <code>…StringFormat</code>. Both default to text, which is why an untouched switch already says <em>On</em> and <em>Off</em> — set them to <code>{x:Null}</code> for a bare switch.</p>
+<p>The header is styled through <a href="../helper/headeredcontrolhelper">HeaderedControlHelper</a>: the style sets <code>HeaderFontFamily</code>, <code>HeaderFontSize</code>, <code>HeaderForeground</code> and <code>HeaderMargin</code>, so those are what to change rather than the header's own properties.</p>
+<h3 id="which-side-the-switch-is-on">Which side the switch is on</h3>
+<p><img src="images/toggleswitch-direction.png" alt="RightToLeft and LeftToRight" /></p>
+<p><code>ContentDirection</code> is a <code>FlowDirection</code> that decides whether the switch sits before or after its on/off content.</p>
+<div class="alert alert-info"><p>The dependency property's default is <code>LeftToRight</code>, but <code>MahApps.Styles.ToggleSwitch</code> sets <strong><code>RightToLeft</code></strong>, and that style is applied to every <code>ToggleSwitch</code> through <code>Generic.xaml</code>. So the effective default is <code>RightToLeft</code> — switch on the left, text on its right — and setting <code>LeftToRight</code> is what mirrors it.</p>
+</div>
+<h2 id="width">Width</h2>
+<p><img src="images/toggleswitch-width.png" alt="The default width, MinWidth 0, and MinWidth 0 with no content" /></p>
+<div class="alert alert-warning"><p>A <code>ToggleSwitch</code> is <strong>much wider than it looks</strong>. The style sets</p>
+<pre><code class="language-xml">&lt;Setter Property=&quot;MinWidth&quot; Value=&quot;{DynamicResource ToggleSwitchThemeMinWidth}&quot; /&gt;
+</code></pre>
+<p>and <code>ToggleSwitchThemeMinWidth</code> is <strong>154</strong>. The switch and its label take far less, so the rest is invisible padding that still consumes layout space — the tinted boxes in the figure are the controls' actual bounds.</p>
+<p>In a tight layout set <code>MinWidth=&quot;0&quot;</code>, and clear <code>OnContent</code> and <code>OffContent</code> if you do not want the words either.</p>
+</div>
+<p><code>ContentPadding</code> (default: an empty <code>Thickness</code>) pads the on/off content, and the theme exposes <code>ToggleSwitchPreContentMargin</code>, <code>ToggleSwitchPostContentMargin</code> and <code>ToggleSwitchContentSpaceMargin</code> as <code>GridLength</code> resources for the spacing around it.</p>
+<h2 id="reacting-to-a-change">Reacting to a change</h2>
+<p>There are four hooks and they do <strong>not</strong> fire in the same situations. This is the part worth getting right.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Fires when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Toggled</code></td>
+<td><code>IsOn</code> changes <strong>for any reason</strong> — a click, a binding, a property set in code</td>
+</tr>
+<tr>
+<td><code>Command</code></td>
+<td>the user toggles the switch, in either direction</td>
+</tr>
+<tr>
+<td><code>OnCommand</code></td>
+<td>the user toggles it <strong>on</strong></td>
+</tr>
+<tr>
+<td><code>OffCommand</code></td>
+<td>the user toggles it <strong>off</strong></td>
+</tr>
+</tbody>
+</table>
+<p>The commands are executed from <code>Toggle()</code>, which only user interaction reaches:</p>
+<pre><code class="language-csharp">private void Toggle()
 {
-    ToggleSwitch toggleSwitch = sender as ToggleSwitch;
-    if (toggleSwitch != null)
-    {
-        if (toggleSwitch.IsOn == true)
-        {
-            progress.IsActive = true;
-            progress.Visibility = Visibility.Visible;
-        }
-        else
-        {
-            progress.IsActive = false;
-            progress.Visibility = Visibility.Collapsed;
-        }
-    }
+    var newValue = !this.IsOn;
+    this.SetCurrentValue(IsOnProperty, BooleanBoxes.Box(newValue));
+
+    CommandHelpers.ExecuteCommandSource(this);
+    CommandHelpers.ExecuteCommandSource(this, newValue ? this.OnCommand : this.OffCommand);
 }
 </code></pre>
+<p><code>Toggled</code>, by contrast, is raised from the <code>IsOn</code> property-changed callback. So setting <code>IsOn</code> in code raises <code>Toggled</code> and runs <strong>no</strong> command, while a click does both. Pick <code>Toggled</code> for &quot;the value changed&quot; and the commands for &quot;the user changed it&quot;.</p>
+<p><code>Command</code> and the pair share one <code>CommandParameter</code> and <code>CommandTarget</code>. All three can be set at once; <code>Command</code> runs first.</p>
+<div class="alert alert-warning"><p><strong><code>Toggled</code> is not a routed event.</strong> Despite its <code>RoutedEventHandler</code> signature it is a plain CLR event:</p>
+<pre><code class="language-csharp">public event RoutedEventHandler Toggled;
+</code></pre>
+<p>It is raised with <code>Toggled?.Invoke(this, new RoutedEventArgs())</code>, so it does not bubble and cannot be attached with an <code>EventSetter</code> in a style or handled on a parent element. Subscribe on the switch itself, or use the commands.</p>
+</div>
+<h2 id="other-properties">Other properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsPressed</code></td>
+<td><code>bool</code>, read-only</td>
+<td>whether the switch is being pressed or dragged</td>
+</tr>
+<tr>
+<td><code>ContentPadding</code></td>
+<td><code>Thickness</code></td>
+<td>padding around the on/off content</td>
+</tr>
+</tbody>
+</table>
+<p>The template parts are <code>SwitchKnobBounds</code>, <code>SwitchKnob</code>, <code>KnobTranslateTransform</code> and <code>SwitchThumb</code>, plus a content presenter for each of the header, content, on-content and off-content. The <code>Thumb</code> is what makes the knob draggable, and <code>ToggleSwitchTranslateDuration</code> (0.5 s) is the resource that times the slide.</p>
+<h2 id="validation">Validation</h2>
+<p>The style sets <code>Validation.ErrorTemplate</code> to <code>MahApps.Templates.ValidationError</code>, so a failed binding on <code>IsOn</code> gets the same treatment as any other input control — see <a href="../styles/validation">Validation</a>.</p>
+<h2 id="related">Related</h2>
+<p><a href="../helper/headeredcontrolhelper">HeaderedControlHelper</a> for the header's font and colour. <a href="../helper/togglebuttonhelper">ToggleButtonHelper</a> and the <a href="../styles/checkbox">CheckBox</a> styles cover the other two-state controls.</p>
 
 
                                         </div>
@@ -374,7 +464,15 @@ The function is very similar to a CheckBox, but easier to differentiate and easi
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#example">Example</a></div>
+                    <div class="sidebar-nav-item"><a href="#header-and-per-state-content">Header and per-state content</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#which-side-the-switch-is-on">Which side the switch is on</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#width">Width</a></div>
+                    <div class="sidebar-nav-item"><a href="#reacting-to-a-change">Reacting to a change</a></div>
+                    <div class="sidebar-nav-item"><a href="#other-properties">Other properties</a></div>
+                    <div class="sidebar-nav-item"><a href="#validation">Validation</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/toggleswitch.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

@@ -331,66 +331,264 @@ FlipView
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>FlipView</code> control behaves like an ItemsControl and shows items one by one on swipe gesture. Also navigation buttons will be available to navigate using mouse.</p>
-<p>It is inspired by Windows 8 / WinRT's control of the same name. However, ours was written from the ground-up to support the <code>MahApps.Metro</code> infrastructure.</p>
-<h2 id="getting-started">Getting started</h2>
-<p>The <code>FlipView</code> control works similar to the regular <code>Selector</code> (<code>ItemsControl</code>) control. Place your content inside of it's <code>Items</code> property and it will allow to <em>flip</em> through them.</p>
-<p>The following code was taken from our main <a href="https://github.com/MahApps/MahApps.Metro">MetroDemo</a>.</p>
-<pre><code class="language-xml">&lt;mah:FlipView x:Name=&quot;FlipView1st&quot;
-              Height=&quot;200&quot;
-              Margin=&quot;0 0 5 0&quot;
-              Foreground=&quot;{DynamicResource MahApps.Brushes.ThemeBackground}&quot;
-              SelectionChanged=&quot;FlipView_SelectionChanged&quot;&gt;
-    &lt;mah:FlipView.Items&gt;
-        &lt;Grid Background=&quot;#2E8DEF&quot;&gt;
-            &lt;iconPacks:PackIconModern Width=&quot;60&quot;
-                                      Height=&quot;60&quot;
-                                      HorizontalAlignment=&quot;Center&quot;
-                                      VerticalAlignment=&quot;Center&quot;
-                                      Kind=&quot;FoodCupcake&quot; /&gt;
-        &lt;/Grid&gt;
-        &lt;Grid Background=&quot;#00A600&quot;&gt;
-            &lt;iconPacks:PackIconModern Width=&quot;60&quot;
-                                      Height=&quot;60&quot;
-                                      HorizontalAlignment=&quot;Center&quot;
-                                      VerticalAlignment=&quot;Center&quot;
-                                      Kind=&quot;Xbox&quot; /&gt;
-        &lt;/Grid&gt;
-        &lt;Grid Background=&quot;#BF1E4B&quot;&gt;
-            &lt;iconPacks:PackIconModern Width=&quot;60&quot;
-                                      Height=&quot;60&quot;
-                                      HorizontalAlignment=&quot;Center&quot;
-                                      VerticalAlignment=&quot;Center&quot;
-                                      Kind=&quot;ChessHorse&quot; /&gt;
-        &lt;/Grid&gt;
-    &lt;/mah:FlipView.Items&gt;
+<p><code>FlipView</code> shows one item at a time and flips between them with animated transitions. It derives from <code>Selector</code>, so it is an items control with a selection — <code>ItemsSource</code>, <code>Items</code>, <code>SelectedItem</code> and <code>SelectedIndex</code> all work as usual.</p>
+<p><img src="images/flipview-basic.png" alt="A FlipView with its navigation buttons and banner" /></p>
+<pre><code class="language-xml">&lt;mah:FlipView Width=&quot;230&quot; Height=&quot;140&quot; BannerText=&quot;The second slide&quot;&gt;
+    &lt;Grid Background=&quot;#FF2E8DEF&quot; /&gt;
+    &lt;Grid Background=&quot;#FF00A600&quot; /&gt;
+    &lt;Grid Background=&quot;#FFBF1E4B&quot; /&gt;
 &lt;/mah:FlipView&gt;
 </code></pre>
-<p><img src="images/flipview.png" alt="flipview" /></p>
-<h2 id="the-banner">The Banner</h2>
-<p>The banner on the bottom of the <code>FlipView</code> can be shown and hidden using the <code>IsBannerEnabled</code> property. You may change the banner text using the <code>BannerText</code> property. We use that in code behind to change the banner based on the selected item.</p>
-<pre><code class="language-csharp">private void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+<p>It was inspired by the WinRT control of the same name but shares no code with it.</p>
+<h2 id="navigating">Navigating</h2>
+<p>The user flips with the two buttons or with the arrow keys. In code:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GoBack()</code> / <code>GoForward()</code></td>
+<td>one item, honouring <code>CircularNavigation</code></td>
+</tr>
+<tr>
+<td><code>SelectedIndex</code></td>
+<td>jump anywhere; the transition direction is worked out from the old and new index</td>
+</tr>
+<tr>
+<td><code>CircularNavigation</code></td>
+<td><code>False</code> by default; when <code>True</code>, the ends wrap around</td>
+</tr>
+</tbody>
+</table>
+<p>Which button is visible is <strong>computed, not fixed</strong>. <code>DetectControlButtonsStatus</code> hides the back button on the first item and the forward button on the last, unless <code>CircularNavigation</code> is on — which is why the figures on this page sit on the middle slide.</p>
+<p><img src="images/flipview-buttons.png" alt="Buttons inside, outside, and switched off" /></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsNavigationEnabled</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>hides both buttons when <code>False</code></td>
+</tr>
+<tr>
+<td><code>NavigationButtonsPosition</code></td>
+<td><code>NavigationButtonsPosition</code></td>
+<td><code>Inside</code></td>
+<td><code>Inside</code> or <code>Outside</code></td>
+</tr>
+<tr>
+<td><code>NavigationButtonStyle</code></td>
+<td><code>Style</code></td>
+<td><code>MahApps.Styles.Button.FlipView.Navigation</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ButtonBackContent</code> / <code>ButtonForwardContent</code> / <code>ButtonUpContent</code> / <code>ButtonDownContent</code></td>
+<td><code>object</code></td>
+<td>chevrons</td>
+<td>each with a matching <code>…Template</code> and <code>…StringFormat</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Outside</code> puts the buttons beside the item instead of over it, which costs width — compare the second panel above with the first.</p>
+<div class="alert alert-info"><p><strong>There is no swipe gesture.</strong> <code>FlipView</code> handles <code>OnKeyDown</code> and <code>OnMouseDown</code> and nothing else — no manipulation or touch handling anywhere in the control. Older documentation said otherwise.</p>
+<p>The keyboard is also tied to the buttons: <code>OnKeyDown</code> only acts if the button for that direction is <strong>visible and enabled</strong>. So hiding the buttons — through <code>IsNavigationEnabled=&quot;False&quot;</code> or <code>HideControlButtons()</code> — takes the arrow keys with it. <code>Left</code>/<code>Right</code> flip when horizontal, <code>Up</code>/<code>Down</code> when vertical.</p>
+</div>
+<div class="alert alert-warning"><p><strong><code>HideControlButtons()</code> does not stick.</strong> It is a one-shot: it sets the buttons' visibility once and changes no state.</p>
+<pre><code class="language-csharp">public void HideControlButtons()
 {
-    var flipview = ((FlipView)sender);
-    switch (flipview.SelectedIndex)
-    {
-        case 0:
-            flipview.BannerText = &quot;Cupcakes!&quot;;
-            break;
-        case 1:
-            flipview.BannerText = &quot;Xbox!&quot;;
-            break;
-        case 2:
-            flipview.BannerText = &quot;Chess!&quot;;
-            break;
-    }
+    this.ExecuteWhenLoaded(() =&gt; this.DetectControlButtonsStatus(Visibility.Hidden));
 }
 </code></pre>
-<h2 id="the-control-buttons">The Control Buttons</h2>
-<p>The <em>control buttons</em> (the next and previous buttons) allow the user to flip through the items using their mouse. The buttons can be disabled by calling <code>HideControlButtons</code> and renabled by calling <code>ShowControlButtons</code>.</p>
-<p>The user can also flip through the items using the arrows on their keyboard.</p>
-<h2 id="automated-scrolling-batteries-not-included">Automated scrolling (batteries not included)</h2>
-<p>Disabling the control buttons is useful when you want to provide an automated scrolling experience. This can be implemented by using a timer and by incrementing <code>SelectedIndex</code>.</p>
+<p>Anything that recomputes the buttons afterwards brings them back — a selection change among them, which is exactly what an automatic slideshow does:</p>
+<p><img src="images/flipview-hidecontrolbuttons.png" alt="After HideControlButtons, and after HideControlButtons plus one flip" /></p>
+<p>Both panels called <code>HideControlButtons()</code>. The right one then flipped once, and the back button returned. (The forward button stays hidden because that panel is now on the last item.)</p>
+<p>Use <strong><code>IsNavigationEnabled=&quot;False&quot;</code></strong> instead. It is a dependency property, it is re-read on every recompute, and it survives.</p>
+</div>
+<h2 id="transitions">Transitions</h2>
+<p>The animation between items is a <code>TransitioningContentControl</code>, and there is one <code>TransitionType</code> per direction:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LeftTransition</code></td>
+<td><code>LeftReplace</code></td>
+</tr>
+<tr>
+<td><code>RightTransition</code></td>
+<td><code>RightReplace</code></td>
+</tr>
+<tr>
+<td><code>UpTransition</code></td>
+<td><code>Up</code></td>
+</tr>
+<tr>
+<td><code>DownTransition</code></td>
+<td><code>Down</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Orientation</code> decides which pair is used: <code>Horizontal</code> uses left/right, <code>Vertical</code> uses up/down, and it also moves the buttons.</p>
+<p><img src="images/flipview-orientation.png" alt="Horizontal and vertical" /></p>
+<h2 id="the-banner">The banner</h2>
+<p>The strip along the bottom. It is on by default and slides open and shut.</p>
+<p><img src="images/flipview-banner.png" alt="BannerText, no banner, and a restyled one" /></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsBannerEnabled</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>BannerText</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+<td>plus <code>BannerTextTemplate</code>, <code>BannerTextTemplateSelector</code>, <code>BannerTextStringFormat</code></td>
+</tr>
+<tr>
+<td><code>BannerBackground</code></td>
+<td><code>Brush</code></td>
+<td><code>MahApps.Brushes.ThemeForeground</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>BannerForeground</code></td>
+<td><code>Brush</code></td>
+<td><code>MahApps.Brushes.ThemeBackground</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>BannerOpacity</code></td>
+<td><code>double</code></td>
+<td><code>0.8</code></td>
+<td>applies to the whole strip, text included</td>
+</tr>
+</tbody>
+</table>
+<p>The banner does not follow the selection on its own — set <code>BannerText</code> from a <code>SelectionChanged</code> handler, or bind it:</p>
+<pre><code class="language-xml">&lt;mah:FlipView ItemsSource=&quot;{Binding Slides}&quot;
+              BannerText=&quot;{Binding SelectedItem.Caption, RelativeSource={RelativeSource Self}}&quot; /&gt;
+</code></pre>
+<div class="alert alert-info"><p><strong>The banner's text colour is <code>BannerForeground</code>, not <code>Foreground</code>.</strong> Setting <code>Foreground</code> on the <code>FlipView</code> does nothing to the banner — the template binds the banner label to <code>BannerForeground</code>, which wins:</p>
+<p><img src="images/flipview-bannerforeground.png" alt="BannerForeground, Foreground, and both" /></p>
+<p>The middle panel sets <code>Foreground=&quot;Red&quot;</code> and shows nothing at all, because <code>BannerForeground</code> is still its default of <code>MahApps.Brushes.ThemeBackground</code> — white text on the white banner. The third sets <code>Foreground=&quot;Blue&quot;</code> and <code>BannerForeground=&quot;Red&quot;</code> and comes out red.</p>
+<p><code>Foreground</code> is not useless, though: the item container style binds each <code>FlipViewItem</code>'s foreground to its owner's, so <code>Foreground</code> reaches the <strong>items</strong>.</p>
+</div>
+<p>Changing <code>BannerText</code> fades the label out, swaps the text and fades it back in, so the new text does not appear instantly.</p>
+<h2 id="the-index">The index</h2>
+<p>A row of dots showing how many items there are and which one is current. It is <strong>off by default</strong>, and the old documentation never mentioned it.</p>
+<p><img src="images/flipview-index.png" alt="ShowIndex at the bottom, over the item at the top, and on the left" /></p>
+<pre><code class="language-xml">&lt;mah:FlipView ShowIndex=&quot;True&quot; IndexPlacement=&quot;TopOverItem&quot; ItemsSource=&quot;{Binding Slides}&quot; /&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ShowIndex</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>IndexPlacement</code></td>
+<td><code>NavigationIndexPlacement</code></td>
+<td><code>Bottom</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>IndexHorizontalAlignment</code> / <code>IndexVerticalAlignment</code></td>
+<td></td>
+<td><code>Center</code></td>
+<td>within the strip</td>
+</tr>
+<tr>
+<td><code>IndexItemContainerStyle</code></td>
+<td><code>Style</code></td>
+<td><code>MahApps.Styles.ListBoxItem.FlipView.Index</code></td>
+<td>the dots</td>
+</tr>
+</tbody>
+</table>
+<p><code>NavigationIndexPlacement</code> has eight values: <code>Left</code>, <code>Right</code>, <code>Top</code>, <code>Bottom</code>, and a <code>…OverItem</code> variant of each. The plain values give the index a strip of its own and shrink the item; the <code>OverItem</code> ones lay it over the item, as in the middle panel above.</p>
+<p>The index is a <code>ListBox</code> in the template and it is clickable, so it navigates as well as reports.</p>
+<h2 id="the-hover-border">The hover border</h2>
+<p>A border drawn over the item while the mouse is inside, to show the control has focus for the arrow keys.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MouseHoverBorderEnabled</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+</tr>
+<tr>
+<td><code>MouseHoverBorderBrush</code></td>
+<td><code>Brush</code></td>
+<td>theme</td>
+</tr>
+<tr>
+<td><code>MouseHoverBorderThickness</code></td>
+<td><code>Thickness</code></td>
+<td><code>4</code></td>
+</tr>
+</tbody>
+</table>
+<p>It does not appear in the figures on this page because an off-screen render has no mouse in it.</p>
+<h2 id="an-automatic-slideshow">An automatic slideshow</h2>
+<p>Increment <code>SelectedIndex</code> on a timer, with <code>CircularNavigation</code> so it wraps and <code>IsNavigationEnabled=&quot;False&quot;</code> so the buttons stay away:</p>
+<pre><code class="language-xml">&lt;mah:FlipView x:Name=&quot;Slideshow&quot;
+              CircularNavigation=&quot;True&quot;
+              IsNavigationEnabled=&quot;False&quot;
+              ShowIndex=&quot;True&quot;
+              ItemsSource=&quot;{Binding Slides}&quot; /&gt;
+</code></pre>
+<pre><code class="language-csharp">var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(4) };
+timer.Tick += (_, _) =&gt; this.Slideshow.GoForward();
+timer.Start();
+</code></pre>
+<p><code>GoForward()</code> wraps by itself once <code>CircularNavigation</code> is on, so there is no index arithmetic to get wrong.</p>
+<h2 id="related">Related</h2>
+<p><code>FlipViewItem</code> is the container, styled by <code>MahApps.Styles.FlipViewItem</code>. The transitions come from <a href="transitioningcontentcontrol">TransitioningContentControl</a>.</p>
 
 
                                         </div>
@@ -399,10 +597,13 @@ FlipView
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#getting-started">Getting started</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-banner">The Banner</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-control-buttons">The Control Buttons</a></div>
-                    <div class="sidebar-nav-item"><a href="#automated-scrolling-batteries-not-included">Automated scrolling (batteries not included)</a></div>
+                    <div class="sidebar-nav-item"><a href="#navigating">Navigating</a></div>
+                    <div class="sidebar-nav-item"><a href="#transitions">Transitions</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-banner">The banner</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-index">The index</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-hover-border">The hover border</a></div>
+                    <div class="sidebar-nav-item"><a href="#an-automatic-slideshow">An automatic slideshow</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/flipview.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

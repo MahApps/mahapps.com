@@ -331,48 +331,180 @@ DropDownButton
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><img src="images/dropDownButton_1.png" alt="" /></p>
-<p>This control is almost the same as the <a href="splitbutton">SplitButton</a> with few differences:</p>
-<ul>
-<li>It has no <code>SelectedItem</code> and <code>SelectedIndex</code> properties and also has no <code>SelectionChanged</code> event.</li>
-<li>The content of the button also doesn't change, it's static.</li>
-<li>The Dropdownlist is a context menu instead of Listbox in <code>SplitButton</code>.</li>
-</ul>
-<p>In all other aspects it's identical to <a href="splitbutton">SplitButton</a>.</p>
-<pre><code class="language-xml">&lt;mah:DropDownButton Margin=&quot;5&quot;
-                    Command=&quot;{Binding ArtistsDropDownCommand}&quot;
-                    Content=&quot;Artists&quot;
-                    DisplayMemberPath=&quot;Name&quot;
-                    ItemsSource=&quot;{Binding Source={x:Static models:SampleData.Artists}}&quot;&gt;
-    &lt;mah:DropDownButton.Icon&gt;
-        &lt;iconPacks:PackIconMaterial Margin=&quot;6&quot; Kind=&quot;Artist&quot; /&gt;
-    &lt;/mah:DropDownButton.Icon&gt;
-&lt;/mah:DropDownButton&gt;
+<p><code>DropDownButton</code> is a button with a list attached. The whole button is one surface: clicking it runs its <code>Command</code> <strong>and</strong> opens the menu.</p>
+<p><img src="images/dropdownbutton-basic.png" alt="Content, Content with an Icon, and an Icon on its own" /></p>
+<pre><code class="language-xml">&lt;mah:DropDownButton Content=&quot;Artists&quot; ItemsSource=&quot;{Binding Artists}&quot; /&gt;
 </code></pre>
-<p><img src="images/dropDownButton_2.png" alt="" /></p>
-<p>Internally, the items are stored in a ContextMenu that is executed when the button is clicked. If you want to do something when an item is clicked, you have to define a command that is attached to the item.</p>
-<p>One way of doing this is setting the <code>ItemContainerStyle</code>:</p>
-<pre><code class="language-xml">&lt;mah:DropDownButton Margin=&quot;5&quot;
-                    Content=&quot;Genres&quot;
+<p><code>ItemsSource</code> is the content property, so the items can also be written as the button's child element — that is what the figures on this page do.</p>
+<h2 id="it-is-an-itemscontrol-and-the-list-is-a-contextmenu">It is an ItemsControl, and the list is a ContextMenu</h2>
+<p><code>DropDownButton</code> derives from <code>ItemsControl</code> and its list is a <code>ContextMenu</code> attached to the button inside the template. That single fact explains most of how it behaves:</p>
+<p><img src="images/dropdownbutton-menu.png" alt="The open menu" /></p>
+<ul>
+<li>items become <code>MenuItem</code>s, not <code>ListBoxItem</code>s</li>
+<li>there is <strong>no selection</strong> — no <code>SelectedItem</code>, no <code>SelectedIndex</code>, no <code>SelectionChanged</code></li>
+<li>the button's <code>Content</code> is yours and never changes on its own</li>
+</ul>
+<p>The template forwards the usual <code>ItemsControl</code> properties to that menu — <code>DisplayMemberPath</code>, <code>ItemTemplate</code>, <code>ItemTemplateSelector</code>, <code>ItemContainerStyle</code>, <code>ItemContainerStyleSelector</code>, <code>ItemStringFormat</code>, <code>ItemsPanel</code> and <code>GroupStyleSelector</code> — so they work as you would expect even though the menu is not the control you are setting them on. <code>GroupStyle</code> entries are copied across in code, and the menu is given <code>MinWidth=&quot;{TemplateBinding ActualWidth}&quot;</code> so it is never narrower than the button.</p>
+<p>If you need selection or a button whose label follows the choice, use <a href="splitbutton">SplitButton</a> instead.</p>
+<h2 id="reacting-to-a-click">Reacting to a click</h2>
+<p>There are two separate things to hook, and they fire in this order:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Command</code> / <code>CommandParameter</code> / <code>CommandTarget</code></td>
+<td>run when the button itself is clicked</td>
+</tr>
+<tr>
+<td><code>Click</code></td>
+<td>a bubbling routed event, raised straight after</td>
+</tr>
+<tr>
+<td>a command on each item</td>
+<td>run when an entry in the menu is picked</td>
+</tr>
+</tbody>
+</table>
+<p>The button click and the menu are not alternatives. Looking at <code>ButtonClick</code>, the control runs the command, opens the menu if it has any items, and then raises <code>Click</code>:</p>
+<pre><code class="language-csharp">CommandHelpers.ExecuteCommandSource(this);
+
+if (this.contextMenu?.HasItems == true)
+{
+    this.SetCurrentValue(IsExpandedProperty, BooleanBoxes.TrueBox);
+}
+
+e.RoutedEvent = ClickEvent;
+this.RaiseEvent(e);
+</code></pre>
+<p>So a <code>Command</code> on the button runs on <em>every</em> click, including the one that opens the menu. If you only want the item commands, leave <code>Command</code> unset.</p>
+<p><code>DropDownButton</code> implements <code>ICommandSource</code> and overrides <code>IsEnabledCore</code>, so the button disables itself while its command reports <code>CanExecute == false</code>.</p>
+<h3 id="giving-the-items-a-command">Giving the items a command</h3>
+<p>Each <code>MenuItem</code> gets one entry from the <code>ItemsSource</code> as its <code>DataContext</code>, so a command on the item has to reach back out of that context. An <code>ItemContainerStyle</code> is the usual way:</p>
+<pre><code class="language-xml">&lt;mah:DropDownButton Content=&quot;Genres&quot;
                     DisplayMemberPath=&quot;Name&quot;
-                    ItemsSource=&quot;{Binding Source={x:Static models:SampleData.Genres}}&quot;&gt;
+                    ItemsSource=&quot;{Binding Genres}&quot;&gt;
     &lt;mah:DropDownButton.ItemContainerStyle&gt;
         &lt;Style BasedOn=&quot;{StaticResource {x:Type MenuItem}}&quot; TargetType=&quot;{x:Type MenuItem}&quot;&gt;
-          &lt;Setter Property=&quot;Command&quot; Value=&quot;{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:DropDownButton}}, Path=DataContext.GenreDropDownMenuItemCommand}&quot; /&gt;
-          &lt;Setter Property=&quot;CommandParameter&quot; Value=&quot;{Binding Name}&quot; /&gt;
+            &lt;Setter Property=&quot;Command&quot;
+                    Value=&quot;{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:DropDownButton}}, Path=DataContext.GenreCommand}&quot; /&gt;
+            &lt;Setter Property=&quot;CommandParameter&quot; Value=&quot;{Binding Name}&quot; /&gt;
         &lt;/Style&gt;
     &lt;/mah:DropDownButton.ItemContainerStyle&gt;
-    &lt;mah:DropDownButton.Icon&gt;
-        &lt;iconPacks:PackIconMaterial Margin=&quot;6&quot; Kind=&quot;Audiobook&quot; /&gt;
-    &lt;/mah:DropDownButton.Icon&gt;
 &lt;/mah:DropDownButton&gt;
 </code></pre>
-<p>Each <code>MenuItem</code> has one item from the <code>ItemsSource</code> as DataContext, which we can access here. Therefore, <code>{Binding Name}</code> will show the name of the genre. To break out of the current <code>DataContext</code> and call the command from our original ViewModel, we need to reference it in some way. Here, we search for the <code>DropDownButton</code>.</p>
+<p><code>{Binding Name}</code> reads the genre, because that is the item's <code>DataContext</code>; the <code>FindAncestor</code> binding walks out to the button to find the view model.</p>
+<div class="alert alert-info"><p>The menu is a <code>ContextMenu</code>, but the <strong>right mouse button does nothing</strong> — <code>OnMouseRightButtonUp</code> marks the event handled. The menu opens on a normal left click, or by setting <code>IsExpanded</code>.</p>
+</div>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Content</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+<td>the button's label; static</td>
+</tr>
+<tr>
+<td><code>ContentTemplate</code> / <code>ContentTemplateSelector</code> / <code>ContentStringFormat</code></td>
+<td></td>
+<td><code>null</code></td>
+<td>as on any <code>ContentControl</code></td>
+</tr>
+<tr>
+<td><code>Icon</code> / <code>IconTemplate</code></td>
+<td><code>object</code> / <code>DataTemplate</code></td>
+<td><code>null</code></td>
+<td>shown before the content</td>
+</tr>
+<tr>
+<td><code>Orientation</code></td>
+<td><code>Orientation</code></td>
+<td><code>Horizontal</code></td>
+<td>stacks icon, content and arrow</td>
+</tr>
+<tr>
+<td><code>IsExpanded</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>two-way by default; opens the menu</td>
+</tr>
+<tr>
+<td><code>ArrowVisibility</code></td>
+<td><code>Visibility</code></td>
+<td><code>Visible</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ArrowBrush</code> / <code>ArrowMouseOverBrush</code> / <code>ArrowPressedBrush</code></td>
+<td><code>Brush</code></td>
+<td>theme</td>
+<td>the chevron in its three states</td>
+</tr>
+<tr>
+<td><code>ButtonStyle</code></td>
+<td><code>Style</code></td>
+<td><code>MahApps.Styles.Button.DropDown</code></td>
+<td>the button inside</td>
+</tr>
+<tr>
+<td><code>MenuStyle</code></td>
+<td><code>Style</code></td>
+<td><code>MahApps.Styles.ContextMenu</code></td>
+<td>the menu</td>
+</tr>
+<tr>
+<td><code>ExtraTag</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+<td>a second <code>Tag</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>ButtonStyle</code> and <code>MenuStyle</code> are both registered with <code>Inherits</code>, so setting either one on a parent panel reaches every <code>DropDownButton</code> below it.</p>
+<h3 id="orientation">Orientation</h3>
+<p><img src="images/dropdownbutton-orientation.png" alt="Horizontal and vertical" /></p>
+<p><code>Vertical</code> stacks the icon above the content and moves the chevron from the right edge to the bottom.</p>
+<h3 id="the-arrow">The arrow</h3>
+<p><img src="images/dropdownbutton-arrow.png" alt="The default arrow, a recoloured one, and none at all" /></p>
+<pre><code class="language-xml">&lt;mah:DropDownButton Content=&quot;Artists&quot; ArrowVisibility=&quot;Collapsed&quot; /&gt;
+</code></pre>
+<p>The chevron is a Material <code>ChevronDown</code> path drawn through <code>MahApps.Styles.ContentControl.PathIcon</code>. <code>ArrowMouseOverBrush</code> defaults to the accent brush, which is why the arrow picks up colour on hover while the rest of the button does not.</p>
+<h2 id="related">Related</h2>
+<p><a href="splitbutton">SplitButton</a> — the same idea with a selection and a split surface. <a href="contentcontrolex">ContentControlEx</a> is what presents the content, so <code>ControlsHelper.ContentCharacterCasing</code> and <code>ControlsHelper.RecognizesAccessKey</code> apply here too.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#it-is-an-itemscontrol-and-the-list-is-a-contextmenu">It is an ItemsControl, and the list is a ContextMenu</a></div>
+                    <div class="sidebar-nav-item"><a href="#reacting-to-a-click">Reacting to a click</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#giving-the-items-a-command">Giving the items a command</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#properties">Properties</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#orientation">Orientation</a></div>
+                                <div class="sidebar-nav-item"><a href="#the-arrow">The arrow</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/dropdownbutton.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

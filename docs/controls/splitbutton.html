@@ -331,33 +331,146 @@ SplitButton
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><img src="images/splitButton_1.png" alt="" /></p>
-<p>The <code>SplitButton</code> controls is like a button with a drop down list, but the content of the button will be changed when selected item is changed.</p>
-<h3 id="selecteditem-and-selectedindex">SelectedItem and SelectedIndex</h3>
-<p>This properties usage is just like in Listbox or ComboBox. When one of this properties changed, Content of the button will also changed.</p>
-<h3 id="binding-to-observablecollection-or-dictionary">Binding to <code>ObservableCollection</code> or <code>Dictionary</code></h3>
-<p>To correctly bind an <code>ObservableCollection</code> or a <code>Dictionary</code> to <code>SplitButton</code>, you need to use <code>ItemsSource</code> and <code>DisplayMemberPath</code>
-For ex, <code>ItemsSource=&quot;{Binding Albums}&quot; DisplayMemberPath=&quot;Title&quot;</code>
-In case you bind simple types like an enum or integer, you don't need to use <code>DisplayMemberPath</code> property, only <code>ItemsSource</code>.</p>
-<h3 id="orientation">Orientation</h3>
-<p>SplitButton supports orientation changing as you can see on the screenshot.</p>
-<h3 id="button-commands">Button commands</h3>
-<p>You can use button commands for SplitButton</p>
-<h3 id="icon-property">Icon property</h3>
-<p>You can add separate icon to SplitButton to display it independently from its content.</p>
-<pre><code class="language-xml">&lt;mah:SplitButton Margin=&quot;5&quot;
-                 HorizontalContentAlignment=&quot;Left&quot;
-                 Command=&quot;{Binding ArtistsDropDownCommand}&quot;
-                 DisplayMemberPath=&quot;Name&quot;
-                 ItemsSource=&quot;{Binding Source={x:Static models:SampleData.Artists}}&quot;
-                 SelectedIndex=&quot;2&quot;
-                 SelectionChanged=&quot;SplitButton_OnSelectionChanged&quot;&gt;
-    &lt;mah:SplitButton.Icon&gt;
-        &lt;iconPacks:PackIconMaterial Margin=&quot;6&quot; Kind=&quot;Audiobook&quot; /&gt;
-    &lt;/mah:SplitButton.Icon&gt;
-&lt;/mah:SplitButton&gt;
+<p><code>SplitButton</code> is a button split into two halves: the left runs a command, the right opens a list. Picking from the list changes what the left half shows.</p>
+<p><img src="images/splitbutton-basic.png" alt="Nothing selected, a selection, and a selection with an icon" /></p>
+<pre><code class="language-xml">&lt;mah:SplitButton ItemsSource=&quot;{Binding Artists}&quot;
+                 SelectedIndex=&quot;0&quot;
+                 Command=&quot;{Binding PlayCommand}&quot; /&gt;
 </code></pre>
-<p><img src="images/splitButton_2.png" alt="" /></p>
+<p><code>ItemsSource</code> is the content property, so the items can also be written as the button's child element.</p>
+<h2 id="it-is-a-combobox">It is a ComboBox</h2>
+<p><code>SplitButton</code> derives from <code>ComboBox</code>, which is where most of its API comes from and is the shortest explanation of how it differs from <a href="dropdownbutton">DropDownButton</a>:</p>
+<p><img src="images/splitbutton-dropdown.png" alt="The open list" /></p>
+<p><code>SelectedItem</code>, <code>SelectedIndex</code>, <code>SelectionChanged</code>, <code>ItemsSource</code>, <code>DisplayMemberPath</code>, <code>ItemTemplate</code>, <code>IsDropDownOpen</code>, <code>MaxDropDownHeight</code> and the rest all behave exactly as they do on a <code>ComboBox</code>. Items become <code>ComboBoxItem</code>s in a <code>Popup</code>.</p>
+<p>The button's label is not a property of its own — the template binds it to <code>SelectionBoxItem</code>, so it <em>is</em> the selected item and follows the selection. With nothing selected the label is empty, as in the first panel above.</p>
+<p>Virtualization is on by default: the style sets <code>IsVirtualizing</code>, <code>IsVirtualizingWhenGrouping</code> and <code>VirtualizationMode=&quot;Recycling&quot;</code>, so long lists cost what they should.</p>
+<div class="alert alert-warning"><p><code>IsEditable</code> is <strong>coerced to <code>False</code> and cannot be changed.</strong> The control overrides its metadata with a coercion callback that returns <code>false</code> unconditionally:</p>
+<pre><code class="language-csharp">private static object CoerceIsEditableProperty(DependencyObject dependencyObject, object value)
+{
+    // For now SplitButton is not editable
+    return false;
+}
+</code></pre>
+<p>Setting it in XAML is accepted and then silently ignored.</p>
+</div>
+<h2 id="the-two-halves">The two halves</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PART_Button</code>, the left half</td>
+<td>runs <code>Command</code>, raises <code>Click</code>, then <strong>closes</strong> the drop-down</td>
+</tr>
+<tr>
+<td><code>PART_Expander</code>, the arrow</td>
+<td>toggles <code>IsDropDownOpen</code>, and nothing else</td>
+</tr>
+</tbody>
+</table>
+<p>This is the opposite of <a href="dropdownbutton">DropDownButton</a>, where one click both runs the command and opens the list. Here the two are genuinely separate, which is the point of splitting the button.</p>
+<p><code>SplitButton</code> implements <code>ICommandSource</code> and overrides <code>IsEnabledCore</code>, so it disables itself while its command reports <code>CanExecute == false</code> — and the template disables the arrow along with it.</p>
+<p>Both halves are real <code>Button</code>s and are styled separately:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ButtonStyle</code></td>
+<td><code>MahApps.Styles.Button.Split</code></td>
+<td>the left half</td>
+</tr>
+<tr>
+<td><code>ButtonArrowStyle</code></td>
+<td><code>MahApps.Styles.Button.Split.Arrow</code></td>
+<td>the arrow</td>
+</tr>
+</tbody>
+</table>
+<p>Both are registered with <code>Inherits</code>, so either can be set on a parent panel to reach every <code>SplitButton</code> below it.</p>
+<h2 id="properties-of-its-own">Properties of its own</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Icon</code> / <code>IconTemplate</code></td>
+<td><code>object</code> / <code>DataTemplate</code></td>
+<td><code>null</code></td>
+<td>shown before the selected item</td>
+</tr>
+<tr>
+<td><code>Orientation</code></td>
+<td><code>Orientation</code></td>
+<td><code>Horizontal</code></td>
+<td>see below</td>
+</tr>
+<tr>
+<td><code>ArrowBrush</code> / <code>ArrowMouseOverBrush</code> / <code>ArrowPressedBrush</code></td>
+<td><code>Brush</code></td>
+<td>theme</td>
+<td>the chevron in its three states</td>
+</tr>
+<tr>
+<td><code>ButtonStyle</code> / <code>ButtonArrowStyle</code></td>
+<td><code>Style</code></td>
+<td>see above</td>
+<td>the two halves</td>
+</tr>
+<tr>
+<td><code>ExtraTag</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+<td>a second <code>Tag</code></td>
+</tr>
+<tr>
+<td><code>Click</code></td>
+<td>routed event</td>
+<td></td>
+<td>bubbling, raised by the left half</td>
+</tr>
+</tbody>
+</table>
+<p>Unlike <code>DropDownButton</code> there is no <code>ArrowVisibility</code>: the arrow is the only way to open the list, so it cannot be hidden.</p>
+<h3 id="orientation">Orientation</h3>
+<p><img src="images/splitbutton-orientation.png" alt="Horizontal and vertical" /></p>
+<pre><code class="language-xml">&lt;mah:SplitButton Orientation=&quot;Vertical&quot; ItemsSource=&quot;{Binding Artists}&quot; SelectedIndex=&quot;0&quot; /&gt;
+</code></pre>
+<p><code>Vertical</code> puts the arrow underneath instead of beside, and stacks the icon above the label.</p>
+<div class="alert alert-warning"><p><strong><code>Orientation</code> is two separate templates, and that breaks a custom one.</strong> The style ships <code>MahApps.Templates.SplitButton.Horizontal</code> and <code>MahApps.Templates.SplitButton.Vertical</code> and switches between them from a <code>Style.Triggers</code> entry on <code>Orientation</code>.</p>
+<p>A trigger outranks a plain setter anywhere in the style chain, so a derived style that sets <code>Template</code> is beaten by that inherited trigger the moment the button turns vertical:</p>
+<p><img src="images/splitbutton-template-trap.png" alt="The custom template applies horizontally and is discarded vertically" /></p>
+<p>Both buttons above use the same derived style with the same custom <code>Template</code>. To make a custom template survive, repeat the trigger in your own style:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource {x:Type mah:SplitButton}}&quot; TargetType=&quot;{x:Type mah:SplitButton}&quot;&gt;
+    &lt;Setter Property=&quot;Template&quot; Value=&quot;{StaticResource MyHorizontalTemplate}&quot; /&gt;
+    &lt;Style.Triggers&gt;
+        &lt;Trigger Property=&quot;Orientation&quot; Value=&quot;Vertical&quot;&gt;
+            &lt;Setter Property=&quot;Template&quot; Value=&quot;{StaticResource MyVerticalTemplate}&quot; /&gt;
+        &lt;/Trigger&gt;
+    &lt;/Style.Triggers&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>The <a href="../styles/slider">Slider</a> style has the same shape and the same trap.</p>
+</div>
+<h2 id="the-drop-down-frame">The drop-down frame</h2>
+<p>The popup's <code>PopupBorder</code> takes its <code>BorderBrush</code> from the control, but its <code>Background</code> is a fixed <code>MahApps.Brushes.ThemeBackground</code>, its <code>BorderThickness</code> is a hardcoded <code>1</code>, and it has no <code>CornerRadius</code> at all. So <code>ControlsHelper.CornerRadius</code> rounds the button and leaves the list square. The same shape in the <a href="DateTimePicker">DateTimePicker</a> template is tracked as <a href="https://github.com/MahApps/MahApps.Metro/issues/4582">#4582</a>.</p>
+<h2 id="related">Related</h2>
+<p><a href="dropdownbutton">DropDownButton</a> — no selection, a static label, and a <code>ContextMenu</code> instead of a popup list. <a href="contentcontrolex">ContentControlEx</a> presents the label, so <code>ControlsHelper.ContentCharacterCasing</code> and <code>ControlsHelper.RecognizesAccessKey</code> apply here too.</p>
 
 
                                         </div>
@@ -366,11 +479,14 @@ In case you bind simple types like an enum or integer, you don't need to use <co
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#selecteditem-and-selectedindex">SelectedItem and SelectedIndex</a></div>
-                    <div class="sidebar-nav-item"><a href="#binding-to-observablecollection-or-dictionary">Binding to  or</a></div>
-                    <div class="sidebar-nav-item"><a href="#orientation">Orientation</a></div>
-                    <div class="sidebar-nav-item"><a href="#button-commands">Button commands</a></div>
-                    <div class="sidebar-nav-item"><a href="#icon-property">Icon property</a></div>
+                    <div class="sidebar-nav-item"><a href="#it-is-a-combobox">It is a ComboBox</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-two-halves">The two halves</a></div>
+                    <div class="sidebar-nav-item"><a href="#properties-of-its-own">Properties of its own</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#orientation">Orientation</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#the-drop-down-frame">The drop-down frame</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/splitbutton.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

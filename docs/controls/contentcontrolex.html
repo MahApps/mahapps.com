@@ -331,63 +331,66 @@ ContentControlEx
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>ContentControlEx</code> represents a control with a single piece of content of any type.
-It has the same functionality as the original <code>ContentControl</code> with some additonal properties.</p>
-<h2 id="additional-properties">Additional Properties</h2>
+<p><code>ContentControlEx</code> is a <code>ContentControl</code> with two extra properties and one piece of behaviour that has no property at all. You rarely place one yourself — it is the presenter inside most MahApps templates, which is where its properties come from.</p>
 <table>
 <thead>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Description</th>
+<th>Default</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>ContentCharacterCasing</code></td>
 <td><code>CharacterCasing</code></td>
-<td>Gets or sets the character casing of the Content. (default <code>CharacterCasing.Normal</code>)</td>
+<td><code>Normal</code></td>
+<td>upper-cases or lower-cases string content</td>
 </tr>
 <tr>
 <td><code>RecognizesAccessKey</code></td>
 <td><code>bool</code></td>
-<td>Determine if the inner <code>ContentPresenter</code> should use <code>AccessText</code> in its style. (default <code>false</code>)</td>
+<td><code>False</code></td>
+<td>whether an underscore marks an access key</td>
 </tr>
 </tbody>
 </table>
-<div class="alert alert-info"><p><em><strong>Note</strong></em><br />
-The <code>ContentCharacterCasing</code> property works only for <code>string</code> content type.</p>
+<h2 id="character-casing">Character casing</h2>
+<p><img src="images/contentcontrolex-casing.png" alt="Normal, Upper, Lower, and a nested control inheriting the value" /></p>
+<pre><code class="language-xml">&lt;mah:ContentControlEx Content=&quot;Save the document&quot; ContentCharacterCasing=&quot;Upper&quot; /&gt;
+</code></pre>
+<p><code>CharacterCasing</code> is WPF's own enum with three values — <code>Normal</code>, <code>Upper</code> and <code>Lower</code>. The control does the work in three template triggers, each swapping the presenter's <code>Content</code> for the same value through a <code>ToUpperConverter</code> or a <code>ToLowerConverter</code>.</p>
+<p>Because it is a <strong>converter on the content</strong>, not a text transform, it applies to the string and nothing else:</p>
+<p><img src="images/contentcontrolex-nonstring.png" alt="Upper on a string and on an element" /></p>
+<pre><code class="language-xml">&lt;mah:ContentControlEx ContentCharacterCasing=&quot;Upper&quot;&gt;
+    &lt;TextBlock Text=&quot;Save the document&quot; /&gt;
+&lt;/mah:ContentControlEx&gt;
+</code></pre>
+<p>The converter returns anything that is not a <code>string</code> untouched, so wrapping the text in a <code>TextBlock</code> opts out of the casing entirely — which is a useful escape hatch when a template forces <code>Upper</code> on you. The conversion is culture-aware, using the binding's culture.</p>
+<h3 id="it-inherits">It inherits</h3>
+<p><code>ContentCharacterCasing</code> is registered with <code>FrameworkPropertyMetadataOptions.Inherits</code>, so a nested <code>ContentControlEx</code> picks the value up from an outer one — the fourth panel in the first figure.</p>
+<div class="alert alert-warning"><p>It inherits, but it is <strong>not an attached property</strong>. <code>&lt;StackPanel mah:ContentControlEx.ContentCharacterCasing=&quot;Upper&quot;&gt;</code> fails to parse; the value can only be set on a <code>ContentControlEx</code> itself.</p>
+<p>What templates actually use is <code>ControlsHelper.ContentCharacterCasing</code>, which <em>is</em> attached and can go on any control. The MahApps templates bind it through:</p>
+<pre><code class="language-xml">&lt;mah:ContentControlEx ContentCharacterCasing=&quot;{Binding RelativeSource={RelativeSource TemplatedParent},
+                                                       Path=(mah:ControlsHelper.ContentCharacterCasing)}&quot; /&gt;
+</code></pre>
+<p>That is why writing <code>mah:ControlsHelper.ContentCharacterCasing=&quot;Normal&quot;</code> on a <a href="../styles/groupbox">GroupBox</a>, an <a href="../styles/expander">Expander</a>, a tab header or a <a href="../styles/tooltip">ToolTip</a> turns their upper-casing off. See <a href="../helper/controlshelper">ControlsHelper</a>.</p>
 </div>
-<h2 id="charactercasing-enum">CharacterCasing Enum</h2>
-<p>Specifies the case of characters in a <code>ContentControlEx</code> or <code>TextBox</code> control.</p>
-<p><a href="https://docs.microsoft.com/en-us/dotnet/api/system.windows.forms.charactercasing">Official documentation</a></p>
-<h3 id="fields">Fields</h3>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th></th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Lower</td>
-<td>2</td>
-<td>Converts all characters to lowercase.</td>
-</tr>
-<tr>
-<td>Normal</td>
-<td>0</td>
-<td>The case of characters is left unchanged.</td>
-</tr>
-<tr>
-<td>Upper</td>
-<td>1</td>
-<td>Converts all characters to uppercase.</td>
-</tr>
-</tbody>
-</table>
+<h2 id="access-keys">Access keys</h2>
+<p><img src="images/contentcontrolex-accesskey.png" alt="The underscore shown literally and consumed" /></p>
+<pre><code class="language-xml">&lt;mah:ContentControlEx Content=&quot;_Save the document&quot; RecognizesAccessKey=&quot;True&quot; /&gt;
+</code></pre>
+<p><code>RecognizesAccessKey</code> is passed straight to the inner <code>ContentPresenter</code>. With it off — the default — an underscore in the content is just an underscore. With it on, the underscore marks the next character as an access key: WPF underlines it while Alt is held and routes the shortcut to the control.</p>
+<p>The default here is <code>False</code>, which is the opposite of what a <code>Button</code> template normally does, so a template that wants access keys has to say so.</p>
+<h2 id="buttons-in-the-title-bar">Buttons in the title bar</h2>
+<p>The behaviour with no property is in <code>OnContentChanged</code>. When the content is an <code>IInputElement</code>, <code>ContentControlEx</code> binds that content's <code>WindowChrome.IsHitTestVisibleInChrome</code> to its own, and clears the binding when the content is replaced.</p>
+<p>That single binding is why a button placed in a <a href="metrowindow">MetroWindow</a>'s title bar can be clicked at all. The title bar is window chrome as far as the system is concerned, and chrome swallows mouse input unless an element opts out; <code>ContentControlEx</code> passes that opt-out down to whatever you put inside it, so <a href="WindowCommands">WindowCommands</a> and the window title work without anyone setting the attached property by hand.</p>
+<h2 id="where-it-turns-up">Where it turns up</h2>
+<p>Eighteen other dictionaries in the library use it as their content presenter, among them the styles for <a href="../styles/buttons">Buttons</a>, <a href="../styles/tabcontrol">TabControl</a> and <a href="MetroTabItem">MetroTabItem</a>, <a href="../styles/groupbox">GroupBox</a> and <a href="../styles/expander">Expander</a> headers, <a href="../styles/tooltip">ToolTip</a>, <code>GridViewColumnHeader</code> in a <a href="../styles/listview">ListView</a>, <a href="../styles/toolbar">ToolBar</a>, <a href="splitbutton">SplitButton</a> and <a href="dropdownbutton">DropDownButton</a>, <a href="MetroHeader">MetroHeader</a> and <a href="WindowCommands">WindowCommands</a>.</p>
+<p><code>MahApps.Styles.MetroThumbContentControl</code> is <code>MahApps.Styles.ContentControlEx</code> with nothing changed — see <a href="MetroThumbContentControl">MetroThumbContentControl</a>.</p>
+<h2 id="the-style">The style</h2>
+<p><code>MahApps.Styles.ContentControlEx</code> is applied through <code>Generic.xaml</code>, so a <code>ContentControlEx</code> you place yourself is styled already. It is deliberately unobtrusive: a transparent background, <code>Focusable</code> and <code>IsTabStop</code> both <code>False</code>, and everything stretched. It is a presenter, not a control the user interacts with.</p>
 
 
                                         </div>
@@ -396,11 +399,14 @@ The <code>ContentCharacterCasing</code> property works only for <code>string</co
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#additional-properties">Additional Properties</a></div>
-                    <div class="sidebar-nav-item"><a href="#charactercasing-enum">CharacterCasing Enum</a></div>
+                    <div class="sidebar-nav-item"><a href="#character-casing">Character casing</a></div>
                         <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#fields">Fields</a></div>
+                                <div class="sidebar-nav-item"><a href="#it-inherits">It inherits</a></div>
                         </div>
+                    <div class="sidebar-nav-item"><a href="#access-keys">Access keys</a></div>
+                    <div class="sidebar-nav-item"><a href="#buttons-in-the-title-bar">Buttons in the title bar</a></div>
+                    <div class="sidebar-nav-item"><a href="#where-it-turns-up">Where it turns up</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-style">The style</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/ContentControlEx.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

@@ -358,8 +358,7 @@ Controls
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/contentcontrolex">ContentControlEx</a></h4>
 
-            <div class="font-size-sm"><p>The <code>ContentControlEx</code> represents a control with a single piece of content of any type.
-It has the same functionality as the original <code>ContentControl</code> with some additonal properties.</p></div>
+            <div class="font-size-sm"><p><code>ContentControlEx</code> is a <code>ContentControl</code> with two extra properties and one piece of behaviour that has no property at all. You rarely place one yourself — it is the presenter inside most MahApps templates, which is where its properties come from.</p></div>
 
     </div>
 
@@ -369,7 +368,7 @@ It has the same functionality as the original <code>ContentControl</code> with s
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/customvalidationpopup">CustomValidationPopup</a></h4>
 
-            <div class="font-size-sm"><p><em>coming soon</em></p></div>
+            <div class="font-size-sm"><p><code>CustomValidationPopup</code> is the popup that carries a validation message next to the control that failed. You almost never place one: it is part of <code>MahApps.Templates.ValidationError</code>, so every styled input control already has one. See <a href="../styles/validation">Validation</a> for the error template as a whole.</p></div>
 
     </div>
 
@@ -379,7 +378,7 @@ It has the same functionality as the original <code>ContentControl</code> with s
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/datetimepicker">DateTimePicker</a></h4>
 
-            <div class="font-size-sm"><p><em>coming soon</em></p></div>
+            <div class="font-size-sm"><p><code>DateTimePicker</code> is a text field with a drop-down that holds a calendar, an analogue clock and three lists for hour, minute and AM/PM. <a href="TimePicker">TimePicker</a> is the same control without the calendar; both derive from <code>TimePickerBase</code>, so everything below applies to either unless it mentions a date.</p></div>
 
     </div>
 
@@ -389,7 +388,7 @@ It has the same functionality as the original <code>ContentControl</code> with s
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/dropdownbutton">DropDownButton</a></h4>
 
-            <div class="font-size-sm"><p><img src="images/dropDownButton_1.png" alt=""></p></div>
+            <div class="font-size-sm"><p><code>DropDownButton</code> is a button with a list attached. The whole button is one surface: clicking it runs its <code>Command</code> <strong>and</strong> opens the menu.</p></div>
 
     </div>
 
@@ -399,7 +398,7 @@ It has the same functionality as the original <code>ContentControl</code> with s
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/flipview">FlipView</a></h4>
 
-            <div class="font-size-sm"><p>The <code>FlipView</code> control behaves like an ItemsControl and shows items one by one on swipe gesture. Also navigation buttons will be available to navigate using mouse.</p></div>
+            <div class="font-size-sm"><p><code>FlipView</code> shows one item at a time and flips between them with animated transitions. It derives from <code>Selector</code>, so it is an items control with a selection — <code>ItemsSource</code>, <code>Items</code>, <code>SelectedItem</code> and <code>SelectedIndex</code> all work as usual.</p></div>
 
     </div>
 
@@ -409,8 +408,7 @@ It has the same functionality as the original <code>ContentControl</code> with s
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/flyouts">Flyouts</a></h4>
 
-            <div class="font-size-sm"><p>A <code>Flyout</code> is an overlay for the <a href="metrowindow">MetroWindow</a> that can render custom contents.
-It's derived from <code>HeaderedContentControl</code> and has the ability to slide in and out from any side of the window.</p></div>
+            <div class="font-size-sm"><p>A <code>Flyout</code> is a panel that slides in over a <a href="metrowindow">MetroWindow</a> from any of its four sides. It derives from <code>HeaderedContentControl</code>, so it has a <code>Header</code> and arbitrary content.</p></div>
 
     </div>
 
@@ -420,7 +418,7 @@ It's derived from <code>HeaderedContentControl</code> and has the ability to sli
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/fonticon">FontIcon</a></h4>
 
-            <div class="font-size-sm"><p>The <code>FontIcon</code> class represents an icon that uses a glyph from the specified font.</p></div>
+            <div class="font-size-sm"><p><code>FontIcon</code> draws one character from a symbol font. That is the whole control: a <code>Glyph</code> property and a template that puts it in a <code>TextBlock</code>.</p></div>
 
     </div>
 
@@ -590,7 +588,7 @@ It's derived from <code>HeaderedContentControl</code> and has the ability to sli
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/splitbutton">SplitButton</a></h4>
 
-            <div class="font-size-sm"><p><img src="images/splitButton_1.png" alt=""></p></div>
+            <div class="font-size-sm"><p><code>SplitButton</code> is a button split into two halves: the left runs a command, the right opens a list. Picking from the list changes what the left half shows.</p></div>
 
     </div>
 
@@ -620,7 +618,7 @@ It's derived from <code>HeaderedContentControl</code> and has the ability to sli
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/timepicker">TimePicker</a></h4>
 
-            <div class="font-size-sm"><p><em>coming soon</em></p></div>
+            <div class="font-size-sm"><p><code>TimePicker</code> is a text field with a drop-down for picking a time. It is <a href="DateTimePicker">DateTimePicker</a> without the calendar half — both derive from <code>TimePickerBase</code> and share one control template.</p></div>
 
     </div>
 
@@ -630,9 +628,7 @@ It's derived from <code>HeaderedContentControl</code> and has the ability to sli
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/toggleswitch">ToggleSwitch</a></h4>
 
-            <div class="font-size-sm"><p>The <code>ToggleSwitch</code> control originally appeared in Windows Phone 7, but has made its way into Windows 8 and 10.<br>
-The MahApps.Metro version of this control uses the Windows 10 visuals (from Win SDK 10.0.18362).
-The function is very similar to a CheckBox, but easier to differentiate and easier to use with touch interfaces.</p></div>
+            <div class="font-size-sm"><p><code>ToggleSwitch</code> is an on/off switch. It does the same job as a <code>CheckBox</code> but says its state in words as well as shape, and it is easier to hit with a finger. It derives from <code>HeaderedContentControl</code> and implements <code>ICommandSource</code>.</p></div>
 
     </div>
 

@@ -331,12 +331,195 @@ TimePicker
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>TimePicker</code> is a text field with a drop-down for picking a time. It is <a href="DateTimePicker">DateTimePicker</a> without the calendar half — both derive from <code>TimePickerBase</code> and share one control template.</p>
+<p><img src="images/timepicker-closed.png" alt="Empty, with a value, and with a clear button" /></p>
+<pre><code class="language-xml">&lt;mah:TimePicker Width=&quot;170&quot; SelectedDateTime=&quot;{Binding Departure}&quot; /&gt;
+</code></pre>
+<h2 id="how-it-differs-from-datetimepicker">How it differs from DateTimePicker</h2>
+<p>Almost nothing separates the two, which is worth knowing because everything on the <a href="DateTimePicker">DateTimePicker</a> page applies here as well.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsDatePickerVisible</code></td>
+<td><code>TimePicker</code>'s constructor sets it to <code>False</code>, and the shared template shows the calendar only when it is <code>True</code></td>
+</tr>
+<tr>
+<td>the drop-down button</td>
+<td>a clock glyph instead of a calendar one, through <code>DatePickerHelper.DropDownButtonContent</code></td>
+</tr>
+<tr>
+<td>the watermark</td>
+<td><em>Select a time</em> instead of <em>Select a date</em></td>
+</tr>
+<tr>
+<td>typing into the field</td>
+<td>parsed as a time; the date part of <code>SelectedDateTime</code> is kept</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-info"><p><code>IsDatePickerVisible</code> is a <strong>read-only</strong> dependency property with a <code>protected</code> setter, so you cannot turn the calendar back on from XAML. Use a <a href="DateTimePicker">DateTimePicker</a> if you want both halves.</p>
+</div>
+<h2 id="the-value">The value</h2>
+<p><code>SelectedDateTime</code> is a <code>DateTime?</code>, not a <code>TimeSpan</code> — the same property the <code>DateTimePicker</code> uses. When the user types a time, <code>TimePicker</code> parses it and keeps whatever date was there:</p>
+<pre><code class="language-csharp">this.SetCurrentValue(SelectedDateTimeProperty,
+                     this.SelectedDateTime.GetValueOrDefault().Date + timeSpan.TimeOfDay);
+</code></pre>
+<div class="alert alert-warning"><p>Note the <code>GetValueOrDefault()</code>. If nothing was selected yet, the date part comes from <code>default(DateTime)</code> — so picking 14:30 on an empty <code>TimePicker</code> gives you <strong>0001-01-01 14:30</strong>, not today at 14:30.</p>
+<p>If your view model wants a time on a particular day, seed <code>SelectedDateTime</code> with that date first, or take <code>.TimeOfDay</code> from what you get back.</p>
+</div>
+<h2 id="format-and-culture">Format and culture</h2>
+<p><img src="images/timepicker-culture.png" alt="en-US, de-DE, and the short format" /></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SelectedTimeFormat</code></td>
+<td><code>TimePickerFormat</code></td>
+<td><strong><code>Long</code></strong></td>
+<td><code>Long</code> shows seconds, <code>Short</code> does not</td>
+</tr>
+<tr>
+<td><code>Culture</code></td>
+<td><code>CultureInfo</code></td>
+<td><code>null</code></td>
+<td>formatting and the twelve- or twenty-four-hour clock</td>
+</tr>
+<tr>
+<td><code>IsReadOnly</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The default is <code>Long</code>, which is why an untouched picker already shows <code>2:30:00 PM</code> rather than <code>2:30 PM</code>.</p>
+<p>With no <code>Culture</code> the control follows the thread's culture, and <code>Language</code> changes are watched too. <code>de-DE</code> gives a twenty-four-hour clock and drops the AM/PM list from the drop-down.</p>
+<h2 id="the-drop-down">The drop-down</h2>
+<p><img src="images/timepicker-dropdown.png" alt="The clock and the three lists" /></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsClockVisible</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>the analogue clock face</td>
+</tr>
+<tr>
+<td><code>PickerVisibility</code></td>
+<td><code>TimePartVisibility</code></td>
+<td><code>HourMinute</code></td>
+<td>which lists appear</td>
+</tr>
+<tr>
+<td><code>HandVisibility</code></td>
+<td><code>TimePartVisibility</code></td>
+<td><code>HourMinute</code></td>
+<td>which hands the clock draws</td>
+</tr>
+<tr>
+<td><code>IsDropDownOpen</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>TimePartVisibility</code> is a flags enum — <code>Hour</code>, <code>Minute</code>, <code>Second</code>, plus the combinations <code>HourMinute</code> and <code>All</code>. Seconds are off in both places by default, so turning them on takes two properties:</p>
+<pre><code class="language-xml">&lt;mah:TimePicker PickerVisibility=&quot;All&quot; HandVisibility=&quot;All&quot; /&gt;
+</code></pre>
+<p><img src="images/timepicker-seconds.png" alt="With seconds in the lists and on the clock" /></p>
+<p><code>SourceHours</code>, <code>SourceMinutes</code> and <code>SourceSeconds</code> replace what the lists offer — this is how you build a picker that only offers quarter hours:</p>
+<pre><code class="language-xml">&lt;mah:TimePicker SourceMinutes=&quot;{Binding QuarterHours}&quot; /&gt;
+</code></pre>
+<p>Each has a matching <code>HoursItemStringFormat</code>, <code>MinutesItemStringFormat</code> and <code>SecondsItemStringFormat</code>.</p>
+<h2 id="two-nicer-alternatives">Two nicer alternatives</h2>
+<p>The same two drop-in dictionaries that restyle the <a href="DateTimePicker">DateTimePicker</a> carry a <code>TimePicker</code> style each.</p>
+<p><img src="images/timepicker-variants.png" alt="The built-in field, the Win10 one and the WinUI one" /></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><a href="../../assets/xaml/Controls.DateTimePicker.Win10.xaml"><code>Controls.DateTimePicker.Win10.xaml</code></a></strong></td>
+<td><code>MahApps.Styles.TimePicker.Win10</code></td>
+<td>square</td>
+</tr>
+<tr>
+<td><strong><a href="../../assets/xaml/Controls.DateTimePicker.WinUI.xaml"><code>Controls.DateTimePicker.WinUI.xaml</code></a></strong></td>
+<td><code>MahApps.Styles.TimePicker.WinUI</code></td>
+<td>rounded</td>
+</tr>
+</tbody>
+</table>
+<p>The files are named for the <code>DateTimePicker</code> because they cover both controls. For a <code>TimePicker</code> you only need the one dictionary — the calendar dictionary the <a href="DateTimePicker">DateTimePicker</a> page asks for is used by the <code>DateTimePicker</code> styles alone.</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+&lt;ResourceDictionary Source=&quot;Styles/Controls.DateTimePicker.WinUI.xaml&quot; /&gt;
+</code></pre>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.TimePicker.WinUI}&quot; TargetType=&quot;{x:Type mah:TimePicker}&quot; /&gt;
+</code></pre>
+<h3 id="what-they-change">What they change</h3>
+<p>Both switch the analogue clock off, because Fluent has no clock face — the three columns are the whole time selection there:</p>
+<p><img src="images/timepicker-dropdown-winui.png" alt="The built-in drop-down and the WinUI one" /></p>
+<p>No chrome, no chevrons, just centred numbers. Open a column and the selected value is an accent-filled pill:</p>
+<p><img src="images/timepicker-dropdown-winui-open.png" alt="The hour column open" /></p>
+<p>The Win10 variant is the same row; the two only part company inside the open list, where one pill is rounded and the other square. Set <code>IsClockVisible=&quot;True&quot;</code> in a derived style to keep the clock.</p>
+<p>Reaching those lists at all needs a trick, because they are plain <code>ComboBox</code>es with no style of their own — see <a href="DateTimePicker">the DateTimePicker page</a> for how <code>Style.Resources</code> scopes an implicit style to one control's drop-down.</p>
+<div class="alert alert-warning"><p>The drop-down frame stays square whichever variant you use. <code>PART_PopupBorder</code> in the shared template has no <code>CornerRadius</code> and none of its brushes is a <code>TemplateBinding</code>, so it cannot be reached from the control — tracked as <a href="https://github.com/MahApps/MahApps.Metro/issues/4582">#4582</a>.</p>
+</div>
+<h2 id="watermark-and-the-clear-button">Watermark and the clear button</h2>
+<p>The watermark and the clear button are ordinary <a href="../helper/textboxhelper">TextBoxHelper</a> values:</p>
+<pre><code class="language-xml">&lt;mah:TimePicker mah:TextBoxHelper.Watermark=&quot;When?&quot;
+                mah:TextBoxHelper.UseFloatingWatermark=&quot;True&quot;
+                mah:TextBoxHelper.ClearTextButton=&quot;True&quot; /&gt;
+</code></pre>
+<h2 id="related">Related</h2>
+<p><a href="DateTimePicker">DateTimePicker</a> for date and time together — and for the properties both controls share. <a href="../styles/datepicker">DatePicker</a> for the date alone.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#how-it-differs-from-datetimepicker">How it differs from DateTimePicker</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-value">The value</a></div>
+                    <div class="sidebar-nav-item"><a href="#format-and-culture">Format and culture</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-drop-down">The drop-down</a></div>
+                    <div class="sidebar-nav-item"><a href="#two-nicer-alternatives">Two nicer alternatives</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#what-they-change">What they change</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#watermark-and-the-clear-button">Watermark and the clear button</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/TimePicker.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

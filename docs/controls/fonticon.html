@@ -331,22 +331,53 @@ FontIcon
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>FontIcon</code> class represents an icon that uses a glyph from the specified font.</p>
-<h2 id="examples">Examples</h2>
-<pre><code class="language-xml">&lt;Grid xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;&gt;
-    &lt;mah:FontIcon FontFamily=&quot;Segoe MDL2 Assets&quot; Glyph=&quot;&amp;#xE790;&quot; /&gt;
-&lt;/Grid&gt;
+<p><code>FontIcon</code> draws one character from a symbol font. That is the whole control: a <code>Glyph</code> property and a template that puts it in a <code>TextBlock</code>.</p>
+<p><img src="images/fonticon-glyphs.png" alt="Five Segoe MDL2 Assets glyphs" /></p>
+<pre><code class="language-xml">&lt;mah:FontIcon Glyph=&quot;&amp;#xE713;&quot; /&gt;
 </code></pre>
-<p><img src="images/FontIcon.png" alt="FontIcon" /></p>
-<pre><code class="language-c#">var newButton = new Button();
-var fontIcon = new FontIcon();
-fontIcon.FontFamily = new FontFamily(&quot;Segoe MDL2 Assets&quot;);
-fontIcon.Glyph = &quot;\xE790&quot;;
-newButton.Content = fontIcon;
+<pre><code class="language-csharp">var icon = new FontIcon { Glyph = &quot;\uE713&quot; };
 </code></pre>
-<p><img src="images/FontIcon2.png" alt="FontIcon" /></p>
-<h2 id="remarks">Remarks</h2>
-<p>Use <code>FontIcon</code> to specify an icon using a Glyph value from a FontFamily. You must have the font available for the glyphs to show. Glyph values are assigned by font developers to private Unicode values that don’t map to existing code points. Windows 10 uses the Segoe MDL2 Assets FontFamily, and the glyphs are included in the Symbol enumeration.</p>
+<p><code>Glyph</code> is a <code>string</code>, not a character, so it can hold a surrogate pair or several characters if a font needs them.</p>
+<h2 id="you-do-not-need-to-set-the-fontfamily">You do not need to set the FontFamily</h2>
+<p>The style already points at the symbol font, so the old advice to write <code>FontFamily=&quot;Segoe MDL2 Assets&quot;</code> on every icon is unnecessary — and it costs you the embedded fallback, as the note below explains.</p>
+<pre><code class="language-xml">&lt;Setter Property=&quot;FontFamily&quot; Value=&quot;{DynamicResource MahApps.Fonts.Family.SymbolTheme}&quot; /&gt;
+&lt;Setter Property=&quot;FontSize&quot; Value=&quot;20&quot; /&gt;
+</code></pre>
+<p>To use a different icon font, override <code>FontFamily</code> on the control or redefine <code>MahApps.Fonts.Family.SymbolTheme</code> for the whole application.</p>
+<div class="alert alert-info"><p><strong>MahApps ships the font, so you do not need it installed.</strong> <code>MahApps.Fonts.Family.SymbolTheme</code> is a <strong>fallback chain</strong>: the installed font first, then a copy embedded in the library.</p>
+<pre><code class="language-xml">&lt;FontFamily x:Key=&quot;MahApps.Fonts.Family.SymbolTheme&quot;&gt;Segoe MDL2 Assets,/MahApps.Metro;component/Assets/#Segoe MDL2 Assets&lt;/FontFamily&gt;
+</code></pre>
+<p><code>Assets/segmdl2.ttf</code> is compiled into <code>MahApps.Metro.dll</code> as a WPF resource, so the second half resolves even on a machine where <em>Segoe MDL2 Assets</em> is not installed. Older documentation's &quot;you must have the font available for the glyphs to show&quot; was true of plain WPF, not of MahApps.</p>
+<p>This is exactly why you should <strong>not</strong> write <code>FontFamily=&quot;Segoe MDL2 Assets&quot;</code> on your icons. A bare family name replaces the whole chain and throws the embedded copy away, so the icons work on your Windows 11 machine and turn into empty boxes wherever the font is missing.</p>
+</div>
+<h2 id="size-and-colour">Size and colour</h2>
+<p><img src="images/fonticon-size.png" alt="FontSize 12, 20, 32 and 48 with a Foreground" /></p>
+<p><code>FontIcon</code> derives from <code>Control</code>, so it has no size or brush properties of its own — a glyph is text, and <code>FontSize</code>, <code>FontWeight</code>, <code>FontStyle</code> and <code>Foreground</code> are what shape it. The default <code>FontSize</code> is <strong>20</strong>.</p>
+<p><code>Foreground</code> has no setter in the style, so it inherits. That is what makes an icon inside a button follow the button's colour without being told:</p>
+<p><img src="images/fonticon-in-controls.png" alt="A FontIcon as button content, beside a label, and inheriting the foreground" /></p>
+<pre><code class="language-xml">&lt;Button Foreground=&quot;#FFE64A19&quot;&gt;
+    &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+        &lt;mah:FontIcon Margin=&quot;0 0 8 0&quot; FontSize=&quot;16&quot; Glyph=&quot;&amp;#xE734;&quot; /&gt;
+        &lt;TextBlock VerticalAlignment=&quot;Center&quot; Text=&quot;Favourite&quot; /&gt;
+    &lt;/StackPanel&gt;
+&lt;/Button&gt;
+</code></pre>
+<h2 id="it-is-decoration-not-a-control">It is decoration, not a control</h2>
+<p>The style makes that explicit: <code>Focusable=&quot;False&quot;</code>, <code>IsTabStop=&quot;False&quot;</code> and <code>FocusVisualStyle=&quot;{x:Null}&quot;</code>. A <code>FontIcon</code> never takes focus and never appears in the tab order, which is what you want for something sitting inside a button.</p>
+<p>Two more details in the template are worth knowing if you are styling around it:</p>
+<ul>
+<li>the inner <code>TextBlock</code> is given <code>Style=&quot;{x:Null}&quot;</code>, so an implicit <code>TextBlock</code> style in your application cannot reach it and change the glyph's look</li>
+<li><code>TextOptions.TextRenderingMode</code> is <code>Aliased</code>, which keeps small glyphs crisp instead of blurring them across pixels</li>
+</ul>
+<p>The template's root <code>Grid</code> has no background, so a <code>FontIcon</code> is not hit-testable on its own. Put it in something that is — a <code>Button</code>, or a panel with a <code>Background</code> — if it needs to react to the mouse.</p>
+<h2 id="finding-glyph-codes">Finding glyph codes</h2>
+<p>Codes are private-use code points assigned by the font's designers, so they mean nothing outside that font. For <em>Segoe MDL2 Assets</em>, Microsoft publishes the full list in the <a href="https://learn.microsoft.com/windows/apps/design/style/segoe-ui-symbol-font">Segoe MDL2 Assets icon list</a>; the <em>Character Map</em> utility shipped with Windows will also show them.</p>
+<div class="alert alert-info"><p>There is <strong>no <code>Symbol</code> enumeration</strong> in MahApps.Metro. That is a UWP and WinUI API, and older documentation mentioned it here by mistake. In WPF you write the code point yourself, as <code>&amp;#xE713;</code> in XAML or <code>&quot;\uE713&quot;</code> in C#.</p>
+</div>
+<h2 id="iconelement">IconElement</h2>
+<p><code>FontIcon</code> derives from <code>IconElement</code>, an abstract class that derives from <code>Control</code> and adds nothing at all — it exists as a common base so icon types can be treated alike. <code>FontIcon</code> is currently the only one in the library, so there is no reason to type a property as <code>IconElement</code> rather than <code>FontIcon</code> today.</p>
+<h2 id="related">Related</h2>
+<p>For vector icons rather than font glyphs, <code>MahApps.Styles.ContentControl.PathIcon</code> takes path geometry as its content and is what the library's own templates use for chevrons and similar marks.</p>
 
 
                                         </div>
@@ -355,8 +386,12 @@ newButton.Content = fontIcon;
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#examples">Examples</a></div>
-                    <div class="sidebar-nav-item"><a href="#remarks">Remarks</a></div>
+                    <div class="sidebar-nav-item"><a href="#you-do-not-need-to-set-the-fontfamily">You do not need to set the FontFamily</a></div>
+                    <div class="sidebar-nav-item"><a href="#size-and-colour">Size and colour</a></div>
+                    <div class="sidebar-nav-item"><a href="#it-is-decoration-not-a-control">It is decoration, not a control</a></div>
+                    <div class="sidebar-nav-item"><a href="#finding-glyph-codes">Finding glyph codes</a></div>
+                    <div class="sidebar-nav-item"><a href="#iconelement">IconElement</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/FontIcon.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
