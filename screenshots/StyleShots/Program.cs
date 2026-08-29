@@ -660,10 +660,19 @@ namespace StyleShots
             window.Show();
             await rendered.Task;
 
-            // Without this the window sometimes renders inactive and the title
-            // bar comes out grey instead of accented, which differs from run to
-            // run and makes the figures disagree with each other.
+            // An off-screen window does not reliably become the active one, and
+            // an inactive MetroWindow paints its title bar and window buttons
+            // differently - which made these figures change from run to run.
+            // Activating helps but is not dependable, so the non-active brushes
+            // are pinned to the active ones as well: whichever state the window
+            // ends up in, it is photographed looking active, which is the
+            // normal case anyway.
             window.Activate();
+            if (window is MetroWindow metro)
+            {
+                metro.SetCurrentValue(MetroWindow.NonActiveWindowTitleBrushProperty, metro.WindowTitleBrush);
+                metro.SetCurrentValue(MetroWindow.NonActiveBorderBrushProperty, metro.BorderBrush);
+            }
 
             // The slide-in is a storyboard; give it room to land.
             await Task.Delay(900);
@@ -1096,6 +1105,37 @@ namespace StyleShots
             // ... and one with a column open, so the rounded selection shows.
             await CaptureDropDownAsync("controls", "timepicker-dropdown-winui-open", "TimePicker",
                                        @"Style=""{StaticResource MahApps.Styles.TimePicker.WinUI}""", openHours: true);
+
+            await TimePickerFiguresAsync();
+        }
+
+        private static async Task TimePickerFiguresAsync()
+        {
+            await CaptureAsync("controls", "timepicker-closed",
+                Showcase(
+                    ("empty, showing the watermark", Xaml(@"<mah:TimePicker Width=""170"" Culture=""en-US"" />")),
+                    ("with a value", Picker("TimePicker", string.Empty)),
+                    ("ClearTextButton",
+                        Picker("TimePicker", @"mah:TextBoxHelper.ClearTextButton=""True"""))));
+
+            await CaptureAsync("controls", "timepicker-culture",
+                Showcase(
+                    (@"Culture=""en-US""", Xaml(@"<mah:TimePicker Width=""170"" Culture=""en-US"" SelectedDateTime=""2020-06-15 14:30"" />")),
+                    (@"Culture=""de-DE""", Xaml(@"<mah:TimePicker Width=""170"" Culture=""de-DE"" SelectedDateTime=""2020-06-15 14:30"" />")),
+                    (@"SelectedTimeFormat=""Short""",
+                        Xaml(@"<mah:TimePicker Width=""170"" Culture=""en-US"" SelectedDateTime=""2020-06-15 14:30"" SelectedTimeFormat=""Short"" />"))));
+
+            await CaptureAsync("controls", "timepicker-variants",
+                Showcase(
+                    ("the built-in style", Picker("TimePicker", string.Empty)),
+                    ("MahApps.Styles.TimePicker.Win10",
+                        Picker("TimePicker", @"Style=""{StaticResource MahApps.Styles.TimePicker.Win10}""")),
+                    ("MahApps.Styles.TimePicker.WinUI",
+                        Picker("TimePicker", @"Style=""{StaticResource MahApps.Styles.TimePicker.WinUI}"""))));
+
+            // Seconds are off in both the lists and the clock by default.
+            await CaptureDropDownAsync("controls", "timepicker-seconds", "TimePicker",
+                                       @"PickerVisibility=""All"" HandVisibility=""All""");
         }
 
         private static FrameworkElement Picker(string type, string attributes)

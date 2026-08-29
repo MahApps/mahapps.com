@@ -17,7 +17,7 @@ Description: A date and time picker with a calendar and a clock
 | Property | Type | |
 | --- | --- | --- |
 | `SelectedDateTime` | `DateTime?` | the whole value, date and time together |
-| `SelectedTimeFormat` | `TimePickerFormat` | `Short` (14:30) or `Long` (14:30:00) |
+| `SelectedTimeFormat` | `TimePickerFormat` | `Long` (14:30:00), the default, or `Short` (14:30) |
 | `Culture` | `CultureInfo` | formatting and the twelve- or twenty-four-hour clock |
 | `IsReadOnly` | `bool` | |
 
