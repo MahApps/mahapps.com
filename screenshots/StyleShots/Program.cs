@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await MultiFrameImageFiguresAsync();
                         await TransitioningContentControlFiguresAsync();
                         await MetroContentControlFiguresAsync();
                         await HotKeyBoxFiguresAsync();
@@ -700,6 +701,48 @@ namespace StyleShots
             }
 
             return box;
+        }
+
+        // A hand-built .ico whose three frames are deliberately different, so a
+        // figure can show which one the control picked: 16px crimson with one
+        // dot, 32px green with two, 128px blue with five.
+        private static BitmapFrame MultiFrameIcon()
+        {
+            var path = Path.GetFullPath(Path.Combine("screenshots", "StyleShots", "assets", "multiframe.ico"));
+            return BitmapFrame.Create(new Uri(path), BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+        }
+
+        private static FrameworkElement IconAt(double size, MultiFrameImageMode? mode)
+        {
+            FrameworkElement image = mode is null
+                ? new Image { Width = size, Height = size, Source = MultiFrameIcon() }
+                : new MultiFrameImage { Width = size, Height = size, Source = MultiFrameIcon(), MultiFrameImageMode = mode.Value };
+
+            // A tinted box a little larger than the control, so a frame drawn at
+            // its native size and centred can be told from one that fills.
+            return new Border
+                   {
+                       Width = 140,
+                       Height = 140,
+                       Background = new SolidColorBrush(Color.FromRgb(0xE3, 0xF2, 0xFD)),
+                       Child = image
+                   };
+        }
+
+        private static async Task MultiFrameImageFiguresAsync()
+        {
+            await CaptureAsync("controls", "multiframeimage-modes",
+                Showcase(
+                    ("a plain Image, 64px", IconAt(64, null)),
+                    ("ScaleDownLargerFrame, 64px", IconAt(64, MultiFrameImageMode.ScaleDownLargerFrame)),
+                    ("NoScaleSmallerFrame, 64px", IconAt(64, MultiFrameImageMode.NoScaleSmallerFrame))));
+
+            await CaptureAsync("controls", "multiframeimage-sizes",
+                Showcase(
+                    ("16px", IconAt(16, MultiFrameImageMode.ScaleDownLargerFrame)),
+                    ("32px", IconAt(32, MultiFrameImageMode.ScaleDownLargerFrame)),
+                    ("64px", IconAt(64, MultiFrameImageMode.ScaleDownLargerFrame)),
+                    ("128px", IconAt(128, MultiFrameImageMode.ScaleDownLargerFrame))));
         }
 
         // Deferred work that has to run in order after the window is up.
