@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await MetroContentControlFiguresAsync();
                         await HotKeyBoxFiguresAsync();
                         await ToggleSwitchFiguresAsync();
                         await FontIconFiguresAsync();
@@ -698,6 +699,40 @@ namespace StyleShots
             }
 
             return box;
+        }
+
+        // A still cannot show a slide, so the transition is sampled at three
+        // points instead: the reverse version comes in from the other side.
+        private static FrameworkElement Transition(bool reverse, double at)
+        {
+            var mcc = (MetroContentControl)XamlReader.Parse(
+                $@"<mah:MetroContentControl {Xmlns} Width=""150"" Height=""54"" ReverseTransition=""{reverse}"">
+                       <Border Background=""#FF2E8DEF"" CornerRadius=""3"">
+                           <TextBlock HorizontalAlignment=""Center"" VerticalAlignment=""Center""
+                                      FontSize=""15"" Foreground=""White"" Text=""Content"" />
+                       </Border>
+                   </mah:MetroContentControl>");
+
+            pendingSeeks.Add((mcc, reverse ? "AfterLoadedReverse" : "AfterLoaded", TimeSpan.FromSeconds(at)));
+
+            // A fixed-width tinted backdrop, so the 30px slide can be seen
+            // against something that does not move with it.
+            return new Border
+                   {
+                       Width = 215,
+                       Background = new SolidColorBrush(Color.FromRgb(0xE3, 0xF2, 0xFD)),
+                       Child = mcc
+                   };
+        }
+
+        private static async Task MetroContentControlFiguresAsync()
+        {
+            await CaptureAsync("controls", "metrocontentcontrol-direction",
+                Showcase(
+                    ("the default, at 0.10s", Transition(false, 0.10)),
+                    ("the default, at 0.35s", Transition(false, 0.35)),
+                    (@"ReverseTransition, at 0.10s", Transition(true, 0.10)),
+                    (@"ReverseTransition, at 0.35s", Transition(true, 0.35))));
         }
 
         private static async Task HotKeyBoxFiguresAsync()
@@ -2661,6 +2696,23 @@ namespace StyleShots
                         $@"<ProgressBar {Xmlns} Width=""190"" Height=""12"" IsIndeterminate=""True"" />");
                     pendingSeeks.Add((bar, "Indeterminate", at));
                     return bar;
+                });
+
+            // MetroContentControl: the AfterLoaded state fades the content in
+            // over 0.4s while sliding it 30px to the left, finishing at 0.7s.
+            // A few frames past the end hold the settled state so the loop does
+            // not snap straight back to the start.
+            await FramesAsync("metrocontentcontrol", 28, 1.4, at =>
+                {
+                    var mcc = (MetroContentControl)XamlReader.Parse(
+                        $@"<mah:MetroContentControl {Xmlns} Width=""210"" Height=""70"">
+                               <Border Background=""#FF2E8DEF"" CornerRadius=""3"">
+                                   <TextBlock HorizontalAlignment=""Center"" VerticalAlignment=""Center""
+                                              FontSize=""18"" Foreground=""White"" Text=""Content"" />
+                               </Border>
+                           </mah:MetroContentControl>");
+                    pendingSeeks.Add((mcc, "AfterLoaded", at));
+                    return mcc;
                 });
         }
 
