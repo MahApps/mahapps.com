@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await TransitioningContentControlFiguresAsync();
                         await MetroContentControlFiguresAsync();
                         await HotKeyBoxFiguresAsync();
                         await ToggleSwitchFiguresAsync();
@@ -699,6 +700,69 @@ namespace StyleShots
             }
 
             return box;
+        }
+
+        // Deferred work that has to run in order after the window is up.
+        private static readonly List<Action> pendingActions = new();
+
+        // A TransitioningContentControl only animates when its Content changes,
+        // and both presenters must be filled for the transition to show. So the
+        // content is swapped once the control is loaded, and the visual state is
+        // then seeked and paused to freeze the animation mid-flight.
+        private static FrameworkElement Transitioning(string transition, string stateName, double at)
+        {
+            var tcc = (TransitioningContentControl)XamlReader.Parse(
+                $@"<mah:TransitioningContentControl {Xmlns} Width=""150"" Height=""60"" Transition=""{transition}"">
+                       <Border Background=""#FF2E8DEF"" CornerRadius=""3"">
+                           <TextBlock HorizontalAlignment=""Center"" VerticalAlignment=""Center""
+                                      FontSize=""16"" Foreground=""White"" Text=""Second"" />
+                       </Border>
+                   </mah:TransitioningContentControl>");
+
+            pendingActions.Add(() =>
+                {
+                    var previous = (FrameworkElement)XamlReader.Parse(
+                        $@"<Border {Xmlns} Background=""#FFBF1E4B"" CornerRadius=""3"">
+                               <TextBlock HorizontalAlignment=""Center"" VerticalAlignment=""Center""
+                                          FontSize=""16"" Foreground=""White"" Text=""First"" />
+                           </Border>");
+
+                    // Put the old content in first, then swap: the swap is what
+                    // raises OnContentChanged and starts the transition.
+                    var current = tcc.Content;
+                    tcc.Content = previous;
+                    tcc.UpdateLayout();
+                    tcc.Content = current;
+                    tcc.UpdateLayout();
+
+                    SeekState(tcc, stateName, TimeSpan.FromSeconds(at));
+                });
+
+            // Clipped, the way the control looks in a real layout - otherwise
+            // the vertical transitions run right out of the figure.
+            return new Border
+                   {
+                       Width = 175,
+                       Height = 80,
+                       ClipToBounds = true,
+                       Background = new SolidColorBrush(Color.FromRgb(0xE3, 0xF2, 0xFD)),
+                       Child = tcc
+                   };
+        }
+
+        private static async Task TransitioningContentControlFiguresAsync()
+        {
+            await CaptureAsync("controls", "transitioningcontentcontrol-transitions",
+                Showcase(
+                    (@"Left", Transitioning("Left", "LeftTransition", 0.05)),
+                    (@"Right", Transitioning("Right", "RightTransition", 0.05)),
+                    (@"Up", Transitioning("Up", "UpTransition", 0.05)),
+                    (@"Down", Transitioning("Down", "DownTransition", 0.05))));
+
+            await CaptureAsync("controls", "transitioningcontentcontrol-replace",
+                Showcase(
+                    (@"Left", Transitioning("Left", "LeftTransition", 0.05)),
+                    (@"LeftReplace", Transitioning("LeftReplace", "LeftReplaceTransition", 0.05))));
         }
 
         // A still cannot show a slide, so the transition is sampled at three
@@ -3506,6 +3570,13 @@ namespace StyleShots
             }
 
             pendingInvalid.Clear();
+
+            foreach (var action in pendingActions)
+            {
+                action();
+            }
+
+            pendingActions.Clear();
 
             foreach (var (control, state, at) in pendingSeeks)
             {
