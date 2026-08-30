@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await NumericUpDownFiguresAsync();
                         await MetroNavigationWindowFiguresAsync();
                         await MetroHeaderFiguresAsync();
                         await AnimatedTabControlFiguresAsync();
@@ -704,6 +705,33 @@ namespace StyleShots
             }
 
             return box;
+        }
+
+        private static async Task NumericUpDownFiguresAsync()
+        {
+            // Culture pinned so the currency and separator examples do not
+            // follow whichever machine renders the figures.
+            const string Num = @"<mah:NumericUpDown Width=""150"" Culture=""en-US"" ";
+
+            await CaptureAsync("controls", "numericupdown-buttons",
+                Showcase(
+                    (@"Right, the default", Xaml($@"{Num} Value=""42"" />")),
+                    (@"ButtonsAlignment=""Left""", Xaml($@"{Num} Value=""42"" ButtonsAlignment=""Left"" />")),
+                    (@"ButtonsAlignment=""Opposite""", Xaml($@"{Num} Value=""42"" ButtonsAlignment=""Opposite"" />")),
+                    (@"HideUpDownButtons=""True""", Xaml($@"{Num} Value=""42"" HideUpDownButtons=""True"" />"))));
+
+            await CaptureAsync("controls", "numericupdown-format",
+                Showcase(
+                    ("no StringFormat", Xaml($@"{Num} Value=""1234.5"" />")),
+                    (@"StringFormat=""N2""", Xaml($@"{Num} Value=""1234.5"" StringFormat=""N2"" />")),
+                    (@"StringFormat=""C2""", Xaml($@"{Num} Value=""1234.5"" StringFormat=""C2"" />")),
+                    (@"StringFormat=""{}{0:N2} psc""", Xaml($@"{Num} Value=""1234.5"" StringFormat=""{{}}{{0:N2}} psc"" />"))));
+
+            await CaptureAsync("controls", "numericupdown-inputmode",
+                Showcase(
+                    (@"All, the default", Xaml($@"{Num} Value=""3.5"" Interval=""0.5"" />")),
+                    (@"NumericInputMode=""Numbers""", Xaml($@"{Num} Value=""3.5"" Interval=""0.5"" NumericInputMode=""Numbers"" />")),
+                    (@"SwitchUpDownButtons=""True""", Xaml($@"{Num} Value=""42"" SwitchUpDownButtons=""True"" />"))));
         }
 
         // MetroNavigationWindow is a Window with its navigation bar baked into
