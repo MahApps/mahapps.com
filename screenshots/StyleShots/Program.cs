@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await HotKeyBoxFiguresAsync();
                         await ToggleSwitchFiguresAsync();
                         await FontIconFiguresAsync();
                         await FlyoutFiguresAsync();
@@ -683,6 +684,34 @@ namespace StyleShots
             window.Close();
 
             return new Image { Source = bitmap, Width = bitmap.Width, Height = bitmap.Height };
+        }
+
+        // HotKey has no type converter, so the scenarios are built in code
+        // rather than written as XAML like most of the others.
+        private static FrameworkElement HotKeyBoxFor(HotKey hotKey, string attributes = "")
+        {
+            var box = new HotKeyBox { Width = 175, HotKey = hotKey };
+
+            if (attributes.Contains("Watermark"))
+            {
+                TextBoxHelper.SetWatermark(box, "Press a key combination");
+            }
+
+            return box;
+        }
+
+        private static async Task HotKeyBoxFiguresAsync()
+        {
+            // The captions name what was set in code; the boxes show what the
+            // control renders. They differ, because the key names come from the
+            // keyboard layout - this machine's is German.
+            await CaptureAsync("controls", "hotkeybox-basic",
+                Showcase(
+                    ("HotKey = null", HotKeyBoxFor(null, "Watermark")),
+                    ("new HotKey(Key.S, Control)", HotKeyBoxFor(new HotKey(Key.S, ModifierKeys.Control))),
+                    ("new HotKey(Key.F5, Control | Shift | Alt)",
+                        HotKeyBoxFor(new HotKey(Key.F5, ModifierKeys.Control | ModifierKeys.Shift | ModifierKeys.Alt)))));
+
         }
 
         private static async Task ToggleSwitchFiguresAsync()
