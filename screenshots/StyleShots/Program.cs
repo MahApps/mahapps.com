@@ -57,6 +57,7 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await AnimatedTabControlFiguresAsync();
                         await MultiFrameImageFiguresAsync();
                         await TransitioningContentControlFiguresAsync();
                         await MetroContentControlFiguresAsync();
@@ -701,6 +702,63 @@ namespace StyleShots
             }
 
             return box;
+        }
+
+        private const string ManyTabs = @"
+            <TabItem Header=""Overview""><TextBlock Margin=""10"" Text=""Overview"" /></TabItem>
+            <TabItem Header=""Details""><TextBlock Margin=""10"" Text=""Details"" /></TabItem>
+            <TabItem Header=""History"" />
+            <TabItem Header=""Permissions"" />
+            <TabItem Header=""Integrations"" />
+            <TabItem Header=""Advanced"" />";
+
+        private static async Task AnimatedTabControlFiguresAsync()
+        {
+            // Narrow enough that six headers cannot sit on one line, which is
+            // the whole difference between the two controls.
+            await CaptureAsync("controls", "animatedtabcontrol-headers",
+                Showcase(
+                    ("MetroAnimatedTabControl",
+                        Xaml($@"<mah:MetroAnimatedTabControl Width=""280"" Height=""215"">{ManyTabs}</mah:MetroAnimatedTabControl>")),
+                    ("MetroAnimatedSingleRowTabControl",
+                        Xaml($@"<mah:MetroAnimatedSingleRowTabControl Width=""280"" Height=""215"">{ManyTabs}</mah:MetroAnimatedSingleRowTabControl>"))));
+
+            await CaptureAsync("controls", "animatedtabcontrol-transition",
+                Showcase(
+                    (@"Transition=""Left"", the default", AnimatedTab("Left", "LeftTransition")),
+                    (@"Transition=""Up""", AnimatedTab("Up", "UpTransition")),
+                    (@"Transition=""Normal"" - no animation", AnimatedTab("Normal", "Normal"))));
+        }
+
+        // The animation lives in a TransitioningContentControl inside the tab
+        // control's template, so the tab is switched after load and that inner
+        // control's visual state is then seeked and paused.
+        private static FrameworkElement AnimatedTab(string transition, string stateName)
+        {
+            var tabs = (BaseMetroTabControl)XamlReader.Parse(
+                $@"<mah:MetroAnimatedTabControl {Xmlns} Width=""190"" Height=""120"" mah:TabControlHelper.Transition=""{transition}"">
+                       <TabItem Header=""One"">
+                           <Border Background=""#FFBF1E4B""><TextBlock HorizontalAlignment=""Center"" VerticalAlignment=""Center"" FontSize=""16"" Foreground=""White"" Text=""First"" /></Border>
+                       </TabItem>
+                       <TabItem Header=""Two"">
+                           <Border Background=""#FF2E8DEF""><TextBlock HorizontalAlignment=""Center"" VerticalAlignment=""Center"" FontSize=""16"" Foreground=""White"" Text=""Second"" /></Border>
+                       </TabItem>
+                   </mah:MetroAnimatedTabControl>");
+
+            pendingActions.Add(() =>
+                {
+                    tabs.SelectedIndex = 1;
+                    tabs.UpdateLayout();
+
+                    if (FindVisualChild<TransitioningContentControl>(tabs) is { } presenter)
+                    {
+                        SeekState(presenter, stateName, TimeSpan.FromSeconds(0.05));
+                    }
+                });
+
+            // Clipped: the sliding content leaves the control's bounds, and
+            // nothing in the control itself clips it.
+            return new Border { ClipToBounds = true, Width = 190, Height = 120, Child = tabs };
         }
 
         // A hand-built .ico whose three frames are deliberately different, so a
