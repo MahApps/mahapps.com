@@ -57,6 +57,8 @@ namespace StyleShots
                     try
                     {
                         LoadExtraStyles();
+                        await MetroNavigationWindowFiguresAsync();
+                        await MetroHeaderFiguresAsync();
                         await AnimatedTabControlFiguresAsync();
                         await MultiFrameImageFiguresAsync();
                         await TransitioningContentControlFiguresAsync();
@@ -702,6 +704,92 @@ namespace StyleShots
             }
 
             return box;
+        }
+
+        // MetroNavigationWindow is a Window with its navigation bar baked into
+        // compiled XAML, so the figure is the real window, navigated to a real
+        // Page and rendered off-screen.
+        private static async Task MetroNavigationWindowFiguresAsync()
+        {
+            var window = new MetroNavigationWindow
+                         {
+                             Width = 420,
+                             Height = 240,
+                             Title = "MahApps",
+                             ShowInTaskbar = false,
+                             WindowStartupLocation = WindowStartupLocation.Manual,
+                             Left = -20000,
+                             Top = -20000
+                         };
+
+            var rendered = new TaskCompletionSource<bool>();
+            window.ContentRendered += (_, _) => rendered.TrySetResult(true);
+            window.Show();
+            await rendered.Task;
+
+            // Two navigations, so the back button ends up enabled and the
+            // forward one does not - which is the state worth photographing.
+            window.Navigate(NavPage("Overview", "#FF2E8DEF"));
+            await Task.Delay(300);
+            window.Navigate(NavPage("Details", "#FF00A600"));
+            await Task.Delay(600);
+
+            window.Activate();
+            window.SetCurrentValue(MetroWindow.NonActiveWindowTitleBrushProperty, window.WindowTitleBrush);
+            await window.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+            window.UpdateLayout();
+
+            await SaveAsync("controls", "metronavigationwindow", window);
+            window.Close();
+        }
+
+        private static Page NavPage(string title, string colour)
+        {
+            return (Page)XamlReader.Parse(
+                $@"<Page {Xmlns} Title=""{title}"">
+                       <Border Background=""{colour}"">
+                           <TextBlock HorizontalAlignment=""Center"" VerticalAlignment=""Center""
+                                      FontSize=""20"" Foreground=""White"" Text=""{title}"" />
+                       </Border>
+                   </Page>");
+        }
+
+        private static async Task MetroHeaderFiguresAsync()
+        {
+            await CaptureAsync("controls", "metroheader-basic",
+                Showcase(
+                    ("a string Header",
+                        Xaml(@"<mah:MetroHeader Width=""190"" Header=""Display name"">
+                                   <TextBox Text=""Ada Lovelace"" />
+                               </mah:MetroHeader>")),
+                    ("a Header built from elements",
+                        Xaml(@"<mah:MetroHeader Width=""190"">
+                                   <mah:MetroHeader.Header>
+                                       <StackPanel Orientation=""Horizontal"">
+                                           <mah:FontIcon Margin=""0 0 6 0"" FontSize=""13"" Glyph=""&#xE77B;"" />
+                                           <TextBlock VerticalAlignment=""Center"" Text=""Display name"" />
+                                       </StackPanel>
+                                   </mah:MetroHeader.Header>
+                                   <TextBox Text=""Ada Lovelace"" />
+                               </mah:MetroHeader>"))));
+
+            await CaptureAsync("controls", "metroheader-styling",
+                Showcase(
+                    ("the defaults",
+                        Xaml(@"<mah:MetroHeader Width=""175"" Header=""Display name""><TextBox Text=""Ada"" /></mah:MetroHeader>")),
+                    ("HeaderFontWeight and HeaderForeground",
+                        Xaml(@"<mah:MetroHeader Width=""175"" Header=""Display name""
+                                                mah:HeaderedControlHelper.HeaderFontWeight=""Bold""
+                                                mah:HeaderedControlHelper.HeaderForeground=""{DynamicResource MahApps.Brushes.Accent}"">
+                                   <TextBox Text=""Ada"" />
+                               </mah:MetroHeader>")),
+                    ("HeaderBackground and HeaderMargin",
+                        Xaml(@"<mah:MetroHeader Width=""175"" Header=""Display name""
+                                                mah:HeaderedControlHelper.HeaderBackground=""{DynamicResource MahApps.Brushes.Accent}""
+                                                mah:HeaderedControlHelper.HeaderForeground=""{DynamicResource MahApps.Brushes.IdealForeground}""
+                                                mah:HeaderedControlHelper.HeaderMargin=""6 3"">
+                                   <TextBox Text=""Ada"" />
+                               </mah:MetroHeader>"))));
         }
 
         private const string ManyTabs = @"
