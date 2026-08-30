@@ -438,7 +438,7 @@ Controls
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/hotkeybox">HotKeyBox</a></h4>
 
-            <div class="font-size-sm"><p><em>coming soon</em></p></div>
+            <div class="font-size-sm"><p><code>HotKeyBox</code> is a field that records whatever key combination the user presses into it, the way a <em>set shortcut</em> box in an options dialog does. It derives from <code>Control</code> and its only template part is a read-only <code>TextBox</code>.</p></div>
 
     </div>
 
@@ -448,7 +448,7 @@ Controls
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/metroanimatedsinglerowtabcontrol">MetroAnimatedSingleRowTabControl</a></h4>
 
-            <div class="font-size-sm"><p><em>coming soon</em></p></div>
+            <div class="font-size-sm"><p><code>MetroAnimatedSingleRowTabControl</code> is <a href="MetroAnimatedTabControl">MetroAnimatedTabControl</a> with one difference: its tab headers stay on a <strong>single row and scroll</strong>, instead of wrapping onto further rows.</p></div>
 
     </div>
 
@@ -458,7 +458,7 @@ Controls
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/metroanimatedtabcontrol">MetroAnimatedTabControl</a></h4>
 
-            <div class="font-size-sm"><p><em>coming soon</em></p></div>
+            <div class="font-size-sm"><p><code>MetroAnimatedTabControl</code> is a <a href="MetroTabControl">MetroTabControl</a> whose content slides in when you switch tabs. The class itself is four lines — it derives from <code>BaseMetroTabControl</code> and only points at a different default style. Everything below is that style.</p></div>
 
     </div>
 
@@ -468,7 +468,7 @@ Controls
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/metrocontentcontrol">MetroContentControl</a></h4>
 
-            <div class="font-size-sm"><p><em>coming soon</em></p></div>
+            <div class="font-size-sm"><p><code>MetroContentControl</code> is a <code>ContentControl</code> that plays a short slide-and-fade whenever it appears. It is what gives a MahApps page its characteristic entrance.</p></div>
 
     </div>
 
@@ -478,7 +478,7 @@ Controls
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/metroheader">MetroHeader</a></h4>
 
-            <div class="font-size-sm"><p>The <code>MetroHeader</code> is a UI control that allows content to be displayed with a specified header (like the HeaderedContentControl). The <code>Header</code> property can be any object and you can use the <code>HeaderTemplate</code> to specify a custom look to the header. Content for the <code>MetroHeader</code> will streched horizontally and vertically.</p></div>
+            <div class="font-size-sm"><p><code>MetroHeader</code> puts a header above a piece of content — usually a label above an input control. It derives from <code>GroupBox</code>, so <code>Header</code>, <code>HeaderTemplate</code>, <code>HeaderTemplateSelector</code> and <code>HeaderStringFormat</code> all come from <code>HeaderedContentControl</code> and behave as usual. What MahApps adds is the template: a plain two-row grid with no border and no chrome.</p></div>
 
     </div>
 
@@ -488,7 +488,7 @@ Controls
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/metronavigationwindow">MetroNavigationWindow</a></h4>
 
-            <div class="font-size-sm"><p><em>coming soon</em></p></div>
+            <div class="font-size-sm"><p><code>MetroNavigationWindow</code> is WPF's <code>NavigationWindow</code> rebuilt on top of <a href="metrowindow">MetroWindow</a>: a window with a back/forward bar, a page title, and a <code>Frame</code> that hosts navigated <code>Page</code>s.</p></div>
 
     </div>
 
@@ -528,7 +528,7 @@ Controls
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a></h4>
 
-            <div class="font-size-sm"><p><em>coming soon</em></p></div>
+            <div class="font-size-sm"><p><code>MetroThumbContentControl</code> is a <code>Thumb</code> that can hold arbitrary content. WPF's own <code>Thumb</code> is a <code>Control</code> with a template, so wrapping content in it is awkward; this one derives from <a href="contentcontrolex">ContentControlEx</a> instead and raises the same three drag events.</p></div>
 
     </div>
 
@@ -538,7 +538,7 @@ Controls
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a></h4>
 
-            <div class="font-size-sm"><p><em>coming soon</em></p></div>
+            <div class="font-size-sm"><p>An <code>.ico</code> file holds the same artwork several times over, drawn for different sizes. WPF's <code>Image</code> takes one of those frames and stretches it; <code>MultiFrameImage</code> picks the frame that suits the size it is being drawn at.</p></div>
 
     </div>
 
@@ -558,7 +558,7 @@ Controls
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/numericupdown">NumericUpDown</a></h4>
 
-            <div class="font-size-sm"><p>The <code>NumericUpDown</code> control can be used to increase or decrease a numeric value.</p></div>
+            <div class="font-size-sm"><p><code>NumericUpDown</code> is a text field for a number, with a button to step it up and one to step it down.</p></div>
 
     </div>
 
@@ -638,8 +638,7 @@ Controls
     <div class="p-3 mb-2 bg-light page-box">
         <h4><a href="/mahapps.com/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></h4>
 
-            <div class="font-size-sm"><p>The <code>TransitioningContentControl</code> was taken from Silverlight (specifically <a href="https://github.com/jenspettersson/WPF-Controls">this</a> port), it's great for switching content smoothly around.<br>
-At it's core, <code>TransitioningContentControl</code> is a <code>ContentControl</code>, so only one child element can be displayed at a time. When you change the content, an animation is played switching the old content to the new one.</p></div>
+            <div class="font-size-sm"><p><code>TransitioningContentControl</code> animates <em>between</em> two contents: assign a new <code>Content</code> and the old one is animated out while the new one is animated in. It is a <code>ContentControl</code>, so it holds one child at a time.</p></div>
 
     </div>
 

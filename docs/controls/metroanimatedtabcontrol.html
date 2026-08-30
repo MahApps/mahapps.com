@@ -331,12 +331,51 @@ MetroAnimatedTabControl
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>MetroAnimatedTabControl</code> is a <a href="MetroTabControl">MetroTabControl</a> whose content slides in when you switch tabs. The class itself is four lines — it derives from <code>BaseMetroTabControl</code> and only points at a different default style. Everything below is that style.</p>
+<p><img src="images/animatedtabcontrol-transition.png" alt="Left, Up and Normal, caught early in the transition" /></p>
+<pre><code class="language-xml">&lt;mah:MetroAnimatedTabControl&gt;
+    &lt;TabItem Header=&quot;Overview&quot;&gt;
+        &lt;!--  content  --&gt;
+    &lt;/TabItem&gt;
+    &lt;TabItem Header=&quot;Details&quot;&gt;
+        &lt;!--  content  --&gt;
+    &lt;/TabItem&gt;
+&lt;/mah:MetroAnimatedTabControl&gt;
+</code></pre>
+<p>Because it derives from <code>BaseMetroTabControl</code>, everything on the <a href="MetroTabControl">MetroTabControl</a> page applies here too — closeable tabs, <code>CloseTabCommand</code>, the header styling through <a href="../helper/tabcontrolhelper">TabControlHelper</a>, and so on.</p>
+<h2 id="where-the-animation-comes-from">Where the animation comes from</h2>
+<p>The template hosts the tab content in a <a href="transitioningcontentcontrol">TransitioningContentControl</a>, replayed on every tab change:</p>
+<pre><code class="language-xml">&lt;mah:TransitioningContentControl behaviors:ReloadBehavior.OnSelectedTabChanged=&quot;True&quot;
+                                 Transition=&quot;{TemplateBinding mah:TabControlHelper.Transition}&quot;
+                                 ... /&gt;
+</code></pre>
+<p>That is the whole mechanism, and it explains both how to change the animation and what its limits are. A plain <a href="MetroTabControl">MetroTabControl</a> has no <code>TransitioningContentControl</code> in its template at all, which is why it does not animate.</p>
+<h2 id="choosing-the-transition">Choosing the transition</h2>
+<p><code>TabControlHelper.Transition</code> sets it, and the style's default is <strong><code>Left</code></strong>:</p>
+<pre><code class="language-xml">&lt;mah:MetroAnimatedTabControl mah:TabControlHelper.Transition=&quot;Up&quot;&gt;
+</code></pre>
+<p>The value is a <code>TransitionType</code>, so every option on the <a href="transitioningcontentcontrol">TransitioningContentControl</a> page is available here — including <code>Normal</code>, which does not animate at all and is the way to keep this control's template while turning the movement off, and <code>Custom</code> for your own visual state.</p>
+<h2 id="headers-wrap-onto-more-rows">Headers wrap onto more rows</h2>
+<p><img src="images/animatedtabcontrol-headers.png" alt="The same six tabs in both controls" /></p>
+<p>The headers sit in a plain <code>TabPanel</code>, so when they do not fit across the control they <strong>wrap onto further rows</strong>, and each row takes space away from the content. The left panel above shows six headers in a 280px-wide control folding onto three rows.</p>
+<p>Note that the selected tab's row is moved down next to the content — that is <code>TabPanel</code>'s own behaviour, not something MahApps does, and it is why <em>Overview</em> appears on the bottom row rather than the top.</p>
+<p>If you would rather have one row that scrolls, use <a href="MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a>, which is the same control with a <code>ScrollViewer</code> around the headers.</p>
+<h2 id="related">Related</h2>
+<p><a href="MetroTabControl">MetroTabControl</a> for the shared API and the non-animated version. <a href="MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a> for the scrolling-header variant. <a href="transitioningcontentcontrol">TransitioningContentControl</a> for what the transitions actually do.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#where-the-animation-comes-from">Where the animation comes from</a></div>
+                    <div class="sidebar-nav-item"><a href="#choosing-the-transition">Choosing the transition</a></div>
+                    <div class="sidebar-nav-item"><a href="#headers-wrap-onto-more-rows">Headers wrap onto more rows</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/MetroAnimatedTabControl.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

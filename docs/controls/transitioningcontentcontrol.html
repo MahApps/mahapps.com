@@ -331,68 +331,147 @@ TransitioningContentControl
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>TransitioningContentControl</code> was taken from Silverlight (specifically <a href="https://github.com/jenspettersson/WPF-Controls">this</a> port), it's great for switching content smoothly around.<br />
-At it's core, <code>TransitioningContentControl</code> is a <code>ContentControl</code>, so only one child element can be displayed at a time. When you change the content, an animation is played switching the old content to the new one.</p>
-<pre><code class="language-xml">&lt;mah:TransitioningContentControl x:Name=&quot;transitioningControl&quot;
-                                 Width=&quot;250&quot;
-                                 Height=&quot;250&quot;
-                                 Content=&quot;First&quot;
+<p><code>TransitioningContentControl</code> animates <em>between</em> two contents: assign a new <code>Content</code> and the old one is animated out while the new one is animated in. It is a <code>ContentControl</code>, so it holds one child at a time.</p>
+<p><img src="images/transitioningcontentcontrol-transitions.png" alt="Left, Right, Up and Down, caught early in the transition" /></p>
+<pre><code class="language-xml">&lt;mah:TransitioningContentControl Width=&quot;250&quot; Height=&quot;250&quot;
+                                 Content=&quot;{Binding CurrentPage}&quot;
                                  Transition=&quot;Left&quot; /&gt;
 </code></pre>
-<p>Built in there are several transitions:</p>
-<pre><code class="language-csharp">public enum TransitionType
+<p>The figures freeze the animation shortly after it starts, which is the only moment both contents are on screen — the old one (<em>First</em>) on its way out, the new one (<em>Second</em>) on its way in. Each sits in a clipped, fixed-size box so the vertical transitions stay inside the picture.</p>
+<p>This is the counterpart to <a href="metrocontentcontrol">MetroContentControl</a>, which animates its own appearance and does <strong>not</strong> react to a content change at all.</p>
+<p>It began as a port of the Silverlight control of the same name.</p>
+<h2 id="the-transitions">The transitions</h2>
+<p><code>Transition</code> takes a <code>TransitionType</code>, and each value maps to a visual state in the template:</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th>Visual state</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Default</code></td>
+<td><code>DefaultTransition</code></td>
+<td>the default: a cross-fade over 0.3s, no movement</td>
+</tr>
+<tr>
+<td><code>Normal</code></td>
+<td><code>Normal</code></td>
+<td><strong>no animation</strong> — it only hides the previous presenter, so the swap is instant</td>
+</tr>
+<tr>
+<td><code>Up</code> / <code>Down</code></td>
+<td><code>UpTransition</code> / <code>DownTransition</code></td>
+<td>slide vertically</td>
+</tr>
+<tr>
+<td><code>Left</code> / <code>Right</code></td>
+<td><code>LeftTransition</code> / <code>RightTransition</code></td>
+<td>slide horizontally</td>
+</tr>
+<tr>
+<td><code>LeftReplace</code> / <code>RightReplace</code></td>
+<td><code>LeftReplaceTransition</code> / <code>RightReplaceTransition</code></td>
+<td>see below</td>
+</tr>
+<tr>
+<td><code>Custom</code></td>
+<td>whatever <code>CustomVisualStatesName</code> says</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>Normal</code> is the one to pick when you want the control's API but none of its animation.</p>
+<p><img src="images/transitioningcontentcontrol-replace.png" alt="Left next to LeftReplace" /></p>
+<p>The <em>replace</em> variants are not just a different direction — they are a different idea and a different length:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>plain <code>Left</code></th>
+<th><code>LeftReplace</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>new content</td>
+<td>fades in over 0.4s, slides 30px over <strong>0.7s</strong></td>
+<td>fades in over 0.3s, slides 40px over <strong>0.3s</strong></td>
+</tr>
+<tr>
+<td>old content</td>
+<td>fades out over 0.1s <strong>and slides away</strong></td>
+<td>fades out over 0.3s, <strong>stays put</strong></td>
+</tr>
+</tbody>
+</table>
+<p>So <code>Left</code> moves both layers past each other, while <code>LeftReplace</code> slides the new content over an old one that only dissolves. In the figure above the old content is still strongly coloured on the right, because it is a third of the way through a 0.3s fade rather than half way through a 0.1s one.</p>
+<div class="alert alert-info"><p><code>Transition</code> is registered with <code>FrameworkPropertyMetadataOptions.Inherits</code>, so setting it once on a parent panel applies it to every <code>TransitioningContentControl</code> underneath.</p>
+</div>
+<h2 id="when-the-content-changes-again-mid-transition">When the content changes again mid-transition</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>RestartTransitionOnContentChange</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+</tr>
+</tbody>
+</table>
+<p>The name undersells what it decides. <code>StartTransition</code> reads:</p>
+<pre><code class="language-csharp">if (!this.IsTransitioning || this.RestartTransitionOnContentChange)
+</code></pre>
+<p>With the default <code>False</code>, a content change arriving <strong>while a transition is still running</strong> puts the new content into the presenter but does <strong>not</strong> start the animation again — the running transition simply finishes with the newer content in place. Set it to <code>True</code> and every change restarts the animation from the beginning, which is what you want when content can change faster than 0.7s.</p>
+<h2 id="methods-and-events">Methods and events</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ReloadTransition()</code></td>
+<td>play the transition again with the same content</td>
+</tr>
+<tr>
+<td><code>AbortTransition()</code></td>
+<td>stop the running one immediately</td>
+</tr>
+<tr>
+<td><code>TransitionCompleted</code></td>
+<td>raised when the storyboard finishes</td>
+</tr>
+</tbody>
+</table>
+<p><code>ReloadBehavior.OnSelectedTabChanged</code> replays the transition when a <code>TabControl</code> above the control raises <code>SelectionChanged</code> — see <a href="metrocontentcontrol">MetroContentControl</a> for the behavior's other attached property.</p>
+<div class="alert alert-warning"><p><strong><code>TransitionCompleted</code> is not a routed event.</strong> Despite the <code>RoutedEventHandler</code> signature it is a plain CLR event:</p>
+<pre><code class="language-csharp">public event RoutedEventHandler TransitionCompleted;
+</code></pre>
+<p>It is raised with <code>Invoke</code>, so it does not bubble and cannot be attached with an <code>EventSetter</code>. Subscribe on the control itself. (<a href="toggleswitch">ToggleSwitch</a> has the same arrangement for its <code>Toggled</code> event.)</p>
+</div>
+<div class="alert alert-warning"><p><strong>Never write to <code>IsTransitioning</code>.</strong> It is registered as an ordinary read/write dependency property, but the control guards it with an internal flag and any write from outside is rejected with a bare exception:</p>
+<pre><code class="language-csharp">if (!source.allowIsTransitioningPropertyWrite)
 {
-  /// &lt;summary&gt;
-  /// Use the VisualState DefaultTransition
-  /// &lt;/summary&gt;
-  Default,
-
-  /// &lt;summary&gt;
-  /// Use the VisualState Normal
-  /// &lt;/summary&gt;
-  Normal,
-
-  /// &lt;summary&gt;
-  /// Use the VisualState UpTransition
-  /// &lt;/summary&gt;
-  Up,
-
-  /// &lt;summary&gt;
-  /// Use the VisualState DownTransition
-  /// &lt;/summary&gt;
-  Down,
-
-  /// &lt;summary&gt;
-  /// Use the VisualState RightTransition
-  /// &lt;/summary&gt;
-  Right,
-
-  /// &lt;summary&gt;
-  /// Use the VisualState RightReplaceTransition
-  /// &lt;/summary&gt;
-  RightReplace,
-
-  /// &lt;summary&gt;
-  /// Use the VisualState LeftTransition
-  /// &lt;/summary&gt;
-  Left,
-
-  /// &lt;summary&gt;
-  /// Use the VisualState LeftReplaceTransition
-  /// &lt;/summary&gt;
-  LeftReplace,
-
-  /// &lt;summary&gt;
-  /// Use a custom VisualState, the name must be set using CustomVisualStatesName property
-  /// &lt;/summary&gt;
-  Custom
+    source.IsTransitioning = (bool)e.OldValue;
+    throw new InvalidOperationException();
 }
 </code></pre>
-<h2 id="custom-transition">Custom Transition</h2>
-<p>It's possible to use a custom transition if the given ones are not enough.</p>
-<pre><code class="language-xml">&lt;mah:TransitioningContentControl x:Name=&quot;customTransitioning&quot;
-                                 Width=&quot;250&quot;
-                                 Height=&quot;50&quot;
+<p>There is no message on it, which makes it puzzling to hit. Read it, or bind to it <strong>one-way</strong>; a two-way binding will throw as soon as the target pushes a value back.</p>
+</div>
+<h2 id="custom-transitions">Custom transitions</h2>
+<p>If none of the built-in states fit, supply your own. Set <code>Transition=&quot;Custom&quot;</code>, name the state in <code>CustomVisualStatesName</code>, and put the <code>VisualState</code> in <code>CustomVisualStates</code>. The two presenters you animate are named <code>CurrentContentPresentationSite</code> and <code>PreviousContentPresentationSite</code>.</p>
+<pre><code class="language-xml">&lt;mah:TransitioningContentControl Width=&quot;250&quot; Height=&quot;50&quot;
                                  Content=&quot;First&quot;
                                  CustomVisualStatesName=&quot;CustomTransition&quot;
                                  Transition=&quot;Custom&quot;&gt;
@@ -421,6 +500,15 @@ At it's core, <code>TransitioningContentControl</code> is a <code>ContentControl
     &lt;/mah:TransitioningContentControl.CustomVisualStates&gt;
 &lt;/mah:TransitioningContentControl&gt;
 </code></pre>
+<p><code>CustomVisualStatesName</code> defaults to <code>&quot;CustomTransition&quot;</code>, so the name above can be left out if you use that one.</p>
+<div class="alert alert-warning"><p><strong>Get the state name wrong and the exception will not tell you so.</strong> When the control cannot find the state for the transition it has been given, it reverts the property and throws — but the message is a leftover placeholder:</p>
+<pre><code class="language-csharp">throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, &quot;Temporary removed exception message&quot;, newTransition));
+</code></pre>
+<p>The format string has no placeholder, so the transition name passed alongside it is discarded too. This is unchanged on <code>develop</code>. A mistyped <code>CustomVisualStatesName</code> is the usual way to reach it, so check that first when you see it.</p>
+<p>A second, better-worded failure exists for the same problem at template time: <code>'{transition}' transition could not be found!</code>, thrown as a <code>MahAppsException</code> from <code>OnApplyTemplate</code>.</p>
+</div>
+<h2 id="related">Related</h2>
+<p><a href="metrocontentcontrol">MetroContentControl</a> for a control that animates its own entrance rather than the change between contents. <a href="flipview">FlipView</a> uses a <code>TransitioningContentControl</code> internally, which is where its <code>LeftTransition</code> and friends come from.</p>
 
 
                                         </div>
@@ -429,7 +517,11 @@ At it's core, <code>TransitioningContentControl</code> is a <code>ContentControl
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#custom-transition">Custom Transition</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-transitions">The transitions</a></div>
+                    <div class="sidebar-nav-item"><a href="#when-the-content-changes-again-mid-transition">When the content changes again mid-transition</a></div>
+                    <div class="sidebar-nav-item"><a href="#methods-and-events">Methods and events</a></div>
+                    <div class="sidebar-nav-item"><a href="#custom-transitions">Custom transitions</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/transitioningcontentcontrol.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

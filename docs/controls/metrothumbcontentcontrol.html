@@ -331,12 +331,92 @@ MetroThumbContentControl
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>MetroThumbContentControl</code> is a <code>Thumb</code> that can hold arbitrary content. WPF's own <code>Thumb</code> is a <code>Control</code> with a template, so wrapping content in it is awkward; this one derives from <a href="contentcontrolex">ContentControlEx</a> instead and raises the same three drag events.</p>
+<pre><code class="language-xml">&lt;mah:MetroThumbContentControl DragDelta=&quot;OnDragDelta&quot;&gt;
+    &lt;Border Background=&quot;{DynamicResource MahApps.Brushes.Accent}&quot; Padding=&quot;12&quot;&gt;
+        &lt;TextBlock Text=&quot;Drag me&quot; /&gt;
+    &lt;/Border&gt;
+&lt;/mah:MetroThumbContentControl&gt;
+</code></pre>
+<pre><code class="language-csharp">private void OnDragDelta(object sender, DragDeltaEventArgs e)
+{
+    Canvas.SetLeft(this.card, Canvas.GetLeft(this.card) + e.HorizontalChange);
+    Canvas.SetTop(this.card, Canvas.GetTop(this.card) + e.VerticalChange);
+}
+</code></pre>
+<p>There is no figure on this page because there is nothing to photograph: the control has <strong>no appearance of its own</strong>. Its style is</p>
+<pre><code class="language-xml">&lt;Style x:Key=&quot;MahApps.Styles.MetroThumbContentControl&quot;
+       BasedOn=&quot;{StaticResource MahApps.Styles.ContentControlEx}&quot;
+       TargetType=&quot;{x:Type mah:MetroThumbContentControl}&quot; /&gt;
+</code></pre>
+<p>— the <a href="contentcontrolex">ContentControlEx</a> style with nothing added. What you see is entirely your content.</p>
+<h2 id="you-are-probably-already-using-it">You are probably already using it</h2>
+<p>This is not a control most applications place by hand. It is what makes two familiar things work:</p>
+<ul>
+<li><strong><a href="metrowindow">MetroWindow</a>'s title bar.</strong> <code>PART_TitleBar</code> in the window template <em>is</em> a <code>MetroThumbContentControl</code>, and dragging it is what moves the window. The handler checks <code>IsWindowDraggable</code>, ignores movements of 2px or less, and refuses to drag a maximized window unless the pointer is actually within <code>TitleBarHeight</code>.</li>
+<li><strong><a href="flyouts">Flyout</a> headers</strong>, which use the same <code>IMetroThumb</code> interface to let a flyout be dragged by its header.</li>
+</ul>
+<p>Both go through <code>IMetroThumb</code>, a small interface carrying just the three drag events and <code>MouseDoubleClick</code>. <code>MetroThumb</code> — a plain <code>Thumb</code> implementing the same interface — is the other implementation.</p>
+<h2 id="events-and-state">Events and state</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DragStarted</code></td>
+<td>bubbling; raised on left mouse down after capture</td>
+</tr>
+<tr>
+<td><code>DragDelta</code></td>
+<td>bubbling; raised on each move that actually changes the screen position</td>
+</tr>
+<tr>
+<td><code>DragCompleted</code></td>
+<td>bubbling; raised on release</td>
+</tr>
+<tr>
+<td><code>IsDragging</code></td>
+<td>read-only dependency property</td>
+</tr>
+<tr>
+<td><code>CancelDragAction()</code></td>
+<td>aborts a drag in progress</td>
+</tr>
+</tbody>
+</table>
+<p>All three are <strong>bubbling</strong> routed events, unlike <code>Thumb</code>'s, so a parent can handle them without attaching to the thumb itself.</p>
+<div class="alert alert-info"><p><code>DragDelta</code> and <code>DragCompleted</code> do not measure the same thing.</p>
+<p><code>DragDelta</code> reports the change in the <strong>thumb's own coordinates</strong>, which is what makes the usual <code>+= e.HorizontalChange</code> idiom work when you move the element in response to the event.</p>
+<p><code>DragCompleted</code> reports the total change in <strong>screen coordinates</strong>, taken with <code>PointToScreen</code>, so it is the whole distance travelled regardless of how the element moved along the way.</p>
+</div>
+<p>A drag is abandoned automatically if the control loses mouse capture — a class handler on <code>LostMouseCapture</code> calls <code>CancelDragAction()</code>, which releases capture, clears <code>IsDragging</code> and raises <code>DragCompleted</code> with <code>Canceled</code> set.</p>
+<h2 id="touch">Touch</h2>
+<p><code>OnPreviewTouchDown</code> captures the touch device, <code>OnPreviewTouchUp</code> releases it, and <code>OnLostTouchCapture</code> takes it back if it is lost while still down. That last part is what keeps a drag alive when a finger slides outside the control — without it a touch drag stops the moment the contact leaves the bounds.</p>
+<h2 id="inherited-behaviour">Inherited behaviour</h2>
+<p>Because it derives from <a href="contentcontrolex">ContentControlEx</a>, <code>ControlsHelper.ContentCharacterCasing</code> and <code>ControlsHelper.RecognizesAccessKey</code> apply to its content, and a string child is upper- or lower-cased by the same converters.</p>
+<p><code>Focusable</code> is overridden to <code>False</code> in the static constructor, so the control never takes focus — appropriate for something whose whole job is to be dragged.</p>
+<p>It also supplies a <code>MetroThumbContentControlAutomationPeer</code>.</p>
+<h2 id="related">Related</h2>
+<p><a href="contentcontrolex">ContentControlEx</a> is the base and supplies the style. <a href="metrowindow">MetroWindow</a> and <a href="flyouts">Flyout</a> are where the library uses it.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#you-are-probably-already-using-it">You are probably already using it</a></div>
+                    <div class="sidebar-nav-item"><a href="#events-and-state">Events and state</a></div>
+                    <div class="sidebar-nav-item"><a href="#touch">Touch</a></div>
+                    <div class="sidebar-nav-item"><a href="#inherited-behaviour">Inherited behaviour</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/MetroThumbContentControl.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

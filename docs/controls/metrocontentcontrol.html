@@ -331,12 +331,157 @@ MetroContentControl
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>MetroContentControl</code> is a <code>ContentControl</code> that plays a short slide-and-fade whenever it appears. It is what gives a MahApps page its characteristic entrance.</p>
+<p><img src="images/metrocontentcontrol-transition.gif" alt="The transition" /></p>
+<pre><code class="language-xml">&lt;mah:MetroContentControl&gt;
+    &lt;!--  page content  --&gt;
+&lt;/mah:MetroContentControl&gt;
+</code></pre>
+<div class="alert alert-warning"><p><strong>It does not animate when the content changes.</strong> Nothing in the control watches <code>Content</code> — there is no <code>OnContentChanged</code> override and no callback on the property. The transition runs when the control is <strong>loaded</strong> and when it <strong>becomes visible</strong>, and that is all.</p>
+<p>Assigning a new <code>Content</code> swaps it instantly, with no animation. For a control that animates one content into the next, use <a href="transitioningcontentcontrol">TransitioningContentControl</a>; to re-run this control's transition on a change, see <a href="#replaying-it">Replaying it</a> below.</p>
+</div>
+<h2 id="the-animation">The animation</h2>
+<p><img src="images/metrocontentcontrol-direction.png" alt="The default and the reverse, sampled at 0.10s and 0.35s" /></p>
+<p>Two things happen at once, defined as visual states in the template:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>opacity</td>
+<td>0 → 1 over <strong>0.4s</strong></td>
+</tr>
+<tr>
+<td><code>TranslateTransform.X</code></td>
+<td><strong>30 → 0</strong> over <strong>0.7s</strong>, with easing</td>
+</tr>
+</tbody>
+</table>
+<p>So the content drifts in from the right while fading up. <code>ReverseTransition</code> flips the slide to −30, bringing it in from the left instead — the two right-hand panels above. The tinted strip in each panel is a fixed-width backdrop, there so the displacement can be seen against something that does not move with it.</p>
+<p>Leaving the control (the <code>AfterUnLoaded</code> state) plays the same thing backwards in 0.1s.</p>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TransitionsEnabled</code></td>
+<td><code>bool</code></td>
+<td><strong><code>True</code></strong></td>
+<td>play the transition at all</td>
+</tr>
+<tr>
+<td><code>ReverseTransition</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>come in from the left instead of the right</td>
+</tr>
+<tr>
+<td><code>OnlyLoadTransition</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>play it once, at load, and never again</td>
+</tr>
+<tr>
+<td><code>IsTransitioning</code></td>
+<td><code>bool</code>, read-only</td>
+<td><code>False</code></td>
+<td>whether an animation is running</td>
+</tr>
+</tbody>
+</table>
+<p><code>OnlyLoadTransition</code> is the one to reach for when a control is shown and hidden repeatedly and you only want the entrance once. It is latched at load time, and once latched the control ignores visibility changes.</p>
+<div class="alert alert-info"><p><code>TransitionsEnabled</code> has <strong>no property-changed callback</strong>. With it set to <code>False</code>, the <code>Loaded</code> handler is what resets the template's <code>RootGrid</code> to full opacity and zero offset — so switching the property at runtime does nothing until the control is loaded again. Set it in XAML, not later from code.</p>
+</div>
+<h2 id="replaying-it">Replaying it</h2>
+<p><code>Reload()</code> runs the transition again:</p>
+<pre><code class="language-csharp">this.contentControl.Reload();
+</code></pre>
+<p>It returns without doing anything when <code>TransitionsEnabled</code> is <code>False</code> <strong>or</strong> when <code>OnlyLoadTransition</code> is <code>True</code> — the latter is easy to miss, since the two properties otherwise look unrelated.</p>
+<p><code>ReloadBehavior</code> wires <code>Reload()</code> to two common triggers, so you rarely have to call it yourself:</p>
+<pre><code class="language-xml">&lt;mah:MetroContentControl mah:ReloadBehavior.OnDataContextChanged=&quot;True&quot;&gt;
+    &lt;!--  content  --&gt;
+&lt;/mah:MetroContentControl&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Attached property</th>
+<th>Replays the transition when</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ReloadBehavior.OnDataContextChanged</code></td>
+<td>the control's <code>DataContext</code> changes</td>
+</tr>
+<tr>
+<td><code>ReloadBehavior.OnSelectedTabChanged</code></td>
+<td>a <code>TabControl</code> above it raises <code>SelectionChanged</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>OnDataContextChanged</code> is the practical answer to &quot;animate when the content changes&quot;: bind the view model to the <code>DataContext</code> and the transition replays with each new one. <code>OnSelectedTabChanged</code> also works on <a href="transitioningcontentcontrol">TransitioningContentControl</a>.</p>
+<h2 id="events">Events</h2>
+<p>Both are bubbling routed events.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TransitionStarted</code></td>
+<td>the storyboard's clock is running</td>
+</tr>
+<tr>
+<td><code>TransitionCompleted</code></td>
+<td>the storyboard finished</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p><strong><code>TransitionStarted</code> fires many times per transition, not once.</strong> It is raised from the storyboard's <code>CurrentTimeInvalidated</code> handler, which runs on every frame, guarded only by a check that the clock is active:</p>
+<pre><code class="language-csharp">if (clock.CurrentState == ClockState.Active)
+{
+    this.SetValue(IsTransitioningPropertyKey, BooleanBoxes.TrueBox);
+    this.RaiseEvent(new RoutedEventArgs(TransitionStartedEvent));
+}
+</code></pre>
+<p>Measured on one transition of a default <code>MetroContentControl</code>: <strong>37 <code>TransitionStarted</code> events and 1 <code>TransitionCompleted</code></strong>. It is the same on <code>develop</code>.</p>
+<p>So do not treat it as &quot;the transition began&quot; — put anything that must happen once behind a flag of your own, or use <code>TransitionCompleted</code>, which really is raised once. <code>IsTransitioning</code> is set repeatedly to the same value, which is harmless.</p>
+</div>
+<h2 id="where-else-it-shows-up">Where else it shows up</h2>
+<p><a href="customvalidationpopup">CustomValidationPopup</a> checks for an ancestor <code>MetroContentControl</code> and suppresses itself while one is transitioning, so a validation message never appears pinned to a control that is still sliding into place.</p>
+<h2 id="related">Related</h2>
+<p><a href="transitioningcontentcontrol">TransitioningContentControl</a> animates <em>between</em> two contents and offers a choice of transitions; this control animates its own appearance. <a href="flyouts">Flyout</a> has its own slide and does not need either.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-animation">The animation</a></div>
+                    <div class="sidebar-nav-item"><a href="#properties">Properties</a></div>
+                    <div class="sidebar-nav-item"><a href="#replaying-it">Replaying it</a></div>
+                    <div class="sidebar-nav-item"><a href="#events">Events</a></div>
+                    <div class="sidebar-nav-item"><a href="#where-else-it-shows-up">Where else it shows up</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/MetroContentControl.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

@@ -331,12 +331,92 @@ MetroAnimatedSingleRowTabControl
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>MetroAnimatedSingleRowTabControl</code> is <a href="MetroAnimatedTabControl">MetroAnimatedTabControl</a> with one difference: its tab headers stay on a <strong>single row and scroll</strong>, instead of wrapping onto further rows.</p>
+<p><img src="images/animatedtabcontrol-headers.png" alt="The same six tabs in both controls" /></p>
+<pre><code class="language-xml">&lt;mah:MetroAnimatedSingleRowTabControl&gt;
+    &lt;TabItem Header=&quot;Overview&quot;&gt;
+        &lt;!--  content  --&gt;
+    &lt;/TabItem&gt;
+    &lt;TabItem Header=&quot;Details&quot;&gt;
+        &lt;!--  content  --&gt;
+    &lt;/TabItem&gt;
+&lt;/mah:MetroAnimatedSingleRowTabControl&gt;
+</code></pre>
+<p>Both controls hold six headers in 280px. The left one folds them onto three rows and gives up most of its height to do it; this one keeps one row and offers a horizontal scrollbar, so the content area stays the size you designed.</p>
+<h2 id="what-is-actually-different">What is actually different</h2>
+<p>The class is four lines, identical to its sibling apart from the default style key. In the template, the tab panel is wrapped:</p>
+<pre><code class="language-xml">&lt;ScrollViewer x:Name=&quot;HeaderPanelScroll&quot;
+              mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled=&quot;{TemplateBinding mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled}&quot;
+              ... &gt;
+    &lt;Grid x:Name=&quot;HeaderPanelGrid&quot;&gt;
+        &lt;TabPanel x:Name=&quot;HeaderPanel&quot; ... /&gt;
+    &lt;/Grid&gt;
+&lt;/ScrollViewer&gt;
+</code></pre>
+<p>and the style turns the horizontal wheel on by default:</p>
+<pre><code class="language-xml">&lt;Setter Property=&quot;mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled&quot; Value=&quot;True&quot; /&gt;
+</code></pre>
+<p>So the mouse wheel scrolls the header row sideways without holding <kbd>Shift</kbd>. See <a href="../helper/scrollviewerhelper">ScrollViewerHelper</a>.</p>
+<p>Everything else is shared: the same <code>BaseMetroTabControl</code> API as <a href="MetroTabControl">MetroTabControl</a>, and the same <a href="transitioningcontentcontrol">TransitioningContentControl</a> driving the content animation.</p>
+<h2 id="two-templates-one-per-orientation">Two templates, one per orientation</h2>
+<p>Both controls react to <code>TabStripPlacement</code>, but they do it differently. <a href="MetroAnimatedTabControl">MetroAnimatedTabControl</a> has <strong>one</strong> template and rearranges its own grid from <code>ControlTemplate.Triggers</code>. This control instead ships <strong>two</strong> templates and swaps between them from <code>Style.Triggers</code>:</p>
+<table>
+<thead>
+<tr>
+<th><code>TabStripPlacement</code></th>
+<th>Template</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Top</code>, <code>Bottom</code></td>
+<td><code>MahApps.Templates.MetroAnimatedSingleRowTabControl.Horizontal</code></td>
+</tr>
+<tr>
+<td><code>Left</code>, <code>Right</code></td>
+<td><code>MahApps.Templates.MetroAnimatedSingleRowTabControl.Vertical</code></td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p>A trigger outranks a plain setter anywhere in the style chain, so a derived style that sets <code>Template</code> is beaten by the inherited <code>TabStripPlacement</code> trigger the moment the strip is not on top.</p>
+<p>To replace the template, repeat the triggers in your own style:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource {x:Type mah:MetroAnimatedSingleRowTabControl}}&quot;
+       TargetType=&quot;{x:Type mah:MetroAnimatedSingleRowTabControl}&quot;&gt;
+    &lt;Setter Property=&quot;Template&quot; Value=&quot;{StaticResource MyHorizontalTemplate}&quot; /&gt;
+    &lt;Style.Triggers&gt;
+        &lt;Trigger Property=&quot;TabStripPlacement&quot; Value=&quot;Left&quot;&gt;
+            &lt;Setter Property=&quot;Template&quot; Value=&quot;{StaticResource MyVerticalTemplate}&quot; /&gt;
+        &lt;/Trigger&gt;
+        &lt;Trigger Property=&quot;TabStripPlacement&quot; Value=&quot;Right&quot;&gt;
+            &lt;Setter Property=&quot;Template&quot; Value=&quot;{StaticResource MyVerticalTemplate}&quot; /&gt;
+        &lt;/Trigger&gt;
+    &lt;/Style.Triggers&gt;
+&lt;/Style&gt;
+</code></pre>
+<p><a href="splitbutton">SplitButton</a> and the <a href="../styles/slider">Slider</a> styles have the same shape and the same trap.</p>
+</div>
+<h2 id="choosing-the-transition">Choosing the transition</h2>
+<p>As with <a href="MetroAnimatedTabControl">MetroAnimatedTabControl</a>, <code>TabControlHelper.Transition</code> picks the animation and defaults to <code>Left</code>:</p>
+<pre><code class="language-xml">&lt;mah:MetroAnimatedSingleRowTabControl mah:TabControlHelper.Transition=&quot;Up&quot;&gt;
+</code></pre>
+<p><img src="images/animatedtabcontrol-transition.png" alt="Left, Up and Normal, caught early in the transition" /></p>
+<p><code>Normal</code> turns the animation off while keeping the rest of the template.</p>
+<h2 id="related">Related</h2>
+<p><a href="MetroAnimatedTabControl">MetroAnimatedTabControl</a> for the wrapping-header version, <a href="MetroTabControl">MetroTabControl</a> for the shared API, <a href="../helper/scrollviewerhelper">ScrollViewerHelper</a> for the horizontal wheel, and <a href="transitioningcontentcontrol">TransitioningContentControl</a> for the transitions.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#what-is-actually-different">What is actually different</a></div>
+                    <div class="sidebar-nav-item"><a href="#two-templates-one-per-orientation">Two templates, one per orientation</a></div>
+                    <div class="sidebar-nav-item"><a href="#choosing-the-transition">Choosing the transition</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/MetroAnimatedSingleRowTabControl.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

@@ -331,12 +331,114 @@ HotKeyBox
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>HotKeyBox</code> is a field that records whatever key combination the user presses into it, the way a <em>set shortcut</em> box in an options dialog does. It derives from <code>Control</code> and its only template part is a read-only <code>TextBox</code>.</p>
+<p><img src="images/hotkeybox-basic.png" alt="Empty, with Ctrl+S, and with a three-modifier combination" /></p>
+<pre><code class="language-xml">&lt;mah:HotKeyBox Width=&quot;175&quot;
+               HotKey=&quot;{Binding SaveShortcut}&quot;
+               mah:TextBoxHelper.Watermark=&quot;Press a key combination&quot; /&gt;
+</code></pre>
+<p>The captions above name what was set in code; the boxes show what the control rendered, which is not the same thing — see <a href="#what-it-displays">What it displays</a>.</p>
+<h2 id="properties">Properties</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HotKey</code></td>
+<td><code>HotKey</code></td>
+<td><code>null</code></td>
+<td>the recorded combination; binds two-way by default</td>
+</tr>
+<tr>
+<td><code>AreModifierKeysRequired</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>reject a key pressed without a modifier</td>
+</tr>
+<tr>
+<td><code>Text</code></td>
+<td><code>string</code>, read-only</td>
+<td><code>&quot;&quot;</code></td>
+<td>what the field shows</td>
+</tr>
+</tbody>
+</table>
+<p><code>HotKey</code> has no type converter, so it cannot be written as an attribute in XAML — bind it, or set it in code:</p>
+<pre><code class="language-csharp">this.hotKeyBox.HotKey = new HotKey(Key.S, ModifierKeys.Control);
+</code></pre>
+<p>With <code>AreModifierKeysRequired</code> left at <code>False</code>, a bare <kbd>F5</kbd> is recorded as a hot key. Set it to <code>True</code> and a keystroke without at least one of Ctrl, Alt, Shift or Windows is ignored — the field keeps whatever it had.</p>
+<h2 id="what-it-records">What it records</h2>
+<p>The control handles <code>PreviewKeyDown</code> on its inner text box, and the rules are short enough to state completely:</p>
+<ul>
+<li><strong>Modifiers alone are never recorded.</strong> Both Shifts, Ctrls, Alts and Windows keys return early, as does <kbd>Tab</kbd> — so tabbing still moves focus out of the field.</li>
+<li><strong><kbd>Backspace</kbd> with no modifier clears it</strong>, setting <code>HotKey</code> to <code>null</code>. <kbd>Ctrl</kbd>+<kbd>Backspace</kbd>, on the other hand, is recorded as a combination.</li>
+<li>Everything else is recorded, as long as a modifier is held or <code>AreModifierKeysRequired</code> is <code>False</code>.</li>
+<li><kbd>Alt</kbd> combinations arrive as <code>Key.System</code>, and the control reads <code>SystemKey</code> in that case, so <kbd>Alt</kbd>+<kbd>F4</kbd> and friends are captured rather than mangled.</li>
+</ul>
+<div class="alert alert-info"><p>While the field has focus it <strong>swallows every <code>WM_HOTKEY</code> message</strong>:</p>
+<pre><code class="language-csharp">if (msg.message == (int)WM.HOTKEY)
+{
+    // swallow all hotkeys, so our control can catch the key strokes
+    handled = true;
+}
+</code></pre>
+<p>So a globally registered hot key does not fire while the user is recording one. The hook is added on <code>GotFocus</code> and removed on <code>LostFocus</code>.</p>
+</div>
+<p>The control itself is not a focus stop: a class handler on <code>GotFocus</code> forwards focus onward — to the next element, or the previous one if <kbd>Shift</kbd> is held — so only the inner text box takes focus.</p>
+<h2 id="what-it-displays">What it displays</h2>
+<p><code>Text</code> is read-only and is simply <code>HotKey.ToString()</code>, or empty when <code>HotKey</code> is <code>null</code> <strong>or</strong> its <code>Key</code> is <code>Key.None</code>.</p>
+<div class="alert alert-warning"><p><strong>The names come from the keyboard layout, not from the enum and not from the UI culture.</strong> <code>HotKey.ToString()</code> asks Win32 <code>GetKeyNameText</code> for each part, so <code>new HotKey(Key.S, ModifierKeys.Control)</code> shows <em>Ctrl+S</em> on an English layout and <em>Strg+S</em> on a German one — which is what the figure above is showing.</p>
+<p>Do not parse <code>Text</code>, and do not use it as a persisted value. Store <code>HotKey.Key</code> and <code>HotKey.ModifierKeys</code> instead.</p>
+</div>
+<p>Modifiers are always written in a fixed order — <strong>Alt, Ctrl, Shift, Windows</strong> — whatever order you pass them in. Only the Windows key is spelled literally, as <code>Windows+</code>; the other three are localized.</p>
+<p>The style sets <code>ControlsHelper.ContentCharacterCasing</code> to <code>Upper</code>, so the text is upper-cased before it is shown. <code>Normal</code> and <code>Lower</code> are honoured too, through three template triggers.</p>
+<h2 id="the-hotkey-class">The HotKey class</h2>
+<pre><code class="language-csharp">public class HotKey : IEquatable&lt;HotKey&gt;
+{
+    public HotKey(Key key, ModifierKeys modifierKeys = ModifierKeys.None);
+
+    public Key Key { get; }
+    public ModifierKeys ModifierKeys { get; }
+}
+</code></pre>
+<p>It is immutable, and both properties are get-only — to change a shortcut you assign a new instance, which is exactly what the control does on every keystroke.</p>
+<div class="alert alert-warning"><p><strong>Compare with <code>Equals</code>, never with <code>==</code>.</strong> <code>HotKey</code> is a class and overrides <code>Equals</code> and <code>GetHashCode</code>, but it does <strong>not</strong> overload <code>operator ==</code>, so <code>==</code> is reference equality:</p>
+<pre><code class="language-csharp">var a = new HotKey(Key.S, ModifierKeys.Control);
+var b = new HotKey(Key.S, ModifierKeys.Control);
+
+a == b        // false - two different objects
+a.Equals(b)   // true
+</code></pre>
+<p>Since the control hands you a fresh instance every time the user presses something, an <code>==</code> check against a stored value will essentially always be <code>false</code>. This is still the case on <code>develop</code>.</p>
+<p>In a released version, <code>Equals(HotKey other)</code> also throws a <code>NullReferenceException</code> when passed <code>null</code>, because it dereferences <code>other</code> without a check. <code>Equals(object)</code> is safe, as its <code>is HotKey</code> test rejects <code>null</code>. A null guard was added on <code>develop</code> and ships with the next release.</p>
+</div>
+<p>Because <code>GetHashCode</code> and <code>Equals</code> are implemented, <code>HotKey</code> works correctly as a dictionary key — which is the usual way to keep a table of shortcuts.</p>
+<h2 id="styling">Styling</h2>
+<p>The template is a single <code>TextBox</code>, and the usual <a href="../helper/textboxhelper">TextBoxHelper</a> properties are passed through to it: <code>Watermark</code>, <code>UseFloatingWatermark</code>, <code>WatermarkAlignment</code> and <code>WatermarkTrimming</code>. <code>ControlsHelper.FocusBorderBrush</code> and <code>MouseOverBorderBrush</code> are set by the style, as is <code>Validation.ErrorTemplate</code>, so a failed binding gets the usual <a href="../styles/validation">validation</a> treatment.</p>
+<h2 id="related">Related</h2>
+<p><a href="../helper/textboxhelper">TextBoxHelper</a> for the watermark, <a href="../helper/controlshelper">ControlsHelper</a> for the casing and border brushes.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#properties">Properties</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-it-records">What it records</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-it-displays">What it displays</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-hotkey-class">The HotKey class</a></div>
+                    <div class="sidebar-nav-item"><a href="#styling">Styling</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/HotKeyBox.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

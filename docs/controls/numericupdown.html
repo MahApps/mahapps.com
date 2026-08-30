@@ -331,54 +331,210 @@ NumericUpDown
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>NumericUpDown</code> control can be used to increase or decrease a numeric value.</p>
-<p><img src="images/numeric_up_down.png" alt="" /></p>
-<p>If you press the <code>+</code> button the value of the <code>NumericUpDown</code> control increases by the value set in <code>Interval</code>. Pressing <code>-</code> decreases the value.</p>
-<p>If you press and hold <code>+</code> or <code>-</code> then value keeps increasing, decreasing respectively.</p>
-<h1 id="speedup">SpeedUp</h1>
-<p>If you press and hold <code>+</code> or <code>-</code> for some longe time then the <code>Value</code> increases or decreases much faster. If this behaviour is not desired you can turn this off by setting <code>Speedup=false</code>. The default value is <code>true</code>.</p>
-<h1 id="numericinputmode">NumericInputMode</h1>
-<p>Controls whether the NumericUpDown should show the decimal separator and decimal digits. Replaces HasDecimals property.</p>
-<h1 id="interceptarrowkeys">InterceptArrowKeys</h1>
-<p>You can also increase or decrease the <code>Value</code> using <code>Arrow Up</code> or <code>Arrow Down</code>. You can enable this behaviour if you set <code>InterceptArrowKeys=true</code>. By default this behaviour is enabled. The default value is <code>true</code>.</p>
-<h1 id="interceptmousewheel">InterceptMouseWheel</h1>
-<p>Like with InterceptArrowKeys you can change the <code>Value</code> by using the mouse wheel. Scrolling up will increase <code>Value</code> by <code>Interval</code>, scrolling down decrease, respectively. The default value is <code>true</code>.</p>
-<h1 id="interceptmanualenter">InterceptManualEnter</h1>
-<p>Like with InterceptArrowKeys you can change the <code>Value</code> by focusing the control and typing with the keyboard. The default value is <code>true</code>.</p>
-<h1 id="minimum-maximum">Minimum / Maximum</h1>
-<p>By specifying a value for <code>Minimum</code> or <code>Maximum</code> you can set the range for legal values.</p>
-<h1 id="hideupdownbuttons">HideUpDownButtons</h1>
-<p>If you want you can hide the Up/Down Buttons. Then you are not able to click up/down to increase/decrease the value. But you can interact with the arrow keys, mouse wheel and entering values Manual.</p>
-<ul>
-<li>HideUpDownButtons = false: <img src="images/numeric_up_down.png" alt="" /></li>
-<li>HideUpDownButtons = true: <img src="images/numeric_up_down_hiddenUpDown.png" alt="" /></li>
-</ul>
-<h1 id="stringformat">StringFormat</h1>
-<p>You can also set the <code>StringFormat</code> to format the number of the Value that is displayed in the control.</p>
-<p>e.g.</p>
-<ul>
-<li>C2</li>
-<li>N4</li>
-<li>E1</li>
-<li>&quot;{0:N2} psc&quot;</li>
-</ul>
-<h1 id="example">Example</h1>
-<p>Following line will provide a NumericUpDown that allows numers from 0 to 1000. Furthermore by pressing <code>+</code> the value gets increased by 5. The value will be shown as currency with two decimal places:</p>
+<p><code>NumericUpDown</code> is a text field for a number, with a button to step it up and one to step it down.</p>
+<p><img src="images/numericupdown-buttons.png" alt="The buttons on the right, on the left, opposite, and hidden" /></p>
 <pre><code class="language-xml">&lt;mah:NumericUpDown Minimum=&quot;0&quot;
                    Maximum=&quot;10000&quot;
                    Interval=&quot;100&quot;
-                   StringFormat=&quot;C2&quot; /&gt;
+                   StringFormat=&quot;C2&quot;
+                   Value=&quot;{Binding Amount}&quot; /&gt;
 </code></pre>
-<h1 id="custom-styling">Custom Styling</h1>
-<p>If you want to hide the Up-Down Buttons if the control is readonly then you can add following Style to your application</p>
-<pre><code class="language-xml">&lt;Style TargetType=&quot;{x:Type mah:NumericUpDown}&quot; BasedOn=&quot;{StaticResource {x:Type mah:NumericUpDown}}&quot;&gt;
-  &lt;Style.Triggers&gt;
-    &lt;Trigger Property=&quot;IsReadOnly&quot; Value=&quot;True&quot;&gt;
-      &lt;Setter Property=&quot;HideUpDownButtons&quot; Value=&quot;True&quot; /&gt;
-    &lt;/Trigger&gt;
-  &lt;/Style.Triggers&gt;
+<h2 id="the-value-and-its-range">The value and its range</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Value</code></td>
+<td><code>double?</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>Minimum</code></td>
+<td><code>double</code></td>
+<td><code>double.MinValue</code></td>
+</tr>
+<tr>
+<td><code>Maximum</code></td>
+<td><code>double</code></td>
+<td><code>double.MaxValue</code></td>
+</tr>
+<tr>
+<td><code>Interval</code></td>
+<td><code>double</code></td>
+<td><code>1</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Value</code> is <strong>nullable</strong>, so an empty field is a real state rather than zero. Bind to a <code>double?</code> if the user is allowed to clear it.</p>
+<p><code>SnapToMultipleOfInterval</code> (default <code>False</code>) rounds every new value to the nearest multiple of <code>Interval</code>:</p>
+<pre><code class="language-csharp">value = Math.Round(newValue / this.Interval) * this.Interval;
+</code></pre>
+<p>It is applied to values that arrive by any route, not just to the buttons, and turning the property on rounds the current value immediately.</p>
+<h2 id="how-the-user-changes-it">How the user changes it</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>InterceptArrowKeys</code></td>
+<td><code>True</code></td>
+<td><kbd>↑</kbd> and <kbd>↓</kbd> step by <code>Interval</code></td>
+</tr>
+<tr>
+<td><code>InterceptMouseWheel</code></td>
+<td><code>True</code></td>
+<td>the wheel steps by <code>Interval</code> while the control has focus</td>
+</tr>
+<tr>
+<td><code>TrackMouseWheelWhenMouseOver</code></td>
+<td><code>False</code></td>
+<td>when <code>True</code>, the wheel works on hover, without focus</td>
+</tr>
+<tr>
+<td><code>InterceptManualEnter</code></td>
+<td><code>True</code></td>
+<td>the number can be typed</td>
+</tr>
+<tr>
+<td><code>ChangeValueOnTextChanged</code></td>
+<td><code>True</code></td>
+<td>when <code>False</code>, typing updates <code>Value</code> only on <kbd>Enter</kbd> or lost focus</td>
+</tr>
+</tbody>
+</table>
+<p><code>ChangeValueOnTextChanged</code> is worth knowing about for bound scenarios: left at its default, every keystroke pushes a value, so typing <code>15</code> in an empty field momentarily sets <code>1</code>.</p>
+<p>Holding a button repeats the step. <code>Delay</code> (default <strong>500</strong> ms) is the pause before the repeat begins, and <code>Speedup</code> (default <code>True</code>) makes the repeat accelerate the longer the button is held. Set <code>Speedup=&quot;False&quot;</code> for a constant rate.</p>
+<h2 id="the-buttons">The buttons</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ButtonsAlignment</code></td>
+<td><code>ButtonsAlignment</code></td>
+<td><code>Right</code></td>
+<td><code>Left</code>, <code>Right</code> or <code>Opposite</code></td>
+</tr>
+<tr>
+<td><code>HideUpDownButtons</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>SwitchUpDownButtons</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>puts the down button first</td>
+</tr>
+<tr>
+<td><code>UpDownButtonsWidth</code></td>
+<td><code>double</code></td>
+<td><code>20</code></td>
+<td>each button</td>
+</tr>
+<tr>
+<td><code>UpDownButtonsFocusable</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><code>Opposite</code> puts one button at each end of the field, as in the third panel at the top of this page.</p>
+<p><img src="images/numericupdown-inputmode.png" alt="NumericInputMode and switched buttons" /></p>
+<p>Hiding the buttons does not make the control read-only — the arrow keys, the wheel and typing all still work. To make it look inert when it is, drive the property from <code>IsReadOnly</code>:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource {x:Type mah:NumericUpDown}}&quot; TargetType=&quot;{x:Type mah:NumericUpDown}&quot;&gt;
+    &lt;Style.Triggers&gt;
+        &lt;Trigger Property=&quot;IsReadOnly&quot; Value=&quot;True&quot;&gt;
+            &lt;Setter Property=&quot;HideUpDownButtons&quot; Value=&quot;True&quot; /&gt;
+        &lt;/Trigger&gt;
+    &lt;/Style.Triggers&gt;
 &lt;/Style&gt;
 </code></pre>
+<h2 id="formatting">Formatting</h2>
+<p><img src="images/numericupdown-format.png" alt="No format, N2, C2 and a custom format" /></p>
+<p><code>StringFormat</code> takes a standard or custom .NET numeric format string:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>N2</code></td>
+<td><code>1,234.50</code></td>
+</tr>
+<tr>
+<td><code>C2</code></td>
+<td><code>$1,234.50</code></td>
+</tr>
+<tr>
+<td><code>P0</code></td>
+<td>a percentage</td>
+</tr>
+<tr>
+<td><code>{}{0:N2} psc</code></td>
+<td>a composite format; the leading <code>{}</code> escapes the brace for XAML</td>
+</tr>
+</tbody>
+</table>
+<p><code>Culture</code> (default <code>null</code>, meaning the thread's culture) decides the separators and the currency symbol. The figures on this page pin it to <code>en-US</code> so they do not change with the machine that renders them.</p>
+<p><code>ParsingNumberStyle</code> (default <code>NumberStyles.Any</code>) is what typed text is parsed with, if you need to be stricter than that.</p>
+<h3 id="decimals">Decimals</h3>
+<p><code>NumericInputMode</code> is a <code>[Flags]</code> enum with <code>Numbers</code>, <code>Decimal</code> and <code>All</code>, and defaults to <strong><code>All</code></strong>. Set it to <code>Numbers</code> and the decimal separator is refused, so <code>3.5</code> becomes <code>3</code> — the second panel above.</p>
+<div class="alert alert-info"><p>The old documentation called this a replacement for a <code>HasDecimals</code> property. That property has not existed since v1.x; <code>NumericInputMode</code> is simply the current API.</p>
+</div>
+<h3 id="the-numeric-keypads-decimal-key">The numeric keypad's decimal key</h3>
+<p><code>DecimalPointCorrection</code> solves a small, real annoyance: the <kbd>.</kbd> key on the numeric keypad produces a period regardless of the keyboard layout, which is wrong in every culture whose decimal separator is a comma.</p>
+<table>
+<thead>
+<tr>
+<th>Value</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Inherits</code></td>
+<td><strong>the default</strong> — no correction; the key inserts whatever it produces</td>
+</tr>
+<tr>
+<td><code>Number</code></td>
+<td>insert <code>NumberFormat.NumberDecimalSeparator</code> instead</td>
+</tr>
+<tr>
+<td><code>Currency</code></td>
+<td>insert <code>CurrencyDecimalSeparator</code></td>
+</tr>
+<tr>
+<td><code>Percent</code></td>
+<td>insert <code>PercentDecimalSeparator</code></td>
+</tr>
+</tbody>
+</table>
+<p>The control intercepts <code>Key.Decimal</code> only — the period key on the main keyboard is left alone — marks the event handled, and inserts the separator its <code>Culture</code> calls for. The three non-default modes exist because those three separators can differ within one culture.</p>
+<h2 id="related">Related</h2>
+<p><code>DataGridNumericUpDownColumn</code> puts one of these in a <code>DataGrid</code> cell and forwards most of these properties to it, <code>DecimalPointCorrection</code> included.</p>
 
 
                                         </div>
@@ -387,16 +543,15 @@ NumericUpDown
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#speedup">SpeedUp</a></div>
-                    <div class="sidebar-nav-item"><a href="#numericinputmode">NumericInputMode</a></div>
-                    <div class="sidebar-nav-item"><a href="#interceptarrowkeys">InterceptArrowKeys</a></div>
-                    <div class="sidebar-nav-item"><a href="#interceptmousewheel">InterceptMouseWheel</a></div>
-                    <div class="sidebar-nav-item"><a href="#interceptmanualenter">InterceptManualEnter</a></div>
-                    <div class="sidebar-nav-item"><a href="#minimum-maximum">Minimum / Maximum</a></div>
-                    <div class="sidebar-nav-item"><a href="#hideupdownbuttons">HideUpDownButtons</a></div>
-                    <div class="sidebar-nav-item"><a href="#stringformat">StringFormat</a></div>
-                    <div class="sidebar-nav-item"><a href="#example">Example</a></div>
-                    <div class="sidebar-nav-item"><a href="#custom-styling">Custom Styling</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-value-and-its-range">The value and its range</a></div>
+                    <div class="sidebar-nav-item"><a href="#how-the-user-changes-it">How the user changes it</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-buttons">The buttons</a></div>
+                    <div class="sidebar-nav-item"><a href="#formatting">Formatting</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#decimals">Decimals</a></div>
+                                <div class="sidebar-nav-item"><a href="#the-numeric-keypads-decimal-key">The numeric keypad&#x27;s decimal key</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/numericupdown.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

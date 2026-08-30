@@ -331,12 +331,125 @@ MetroNavigationWindow
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>MetroNavigationWindow</code> is WPF's <code>NavigationWindow</code> rebuilt on top of <a href="metrowindow">MetroWindow</a>: a window with a back/forward bar, a page title, and a <code>Frame</code> that hosts navigated <code>Page</code>s.</p>
+<p><img src="images/metronavigationwindow.png" alt="A MetroNavigationWindow after two navigations" /></p>
+<pre><code class="language-xml">&lt;mah:MetroNavigationWindow x:Class=&quot;MyApp.MainWindow&quot;
+                           xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
+                           Title=&quot;MahApps&quot; /&gt;
+</code></pre>
+<pre><code class="language-csharp">this.Navigate(new OverviewPage());
+</code></pre>
+<p>The bar above the content is part of the window, not something you add. The title next to the buttons is the navigated <strong><code>Page.Title</code></strong>, and the two circle buttons enable themselves from <code>CanGoBack</code> and <code>CanGoForward</code> — in the figure the window has navigated twice, so back is live and forward is not.</p>
+<div class="alert alert-info"><p>Unlike almost every other control in the library, this one is <strong>compiled XAML, not a <code>ControlTemplate</code></strong>. <code>MetroNavigationWindow.xaml</code> is a <code>MetroWindow</code> subclass with the bar laid out inside it, so there is no template to override and no way to restyle or rearrange the buttons. Everything a <a href="metrowindow">MetroWindow</a> offers — <code>GlowBrush</code>, <code>WindowTitleBrush</code>, flyouts, the window commands — still applies, because it <em>is</em> one.</p>
+</div>
+<h2 id="navigating">Navigating</h2>
+<p>The API mirrors <code>NavigationWindow</code>, and every call is forwarded to the internal <code>Frame</code>:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Navigate(object)</code> / <code>Navigate(Uri)</code></td>
+<td>with <code>(…, object extraData)</code> overloads for each</td>
+</tr>
+<tr>
+<td><code>GoBack()</code> / <code>GoForward()</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>CanGoBack</code> / <code>CanGoForward</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>BackStack</code> / <code>ForwardStack</code></td>
+<td>the journal, as <code>IEnumerable</code></td>
+</tr>
+<tr>
+<td><code>AddBackEntry(CustomContentState)</code> / <code>RemoveBackEntry()</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>Source</code></td>
+<td>the current URI</td>
+</tr>
+<tr>
+<td><code>NavigationService</code></td>
+<td>the <code>Frame</code>'s own service, if you need the rest of it</td>
+</tr>
+<tr>
+<td><code>StopLoading()</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>All seven of the <code>Frame</code>'s navigation events are re-raised on the window, so you can subscribe there instead: <code>Navigating</code>, <code>Navigated</code>, <code>NavigationProgress</code>, <code>NavigationFailed</code>, <code>NavigationStopped</code>, <code>FragmentNavigation</code> and <code>LoadCompleted</code>.</p>
+<p><code>PageContent</code> is a read-only property holding whatever the frame currently shows, updated after every navigation.</p>
+<div class="alert alert-warning"><p><strong>Navigate to a <code>Page</code>, not to anything else.</strong> <code>Navigate</code> accepts <code>object</code>, but the window's <code>Navigated</code> handler casts the result without checking:</p>
+<pre><code class="language-csharp">PART_Title.Content = ((Page)PART_Frame.Content).Title;
+</code></pre>
+<p>Navigating to a <code>UserControl</code>, or to a URI whose root is not a <code>Page</code>, therefore throws an <code>InvalidCastException</code> from inside the handler rather than failing gracefully.</p>
+<p>This is <strong>fixed on <code>develop</code></strong> — the line is now <code>(e.Content as Page)?.Title</code> — so it ships repaired with the next release. Until then, wrap non-<code>Page</code> content in a <code>Page</code>.</p>
+</div>
+<h2 id="the-content-property-is-the-overlay-not-the-page">The content property is the overlay, not the page</h2>
+<pre><code class="language-csharp">[ContentProperty(nameof(OverlayContent))]
+public partial class MetroNavigationWindow : MetroWindow, IUriContext
+</code></pre>
+<p>This catches people out. Child content written inside the window's XAML tags does <strong>not</strong> become the page — it becomes <code>OverlayContent</code>, which the window draws in a <code>ContentPresenter</code> at <code>Panel.ZIndex=&quot;1&quot;</code>, on top of the frame:</p>
+<pre><code class="language-xml">&lt;mah:MetroNavigationWindow&gt;
+    &lt;!--  this is an overlay ON TOP of every page, not the page itself  --&gt;
+    &lt;Border Background=&quot;#80000000&quot;&gt;
+        &lt;TextBlock Text=&quot;Loading…&quot; Foreground=&quot;White&quot; /&gt;
+    &lt;/Border&gt;
+&lt;/mah:MetroNavigationWindow&gt;
+</code></pre>
+<p>That is useful for a busy indicator or a dimming layer that has to survive navigation, and useless as a way to set the first page. Pages come from <code>Navigate</code>.</p>
+<div class="alert alert-info"><p>The content is hosted in a <code>Frame</code>, and a <code>Frame</code> is a boundary for <strong>both</strong> property value inheritance and resource lookup. A <code>Page</code> inside it will not see resources you merged into the window's own <code>Resources</code>, nor inherit values like <code>Foreground</code> from the window. Put shared resources in <code>App.xaml</code> instead.</p>
+</div>
+<h2 id="coming-in-the-next-release">Coming in the next release</h2>
+<p><code>develop</code> reworks the navigation bar, and none of this is in 2.4.11:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ShowsNavigationUI</code></td>
+<td>hides the whole bar when <code>False</code></td>
+</tr>
+<tr>
+<td><code>ShowHomeButton</code></td>
+<td>adds a third, leading Home button</td>
+</tr>
+<tr>
+<td><code>GoHome()</code></td>
+<td>navigates back to the first entry and clears the history behind it</td>
+</tr>
+</tbody>
+</table>
+<p><code>GoHome()</code> removes back entries until one remains and then goes back to it, with the <code>Navigated</code> handler detached while it unwinds so the intermediate steps do not fire events.</p>
+<h2 id="related">Related</h2>
+<p><a href="metrowindow">MetroWindow</a> for everything the window part can do — this control inherits all of it. <a href="flyouts">Flyout</a> works here as well, since the flyouts live on the <code>MetroWindow</code>.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#navigating">Navigating</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-content-property-is-the-overlay-not-the-page">The content property is the overlay, not the page</a></div>
+                    <div class="sidebar-nav-item"><a href="#coming-in-the-next-release">Coming in the next release</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/MetroNavigationWindow.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

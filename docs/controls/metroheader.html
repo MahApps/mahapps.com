@@ -331,69 +331,25 @@ MetroHeader
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>MetroHeader</code> is a UI control that allows content to be displayed with a specified header (like the HeaderedContentControl). The <code>Header</code> property can be any object and you can use the <code>HeaderTemplate</code> to specify a custom look to the header. Content for the <code>MetroHeader</code> will streched horizontally and vertically.</p>
-<div class="alert alert-info"><p><em><strong>Note</strong></em><br />
-Setting the <code>BorderBrush</code> and <code>BorderThickness</code> properties will not have any effect on the <code>MetroHeader</code>. This is to maintain the same functionality as the ContentControl.</p>
-</div>
-<h2 id="syntax">Syntax</h2>
-<pre><code class="language-xml">&lt;Page ...
-     xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot; /&gt;
-
-&lt;mah:MetroHeader&gt;
-    &lt;!-- Header content or HeaderTemplate content --&gt;
+<p><code>MetroHeader</code> puts a header above a piece of content — usually a label above an input control. It derives from <code>GroupBox</code>, so <code>Header</code>, <code>HeaderTemplate</code>, <code>HeaderTemplateSelector</code> and <code>HeaderStringFormat</code> all come from <code>HeaderedContentControl</code> and behave as usual. What MahApps adds is the template: a plain two-row grid with no border and no chrome.</p>
+<p><img src="images/metroheader-basic.png" alt="A string header, and one built from elements" /></p>
+<pre><code class="language-xml">&lt;mah:MetroHeader Header=&quot;Display name&quot;&gt;
+    &lt;TextBox Text=&quot;{Binding DisplayName}&quot; /&gt;
 &lt;/mah:MetroHeader&gt;
 </code></pre>
-<h2 id="properties">Properties</h2>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Header</td>
-<td>object</td>
-<td>Gets or sets the data used for the header of each control.</td>
-</tr>
-<tr>
-<td>HeaderTemplate</td>
-<td>DataTemplate</td>
-<td>Gets or sets the template used to display the content of the control's header.</td>
-</tr>
-<tr>
-<td>Orientation</td>
-<td>Orientation</td>
-<td>Gets or sets the Orientation to use for layout of the header. If set to Vertical the Header will be above the content. If set to Horizontal the Header will be to the left of the content..</td>
-</tr>
-</tbody>
-</table>
-<h2 id="example">Example</h2>
-<p>The <code>Header</code> property can be set to a string or any other Xaml elements.</p>
-<p><em>Sample Code</em></p>
-<pre><code class="language-xml">&lt;mah:MetroHeader Header=&quot;This is the header!&quot; /&gt;
-
-&lt;mah:MetroHeader&gt;
+<p><code>Header</code> takes any object. Give it a string and it is rendered as text; give it elements and they are rendered as they are:</p>
+<pre><code class="language-xml">&lt;mah:MetroHeader&gt;
     &lt;mah:MetroHeader.Header&gt;
-        &lt;Border Background=&quot;Gray&quot;&gt;
-            &lt;TextBlock Text=&quot;This is the header!&quot; FontSize=&quot;16&quot; /&gt;
-        &lt;/Border&gt;
+        &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+            &lt;mah:FontIcon Margin=&quot;0 0 6 0&quot; FontSize=&quot;13&quot; Glyph=&quot;&amp;#xE77B;&quot; /&gt;
+            &lt;TextBlock VerticalAlignment=&quot;Center&quot; Text=&quot;Display name&quot; /&gt;
+        &lt;/StackPanel&gt;
     &lt;/mah:MetroHeader.Header&gt;
+    &lt;TextBox Text=&quot;{Binding DisplayName}&quot; /&gt;
 &lt;/mah:MetroHeader&gt;
-
-&lt;mah:MetroHeader mah:HeaderedControlHelper.HeaderFontWeight=&quot;Bold&quot;
-                 mah:HeaderedControlHelper.HeaderForeground=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
-                 Header=&quot;TextBox sample&quot;&gt;
-    &lt;TextBox Text=&quot;Proident ut reprehenderit excepteur esse non.&quot; /&gt;
-&lt;/mah:MetroHeader&gt;
-
 </code></pre>
-<p><img src="images/metroheader.png" alt="" /></p>
-<p>For binding the <code>Header</code> to an object that is not a string, use the <code>HeaderTemplate</code> to control how the content is rendered. The default value for the <code>HeaderTemplate</code> will display the string representation of the <code>Header</code>.</p>
-<p><em>Sample Code</em></p>
-<pre><code class="language-xml">&lt;mah:MetroHeader Header=&quot;{Binding CustomObject}&quot;&gt;
+<p>For a header bound to something that is not a string, use <code>HeaderTemplate</code>:</p>
+<pre><code class="language-xml">&lt;mah:MetroHeader Header=&quot;{Binding Field}&quot;&gt;
     &lt;mah:MetroHeader.HeaderTemplate&gt;
         &lt;DataTemplate&gt;
             &lt;TextBlock Text=&quot;{Binding Title}&quot; /&gt;
@@ -401,6 +357,73 @@ Setting the <code>BorderBrush</code> and <code>BorderThickness</code> properties
     &lt;/mah:MetroHeader.HeaderTemplate&gt;
 &lt;/mah:MetroHeader&gt;
 </code></pre>
+<p>Content is stretched both ways, so the <code>TextBox</code> above fills the width without being told to.</p>
+<div class="alert alert-info"><p><strong><code>BorderBrush</code> and <code>BorderThickness</code> do nothing.</strong> The template binds neither, which is deliberate — <code>MetroHeader</code> is a layout wrapper, not a frame. For a bordered, titled container use a <a href="../styles/groupbox">GroupBox</a>, which is what <code>MetroHeader</code> derives from and what carries the MahApps group-box chrome.</p>
+</div>
+<h2 id="styling-the-header">Styling the header</h2>
+<p><img src="images/metroheader-styling.png" alt="The defaults, a recoloured header, and a filled one" /></p>
+<p>Everything about the header is a <a href="../helper/headeredcontrolhelper">HeaderedControlHelper</a> attached property, read by the template through <code>TemplateBinding</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HeaderBackground</code></td>
+<td>the control's own <code>Background</code></td>
+</tr>
+<tr>
+<td><code>HeaderForeground</code></td>
+<td>the control's own <code>Foreground</code></td>
+</tr>
+<tr>
+<td><code>HeaderFontSize</code></td>
+<td><code>MahApps.Font.Size.Default</code></td>
+</tr>
+<tr>
+<td><code>HeaderMargin</code></td>
+<td><code>0 0 0 2</code></td>
+</tr>
+<tr>
+<td><code>HeaderFontFamily</code>, <code>HeaderFontWeight</code>, <code>HeaderFontStretch</code></td>
+<td>inherited</td>
+</tr>
+<tr>
+<td><code>HeaderHorizontalContentAlignment</code>, <code>HeaderVerticalContentAlignment</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;mah:MetroHeader Header=&quot;Display name&quot;
+                 mah:HeaderedControlHelper.HeaderFontWeight=&quot;Bold&quot;
+                 mah:HeaderedControlHelper.HeaderForeground=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;&gt;
+    &lt;TextBox Text=&quot;{Binding DisplayName}&quot; /&gt;
+&lt;/mah:MetroHeader&gt;
+</code></pre>
+<p>Note the two defaults that bind back to the control: <code>HeaderBackground</code> follows <code>Background</code> and <code>HeaderForeground</code> follows <code>Foreground</code>. So setting <code>Foreground</code> on the <code>MetroHeader</code> recolours the header and not the content, which is the opposite of what you might expect — set the header property directly when you mean only the header.</p>
+<p>The header is presented by a <a href="contentcontrolex">ContentControlEx</a>, so <code>ControlsHelper.ContentCharacterCasing</code> and <code>ControlsHelper.RecognizesAccessKey</code> work on it too.</p>
+<h2 id="the-layout-is-fixed-for-now">The layout is fixed — for now</h2>
+<p>In a released version the template is a two-row <code>Grid</code>: header on top, content below, always. There is no way to put the header beside the content.</p>
+<div class="alert alert-info"><p><strong>Two additions are on <code>develop</code> and ship with the next release.</strong> They are not in 2.4.11, and older documentation listed the first of them as though it already existed.</p>
+<p><strong><code>Orientation</code></strong> — an <code>Orientation</code> property defaulting to <code>Vertical</code>, where <code>Vertical</code> keeps the header above the content and <code>Horizontal</code> puts it beside:</p>
+<pre><code class="language-xml">&lt;mah:MetroHeader Header=&quot;Display name&quot; Orientation=&quot;Horizontal&quot;&gt;
+    &lt;TextBox Text=&quot;{Binding DisplayName}&quot; /&gt;
+&lt;/mah:MetroHeader&gt;
+</code></pre>
+<p><strong>An empty header collapses.</strong> <code>MetroHeader</code> overrides <code>OnHeaderChanged</code> and hides the header presenter when <code>Header</code> is <code>null</code>, or an empty string:</p>
+<pre><code class="language-csharp">headerPresenter.Visibility = string.IsNullOrEmpty(headerText)
+    ? Visibility.Collapsed
+    : Visibility.Visible;
+</code></pre>
+<p>Until then, an empty header still occupies its row plus the 2px <code>HeaderMargin</code>.</p>
+</div>
+<h2 id="accessibility">Accessibility</h2>
+<p><code>MetroHeader</code> supplies a <code>MetroHeaderAutomationPeer</code>, so screen readers announce the header as the labelled name of the content rather than as a separate element.</p>
+<h2 id="related">Related</h2>
+<p><a href="../helper/headeredcontrolhelper">HeaderedControlHelper</a> for the header properties, shared with the other headered controls. <a href="../styles/groupbox">GroupBox</a> when you want a border around the pair, and <a href="contentcontrolex">ContentControlEx</a> for the casing and access-key behaviour of the header itself.</p>
 
 
                                         </div>
@@ -409,9 +432,10 @@ Setting the <code>BorderBrush</code> and <code>BorderThickness</code> properties
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#syntax">Syntax</a></div>
-                    <div class="sidebar-nav-item"><a href="#properties">Properties</a></div>
-                    <div class="sidebar-nav-item"><a href="#example">Example</a></div>
+                    <div class="sidebar-nav-item"><a href="#styling-the-header">Styling the header</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-layout-is-fixed-for-now">The layout is fixed &#x2014; for now</a></div>
+                    <div class="sidebar-nav-item"><a href="#accessibility">Accessibility</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/MetroHeader.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

@@ -331,12 +331,78 @@ MultiFrameImage
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>An <code>.ico</code> file holds the same artwork several times over, drawn for different sizes. WPF's <code>Image</code> takes one of those frames and stretches it; <code>MultiFrameImage</code> picks the frame that suits the size it is being drawn at.</p>
+<p><img src="images/multiframeimage-modes.png" alt="A plain Image, and both modes, all at 64px" /></p>
+<pre><code class="language-xml">&lt;mah:MultiFrameImage Width=&quot;64&quot; Height=&quot;64&quot; Source=&quot;app.ico&quot; /&gt;
+</code></pre>
+<p>The icon in these figures is a demonstration one whose three frames are deliberately <strong>different pictures</strong> — crimson with one dot at 16px, green with two at 32px, blue with five at 128px — so you can see which frame was chosen. A real icon would draw the same thing at each size.</p>
+<p>The left panel is a plain <code>Image</code> at 64px: it shows the decoder's first frame, the 16px one, blown up four times and blurred. The other two are the same file in a <code>MultiFrameImage</code>.</p>
+<h2 id="the-two-modes">The two modes</h2>
+<table>
+<thead>
+<tr>
+<th><code>MultiFrameImageMode</code></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong><code>ScaleDownLargerFrame</code></strong></td>
+<td>the default. Picks the first frame at least as large as the control's <strong>longer</strong> side and draws it stretched to fill. So it only ever scales <em>down</em> — unless no frame is big enough, in which case the largest is used.</td>
+</tr>
+<tr>
+<td><code>NoScaleSmallerFrame</code></td>
+<td>Picks the last frame no larger than the control's <strong>shorter</strong> side and draws it at its <strong>native size, centred</strong> — never scaled. If every frame is too big, the smallest is used.</td>
+</tr>
+</tbody>
+</table>
+<p><code>ScaleDownLargerFrame</code> fills the control and stays sharp; <code>NoScaleSmallerFrame</code> guarantees pixel-exact artwork but may leave empty space around it, which is the green square floating in the third panel above.</p>
+<p><img src="images/multiframeimage-sizes.png" alt="ScaleDownLargerFrame at 16, 32, 64 and 128 px" /></p>
+<p>Growing the control walks up the frames: at 16px the 16px frame, at 32px the 32px one, and from 64px upward the 128px frame scaled to fit.</p>
+<p>The property is registered with <code>AffectsRender</code>, so changing it redraws immediately.</p>
+<h2 id="which-frames-it-considers">Which frames it considers</h2>
+<p>When <code>Source</code> changes the control rebuilds its list:</p>
+<pre><code class="language-csharp">_frames.AddRange(
+    decoder.Frames
+           .GroupBy(f =&gt; f.PixelWidth * f.PixelHeight)
+           .OrderBy(g =&gt; g.Key)
+           .Select(g =&gt; g.OrderByDescending(f =&gt; f.Format.BitsPerPixel).First()));
+</code></pre>
+<p>Frames are grouped by pixel area and sorted smallest first, and <strong>within one size only the frame with the highest colour depth survives</strong>. An icon carrying a 4-bit and a 32-bit version of 32×32 contributes just the 32-bit one, so the old low-colour frames in a legacy icon never get picked.</p>
+<div class="alert alert-warning"><p><strong>The <code>Source</code> has to be a <code>BitmapFrame</code>.</strong> The control reads the frame list off <code>Source as BitmapFrame</code> and its <code>Decoder</code>. Anything else leaves the list empty, and <code>OnRender</code> then falls through to <code>base.OnRender</code> — a plain <code>Image</code> again, silently.</p>
+<p>Setting <code>Source</code> in XAML is fine: the converter produces a <code>BitmapFrameDecode</code>, which is a <code>BitmapFrame</code>.</p>
+<pre><code class="language-xml">&lt;!--  works: the converter yields a BitmapFrame  --&gt;
+&lt;mah:MultiFrameImage Source=&quot;app.ico&quot; /&gt;
+</code></pre>
+<p>Assigning a <code>BitmapImage</code> in code does <strong>not</strong> — <code>BitmapImage</code> derives from <code>BitmapSource</code>, not <code>BitmapFrame</code>, so the multi-frame handling is skipped without any error:</p>
+<pre><code class="language-csharp">// no: silently behaves like a plain Image
+image.Source = new BitmapImage(new Uri(&quot;app.ico&quot;, UriKind.Relative));
+
+// yes
+image.Source = BitmapFrame.Create(new Uri(&quot;app.ico&quot;, UriKind.Relative));
+</code></pre>
+</div>
+<h2 id="where-it-is-used">Where it is used</h2>
+<p><a href="metrowindow">MetroWindow</a> draws its title-bar icon with a <code>MultiFrameImage</code>, which is what makes a proper multi-resolution <code>.ico</code> look right in the title bar at any DPI. The window exposes the mode as its own property:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow Icon=&quot;app.ico&quot; IconScalingMode=&quot;NoScaleSmallerFrame&quot;&gt;
+</code></pre>
+<p><code>IconScalingMode</code> is a <code>MultiFrameImageMode</code> and defaults to <code>ScaleDownLargerFrame</code>, the same as the control.</p>
+<h2 id="related">Related</h2>
+<p><a href="metrowindow">MetroWindow</a> for <code>IconScalingMode</code> and the rest of the title bar. <a href="fonticon">FontIcon</a> is the other way to put an icon on screen, from a symbol font rather than a bitmap.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-two-modes">The two modes</a></div>
+                    <div class="sidebar-nav-item"><a href="#which-frames-it-considers">Which frames it considers</a></div>
+                    <div class="sidebar-nav-item"><a href="#where-it-is-used">Where it is used</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/MultiFrameImage.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
