@@ -56,7 +56,17 @@ namespace StyleShots
                 {
                     try
                     {
+                        // WPF builds its xmlns-to-assembly cache on the first
+                        // XamlReader parse, so the IconPacks assemblies have to
+                        // be loaded before that happens - touching a type from
+                        // each pack the figures use is what pulls them in.
+                        _ = typeof(MahApps.Metro.IconPacks.PackIconModern);
+                        _ = typeof(MahApps.Metro.IconPacks.PackIconFontAwesome);
+                        _ = typeof(MahApps.Metro.IconPacks.PackIconMaterial);
+                        _ = typeof(MahApps.Metro.IconPacks.PackIconEntypo);
+
                         LoadExtraStyles();
+                        await TileFiguresAsync();
                         await NumericUpDownFiguresAsync();
                         await MetroNavigationWindowFiguresAsync();
                         await MetroHeaderFiguresAsync();
@@ -705,6 +715,109 @@ namespace StyleShots
             }
 
             return box;
+        }
+
+        // The hover border only appears while IsMouseOver, which an off-screen
+        // render never has, so the border is faded in by hand instead - the
+        // trigger sets exactly this opacity.
+        private static FrameworkElement HoveredTile()
+        {
+            var wrapper = Xaml(
+                @"<mah:Tile Title=""Mail"" mah:ControlsHelper.MouseOverBorderBrush=""{DynamicResource MahApps.Brushes.ThemeForeground}"">
+                      <mah:FontIcon FontSize=""40"" Glyph=""&#xE715;"" />
+                  </mah:Tile>");
+
+            var tile = (Tile)((Panel)wrapper).Children[0];
+            pendingActions.Add(() =>
+                {
+                    tile.ApplyTemplate();
+                    if (tile.Template?.FindName("PART_HoverBorder", tile) is FrameworkElement border)
+                    {
+                        border.Opacity = 0.6;
+                    }
+                });
+
+            return wrapper;
+        }
+
+        private static async Task TileFiguresAsync()
+        {
+            await CaptureAsync("controls", "tile-basic",
+                Showcase(
+                    ("Title only", Xaml(@"<mah:Tile Title=""Mail"" />")),
+                    ("with content",
+                        Xaml(@"<mah:Tile Title=""Mail""><mah:FontIcon FontSize=""40"" Glyph=""&#xE715;"" /></mah:Tile>")),
+                    ("with a Count",
+                        Xaml(@"<mah:Tile Title=""Mail"" Count=""12""><mah:FontIcon FontSize=""40"" Glyph=""&#xE715;"" /></mah:Tile>")),
+                    ("hovered, with MouseOverBorderBrush set", HoveredTile())));
+
+            // The tile wall from the main demo's TilesExample, markup for markup,
+            // minus the demo's own heading and spacer column.
+            //
+            await CaptureAsync("controls", "tile-wall",
+                (FrameworkElement)XamlReader.Parse($@"
+                    <Border {Xmlns} xmlns:modern=""clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Modern""
+                            xmlns:fa=""clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.FontAwesome""
+                            xmlns:material=""clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Material""
+                            xmlns:entypo=""clr-namespace:MahApps.Metro.IconPacks;assembly=MahApps.Metro.IconPacks.Entypo""
+                            Background=""{{DynamicResource MahApps.Brushes.Accent4}}"" Padding=""10"">
+                        <Border.Resources>
+                            <Style x:Key=""LargeTileStyle"" TargetType=""mah:Tile"">
+                                <Setter Property=""Height"" Value=""125"" />
+                                <Setter Property=""TextOptions.TextFormattingMode"" Value=""Display"" />
+                                <Setter Property=""TextOptions.TextRenderingMode"" Value=""ClearType"" />
+                                <Setter Property=""TitleFontSize"" Value=""14"" />
+                                <Setter Property=""Width"" Value=""300"" />
+                            </Style>
+                            <Style x:Key=""SmallTileStyle"" TargetType=""mah:Tile"">
+                                <Setter Property=""Height"" Value=""125"" />
+                                <Setter Property=""TextOptions.TextFormattingMode"" Value=""Ideal"" />
+                                <Setter Property=""TextOptions.TextRenderingMode"" Value=""ClearType"" />
+                                <Setter Property=""TitleFontSize"" Value=""10"" />
+                                <Setter Property=""Width"" Value=""147"" />
+                            </Style>
+                        </Border.Resources>
+                        <WrapPanel Width=""924"" HorizontalAlignment=""Left"" VerticalAlignment=""Top"">
+                            <mah:Tile Title=""Mail"" Margin=""3""
+                                      mah:ControlsHelper.MouseOverBorderBrush=""{{DynamicResource MahApps.Brushes.ThemeForeground}}""
+                                      Background=""Teal"" HorizontalTitleAlignment=""Right""
+                                      Style=""{{StaticResource LargeTileStyle}}"">
+                                <modern:PackIconModern Width=""40"" Height=""40"" Kind=""Email"" />
+                            </mah:Tile>
+                            <mah:Tile Title=""Desktop"" Margin=""3""
+                                      mah:ControlsHelper.MouseOverBorderBrush=""{{DynamicResource MahApps.Brushes.ThemeForeground}}""
+                                      Style=""{{StaticResource LargeTileStyle}}"">
+                                <fa:PackIconFontAwesome Width=""40"" Height=""40"" Kind=""DesktopSolid"" />
+                            </mah:Tile>
+                            <mah:Tile Title=""Finance"" Background=""DimGray"" Style=""{{StaticResource LargeTileStyle}}"">
+                                <modern:PackIconModern Width=""40"" Height=""40"" Kind=""Money"" />
+                            </mah:Tile>
+                            <mah:Tile Title=""People"" Background=""#D2691E"" HorizontalTitleAlignment=""Right""
+                                      Style=""{{StaticResource LargeTileStyle}}"">
+                                <modern:PackIconModern Width=""40"" Height=""40"" Kind=""PeopleMultiple"" />
+                            </mah:Tile>
+                            <mah:Tile Title=""Count"" Background=""#FF842D"" Count=""28"" CountFontSize=""42""
+                                      HorizontalTitleAlignment=""Center"" IsEnabled=""False""
+                                      Style=""{{StaticResource SmallTileStyle}}"" TitleFontSize=""16""
+                                      VerticalTitleAlignment=""Top"" />
+                            <mah:Tile Title=""Weather"" Background=""#1E90FF"" Style=""{{StaticResource SmallTileStyle}}"">
+                                <material:PackIconMaterial Width=""40"" Height=""40"" Kind=""WeatherCloudy"" />
+                            </mah:Tile>
+                            <mah:Tile Title=""Store"" Background=""Green"" Style=""{{StaticResource LargeTileStyle}}"">
+                                <entypo:PackIconEntypo Width=""40"" Height=""40"" Kind=""WindowsStore"" />
+                            </mah:Tile>
+                        </WrapPanel>
+                    </Border>"));
+
+            const string Small = @"<mah:Tile Width=""110"" Height=""110"" Title=""Mail"" ";
+
+            await CaptureAsync("controls", "tile-title",
+                Showcase(
+                    (@"Left / Bottom, the defaults", Xaml($@"{Small} />")),
+                    (@"HorizontalTitleAlignment=""Right""", Xaml($@"{Small} HorizontalTitleAlignment=""Right"" />")),
+                    (@"VerticalTitleAlignment=""Top""", Xaml($@"{Small} VerticalTitleAlignment=""Top"" />")),
+                    (@"Center / Center", Xaml($@"{Small} HorizontalTitleAlignment=""Center"" VerticalTitleAlignment=""Center"" />")),
+                    (@"TitleFontSize=""24""", Xaml($@"{Small} TitleFontSize=""24"" />"))));
         }
 
         private static async Task NumericUpDownFiguresAsync()

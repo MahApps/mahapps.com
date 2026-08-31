@@ -12,6 +12,13 @@
 
   <ItemGroup>
     <PackageReference Include="MahApps.Metro" Version="2.4.11" />
+    <!--  Only the packs the tile figure needs: the MahApps.Metro.IconPacks
+          meta-package also ships an aggregate assembly, which makes the
+          iconpacks xmlns ambiguous for XamlReader.  -->
+    <PackageReference Include="MahApps.Metro.IconPacks.Modern" Version="4.11.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks.FontAwesome" Version="4.11.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks.Material" Version="4.11.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks.Entypo" Version="4.11.0" />
   </ItemGroup>
 
 </Project>
