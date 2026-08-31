@@ -66,6 +66,7 @@ namespace StyleShots
                         _ = typeof(MahApps.Metro.IconPacks.PackIconEntypo);
 
                         LoadExtraStyles();
+                        await WindowCommandsFiguresAsync();
                         await TileFiguresAsync();
                         await NumericUpDownFiguresAsync();
                         await MetroNavigationWindowFiguresAsync();
@@ -738,6 +739,74 @@ namespace StyleShots
                 });
 
             return wrapper;
+        }
+
+        // Both command controls only exist inside a MetroWindow's title bar, so
+        // the figures are real windows again.
+        private static async Task<FrameworkElement> CommandsWindowAsync(string windowAttributes, string leftCommands, string rightCommands, string rightAttributes = "", int width = 440)
+        {
+            var window = (Window)XamlReader.Parse(
+                $@"<mah:MetroWindow {Xmlns}
+                       Width=""{width}"" Height=""120"" Title=""MahApps"" ShowInTaskbar=""False""
+                       WindowStartupLocation=""Manual"" Left=""-20000"" Top=""-20000"" {windowAttributes}>
+                       <mah:MetroWindow.LeftWindowCommands>
+                           <mah:WindowCommands>{leftCommands}</mah:WindowCommands>
+                       </mah:MetroWindow.LeftWindowCommands>
+                       <mah:MetroWindow.RightWindowCommands>
+                           <mah:WindowCommands {rightAttributes}>{rightCommands}</mah:WindowCommands>
+                       </mah:MetroWindow.RightWindowCommands>
+                       <Grid Background=""{{DynamicResource MahApps.Brushes.ThemeBackground}}"" />
+                   </mah:MetroWindow>");
+
+            var rendered = new TaskCompletionSource<bool>();
+            window.ContentRendered += (_, _) => rendered.TrySetResult(true);
+            window.Show();
+            await rendered.Task;
+
+            window.Activate();
+            if (window is MetroWindow metro)
+            {
+                metro.SetCurrentValue(MetroWindow.NonActiveWindowTitleBrushProperty, metro.WindowTitleBrush);
+                metro.SetCurrentValue(MetroWindow.NonActiveBorderBrushProperty, metro.BorderBrush);
+            }
+
+            await Task.Delay(500);
+            await window.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+            window.UpdateLayout();
+
+            var bitmap = Render(window);
+            window.Close();
+            return new Image { Source = bitmap, Width = bitmap.Width, Height = bitmap.Height };
+        }
+
+        private static async Task WindowCommandsFiguresAsync()
+        {
+            await CaptureAsync("controls", "windowcommands-basic",
+                await CommandsWindowAsync(
+                    string.Empty,
+                    @"<Button Content=""settings"" /><Button Content=""help"" />",
+                    @"<Button Content=""about"" />
+                      <Button>
+                          <StackPanel Orientation=""Horizontal"">
+                              <mah:FontIcon FontSize=""13"" VerticalAlignment=""Center"" Glyph=""&#xE734;"" />
+                              <TextBlock Margin=""4 0 0 0"" VerticalAlignment=""Center"" Text=""favourite"" />
+                          </StackPanel>
+                      </Button>",
+                    width: 520));
+
+            await CaptureAsync("controls", "windowcommands-separators",
+                Showcase(
+                    ("ShowSeparators, the default",
+                        await CommandsWindowAsync(string.Empty, string.Empty,
+                            @"<Button Content=""one"" /><Button Content=""two"" /><Button Content=""three"" />", width: 320)),
+                    (@"ShowLastSeparator=""False""",
+                        await CommandsWindowAsync(string.Empty, string.Empty,
+                            @"<Button Content=""one"" /><Button Content=""two"" /><Button Content=""three"" />",
+                            @"ShowLastSeparator=""False""", width: 320)),
+                    (@"ShowSeparators=""False""",
+                        await CommandsWindowAsync(string.Empty, string.Empty,
+                            @"<Button Content=""one"" /><Button Content=""two"" /><Button Content=""three"" />",
+                            @"ShowSeparators=""False""", width: 320))));
         }
 
         private static async Task TileFiguresAsync()
