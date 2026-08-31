@@ -256,12 +256,95 @@ Visual Studio
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>The Visual Studio variant is the library's broad one: a dark palette, tabs with close buttons, flat menus and thin scrollbars — the look of a tool-window application rather than a document one.</p>
+<p><img src="images/vs-window.png" alt="The default MetroWindow and the Visual Studio one" /></p>
+<p>Both windows above hold the same markup: a <code>Menu</code>, a <code>TabControl</code> with two tabs, a <code>TextBox</code>, a <code>GroupBox</code> and a <code>CheckBox</code>.</p>
+<h2 id="opting-in">Opting in</h2>
+<p><strong>Two dictionaries, not one.</strong> This is the part that catches people out:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow x:Class=&quot;MyApp.MainWindow&quot;
+                 xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
+                 Style=&quot;{DynamicResource MahApps.Styles.MetroWindow.VisualStudio}&quot;&gt;
+    &lt;mah:MetroWindow.Resources&gt;
+        &lt;ResourceDictionary&gt;
+            &lt;ResourceDictionary.MergedDictionaries&gt;
+                &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml&quot; /&gt;
+                &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml&quot; /&gt;
+            &lt;/ResourceDictionary.MergedDictionaries&gt;
+        &lt;/ResourceDictionary&gt;
+    &lt;/mah:MetroWindow.Resources&gt;
+&lt;/mah:MetroWindow&gt;
+</code></pre>
+<div class="alert alert-warning"><p><code>Controls.xaml</code> brings the templates; <strong><code>Colors.xaml</code> brings the dark palette</strong>. Merge only the first and the variant applies but keeps the ordinary theme colours, so a window comes out looking barely different from the default — the templates are there, the darkness is not.</p>
+<p>The demo's <code>VSDemo</code> merges both, and so should you.</p>
+</div>
+<h2 id="what-it-restyles">What it restyles</h2>
+<p><code>VS/Controls.xaml</code> merges twelve dictionaries and declares an implicit style for each:</p>
+<table>
+<thead>
+<tr>
+<th>Implicit style</th>
+<th>Target</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.MetroWindow.VisualStudio</code></td>
+<td><code>MetroWindow</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Menu.VisualStudio</code>, <code>…MenuItem…</code>, <code>…ContextMenu…</code></td>
+<td><code>Menu</code>, <code>MenuItem</code>, <code>ContextMenu</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TabControl.VisualStudio</code>, <code>…TabItem…</code></td>
+<td><code>TabControl</code>, <code>TabItem</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.VisualStudio</code></td>
+<td><code>Button</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TextBox.VisualStudio</code></td>
+<td><code>TextBox</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ListBox.VisualStudio</code>, <code>…ListBoxItem…</code></td>
+<td><code>ListBox</code>, <code>ListBoxItem</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ScrollBar.VisualStudio</code></td>
+<td><code>ScrollBar</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.GroupBox.VisualStudio</code></td>
+<td><code>GroupBox</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Expander.VisualStudio</code></td>
+<td><code>Expander</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>VS/Shadows.xaml</code> is merged too, for the drop shadows the variant uses.</p>
+<p>Because these are <strong>implicit</strong> styles, merging the dictionary restyles every one of those controls in scope — you do not opt in per control. Set a <code>Style</code> explicitly on a control to keep it out.</p>
+<h2 id="tabs">Tabs</h2>
+<p>The tab look is the most distinctive part: the selected tab is accent-filled and carries a close button, as in the figure. That comes from <code>MahApps.Styles.TabItem.VisualStudio</code> — see <a href="../styles/tabcontrol">TabControl</a> and <a href="../controls/MetroTabItem">MetroTabItem</a> for how closeable tabs work generally.</p>
+<h2 id="related">Related</h2>
+<p><a href="clean">Clean</a> is the library's other variant, and a much smaller one. <a href="win10">Win10</a> is a set of individual control styles rather than a variant, and <a href="winui">WinUI</a> is not in the library at all.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#opting-in">Opting in</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-it-restyles">What it restyles</a></div>
+                    <div class="sidebar-nav-item"><a href="#tabs">Tabs</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/stylevariants/vs.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

@@ -331,23 +331,123 @@ Tile
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>Tile</code> is exactly as it sounds. It is a rectangular control whose sole purpose is to mimick a tile from Window 8 / WinRT's / Windows 10 Start Screen.</p>
-<pre><code class="language-xml">&lt;Controls:Tile Title=&quot;Mail&quot;
-               Margin=&quot;3&quot;
-               Controls:ControlsHelper.MouseOverBorderBrush=&quot;{DynamicResource MahApps.Brushes.ThemeForeground}&quot;
-               Background=&quot;Teal&quot;
-               HorizontalTitleAlignment=&quot;Right&quot;&gt;
-    &lt;iconPacks:PackIconModern Width=&quot;40&quot;
-                              Height=&quot;40&quot;
-                              Kind=&quot;Email&quot; /&gt;
-&lt;/Controls:Tile&gt;
+<p><code>Tile</code> is a square button that looks like a tile from the Windows 8 or 10 Start screen: a coloured block with a caption in a corner and room for an icon in the middle.</p>
+<p><img src="images/tile-wall.png" alt="Seven tiles in a WrapPanel" /></p>
+<p>That is the tile wall from the main demo, reproduced markup for markup. A <code>WrapPanel</code> and two sizes of tile is all there is to it:</p>
+<pre><code class="language-xml">&lt;WrapPanel Width=&quot;924&quot;&gt;
+    &lt;mah:Tile Title=&quot;Mail&quot;
+              Background=&quot;Teal&quot;
+              HorizontalTitleAlignment=&quot;Right&quot;
+              Style=&quot;{StaticResource LargeTileStyle}&quot;
+              mah:ControlsHelper.MouseOverBorderBrush=&quot;{DynamicResource MahApps.Brushes.ThemeForeground}&quot;&gt;
+        &lt;iconPacks:PackIconModern Width=&quot;40&quot; Height=&quot;40&quot; Kind=&quot;Email&quot; /&gt;
+    &lt;/mah:Tile&gt;
+    &lt;mah:Tile Title=&quot;Finance&quot; Background=&quot;DimGray&quot; Style=&quot;{StaticResource LargeTileStyle}&quot;&gt;
+        &lt;iconPacks:PackIconModern Width=&quot;40&quot; Height=&quot;40&quot; Kind=&quot;Money&quot; /&gt;
+    &lt;/mah:Tile&gt;
+    &lt;mah:Tile Title=&quot;Count&quot;
+              Background=&quot;#FF842D&quot;
+              Count=&quot;28&quot;
+              CountFontSize=&quot;42&quot;
+              HorizontalTitleAlignment=&quot;Center&quot;
+              IsEnabled=&quot;False&quot;
+              Style=&quot;{StaticResource SmallTileStyle}&quot;
+              TitleFontSize=&quot;16&quot;
+              VerticalTitleAlignment=&quot;Top&quot; /&gt;
+    &lt;!--  …  --&gt;
+&lt;/WrapPanel&gt;
 </code></pre>
-<p><img src="images/tiles.png" alt="" /></p>
+<pre><code class="language-xml">&lt;Style x:Key=&quot;LargeTileStyle&quot; TargetType=&quot;mah:Tile&quot;&gt;
+    &lt;Setter Property=&quot;Width&quot; Value=&quot;300&quot; /&gt;
+    &lt;Setter Property=&quot;Height&quot; Value=&quot;125&quot; /&gt;
+    &lt;Setter Property=&quot;TitleFontSize&quot; Value=&quot;14&quot; /&gt;
+&lt;/Style&gt;
+
+&lt;Style x:Key=&quot;SmallTileStyle&quot; TargetType=&quot;mah:Tile&quot;&gt;
+    &lt;Setter Property=&quot;Width&quot; Value=&quot;147&quot; /&gt;
+    &lt;Setter Property=&quot;Height&quot; Value=&quot;125&quot; /&gt;
+    &lt;Setter Property=&quot;TitleFontSize&quot; Value=&quot;10&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
+<p>The icons come from <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">MahApps.Metro.IconPacks</a>, a separate package, with</p>
+<pre><code class="language-xml">xmlns:iconPacks=&quot;http://metro.mahapps.com/winfx/xaml/iconpacks&quot;
+</code></pre>
+<p>The <em>Count</em> tile is the faded one: it has no content of its own, just a <code>Count</code>, and <code>IsEnabled=&quot;False&quot;</code> drops it to 55% opacity.</p>
+<h2 id="a-single-tile">A single tile</h2>
+<pre><code class="language-xml">&lt;mah:Tile Title=&quot;Mail&quot; Command=&quot;{Binding OpenMailCommand}&quot;&gt;
+    &lt;mah:FontIcon FontSize=&quot;40&quot; Glyph=&quot;&amp;#xE715;&quot; /&gt;
+&lt;/mah:Tile&gt;
+</code></pre>
+<p>It derives from <code>Button</code>, so <code>Click</code>, <code>Command</code>, <code>CommandParameter</code> and <code>IsEnabled</code> all work exactly as on any button — there is no tile-specific way to react to a press.</p>
+<p>Left alone it is square: the style sets <strong><code>Width</code> and <code>Height</code> to 140</strong>, with a <code>Margin</code> of 3, the accent brush as <code>Background</code> and <code>MahApps.Brushes.IdealForeground</code> as <code>Foreground</code>. Override any of them, as the demo's two styles above do.</p>
+<h2 id="title-content-and-count">Title, content and count</h2>
+<p><img src="images/tile-basic.png" alt="A title, a title with content, a count, and the hover border" /></p>
+<p>A tile has three separate places to put something:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Content</code></td>
+<td>the button's own content, centred — usually an icon</td>
+</tr>
+<tr>
+<td><code>Count</code></td>
+<td>a string drawn immediately after the content, at <code>CountFontSize</code> (default <strong>28</strong>)</td>
+</tr>
+<tr>
+<td><code>Title</code></td>
+<td>the caption, positioned in a corner, at <code>TitleFontSize</code> (default <strong>16</strong>)</td>
+</tr>
+</tbody>
+</table>
+<p><code>Content</code> and <code>Count</code> share a horizontal <code>StackPanel</code> with no spacing between them, so a count sits flush against the icon — the third panel above. Add a right margin to the content if you want a gap.</p>
+<p>The title is rendered in an <code>AccessText</code>, so <code>Title=&quot;_Mail&quot;</code> gives it an access key, and it wraps rather than clipping when it does not fit.</p>
+<p><img src="images/tile-title.png" alt="The title in each corner, centred, and at a larger size" /></p>
+<p><code>HorizontalTitleAlignment</code> (default <code>Left</code>) and <code>VerticalTitleAlignment</code> (default <code>Bottom</code>) place the title independently of the content, which is aligned by the usual <code>HorizontalContentAlignment</code> and <code>VerticalContentAlignment</code> — both <code>Center</code> in the style.</p>
+<h2 id="hover-and-press">Hover and press</h2>
+<div class="alert alert-info"><p><strong>There is no hover effect until you ask for one.</strong> The style sets <code>ControlsHelper.MouseOverBorderBrush</code> to <code>{x:Null}</code>, and the template's trigger requires it to be non-null before the border is shown:</p>
+<pre><code class="language-xml">&lt;Condition Binding=&quot;{Binding … Path=(mah:ControlsHelper.MouseOverBorderBrush), Converter={x:Static converters:IsNullConverter.Instance}}&quot; Value=&quot;False&quot; /&gt;
+&lt;Condition Binding=&quot;{Binding … Path=IsMouseOver}&quot; Value=&quot;True&quot; /&gt;
+</code></pre>
+<p>So an untouched tile does nothing at all under the pointer. Give it a brush and a 2px border fades in at 60% opacity:</p>
+<pre><code class="language-xml">&lt;mah:Tile Title=&quot;Mail&quot; mah:ControlsHelper.MouseOverBorderBrush=&quot;{DynamicResource MahApps.Brushes.ThemeForeground}&quot; /&gt;
+</code></pre>
+<p>The last panel of the four-tile figure above shows that border. It is what the demo's <em>Mail</em> and <em>Desktop</em> tiles set, and why only those two react to the mouse.</p>
+</div>
+<p>Pressing a tile scales it to 0.98 about its centre, which is the small &quot;push&quot; the Start screen tiles had. That comes from a trigger on <code>Button.IsPressed</code> and needs no setting up.</p>
+<h2 id="two-properties-that-do-nothing">Two properties that do nothing</h2>
+<div class="alert alert-warning"><p><code>Tile</code> declares <strong><code>KeepDragging</code></strong> and <strong><code>TiltFactor</code></strong>, and neither has any effect. Nothing in the library reads either one: <code>TiltFactor</code> appears only at its own declaration in <code>Tile.cs</code>, and the tile template contains no behaviour, no <code>Interaction.Behaviors</code> and no tilt code at all.</p>
+<p>The tilt effect they look like they control lives in <strong><code>TiltBehavior</code></strong>, which has its own <code>KeepDragging</code> and <code>TiltFactor</code> properties and has to be attached explicitly:</p>
+<pre><code class="language-xml">&lt;mah:Tile Title=&quot;Mail&quot;&gt;
+    &lt;i:Interaction.Behaviors&gt;
+        &lt;mah:TiltBehavior TiltFactor=&quot;10&quot; /&gt;
+    &lt;/i:Interaction.Behaviors&gt;
+&lt;/mah:Tile&gt;
+</code></pre>
+<p>Both dead properties are <strong>removed on <code>develop</code></strong> (in <code>bc0c0560</code>), so they will be gone from the next release. Do not start using them.</p>
+</div>
+<h2 id="related">Related</h2>
+<p><code>TiltBehavior</code> for the tilt-on-press effect. <a href="fonticon">FontIcon</a> is a convenient thing to put inside a tile, and <a href="Badged">Badged</a> is the alternative when you want a count as a badge rather than beside the icon.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#a-single-tile">A single tile</a></div>
+                    <div class="sidebar-nav-item"><a href="#title-content-and-count">Title, content and count</a></div>
+                    <div class="sidebar-nav-item"><a href="#hover-and-press">Hover and press</a></div>
+                    <div class="sidebar-nav-item"><a href="#two-properties-that-do-nothing">Two properties that do nothing</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/tile.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

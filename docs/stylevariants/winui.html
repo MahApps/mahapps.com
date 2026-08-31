@@ -256,12 +256,68 @@ WinUI
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<div class="alert alert-warning"><p><strong>MahApps.Metro does not ship a WinUI variant.</strong> There is no <code>Styles/WinUI/</code> folder, no <code>WinUI</code> style key anywhere in the library, and nothing to merge — in 2.4.11 or on <code>develop</code>.</p>
+</div>
+<p>What exists instead is a set of <strong>drop-in dictionaries written for this documentation</strong>. They give individual controls a Fluent 2 look — rounded corners, the accent used sparingly, chrome that recedes — and they are not part of the NuGet package. Download the ones you want and merge them into your application.</p>
+<h2 id="the-dictionaries">The dictionaries</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Covers</th>
+<th>Page</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../assets/xaml/Controls.Calendar.WinUI.xaml"><code>Controls.Calendar.WinUI.xaml</code></a></td>
+<td><code>Calendar</code></td>
+<td><a href="../styles/calendar">Calendar</a></td>
+</tr>
+<tr>
+<td><a href="../../assets/xaml/Controls.DateTimePicker.WinUI.xaml"><code>Controls.DateTimePicker.WinUI.xaml</code></a></td>
+<td><code>DateTimePicker</code>, <code>TimePicker</code></td>
+<td><a href="../controls/DateTimePicker">DateTimePicker</a>, <a href="../controls/TimePicker">TimePicker</a></td>
+</tr>
+<tr>
+<td><a href="../../assets/xaml/Controls.ScrollBar.WinUI.xaml"><code>Controls.ScrollBar.WinUI.xaml</code></a></td>
+<td><code>ScrollBar</code>, <code>ScrollViewer</code></td>
+<td><a href="../styles/scrollbars">ScrollBars</a></td>
+</tr>
+</tbody>
+</table>
+<p>Merge them after the library's own <code>Controls.xaml</code>:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+&lt;ResourceDictionary Source=&quot;Styles/Controls.Calendar.WinUI.xaml&quot; /&gt;
+&lt;ResourceDictionary Source=&quot;Styles/Controls.DateTimePicker.WinUI.xaml&quot; /&gt;
+&lt;ResourceDictionary Source=&quot;Styles/Controls.ScrollBar.WinUI.xaml&quot; /&gt;
+</code></pre>
+<p>Each defines keyed styles rather than implicit ones, so nothing changes until you apply them — either per control, or through an implicit style of your own:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.Calendar.WinUI}&quot; TargetType=&quot;{x:Type Calendar}&quot; /&gt;
+</code></pre>
+<p>The <code>DateTimePicker</code> dictionary needs the <code>Calendar</code> one merged first, since its picker styles point at the WinUI calendar.</p>
+<h2 id="styles-not-replacement-templates">Styles, not replacement templates</h2>
+<p>Where it was possible, these dictionaries change only what the library's templates already expose — a corner radius through <code>ControlsHelper.CornerRadius</code>, a <code>CalendarStyle</code>, an <code>IsClockVisible</code>. That keeps them working when the library's templates change underneath.</p>
+<p>Where it was not possible, the pages say so plainly rather than pretending. Two examples worth knowing before you start:</p>
+<ul>
+<li>the <a href="../controls/DateTimePicker">DateTimePicker</a>'s drop-down frame stays square whatever you do, because <code>PART_PopupBorder</code> has no <code>CornerRadius</code> and none of its brushes is a <code>TemplateBinding</code> — tracked as <a href="https://github.com/MahApps/MahApps.Metro/issues/4582">#4582</a></li>
+<li>the <a href="../styles/scrollbars">ScrollBar</a> dictionary <em>is</em> a template replacement, because a WinUI scrollbar's expand-on-hover behaviour cannot be reached from a style at all</li>
+</ul>
+<h2 id="related">Related</h2>
+<p><a href="win10">Win 10 (UWP)</a> — the library does ship a few control styles in that older look, and this site adds more. <a href="clean">Clean</a> and <a href="vs">Visual Studio</a> are the two variants that really are in the package.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-dictionaries">The dictionaries</a></div>
+                    <div class="sidebar-nav-item"><a href="#styles-not-replacement-templates">Styles, not replacement templates</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/stylevariants/winui.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

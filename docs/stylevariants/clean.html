@@ -256,12 +256,74 @@ Clean
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>The Clean variant replaces the accent-coloured window chrome with a white title bar, a centred title and dark buttons. It is the smaller of the library's two variants: it restyles the window and four other things, and leaves every ordinary control alone.</p>
+<p><img src="images/clean-window.png" alt="The default MetroWindow and the Clean one" /></p>
+<h2 id="opting-in">Opting in</h2>
+<p>Merge the variant's dictionary and set the window's style:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow x:Class=&quot;MyApp.MainWindow&quot;
+                 xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
+                 Style=&quot;{DynamicResource MahApps.Styles.MetroWindow.Clean}&quot;&gt;
+    &lt;mah:MetroWindow.Resources&gt;
+        &lt;ResourceDictionary&gt;
+            &lt;ResourceDictionary.MergedDictionaries&gt;
+                &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Clean/Controls.xaml&quot; /&gt;
+            &lt;/ResourceDictionary.MergedDictionaries&gt;
+        &lt;/ResourceDictionary&gt;
+    &lt;/mah:MetroWindow.Resources&gt;
+&lt;/mah:MetroWindow&gt;
+</code></pre>
+<p>That is what the demo's <code>CleanWindowDemo</code> does. <code>Clean/Controls.xaml</code> merges the five dictionaries below <strong>and</strong> declares implicit styles for each of them, so the explicit <code>Style=</code> on the window is belt-and-braces rather than required — but harmless, and clearer about intent.</p>
+<p>Merge the dictionary into <code>App.xaml</code> instead if the whole application should use it.</p>
+<h2 id="what-it-restyles">What it restyles</h2>
+<table>
+<thead>
+<tr>
+<th>Dictionary</th>
+<th>Applied to</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Clean/MetroWindow.xaml</code></td>
+<td><code>MetroWindow</code></td>
+</tr>
+<tr>
+<td><code>Clean/WindowButtonCommands.xaml</code></td>
+<td><a href="../controls/WindowButtonCommands">WindowButtonCommands</a></td>
+</tr>
+<tr>
+<td><code>Clean/WindowCommands.xaml</code></td>
+<td><a href="../controls/WindowCommands">WindowCommands</a></td>
+</tr>
+<tr>
+<td><code>Clean/GroupBox.xaml</code></td>
+<td><code>GroupBox</code></td>
+</tr>
+<tr>
+<td><code>Clean/StatusBar.xaml</code></td>
+<td><code>StatusBar</code></td>
+</tr>
+</tbody>
+</table>
+<p>The keyed styles are <code>MahApps.Styles.MetroWindow.Clean</code>, <code>…WindowButtonCommands.Clean</code>, <code>…WindowCommands.Clean</code>, <code>…GroupBox.Clean</code>, <code>…StatusBar.Clean</code>, plus <code>MahApps.Styles.Separator.Clean</code> and four <code>Button.MetroWindow.*.Clean</code> styles for the title-bar buttons in their light and dark forms.</p>
+<div class="alert alert-info"><p><code>Clean/Controls.xaml</code> applies <code>MahApps.Styles.WindowButtonCommands.Clean.Win10</code> to the window buttons — the Clean variant borrows the <a href="win10">Win10</a> button look rather than defining its own.</p>
+</div>
+<p>Notice what is <em>not</em> in that list: buttons, text boxes, check boxes, lists, tabs. Clean is a window-chrome variant. If you want it to change more, it is a starting point to extend rather than a full theme.</p>
+<h2 id="related">Related</h2>
+<p><a href="vs">Visual Studio</a> is the library's other variant and a much broader one. <a href="win10">Win10</a> and <a href="winui">WinUI</a> are not variants in the same sense — see those pages.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#opting-in">Opting in</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-it-restyles">What it restyles</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/stylevariants/clean.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

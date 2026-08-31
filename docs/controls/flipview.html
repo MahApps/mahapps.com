@@ -364,7 +364,7 @@ FlipView
 </tr>
 </tbody>
 </table>
-<p>Which button is visible is <strong>computed, not fixed</strong>. <code>DetectControlButtonsStatus</code> hides the back button on the first item and the forward button on the last, unless <code>CircularNavigation</code> is on — which is why the figures on this page sit on the middle slide.</p>
+<p>Which button is visible is <strong>computed, not fixed</strong>. <code>DetectControlButtonsStatus</code> hides the back button on the first item and the forward button on the last, unless <code>CircularNavigation</code> is on.</p>
 <p><img src="images/flipview-buttons.png" alt="Buttons inside, outside, and switched off" /></p>
 <table>
 <thead>
@@ -573,7 +573,6 @@ FlipView
 </tr>
 </tbody>
 </table>
-<p>It does not appear in the figures on this page because an off-screen render has no mouse in it.</p>
 <h2 id="an-automatic-slideshow">An automatic slideshow</h2>
 <p>Increment <code>SelectedIndex</code> on a timer, with <code>CircularNavigation</code> so it wraps and <code>IsNavigationEnabled=&quot;False&quot;</code> so the buttons stay away:</p>
 <pre><code class="language-xml">&lt;mah:FlipView x:Name=&quot;Slideshow&quot;

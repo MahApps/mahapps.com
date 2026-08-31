@@ -562,7 +562,7 @@ public enum OverlayBehavior
     Always = ~(-1 &lt;&lt; 2)
 }
 </code></pre>
-<p>The minimise, maximise and close buttons are drawn over the flyouts in the figures on this page because their default is <code>Always</code>, which carries the <code>Flyouts</code> flag.</p>
+<p>The minimise, maximise and close buttons default to <code>Always</code>, which carries the <code>Flyouts</code> flag, so they stay visible above an open flyout.</p>
 <div class="alert alert-info"><p>The left and right window commands can never be drawn over an open flyout — <code>WindowCommandsOverlayBehavior</code> has no value for it.</p>
 <p><strong>The icon can</strong>, though, which older documentation denied. <code>IconOverlayBehavior</code> is an <code>OverlayBehavior</code>, and the window checks it per flyout:</p>
 <pre><code class="language-csharp">this.icon?.SetValue(Panel.ZIndexProperty,

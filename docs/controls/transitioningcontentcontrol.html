@@ -337,7 +337,7 @@ TransitioningContentControl
                                  Content=&quot;{Binding CurrentPage}&quot;
                                  Transition=&quot;Left&quot; /&gt;
 </code></pre>
-<p>The figures freeze the animation shortly after it starts, which is the only moment both contents are on screen — the old one (<em>First</em>) on its way out, the new one (<em>Second</em>) on its way in. Each sits in a clipped, fixed-size box so the vertical transitions stay inside the picture.</p>
+<p>Both contents are only on screen together for the first fraction of a second, which is the moment the figures show: the old one (<em>First</em>) on its way out, the new one (<em>Second</em>) on its way in.</p>
 <p>This is the counterpart to <a href="metrocontentcontrol">MetroContentControl</a>, which animates its own appearance and does <strong>not</strong> react to a content change at all.</p>
 <p>It began as a port of the Silverlight control of the same name.</p>
 <h2 id="the-transitions">The transitions</h2>

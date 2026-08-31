@@ -459,7 +459,7 @@ MetroContentControl
     this.RaiseEvent(new RoutedEventArgs(TransitionStartedEvent));
 }
 </code></pre>
-<p>Measured on one transition of a default <code>MetroContentControl</code>: <strong>37 <code>TransitionStarted</code> events and 1 <code>TransitionCompleted</code></strong>. It is the same on <code>develop</code>.</p>
+<p>One transition of a default <code>MetroContentControl</code> raises <strong>37 <code>TransitionStarted</code> events and a single <code>TransitionCompleted</code></strong>. It is the same on <code>develop</code>.</p>
 <p>So do not treat it as &quot;the transition began&quot; — put anything that must happen once behind a flag of your own, or use <code>TransitionCompleted</code>, which really is raised once. <code>IsTransitioning</code> is set repeatedly to the same value, which is harmless.</p>
 </div>
 <h2 id="where-else-it-shows-up">Where else it shows up</h2>

@@ -331,12 +331,123 @@ WindowCommands
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p><code>WindowCommands</code> holds the buttons a <a href="metrowindow">MetroWindow</a> puts in its title bar, left or right of the title. It is what you fill to add <em>settings</em>, <em>about</em> or a login indicator up there.</p>
+<p><img src="images/windowcommands-basic.png" alt="Left and right commands either side of the title" /></p>
+<pre><code class="language-xml">&lt;mah:MetroWindow.LeftWindowCommands&gt;
+    &lt;mah:WindowCommands&gt;
+        &lt;Button Content=&quot;settings&quot; /&gt;
+        &lt;Button Content=&quot;help&quot; /&gt;
+    &lt;/mah:WindowCommands&gt;
+&lt;/mah:MetroWindow.LeftWindowCommands&gt;
+
+&lt;mah:MetroWindow.RightWindowCommands&gt;
+    &lt;mah:WindowCommands&gt;
+        &lt;Button Content=&quot;about&quot; /&gt;
+        &lt;Button&gt;
+            &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+                &lt;mah:FontIcon FontSize=&quot;13&quot; VerticalAlignment=&quot;Center&quot; Glyph=&quot;&amp;#xE734;&quot; /&gt;
+                &lt;TextBlock Margin=&quot;4 0 0 0&quot; VerticalAlignment=&quot;Center&quot; Text=&quot;favourite&quot; /&gt;
+            &lt;/StackPanel&gt;
+        &lt;/Button&gt;
+    &lt;/mah:WindowCommands&gt;
+&lt;/mah:MetroWindow.RightWindowCommands&gt;
+</code></pre>
+<p>The window's own <code>LeftWindowCommands</code> and <code>RightWindowCommands</code> properties are where they go. Content is arbitrary: plain <code>Button</code>s get the title-bar look automatically, and anything else you put in is left alone.</p>
+<div class="alert alert-info"><p><code>WindowCommands</code> derives from <strong><code>ToolBar</code></strong>, not from a plain <code>ItemsControl</code>. That is where its item handling comes from, and it means <code>ToolBar</code>'s properties are available — but also that a <code>ToolBar</code>'s overflow behaviour is in play if the buttons do not fit.</p>
+</div>
+<p>Each child is wrapped in a <code>WindowCommandsItem</code>, a <code>ContentControl</code> with an <code>IsSeparatorVisible</code> property and a read-only <code>ParentWindowCommands</code> back-reference. <code>ItemContainerStyle</code> is typed to it, so that is the hook for restyling the wrapper rather than the buttons.</p>
+<h2 id="separators">Separators</h2>
+<p><img src="images/windowcommands-separators.png" alt="The default, without the last separator, and without any" /></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ShowSeparators</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>draw separators at all</td>
+</tr>
+<tr>
+<td><code>ShowLastSeparator</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>include the one after the final item</td>
+</tr>
+<tr>
+<td><code>SeparatorHeight</code></td>
+<td><code>double</code></td>
+<td><code>15</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>The trailing separator is the one people usually want gone, since it sits between your buttons and the window buttons:</p>
+<pre><code class="language-xml">&lt;mah:WindowCommands ShowLastSeparator=&quot;False&quot;&gt;
+</code></pre>
+<h2 id="light-and-dark">Light and dark</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Theme</code></td>
+<td><code>string</code></td>
+<td><code>ThemeManager.BaseColorLight</code></td>
+</tr>
+<tr>
+<td><code>LightTemplate</code></td>
+<td><code>ControlTemplate</code></td>
+<td><code>null</code></td>
+</tr>
+<tr>
+<td><code>DarkTemplate</code></td>
+<td><code>ControlTemplate</code></td>
+<td><code>null</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Theme</code> holds a <strong>base-colour name</strong>, not a theme object — the string <code>&quot;Light&quot;</code> or <code>&quot;Dark&quot;</code>. Its changed callback swaps <code>Template</code> for <code>LightTemplate</code> or <code>DarkTemplate</code>, and only if the matching one is set:</p>
+<pre><code class="language-csharp">case ThemeManager.BaseColorLightConst:
+{
+    if (windowCommands.LightTemplate != null)
+    {
+        windowCommands.SetValue(TemplateProperty, windowCommands.LightTemplate);
+    }
+    …
+}
+</code></pre>
+<p>So the pair exists to give the commands a different template over a light title bar than over a dark one. Leave both <code>null</code> and <code>Theme</code> does nothing — which is the normal case, since the default template already adapts through the theme brushes.</p>
+<p><code>ParentWindow</code> is a read-only property pointing at the hosting <a href="metrowindow">MetroWindow</a>.</p>
+<h2 id="visibility-over-flyouts">Visibility over flyouts</h2>
+<p>The window decides whether its commands stay visible when a <a href="flyouts">Flyout</a> is open, through <code>LeftWindowCommandsOverlayBehavior</code> and <code>RightWindowCommandsOverlayBehavior</code>. Both are a <code>WindowCommandsOverlayBehavior</code>, which has only <code>Never</code> and <code>HiddenTitleBar</code> — so window commands can <strong>never</strong> be drawn over an open flyout. See <a href="flyouts">Flyouts</a> for the full table.</p>
+<h2 id="related">Related</h2>
+<p><a href="WindowButtonCommands">WindowButtonCommands</a> for the minimise, maximise and close buttons at the end of the same title bar. <a href="metrowindow">MetroWindow</a> hosts both.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#separators">Separators</a></div>
+                    <div class="sidebar-nav-item"><a href="#light-and-dark">Light and dark</a></div>
+                    <div class="sidebar-nav-item"><a href="#visibility-over-flyouts">Visibility over flyouts</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/WindowCommands.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>

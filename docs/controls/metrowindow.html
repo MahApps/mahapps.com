@@ -331,111 +331,345 @@ MetroWindow
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>The <code>MetroWindow</code> is the main entry point of <code>MahApps</code> and replaces the normal <code>Window</code> to get the <code>MahApps</code> styles and themes to be work.</p>
-<p>If you don't know how to start with this then you can read the <a href="../guides/quick-start">Quick Start</a> section.</p>
-<h1 id="window-borders">Window borders</h1>
-<p>The <code>MetroWindow</code> can be used with different borders. You can change the behavior by using the <code>BorderBrush</code>, <code>GlowBrush</code> and <code>BorderThickness</code> properties.</p>
-<h1 id="normal-border">Normal Border</h1>
-<p>A window with a normal border can be achieved by using the <code>BorderBrush</code> and <code>BorderThickness</code> property.</p>
-<pre><code class="language-xml">&lt;Controls:MetroWindow x:Class=&quot;MahApps.Metro.Simple.Demo.MainWindow&quot;
-                      xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-                      xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-                      xmlns:Controls=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
-                      Title=&quot;MainWindow&quot;
-                      Height=&quot;200&quot;
-                      Width=&quot;600&quot;
-
-                      BorderBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
-                      BorderThickness=&quot;1&quot;
-
-                      WindowStartupLocation=&quot;CenterScreen&quot;&gt;
-
-&lt;/Controls:MetroWindow&gt;
-</code></pre>
-<p><img src="images/metrowindow_border.png" alt="MetroWindow with Border" /></p>
-<h1 id="glow-border">Glow Border</h1>
-<p>A window with a border glow effect can be achieved with the <code>GlowBrush</code> property.</p>
-<pre><code class="language-xml">&lt;Controls:MetroWindow x:Class=&quot;MahApps.Metro.Simple.Demo.MainWindow&quot;
-                      xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-                      xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-                      xmlns:Controls=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
-                      Title=&quot;MainWindow&quot;
-                      Height=&quot;200&quot;
-                      Width=&quot;600&quot;
-
-                      GlowBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
-
-                      WindowStartupLocation=&quot;CenterScreen&quot;&gt;
-
-&lt;/Controls:MetroWindow&gt;
-</code></pre>
-<p><img src="images/metrowindow_glow.png" alt="MetroWindow with Glow" /></p>
-<h1 id="only-shadow">Only Shadow</h1>
-<p>The window can also used without a border to get only a shadow arround it.</p>
-<pre><code class="language-xml">&lt;Controls:MetroWindow x:Class=&quot;MahApps.Metro.Simple.Demo.MainWindow&quot;
-                      xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-                      xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-                      xmlns:Controls=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
-                      Title=&quot;MainWindow&quot;
-                      Height=&quot;200&quot;
-                      Width=&quot;600&quot;
-
-                      BorderThickness=&quot;0&quot;
-                      GlowBrush=&quot;Black&quot;
-                      ResizeMode=&quot;CanResizeWithGrip&quot;
-
-                      WindowTransitionsEnabled=&quot;False&quot;
-                      WindowStartupLocation=&quot;CenterScreen&quot;&gt;
-
-&lt;/Controls:MetroWindow&gt;
-</code></pre>
-<p><img src="images/metrowindow_shadow.png" alt="MetroWindow with Shadow" /></p>
-<h1 id="properties">Properties</h1>
-<p>One property not detailed is the <code>SaveWindowPosition=&quot;True|False&quot;</code> (default <code>False</code>) option. Setting this property to <code>True</code> will mean on next launch, it will automatically be positioned and sized to what it was on exit. This is designed to improve UX and speed development as its one of those &quot;plumbing&quot; UI things that is done regularly.</p>
-<p>Be careful though - if a monitor is detached during application exit and restart, or if certain circumstances arise, your application may launch off screen. Be sure to provide a 'reset' option or handle that in code.</p>
-<h1 id="setting-a-custom-icon">Setting a custom Icon</h1>
-<div class="alert alert-info"><p><em><strong>Note</strong></em><br />
-The <code>Icon</code>-Property can only contain content of type <code>ImageSource</code> (see <a href="https://docs.microsoft.com/en-us/dotnet/api/system.windows.window.icon">Microsoft Docs</a>). To show other content we have to use the <code>IconTemplate</code></p>
+<p><code>MetroWindow</code> replaces WPF's <code>Window</code>. Using it is what gives an application the MahApps title bar, and it is the host for <a href="flyouts">flyouts</a>, dialogs and the title-bar commands. If you are starting out, read the <a href="../guides/quick-start">Quick Start</a> first.</p>
+<p>It has around fifty properties. They are grouped here by what they do rather than listed alphabetically.</p>
+<h2 id="the-title-bar">The title bar</h2>
+<p><img src="images/metrowindow-titlebar.png" alt="The defaults, a centred title, normal casing, and no title bar" /></p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ShowTitleBar</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>TitleBarHeight</code></td>
+<td><code>int</code></td>
+<td><code>30</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>TitleAlignment</code></td>
+<td><code>HorizontalAlignment</code></td>
+<td><code>Stretch</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>TitleCharacterCasing</code></td>
+<td><code>CharacterCasing</code></td>
+<td><strong><code>Upper</code></strong></td>
+<td>why titles shout by default</td>
+</tr>
+<tr>
+<td><code>TitleForeground</code></td>
+<td><code>Brush</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>TitleTemplate</code></td>
+<td><code>DataTemplate</code></td>
+<td><code>null</code></td>
+<td>replace the title's presentation entirely</td>
+</tr>
+<tr>
+<td><code>WindowTitleBrush</code></td>
+<td><code>Brush</code></td>
+<td><code>Transparent</code></td>
+<td>the bar's background</td>
+</tr>
+<tr>
+<td><code>NonActiveWindowTitleBrush</code></td>
+<td><code>Brush</code></td>
+<td><code>Gray</code></td>
+<td>the same while the window is inactive</td>
+</tr>
+<tr>
+<td><code>UseNoneWindowStyle</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>no title bar and no border at all</td>
+</tr>
+</tbody>
+</table>
+<p><code>TitleCharacterCasing=&quot;Normal&quot;</code> is the one most people reach for first — the third panel above.</p>
+<div class="alert alert-info"><p><code>ShowTitleBar=&quot;False&quot;</code> removes the bar but <strong>not</strong> the window buttons: the fourth panel above still has minimise, maximise and close floating over the content. That is <code>WindowButtonCommandsOverlayBehavior</code>, which defaults to <code>Always</code> and so includes the hidden-title-bar case. Set it to <code>Never</code> if you want them gone with the bar.</p>
 </div>
-<p>You can adjust the appereance of the Icon by editing the <code>IconTemplate</code>. The below code snippet shows how to configure the <code>Icon-Image</code>:</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow x:Class=&quot;MetroDemo.MainWindow&quot;
-                 xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-                 xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-                 xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
-                 Icon=&quot;mahapps.metro.logo2.ico&quot;
-                 ShowIconOnTitleBar=&quot;True&quot;&gt;
+<p><code>WindowTitleBrush</code> being <code>Transparent</code> by default is worth knowing: the accent colour you see comes from the theme, not from this property, so setting it is how you get a title bar that ignores the theme.</p>
+<h2 id="borders-glow-and-shadow">Borders, glow and shadow</h2>
+<p><img src="images/metrowindow-borders.png" alt="A one-pixel border, no border, and a taller title bar" /></p>
+<p>A normal border is <code>BorderBrush</code> plus <code>BorderThickness</code>, inherited from <code>Window</code>:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow BorderBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+                 BorderThickness=&quot;1&quot; /&gt;
+</code></pre>
+<p><code>GlowBrush</code> instead draws a soft glow around the frame:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow GlowBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot; /&gt;
+</code></pre>
+<p><img src="images/metrowindow_glow.png" alt="A window with a glow" /></p>
+<div class="alert alert-info"><p>The glow is painted by <strong>separate windows around the frame</strong>, not by the window's own visual tree. A <code>BorderThickness=&quot;0&quot;</code> window with no <code>GlowBrush</code> therefore has no edge at all — the middle panel of the first figure.</p>
+</div>
+<p>For a drop shadow and no border, set <code>BorderThickness=&quot;0&quot;</code> with a dark <code>GlowBrush</code>:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow BorderThickness=&quot;0&quot;
+                 GlowBrush=&quot;Black&quot;
+                 ResizeMode=&quot;CanResizeWithGrip&quot;
+                 WindowTransitionsEnabled=&quot;False&quot; /&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GlowBrush</code></td>
+<td><code>Brush</code></td>
+<td><code>null</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>NonActiveGlowBrush</code></td>
+<td><code>Brush</code></td>
+<td></td>
+<td>the glow while inactive</td>
+</tr>
+<tr>
+<td><code>NonActiveBorderBrush</code></td>
+<td><code>Brush</code></td>
+<td><code>Gray</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>KeepBorderOnMaximize</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>ResizeBorderThickness</code></td>
+<td><code>Thickness</code></td>
+<td><code>6</code></td>
+<td>the invisible grab area for resizing</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-window-buttons">The window buttons</h2>
+<p><img src="images/metrowindow-buttons.png" alt="All three, a disabled close button, and only the close button" /></p>
+<p>There are two pairs of properties, and they do different things:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ShowMinButton</code>, <code>ShowMaxRestoreButton</code>, <code>ShowCloseButton</code></td>
+<td>remove the button</td>
+</tr>
+<tr>
+<td><code>IsMinButtonEnabled</code>, <code>IsMaxRestoreButtonEnabled</code>, <code>IsCloseButtonEnabled</code></td>
+<td>keep it, greyed out</td>
+</tr>
+</tbody>
+</table>
+<p>All six default to <code>True</code>. The middle panel above is a disabled close button — still there, still visibly a button; the right-hand one has the other two removed outright.</p>
+<p><code>WindowButtonCommands</code> is the control itself, should you want to reach it — see <a href="WindowButtonCommands">WindowButtonCommands</a>, which also has the cancellable <code>ClosingWindow</code> event.</p>
+<p><code>ShowSystemMenu</code> and <code>ShowSystemMenuOnRightClick</code> (both <code>True</code>) control the system menu.</p>
+<h2 id="title-bar-commands-and-the-icon">Title-bar commands and the icon</h2>
+<p><code>LeftWindowCommands</code> and <code>RightWindowCommands</code> take a <a href="WindowCommands">WindowCommands</a> each, for your own buttons at either end of the bar. <code>OverrideDefaultWindowCommandsBrush</code> forces a brush onto all of them at once.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ShowIconOnTitleBar</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>IconTemplate</code></td>
+<td><code>DataTemplate</code></td>
+<td><code>null</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>IconScalingMode</code></td>
+<td><code>MultiFrameImageMode</code></td>
+<td><code>ScaleDownLargerFrame</code></td>
+<td>see <a href="MultiFrameImage">MultiFrameImage</a></td>
+</tr>
+<tr>
+<td><code>IconBitmapScalingMode</code></td>
+<td><code>BitmapScalingMode</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>IconEdgeMode</code></td>
+<td><code>EdgeMode</code></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><code>IconOverlayBehavior</code></td>
+<td><code>OverlayBehavior</code></td>
+<td><code>Never</code></td>
+<td>whether the icon shows over a flyout</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-info"><p><code>Icon</code> is inherited from <code>Window</code> and takes only an <code>ImageSource</code> (<a href="https://learn.microsoft.com/dotnet/api/system.windows.window.icon">Microsoft docs</a>). For anything else, use <code>IconTemplate</code> — the icon is bound to it, so <code>{Binding}</code> inside the template is the <code>Icon</code>.</p>
+</div>
+<pre><code class="language-xml">&lt;mah:MetroWindow Icon=&quot;app.ico&quot; ShowIconOnTitleBar=&quot;True&quot;&gt;
     &lt;mah:MetroWindow.IconTemplate&gt;
         &lt;DataTemplate&gt;
-            &lt;!-- Setting a Margin and enable hight-quality image --&gt;
-            &lt;Image Margin=&quot;4&quot;
-                   RenderOptions.BitmapScalingMode=&quot;HighQuality&quot;
-                   Source=&quot;{Binding}&quot; /&gt;
+            &lt;Image Margin=&quot;4&quot; RenderOptions.BitmapScalingMode=&quot;HighQuality&quot; Source=&quot;{Binding}&quot; /&gt;
         &lt;/DataTemplate&gt;
     &lt;/mah:MetroWindow.IconTemplate&gt;
-    [...]
 &lt;/mah:MetroWindow&gt;
 </code></pre>
-<p>You can also use any other content here as well. In the following snippet we will use an icon form the <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">MahApps.Metro.IconPacks</a> but you can use any other content as well.</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow x:Class=&quot;MetroDemo.MainWindow&quot;
-                 xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-                 xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-                 xmlns:iconPacks=&quot;http://metro.mahapps.com/winfx/xaml/iconpacks&quot;
-                 xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
-                 ShowIconOnTitleBar=&quot;True&quot;&gt;
-    &lt;mah:MetroWindow.IconTemplate&gt;
-        &lt;DataTemplate&gt;
-            &lt;iconPacks:PackIconUnicons Kind=&quot;BatteryBolt&quot; 
-                                       Width=&quot;30&quot; 
-                                       Height=&quot;30&quot;
-                                       HorizontalAlignment=&quot;Center&quot;
-                                       VerticalAlignment=&quot;Center&quot;
-                                       Margin=&quot;4&quot;
-                                       Foreground=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot;/&gt;
-        &lt;/DataTemplate&gt;
-    &lt;/mah:MetroWindow.IconTemplate&gt;
-    [...]
-&lt;/mah:MetroWindow&gt;
+<p>The template does not have to show the <code>Icon</code> at all — put an icon-pack glyph in it and the window has a vector icon:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow.IconTemplate&gt;
+    &lt;DataTemplate&gt;
+        &lt;iconPacks:PackIconUnicons Width=&quot;30&quot; Height=&quot;30&quot; Margin=&quot;4&quot;
+                                   Kind=&quot;BatteryBolt&quot;
+                                   Foreground=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot; /&gt;
+    &lt;/DataTemplate&gt;
+&lt;/mah:MetroWindow.IconTemplate&gt;
 </code></pre>
+<p>Because the icon is drawn by a <a href="MultiFrameImage">MultiFrameImage</a>, a multi-resolution <code>.ico</code> picks the frame that suits the title bar rather than being stretched — <code>IconScalingMode</code> is that control's mode.</p>
+<h2 id="flyouts-and-dialogs">Flyouts and dialogs</h2>
+<p><code>Flyouts</code> takes the <code>FlyoutsControl</code> holding the window's <a href="flyouts">flyouts</a>, and <code>FlyoutOverlayBrush</code> paints the dimming behind a modal one.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MetroDialogOptions</code></td>
+<td><code>MetroDialogSettings</code></td>
+<td></td>
+<td>defaults for the dialogs shown on this window</td>
+</tr>
+<tr>
+<td><code>ShowDialogsOverTitleBar</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>OverlayBrush</code></td>
+<td><code>Brush</code></td>
+<td></td>
+<td>the dialog overlay</td>
+</tr>
+<tr>
+<td><code>OverlayOpacity</code></td>
+<td><code>double</code></td>
+<td><code>0.7</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>OverlayFadeIn</code> / <code>OverlayFadeOut</code></td>
+<td><code>Storyboard</code></td>
+<td></td>
+<td>replace the fade</td>
+</tr>
+<tr>
+<td><code>IsAnyDialogOpen</code></td>
+<td><code>bool</code>, read-only</td>
+<td><code>False</code></td>
+<td></td>
+</tr>
+<tr>
+<td><code>IsCloseButtonEnabledWithDialog</code></td>
+<td><code>bool</code>, read-only</td>
+<td><code>True</code></td>
+<td>whether the close button works while a dialog is up</td>
+</tr>
+</tbody>
+</table>
+<p>The four overlay-behaviour properties — <code>LeftWindowCommandsOverlayBehavior</code>, <code>RightWindowCommandsOverlayBehavior</code>, <code>WindowButtonCommandsOverlayBehavior</code> and <code>IconOverlayBehavior</code> — decide what stays visible above an open flyout. They are documented with their defaults on the <a href="flyouts">Flyouts</a> page.</p>
+<h2 id="position-dragging-and-startup">Position, dragging and startup</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SaveWindowPosition</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>restore size and position on next launch</td>
+</tr>
+<tr>
+<td><code>WindowPlacementSettings</code></td>
+<td><code>IWindowPlacementSettings</code></td>
+<td><code>null</code></td>
+<td>where that is stored</td>
+</tr>
+<tr>
+<td><code>IgnoreTaskbarOnMaximize</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td>maximise over the taskbar</td>
+</tr>
+<tr>
+<td><code>IsWindowDraggable</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>drag the window by its title bar</td>
+</tr>
+<tr>
+<td><code>WindowTransitionsEnabled</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>the content's entrance animation</td>
+</tr>
+<tr>
+<td><code>TryToBeFlickerFree</code></td>
+<td><code>bool</code></td>
+<td><code>False</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p><code>SaveWindowPosition=&quot;True&quot;</code> is a nice convenience and a real support risk. If a monitor is detached between exit and restart, the window can come back <strong>off screen</strong> with no way for the user to get at it. Provide a reset, or validate the restored placement against the current screens yourself.</p>
+</div>
+<p><code>IsWindowDraggable</code> is what <a href="MetroThumbContentControl">MetroThumbContentControl</a> checks — the title bar is one of those, and dragging it is what moves the window.</p>
+<h2 id="related">Related</h2>
+<p><a href="WindowCommands">WindowCommands</a> and <a href="WindowButtonCommands">WindowButtonCommands</a> for the title bar's two sets of buttons. <a href="flyouts">Flyouts</a> for the overlay panels and the overlay-behaviour table. <a href="MetroNavigationWindow">MetroNavigationWindow</a> is a <code>MetroWindow</code> with a navigation bar built in.</p>
 
 
                                         </div>
@@ -444,12 +678,13 @@ The <code>Icon</code>-Property can only contain content of type <code>ImageSourc
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#window-borders">Window borders</a></div>
-                    <div class="sidebar-nav-item"><a href="#normal-border">Normal Border</a></div>
-                    <div class="sidebar-nav-item"><a href="#glow-border">Glow Border</a></div>
-                    <div class="sidebar-nav-item"><a href="#only-shadow">Only Shadow</a></div>
-                    <div class="sidebar-nav-item"><a href="#properties">Properties</a></div>
-                    <div class="sidebar-nav-item"><a href="#setting-a-custom-icon">Setting a custom Icon</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-title-bar">The title bar</a></div>
+                    <div class="sidebar-nav-item"><a href="#borders-glow-and-shadow">Borders, glow and shadow</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-window-buttons">The window buttons</a></div>
+                    <div class="sidebar-nav-item"><a href="#title-bar-commands-and-the-icon">Title-bar commands and the icon</a></div>
+                    <div class="sidebar-nav-item"><a href="#flyouts-and-dialogs">Flyouts and dialogs</a></div>
+                    <div class="sidebar-nav-item"><a href="#position-dragging-and-startup">Position, dragging and startup</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/metrowindow.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

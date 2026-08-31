@@ -256,12 +256,94 @@ Win 10 (UWP)
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><em>coming soon</em></p>
+<p>Win10 is <strong>not a variant in the sense that <a href="clean">Clean</a> and <a href="vs">Visual Studio</a> are.</strong> There is no <code>Styles/Win10/</code> folder and no dictionary to merge. What the library ships is a handful of individually keyed styles that you apply one control at a time.</p>
+<p><img src="images/win10-controls.png" alt="The default styles and the Win10 ones" /></p>
+<pre><code class="language-xml">&lt;CheckBox Content=&quot;a check box&quot; Style=&quot;{DynamicResource MahApps.Styles.CheckBox.Win10}&quot; /&gt;
+&lt;RadioButton Content=&quot;a radio button&quot; Style=&quot;{DynamicResource MahApps.Styles.RadioButton.Win10}&quot; /&gt;
+&lt;Slider Value=&quot;40&quot; Style=&quot;{DynamicResource MahApps.Styles.Slider.Win10}&quot; /&gt;
+</code></pre>
+<p>The Win10 check box is a filled accent square rather than an outline with a tick, the radio button a ring with a solid centre, and the slider thumb a rounded pill instead of a bar.</p>
+<h2 id="what-the-library-provides">What the library provides</h2>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th>Covered on</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.CheckBox.Win10</code></td>
+<td><a href="../styles/checkbox">CheckBox</a></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.CheckBox.DataGrid.Win10</code></td>
+<td><a href="../styles/datagridcolumns">DataGrid columns</a></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.RadioButton.Win10</code></td>
+<td><a href="../styles/radiobutton">RadioButton</a></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Slider.Win10</code></td>
+<td><a href="../styles/slider">Slider</a></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.RangeSlider.Win10</code></td>
+<td><a href="../controls/rangeslider">RangeSlider</a></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.WindowButtonCommands.Win10</code></td>
+<td><a href="../controls/WindowButtonCommands">WindowButtonCommands</a></td>
+</tr>
+</tbody>
+</table>
+<p>Each brings its own supporting pieces — <code>MahApps.Templates.Slider.Horizontal.Win10</code> and <code>.Vertical.Win10</code>, <code>MahApps.Styles.Thumb.Slider.Win10</code>, the two <code>RepeatButton.Slider.*Track.Win10</code> styles, the range slider's thumb and templates, and light and dark close-button styles for the window buttons.</p>
+<p>To apply one everywhere, declare an implicit style based on it:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.CheckBox.Win10}&quot; TargetType=&quot;{x:Type CheckBox}&quot; /&gt;
+</code></pre>
+<div class="alert alert-info"><p>The <a href="clean">Clean</a> variant uses <code>MahApps.Styles.WindowButtonCommands.Clean.Win10</code> for its title-bar buttons, so if you are already on Clean you have the Win10 window buttons.</p>
+</div>
+<h2 id="additions-from-this-site">Additions from this site</h2>
+<p>The library stops at those six. For several other controls this documentation ships <strong>drop-in dictionaries</strong> in the same look, written for these pages and not part of the package:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../../assets/xaml/Controls.Calendar.Win10.xaml"><code>Controls.Calendar.Win10.xaml</code></a></td>
+<td>a square calendar — see <a href="../styles/calendar">Calendar</a></td>
+</tr>
+<tr>
+<td><a href="../../assets/xaml/Controls.DateTimePicker.Win10.xaml"><code>Controls.DateTimePicker.Win10.xaml</code></a></td>
+<td><a href="../controls/DateTimePicker">DateTimePicker</a> and <a href="../controls/TimePicker">TimePicker</a></td>
+</tr>
+<tr>
+<td><a href="../../assets/xaml/Controls.ScrollBar.Win10.xaml"><code>Controls.ScrollBar.Win10.xaml</code></a></td>
+<td><a href="../styles/scrollbars">ScrollBars</a></td>
+</tr>
+</tbody>
+</table>
+<p>Download them, merge them after <code>Controls.xaml</code>, and read the page each one belongs to — several note what the built-in templates do and do not let a style reach.</p>
+<h2 id="related">Related</h2>
+<p><a href="winui">WinUI</a> for the newer Fluent look, which the library does not cover at all. <a href="clean">Clean</a> and <a href="vs">Visual Studio</a> for the two real variants.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#what-the-library-provides">What the library provides</a></div>
+                    <div class="sidebar-nav-item"><a href="#additions-from-this-site">Additions from this site</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/stylevariants/win10.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
