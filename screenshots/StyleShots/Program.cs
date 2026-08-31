@@ -66,6 +66,7 @@ namespace StyleShots
                         _ = typeof(MahApps.Metro.IconPacks.PackIconEntypo);
 
                         LoadExtraStyles();
+                        await MetroWindowFiguresAsync();
                         await WindowCommandsFiguresAsync();
                         await TileFiguresAsync();
                         await NumericUpDownFiguresAsync();
@@ -739,6 +740,63 @@ namespace StyleShots
                 });
 
             return wrapper;
+        }
+
+        private static async Task<FrameworkElement> WindowAsync(string attributes, int width = 340, int height = 130)
+        {
+            var window = (Window)XamlReader.Parse(
+                $@"<mah:MetroWindow {Xmlns}
+                       Width=""{width}"" Height=""{height}"" Title=""MahApps"" ShowInTaskbar=""False""
+                       WindowStartupLocation=""Manual"" Left=""-20000"" Top=""-20000"" {attributes}>
+                       <Grid Background=""{{DynamicResource MahApps.Brushes.ThemeBackground}}"" />
+                   </mah:MetroWindow>");
+
+            var rendered = new TaskCompletionSource<bool>();
+            window.ContentRendered += (_, _) => rendered.TrySetResult(true);
+            window.Show();
+            await rendered.Task;
+
+            window.Activate();
+            if (window is MetroWindow metro)
+            {
+                metro.SetCurrentValue(MetroWindow.NonActiveWindowTitleBrushProperty, metro.WindowTitleBrush);
+                metro.SetCurrentValue(MetroWindow.NonActiveBorderBrushProperty, metro.BorderBrush);
+            }
+
+            await Task.Delay(500);
+            await window.Dispatcher.InvokeAsync(() => { }, DispatcherPriority.ContextIdle);
+            window.UpdateLayout();
+
+            var bitmap = Render(window);
+            window.Close();
+            return new Image { Source = bitmap, Width = bitmap.Width, Height = bitmap.Height };
+        }
+
+        private static async Task MetroWindowFiguresAsync()
+        {
+            await CaptureAsync("controls", "metrowindow-titlebar",
+                Showcase(
+                    ("the defaults", await WindowAsync(string.Empty)),
+                    (@"TitleAlignment=""Center""", await WindowAsync(@"TitleAlignment=""Center""")),
+                    (@"TitleCharacterCasing=""Normal""", await WindowAsync(@"TitleCharacterCasing=""Normal""")),
+                    (@"ShowTitleBar=""False""", await WindowAsync(@"ShowTitleBar=""False"""))));
+
+            await CaptureAsync("controls", "metrowindow-buttons",
+                Showcase(
+                    ("the defaults", await WindowAsync(string.Empty)),
+                    (@"IsCloseButtonEnabled=""False""", await WindowAsync(@"IsCloseButtonEnabled=""False""")),
+                    (@"ShowMinButton and ShowMaxRestoreButton off",
+                        await WindowAsync(@"ShowMinButton=""False"" ShowMaxRestoreButton=""False"""))));
+
+            await CaptureAsync("controls", "metrowindow-borders",
+                Showcase(
+                    (@"BorderThickness=""1"" with a BorderBrush",
+                        await WindowAsync(@"BorderThickness=""1"" BorderBrush=""{DynamicResource MahApps.Brushes.Accent}""")),
+                    // No GlowBrush panel here: the glow is painted by separate
+                    // windows around the frame, so an off-screen render of the
+                    // window's own visual tree shows nothing at all.
+                    (@"BorderThickness=""0""", await WindowAsync(@"BorderThickness=""0""")),
+                    (@"TitleBarHeight=""48""", await WindowAsync(@"TitleBarHeight=""48"""))));
         }
 
         // Both command controls only exist inside a MetroWindow's title bar, so
