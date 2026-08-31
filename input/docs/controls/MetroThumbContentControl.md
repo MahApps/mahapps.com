@@ -20,7 +20,7 @@ private void OnDragDelta(object sender, DragDeltaEventArgs e)
 }
 ```
 
-There is no figure on this page because there is nothing to photograph: the control has **no appearance of its own**. Its style is
+The control has **no appearance of its own**. Its style is
 
 ```xml
 <Style x:Key="MahApps.Styles.MetroThumbContentControl"

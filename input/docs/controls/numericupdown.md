@@ -86,7 +86,7 @@ Hiding the buttons does not make the control read-only — the arrow keys, the w
 | `P0` | a percentage |
 | `{}{0:N2} psc` | a composite format; the leading `{}` escapes the brace for XAML |
 
-`Culture` (default `null`, meaning the thread's culture) decides the separators and the currency symbol. The figures on this page pin it to `en-US` so they do not change with the machine that renders them.
+`Culture` (default `null`, meaning the thread's culture) decides the separators and the currency symbol. The examples above are `en-US`.
 
 `ParsingNumberStyle` (default `NumberStyles.Any`) is what typed text is parsed with, if you need to be stricter than that.
 

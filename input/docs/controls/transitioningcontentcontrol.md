@@ -12,7 +12,7 @@ Description: A ContentControl that animates from the old content to the new one
                                  Transition="Left" />
 ```
 
-The figures freeze the animation shortly after it starts, which is the only moment both contents are on screen — the old one (*First*) on its way out, the new one (*Second*) on its way in. Each sits in a clipped, fixed-size box so the vertical transitions stay inside the picture.
+Both contents are only on screen together for the first fraction of a second, which is the moment the figures show: the old one (*First*) on its way out, the new one (*Second*) on its way in.
 
 This is the counterpart to [MetroContentControl](metrocontentcontrol), which animates its own appearance and does **not** react to a content change at all.
 

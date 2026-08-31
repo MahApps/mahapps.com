@@ -103,7 +103,7 @@ So an untouched tile does nothing at all under the pointer. Give it a brush and 
 <mah:Tile Title="Mail" mah:ControlsHelper.MouseOverBorderBrush="{DynamicResource MahApps.Brushes.ThemeForeground}" />
 ```
 
-The last panel of the four-tile figure above shows that state — faded in by hand for the screenshot, since an off-screen render has no pointer in it. It is also what the demo's *Mail* and *Desktop* tiles set, and why only those two react to the mouse.
+The last panel of the four-tile figure above shows that border. It is what the demo's *Mail* and *Desktop* tiles set, and why only those two react to the mouse.
 :::
 
 Pressing a tile scales it to 0.98 about its centre, which is the small "push" the Start screen tiles had. That comes from a trigger on `Button.IsPressed` and needs no setting up.
@@ -111,7 +111,7 @@ Pressing a tile scales it to 0.98 about its centre, which is the small "push" th
 ## Two properties that do nothing
 
 :::{.alert .alert-warning}
-`Tile` declares **`KeepDragging`** and **`TiltFactor`**, and neither has any effect. Searching the library for `TiltFactor` finds it only at its own declaration in `Tile.cs`; nothing reads either property, and the tile template contains no behaviour, no `Interaction.Behaviors` and no tilt code at all.
+`Tile` declares **`KeepDragging`** and **`TiltFactor`**, and neither has any effect. Nothing in the library reads either one: `TiltFactor` appears only at its own declaration in `Tile.cs`, and the tile template contains no behaviour, no `Interaction.Behaviors` and no tilt code at all.
 
 The tilt effect they look like they control lives in **`TiltBehavior`**, which has its own `KeepDragging` and `TiltFactor` properties and has to be attached explicitly:
 

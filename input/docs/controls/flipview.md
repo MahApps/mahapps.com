@@ -26,7 +26,7 @@ The user flips with the two buttons or with the arrow keys. In code:
 | `SelectedIndex` | jump anywhere; the transition direction is worked out from the old and new index |
 | `CircularNavigation` | `False` by default; when `True`, the ends wrap around |
 
-Which button is visible is **computed, not fixed**. `DetectControlButtonsStatus` hides the back button on the first item and the forward button on the last, unless `CircularNavigation` is on — which is why the figures on this page sit on the middle slide.
+Which button is visible is **computed, not fixed**. `DetectControlButtonsStatus` hides the back button on the first item and the forward button on the last, unless `CircularNavigation` is on.
 
 ![Buttons inside, outside, and switched off](images/flipview-buttons.png)
 
@@ -142,8 +142,6 @@ A border drawn over the item while the mouse is inside, to show the control has 
 | `MouseHoverBorderEnabled` | `bool` | `True` |
 | `MouseHoverBorderBrush` | `Brush` | theme |
 | `MouseHoverBorderThickness` | `Thickness` | `4` |
-
-It does not appear in the figures on this page because an off-screen render has no mouse in it.
 
 ## An automatic slideshow
 

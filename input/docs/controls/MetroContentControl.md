@@ -93,7 +93,7 @@ if (clock.CurrentState == ClockState.Active)
 }
 ```
 
-Measured on one transition of a default `MetroContentControl`: **37 `TransitionStarted` events and 1 `TransitionCompleted`**. It is the same on `develop`.
+One transition of a default `MetroContentControl` raises **37 `TransitionStarted` events and a single `TransitionCompleted`**. It is the same on `develop`.
 
 So do not treat it as "the transition began" — put anything that must happen once behind a flag of your own, or use `TransitionCompleted`, which really is raised once. `IsTransitioning` is set repeatedly to the same value, which is harmless.
 :::

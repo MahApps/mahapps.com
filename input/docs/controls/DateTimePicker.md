@@ -26,7 +26,7 @@ Description: A date and time picker with a calendar and a clock
 `DateTimePicker` also takes over the `DatePicker` properties for the calendar half: `DisplayDate`, `DisplayDateStart`, `DisplayDateEnd`, `FirstDayOfWeek`, `IsTodayHighlighted` and `SelectedDateFormat`.
 
 :::{.alert .alert-info}
-The style sets `IsTodayHighlighted="True"`, so today's date is filled in the accent colour whether or not it is the selected day. The figures on this page set it to `False` and pin `DisplayDate`, or they would show a different month every day.
+The style sets `IsTodayHighlighted="True"`, so today's date is filled in the accent colour whether or not it is the selected day. Set it to `False` to switch that off.
 :::
 
 ## What the drop-down shows

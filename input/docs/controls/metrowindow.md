@@ -51,7 +51,7 @@ A normal border is `BorderBrush` plus `BorderThickness`, inherited from `Window`
 ![A window with a glow](images/metrowindow_glow.png)
 
 :::{.alert .alert-info}
-The glow is painted by **separate windows around the frame**, not by the window's own visual tree — which is why the figure above is an older screenshot rather than one of this page's generated ones, and why a plain `BorderThickness="0"` window looks bare in the middle panel of the first figure.
+The glow is painted by **separate windows around the frame**, not by the window's own visual tree. A `BorderThickness="0"` window with no `GlowBrush` therefore has no edge at all — the middle panel of the first figure.
 :::
 
 For a drop shadow and no border, set `BorderThickness="0"` with a dark `GlowBrush`:

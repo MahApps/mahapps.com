@@ -149,7 +149,7 @@ public enum OverlayBehavior
 }
 ```
 
-The minimise, maximise and close buttons are drawn over the flyouts in the figures on this page because their default is `Always`, which carries the `Flyouts` flag.
+The minimise, maximise and close buttons default to `Always`, which carries the `Flyouts` flag, so they stay visible above an open flyout.
 
 :::{.alert .alert-info}
 The left and right window commands can never be drawn over an open flyout — `WindowCommandsOverlayBehavior` has no value for it.

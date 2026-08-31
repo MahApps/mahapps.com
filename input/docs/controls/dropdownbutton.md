@@ -10,7 +10,7 @@ Description: A button that opens a menu of items
 <mah:DropDownButton Content="Artists" ItemsSource="{Binding Artists}" />
 ```
 
-`ItemsSource` is the content property, so the items can also be written as the button's child element — that is what the figures on this page do.
+`ItemsSource` is the content property, so the items can also be written as the button's child element instead of bound.
 
 ## It is an ItemsControl, and the list is a ContextMenu
 
