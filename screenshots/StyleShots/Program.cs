@@ -66,6 +66,7 @@ namespace StyleShots
                         _ = typeof(MahApps.Metro.IconPacks.PackIconEntypo);
 
                         LoadExtraStyles();
+                        await StyleVariantFiguresAsync();
                         await MetroWindowFiguresAsync();
                         await WindowCommandsFiguresAsync();
                         await TileFiguresAsync();
@@ -742,14 +743,22 @@ namespace StyleShots
             return wrapper;
         }
 
-        private static async Task<FrameworkElement> WindowAsync(string attributes, int width = 340, int height = 130)
+        private static async Task<FrameworkElement> WindowAsync(string attributes, int width = 340, int height = 130, string[] variantDictionaries = null, string content = "")
         {
             var window = (Window)XamlReader.Parse(
                 $@"<mah:MetroWindow {Xmlns}
                        Width=""{width}"" Height=""{height}"" Title=""MahApps"" ShowInTaskbar=""False""
                        WindowStartupLocation=""Manual"" Left=""-20000"" Top=""-20000"" {attributes}>
-                       <Grid Background=""{{DynamicResource MahApps.Brushes.ThemeBackground}}"" />
+                       <Grid Background=""{{DynamicResource MahApps.Brushes.ThemeBackground}}"">{content}</Grid>
                    </mah:MetroWindow>");
+
+            // A style variant is opted into by merging its dictionary, exactly
+            // as the demo's example windows do.
+            foreach (var dictionary in variantDictionaries ?? Array.Empty<string>())
+            {
+                window.Resources.MergedDictionaries.Add(
+                    new ResourceDictionary { Source = new Uri(dictionary, UriKind.Absolute) });
+            }
 
             var rendered = new TaskCompletionSource<bool>();
             window.ContentRendered += (_, _) => rendered.TrySetResult(true);
@@ -770,6 +779,75 @@ namespace StyleShots
             var bitmap = Render(window);
             window.Close();
             return new Image { Source = bitmap, Width = bitmap.Width, Height = bitmap.Height };
+        }
+
+        private const string CleanDictionary = "pack://application:,,,/MahApps.Metro;component/Styles/Clean/Controls.xaml";
+        private const string VsDictionary = "pack://application:,,,/MahApps.Metro;component/Styles/VS/Controls.xaml";
+        private const string VsColours = "pack://application:,,,/MahApps.Metro;component/Styles/VS/Colors.xaml";
+
+        private const string VariantContent = @"
+            <StackPanel Margin=""12"">
+                <TextBlock Text=""Window content"" />
+                <StackPanel Margin=""0 8 0 0"" Orientation=""Horizontal"">
+                    <Button Margin=""0 0 6 0"" Padding=""10 4"" Content=""OK"" />
+                    <CheckBox VerticalAlignment=""Center"" Content=""a check box"" IsChecked=""True"" />
+                </StackPanel>
+            </StackPanel>";
+
+        // The VS variant's real work is on menus, tabs, text boxes and group
+        // boxes; a button and a check box barely show it.
+        private const string VsContent = @"
+            <DockPanel>
+                <Menu DockPanel.Dock=""Top"">
+                    <MenuItem Header=""File"" />
+                    <MenuItem Header=""Edit"" />
+                    <MenuItem Header=""View"" />
+                </Menu>
+                <TabControl Margin=""6"">
+                    <TabItem Header=""Output"">
+                        <StackPanel Margin=""6"">
+                            <TextBox Text=""a text box"" />
+                            <GroupBox Margin=""0 6 0 0"" Header=""a group box"">
+                                <CheckBox Margin=""4"" Content=""a check box"" IsChecked=""True"" />
+                            </GroupBox>
+                        </StackPanel>
+                    </TabItem>
+                    <TabItem Header=""Errors"" />
+                </TabControl>
+            </DockPanel>";
+
+        private static async Task StyleVariantFiguresAsync()
+        {
+            await CaptureAsync("stylevariants", "clean-window",
+                Showcase(
+                    ("the default MetroWindow",
+                        await WindowAsync(string.Empty, width: 340, height: 160, content: VariantContent)),
+                    ("MahApps.Styles.MetroWindow.Clean",
+                        await WindowAsync(@"Style=""{DynamicResource MahApps.Styles.MetroWindow.Clean}""",
+                                          width: 340, height: 160, variantDictionaries: new[] { CleanDictionary }, content: VariantContent))));
+
+            await CaptureAsync("stylevariants", "vs-window",
+                Showcase(
+                    ("the default MetroWindow",
+                        await WindowAsync(string.Empty, width: 340, height: 260, content: VsContent)),
+                    ("MahApps.Styles.MetroWindow.VisualStudio",
+                        await WindowAsync(@"Style=""{DynamicResource MahApps.Styles.MetroWindow.VisualStudio}""",
+                                          width: 340, height: 260, variantDictionaries: new[] { VsDictionary, VsColours }, content: VsContent))));
+
+            await CaptureAsync("stylevariants", "win10-controls",
+                Showcase(
+                    ("the default styles",
+                        Xaml(@"<StackPanel>
+                                   <CheckBox Content=""a check box"" IsChecked=""True"" />
+                                   <RadioButton Margin=""0 6 0 0"" Content=""a radio button"" IsChecked=""True"" />
+                                   <Slider Width=""150"" Margin=""0 10 0 0"" Value=""40"" />
+                               </StackPanel>")),
+                    ("the Win10 styles",
+                        Xaml(@"<StackPanel>
+                                   <CheckBox Content=""a check box"" IsChecked=""True"" Style=""{DynamicResource MahApps.Styles.CheckBox.Win10}"" />
+                                   <RadioButton Margin=""0 6 0 0"" Content=""a radio button"" IsChecked=""True"" Style=""{DynamicResource MahApps.Styles.RadioButton.Win10}"" />
+                                   <Slider Width=""150"" Margin=""0 10 0 0"" Value=""40"" Style=""{DynamicResource MahApps.Styles.Slider.Win10}"" />
+                               </StackPanel>"))));
         }
 
         private static async Task MetroWindowFiguresAsync()
