@@ -33,12 +33,14 @@ namespace StyleShots
         private const double Scale = 2.0;
         private static string outputRoot;
         private static string frameRoot;
+        private static string socialRoot;
 
         [STAThread]
         public static void Main(string[] args)
         {
             outputRoot = Array.Find(args, a => !a.StartsWith("--")) ?? "shots";
             frameRoot = Array.Find(args, a => a.StartsWith("--frames="))?.Substring("--frames=".Length);
+            socialRoot = Array.Find(args, a => a.StartsWith("--social="))?.Substring("--social=".Length);
 
             var app = new Application { ShutdownMode = ShutdownMode.OnExplicitShutdown };
             foreach (var source in new[]
@@ -79,6 +81,7 @@ namespace StyleShots
                         await MetroContentControlFiguresAsync();
                         await HotKeyBoxFiguresAsync();
                         await ToggleSwitchFiguresAsync();
+                        await SocialShotsAsync();
                         await FontIconFiguresAsync();
                         await FlyoutFiguresAsync();
                         await FlipViewFiguresAsync();
@@ -1385,6 +1388,99 @@ namespace StyleShots
             return Xaml($@"<Border Background=""#FFE3F2FD"" Padding=""0"">{inner}</Border>");
         }
 
+        // Presentation shots for the project's own announcements, not for the
+        // documentation: no captions, generous padding, one control per image.
+        // Written only when --social=<dir> is given.
+        private static async Task SocialShotsAsync()
+        {
+            if (string.IsNullOrEmpty(socialRoot))
+            {
+                return;
+            }
+
+            Directory.CreateDirectory(socialRoot);
+
+            // The element has to be hosted and measured before it can be
+            // rendered, which is what CaptureAsync does.
+            Task ShotAsync(string name, FrameworkElement content, int pad = 28, string backdrop = "#FFF3F6FB")
+            {
+                var framed = new Border
+                             {
+                                 Background = (Brush)new BrushConverter().ConvertFromString(backdrop),
+                                 Padding = new Thickness(pad),
+                                 Child = content
+                             };
+
+                return CaptureAsync(framed,
+                                    element => SaveToPathAsync(Path.Combine(socialRoot, name + ".png"),
+                                                               element, quiet: false, label: $"social/{name}.png"));
+            }
+
+            // The WinUI calendar, which is the most recognisably Fluent of them.
+            await ShotAsync("winui-calendar",
+                Xaml(@"<Calendar DisplayDate=""2020-06-15"" SelectedDate=""2020-06-15"" IsTodayHighlighted=""False""
+                                 Style=""{StaticResource MahApps.Styles.Calendar.WinUI}"" />"),
+                pad: 36);
+
+            // Side by side with the built-in one, which is the whole point.
+            await ShotAsync("winui-calendar-vs-default",
+                Row(("the built-in calendar",
+                        Xaml(@"<Calendar DisplayDate=""2020-06-15"" SelectedDate=""2020-06-15"" IsTodayHighlighted=""False"" />")),
+                    ("MahApps.Styles.Calendar.WinUI",
+                        Xaml(@"<Calendar DisplayDate=""2020-06-15"" SelectedDate=""2020-06-15"" IsTodayHighlighted=""False""
+                                         Style=""{StaticResource MahApps.Styles.Calendar.WinUI}"" />"))),
+                pad: 32);
+
+            // The pickers closed. Their drop-down frame cannot be rounded (#4582),
+            // so the field is what shows the variant at its best.
+            await ShotAsync("winui-pickers",
+                Row(("the built-in styles",
+                        Xaml(@"<StackPanel>
+                                   <mah:DateTimePicker Width=""200"" Culture=""en-US"" SelectedDateTime=""2020-06-15 14:30""
+                                                       DisplayDate=""2020-06-15"" IsTodayHighlighted=""False"" />
+                                   <mah:TimePicker Margin=""0 10 0 0"" Width=""200"" Culture=""en-US"" SelectedDateTime=""2020-06-15 14:30"" />
+                               </StackPanel>")),
+                    ("the WinUI styles",
+                        Xaml(@"<StackPanel>
+                                   <mah:DateTimePicker Width=""200"" Culture=""en-US"" SelectedDateTime=""2020-06-15 14:30""
+                                                       DisplayDate=""2020-06-15"" IsTodayHighlighted=""False""
+                                                       Style=""{StaticResource MahApps.Styles.DateTimePicker.WinUI}"" />
+                                   <mah:TimePicker Margin=""0 10 0 0"" Width=""200"" Culture=""en-US"" SelectedDateTime=""2020-06-15 14:30""
+                                                   Style=""{StaticResource MahApps.Styles.TimePicker.WinUI}"" />
+                               </StackPanel>"))),
+                pad: 32);
+
+            // The overlay scrollbar, expanded to the state hovering animates to.
+            await ShotAsync("winui-scrollbar",
+                Row(("the built-in ScrollBar", Alt(string.Empty)),
+                    ("MahApps.Styles.ScrollBar.WinUI over the content",
+                        Alt("MahApps.Styles.ScrollBar.WinUI", expand: true,
+                            viewerStyleKey: "MahApps.Styles.ScrollViewer.WinUI"))),
+                pad: 32);
+        }
+
+        // A caption row without the documentation figure's grey plate.
+        private static FrameworkElement Row(params (string Caption, FrameworkElement View)[] items)
+        {
+            var row = new StackPanel { Orientation = Orientation.Horizontal };
+            foreach (var (caption, view) in items)
+            {
+                var column = new StackPanel { Margin = new Thickness(14, 0, 14, 0), VerticalAlignment = VerticalAlignment.Center };
+                column.Children.Add(new TextBlock
+                                    {
+                                        Text = caption,
+                                        FontSize = 13,
+                                        Margin = new Thickness(2, 0, 2, 10),
+                                        Foreground = new SolidColorBrush(Color.FromRgb(0x6B, 0x74, 0x80))
+                                    });
+                view.HorizontalAlignment = HorizontalAlignment.Left;
+                column.Children.Add(view);
+                row.Children.Add(column);
+            }
+
+            return row;
+        }
+
         private static async Task FontIconFiguresAsync()
         {
             // Segoe MDL2 Assets code points. Written as &#x...; so the figure
@@ -1813,7 +1909,21 @@ namespace StyleShots
                                        Culture=""en-US"" {dateProps} {attributes} />");
         }
 
-        private static async Task CaptureDropDownAsync(string section, string name, string type, string attributes, bool openHours = false)
+        private static Task CaptureDropDownAsync(string section, string name, string type, string attributes, bool openHours = false)
+        {
+            return CaptureDropDownCoreAsync(type, attributes, openHours,
+                                            element => SaveAsync(section, name, element),
+                                            $"{section}/{name}");
+        }
+
+        private static Task CaptureDropDownToAsync(string path, string type, string attributes, bool openHours = false)
+        {
+            return CaptureDropDownCoreAsync(type, attributes, openHours,
+                                            element => SaveToPathAsync(path, element, quiet: false, label: "social/" + Path.GetFileName(path)),
+                                            Path.GetFileName(path));
+        }
+
+        private static async Task CaptureDropDownCoreAsync(string type, string attributes, bool openHours, Func<FrameworkElement, Task> save, string label)
         {
             // Only DateTimePicker has the calendar half, so only it takes the
             // DatePicker properties that pin the figure to a fixed month.
@@ -1859,28 +1969,28 @@ namespace StyleShots
                     if (hours.Template?.FindName("PART_Popup", hours) is System.Windows.Controls.Primitives.Popup { Child: FrameworkElement list })
                     {
                         list.UpdateLayout();
-                        await SaveAsync(section, name, list);
+                        await save(list);
                     }
                     else
                     {
-                        Console.WriteLine($"{section}/{name}: the hour list's PART_Popup was not found");
+                        Console.WriteLine($"{label}: the hour list's PART_Popup was not found");
                     }
 
                     hours.IsDropDownOpen = false;
                 }
                 else
                 {
-                    Console.WriteLine($"{section}/{name}: PART_HourPicker not found");
+                    Console.WriteLine($"{label}: PART_HourPicker not found");
                 }
             }
             else if (picker.Template?.FindName("PART_Popup", picker) is System.Windows.Controls.Primitives.Popup { Child: FrameworkElement child })
             {
                 child.UpdateLayout();
-                await SaveAsync(section, name, child);
+                await save(child);
             }
             else
             {
-                Console.WriteLine($"{section}/{name}: PART_Popup not found");
+                Console.WriteLine($"{label}: PART_Popup not found");
             }
 
             picker.SetValue(System.Windows.Controls.DatePicker.IsDropDownOpenProperty, false);
