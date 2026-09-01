@@ -35,9 +35,19 @@ this.SetCurrentValue(SelectedDateTimeProperty,
 ```
 
 :::{.alert .alert-warning}
-Note the `GetValueOrDefault()`. If nothing was selected yet, the date part comes from `default(DateTime)` — so picking 14:30 on an empty `TimePicker` gives you **0001-01-01 14:30**, not today at 14:30.
+On an empty picker the date part depends on how the time was set, and the two ways disagree.
+
+**Typing** a time keeps `SelectedDateTime.GetValueOrDefault().Date`, which is `default(DateTime)` when nothing was selected — so typing 14:30 gives you **0001-01-01 14:30**.
+
+**Picking** from the drop-down runs through `ClockSelectedTimeChanged` instead, which falls back to today — so the same 14:30 gives you **today at 14:30**.
 
 If your view model wants a time on a particular day, seed `SelectedDateTime` with that date first, or take `.TimeOfDay` from what you get back.
+:::
+
+:::{.alert .alert-info}
+**`DateTimeKind` is `Unspecified` on `develop`. Before that it depended on the order.** Picking the time first produced `DateTimeKind.Local`, because that path fell back to `DateTime.Today`, while the calendar and the text field produced `Unspecified`. A view model bound to `SelectedDateTime` saw two different kinds from one control.
+
+This is not in 2.4.11, nor in the 3.0 release candidate. Fixed for the next release in [#4551](https://github.com/MahApps/MahApps.Metro/issues/4551); all three paths report `Unspecified` now. The date the drop-down falls back to is unchanged, it is still today.
 :::
 
 ## Format and culture
