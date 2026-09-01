@@ -370,8 +370,13 @@ TimePicker
 <pre><code class="language-csharp">this.SetCurrentValue(SelectedDateTimeProperty,
                      this.SelectedDateTime.GetValueOrDefault().Date + timeSpan.TimeOfDay);
 </code></pre>
-<div class="alert alert-warning"><p>Note the <code>GetValueOrDefault()</code>. If nothing was selected yet, the date part comes from <code>default(DateTime)</code> — so picking 14:30 on an empty <code>TimePicker</code> gives you <strong>0001-01-01 14:30</strong>, not today at 14:30.</p>
+<div class="alert alert-warning"><p>On an empty picker the date part depends on how the time was set, and the two ways disagree.</p>
+<p><strong>Typing</strong> a time keeps <code>SelectedDateTime.GetValueOrDefault().Date</code>, which is <code>default(DateTime)</code> when nothing was selected — so typing 14:30 gives you <strong>0001-01-01 14:30</strong>.</p>
+<p><strong>Picking</strong> from the drop-down runs through <code>ClockSelectedTimeChanged</code> instead, which falls back to today — so the same 14:30 gives you <strong>today at 14:30</strong>.</p>
 <p>If your view model wants a time on a particular day, seed <code>SelectedDateTime</code> with that date first, or take <code>.TimeOfDay</code> from what you get back.</p>
+</div>
+<div class="alert alert-info"><p><strong><code>DateTimeKind</code> is <code>Unspecified</code> on <code>develop</code>. Before that it depended on the order.</strong> Picking the time first produced <code>DateTimeKind.Local</code>, because that path fell back to <code>DateTime.Today</code>, while the calendar and the text field produced <code>Unspecified</code>. A view model bound to <code>SelectedDateTime</code> saw two different kinds from one control.</p>
+<p>This is not in 2.4.11, nor in the 3.0 release candidate. Fixed for the next release in <a href="https://github.com/MahApps/MahApps.Metro/issues/4551">#4551</a>; all three paths report <code>Unspecified</code> now. The date the drop-down falls back to is unchanged, it is still today.</p>
 </div>
 <h2 id="format-and-culture">Format and culture</h2>
 <p><img src="images/timepicker-culture.png" alt="en-US, de-DE, and the short format" /></p>
