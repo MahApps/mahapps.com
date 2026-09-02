@@ -408,14 +408,15 @@ HotKeyBox
 }
 </code></pre>
 <p>It is immutable, and both properties are get-only — to change a shortcut you assign a new instance, which is exactly what the control does on every keystroke.</p>
-<div class="alert alert-warning"><p><strong>Compare with <code>Equals</code>, never with <code>==</code>.</strong> <code>HotKey</code> is a class and overrides <code>Equals</code> and <code>GetHashCode</code>, but it does <strong>not</strong> overload <code>operator ==</code>, so <code>==</code> is reference equality:</p>
+<div class="alert alert-warning"><p><strong><code>==</code> compares the key and the modifier keys, but only on <code>develop</code>.</strong> <code>HotKey</code> overrides <code>Equals</code> and <code>GetHashCode</code> and, on <code>develop</code>, also overloads <code>operator ==</code> and <code>operator !=</code>, so two instances that carry the same key and the same modifiers are equal:</p>
 <pre><code class="language-csharp">var a = new HotKey(Key.S, ModifierKeys.Control);
 var b = new HotKey(Key.S, ModifierKeys.Control);
 
-a == b        // false - two different objects
+a == b        // true on develop, false in a released version
 a.Equals(b)   // true
 </code></pre>
-<p>Since the control hands you a fresh instance every time the user presses something, an <code>==</code> check against a stored value will essentially always be <code>false</code>. This is still the case on <code>develop</code>.</p>
+<p>Both operators take <code>null</code> on either side, and <code>Equals(null)</code> returns <code>false</code>.</p>
+<p>A released version has no operators, so there <code>==</code> is reference equality. The control hands you a fresh instance every time the user presses something, which makes an <code>==</code> check against a stored value always <code>false</code>, so compare with <code>Equals</code> until the next release.</p>
 <p>In a released version, <code>Equals(HotKey other)</code> also throws a <code>NullReferenceException</code> when passed <code>null</code>, because it dereferences <code>other</code> without a check. <code>Equals(object)</code> is safe, as its <code>is HotKey</code> test rejects <code>null</code>. A null guard was added on <code>develop</code> and ships with the next release.</p>
 </div>
 <p>Because <code>GetHashCode</code> and <code>Equals</code> are implemented, <code>HotKey</code> works correctly as a dictionary key — which is the usual way to keep a table of shortcuts.</p>
