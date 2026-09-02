@@ -391,6 +391,15 @@ HotKeyBox
 <p>So a globally registered hot key does not fire while the user is recording one. The hook is added on <code>GotFocus</code> and removed on <code>LostFocus</code>.</p>
 </div>
 <p>The control itself is not a focus stop: a class handler on <code>GotFocus</code> forwards focus onward — to the next element, or the previous one if <kbd>Shift</kbd> is held — so only the inner text box takes focus.</p>
+<h2 id="the-hotkeychanged-event">The HotKeyChanged event</h2>
+<p><code>HotKeyChanged</code> is a bubbling routed event with a <code>RoutedPropertyChangedEventHandler&lt;HotKey?&gt;</code>, so the handler gets both values:</p>
+<pre><code class="language-csharp">private void OnHotKeyChanged(object sender, RoutedPropertyChangedEventArgs&lt;HotKey?&gt; e)
+{
+    this.saveShortcut = e.NewValue;
+}
+</code></pre>
+<div class="alert alert-warning"><p><strong>When it fires depends on the version.</strong> On <code>develop</code> the event is raised only when the recorded combination differs from the one before, so pressing <kbd>Ctrl</kbd>+<kbd>S</kbd> twice raises it once. A released version raises it for every recorded keystroke, because it compares the old and the new instance by reference and the control builds a new one each time.</p>
+</div>
 <h2 id="what-it-displays">What it displays</h2>
 <p><code>Text</code> is read-only and is simply <code>HotKey.ToString()</code>, or empty when <code>HotKey</code> is <code>null</code> <strong>or</strong> its <code>Key</code> is <code>Key.None</code>.</p>
 <div class="alert alert-warning"><p><strong>The names come from the keyboard layout, not from the enum and not from the UI culture.</strong> <code>HotKey.ToString()</code> asks Win32 <code>GetKeyNameText</code> for each part, so <code>new HotKey(Key.S, ModifierKeys.Control)</code> shows <em>Ctrl+S</em> on an English layout and <em>Strg+S</em> on a German one — which is what the figure above is showing.</p>
@@ -434,6 +443,7 @@ a.Equals(b)   // true
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#properties">Properties</a></div>
                     <div class="sidebar-nav-item"><a href="#what-it-records">What it records</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-hotkeychanged-event">The HotKeyChanged event</a></div>
                     <div class="sidebar-nav-item"><a href="#what-it-displays">What it displays</a></div>
                     <div class="sidebar-nav-item"><a href="#the-hotkey-class">The HotKey class</a></div>
                     <div class="sidebar-nav-item"><a href="#styling">Styling</a></div>
