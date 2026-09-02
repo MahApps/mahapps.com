@@ -84,17 +84,19 @@ public class HotKey : IEquatable<HotKey>
 It is immutable, and both properties are get-only — to change a shortcut you assign a new instance, which is exactly what the control does on every keystroke.
 
 :::{.alert .alert-warning}
-**Compare with `Equals`, never with `==`.** `HotKey` is a class and overrides `Equals` and `GetHashCode`, but it does **not** overload `operator ==`, so `==` is reference equality:
+**`==` compares the key and the modifier keys, but only on `develop`.** `HotKey` overrides `Equals` and `GetHashCode` and, on `develop`, also overloads `operator ==` and `operator !=`, so two instances that carry the same key and the same modifiers are equal:
 
 ```csharp
 var a = new HotKey(Key.S, ModifierKeys.Control);
 var b = new HotKey(Key.S, ModifierKeys.Control);
 
-a == b        // false - two different objects
+a == b        // true on develop, false in a released version
 a.Equals(b)   // true
 ```
 
-Since the control hands you a fresh instance every time the user presses something, an `==` check against a stored value will essentially always be `false`. This is still the case on `develop`.
+Both operators take `null` on either side, and `Equals(null)` returns `false`.
+
+A released version has no operators, so there `==` is reference equality. The control hands you a fresh instance every time the user presses something, which makes an `==` check against a stored value always `false`, so compare with `Equals` until the next release.
 
 In a released version, `Equals(HotKey other)` also throws a `NullReferenceException` when passed `null`, because it dereferences `other` without a check. `Equals(object)` is safe, as its `is HotKey` test rejects `null`. A null guard was added on `develop` and ships with the next release.
 :::
