@@ -55,6 +55,21 @@ So a globally registered hot key does not fire while the user is recording one. 
 
 The control itself is not a focus stop: a class handler on `GotFocus` forwards focus onward — to the next element, or the previous one if <kbd>Shift</kbd> is held — so only the inner text box takes focus.
 
+## The HotKeyChanged event
+
+`HotKeyChanged` is a bubbling routed event with a `RoutedPropertyChangedEventHandler<HotKey?>`, so the handler gets both values:
+
+```csharp
+private void OnHotKeyChanged(object sender, RoutedPropertyChangedEventArgs<HotKey?> e)
+{
+    this.saveShortcut = e.NewValue;
+}
+```
+
+:::{.alert .alert-warning}
+**When it fires depends on the version.** On `develop` the event is raised only when the recorded combination differs from the one before, so pressing <kbd>Ctrl</kbd>+<kbd>S</kbd> twice raises it once. A released version raises it for every recorded keystroke, because it compares the old and the new instance by reference and the control builds a new one each time.
+:::
+
 ## What it displays
 
 `Text` is read-only and is simply `HotKey.ToString()`, or empty when `HotKey` is `null` **or** its `Key` is `Key.None`.
