@@ -134,15 +134,15 @@ If none of the built-in states fit, supply your own. Set `Transition="Custom"`, 
 `CustomVisualStatesName` defaults to `"CustomTransition"`, so the name above can be left out if you use that one.
 
 :::{.alert .alert-warning}
-**Get the state name wrong and the exception will not tell you so.** When the control cannot find the state for the transition it has been given, it reverts the property and throws — but the message is a leftover placeholder:
+**Get the state name wrong and the control throws.** When it cannot find the state for the transition it has been given, it reverts the property and throws a `MahAppsException`:
 
 ```csharp
-throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, "Temporary removed exception message", newTransition));
+throw new MahAppsException($"'{newTransition}' transition could not be found!");
 ```
 
-The format string has no placeholder, so the transition name passed alongside it is discarded too. This is unchanged on `develop`. A mistyped `CustomVisualStatesName` is the usual way to reach it, so check that first when you see it.
+`OnApplyTemplate` throws the same message for a transition set before the template was applied. The message names the transition, not the state name, so a mistyped `CustomVisualStatesName` reads as `'Custom' transition could not be found!` and that name is the first thing to check.
 
-A second, better-worded failure exists for the same problem at template time: `'{transition}' transition could not be found!`, thrown as a `MahAppsException` from `OnApplyTemplate`.
+In a released version this path throws an `ArgumentException` whose message is the leftover placeholder `Temporary removed exception message`, with the transition name discarded. The wording above is on `develop` and ships with the next release.
 :::
 
 ## Related
