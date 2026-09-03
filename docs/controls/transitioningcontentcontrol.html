@@ -501,11 +501,11 @@ TransitioningContentControl
 &lt;/mah:TransitioningContentControl&gt;
 </code></pre>
 <p><code>CustomVisualStatesName</code> defaults to <code>&quot;CustomTransition&quot;</code>, so the name above can be left out if you use that one.</p>
-<div class="alert alert-warning"><p><strong>Get the state name wrong and the exception will not tell you so.</strong> When the control cannot find the state for the transition it has been given, it reverts the property and throws — but the message is a leftover placeholder:</p>
-<pre><code class="language-csharp">throw new ArgumentException(string.Format(CultureInfo.CurrentCulture, &quot;Temporary removed exception message&quot;, newTransition));
+<div class="alert alert-warning"><p><strong>Get the state name wrong and the control throws.</strong> When it cannot find the state for the transition it has been given, it reverts the property and throws a <code>MahAppsException</code>:</p>
+<pre><code class="language-csharp">throw new MahAppsException($&quot;'{newTransition}' transition could not be found!&quot;);
 </code></pre>
-<p>The format string has no placeholder, so the transition name passed alongside it is discarded too. This is unchanged on <code>develop</code>. A mistyped <code>CustomVisualStatesName</code> is the usual way to reach it, so check that first when you see it.</p>
-<p>A second, better-worded failure exists for the same problem at template time: <code>'{transition}' transition could not be found!</code>, thrown as a <code>MahAppsException</code> from <code>OnApplyTemplate</code>.</p>
+<p><code>OnApplyTemplate</code> throws the same message for a transition set before the template was applied. The message names the transition, not the state name, so a mistyped <code>CustomVisualStatesName</code> reads as <code>'Custom' transition could not be found!</code> and that name is the first thing to check.</p>
+<p>In a released version this path throws an <code>ArgumentException</code> whose message is the leftover placeholder <code>Temporary removed exception message</code>, with the transition name discarded. The wording above is on <code>develop</code> and ships with the next release.</p>
 </div>
 <h2 id="related">Related</h2>
 <p><a href="metrocontentcontrol">MetroContentControl</a> for a control that animates its own entrance rather than the change between contents. <a href="flipview">FlipView</a> uses a <code>TransitioningContentControl</code> internally, which is where its <code>LeftTransition</code> and friends come from.</p>
