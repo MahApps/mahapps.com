@@ -45,7 +45,16 @@ The *replace* variants are not just a different direction — they are a differe
 So `Left` moves both layers past each other, while `LeftReplace` slides the new content over an old one that only dissolves. In the figure above the old content is still strongly coloured on the right, because it is a third of the way through a 0.3s fade rather than half way through a 0.1s one.
 
 :::{.alert .alert-info}
-`Transition` is registered with `FrameworkPropertyMetadataOptions.Inherits`, so setting it once on a parent panel applies it to every `TransitioningContentControl` underneath.
+`Transition` is an attached property registered with `FrameworkPropertyMetadataOptions.Inherits`, so setting it once on a parent applies it to every `TransitioningContentControl` underneath that has no transition of its own:
+
+```xml
+<StackPanel mah:TransitioningContentControl.Transition="LeftReplace">
+    <mah:TransitioningContentControl Content="{Binding First}" />
+    <mah:TransitioningContentControl Content="{Binding Second}" />
+</StackPanel>
+```
+
+In a released version this does not work, in two ways. The property is registered with `DependencyProperty.Register` rather than `RegisterAttached`, so the markup above does not compile: `MC3015: The attached property 'TransitioningContentControl.Transition' is not defined on 'StackPanel' or one of its base classes`. And the default style carries `<Setter Property="Transition" Value="Default" />`, which beats an inherited value in the [precedence order](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/properties/dependency-property-value-precedence), so even `SetValue` on a parent leaves every control at `Default`. Both changed on `develop` and ship with the next release.
 :::
 
 ## When the content changes again mid-transition
@@ -134,15 +143,21 @@ If none of the built-in states fit, supply your own. Set `Transition="Custom"`, 
 `CustomVisualStatesName` defaults to `"CustomTransition"`, so the name above can be left out if you use that one.
 
 :::{.alert .alert-warning}
-**Get the state name wrong and the control throws.** When it cannot find the state for the transition it has been given, it reverts the property and throws a `MahAppsException`:
+**Get the state name wrong and the transition is simply not applied.** A `TransitionType` whose visual state the template does not have is rejected in a `CoerceValueCallback`, which keeps the transition the control already had:
 
 ```csharp
-throw new MahAppsException($"'{newTransition}' transition could not be found!");
+var currentTransition = (TransitionType)source.GetValue(TransitionProperty);
+
+return source.GetStoryboard(currentTransition) is not null
+    ? currentTransition
+    : DefaultTransitionState;
 ```
 
-`OnApplyTemplate` throws the same message for a transition set before the template was applied. The message names the transition, not the state name, so a mistyped `CustomVisualStatesName` reads as `'Custom' transition could not be found!` and that name is the first thing to check.
+Nothing is thrown and nothing is written back to the property, so a binding on `Transition` survives a value it cannot use and still delivers the next one from its source. The animation that does not play is the only symptom, which makes a mistyped `CustomVisualStatesName` the first thing to check.
 
-In a released version this path throws an `ArgumentException` whose message is the leftover placeholder `Temporary removed exception message`, with the transition name discarded. The wording above is on `develop` and ships with the next release.
+`OnApplyTemplate` runs the same coercion, so a transition set before the template was applied is checked as soon as the states are known. A template that has none of the states, `DefaultTransition` included, leaves the control at `Default` and without an animation rather than failing.
+
+In a released version this path throws instead. The property changed callback writes the previous transition back over whatever was on the property, a binding included, and throws an `ArgumentException` whose message is the leftover placeholder `Temporary removed exception message`. Two transitions that both fail revert each other until the stack overflows. The behaviour above is on `develop` and ships with the next release.
 :::
 
 ## Related
