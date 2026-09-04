@@ -408,7 +408,13 @@ TransitioningContentControl
 </tbody>
 </table>
 <p>So <code>Left</code> moves both layers past each other, while <code>LeftReplace</code> slides the new content over an old one that only dissolves. In the figure above the old content is still strongly coloured on the right, because it is a third of the way through a 0.3s fade rather than half way through a 0.1s one.</p>
-<div class="alert alert-info"><p><code>Transition</code> is registered with <code>FrameworkPropertyMetadataOptions.Inherits</code>, so setting it once on a parent panel applies it to every <code>TransitioningContentControl</code> underneath.</p>
+<div class="alert alert-info"><p><code>Transition</code> is an attached property registered with <code>FrameworkPropertyMetadataOptions.Inherits</code>, so setting it once on a parent applies it to every <code>TransitioningContentControl</code> underneath that has no transition of its own:</p>
+<pre><code class="language-xml">&lt;StackPanel mah:TransitioningContentControl.Transition=&quot;LeftReplace&quot;&gt;
+    &lt;mah:TransitioningContentControl Content=&quot;{Binding First}&quot; /&gt;
+    &lt;mah:TransitioningContentControl Content=&quot;{Binding Second}&quot; /&gt;
+&lt;/StackPanel&gt;
+</code></pre>
+<p>In a released version this does not work, in two ways. The property is registered with <code>DependencyProperty.Register</code> rather than <code>RegisterAttached</code>, so the markup above does not compile: <code>MC3015: The attached property 'TransitioningContentControl.Transition' is not defined on 'StackPanel' or one of its base classes</code>. And the default style carries <code>&lt;Setter Property=&quot;Transition&quot; Value=&quot;Default&quot; /&gt;</code>, which beats an inherited value in the <a href="https://learn.microsoft.com/en-us/dotnet/desktop/wpf/properties/dependency-property-value-precedence">precedence order</a>, so even <code>SetValue</code> on a parent leaves every control at <code>Default</code>. Both changed on <code>develop</code> and ship with the next release.</p>
 </div>
 <h2 id="when-the-content-changes-again-mid-transition">When the content changes again mid-transition</h2>
 <table>
@@ -501,11 +507,16 @@ TransitioningContentControl
 &lt;/mah:TransitioningContentControl&gt;
 </code></pre>
 <p><code>CustomVisualStatesName</code> defaults to <code>&quot;CustomTransition&quot;</code>, so the name above can be left out if you use that one.</p>
-<div class="alert alert-warning"><p><strong>Get the state name wrong and the control throws.</strong> When it cannot find the state for the transition it has been given, it reverts the property and throws a <code>MahAppsException</code>:</p>
-<pre><code class="language-csharp">throw new MahAppsException($&quot;'{newTransition}' transition could not be found!&quot;);
+<div class="alert alert-warning"><p><strong>Get the state name wrong and the transition is simply not applied.</strong> A <code>TransitionType</code> whose visual state the template does not have is rejected in a <code>CoerceValueCallback</code>, which keeps the transition the control already had:</p>
+<pre><code class="language-csharp">var currentTransition = (TransitionType)source.GetValue(TransitionProperty);
+
+return source.GetStoryboard(currentTransition) is not null
+    ? currentTransition
+    : DefaultTransitionState;
 </code></pre>
-<p><code>OnApplyTemplate</code> throws the same message for a transition set before the template was applied. The message names the transition, not the state name, so a mistyped <code>CustomVisualStatesName</code> reads as <code>'Custom' transition could not be found!</code> and that name is the first thing to check.</p>
-<p>In a released version this path throws an <code>ArgumentException</code> whose message is the leftover placeholder <code>Temporary removed exception message</code>, with the transition name discarded. The wording above is on <code>develop</code> and ships with the next release.</p>
+<p>Nothing is thrown and nothing is written back to the property, so a binding on <code>Transition</code> survives a value it cannot use and still delivers the next one from its source. The animation that does not play is the only symptom, which makes a mistyped <code>CustomVisualStatesName</code> the first thing to check.</p>
+<p><code>OnApplyTemplate</code> runs the same coercion, so a transition set before the template was applied is checked as soon as the states are known. A template that has none of the states, <code>DefaultTransition</code> included, leaves the control at <code>Default</code> and without an animation rather than failing.</p>
+<p>In a released version this path throws instead. The property changed callback writes the previous transition back over whatever was on the property, a binding included, and throws an <code>ArgumentException</code> whose message is the leftover placeholder <code>Temporary removed exception message</code>. Two transitions that both fail revert each other until the stack overflows. The behaviour above is on <code>develop</code> and ships with the next release.</p>
 </div>
 <h2 id="related">Related</h2>
 <p><a href="metrocontentcontrol">MetroContentControl</a> for a control that animates its own entrance rather than the change between contents. <a href="flipview">FlipView</a> uses a <code>TransitioningContentControl</code> internally, which is where its <code>LeftTransition</code> and friends come from.</p>
