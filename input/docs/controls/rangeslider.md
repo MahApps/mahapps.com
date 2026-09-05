@@ -55,7 +55,7 @@ Both panels have `LowerValue` and `UpperValue` at 50. On the left, the default `
 It is also coerced: it can never exceed half the track length once the side thumbs are accounted for. The value-to-pixel mapping subtracts it from the usable width, which is why the thumbs above straddle the midpoint rather than sitting on it.
 
 :::{.alert .alert-info}
-The XML documentation on `MinRangeWidth` in the library reads *"Get/sets the minimal distance between two thumbs"*, which describes `MinRange` instead. The API reference repeats it, so go by the table above.
+In a released version the XML documentation on `MinRangeWidth` reads *"Get/sets the minimal distance between two thumbs"*, which describes `MinRange` instead, and the API reference repeats it. Both comments were rewritten on `develop` by [#4580](https://github.com/MahApps/MahApps.Metro/issues/4580); until that ships, go by the table above.
 :::
 
 ## Colours
