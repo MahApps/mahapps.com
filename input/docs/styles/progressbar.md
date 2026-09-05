@@ -27,7 +27,7 @@ There is no second style for `ProgressBar`. What the style sets beyond the templ
 | `Background` | `MahApps.Brushes.Gray5` | the track |
 | `BorderBrush` | `MahApps.Brushes.Control.Border` | |
 | `BorderThickness` | `1` | |
-| `Foreground` | `MahApps.Brushes.Highlight` | see the warning below — the template ignores it |
+| `Foreground` | `MahApps.Brushes.Progress` on `develop`, `MahApps.Brushes.Highlight` before it | the indicator, see below |
 | `IsTabStop` | `False` | |
 | `Maximum` | `100` | |
 | `MinHeight`, `MinWidth` | `10` | |
@@ -46,13 +46,19 @@ The track and its frame are ordinary template bindings, so `Background`, `Border
 
 The indicator is a different matter:
 
+On `develop` it is a template binding, so `Foreground` paints the determinate indicator and the indeterminate stripes alike:
+
+```xml
+<ProgressBar Width="190" Height="12" Value="70" Foreground="#FF107C10" />
+```
+
 :::{.alert .alert-warning}
-**`Foreground` does nothing on a `ProgressBar`.** The template fills both the determinate indicator and the indeterminate stripes from `{DynamicResource MahApps.Brushes.Progress}` rather than from a template binding, so the style's own `Foreground` setter is dead and so is any value you set. This is unlike WPF's default template, and unlike [MetroProgressBar](../controls/metroprogressbar), whose template does bind `Foreground`.
+**In a released version `Foreground` does nothing on a `ProgressBar`.** The template fills both the indicator and the stripes from `{DynamicResource MahApps.Brushes.Progress}` rather than from a template binding, so the style's own `Foreground` setter is dead and so is any value you set. That was unlike WPF's default template, and unlike [MetroProgressBar](../controls/metroprogressbar), whose template has always bound `Foreground`. It is fixed by [#4579](https://github.com/MahApps/MahApps.Metro/issues/4579).
 :::
 
 ![Foreground has no effect; replacing the brush resource does](images/progressbar-brushes.png)
 
-Because the lookup is a `DynamicResource`, the way to recolour a single bar is to put a `MahApps.Brushes.Progress` of your own in its resources:
+Because the lookup is a `DynamicResource`, the way to recolour a single bar before that fix is to put a `MahApps.Brushes.Progress` of your own in its resources:
 
 ```xml
 <ProgressBar Width="190" Height="12" Value="70">
@@ -62,7 +68,7 @@ Because the lookup is a `DynamicResource`, the way to recolour a single bar is t
 </ProgressBar>
 ```
 
-The same key in `App.xaml` — or in the resources of any ancestor — recolours everything below it. `MahApps.Brushes.Progress` is a `LinearGradientBrush` in the theme, from `MahApps.Colors.Highlight` to `MahApps.Colors.Accent3`; a plain `SolidColorBrush` is a perfectly good replacement, as above.
+The same key in `App.xaml`, or in the resources of any ancestor, recolours everything below it. That still works on `develop`, because the `Foreground` setter of the style looks the key up as a `DynamicResource` too. `MahApps.Brushes.Progress` is a `LinearGradientBrush` in the theme, from `MahApps.Colors.Highlight` to `MahApps.Colors.Accent3`; a plain `SolidColorBrush` is a perfectly good replacement, as above.
 
 ## Indeterminate
 

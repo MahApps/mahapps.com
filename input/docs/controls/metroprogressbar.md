@@ -18,8 +18,8 @@ Everything about the value is inherited, so `Minimum`, `Maximum`, `Value` and `I
 
 | | `ProgressBar` | `MetroProgressBar` |
 | --- | --- | --- |
-| indicator | gradient, `MahApps.Brushes.Progress` | flat, `Foreground` |
-| `Foreground` | ignored, see [ProgressBar](../styles/progressbar) | honoured |
+| indicator | `Foreground`, a gradient by default | flat, `Foreground` |
+| `Foreground` | honoured on `develop`, ignored before it, see [ProgressBar](../styles/progressbar) | honoured |
 | track | `MahApps.Brushes.Gray5` | `#1FFFFFFF` |
 | frame | 1px `MahApps.Brushes.Control.Border` | none |
 | `MinHeight` | 10 | 6 |
