@@ -362,12 +362,23 @@ RadioButtonHelper
 <td><code>1</code></td>
 <td>thickness of the outline</td>
 </tr>
+<tr>
+<td><code>RadioBoxHeight</code></td>
+<td><code>double</code></td>
+<td><code>18</code></td>
+<td>height of the box the circle sits in</td>
+</tr>
 </tbody>
 </table>
 <pre><code class="language-xml">&lt;RadioButton mah:RadioButtonHelper.RadioSize=&quot;26&quot;
              mah:RadioButtonHelper.RadioCheckSize=&quot;14&quot;
              Content=&quot;Selected&quot; /&gt;
 </code></pre>
+<p><code>RadioBoxHeight</code> is the odd one out: it does not change what you see, it decides where the circle lands. The template puts the three ellipses in a box of that height, aligned to the top of the control, and centres them inside it. Centring them in the control itself instead would put them on half a device pixel as soon as the display is scaled, and the ring would then be drawn half a pixel off the dot it surrounds.</p>
+<p>It is a minimum, so a <code>RadioSize</code> larger than the box grows the box with it and the example above needs no second property. Raise it when you want the circle further down a tall row: the <code>Win10</code> style ships <code>32</code> for its 32 pixel row, the default style <code>18</code> for its own height.</p>
+<p>The same grid decides the diameters. Windows scales in quarter steps, so a diameter lands on whole device pixels at every step only if it is a multiple of four. That is why the <code>Win10</code> style pairs a <code>RadioSize</code> of <code>20</code> with a <code>RadioCheckSize</code> of <code>12</code>: both are, and ring and dot stay concentric on a scaled display. Pick your own pair by the same rule if you care about that, <code>18</code> and <code>10</code> for instance keep the gap between them whole but land on half pixels at 125 and 175 per cent.</p>
+<div class="alert alert-info"><p><code>RadioBoxHeight</code> is on <code>develop</code> and ships with the next release. In a released version the ellipses are centred in the control, which is where the half pixel comes from.</p>
+</div>
 <h2 id="the-brushes">The brushes</h2>
 <p>Named <code>{Part}{Interaction}</code>, where interaction is nothing at all for the resting state, or <code>PointerOver</code>, <code>Pressed</code> or <code>Disabled</code>.</p>
 <table>
