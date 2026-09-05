@@ -87,7 +87,7 @@ The drop-down then carries the whole calendar variant with it:
 Both are **styles, not replacement templates**. Everything they change is something the built-in template already exposes — `ControlsHelper.CornerRadius` for the field, `CalendarStyle` for the drop-down, `MinHeight` and `Padding` — so they keep working when the library's template changes underneath them. That is also their limit.
 
 :::{.alert .alert-warning}
-**The drop-down frame stays square, and neither variant can help it.** `PART_PopupBorder` in the picker template is written as
+**The drop-down frame stays square in a released version, and neither variant can help it.** `PART_PopupBorder` in the picker template is written as
 
 ```xml
 <Border x:Name="PART_PopupBorder"
@@ -96,9 +96,11 @@ Both are **styles, not replacement templates**. Everything they change is someth
         BorderThickness="1">
 ```
 
-with no `CornerRadius` and no `TemplateBinding` on any of the three. So the popup's corners, its background and its border colour cannot be reached from the control at all — only by replacing the four-hundred-line template or by redefining `MahApps.Brushes.Control.Background` and `.Border` for the whole application.
+with no `CornerRadius`, so rounding the field leaves the drop-down below it square. That is what the WinUI figure above shows, and it is the one thing that keeps the variant from being finished.
 
-It is the same on `develop`, and it is tracked as [#4582](https://github.com/MahApps/MahApps.Metro/issues/4582). Rounding the field but not its drop-down is visible in the WinUI figure above, and it is the one thing that keeps the variant from being finished.
+It is **fixed on `develop`** by [#4582](https://github.com/MahApps/MahApps.Metro/issues/4582): the border is now a `ClipBorder` that takes `ControlsHelper.CornerRadius` from the control and cuts the calendar and the clock along it, so the field and its drop-down carry the same corners. Until that ships, the only way to round the popup is a replacement template.
+
+Its background and border colour are still `MahApps.Brushes.Control.Background` and `.Border`. Those are keys, not template bindings, so changing them for one picker alone still means putting the two keys into a resource dictionary near it.
 
 The `ComboBox` popup behind the hour and minute lists had the same shape and is **already fixed on `develop`**: its `PopupBorder` is now a `ClipBorder` with a `CornerRadius`. In a released version those little lists are still square.
 :::

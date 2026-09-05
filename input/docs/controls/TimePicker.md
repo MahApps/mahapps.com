@@ -128,7 +128,7 @@ The Win10 variant is the same row; the two only part company inside the open lis
 Reaching those lists at all needs a trick, because they are plain `ComboBox`es with no style of their own — see [the DateTimePicker page](DateTimePicker) for how `Style.Resources` scopes an implicit style to one control's drop-down.
 
 :::{.alert .alert-warning}
-The drop-down frame stays square whichever variant you use. `PART_PopupBorder` in the shared template has no `CornerRadius` and none of its brushes is a `TemplateBinding`, so it cannot be reached from the control — tracked as [#4582](https://github.com/MahApps/MahApps.Metro/issues/4582).
+The drop-down frame stays square in a released version, whichever variant you use, because `PART_PopupBorder` in the shared template has no `CornerRadius`. It is **fixed on `develop`** by [#4582](https://github.com/MahApps/MahApps.Metro/issues/4582), where that border is a `ClipBorder` following `ControlsHelper.CornerRadius`. Its background and border colour still come from the `MahApps.Brushes.Control.Background` and `.Border` keys rather than from the control.
 :::
 
 ## Watermark and the clear button
