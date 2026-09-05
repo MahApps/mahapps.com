@@ -453,14 +453,15 @@ DateTimePicker
 <p><img src="images/datetimepicker-dropdown-winui.png" alt="The WinUI drop-down" /></p>
 <p><img src="images/datetimepicker-dropdown-win10.png" alt="The Win10 drop-down" /></p>
 <p>Both are <strong>styles, not replacement templates</strong>. Everything they change is something the built-in template already exposes — <code>ControlsHelper.CornerRadius</code> for the field, <code>CalendarStyle</code> for the drop-down, <code>MinHeight</code> and <code>Padding</code> — so they keep working when the library's template changes underneath them. That is also their limit.</p>
-<div class="alert alert-warning"><p><strong>The drop-down frame stays square, and neither variant can help it.</strong> <code>PART_PopupBorder</code> in the picker template is written as</p>
+<div class="alert alert-warning"><p><strong>The drop-down frame stays square in a released version, and neither variant can help it.</strong> <code>PART_PopupBorder</code> in the picker template is written as</p>
 <pre><code class="language-xml">&lt;Border x:Name=&quot;PART_PopupBorder&quot;
         Background=&quot;{DynamicResource MahApps.Brushes.Control.Background}&quot;
         BorderBrush=&quot;{DynamicResource MahApps.Brushes.Control.Border}&quot;
         BorderThickness=&quot;1&quot;&gt;
 </code></pre>
-<p>with no <code>CornerRadius</code> and no <code>TemplateBinding</code> on any of the three. So the popup's corners, its background and its border colour cannot be reached from the control at all — only by replacing the four-hundred-line template or by redefining <code>MahApps.Brushes.Control.Background</code> and <code>.Border</code> for the whole application.</p>
-<p>It is the same on <code>develop</code>, and it is tracked as <a href="https://github.com/MahApps/MahApps.Metro/issues/4582">#4582</a>. Rounding the field but not its drop-down is visible in the WinUI figure above, and it is the one thing that keeps the variant from being finished.</p>
+<p>with no <code>CornerRadius</code>, so rounding the field leaves the drop-down below it square. That is what the WinUI figure above shows, and it is the one thing that keeps the variant from being finished.</p>
+<p>It is <strong>fixed on <code>develop</code></strong> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4582">#4582</a>: the border is now a <code>ClipBorder</code> that takes <code>ControlsHelper.CornerRadius</code> from the control and cuts the calendar and the clock along it, so the field and its drop-down carry the same corners. Until that ships, the only way to round the popup is a replacement template.</p>
+<p>Its background and border colour are still <code>MahApps.Brushes.Control.Background</code> and <code>.Border</code>. Those are keys, not template bindings, so changing them for one picker alone still means putting the two keys into a resource dictionary near it.</p>
 <p>The <code>ComboBox</code> popup behind the hour and minute lists had the same shape and is <strong>already fixed on <code>develop</code></strong>: its <code>PopupBorder</code> is now a <code>ClipBorder</code> with a <code>CornerRadius</code>. In a released version those little lists are still square.</p>
 </div>
 <h2 id="a-modern-time-selection">A modern time selection</h2>
