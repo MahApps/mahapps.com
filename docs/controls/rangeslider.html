@@ -394,7 +394,7 @@ RangeSlider
                  MinRangeWidth=&quot;0&quot; /&gt;
 </code></pre>
 <p>It is also coerced: it can never exceed half the track length once the side thumbs are accounted for. The value-to-pixel mapping subtracts it from the usable width, which is why the thumbs above straddle the midpoint rather than sitting on it.</p>
-<div class="alert alert-info"><p>The XML documentation on <code>MinRangeWidth</code> in the library reads <em>&quot;Get/sets the minimal distance between two thumbs&quot;</em>, which describes <code>MinRange</code> instead. The API reference repeats it, so go by the table above.</p>
+<div class="alert alert-info"><p>In a released version the XML documentation on <code>MinRangeWidth</code> reads <em>&quot;Get/sets the minimal distance between two thumbs&quot;</em>, which describes <code>MinRange</code> instead, and the API reference repeats it. Both comments were rewritten on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4580">#4580</a>; until that ships, go by the table above.</p>
 </div>
 <h2 id="colours">Colours</h2>
 <p>Both styles take their brushes from <a href="../helper/sliderhelper">SliderHelper</a>, the same twelve as the plain slider — thumb, track and filled track, each with a hover, pressed and disabled variant. The middle thumb is painted from the <code>TrackValue</code> set.</p>
