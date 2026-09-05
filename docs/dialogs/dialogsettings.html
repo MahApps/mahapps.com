@@ -361,7 +361,9 @@ var result = await this.ShowMessageAsync(&quot;Delete the file?&quot;, &quot;Thi
 <pre><code class="language-csharp">this.MetroDialogOptions.ColorScheme = MetroDialogColorScheme.Accented;
 </code></pre>
 <p>Settings are read when the dialog is created, so changing the object after a dialog is up has no effect on it.</p>
-<div class="alert alert-warning"><p><strong>Login dialogs do not use <code>MetroDialogOptions</code>.</strong> <code>ShowLoginAsync</code> takes a <code>LoginDialogSettings</code> and falls back to <code>new LoginDialogSettings()</code> when you pass none, so the window's defaults never reach it. Every other type — message, input, progress, and the custom dialogs shown with <code>ShowMetroDialogAsync</code> — does fall back to the window.</p>
+<div class="alert alert-warning"><p><strong>In a released version, login dialogs do not use <code>MetroDialogOptions</code>.</strong> <code>ShowLoginAsync</code> takes a <code>LoginDialogSettings</code> and falls back to <code>new LoginDialogSettings()</code> when you pass none, so the window's defaults never reach it, while every other type does fall back to the window. That is fixed on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4577">#4577</a>, where both login entry points build their settings from <code>MetroDialogOptions</code>. Until it ships, hand the window's options in yourself:</p>
+<pre><code class="language-csharp">await this.ShowLoginAsync(&quot;Sign in&quot;, &quot;Message&quot;, new LoginDialogSettings(this.MetroDialogOptions));
+</code></pre>
 </div>
 <h2 id="reference">Reference</h2>
 <table>
@@ -527,7 +529,7 @@ var result = await this.ShowMessageAsync(&quot;Delete the file?&quot;, &quot;Thi
 </code></pre>
 <p>The <a href="message-dialog">message dialog</a> page shows what this looks like in practice.</p>
 <h2 id="login-dialogs">Login dialogs</h2>
-<p><code>LoginDialogSettings</code> derives from <code>MetroDialogSettings</code> and adds the username, password and remember-checkbox settings. Everything on this page applies to it as well, with the fallback caveat noted above. See <a href="login-dialogs">Login Dialog</a>.</p>
+<p><code>LoginDialogSettings</code> derives from <code>MetroDialogSettings</code> and adds the username, password and remember-checkbox settings. Everything on this page applies to it as well, with the fallback caveat noted above. One thing stays true either way: the constructor sets <code>AffirmativeButtonText</code> to <code>Login</code> after copying, so that label comes from the login settings and not from the window. See <a href="login-dialogs">Login Dialog</a>.</p>
 
 
                                         </div>

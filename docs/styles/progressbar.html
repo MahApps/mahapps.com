@@ -292,8 +292,8 @@ ProgressBar
 </tr>
 <tr>
 <td><code>Foreground</code></td>
-<td><code>MahApps.Brushes.Highlight</code></td>
-<td>see the warning below — the template ignores it</td>
+<td><code>MahApps.Brushes.Progress</code> on <code>develop</code>, <code>MahApps.Brushes.Highlight</code> before it</td>
+<td>the indicator, see below</td>
 </tr>
 <tr>
 <td><code>IsTabStop</code></td>
@@ -320,17 +320,20 @@ ProgressBar
              BorderBrush=&quot;#FF7E57C2&quot; /&gt;
 </code></pre>
 <p>The indicator is a different matter:</p>
-<div class="alert alert-warning"><p><strong><code>Foreground</code> does nothing on a <code>ProgressBar</code>.</strong> The template fills both the determinate indicator and the indeterminate stripes from <code>{DynamicResource MahApps.Brushes.Progress}</code> rather than from a template binding, so the style's own <code>Foreground</code> setter is dead and so is any value you set. This is unlike WPF's default template, and unlike <a href="../controls/metroprogressbar">MetroProgressBar</a>, whose template does bind <code>Foreground</code>.</p>
+<p>On <code>develop</code> it is a template binding, so <code>Foreground</code> paints the determinate indicator and the indeterminate stripes alike:</p>
+<pre><code class="language-xml">&lt;ProgressBar Width=&quot;190&quot; Height=&quot;12&quot; Value=&quot;70&quot; Foreground=&quot;#FF107C10&quot; /&gt;
+</code></pre>
+<div class="alert alert-warning"><p><strong>In a released version <code>Foreground</code> does nothing on a <code>ProgressBar</code>.</strong> The template fills both the indicator and the stripes from <code>{DynamicResource MahApps.Brushes.Progress}</code> rather than from a template binding, so the style's own <code>Foreground</code> setter is dead and so is any value you set. That was unlike WPF's default template, and unlike <a href="../controls/metroprogressbar">MetroProgressBar</a>, whose template has always bound <code>Foreground</code>. It is fixed by <a href="https://github.com/MahApps/MahApps.Metro/issues/4579">#4579</a>.</p>
 </div>
 <p><img src="images/progressbar-brushes.png" alt="Foreground has no effect; replacing the brush resource does" /></p>
-<p>Because the lookup is a <code>DynamicResource</code>, the way to recolour a single bar is to put a <code>MahApps.Brushes.Progress</code> of your own in its resources:</p>
+<p>Because the lookup is a <code>DynamicResource</code>, the way to recolour a single bar before that fix is to put a <code>MahApps.Brushes.Progress</code> of your own in its resources:</p>
 <pre><code class="language-xml">&lt;ProgressBar Width=&quot;190&quot; Height=&quot;12&quot; Value=&quot;70&quot;&gt;
     &lt;ProgressBar.Resources&gt;
         &lt;SolidColorBrush x:Key=&quot;MahApps.Brushes.Progress&quot; Color=&quot;#FF107C10&quot; /&gt;
     &lt;/ProgressBar.Resources&gt;
 &lt;/ProgressBar&gt;
 </code></pre>
-<p>The same key in <code>App.xaml</code> — or in the resources of any ancestor — recolours everything below it. <code>MahApps.Brushes.Progress</code> is a <code>LinearGradientBrush</code> in the theme, from <code>MahApps.Colors.Highlight</code> to <code>MahApps.Colors.Accent3</code>; a plain <code>SolidColorBrush</code> is a perfectly good replacement, as above.</p>
+<p>The same key in <code>App.xaml</code>, or in the resources of any ancestor, recolours everything below it. That still works on <code>develop</code>, because the <code>Foreground</code> setter of the style looks the key up as a <code>DynamicResource</code> too. <code>MahApps.Brushes.Progress</code> is a <code>LinearGradientBrush</code> in the theme, from <code>MahApps.Colors.Highlight</code> to <code>MahApps.Colors.Accent3</code>; a plain <code>SolidColorBrush</code> is a perfectly good replacement, as above.</p>
 <h2 id="indeterminate">Indeterminate</h2>
 <p><img src="images/progressbar-indeterminate.gif" alt="The indeterminate stripes scrolling" /></p>
 <pre><code class="language-xml">&lt;ProgressBar Width=&quot;190&quot; Height=&quot;12&quot; IsIndeterminate=&quot;True&quot; /&gt;
