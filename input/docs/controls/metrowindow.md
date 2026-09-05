@@ -160,6 +160,26 @@ The four overlay-behaviour properties — `LeftWindowCommandsOverlayBehavior`, `
 `SaveWindowPosition="True"` is a nice convenience and a real support risk. If a monitor is detached between exit and restart, the window can come back **off screen** with no way for the user to get at it. Provide a reset, or validate the restored placement against the current screens yourself.
 :::
 
+### Where the placement is stored
+
+Left alone, the placement goes into the application settings, through `ApplicationSettingsBase`. That store depends on the configuration system, and it does fail: on .NET 9 before 9.0.3 saving throws when the application runs from a network location, and the position is silently lost.
+
+`WindowPlacementSettings` takes any `IWindowPlacementSettings`, so the storage is yours to pick. `WindowPlacementFileSettings` writes a file instead, either one you name or one under the local application data of the current user:
+
+```csharp
+public MainWindow()
+{
+    this.InitializeComponent();
+    this.WindowPlacementSettings = WindowPlacementFileSettings.ForWindow(this);
+}
+```
+
+It has no dependency on the configuration system, and it behaves the same on every target framework. Writing your own implementation is a small interface away if you would rather keep the placement in a database or next to the rest of your own settings.
+
+:::{.alert .alert-info}
+`WindowPlacementFileSettings` is on `develop` and ships with the next release. In a released version, write the interface yourself, it is `Placement`, `Reload`, `Save`, `Upgrade`, `UpgradeSettings` and `Reset`.
+:::
+
 `IsWindowDraggable` is what [MetroThumbContentControl](MetroThumbContentControl) checks — the title bar is one of those, and dragging it is what moves the window.
 
 ## Related
