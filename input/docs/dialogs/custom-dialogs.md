@@ -95,17 +95,23 @@ await this.ShowMetroDialogAsync(dialog);
 await this.HideMetroDialogAsync(dialog);
 ```
 
-From inside the dialog, `RequestCloseAsync` does the same without needing the window:
+From inside the dialog, the window showing it can be reached without being handed in, so a button in the dialog can close it:
 
 ```csharp
 private async void OnLaterClick(object sender, RoutedEventArgs e)
 {
-    await this.RequestCloseAsync();
+    var window = this.OwningWindow ?? this.TryFindParent<MetroWindow>();
+    if (window is not null)
+    {
+        await window.HideMetroDialogAsync(this);
+    }
 }
 ```
 
+Both halves are needed. `OwningWindow` is only filled in by a constructor that was given the window, so `new ExportDialog(this)` and the `ShowMetroDialogAsync<TDialog>()` overload have one, while a dialog built with its parameterless constructor and then passed to `ShowMetroDialogAsync` does not: showing a dialog never sets it. `TryFindParent<MetroWindow>()` covers that case, because a dialog that is up is in the visual tree of its window. It is the same pair the library uses internally to find the theme of a dialog. `OwningWindow` is `protected`, so this lives in a dialog class of your own, which a custom dialog is anyway.
+
 :::{.alert .alert-info}
-`RequestCloseAsync` works both for a dialog shown inside a `MetroWindow` and for one shown in its own window, despite what its XML doc says about throwing for the first case — it routes to `HideMetroDialogAsync` for you.
+A released version also has `RequestCloseAsync`. Its XML doc claims it throws for a dialog inside a `MetroWindow`, which it never did: that case is the first thing it handles, and it routes to `HideMetroDialogAsync`. It has the same blind spot though, since it goes through `OwningWindow` and does nothing but trace a warning when that is null. The method was dropped on `develop` together with the external dialog API.
 :::
 
 There is also an overload that constructs the dialog for you:
@@ -141,14 +147,16 @@ public partial class ExportDialog : CustomDialog
     private async void OnExportClick(object sender, RoutedEventArgs e)
     {
         this.result.TrySetResult(new ExportOptions(this.FileName.Text, this.IncludeCharts.IsChecked == true));
-        await this.RequestCloseAsync();
+        await this.CloseAsync();
     }
 
     private async void OnCancelClick(object sender, RoutedEventArgs e)
     {
         this.result.TrySetResult(null);
-        await this.RequestCloseAsync();
+        await this.CloseAsync();
     }
+
+    private Task CloseAsync() => (this.OwningWindow ?? this.TryFindParent<MetroWindow>())?.HideMetroDialogAsync(this) ?? Task.CompletedTask;
 }
 ```
 

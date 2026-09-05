@@ -47,7 +47,11 @@ this.MetroDialogOptions.ColorScheme = MetroDialogColorScheme.Accented;
 Settings are read when the dialog is created, so changing the object after a dialog is up has no effect on it.
 
 :::{.alert .alert-warning}
-**Login dialogs do not use `MetroDialogOptions`.** `ShowLoginAsync` takes a `LoginDialogSettings` and falls back to `new LoginDialogSettings()` when you pass none, so the window's defaults never reach it. Every other type — message, input, progress, and the custom dialogs shown with `ShowMetroDialogAsync` — does fall back to the window.
+**In a released version, login dialogs do not use `MetroDialogOptions`.** `ShowLoginAsync` takes a `LoginDialogSettings` and falls back to `new LoginDialogSettings()` when you pass none, so the window's defaults never reach it, while every other type does fall back to the window. That is fixed on `develop` by [#4577](https://github.com/MahApps/MahApps.Metro/issues/4577), where both login entry points build their settings from `MetroDialogOptions`. Until it ships, hand the window's options in yourself:
+
+```csharp
+await this.ShowLoginAsync("Sign in", "Message", new LoginDialogSettings(this.MetroDialogOptions));
+```
 :::
 
 ## Reference
@@ -155,4 +159,4 @@ The [message dialog](message-dialog) page shows what this looks like in practice
 
 ## Login dialogs
 
-`LoginDialogSettings` derives from `MetroDialogSettings` and adds the username, password and remember-checkbox settings. Everything on this page applies to it as well, with the fallback caveat noted above. See [Login Dialog](login-dialogs).
+`LoginDialogSettings` derives from `MetroDialogSettings` and adds the username, password and remember-checkbox settings. Everything on this page applies to it as well, with the fallback caveat noted above. One thing stays true either way: the constructor sets `AffirmativeButtonText` to `Login` after copying, so that label comes from the login settings and not from the window. See [Login Dialog](login-dialogs).
