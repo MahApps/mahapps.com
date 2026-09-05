@@ -667,6 +667,18 @@ MetroWindow
 </table>
 <div class="alert alert-warning"><p><code>SaveWindowPosition=&quot;True&quot;</code> is a nice convenience and a real support risk. If a monitor is detached between exit and restart, the window can come back <strong>off screen</strong> with no way for the user to get at it. Provide a reset, or validate the restored placement against the current screens yourself.</p>
 </div>
+<h3 id="where-the-placement-is-stored">Where the placement is stored</h3>
+<p>Left alone, the placement goes into the application settings, through <code>ApplicationSettingsBase</code>. That store depends on the configuration system, and it does fail: on .NET 9 before 9.0.3 saving throws when the application runs from a network location, and the position is silently lost.</p>
+<p><code>WindowPlacementSettings</code> takes any <code>IWindowPlacementSettings</code>, so the storage is yours to pick. <code>WindowPlacementFileSettings</code> writes a file instead, either one you name or one under the local application data of the current user:</p>
+<pre><code class="language-csharp">public MainWindow()
+{
+    this.InitializeComponent();
+    this.WindowPlacementSettings = WindowPlacementFileSettings.ForWindow(this);
+}
+</code></pre>
+<p>It has no dependency on the configuration system, and it behaves the same on every target framework. Writing your own implementation is a small interface away if you would rather keep the placement in a database or next to the rest of your own settings.</p>
+<div class="alert alert-info"><p><code>WindowPlacementFileSettings</code> is on <code>develop</code> and ships with the next release. In a released version, write the interface yourself, it is <code>Placement</code>, <code>Reload</code>, <code>Save</code>, <code>Upgrade</code>, <code>UpgradeSettings</code> and <code>Reset</code>.</p>
+</div>
 <p><code>IsWindowDraggable</code> is what <a href="MetroThumbContentControl">MetroThumbContentControl</a> checks — the title bar is one of those, and dragging it is what moves the window.</p>
 <h2 id="related">Related</h2>
 <p><a href="WindowCommands">WindowCommands</a> and <a href="WindowButtonCommands">WindowButtonCommands</a> for the title bar's two sets of buttons. <a href="flyouts">Flyouts</a> for the overlay panels and the overlay-behaviour table. <a href="MetroNavigationWindow">MetroNavigationWindow</a> is a <code>MetroWindow</code> with a navigation bar built in.</p>
@@ -684,6 +696,9 @@ MetroWindow
                     <div class="sidebar-nav-item"><a href="#title-bar-commands-and-the-icon">Title-bar commands and the icon</a></div>
                     <div class="sidebar-nav-item"><a href="#flyouts-and-dialogs">Flyouts and dialogs</a></div>
                     <div class="sidebar-nav-item"><a href="#position-dragging-and-startup">Position, dragging and startup</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#where-the-placement-is-stored">Where the placement is stored</a></div>
+                        </div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
