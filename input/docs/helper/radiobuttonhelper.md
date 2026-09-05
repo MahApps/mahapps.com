@@ -26,6 +26,8 @@ Applies to `RadioButton`. Like [CheckBoxHelper](checkboxhelper) it is three size
 
 It is a minimum, so a `RadioSize` larger than the box grows the box with it and the example above needs no second property. Raise it when you want the circle further down a tall row: the `Win10` style ships `32` for its 32 pixel row, the default style `18` for its own height.
 
+The same grid decides the diameters. Windows scales in quarter steps, so a diameter lands on whole device pixels at every step only if it is a multiple of four. That is why the `Win10` style pairs a `RadioSize` of `20` with a `RadioCheckSize` of `12`: both are, and ring and dot stay concentric on a scaled display. Pick your own pair by the same rule if you care about that, `18` and `10` for instance keep the gap between them whole but land on half pixels at 125 and 175 per cent.
+
 :::{.alert .alert-info}
 `RadioBoxHeight` is on `develop` and ships with the next release. In a released version the ellipses are centred in the control, which is where the half pixel comes from.
 :::
