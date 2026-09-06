@@ -441,18 +441,21 @@ await this.ShowMetroDialogAsync(dialog);
 </code></pre>
 <pre><code class="language-csharp">await this.HideMetroDialogAsync(dialog);
 </code></pre>
-<p>From inside the dialog, the window showing it can be reached without being handed in, so a button in the dialog can close it:</p>
+<p>From inside the dialog, <code>OwningWindow</code> is the window showing it, so a button in the dialog can close it without the window being handed in:</p>
 <pre><code class="language-csharp">private async void OnLaterClick(object sender, RoutedEventArgs e)
 {
-    var window = this.OwningWindow ?? this.TryFindParent&lt;MetroWindow&gt;();
-    if (window is not null)
+    if (this.OwningWindow is not null)
     {
-        await window.HideMetroDialogAsync(this);
+        await this.OwningWindow.HideMetroDialogAsync(this);
     }
 }
 </code></pre>
-<p>Both halves are needed. <code>OwningWindow</code> is only filled in by a constructor that was given the window, so <code>new ExportDialog(this)</code> and the <code>ShowMetroDialogAsync&lt;TDialog&gt;()</code> overload have one, while a dialog built with its parameterless constructor and then passed to <code>ShowMetroDialogAsync</code> does not: showing a dialog never sets it. <code>TryFindParent&lt;MetroWindow&gt;()</code> covers that case, because a dialog that is up is in the visual tree of its window. It is the same pair the library uses internally to find the theme of a dialog. <code>OwningWindow</code> is <code>protected</code>, so this lives in a dialog class of your own, which a custom dialog is anyway.</p>
-<div class="alert alert-info"><p>A released version also has <code>RequestCloseAsync</code>. Its XML doc claims it throws for a dialog inside a <code>MetroWindow</code>, which it never did: that case is the first thing it handles, and it routes to <code>HideMetroDialogAsync</code>. It has the same blind spot though, since it goes through <code>OwningWindow</code> and does nothing but trace a warning when that is null. The method was dropped on <code>develop</code> together with the external dialog API.</p>
+<p>It is <code>protected</code>, so this lives in a dialog class of your own, which a custom dialog is anyway. While the dialog is up it names the window showing it; once it is hidden again it falls back to the window the constructor was given, or to <code>null</code> if it was given none, so a dialog that outlives its window does not hold on to it.</p>
+<div class="alert alert-warning"><p><strong>In a released version <code>OwningWindow</code> is only filled in by a constructor that was given the window.</strong> <code>new ExportDialog(this)</code> and the <code>ShowMetroDialogAsync&lt;TDialog&gt;()</code> overload have one, a dialog built with its parameterless constructor and then passed to <code>ShowMetroDialogAsync</code> does not, because showing a dialog never set it. On <code>develop</code> adding a dialog to a window sets it, fixed by <a href="https://github.com/MahApps/MahApps.Metro/issues/4601">#4601</a>. Before that, fall back to the visual tree, which is what the library itself does to find the theme of a dialog:</p>
+<pre><code class="language-csharp">var window = this.OwningWindow ?? this.TryFindParent&lt;MetroWindow&gt;();
+</code></pre>
+</div>
+<div class="alert alert-info"><p>A released version also has <code>RequestCloseAsync</code>, dropped on <code>develop</code> together with the external dialog API. Its XML doc claims it throws for a dialog inside a <code>MetroWindow</code>, which it never did: that case is the first thing it handles, and it routes to <code>HideMetroDialogAsync</code>. It went through <code>OwningWindow</code> though, so on a dialog you created yourself it traced a warning and closed nothing.</p>
 </div>
 <p>There is also an overload that constructs the dialog for you:</p>
 <pre><code class="language-csharp">await this.ShowMetroDialogAsync&lt;UpdateDialog&gt;();
@@ -486,7 +489,7 @@ await this.ShowMetroDialogAsync(dialog);
         await this.CloseAsync();
     }
 
-    private Task CloseAsync() =&gt; (this.OwningWindow ?? this.TryFindParent&lt;MetroWindow&gt;())?.HideMetroDialogAsync(this) ?? Task.CompletedTask;
+    private Task CloseAsync() =&gt; this.OwningWindow?.HideMetroDialogAsync(this) ?? Task.CompletedTask;
 }
 </code></pre>
 <p>which reads like any other dialog at the call site:</p>
