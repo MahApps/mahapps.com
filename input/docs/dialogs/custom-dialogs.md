@@ -107,7 +107,7 @@ private async void OnLaterClick(object sender, RoutedEventArgs e)
 }
 ```
 
-It is `protected`, so this lives in a dialog class of your own, which a custom dialog is anyway.
+It is `protected`, so this lives in a dialog class of your own, which a custom dialog is anyway. While the dialog is up it names the window showing it; once it is hidden again it falls back to the window the constructor was given, or to `null` if it was given none, so a dialog that outlives its window does not hold on to it.
 
 :::{.alert .alert-warning}
 **In a released version `OwningWindow` is only filled in by a constructor that was given the window.** `new ExportDialog(this)` and the `ShowMetroDialogAsync<TDialog>()` overload have one, a dialog built with its parameterless constructor and then passed to `ShowMetroDialogAsync` does not, because showing a dialog never set it. On `develop` adding a dialog to a window sets it, fixed by [#4601](https://github.com/MahApps/MahApps.Metro/issues/4601). Before that, fall back to the visual tree, which is what the library itself does to find the theme of a dialog:
