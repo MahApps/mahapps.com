@@ -359,7 +359,7 @@ ControlsHelper
 <td><code>FocusBorderThickness</code></td>
 <td><code>Thickness</code></td>
 <td><code>0</code></td>
-<td>its thickness, where the template uses one</td>
+<td>its thickness, where the template uses one. Obsolete on <code>develop</code>, see below</td>
 </tr>
 <tr>
 <td><code>MouseOverBorderBrush</code></td>
@@ -393,6 +393,8 @@ ControlsHelper
 </tr>
 </tbody>
 </table>
+<div class="alert alert-warning"><p><strong><code>FocusBorderThickness</code> is obsolete on <code>develop</code>, and no template reads it any more.</strong> Swapping the border thickness on focus made the control jump, because its content had to move along with the thicker border, and a style built on top of that had no way to keep the layout still. Focus now colours the border the control already has, through <code>FocusBorderBrush</code>, and nothing moves. Setting the property still compiles and still does nothing to the built-in styles.</p>
+</div>
 <pre><code class="language-xml">&lt;TextBox mah:ControlsHelper.CornerRadius=&quot;4&quot;
          mah:ControlsHelper.FocusBorderBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot; /&gt;
 </code></pre>

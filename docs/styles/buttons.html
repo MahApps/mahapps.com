@@ -265,7 +265,7 @@ Buttons
 <p>The default button is a rounded, bordered button with bold, upper-cased content. The upper-casing is not a font trick: the style sets <code>ControlsHelper.ContentCharacterCasing</code> to <code>Upper</code>, and setting it back to <code>Normal</code> gives you the content as written.</p>
 <pre><code class="language-xml">&lt;Button mah:ControlsHelper.ContentCharacterCasing=&quot;Normal&quot; Content=&quot;Save&quot; /&gt;
 </code></pre>
-<p>Along with it the style sets <code>ControlsHelper.CornerRadius</code> to <code>3</code> and <code>FocusBorderThickness</code> to <code>2</code>, both of which are yours to override. See <a href="../helper/controlshelper">ControlsHelper</a>.</p>
+<p>Along with it the style sets <code>ControlsHelper.CornerRadius</code> to <code>3</code>, which is yours to override. A released version also sets <code>FocusBorderThickness</code> to <code>2</code>, which made the border thicker while the button had the focus and moved its content along with it. That is gone on <code>develop</code>: focus colours the border through <code>FocusBorderBrush</code> and leaves its thickness alone. See <a href="../helper/controlshelper">ControlsHelper</a>.</p>
 <h2 id="the-square-styles">The square styles</h2>
 <pre><code class="language-xml">&lt;Button Style=&quot;{StaticResource MahApps.Styles.Button.Square}&quot; Content=&quot;Save&quot; /&gt;
 </code></pre>
