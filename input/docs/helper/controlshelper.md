@@ -19,7 +19,7 @@ The general-purpose one. Where the other helpers belong to a single control, `Co
 | `IsReadOnly` | `bool` | `false` | makes the content of a control not editable |
 
 :::{.alert .alert-warning}
-**`FocusBorderThickness` is obsolete on `develop`.** A template that swaps the border thickness on focus makes the control jump, because its content has to move along with the thicker border, and a style built on top of that has no way to keep the layout still. Set `FocusBorderBrush` instead: it colours the border the control already has, and nothing moves.
+**`FocusBorderThickness` is obsolete on `develop`, and no template reads it any more.** Swapping the border thickness on focus made the control jump, because its content had to move along with the thicker border, and a style built on top of that had no way to keep the layout still. Focus now colours the border the control already has, through `FocusBorderBrush`, and nothing moves. Setting the property still compiles and still does nothing to the built-in styles.
 :::
 
 ```xml

@@ -20,7 +20,7 @@ The default button is a rounded, bordered button with bold, upper-cased content.
 <Button mah:ControlsHelper.ContentCharacterCasing="Normal" Content="Save" />
 ```
 
-Along with it the style sets `ControlsHelper.CornerRadius` to `3`, which is yours to override. It also sets `FocusBorderThickness`, to `2` in a released version and to `1` on `develop`, where that property is obsolete: the thicker border on focus moved the content of the button. See [ControlsHelper](../helper/controlshelper).
+Along with it the style sets `ControlsHelper.CornerRadius` to `3`, which is yours to override. A released version also sets `FocusBorderThickness` to `2`, which made the border thicker while the button had the focus and moved its content along with it. That is gone on `develop`: focus colours the border through `FocusBorderBrush` and leaves its thickness alone. See [ControlsHelper](../helper/controlshelper).
 
 ## The square styles
 
