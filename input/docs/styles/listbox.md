@@ -55,15 +55,29 @@ The one-line fix is to stop the items painting, and let the list's own backgroun
 </ListBox.ItemContainerStyle>
 ```
 
-Or wrap the list in a `mah:ClipBorder`, which does clip its child, and leave the `ListBox` square:
+Or wrap the list in a `Border` that clips what it holds, and leave the `ListBox` square:
 
 ```xml
-<mah:ClipBorder BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
-                BorderThickness="1"
-                CornerRadius="4">
-    <ListBox BorderThickness="0" />
-</mah:ClipBorder>
+<Border x:Name="ListBorder"
+        BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
+        BorderThickness="1"
+        CornerRadius="4">
+    <Grid x:Name="ListGrid">
+        <Grid.Clip>
+            <MultiBinding Converter="{x:Static mah:ClipGeometryConverter.Instance}">
+                <Binding ElementName="ListGrid" Path="ActualWidth" />
+                <Binding ElementName="ListGrid" Path="ActualHeight" />
+                <Binding ElementName="ListBorder" Path="CornerRadius" />
+                <Binding ElementName="ListBorder" Path="BorderThickness" />
+                <Binding ElementName="ListBorder" Path="Padding" />
+            </MultiBinding>
+        </Grid.Clip>
+        <ListBox BorderThickness="0" />
+    </Grid>
+</Border>
 ```
+
+A clip lives in the coordinates of the element carrying it, which is why the geometry is built from the size of the grid rather than from the border around it. `mah:ClipBorder` did the same job in one element and is obsolete on `develop`.
 
 [ListView](listview) and [TreeView](treeview) have the same template shape and the same caveat.
 :::

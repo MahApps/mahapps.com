@@ -98,11 +98,11 @@ Both are **styles, not replacement templates**. Everything they change is someth
 
 with no `CornerRadius`, so rounding the field leaves the drop-down below it square. That is what the WinUI figure above shows, and it is the one thing that keeps the variant from being finished.
 
-It is **fixed on `develop`** by [#4582](https://github.com/MahApps/MahApps.Metro/issues/4582): the border is now a `ClipBorder` that takes `ControlsHelper.CornerRadius` from the control and cuts the calendar and the clock along it, so the field and its drop-down carry the same corners. Until that ships, the only way to round the popup is a replacement template.
+It is **fixed on `develop`** by [#4582](https://github.com/MahApps/MahApps.Metro/issues/4582): the border takes `ControlsHelper.CornerRadius` from the control and the grid inside it clips the calendar and the clock along those corners, so the field and its drop-down carry the same ones. Until that ships, the only way to round the popup is a replacement template.
 
 Its background and border colour are still `MahApps.Brushes.Control.Background` and `.Border`. Those are keys, not template bindings, so changing them for one picker alone still means putting the two keys into a resource dictionary near it.
 
-The `ComboBox` popup behind the hour and minute lists had the same shape and is **already fixed on `develop`**: its `PopupBorder` is now a `ClipBorder` with a `CornerRadius`. In a released version those little lists are still square.
+The `ComboBox` popup behind the hour and minute lists had the same shape and is **already fixed on `develop`**: its `PopupBorder` carries a `CornerRadius` and clips its content to it. In a released version those little lists are still square.
 :::
 
 ## A modern time selection

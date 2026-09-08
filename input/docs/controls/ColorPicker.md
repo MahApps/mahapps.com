@@ -640,20 +640,30 @@ A custom `DataTemplate` could look like this:
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <mah:ClipBorder Grid.Column="0"
-                            Width="80"
-                            Height="80"
-                            Background="{DynamicResource MahApps.Brushes.Tile.Small}"
-                            BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
-                            BorderThickness="3"
-                            CornerRadius="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight, Converter={mah:SizeToCornerRadiusConverter}}">
-                <Grid Background="{Binding Converter={x:Static mah:ColorToSolidColorBrushConverter.DefaultInstance}}">
+            <Border x:Name="SwatchBorder"
+                    Grid.Column="0"
+                    Width="80"
+                    Height="80"
+                    Background="{DynamicResource MahApps.Brushes.Tile.Small}"
+                    BorderBrush="{DynamicResource MahApps.Brushes.Control.Border}"
+                    BorderThickness="3"
+                    CornerRadius="{Binding RelativeSource={RelativeSource Mode=Self}, Path=ActualHeight, Converter={mah:SizeToCornerRadiusConverter}}">
+                <Grid x:Name="SwatchGrid" Background="{Binding Converter={x:Static mah:ColorToSolidColorBrushConverter.DefaultInstance}}">
+                    <Grid.Clip>
+                        <MultiBinding Converter="{x:Static mah:ClipGeometryConverter.Instance}">
+                            <Binding ElementName="SwatchGrid" Path="ActualWidth" />
+                            <Binding ElementName="SwatchGrid" Path="ActualHeight" />
+                            <Binding ElementName="SwatchBorder" Path="CornerRadius" />
+                            <Binding ElementName="SwatchBorder" Path="BorderThickness" />
+                            <Binding ElementName="SwatchBorder" Path="Padding" />
+                        </MultiBinding>
+                    </Grid.Clip>
                     <TextBlock HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Foreground="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Grid}, Path=Background, Converter={x:Static mah:BackgroundToForegroundConverter.Instance}}"
                                Text="{Binding}" />
                 </Grid>
-            </mah:ClipBorder>
+            </Border>
         </Grid>
         <DataTemplate.Triggers>
             <DataTrigger Binding="{Binding}" Value="{x:Null}">
