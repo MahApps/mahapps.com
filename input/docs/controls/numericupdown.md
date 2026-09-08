@@ -14,16 +14,35 @@ Description: A numeric text field with increment and decrement buttons
                    Value="{Binding Amount}" />
 ```
 
+## Four controls, one template
+
+**On `develop` there are four of these, one per type.** They share a base class, a template and every property on this page; all that differs is what `Value`, `Minimum`, `Maximum` and `Interval` are. A released version has only `NumericUpDown`.
+
+| Control | Value | Use it for |
+| --- | --- | --- |
+| `NumericUpDown` | `double?` | a measurement: a length, a weight, a rate |
+| `DecimalUpDown` | `decimal?` | money, and anything else where the digits typed in are the digits that come back out |
+| `IntegerUpDown` | `int?` | something counted: copies, a page number |
+| `LongUpDown` | `long?` | a count past two billion: a file size in bytes, a database identifier |
+
+`NumericUpDown` stays a `double` and keeps every property it had, so nothing written against it needs touching.
+
+The reason to reach for `DecimalUpDown` is that a `double` cannot hold `0.1`. It holds something very close, and the error shows once such values are added up: stepping a `NumericUpDown` from `0.1` twice by `0.1` leaves `Value` at `0.30000000000000004`, where a `DecimalUpDown` leaves it at `0.3`. The field reads `0.3` either way, so the difference only turns up in whatever the value is bound to. Binding a `decimal` property to a `NumericUpDown` has the same problem, since the value is carried through a `double` on the way in and out.
+
+`IntegerUpDown` and `LongUpDown` start with `NumericInputMode` at `Numbers`, so the decimal separator is refused as a keystroke. A `LongUpDown` also holds a count exactly all the way to `long.MaxValue`, which a `double` stops doing at about nine quadrillion.
+
 ## The value and its range
 
 | Property | Type | Default |
 | --- | --- | --- |
-| `Value` | `double?` | `null` |
-| `Minimum` | `double` | `double.MinValue` |
-| `Maximum` | `double` | `double.MaxValue` |
-| `Interval` | `double` | `1` |
+| `Value` | `T?` | `null` |
+| `Minimum` | `T` | the type's `MinValue` |
+| `Maximum` | `T` | the type's `MaxValue` |
+| `Interval` | `T` | `1` |
 
-`Value` is **nullable**, so an empty field is a real state rather than zero. Bind to a `double?` if the user is allowed to clear it.
+`T` is `double` for `NumericUpDown` and the matching type for each of the other three. In a released version everything here is a `double`.
+
+`Value` is **nullable**, so an empty field is a real state rather than zero. Bind to a nullable if the user is allowed to clear it.
 
 `SnapToMultipleOfInterval` (default `False`) rounds every new value to the nearest multiple of `Interval`:
 
@@ -90,6 +109,20 @@ Hiding the buttons does not make the control read-only — the arrow keys, the w
 
 `ParsingNumberStyle` (default `NumberStyles.Any`) is what typed text is parsed with, if you need to be stricter than that.
 
+### Without a StringFormat
+
+**This changed on `develop`** with [#3673](https://github.com/MahApps/MahApps.Metro/issues/3673). A value with no format of its own used to go straight to `double.ToString()`, which reaches for an exponent on a small number and, since .NET Core 3.0, writes out every digit a calculation left behind:
+
+| Value | A released version | `develop` |
+| --- | --- | --- |
+| `0.00005` | `5E-05` | `0.00005` |
+| `0.1 + 0.2` | `0.30000000000000004` | `0.3` |
+| `1d / 3d` | `0.3333333333333333` | `0.333333333333333` |
+
+Plain decimal notation is used while the magnitude stays between `1e-15` and `1e15`, and whole numbers that fit in a `long` are written out in full. Outside that the framework still decides, because a decimal format would either drop a significant digit or bury the number in zeroes. A `StringFormat` of your own decides everything, exactly as before.
+
+The sixteenth and seventeenth significant digit of a `double` are no longer shown, though they are still held in the value. If they matter to you, they are the reason `DecimalUpDown` exists.
+
 ### Decimals
 
 `NumericInputMode` is a `[Flags]` enum with `Numbers`, `Decimal` and `All`, and defaults to **`All`**. Set it to `Numbers` and the decimal separator is refused, so `3.5` becomes `3` — the second panel above.
@@ -113,4 +146,17 @@ The control intercepts `Key.Decimal` only — the period key on the main keyboar
 
 ## Related
 
-`DataGridNumericUpDownColumn` puts one of these in a `DataGrid` cell and forwards most of these properties to it, `DecimalPointCorrection` included.
+`DataGridNumericUpDownColumn` puts one of these in a `DataGrid` cell and forwards most of these properties to it, `DecimalPointCorrection` included. It holds a `double`.
+
+The default style targets the shared base class, `NumericUpDownBase`, so one style covers all four. WPF still matches an implicit style by the exact type, so a style of your own needs a one-line entry per control:
+
+```xml
+<Style x:Key="MyUpDown"
+       BasedOn="{StaticResource MahApps.Styles.NumericUpDown}"
+       TargetType="{x:Type mah:NumericUpDownBase}">
+    <Setter Property="ButtonsAlignment" Value="Opposite" />
+</Style>
+
+<Style BasedOn="{StaticResource MyUpDown}" TargetType="{x:Type mah:NumericUpDown}" />
+<Style BasedOn="{StaticResource MyUpDown}" TargetType="{x:Type mah:DecimalUpDown}" />
+```
