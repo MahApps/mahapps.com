@@ -307,13 +307,26 @@ ListBox
     &lt;/Style&gt;
 &lt;/ListBox.ItemContainerStyle&gt;
 </code></pre>
-<p>Or wrap the list in a <code>mah:ClipBorder</code>, which does clip its child, and leave the <code>ListBox</code> square:</p>
-<pre><code class="language-xml">&lt;mah:ClipBorder BorderBrush=&quot;{DynamicResource MahApps.Brushes.Control.Border}&quot;
-                BorderThickness=&quot;1&quot;
-                CornerRadius=&quot;4&quot;&gt;
-    &lt;ListBox BorderThickness=&quot;0&quot; /&gt;
-&lt;/mah:ClipBorder&gt;
+<p>Or wrap the list in a <code>Border</code> that clips what it holds, and leave the <code>ListBox</code> square:</p>
+<pre><code class="language-xml">&lt;Border x:Name=&quot;ListBorder&quot;
+        BorderBrush=&quot;{DynamicResource MahApps.Brushes.Control.Border}&quot;
+        BorderThickness=&quot;1&quot;
+        CornerRadius=&quot;4&quot;&gt;
+    &lt;Grid x:Name=&quot;ListGrid&quot;&gt;
+        &lt;Grid.Clip&gt;
+            &lt;MultiBinding Converter=&quot;{x:Static mah:ClipGeometryConverter.Instance}&quot;&gt;
+                &lt;Binding ElementName=&quot;ListGrid&quot; Path=&quot;ActualWidth&quot; /&gt;
+                &lt;Binding ElementName=&quot;ListGrid&quot; Path=&quot;ActualHeight&quot; /&gt;
+                &lt;Binding ElementName=&quot;ListBorder&quot; Path=&quot;CornerRadius&quot; /&gt;
+                &lt;Binding ElementName=&quot;ListBorder&quot; Path=&quot;BorderThickness&quot; /&gt;
+                &lt;Binding ElementName=&quot;ListBorder&quot; Path=&quot;Padding&quot; /&gt;
+            &lt;/MultiBinding&gt;
+        &lt;/Grid.Clip&gt;
+        &lt;ListBox BorderThickness=&quot;0&quot; /&gt;
+    &lt;/Grid&gt;
+&lt;/Border&gt;
 </code></pre>
+<p>A clip lives in the coordinates of the element carrying it, which is why the geometry is built from the size of the grid rather than from the border around it. <code>mah:ClipBorder</code> did the same job in one element and is obsolete on <code>develop</code>.</p>
 <p><a href="listview">ListView</a> and <a href="treeview">TreeView</a> have the same template shape and the same caveat.</p>
 </div>
 <h2 id="two-selection-colours">Two selection colours</h2>

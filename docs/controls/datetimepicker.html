@@ -460,9 +460,9 @@ DateTimePicker
         BorderThickness=&quot;1&quot;&gt;
 </code></pre>
 <p>with no <code>CornerRadius</code>, so rounding the field leaves the drop-down below it square. That is what the WinUI figure above shows, and it is the one thing that keeps the variant from being finished.</p>
-<p>It is <strong>fixed on <code>develop</code></strong> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4582">#4582</a>: the border is now a <code>ClipBorder</code> that takes <code>ControlsHelper.CornerRadius</code> from the control and cuts the calendar and the clock along it, so the field and its drop-down carry the same corners. Until that ships, the only way to round the popup is a replacement template.</p>
+<p>It is <strong>fixed on <code>develop</code></strong> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4582">#4582</a>: the border takes <code>ControlsHelper.CornerRadius</code> from the control and the grid inside it clips the calendar and the clock along those corners, so the field and its drop-down carry the same ones. Until that ships, the only way to round the popup is a replacement template.</p>
 <p>Its background and border colour are still <code>MahApps.Brushes.Control.Background</code> and <code>.Border</code>. Those are keys, not template bindings, so changing them for one picker alone still means putting the two keys into a resource dictionary near it.</p>
-<p>The <code>ComboBox</code> popup behind the hour and minute lists had the same shape and is <strong>already fixed on <code>develop</code></strong>: its <code>PopupBorder</code> is now a <code>ClipBorder</code> with a <code>CornerRadius</code>. In a released version those little lists are still square.</p>
+<p>The <code>ComboBox</code> popup behind the hour and minute lists had the same shape and is <strong>already fixed on <code>develop</code></strong>: its <code>PopupBorder</code> carries a <code>CornerRadius</code> and clips its content to it. In a released version those little lists are still square.</p>
 </div>
 <h2 id="a-modern-time-selection">A modern time selection</h2>
 <p>The analogue clock is the oldest-looking part of the drop-down, and Fluent has no clock face at all — in WinUI the time is three plain columns. <code>IsClockVisible</code> is a normal property, so a style can simply switch the clock off:</p>
