@@ -11,12 +11,16 @@ The general-purpose one. Where the other helpers belong to a single control, `Co
 | --- | --- | --- | --- |
 | `CornerRadius` | `CornerRadius` | `0` | rounds the control's border |
 | `FocusBorderBrush` | `Brush` | transparent | border while the control has keyboard focus |
-| `FocusBorderThickness` | `Thickness` | `0` | its thickness, where the template uses one |
+| `FocusBorderThickness` | `Thickness` | `0` | its thickness, where the template uses one. Obsolete on `develop`, see below |
 | `MouseOverBorderBrush` | `Brush` | transparent | border while the pointer is over the control |
 | `ContentCharacterCasing` | `CharacterCasing` | `Normal` | converts the content to upper or lower case |
 | `DisabledVisualElementVisibility` | `Visibility` | `Visible` | the overlay drawn over a disabled control |
 | `RecognizesAccessKey` | `bool` | `true` | whether an underscore in the content marks an access key |
 | `IsReadOnly` | `bool` | `false` | makes the content of a control not editable |
+
+:::{.alert .alert-warning}
+**`FocusBorderThickness` is obsolete on `develop`.** A template that swaps the border thickness on focus makes the control jump, because its content has to move along with the thicker border, and a style built on top of that has no way to keep the layout still. Set `FocusBorderBrush` instead: it colours the border the control already has, and nothing moves.
+:::
 
 ```xml
 <TextBox mah:ControlsHelper.CornerRadius="4"
