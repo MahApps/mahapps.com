@@ -145,6 +145,33 @@ Because the icon is drawn by a [MultiFrameImage](MultiFrameImage), a multi-resol
 
 The four overlay-behaviour properties — `LeftWindowCommandsOverlayBehavior`, `RightWindowCommandsOverlayBehavior`, `WindowButtonCommandsOverlayBehavior` and `IconOverlayBehavior` — decide what stays visible above an open flyout. They are documented with their defaults on the [Flyouts](flyouts) page.
 
+## A WindowsFormsHost over a dialog
+
+**New on `develop`** with [#3849](https://github.com/MahApps/MahApps.Metro/issues/3849).
+
+A `WindowsFormsHost`, a `WebBrowser`, anything built on `HwndHost` is a window of its own sitting on top of yours. It paints over the WPF content around it whatever the z order says, so a dialog or a flyout drawn over it is cut in half. There is nothing to arrange your way out of, and it is a WPF thing rather than a MahApps one.
+
+The only way to show the dialog whole is for the hosted handle to be gone while it is up, which is what `CollapseHwndHosts` does:
+
+```xml
+<mah:MetroWindow x:Class="Sample.MainWindow"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 CollapseHwndHosts="True">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="a report" />
+        <WindowsFormsHost>
+            <wf:ReportViewer x:Name="Viewer" />
+        </WindowsFormsHost>
+    </DockPanel>
+</mah:MetroWindow>
+```
+
+Every `HwndHost` in the window is collapsed for as long as a dialog or a `Flyout` is open, and gets back the visibility it had once the last of them is gone. A flyout counts as gone when it has finished sliding out, not when it is told to close, so nothing pops up in front of it on the way.
+
+:::{.alert .alert-warning}
+The price is that the hosted control disappears and comes back. It is only hidden, not rebuilt: the window handle stays the same, and so does whatever the control holds, its text and its caret. But it is visibly gone while the dialog is up and it redraws when it returns, which for something like a video player or a browser is an interruption rather than a flicker. That is why this is off by default.
+:::
+
 ## Position, dragging and startup
 
 | Property | Type | Default | |
