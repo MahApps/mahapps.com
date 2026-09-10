@@ -537,6 +537,9 @@ NumericUpDown
 </table>
 <p><code>Culture</code> (default <code>null</code>, meaning the thread's culture) decides the separators and the currency symbol. The examples above are <code>en-US</code>.</p>
 <p><code>ParsingNumberStyle</code> (default <code>NumberStyles.Any</code>) is what typed text is parsed with, if you need to be stricter than that.</p>
+<h3 id="a-hexadecimal-stringformat">A hexadecimal StringFormat</h3>
+<p>A format such as <code>X</code>, <code>X8</code> or <code>{}0x{0:X}</code> writes letters, and only a hexadecimal parse reads them back. The control therefore follows the format: it sets <code>ParsingNumberStyle</code> to <code>NumberStyles.HexNumber</code> and adds <code>NumericInput.Decimal</code> to the <code>NumericInputMode</code> for as long as the format stays hexadecimal.</p>
+<p><strong>This changed on <code>develop</code></strong> with <a href="https://github.com/MahApps/MahApps.Metro/issues/4499">#4499</a>. In a released version there was no way out again: once a hexadecimal format had been set the parsing stayed hexadecimal even after the format changed back, and a typed <code>10</code> came out as <code>16</code>. On <code>develop</code> the control gives back what the format took over. A parsing style or input mode you changed in the meantime is yours and is left alone.</p>
 <h3 id="without-a-stringformat">Without a StringFormat</h3>
 <p><strong>This changed on <code>develop</code></strong> with <a href="https://github.com/MahApps/MahApps.Metro/issues/3673">#3673</a>. A value with no format of its own used to go straight to <code>double.ToString()</code>, which reaches for an exponent on a small number and, since .NET Core 3.0, writes out every digit a calculation left behind:</p>
 <table>
@@ -626,6 +629,7 @@ NumericUpDown
                     <div class="sidebar-nav-item"><a href="#the-buttons">The buttons</a></div>
                     <div class="sidebar-nav-item"><a href="#formatting">Formatting</a></div>
                         <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#a-hexadecimal-stringformat">A hexadecimal StringFormat</a></div>
                                 <div class="sidebar-nav-item"><a href="#without-a-stringformat">Without a StringFormat</a></div>
                                 <div class="sidebar-nav-item"><a href="#decimals">Decimals</a></div>
                                 <div class="sidebar-nav-item"><a href="#the-numeric-keypads-decimal-key">The numeric keypad&#x27;s decimal key</a></div>
