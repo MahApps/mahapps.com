@@ -616,6 +616,24 @@ MetroWindow
 </tbody>
 </table>
 <p>The four overlay-behaviour properties — <code>LeftWindowCommandsOverlayBehavior</code>, <code>RightWindowCommandsOverlayBehavior</code>, <code>WindowButtonCommandsOverlayBehavior</code> and <code>IconOverlayBehavior</code> — decide what stays visible above an open flyout. They are documented with their defaults on the <a href="flyouts">Flyouts</a> page.</p>
+<h2 id="a-windowsformshost-over-a-dialog">A WindowsFormsHost over a dialog</h2>
+<p><strong>New on <code>develop</code></strong> with <a href="https://github.com/MahApps/MahApps.Metro/issues/3849">#3849</a>.</p>
+<p>A <code>WindowsFormsHost</code>, a <code>WebBrowser</code>, anything built on <code>HwndHost</code> is a window of its own sitting on top of yours. It paints over the WPF content around it whatever the z order says, so a dialog or a flyout drawn over it is cut in half. There is nothing to arrange your way out of, and it is a WPF thing rather than a MahApps one.</p>
+<p>The only way to show the dialog whole is for the hosted handle to be gone while it is up, which is what <code>CollapseHwndHosts</code> does:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow x:Class=&quot;Sample.MainWindow&quot;
+                 xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
+                 CollapseHwndHosts=&quot;True&quot;&gt;
+    &lt;DockPanel&gt;
+        &lt;TextBlock DockPanel.Dock=&quot;Top&quot; Text=&quot;a report&quot; /&gt;
+        &lt;WindowsFormsHost&gt;
+            &lt;wf:ReportViewer x:Name=&quot;Viewer&quot; /&gt;
+        &lt;/WindowsFormsHost&gt;
+    &lt;/DockPanel&gt;
+&lt;/mah:MetroWindow&gt;
+</code></pre>
+<p>Every <code>HwndHost</code> in the window is collapsed for as long as a dialog or a <code>Flyout</code> is open, and gets back the visibility it had once the last of them is gone. A flyout counts as gone when it has finished sliding out, not when it is told to close, so nothing pops up in front of it on the way.</p>
+<div class="alert alert-warning"><p>The price is that the hosted control disappears and comes back. It is only hidden, not rebuilt: the window handle stays the same, and so does whatever the control holds, its text and its caret. But it is visibly gone while the dialog is up and it redraws when it returns, which for something like a video player or a browser is an interruption rather than a flicker. That is why this is off by default.</p>
+</div>
 <h2 id="position-dragging-and-startup">Position, dragging and startup</h2>
 <table>
 <thead>
@@ -695,6 +713,7 @@ MetroWindow
                     <div class="sidebar-nav-item"><a href="#the-window-buttons">The window buttons</a></div>
                     <div class="sidebar-nav-item"><a href="#title-bar-commands-and-the-icon">Title-bar commands and the icon</a></div>
                     <div class="sidebar-nav-item"><a href="#flyouts-and-dialogs">Flyouts and dialogs</a></div>
+                    <div class="sidebar-nav-item"><a href="#a-windowsformshost-over-a-dialog">A WindowsFormsHost over a dialog</a></div>
                     <div class="sidebar-nav-item"><a href="#position-dragging-and-startup">Position, dragging and startup</a></div>
                         <div class="sidebar-nav-children">
                                 <div class="sidebar-nav-item"><a href="#where-the-placement-is-stored">Where the placement is stored</a></div>
