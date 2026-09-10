@@ -109,6 +109,12 @@ Hiding the buttons does not make the control read-only — the arrow keys, the w
 
 `ParsingNumberStyle` (default `NumberStyles.Any`) is what typed text is parsed with, if you need to be stricter than that.
 
+### A hexadecimal StringFormat
+
+A format such as `X`, `X8` or `{}0x{0:X}` writes letters, and only a hexadecimal parse reads them back. The control therefore follows the format: it sets `ParsingNumberStyle` to `NumberStyles.HexNumber` and adds `NumericInput.Decimal` to the `NumericInputMode` for as long as the format stays hexadecimal.
+
+**This changed on `develop`** with [#4499](https://github.com/MahApps/MahApps.Metro/issues/4499). In a released version there was no way out again: once a hexadecimal format had been set the parsing stayed hexadecimal even after the format changed back, and a typed `10` came out as `16`. On `develop` the control gives back what the format took over. A parsing style or input mode you changed in the meantime is yours and is left alone.
+
 ### Without a StringFormat
 
 **This changed on `develop`** with [#3673](https://github.com/MahApps/MahApps.Metro/issues/3673). A value with no format of its own used to go straight to `double.ToString()`, which reaches for an exponent on a small number and, since .NET Core 3.0, writes out every digit a calculation left behind:
