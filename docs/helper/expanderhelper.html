@@ -379,6 +379,77 @@ ExpanderHelper
     &lt;Setter Property=&quot;Foreground&quot; Value=&quot;{DynamicResource MahApps.Brushes.Text}&quot; /&gt;
 &lt;/Style&gt;
 </code></pre>
+<h2 id="the-glyph">The glyph</h2>
+<p>The circle and the arrow in the header are drawn in the foreground of the header, which is the colour that reads on whatever the header is painted with. Three properties override that for the glyph alone:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ToggleButtonForeground</code></td>
+<td><code>Brush</code></td>
+<td>the circle and the arrow</td>
+</tr>
+<tr>
+<td><code>ToggleButtonForegroundMouseOver</code></td>
+<td><code>Brush</code></td>
+<td>while the mouse is over the header</td>
+</tr>
+<tr>
+<td><code>ToggleButtonForegroundPressed</code></td>
+<td><code>Brush</code></td>
+<td>while the header is held down</td>
+</tr>
+</tbody>
+</table>
+<p><strong>All three are on <code>develop</code> and ship with the next release.</strong> Left unset, they hand nothing over and the glyph follows the header. Set them on the <code>Expander</code>; it passes them to the toggle button that draws them.</p>
+<pre><code class="language-xml">&lt;Expander Header=&quot;Details&quot;
+          mah:ExpanderHelper.ToggleButtonForeground=&quot;{DynamicResource MahApps.Brushes.Gray2}&quot;
+          mah:ExpanderHelper.ToggleButtonForegroundMouseOver=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;&gt;
+    &lt;TextBlock Margin=&quot;8&quot; Text=&quot;Expander content&quot; /&gt;
+&lt;/Expander&gt;
+</code></pre>
+<p><strong>What the glyph does under the mouse changed on <code>develop</code></strong> with <a href="https://github.com/MahApps/MahApps.Metro/issues/4386">#4386</a>. A released version turns the arrow and the circle grey while the mouse is over the header, which on the accent coloured band they sit on leaves a contrast of 1.2 to 1 and next to nothing to see. They keep the foreground of the header now, and what answers a touch is the ring, which grows, and a press, which pushes the glyph in a little. How thick the two strokes are drawn is the theme's to say:</p>
+<table>
+<thead>
+<tr>
+<th>Resource key</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ExpanderToggleButtonEllipseThemeStrokeThickness</code></td>
+<td>the ring at rest</td>
+</tr>
+<tr>
+<td><code>ExpanderToggleButtonEllipseThemeStrokeThicknessMouseOver</code></td>
+<td>the ring under the mouse</td>
+</tr>
+<tr>
+<td><code>ExpanderToggleButtonEllipseThemeStrokeThicknessPressed</code></td>
+<td>the ring while held down</td>
+</tr>
+<tr>
+<td><code>ExpanderToggleButtonArrowThemeStrokeThickness</code></td>
+<td>the arrow at rest</td>
+</tr>
+<tr>
+<td><code>ExpanderToggleButtonArrowThemeStrokeThicknessMouseOver</code></td>
+<td>the arrow under the mouse</td>
+</tr>
+<tr>
+<td><code>ExpanderToggleButtonArrowThemeStrokeThicknessPressed</code></td>
+<td>the arrow while held down</td>
+</tr>
+</tbody>
+</table>
+<p><code>ExpanderToggleButtonEllipseThemeSize</code> is the diameter of the circle, and <code>ShowToggleButton</code> takes the glyph away altogether.</p>
 <h2 id="animations">Animations</h2>
 <table>
 <thead>
@@ -412,6 +483,7 @@ ExpanderHelper
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#header-styles">Header styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-glyph">The glyph</a></div>
                     <div class="sidebar-nav-item"><a href="#animations">Animations</a></div>
             </div>
         </div>

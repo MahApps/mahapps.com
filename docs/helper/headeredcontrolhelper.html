@@ -397,6 +397,30 @@ HeaderedControlHelper
 <td><code>Stretch</code></td>
 <td></td>
 </tr>
+<tr>
+<td><code>HeaderBackgroundMouseOver</code></td>
+<td><code>Brush</code></td>
+<td>not set</td>
+<td>behind the header while the mouse is over it</td>
+</tr>
+<tr>
+<td><code>HeaderBackgroundPressed</code></td>
+<td><code>Brush</code></td>
+<td>not set</td>
+<td>behind the header while it is held down</td>
+</tr>
+<tr>
+<td><code>HeaderForegroundMouseOver</code></td>
+<td><code>Brush</code></td>
+<td>not set</td>
+<td>the header text while the mouse is over it</td>
+</tr>
+<tr>
+<td><code>HeaderForegroundPressed</code></td>
+<td><code>Brush</code></td>
+<td>not set</td>
+<td>the header text while it is held down</td>
+</tr>
 </tbody>
 </table>
 <pre><code class="language-xml">&lt;GroupBox Header=&quot;Details&quot;
@@ -409,11 +433,65 @@ HeaderedControlHelper
 </code></pre>
 <p>As with the other helpers, the defaults in the table are the helper's own; a styled control shows what its style put there. The MahApps <code>GroupBox</code> style sets <code>HeaderBackground</code> to <code>MahApps.Brushes.Accent</code> and <code>HeaderFontSize</code> to the content size, and deliberately sets <code>HeaderForeground</code> to <code>{x:Null}</code> so the template picks a foreground that reads against that band. Use the theme brushes rather than fixed colours and the header keeps following the theme.</p>
 <p><code>HeaderFontWeight</code> is the one to reach for when a header should be quieter — the built-in look is deliberately loud, and dropping the weight tones a nested group box down without giving up the coloured band.</p>
+<h2 id="while-the-header-is-touched">While the header is touched</h2>
+<p><strong>The last four are on <code>develop</code> and ship with the next release.</strong> A released version has one background and one foreground, and a header looks the same whether somebody is on it or not.</p>
+<p>Left unset, they hand nothing over and the header keeps the colours it has at rest, so adding them changes nothing until you fill one in. They also only reach as far as the control has a state to show:</p>
+<table>
+<thead>
+<tr>
+<th>Control</th>
+<th>while the mouse is over it</th>
+<th>while it is held down</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Expander</code></td>
+<td>yes</td>
+<td>yes, its header is a toggle button</td>
+</tr>
+<tr>
+<td><code>GroupBox</code></td>
+<td>yes</td>
+<td>no such state</td>
+</tr>
+<tr>
+<td><code>MetroHeader</code></td>
+<td>yes</td>
+<td>no such state</td>
+</tr>
+<tr>
+<td><code>Flyout</code></td>
+<td>yes, on the header</td>
+<td>no such state</td>
+</tr>
+<tr>
+<td><code>TabItem</code></td>
+<td>yes</td>
+<td>no such state</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-xml">&lt;Expander Header=&quot;Details&quot;
+          mah:HeaderedControlHelper.HeaderBackground=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+          mah:HeaderedControlHelper.HeaderBackgroundMouseOver=&quot;{DynamicResource MahApps.Brushes.Highlight}&quot;
+          mah:HeaderedControlHelper.HeaderBackgroundPressed=&quot;{DynamicResource MahApps.Brushes.Accent3}&quot;&gt;
+    &lt;TextBlock Margin=&quot;8&quot; Text=&quot;Expander content&quot; /&gt;
+&lt;/Expander&gt;
+</code></pre>
+<p>Held down wins over the mouse being over it, because both hold while a header is pressed.</p>
+<p>A tab item takes these off the tab control it sits in, the way it takes the rest of the header properties, so set them there and every tab follows. What answers the mouse is the strip the tab is drawn in and not the item as a whole, which counts the content below it as its own.</p>
 
 
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#while-the-header-is-touched">While the header is touched</a></div>
+            </div>
+        </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/helper/headeredcontrolhelper.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
