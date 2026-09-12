@@ -36,6 +36,39 @@ Base your own on the built-in one for the direction you are replacing, or the ar
 </Style>
 ```
 
+## The glyph
+
+The circle and the arrow in the header are drawn in the foreground of the header, which is the colour that reads on whatever the header is painted with. Three properties override that for the glyph alone:
+
+| Property | Type | |
+| --- | --- | --- |
+| `ToggleButtonForeground` | `Brush` | the circle and the arrow |
+| `ToggleButtonForegroundMouseOver` | `Brush` | while the mouse is over the header |
+| `ToggleButtonForegroundPressed` | `Brush` | while the header is held down |
+
+**All three are on `develop` and ship with the next release.** Left unset, they hand nothing over and the glyph follows the header. Set them on the `Expander`; it passes them to the toggle button that draws them.
+
+```xml
+<Expander Header="Details"
+          mah:ExpanderHelper.ToggleButtonForeground="{DynamicResource MahApps.Brushes.Gray2}"
+          mah:ExpanderHelper.ToggleButtonForegroundMouseOver="{DynamicResource MahApps.Brushes.Accent}">
+    <TextBlock Margin="8" Text="Expander content" />
+</Expander>
+```
+
+**What the glyph does under the mouse changed on `develop`** with [#4386](https://github.com/MahApps/MahApps.Metro/issues/4386). A released version turns the arrow and the circle grey while the mouse is over the header, which on the accent coloured band they sit on leaves a contrast of 1.2 to 1 and next to nothing to see. They keep the foreground of the header now, and what answers a touch is the ring, which grows, and a press, which pushes the glyph in a little. How thick the two strokes are drawn is the theme's to say:
+
+| Resource key | |
+| --- | --- |
+| `ExpanderToggleButtonEllipseThemeStrokeThickness` | the ring at rest |
+| `ExpanderToggleButtonEllipseThemeStrokeThicknessMouseOver` | the ring under the mouse |
+| `ExpanderToggleButtonEllipseThemeStrokeThicknessPressed` | the ring while held down |
+| `ExpanderToggleButtonArrowThemeStrokeThickness` | the arrow at rest |
+| `ExpanderToggleButtonArrowThemeStrokeThicknessMouseOver` | the arrow under the mouse |
+| `ExpanderToggleButtonArrowThemeStrokeThicknessPressed` | the arrow while held down |
+
+`ExpanderToggleButtonEllipseThemeSize` is the diameter of the circle, and `ShowToggleButton` takes the glyph away altogether.
+
 ## Animations
 
 | Property | Type | |
