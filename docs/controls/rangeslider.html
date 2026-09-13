@@ -382,7 +382,7 @@ RangeSlider
 <tr>
 <td><code>MinRangeWidth</code></td>
 <td>in pixels</td>
-<td>the minimum width of the middle thumb. Default <code>30</code></td>
+<td>the minimum width of the middle thumb. Default <code>30</code>. Obsolete and without effect on <code>develop</code></td>
 </tr>
 </tbody>
 </table>
@@ -393,8 +393,18 @@ RangeSlider
                  LowerValue=&quot;50&quot; UpperValue=&quot;50&quot;
                  MinRangeWidth=&quot;0&quot; /&gt;
 </code></pre>
-<p>It is also coerced: it can never exceed half the track length once the side thumbs are accounted for. The value-to-pixel mapping subtracts it from the usable width, which is why the thumbs above straddle the midpoint rather than sitting on it.</p>
-<div class="alert alert-info"><p>In a released version the XML documentation on <code>MinRangeWidth</code> reads <em>&quot;Get/sets the minimal distance between two thumbs&quot;</em>, which describes <code>MinRange</code> instead, and the API reference repeats it. Both comments were rewritten on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4580">#4580</a>; until that ships, go by the table above.</p>
+<p>It is also coerced: it can never exceed half the track length. And it is taken off the track before the values are laid out on it, so every pixel of it is a pixel both thumbs are moved away from the tick their value belongs to, and the gap grows along the track. That gap is what <a href="https://github.com/MahApps/MahApps.Metro/issues/4392">#4392</a> and <a href="https://github.com/MahApps/MahApps.Metro/issues/4113">#4113</a> are about.</p>
+<div class="alert alert-warning"><p><strong>Breaking change on <code>develop</code>:</strong> <code>MinRangeWidth</code> does nothing any more. It is marked obsolete, so a build that sets it still runs and warns rather than failing, but neither the values nor the drawing take any notice of it, and it will be removed. What it bought — thirty pixels of band to look at and to grab where the two values sit on the same spot — was paid for with every thumb on the control standing off its tick, and a band of thirty pixels where the range is nothing says the range is something. An empty range is drawn as nothing now, the two thumbs meet, and either of them opens the range again when it is pulled the way it can go. Drop the attribute; nothing takes its place.</p>
+</div>
+<div class="alert alert-info"><p>On <code>develop</code> a thumb also hangs over the end of the track by half its width, so its middle is the point its value stands for and a click with <code>IsMoveToPointEnabled</code> lands on the value under the mouse.</p>
+</div>
+<p><code>MinRange</code> in a released version does more than hold the values apart: it is taken off the scale the thumbs are laid out on as well, which gives the lower thumb a scale of its own that ends at <code>Maximum</code> minus <code>MinRange</code>. With <code>MinRange=&quot;20&quot;</code> on a slider from 0 to 100, a lower value of 80 therefore stands at the very end of the track and the range 80 to 100 is drawn as a sliver, the same range that fills a fifth of the track at 40 to 60. On <code>develop</code> a range of <code>MinRange</code> is the same width wherever it stands.</p>
+<div class="alert alert-warning"><p>In a released version, write <code>MinRange</code> <strong>after</strong> <code>Minimum</code>, <code>Maximum</code> and the two values, and after a <code>Style</code> that carries them. XAML sets a property as it reads it, so <code>MinRange</code> written first is measured against the 0 and 1 a <code>RangeSlider</code> starts out with, and it pins <code>UpperValue</code> down to fit — as a local value, which then beats everything a style has to say. A slider written this way</p>
+<pre><code class="language-xml">&lt;mah:RangeSlider MinRange=&quot;20&quot; Style=&quot;{StaticResource TheRange}&quot; /&gt;
+</code></pre>
+<p>comes up at 0 to 20 rather than at the range the style asks for. Watch out for formatters: XamlStyler sorts attributes by name and puts <code>MinRange</code> in front of <code>Style</code> by itself. Fixed on <code>develop</code>, where <code>MinRange</code> coerces the values instead of assigning them, and where a later <code>Minimum</code> or <code>Maximum</code> asks all three of them again.</p>
+</div>
+<div class="alert alert-info"><p>In a released version the XML documentation on <code>MinRangeWidth</code> reads <em>&quot;Get/sets the minimal distance between two thumbs&quot;</em>, which describes <code>MinRange</code> instead, and the API reference repeats it. The comment on <code>MinRange</code> was rewritten on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4580">#4580</a>, and the one on <code>MinRangeWidth</code> now says that the property does nothing; until that ships, go by the table above.</p>
 </div>
 <h2 id="colours">Colours</h2>
 <p>Both styles take their brushes from <a href="../helper/sliderhelper">SliderHelper</a>, the same twelve as the plain slider — thumb, track and filled track, each with a hover, pressed and disabled variant. The middle thumb is painted from the <code>TrackValue</code> set.</p>
