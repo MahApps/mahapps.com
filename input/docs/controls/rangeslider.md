@@ -38,7 +38,7 @@ These two sound alike and are not:
 | | | |
 | --- | --- | --- |
 | `MinRange` | in value units | how close `LowerValue` and `UpperValue` may get. Default `0` |
-| `MinRangeWidth` | in pixels | the minimum width of the middle thumb. Default `30` |
+| `MinRangeWidth` | in pixels | the minimum width of the middle thumb. Default `30`. Obsolete and without effect on `develop` |
 
 `MinRangeWidth` is the one that surprises people, because it is a floor on the *drawn* band, not on the values:
 
@@ -52,10 +52,30 @@ Both panels have `LowerValue` and `UpperValue` at 50. On the left, the default `
                  MinRangeWidth="0" />
 ```
 
-It is also coerced: it can never exceed half the track length once the side thumbs are accounted for. The value-to-pixel mapping subtracts it from the usable width, which is why the thumbs above straddle the midpoint rather than sitting on it.
+It is also coerced: it can never exceed half the track length. And it is taken off the track before the values are laid out on it, so every pixel of it is a pixel both thumbs are moved away from the tick their value belongs to, and the gap grows along the track. That gap is what [#4392](https://github.com/MahApps/MahApps.Metro/issues/4392) and [#4113](https://github.com/MahApps/MahApps.Metro/issues/4113) are about.
+
+:::{.alert .alert-warning}
+**Breaking change on `develop`:** `MinRangeWidth` does nothing any more. It is marked obsolete, so a build that sets it still runs and warns rather than failing, but neither the values nor the drawing take any notice of it, and it will be removed. What it bought — thirty pixels of band to look at and to grab where the two values sit on the same spot — was paid for with every thumb on the control standing off its tick, and a band of thirty pixels where the range is nothing says the range is something. An empty range is drawn as nothing now, the two thumbs meet, and either of them opens the range again when it is pulled the way it can go. Drop the attribute; nothing takes its place.
+:::
 
 :::{.alert .alert-info}
-In a released version the XML documentation on `MinRangeWidth` reads *"Get/sets the minimal distance between two thumbs"*, which describes `MinRange` instead, and the API reference repeats it. Both comments were rewritten on `develop` by [#4580](https://github.com/MahApps/MahApps.Metro/issues/4580); until that ships, go by the table above.
+On `develop` a thumb also hangs over the end of the track by half its width, so its middle is the point its value stands for and a click with `IsMoveToPointEnabled` lands on the value under the mouse.
+:::
+
+`MinRange` in a released version does more than hold the values apart: it is taken off the scale the thumbs are laid out on as well, which gives the lower thumb a scale of its own that ends at `Maximum` minus `MinRange`. With `MinRange="20"` on a slider from 0 to 100, a lower value of 80 therefore stands at the very end of the track and the range 80 to 100 is drawn as a sliver, the same range that fills a fifth of the track at 40 to 60. On `develop` a range of `MinRange` is the same width wherever it stands.
+
+:::{.alert .alert-warning}
+In a released version, write `MinRange` **after** `Minimum`, `Maximum` and the two values, and after a `Style` that carries them. XAML sets a property as it reads it, so `MinRange` written first is measured against the 0 and 1 a `RangeSlider` starts out with, and it pins `UpperValue` down to fit — as a local value, which then beats everything a style has to say. A slider written this way
+
+```xml
+<mah:RangeSlider MinRange="20" Style="{StaticResource TheRange}" />
+```
+
+comes up at 0 to 20 rather than at the range the style asks for. Watch out for formatters: XamlStyler sorts attributes by name and puts `MinRange` in front of `Style` by itself. Fixed on `develop`, where `MinRange` coerces the values instead of assigning them, and where a later `Minimum` or `Maximum` asks all three of them again.
+:::
+
+:::{.alert .alert-info}
+In a released version the XML documentation on `MinRangeWidth` reads *"Get/sets the minimal distance between two thumbs"*, which describes `MinRange` instead, and the API reference repeats it. The comment on `MinRange` was rewritten on `develop` by [#4580](https://github.com/MahApps/MahApps.Metro/issues/4580), and the one on `MinRangeWidth` now says that the property does nothing; until that ships, go by the table above.
 :::
 
 ## Colours
