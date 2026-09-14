@@ -175,6 +175,22 @@ Each style carries a second template and swaps to it on `Orientation="Vertical"`
                  LargeChange="10" />
 ```
 
+## Keyboard
+
+A range slider has two values, so a key has to be told which one it means: the thumb that was last touched is the one the keyboard talks to. Click a thumb, or tab onto the control, and the keys move that value.
+
+| | |
+| --- | --- |
+| Left and right, up and down on an upright slider | by `SmallChange` |
+| Page up and page down | by `LargeChange` |
+| Home and End | to `Minimum` or `Maximum`, as far as the other value allows |
+
+`MinRange` holds against the keyboard as well, and a thumb pressed against the other one stops there instead of pushing it along. A ring around the thumb says which one has the keyboard. Tabbing onto the control hands the keys to the lower thumb.
+
+:::{.alert .alert-info}
+New on `develop`. In a released version a `RangeSlider` does nothing at all when a key is pressed.
+:::
+
 ## Origin
 
 The control came from the Avalon Controls Library (MS-PL) by way of [this fork](https://github.com/jogibear9988/avaloncontrolslib); the original CodePlex site is gone. It has been rewritten considerably since.
