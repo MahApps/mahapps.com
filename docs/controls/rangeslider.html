@@ -466,6 +466,10 @@ RangeSlider
 </tr>
 </tbody>
 </table>
+<div class="alert alert-info"><p>On <code>develop</code> a thumb being dragged stops at the other value instead of pushing it along, so the value nobody is holding stays where it was put. A released version hands the drag over to the other thumb once the two meet, and carries on with that one.</p>
+</div>
+<div class="alert alert-info"><p>On <code>develop</code> a click with <code>IsSnapToTickEnabled</code> takes the tick nearest to where it landed. A released version takes the next tick past the click in the direction of travel, so a click a hair short of a tick answers with the tick before it, a whole interval away from what was pointed at. Half way between two ticks is where the answer changes now.</p>
+</div>
 <p>Without <code>ExtendedMode</code>, clicking inside the range only drags the band. With it on, <strong>Ctrl + left click</strong> inside the range moves the lower thumb and <strong>Ctrl + right click</strong> moves the upper one, so both ends stay reachable without leaving the band.</p>
 <p>The middle mouse button toggles <code>MoveWholeRange</code> — undocumented in the library, but it is there.</p>
 <h2 id="vertical">Vertical</h2>
@@ -504,6 +508,33 @@ RangeSlider
                  SmallChange=&quot;1&quot;
                  LargeChange=&quot;10&quot; /&gt;
 </code></pre>
+<h2 id="keyboard">Keyboard</h2>
+<p>A range slider has two values, so a key has to be told which one it means: the thumb that was last touched is the one the keyboard talks to. Click a thumb, or tab onto the control, and the keys move that value.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left and right, up and down on an upright slider</td>
+<td>by <code>SmallChange</code></td>
+</tr>
+<tr>
+<td>Page up and page down</td>
+<td>by <code>LargeChange</code></td>
+</tr>
+<tr>
+<td>Home and End</td>
+<td>to <code>Minimum</code> or <code>Maximum</code>, as far as the other value allows</td>
+</tr>
+</tbody>
+</table>
+<p><code>MinRange</code> holds against the keyboard as well, and a thumb pressed against the other one stops there instead of pushing it along. A ring around the thumb says which one has the keyboard. Tabbing onto the control hands the keys to the lower thumb.</p>
+<div class="alert alert-info"><p>New on <code>develop</code>. In a released version a <code>RangeSlider</code> does nothing at all when a key is pressed.</p>
+</div>
 <h2 id="origin">Origin</h2>
 <p>The control came from the Avalon Controls Library (MS-PL) by way of <a href="https://github.com/jogibear9988/avaloncontrolslib">this fork</a>; the original CodePlex site is gone. It has been rewritten considerably since.</p>
 
@@ -523,6 +554,7 @@ RangeSlider
                     <div class="sidebar-nav-item"><a href="#the-drag-tooltip">The drag tooltip</a></div>
                     <div class="sidebar-nav-item"><a href="#events">Events</a></div>
                     <div class="sidebar-nav-item"><a href="#mouse-wheel">Mouse wheel</a></div>
+                    <div class="sidebar-nav-item"><a href="#keyboard">Keyboard</a></div>
                     <div class="sidebar-nav-item"><a href="#origin">Origin</a></div>
             </div>
         </div>
