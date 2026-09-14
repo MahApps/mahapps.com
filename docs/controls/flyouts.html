@@ -482,6 +482,19 @@ Flyouts
 <h2 id="header-title-and-close-button">Header, title and close button</h2>
 <p><img src="images/flyout-chrome.png" alt="The default header row, without the close button, and without the title" /></p>
 <p><code>CloseButtonVisibility</code> and <code>TitleVisibility</code> are both <code>Visible</code> by default and each hides one part of the header row. Hiding the close button without giving the user another way out — a binding on <code>IsOpen</code>, <code>IsPinned=&quot;False&quot;</code>, or auto-close — leaves the flyout stuck open.</p>
+<h2 id="shadow">Shadow</h2>
+<div class="alert alert-info"><p>New on <code>develop</code>.</p>
+</div>
+<p><code>ShadowEffect</code> throws a shadow onto whatever the flyout covers. Nothing is thrown until one is set:</p>
+<pre><code class="language-xml">&lt;mah:Flyout Position=&quot;Left&quot; Header=&quot;Settings&quot;&gt;
+    &lt;mah:Flyout.ShadowEffect&gt;
+        &lt;DropShadowEffect BlurRadius=&quot;24&quot; Direction=&quot;0&quot; ShadowDepth=&quot;8&quot; Opacity=&quot;0.45&quot; /&gt;
+    &lt;/mah:Flyout.ShadowEffect&gt;
+&lt;/mah:Flyout&gt;
+</code></pre>
+<p>It takes any <code>Effect</code>, so a blur or a glow works the same way. <code>Direction</code> counts anticlockwise from the right, which for a flyout on the left means <code>0</code>.</p>
+<p>The effect is given to a pane of its own behind the content rather than to the flyout, and that is worth knowing if you are tempted to set <code>Effect</code> instead. An effect on a control takes everything inside it through a bitmap on the way to the screen: the text loses ClearType and every frame of the slide costs more to draw. <code>ShadowEffect</code> leaves the content alone.</p>
+<p>The shadow is drawn inside the window, so it falls on the page rather than past the window edge. <a href="https://github.com/MahApps/MahApps.Metro/issues/3306">#3306</a> asked for this, and until it shipped the answer was to copy the whole control template.</p>
 <h2 id="animation-and-focus">Animation and focus</h2>
 <table>
 <thead>
@@ -592,6 +605,7 @@ public enum OverlayBehavior
                     <div class="sidebar-nav-item"><a href="#themes">Themes</a></div>
                     <div class="sidebar-nav-item"><a href="#modal">Modal</a></div>
                     <div class="sidebar-nav-item"><a href="#header-title-and-close-button">Header, title and close button</a></div>
+                    <div class="sidebar-nav-item"><a href="#shadow">Shadow</a></div>
                     <div class="sidebar-nav-item"><a href="#animation-and-focus">Animation and focus</a></div>
                     <div class="sidebar-nav-item"><a href="#overlay-behaviour-on-the-window">Overlay behaviour on the window</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
