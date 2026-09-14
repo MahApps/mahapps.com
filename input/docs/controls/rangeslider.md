@@ -120,6 +120,14 @@ Set the `Hover` and `Pressed` variants too, or the slider goes back to the theme
 | `AutoToolTipPlacement` | `None` | `TopLeft` or `BottomRight` to show the value while dragging |
 | `AutoToolTipPrecision` | `0` | decimal places in that tooltip |
 
+:::{.alert .alert-info}
+On `develop` a thumb being dragged stops at the other value instead of pushing it along, so the value nobody is holding stays where it was put. A released version hands the drag over to the other thumb once the two meet, and carries on with that one.
+:::
+
+:::{.alert .alert-info}
+On `develop` a click with `IsSnapToTickEnabled` takes the tick nearest to where it landed. A released version takes the next tick past the click in the direction of travel, so a click a hair short of a tick answers with the tick before it, a whole interval away from what was pointed at. Half way between two ticks is where the answer changes now.
+:::
+
 Without `ExtendedMode`, clicking inside the range only drags the band. With it on, **Ctrl + left click** inside the range moves the lower thumb and **Ctrl + right click** moves the upper one, so both ends stay reachable without leaving the band.
 
 The middle mouse button toggles `MoveWholeRange` — undocumented in the library, but it is there.
