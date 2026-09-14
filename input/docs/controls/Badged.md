@@ -95,4 +95,8 @@ A storyboard that cannot run on the badge container — one targeting a property
 
 Eight values, all shown in the first figure: `TopLeft`, `Top`, `TopRight`, `Right`, `BottomRight`, `Bottom`, `BottomLeft`, `Left`.
 
-The corner modes put the badge outside the control's corner; the edge modes centre it on that edge. Either way the badge overhangs, so leave a little room around a `Badged` or the badge will be clipped by a tight container.
+The corner modes put the badge outside the control's corner; the edge modes centre it on that edge. Either way the badge hangs over the edge by half its own size, and a `Badged` asks for no more room than its content needs, so the badge is outside anything the layout knows about. Next to something else it will overlap. A margin on the `Badged` is what keeps the two apart.
+
+:::{.alert .alert-info}
+On `develop` a badge on a tab header is no longer cut in half. A `Badged` takes no layout clip of its own any more, and the host that carries a tab header rounds the way the grid around it does. Between them those were what did it: the header asking for a tenth of a pixel more than the rounding handed out was enough for WPF to clip it, and a clip takes the whole overhanging badge with it. Which header it happened to came down to where the caption landed, which is why [#2994](https://github.com/MahApps/MahApps.Metro/issues/2994) reads as though it picked its victims at random. A container that clips on purpose still clips.
+:::
