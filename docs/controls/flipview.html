@@ -492,10 +492,24 @@ FlipView
 </tr>
 </tbody>
 </table>
-<p>The banner does not follow the selection on its own — set <code>BannerText</code> from a <code>SelectionChanged</code> handler, or bind it:</p>
+<p>The banner does not follow the selection on its own. Bind it to the selected item:</p>
 <pre><code class="language-xml">&lt;mah:FlipView ItemsSource=&quot;{Binding Slides}&quot;
               BannerText=&quot;{Binding SelectedItem.Caption, RelativeSource={RelativeSource Self}}&quot; /&gt;
 </code></pre>
+<div class="alert alert-info"><p>On <code>develop</code> an item can also name its own banner, by way of a <code>FlipViewItem</code> in the item template:</p>
+<pre><code class="language-xml">&lt;mah:FlipView ItemsSource=&quot;{Binding Slides}&quot;&gt;
+    &lt;mah:FlipView.ItemTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;mah:FlipViewItem BannerText=&quot;{Binding Caption}&quot;&gt;
+                &lt;Image Source=&quot;{Binding Image}&quot; /&gt;
+            &lt;/mah:FlipViewItem&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/mah:FlipView.ItemTemplate&gt;
+&lt;/mah:FlipView&gt;
+</code></pre>
+<p>That is the only place for it. A <code>FlipView</code> shows its selected item in a presenter and wraps nothing in a container of its own, so there are no <code>FlipViewItem</code> containers for an <code>ItemContainerStyle</code> to reach. In a released version the item never found the control it belongs to and the banner kept the text a <code>FlipViewItem</code> starts out with, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4447">#4447</a>.</p>
+<p>An item that names no banner leaves the one on the control alone, so the two ways can be mixed.</p>
+</div>
 <div class="alert alert-info"><p><strong>The banner's text colour is <code>BannerForeground</code>, not <code>Foreground</code>.</strong> Setting <code>Foreground</code> on the <code>FlipView</code> does nothing to the banner — the template binds the banner label to <code>BannerForeground</code>, which wins:</p>
 <p><img src="images/flipview-bannerforeground.png" alt="BannerForeground, Foreground, and both" /></p>
 <p>The middle panel sets <code>Foreground=&quot;Red&quot;</code> and shows nothing at all, because <code>BannerForeground</code> is still its default of <code>MahApps.Brushes.ThemeBackground</code> — white text on the white banner. The third sets <code>Foreground=&quot;Blue&quot;</code> and <code>BannerForeground=&quot;Red&quot;</code> and comes out red.</p>
