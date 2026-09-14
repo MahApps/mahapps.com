@@ -93,12 +93,32 @@ The strip along the bottom. It is on by default and slides open and shut.
 | `BannerForeground` | `Brush` | `MahApps.Brushes.ThemeBackground` | |
 | `BannerOpacity` | `double` | `0.8` | applies to the whole strip, text included |
 
-The banner does not follow the selection on its own — set `BannerText` from a `SelectionChanged` handler, or bind it:
+The banner does not follow the selection on its own. Bind it to the selected item:
 
 ```xml
 <mah:FlipView ItemsSource="{Binding Slides}"
               BannerText="{Binding SelectedItem.Caption, RelativeSource={RelativeSource Self}}" />
 ```
+
+:::{.alert .alert-info}
+On `develop` an item can also name its own banner, by way of a `FlipViewItem` in the item template:
+
+```xml
+<mah:FlipView ItemsSource="{Binding Slides}">
+    <mah:FlipView.ItemTemplate>
+        <DataTemplate>
+            <mah:FlipViewItem BannerText="{Binding Caption}">
+                <Image Source="{Binding Image}" />
+            </mah:FlipViewItem>
+        </DataTemplate>
+    </mah:FlipView.ItemTemplate>
+</mah:FlipView>
+```
+
+That is the only place for it. A `FlipView` shows its selected item in a presenter and wraps nothing in a container of its own, so there are no `FlipViewItem` containers for an `ItemContainerStyle` to reach. In a released version the item never found the control it belongs to and the banner kept the text a `FlipViewItem` starts out with, which is [#4447](https://github.com/MahApps/MahApps.Metro/issues/4447).
+
+An item that names no banner leaves the one on the control alone, so the two ways can be mixed.
+:::
 
 :::{.alert .alert-info}
 **The banner's text colour is `BannerForeground`, not `Foreground`.** Setting `Foreground` on the `FlipView` does nothing to the banner — the template binds the banner label to `BannerForeground`, which wins:
