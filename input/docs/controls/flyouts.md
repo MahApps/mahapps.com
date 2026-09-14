@@ -116,6 +116,28 @@ The figure is rendered against a light application theme, which is why `Adapt` m
 
 `CloseButtonVisibility` and `TitleVisibility` are both `Visible` by default and each hides one part of the header row. Hiding the close button without giving the user another way out — a binding on `IsOpen`, `IsPinned="False"`, or auto-close — leaves the flyout stuck open.
 
+## Shadow
+
+:::{.alert .alert-info}
+New on `develop`.
+:::
+
+`ShadowEffect` throws a shadow onto whatever the flyout covers. Nothing is thrown until one is set:
+
+```xml
+<mah:Flyout Position="Left" Header="Settings">
+    <mah:Flyout.ShadowEffect>
+        <DropShadowEffect BlurRadius="24" Direction="0" ShadowDepth="8" Opacity="0.45" />
+    </mah:Flyout.ShadowEffect>
+</mah:Flyout>
+```
+
+It takes any `Effect`, so a blur or a glow works the same way. `Direction` counts anticlockwise from the right, which for a flyout on the left means `0`.
+
+The effect is given to a pane of its own behind the content rather than to the flyout, and that is worth knowing if you are tempted to set `Effect` instead. An effect on a control takes everything inside it through a bitmap on the way to the screen: the text loses ClearType and every frame of the slide costs more to draw. `ShadowEffect` leaves the content alone.
+
+The shadow is drawn inside the window, so it falls on the page rather than past the window edge. [#3306](https://github.com/MahApps/MahApps.Metro/issues/3306) asked for this, and until it shipped the answer was to copy the whole control template.
+
 ## Animation and focus
 
 | Property | Type | Default | |
