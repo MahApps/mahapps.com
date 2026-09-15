@@ -117,6 +117,36 @@ public partial class MyDialogWindow : MetroWindow
 
 Setting the property to `null` removes the old value from the dictionary and puts nothing back, which is exactly what is wanted. For a `UserControl` that is swapped in and out, do the same from `Unloaded`.
 
+## Views that move into a window of their own
+
+A view can end up in a window that did not exist when it was registered. A tab torn out of a [Dragablz](https://github.com/ButchersBoy/Dragablz) `TabablzControl` is the usual way this happens. The registration itself carries over, because it points at the element rather than at the window, and the coordinator works out the window each time it is asked. What matters is the kind of window the view lands in: Dragablz opens a plain `Window` for a torn off tab unless it is told otherwise, and asking for a dialog from there gives you `Context is not inside a MetroWindow.`
+
+That window is yours to make, through the `IInterTabClient` on the `InterTabController`:
+
+```csharp
+public class MetroInterTabClient : IInterTabClient
+{
+    public INewTabHost<Window> GetNewHost(IInterTabClient interTabClient, object partition, TabablzControl source)
+    {
+        var tabs = new TabablzControl
+                   {
+                       InterTabController = new InterTabController { InterTabClient = interTabClient }
+                   };
+
+        var window = new MetroWindow { Width = 800, Height = 600, Content = tabs };
+
+        return new NewTabHost<Window>(window, tabs);
+    }
+
+    public TabEmptiedResponse TabEmptiedHandler(TabablzControl tabControl, Window window)
+    {
+        return TabEmptiedResponse.CloseWindowOrLayoutBranch;
+    }
+}
+```
+
+With that in place a dialog opens in whichever window the tab is sitting in at the time, the one it started in as well as the one it was pulled into. The same goes for any other window a view is moved into, a docking layout among them: make it a `MetroWindow` and the coordinator finds it. This is [#4424](https://github.com/MahApps/MahApps.Metro/issues/4424).
+
 ## When it does not work
 
 The coordinator throws instead of failing quietly, and the two messages are worth recognising:
@@ -124,6 +154,6 @@ The coordinator throws instead of failing quietly, and the two messages are wort
 | Message | Cause |
 | --- | --- |
 | `Context is not registered.` | Nothing called `DialogParticipation.Register` for this context — the attached property is missing, or the object passed as context is not the one that was registered. |
-| `Context is not inside a MetroWindow.` | The element you registered sits in a plain `Window`. The dialogs are drawn by `MetroWindow`, so the containing window has to be one. |
+| `Context is not inside a MetroWindow.` | The element you registered sits in a plain `Window`. The dialogs are drawn by `MetroWindow`, so the containing window has to be one. That includes a window the view was moved into after it was registered, see [above](#views-that-move-into-a-window-of-their-own). |
 
 The first one also appears when the `DataContext` is replaced after the binding was evaluated: the registration then still points at the previous object, while the view model calling the coordinator is the new one.
