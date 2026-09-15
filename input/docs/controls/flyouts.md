@@ -188,6 +188,16 @@ this.icon?.SetValue(Panel.ZIndexProperty,
 So `IconOverlayBehavior="Flyouts"` does put the icon above one. A modal flyout still wins over both.
 :::
 
+## What it means for an inspection tool
+
+The `FlyoutsControl` lies over the whole window, so a flyout can come in from any side. It paints nothing while every flyout is shut, and a mouse click goes straight through it to the content underneath.
+
+:::{.alert .alert-warning}
+**On .NET 8 and later, in a released version, this leaves nothing in the window reachable for a UI automation tool.** Accessibility Insights, inspect.exe, FlaUInspect and WinAppDriver all ask Windows what sits under the pointer, and that question goes by the box an element occupies rather than by what a click would hit. Point at a button in a `MetroWindow` and the answer is the flyouts control, whatever is actually drawn there. On .NET 7 the same window answers with the button, and so does a plain `Window` on either.
+
+Fixed on `develop` by [#4454](https://github.com/MahApps/MahApps.Metro/issues/4454): the control answers a point only while a flyout is open, and reports itself off screen while none is. An open flyout is found the way it always was. Until that ships, a tool that picks the element by keyboard focus rather than by pointer gets through.
+:::
+
 ## Related
 
 [MetroWindow](metrowindow) hosts them and owns the overlay behaviour. [CustomValidationPopup](customvalidationpopup) suppresses itself while a flyout is animating, which is what `Flyout`'s animation state is used for elsewhere.
