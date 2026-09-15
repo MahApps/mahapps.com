@@ -31,7 +31,7 @@
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
 
-        <title>MahApps.Metro - Guides</title>
+        <title>MahApps.Metro - What a screen reader hears</title>
     </head>
     <body class="d-flex flex-column">
         <div class="flex-grow-1 d-flex flex-column">
@@ -94,10 +94,11 @@
                                         <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
 
         <span><a href="/mahapps.com/docs">Documentation</a></span>
+        <span><a href="/mahapps.com/docs/guides">Guides</a></span>
                                         </div>
                                         <div class="text-white m-0 text-break title">
 
-Guides
+What a screen reader hears
                                         </div>
                                     </div>
                                         <div class="navbar navbar-expand-md navbar-dark p-0">
@@ -132,7 +133,7 @@ Guides
 
     <div class="sidebar-root">
 
-<div class="sidebar-nav-item active has-children">
+<div class="sidebar-nav-item has-children">
     <a href="/mahapps.com/docs/guides">Guides</a>
 </div>                <div class="sidebar-nav-children">
 
@@ -145,60 +146,79 @@ Guides
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/guides/performance">Performance with many views</a>
 </div>
-<div class="sidebar-nav-item">
+<div class="sidebar-nav-item active">
     <a href="/mahapps.com/docs/guides/accessibility">What a screen reader hears</a>
 </div>                </div>
     </div>
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
+<p>A screen reader, an inspection tool and a UI test all ask the same thing: what is this element, what is it called, and what does it hold. WPF answers most of that from the control itself, and a control library has to fill in the rest.</p>
+<h2 id="names-for-buttons-drawn-from-a-picture">Names for buttons drawn from a picture</h2>
+<p>The name of a button comes from its content, and the content of a button drawn from a glyph is the path that glyph is cut from. Point a screen reader at one and it reads the coordinates out.</p>
+<p>Every button of this kind carries a name of its own: the clear button on a text box, the one that opens a picker, the arrows of a scroll bar, the ones that scroll a tab strip, the button that shuts a flyout, the window buttons, and the overflow button beside the window commands.</p>
+<div class="alert alert-warning"><p><strong>In a released version several of them read out their path data.</strong> The button that opens a picker announces a page and a half of coordinates, and the one that empties a text box announces the letter its cross is cut from. Fixed on <code>develop</code>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>
+</div>
+<h3 id="they-are-translated">They are translated</h3>
+<p>Microsoft asks for an accessible name the same way it asks for anything on screen: accurate, concise, unambiguous and localized. The names live in <code>Lang/Automation.resx</code>, with a German set beside it, and a language nobody has translated falls back to English, the way the colour names do. A translation is a welcome pull request: copy <code>Automation.resx</code> to <code>Automation.&lt;culture&gt;.resx</code> and fill in the values.</p>
+<p>The button that opens a picker says <em>Show Calendar</em>, which is the wording WPF gives its own <code>DatePicker</code>, and <em>Show Clock</em> where the drop-down has no calendar in it.</p>
+<h2 id="what-each-control-tells-a-client">What each control tells a client</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Tile</code></td>
+<td>named after its <code>Title</code> when the content leaves the name empty</td>
+</tr>
+<tr>
+<td><code>Badged</code></td>
+<td>hands the badge over as the status of what it wraps</td>
+</tr>
+<tr>
+<td><code>RangeSlider</code></td>
+<td>a slider reading out both ends, with each outer thumb carrying the value it stands for</td>
+</tr>
+<tr>
+<td><code>FlyoutsControl</code></td>
+<td>answers a point only while a flyout is open, so the content underneath stays reachable</td>
+</tr>
+<tr>
+<td><code>ToggleSwitch</code>, <code>NumericUpDown</code>, <code>MetroWindow</code>, <code>Flyout</code>, <code>MetroHeader</code>, <code>ProgressRing</code>, <code>WindowCommands</code></td>
+<td>carry a peer of their own</td>
+</tr>
+</tbody>
+</table>
+<p>Everything else takes what its base type gives it. A <code>MetroTabControl</code> is a tab control, a <code>MetroProgressBar</code> a progress bar, a <code>SplitButton</code> a combo box, and each of them reports the class name of that base type rather than its own.</p>
+<div class="alert alert-info"><p><strong>Still missing on <code>develop</code>.</strong> A <code>HotKeyBox</code> does not hand over the combination it holds. A <code>DropDownButton</code> arrives as a list with no name rather than as a button. A <code>FlipView</code> is a list with neither its content nor its banner. A <code>RevealImage</code> leaves its caption out. The <code>ColorCanvas</code> brings all seven channels as sliders, but the sliders have no names of their own.</p>
+</div>
+<h2 id="reaching-a-window-at-all">Reaching a window at all</h2>
+<p>An inspection tool asks Windows what sits under the pointer, and that question goes by the box an element occupies rather than by what a click would hit. Anything lying over the whole window answers it, whether or not it draws something.</p>
+<p>That is what the flyouts control did from .NET 8 on, which left nothing in a <code>MetroWindow</code> reachable for Accessibility Insights, inspect.exe, FlaUInspect or WinAppDriver. It is fixed on <code>develop</code>, and the <a href="../controls/flyouts">Flyouts</a> page has the detail.</p>
+<h2 id="related">Related</h2>
+<p><a href="../controls/rangeslider">RangeSlider</a> and <a href="../styles/slider">Slider</a> describe how a test drives them. <a href="../controls/tile">Tile</a> and <a href="../controls/badged">Badged</a> say what each hands to a reader.</p>
 
 
-        <h4 class="h-section mb-2">Child Pages</h4>
-            <div>
-                
-    <div class="p-3 mb-2 bg-light page-box">
-        <h4><a href="/mahapps.com/docs/guides/quick-start">Quick Start</a></h4>
-
-            <div class="font-size-sm"><p>Three steps take a stock WPF application to a styled one: install the package, merge the resource dictionaries, swap <code>Window</code> for <code>MetroWindow</code>. Nothing else in your XAML has to change — your existing controls are restyled where they stand.</p></div>
-
-    </div>
-
-            </div>
-            <div>
-                
-    <div class="p-3 mb-2 bg-light page-box">
-        <h4><a href="/mahapps.com/docs/guides/migration-to-v2.0">Migration to v2.0</a></h4>
-
-            <div class="font-size-sm"><p>This guide assumes the migration from version 1.6.5 to 2.0.</p></div>
-
-    </div>
-
-            </div>
-            <div>
-                
-    <div class="p-3 mb-2 bg-light page-box">
-        <h4><a href="/mahapps.com/docs/guides/performance">Performance with many views</a></h4>
-
-            <div class="font-size-sm"><p>An application that opens and closes a lot of views can grow slower the longer it runs. Switching to a view that took a moment at first takes several seconds later on, and nothing about that view has changed.</p></div>
-
-    </div>
-
-            </div>
-            <div>
-                
-    <div class="p-3 mb-2 bg-light page-box">
-        <h4><a href="/mahapps.com/docs/guides/accessibility">What a screen reader hears</a></h4>
-
-            <div class="font-size-sm"><p>A screen reader, an inspection tool and a UI test all ask the same thing: what is this element, what is it called, and what does it hold. WPF answers most of that from the control itself, and a control library has to fill in the rest.</p></div>
-
-    </div>
-
-            </div>
                                         </div>
                                 <div class="col-lg-2 p-md-0 m-md-0 bg-body">
                                     <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/guides/index.cshtml" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#names-for-buttons-drawn-from-a-picture">Names for buttons drawn from a picture</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#they-are-translated">They are translated</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#what-each-control-tells-a-client">What each control tells a client</a></div>
+                    <div class="sidebar-nav-item"><a href="#reaching-a-window-at-all">Reaching a window at all</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
+            </div>
+        </div>
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/guides/accessibility.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
                             </div>
