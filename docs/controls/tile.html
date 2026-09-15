@@ -409,6 +409,9 @@ Tile
 <p>The title is rendered in an <code>AccessText</code>, so <code>Title=&quot;_Mail&quot;</code> gives it an access key, and it wraps rather than clipping when it does not fit.</p>
 <p><img src="images/tile-title.png" alt="The title in each corner, centred, and at a larger size" /></p>
 <p><code>HorizontalTitleAlignment</code> (default <code>Left</code>) and <code>VerticalTitleAlignment</code> (default <code>Bottom</code>) place the title independently of the content, which is aligned by the usual <code>HorizontalContentAlignment</code> and <code>VerticalContentAlignment</code> — both <code>Center</code> in the style.</p>
+<div class="alert alert-info"><p><strong>A tile with nothing but a title reaches a screen reader as a button with no caption</strong>, in a released version. The name of a button comes from its content, and a title is not content, so <code>Title=&quot;Mail&quot;</code> on its own leaves the name empty. The caption is in the tree as a piece of text, but it does not belong to the button.</p>
+<p>On <code>develop</code> the tile is named after its title whenever the content leaves the name empty, and it tells a client it is a tile rather than a plain button. <code>AutomationProperties.Name</code> still beats both. In a released version, set that name by hand.</p>
+</div>
 <h2 id="hover-and-press">Hover and press</h2>
 <div class="alert alert-info"><p><strong>There is no hover effect until you ask for one.</strong> The style sets <code>ControlsHelper.MouseOverBorderBrush</code> to <code>{x:Null}</code>, and the template's trigger requires it to be non-null before the border is shown:</p>
 <pre><code class="language-xml">&lt;Condition Binding=&quot;{Binding … Path=(mah:ControlsHelper.MouseOverBorderBrush), Converter={x:Static converters:IsNullConverter.Instance}}&quot; Value=&quot;False&quot; /&gt;

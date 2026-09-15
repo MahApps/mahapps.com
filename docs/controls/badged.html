@@ -478,6 +478,11 @@ Badged Control
 </tr>
 </tbody>
 </table>
+<h2 id="what-a-screen-reader-is-told">What a screen reader is told</h2>
+<p>The badge is a mark on whatever the control wraps, so it belongs to that thing rather than standing beside it.</p>
+<div class="alert alert-info"><p><strong>In a released version the badge arrives as a stray piece of text next to the content</strong>, with nothing tying the two together. A reader announces the inbox button and, somewhere after it, a lone &quot;3&quot;.</p>
+<p>On <code>develop</code> the control hands the badge over as the status of what it wraps, which is what <code>ItemStatus</code> is for, and says it is a group holding that content. A reader then has the count and the button in one place. Nothing about the drawing changes.</p>
+</div>
 <h2 id="badgeplacementmode">BadgePlacementMode</h2>
 <p>Eight values, all shown in the first figure: <code>TopLeft</code>, <code>Top</code>, <code>TopRight</code>, <code>Right</code>, <code>BottomRight</code>, <code>Bottom</code>, <code>BottomLeft</code>, <code>Left</code>.</p>
 <p>The corner modes put the badge outside the control's corner; the edge modes centre it on that edge. Either way the badge hangs over the edge by half its own size, and a <code>Badged</code> asks for no more room than its content needs, so the badge is outside anything the layout knows about. Next to something else it will overlap. A margin on the <code>Badged</code> is what keeps the two apart.</p>
@@ -495,6 +500,7 @@ Badged Control
                     <div class="sidebar-nav-item"><a href="#styling-the-badge">Styling the badge</a></div>
                     <div class="sidebar-nav-item"><a href="#the-pop-when-the-value-changes">The pop when the value changes</a></div>
                     <div class="sidebar-nav-item"><a href="#properties">Properties</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-a-screen-reader-is-told">What a screen reader is told</a></div>
                     <div class="sidebar-nav-item"><a href="#badgeplacementmode">BadgePlacementMode</a></div>
             </div>
         </div>
