@@ -450,6 +450,18 @@ TimePicker
 <td><code>False</code></td>
 <td></td>
 </tr>
+<tr>
+<td><code>IsNowButtonVisible</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>the button that sets the picker to the time of day</td>
+</tr>
+<tr>
+<td><code>NowButtonContent</code></td>
+<td><code>object</code></td>
+<td><code>Now</code></td>
+<td>what that button says</td>
+</tr>
 </tbody>
 </table>
 <p><code>TimePartVisibility</code> is a flags enum — <code>Hour</code>, <code>Minute</code>, <code>Second</code>, plus the combinations <code>HourMinute</code> and <code>All</code>. Seconds are off in both places by default, so turning them on takes two properties:</p>
@@ -460,6 +472,7 @@ TimePicker
 <pre><code class="language-xml">&lt;mah:TimePicker SourceMinutes=&quot;{Binding QuarterHours}&quot; /&gt;
 </code></pre>
 <p>Each has a matching <code>HoursItemStringFormat</code>, <code>MinutesItemStringFormat</code> and <code>SecondsItemStringFormat</code>.</p>
+<p>The button under the lists puts the picker on the time of day in one press. It is the same one the <code>DateTimePicker</code> carries, described on <a href="DateTimePicker">its page</a> along with the caption property and the note that it is new on <code>develop</code>.</p>
 <h2 id="two-nicer-alternatives">Two nicer alternatives</h2>
 <p>The same two drop-in dictionaries that restyle the <a href="DateTimePicker">DateTimePicker</a> carry a <code>TimePicker</code> style each.</p>
 <p><img src="images/timepicker-variants.png" alt="The built-in field, the Win10 one and the WinUI one" /></p>

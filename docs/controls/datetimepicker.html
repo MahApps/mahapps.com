@@ -410,6 +410,18 @@ DateTimePicker
 <td><code>Horizontal</code></td>
 <td>calendar beside the clock, or above it</td>
 </tr>
+<tr>
+<td><code>IsNowButtonVisible</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>the button that sets the picker to the here and now</td>
+</tr>
+<tr>
+<td><code>NowButtonContent</code></td>
+<td><code>object</code></td>
+<td><code>Now</code></td>
+<td>what that button says</td>
+</tr>
 </tbody>
 </table>
 <p><code>TimePartVisibility</code> is a flags enum — <code>Hour</code>, <code>Minute</code>, <code>Second</code>, plus <code>HourMinute</code> and <code>All</code>. Seconds are off by default in both places:</p>
@@ -419,6 +431,15 @@ DateTimePicker
 <pre><code class="language-xml">&lt;mah:TimePicker SourceMinutes=&quot;{Binding QuarterHours}&quot; /&gt;
 </code></pre>
 <p>Each has a matching <code>HoursItemStringFormat</code>, <code>MinutesItemStringFormat</code> and <code>SecondsItemStringFormat</code> for how the entries are written.</p>
+<h2 id="the-now-button">The Now button</h2>
+<p>Under the calendar and the clock sits a button that puts the picker on the current date and time, both halves in one press, so nobody has to walk a calendar and three lists to say what the clock on the wall already says. It is there without being asked for; a form that has no use for it switches it off:</p>
+<pre><code class="language-xml">&lt;mah:DateTimePicker IsNowButtonVisible=&quot;False&quot; /&gt;
+</code></pre>
+<p><code>NowButtonContent</code> is the caption, an ordinary content property, because <em>Now</em> is a word that wants translating:</p>
+<pre><code class="language-xml">&lt;mah:DateTimePicker NowButtonContent=&quot;Jetzt&quot; /&gt;
+</code></pre>
+<div class="alert alert-info"><p><strong>The button is new on <code>develop</code>.</strong> It is in neither 2.4.11 nor the 3.0 release candidate, and it arrives visible, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4153">#4153</a>. A drop-down that has always shown nothing but a calendar and a clock will have a button beneath them once that ships, so a layout with no room to spare wants <code>IsNowButtonVisible=&quot;False&quot;</code>.</p>
+</div>
 <h2 id="two-nicer-alternatives">Two nicer alternatives</h2>
 <p>The built-in drop-down puts the accent-banded <a href="../styles/calendar">Calendar</a> next to the clock. This site ships two drop-in dictionaries that give the picker the same treatment as the <a href="../styles/calendar">calendar variants</a>: a rounded Fluent look and a square Windows 10 one.</p>
 <p><img src="images/datetimepicker-variants.png" alt="The built-in field, the Win10 one and the WinUI one" /></p>
@@ -520,6 +541,7 @@ DateTimePicker
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-value">The value</a></div>
                     <div class="sidebar-nav-item"><a href="#what-the-drop-down-shows">What the drop-down shows</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-now-button">The Now button</a></div>
                     <div class="sidebar-nav-item"><a href="#two-nicer-alternatives">Two nicer alternatives</a></div>
                     <div class="sidebar-nav-item"><a href="#a-modern-time-selection">A modern time selection</a></div>
                         <div class="sidebar-nav-children">
