@@ -87,6 +87,12 @@ The title is rendered in an `AccessText`, so `Title="_Mail"` gives it an access 
 
 `HorizontalTitleAlignment` (default `Left`) and `VerticalTitleAlignment` (default `Bottom`) place the title independently of the content, which is aligned by the usual `HorizontalContentAlignment` and `VerticalContentAlignment` — both `Center` in the style.
 
+:::{.alert .alert-info}
+**A tile with nothing but a title reaches a screen reader as a button with no caption**, in a released version. The name of a button comes from its content, and a title is not content, so `Title="Mail"` on its own leaves the name empty. The caption is in the tree as a piece of text, but it does not belong to the button.
+
+On `develop` the tile is named after its title whenever the content leaves the name empty, and it tells a client it is a tile rather than a plain button. `AutomationProperties.Name` still beats both. In a released version, set that name by hand.
+:::
+
 ## Hover and press
 
 :::{.alert .alert-info}

@@ -91,6 +91,16 @@ A storyboard that cannot run on the badge container — one targeting a property
 | `IsBadgeSet` | `bool`, read-only | | whether there is anything to show |
 | `BadgeChanged` | `RoutedEvent` | | raised when `Badge` changes |
 
+## What a screen reader is told
+
+The badge is a mark on whatever the control wraps, so it belongs to that thing rather than standing beside it.
+
+:::{.alert .alert-info}
+**In a released version the badge arrives as a stray piece of text next to the content**, with nothing tying the two together. A reader announces the inbox button and, somewhere after it, a lone "3".
+
+On `develop` the control hands the badge over as the status of what it wraps, which is what `ItemStatus` is for, and says it is a group holding that content. A reader then has the count and the button in one place. Nothing about the drawing changes.
+:::
+
 ## BadgePlacementMode
 
 Eight values, all shown in the first figure: `TopLeft`, `Top`, `TopRight`, `Right`, `BottomRight`, `Bottom`, `BottomLeft`, `Left`.
