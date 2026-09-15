@@ -118,6 +118,16 @@ That trigger is why a derived style cannot replace the template with a single se
 Repeat the trigger, as above, or drop the `BasedOn` and start from `{x:Type Slider}`.
 :::
 
+## Driving a slider from a test
+
+The area either side of the thumb is two `RepeatButton`s, and a UI automation tool pages the slider along by pressing them. It finds them by the id the stock WPF template hands out, `DecreaseLarge` and `IncreaseLarge`.
+
+:::{.alert .alert-warning}
+**In a released version `MahApps.Styles.Slider` and `MahApps.Styles.Slider.Win10` hand out ids of their own.** Their buttons are named after the track they sit on, `HorizontalTrackDecrease` and `HorizontalTrackIncrease`, or the upright pair on a vertical slider, so a tool asking for `IncreaseLarge` finds nothing and reports that the element is missing. `MahApps.Styles.Slider.Flat` was never affected, which is what makes this look like one style misbehaving.
+
+Fixed on `develop` by [#4450](https://github.com/MahApps/MahApps.Metro/issues/4450): every style, upright templates included, now names them the way WPF does. Until that ships, ask for the name the style you are using actually carries, or set `AutomationProperties.AutomationId` on the slider and reach the buttons through it.
+:::
+
 ## Related
 
 [RangeSlider](../controls/rangeslider) is the two-thumb version and uses the same `SliderHelper` brushes. The colour picker's channel sliders are `MahApps.Styles.Slider.ColorComponent` and its variants, which are not meant to be used on their own — see [ColorPicker](../controls/ColorPicker).
