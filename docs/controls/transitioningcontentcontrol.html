@@ -416,6 +416,11 @@ TransitioningContentControl
 </code></pre>
 <p>In a released version this does not work, in two ways. The property is registered with <code>DependencyProperty.Register</code> rather than <code>RegisterAttached</code>, so the markup above does not compile: <code>MC3015: The attached property 'TransitioningContentControl.Transition' is not defined on 'StackPanel' or one of its base classes</code>. And the default style carries <code>&lt;Setter Property=&quot;Transition&quot; Value=&quot;Default&quot; /&gt;</code>, which beats an inherited value in the <a href="https://learn.microsoft.com/en-us/dotnet/desktop/wpf/properties/dependency-property-value-precedence">precedence order</a>, so even <code>SetValue</code> on a parent leaves every control at <code>Default</code>. Both changed on <code>develop</code> and ship with the next release.</p>
 </div>
+<h2 id="what-a-change-of-content-costs">What a change of content costs</h2>
+<p>Changing the content builds the view that arrives. The one leaving is already standing and stays where it is until it has faded.</p>
+<div class="alert alert-info"><p>New on <code>develop</code>. In a released version both were built, so in a view model first application the constructor of a view runs as it leaves the screen, with whatever work hangs off it. That is <a href="https://github.com/MahApps/MahApps.Metro/issues/4108">#4108</a>.</p>
+<p>Content sharing a template with what is showing still builds one view. A fade shows both at once, so both have to be there, which is the one thing a plain <code>ContentControl</code> gets away with that this cannot.</p>
+</div>
 <h2 id="when-the-content-changes-again-mid-transition">When the content changes again mid-transition</h2>
 <table>
 <thead>
@@ -529,6 +534,7 @@ return source.GetStoryboard(currentTransition) is not null
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-transitions">The transitions</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-a-change-of-content-costs">What a change of content costs</a></div>
                     <div class="sidebar-nav-item"><a href="#when-the-content-changes-again-mid-transition">When the content changes again mid-transition</a></div>
                     <div class="sidebar-nav-item"><a href="#methods-and-events">Methods and events</a></div>
                     <div class="sidebar-nav-item"><a href="#custom-transitions">Custom transitions</a></div>
