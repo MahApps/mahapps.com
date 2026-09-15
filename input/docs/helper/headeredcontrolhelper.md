@@ -22,6 +22,7 @@ Applies to `HeaderedContentControl` and `TabControl`, which covers `GroupBox`, `
 | `HeaderBackgroundPressed` | `Brush` | not set | behind the header while it is held down |
 | `HeaderForegroundMouseOver` | `Brush` | not set | the header text while the mouse is over it |
 | `HeaderForegroundPressed` | `Brush` | not set | the header text while it is held down |
+| `HeaderForegroundSelected` | `Brush` | not set | the header text of the tab that is showing |
 
 ```xml
 <GroupBox Header="Details"
@@ -39,7 +40,7 @@ As with the other helpers, the defaults in the table are the helper's own; a sty
 
 ## While the header is touched
 
-**The last four are on `develop` and ship with the next release.** A released version has one background and one foreground, and a header looks the same whether somebody is on it or not.
+**The last five are on `develop` and ship with the next release.** A released version has one background and one foreground, and a header looks the same whether somebody is on it or not.
 
 Left unset, they hand nothing over and the header keeps the colours it has at rest, so adding them changes nothing until you fill one in. They also only reach as far as the control has a state to show:
 
@@ -63,3 +64,34 @@ Left unset, they hand nothing over and the header keeps the colours it has at re
 Held down wins over the mouse being over it, because both hold while a header is pressed.
 
 A tab item takes these off the tab control it sits in, the way it takes the rest of the header properties, so set them there and every tab follows. What answers the mouse is the strip the tab is drawn in and not the item as a whole, which counts the content below it as its own.
+
+## The tab that is showing
+
+`HeaderForegroundSelected` paints the caption of the selected tab. Until it arrived the accent was written into the template, so the other header properties reached a tab only while it sat there unselected and untouched, which is [#4307](https://github.com/MahApps/MahApps.Metro/issues/4307). Leave it unset and the accent still paints it.
+
+```xml
+<TabControl mah:HeaderedControlHelper.HeaderForeground="{DynamicResource MahApps.Brushes.Gray3}"
+            mah:HeaderedControlHelper.HeaderForegroundSelected="{DynamicResource MahApps.Brushes.Accent}"
+            mah:HeaderedControlHelper.HeaderForegroundMouseOver="{DynamicResource MahApps.Brushes.Highlight}" />
+```
+
+Set on the control it reaches every tab, and a brush on one tab beats it. The order the states beat each other is the same in both tab templates: the tab that is showing first, then the mouse, over whichever tab it is.
+
+:::{.alert .alert-info}
+**A header put together as an object of its own keeps the foreground of the tab, not of the header.** Give a tab a `StackPanel` as its `Header` and the text in it hangs off the `TabItem` in the logical tree, which is where it inherits its colour from, so none of these brushes reach it. Build the same thing in a `HeaderTemplate` and it hangs off the header instead and follows all three.
+
+```xml
+<mah:MetroTabItem Header="Overview">
+    <mah:MetroTabItem.HeaderTemplate>
+        <DataTemplate>
+            <StackPanel Orientation="Horizontal">
+                <iconPacks:PackIconMaterial Kind="ViewDashboardOutline" />
+                <TextBlock Text="{Binding}" />
+            </StackPanel>
+        </DataTemplate>
+    </mah:MetroTabItem.HeaderTemplate>
+</mah:MetroTabItem>
+```
+:::
+
+`MetroTabItem` carries the same set of brushes as the plain `TabItem` on `develop`. In a released version it reads `HeaderForeground` and nothing else, so a closable tab answers the mouse with a fixed grey however the rest of the strip is painted.

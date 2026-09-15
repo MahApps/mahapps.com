@@ -31,6 +31,8 @@ Applies to `TabControl` and `TabItem`. Three groups: the underline that marks th
 
 Set `Underlined` on the `TabControl` and it reaches the items; setting it on a single `TabItem` underlines just that one.
 
+The underline and the caption are painted separately, so a strip that answers the mouse in one colour wants the matching brush from [HeaderedControlHelper](headeredcontrolhelper) as well.
+
 ## Transitions
 
 | Property | Type | Default | |
