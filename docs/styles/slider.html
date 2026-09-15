@@ -359,6 +359,11 @@ Slider
 </code></pre>
 <p>Repeat the trigger, as above, or drop the <code>BasedOn</code> and start from <code>{x:Type Slider}</code>.</p>
 </div>
+<h2 id="driving-a-slider-from-a-test">Driving a slider from a test</h2>
+<p>The area either side of the thumb is two <code>RepeatButton</code>s, and a UI automation tool pages the slider along by pressing them. It finds them by the id the stock WPF template hands out, <code>DecreaseLarge</code> and <code>IncreaseLarge</code>.</p>
+<div class="alert alert-warning"><p><strong>In a released version <code>MahApps.Styles.Slider</code> and <code>MahApps.Styles.Slider.Win10</code> hand out ids of their own.</strong> Their buttons are named after the track they sit on, <code>HorizontalTrackDecrease</code> and <code>HorizontalTrackIncrease</code>, or the upright pair on a vertical slider, so a tool asking for <code>IncreaseLarge</code> finds nothing and reports that the element is missing. <code>MahApps.Styles.Slider.Flat</code> was never affected, which is what makes this look like one style misbehaving.</p>
+<p>Fixed on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4450">#4450</a>: every style, upright templates included, now names them the way WPF does. Until that ships, ask for the name the style you are using actually carries, or set <code>AutomationProperties.AutomationId</code> on the slider and reach the buttons through it.</p>
+</div>
 <h2 id="related">Related</h2>
 <p><a href="../controls/rangeslider">RangeSlider</a> is the two-thumb version and uses the same <code>SliderHelper</code> brushes. The colour picker's channel sliders are <code>MahApps.Styles.Slider.ColorComponent</code> and its variants, which are not meant to be used on their own — see <a href="../controls/ColorPicker">ColorPicker</a>.</p>
 
@@ -373,6 +378,7 @@ Slider
                     <div class="sidebar-nav-item"><a href="#ticks">Ticks</a></div>
                     <div class="sidebar-nav-item"><a href="#the-flat-style">The flat style</a></div>
                     <div class="sidebar-nav-item"><a href="#vertical">Vertical</a></div>
+                    <div class="sidebar-nav-item"><a href="#driving-a-slider-from-a-test">Driving a slider from a test</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
