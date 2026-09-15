@@ -183,6 +183,14 @@ timer.Start();
 
 `GoForward()` wraps by itself once `CircularNavigation` is on, so there is no index arithmetic to get wrong.
 
+## What a client is told
+
+A flip view builds nothing for the pages it is not showing, so there is no list of pages to walk. It says which page is up and how many there are, as `1 / 3`, and the page itself with its banner is in the tree the way any content is.
+
+:::{.alert .alert-info}
+New on `develop`. In a released version it arrives as an empty list. This is [#4454](https://github.com/MahApps/MahApps.Metro/issues/4454).
+:::
+
 ## Related
 
 `FlipViewItem` is the container, styled by `MahApps.Styles.FlipViewItem`. The transitions come from [TransitioningContentControl](transitioningcontentcontrol).

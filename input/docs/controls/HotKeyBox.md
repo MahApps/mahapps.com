@@ -122,6 +122,14 @@ Because `GetHashCode` and `Equals` are implemented, `HotKey` works correctly as 
 
 The template is a single `TextBox`, and the usual [TextBoxHelper](../helper/textboxhelper) properties are passed through to it: `Watermark`, `UseFloatingWatermark`, `WatermarkAlignment` and `WatermarkTrimming`. `ControlsHelper.FocusBorderBrush` and `MouseOverBorderBrush` are set by the style, as is `Validation.ErrorTemplate`, so a failed binding gets the usual [validation](../styles/validation) treatment.
 
+## What a client is told
+
+The box hands over the combination it holds as its value, so a test or a screen reader gets `Ctrl + F5` rather than having to read the text field inside it.
+
+:::{.alert .alert-info}
+New on `develop`. In a released version the box itself is not in the automation tree, only the text field of its template, which does carry the same text. This is [#4454](https://github.com/MahApps/MahApps.Metro/issues/4454).
+:::
+
 ## Related
 
 [TextBoxHelper](../helper/textboxhelper) for the watermark, [ControlsHelper](../helper/controlshelper) for the casing and border brushes.

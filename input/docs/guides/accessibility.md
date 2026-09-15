@@ -28,14 +28,22 @@ The button that opens a picker says *Show Calendar*, which is the wording WPF gi
 | `Tile` | named after its `Title` when the content leaves the name empty |
 | `Badged` | hands the badge over as the status of what it wraps |
 | `RangeSlider` | a slider reading out both ends, with each outer thumb carrying the value it stands for |
+| `HotKeyBox` | hands over the combination it holds |
+| `DropDownButton` | a button that opens and shuts, named after what it says on it |
+| `FlipView` | says which page is showing and how many there are |
+| `ColorCanvas` | every channel named after the letter beside it, slider and box alike |
 | `FlyoutsControl` | answers a point only while a flyout is open, so the content underneath stays reachable |
 | `ToggleSwitch`, `NumericUpDown`, `MetroWindow`, `Flyout`, `MetroHeader`, `ProgressRing`, `WindowCommands` | carry a peer of their own |
 
 Everything else takes what its base type gives it. A `MetroTabControl` is a tab control, a `MetroProgressBar` a progress bar, a `SplitButton` a combo box, and each of them reports the class name of that base type rather than its own.
 
-:::{.alert .alert-info}
-**Still missing on `develop`.** A `HotKeyBox` does not hand over the combination it holds. A `DropDownButton` arrives as a list with no name rather than as a button. A `FlipView` is a list with neither its content nor its banner. A `RevealImage` leaves its caption out. The `ColorCanvas` brings all seven channels as sliders, but the sliders have no names of their own.
+:::{.alert .alert-warning}
+**All of these are new on `develop`.** In a released version a `HotKeyBox` is not in the tree, so the combination it holds hangs off nothing; a `DropDownButton` arrives as a list with no name, because the entries of its menu are its items and the button is nowhere to be seen; a `FlipView` is an empty list; and the seven channels of a `ColorCanvas` are sliders nobody named. This is [#4454](https://github.com/MahApps/MahApps.Metro/issues/4454).
+
+The odd one out is `RevealImage`. Its `Text` was never bound to anything in the template, so the caption was missing from the screen as much as from a reader. Also fixed on `develop`.
 :::
+
+A flip view is the one that could not be given the usual shape. It builds nothing for the pages it is not showing, so there is no list of pages for a client to walk through. Rather than offer an empty selection it says where in the run the current page is, and the page itself, banner and all, is in the tree the way any content is.
 
 ## Reaching a window at all
 

@@ -111,6 +111,14 @@ The menu is a `ContextMenu`, but the **right mouse button does nothing** — `On
 
 The chevron is a Material `ChevronDown` path drawn through `MahApps.Styles.ContentControl.PathIcon`. `ArrowMouseOverBrush` defaults to the accent brush, which is why the arrow picks up colour on hover while the rest of the button does not.
 
+## What a client is told
+
+It is a button that opens and shuts, named after its `Content`, and a client can open it through the expand pattern rather than having to press it.
+
+:::{.alert .alert-info}
+New on `develop`. In a released version the entries of the menu are the items of the control, which made it a list with no name, the button and its caption nowhere to be seen. This is [#4454](https://github.com/MahApps/MahApps.Metro/issues/4454).
+:::
+
 ## Related
 
 [SplitButton](splitbutton) — the same idea with a selection and a split surface. [ContentControlEx](contentcontrolex) is what presents the content, so `ControlsHelper.ContentCharacterCasing` and `ControlsHelper.RecognizesAccessKey` apply here too.
