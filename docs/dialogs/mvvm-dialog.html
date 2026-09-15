@@ -420,6 +420,30 @@ namespace SimpleApp
 }
 </code></pre>
 <p>Setting the property to <code>null</code> removes the old value from the dictionary and puts nothing back, which is exactly what is wanted. For a <code>UserControl</code> that is swapped in and out, do the same from <code>Unloaded</code>.</p>
+<h2 id="views-that-move-into-a-window-of-their-own">Views that move into a window of their own</h2>
+<p>A view can end up in a window that did not exist when it was registered. A tab torn out of a <a href="https://github.com/ButchersBoy/Dragablz">Dragablz</a> <code>TabablzControl</code> is the usual way this happens. The registration itself carries over, because it points at the element rather than at the window, and the coordinator works out the window each time it is asked. What matters is the kind of window the view lands in: Dragablz opens a plain <code>Window</code> for a torn off tab unless it is told otherwise, and asking for a dialog from there gives you <code>Context is not inside a MetroWindow.</code></p>
+<p>That window is yours to make, through the <code>IInterTabClient</code> on the <code>InterTabController</code>:</p>
+<pre><code class="language-csharp">public class MetroInterTabClient : IInterTabClient
+{
+    public INewTabHost&lt;Window&gt; GetNewHost(IInterTabClient interTabClient, object partition, TabablzControl source)
+    {
+        var tabs = new TabablzControl
+                   {
+                       InterTabController = new InterTabController { InterTabClient = interTabClient }
+                   };
+
+        var window = new MetroWindow { Width = 800, Height = 600, Content = tabs };
+
+        return new NewTabHost&lt;Window&gt;(window, tabs);
+    }
+
+    public TabEmptiedResponse TabEmptiedHandler(TabablzControl tabControl, Window window)
+    {
+        return TabEmptiedResponse.CloseWindowOrLayoutBranch;
+    }
+}
+</code></pre>
+<p>With that in place a dialog opens in whichever window the tab is sitting in at the time, the one it started in as well as the one it was pulled into. The same goes for any other window a view is moved into, a docking layout among them: make it a <code>MetroWindow</code> and the coordinator finds it. This is <a href="https://github.com/MahApps/MahApps.Metro/issues/4424">#4424</a>.</p>
 <h2 id="when-it-does-not-work">When it does not work</h2>
 <p>The coordinator throws instead of failing quietly, and the two messages are worth recognising:</p>
 <table>
@@ -436,7 +460,7 @@ namespace SimpleApp
 </tr>
 <tr>
 <td><code>Context is not inside a MetroWindow.</code></td>
-<td>The element you registered sits in a plain <code>Window</code>. The dialogs are drawn by <code>MetroWindow</code>, so the containing window has to be one.</td>
+<td>The element you registered sits in a plain <code>Window</code>. The dialogs are drawn by <code>MetroWindow</code>, so the containing window has to be one. That includes a window the view was moved into after it was registered, see <a href="#views-that-move-into-a-window-of-their-own">above</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -453,6 +477,7 @@ namespace SimpleApp
                     <div class="sidebar-nav-item"><a href="#give-the-view-model-a-coordinator">2. Give the view model a coordinator</a></div>
                     <div class="sidebar-nav-item"><a href="#show-dialogs">3. Show dialogs</a></div>
                     <div class="sidebar-nav-item"><a href="#unregister-views-that-come-and-go">Unregister views that come and go</a></div>
+                    <div class="sidebar-nav-item"><a href="#views-that-move-into-a-window-of-their-own">Views that move into a window of their own</a></div>
                     <div class="sidebar-nav-item"><a href="#when-it-does-not-work">When it does not work</a></div>
             </div>
         </div>
