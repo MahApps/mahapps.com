@@ -33,6 +33,12 @@ Set `Underlined` on the `TabControl` and it reaches the items; setting it on a s
 
 The underline and the caption are painted separately, so a strip that answers the mouse in one colour wants the matching brush from [HeaderedControlHelper](headeredcontrolhelper) as well.
 
+:::{.alert .alert-info}
+**A brush cleared to `null` takes the line away in a released version.** Each state is painted from its own brush and nothing stood in for one that was empty, so binding `UnderlineSelectedBrush` to something that can be cleared left the selected tab with no line at all. On `develop` a state nobody handed a brush to falls back to the nearest one that was: the selected tab and a tab under the mouse to `UnderlineBrush`, the selected tab under the mouse to `UnderlineSelectedBrush`. The styles set all four, so a strip nobody says anything to looks the way it always did.
+
+`MetroTabItem` had a second helping of this. The trigger painting the line of the selected tab watched the header rather than the tab, so running the pointer onto the line itself left that state and the line went out from under it. Both templates watch the tab now.
+:::
+
 ## Transitions
 
 | Property | Type | Default | |
