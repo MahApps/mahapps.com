@@ -482,6 +482,10 @@ this.RaiseEvent(e);
 <pre><code class="language-xml">&lt;mah:DropDownButton Content=&quot;Artists&quot; ArrowVisibility=&quot;Collapsed&quot; /&gt;
 </code></pre>
 <p>The chevron is a Material <code>ChevronDown</code> path drawn through <code>MahApps.Styles.ContentControl.PathIcon</code>. <code>ArrowMouseOverBrush</code> defaults to the accent brush, which is why the arrow picks up colour on hover while the rest of the button does not.</p>
+<h2 id="what-a-client-is-told">What a client is told</h2>
+<p>It is a button that opens and shuts, named after its <code>Content</code>, and a client can open it through the expand pattern rather than having to press it.</p>
+<div class="alert alert-info"><p>New on <code>develop</code>. In a released version the entries of the menu are the items of the control, which made it a list with no name, the button and its caption nowhere to be seen. This is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>
+</div>
 <h2 id="related">Related</h2>
 <p><a href="splitbutton">SplitButton</a> — the same idea with a selection and a split surface. <a href="contentcontrolex">ContentControlEx</a> is what presents the content, so <code>ControlsHelper.ContentCharacterCasing</code> and <code>ControlsHelper.RecognizesAccessKey</code> apply here too.</p>
 
@@ -502,6 +506,7 @@ this.RaiseEvent(e);
                                 <div class="sidebar-nav-item"><a href="#orientation">Orientation</a></div>
                                 <div class="sidebar-nav-item"><a href="#the-arrow">The arrow</a></div>
                         </div>
+                    <div class="sidebar-nav-item"><a href="#what-a-client-is-told">What a client is told</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>

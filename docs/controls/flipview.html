@@ -600,6 +600,10 @@ timer.Tick += (_, _) =&gt; this.Slideshow.GoForward();
 timer.Start();
 </code></pre>
 <p><code>GoForward()</code> wraps by itself once <code>CircularNavigation</code> is on, so there is no index arithmetic to get wrong.</p>
+<h2 id="what-a-client-is-told">What a client is told</h2>
+<p>A flip view builds nothing for the pages it is not showing, so there is no list of pages to walk. It says which page is up and how many there are, as <code>1 / 3</code>, and the page itself with its banner is in the tree the way any content is.</p>
+<div class="alert alert-info"><p>New on <code>develop</code>. In a released version it arrives as an empty list. This is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>
+</div>
 <h2 id="related">Related</h2>
 <p><code>FlipViewItem</code> is the container, styled by <code>MahApps.Styles.FlipViewItem</code>. The transitions come from <a href="transitioningcontentcontrol">TransitioningContentControl</a>.</p>
 
@@ -616,6 +620,7 @@ timer.Start();
                     <div class="sidebar-nav-item"><a href="#the-index">The index</a></div>
                     <div class="sidebar-nav-item"><a href="#the-hover-border">The hover border</a></div>
                     <div class="sidebar-nav-item"><a href="#an-automatic-slideshow">An automatic slideshow</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-a-client-is-told">What a client is told</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>

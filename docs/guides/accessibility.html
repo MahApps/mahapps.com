@@ -184,6 +184,22 @@ What a screen reader hears
 <td>a slider reading out both ends, with each outer thumb carrying the value it stands for</td>
 </tr>
 <tr>
+<td><code>HotKeyBox</code></td>
+<td>hands over the combination it holds</td>
+</tr>
+<tr>
+<td><code>DropDownButton</code></td>
+<td>a button that opens and shuts, named after what it says on it</td>
+</tr>
+<tr>
+<td><code>FlipView</code></td>
+<td>says which page is showing and how many there are</td>
+</tr>
+<tr>
+<td><code>ColorCanvas</code></td>
+<td>every channel named after the letter beside it, slider and box alike</td>
+</tr>
+<tr>
 <td><code>FlyoutsControl</code></td>
 <td>answers a point only while a flyout is open, so the content underneath stays reachable</td>
 </tr>
@@ -194,8 +210,10 @@ What a screen reader hears
 </tbody>
 </table>
 <p>Everything else takes what its base type gives it. A <code>MetroTabControl</code> is a tab control, a <code>MetroProgressBar</code> a progress bar, a <code>SplitButton</code> a combo box, and each of them reports the class name of that base type rather than its own.</p>
-<div class="alert alert-info"><p><strong>Still missing on <code>develop</code>.</strong> A <code>HotKeyBox</code> does not hand over the combination it holds. A <code>DropDownButton</code> arrives as a list with no name rather than as a button. A <code>FlipView</code> is a list with neither its content nor its banner. A <code>RevealImage</code> leaves its caption out. The <code>ColorCanvas</code> brings all seven channels as sliders, but the sliders have no names of their own.</p>
+<div class="alert alert-warning"><p><strong>All of these are new on <code>develop</code>.</strong> In a released version a <code>HotKeyBox</code> is not in the tree, so the combination it holds hangs off nothing; a <code>DropDownButton</code> arrives as a list with no name, because the entries of its menu are its items and the button is nowhere to be seen; a <code>FlipView</code> is an empty list; and the seven channels of a <code>ColorCanvas</code> are sliders nobody named. This is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>
+<p>The odd one out is <code>RevealImage</code>. Its <code>Text</code> was never bound to anything in the template, so the caption was missing from the screen as much as from a reader. Also fixed on <code>develop</code>.</p>
 </div>
+<p>A flip view is the one that could not be given the usual shape. It builds nothing for the pages it is not showing, so there is no list of pages for a client to walk through. Rather than offer an empty selection it says where in the run the current page is, and the page itself, banner and all, is in the tree the way any content is.</p>
 <h2 id="reaching-a-window-at-all">Reaching a window at all</h2>
 <p>An inspection tool asks Windows what sits under the pointer, and that question goes by the box an element occupies rather than by what a click would hit. Anything lying over the whole window answers it, whether or not it draws something.</p>
 <p>That is what the flyouts control did from .NET 8 on, which left nothing in a <code>MetroWindow</code> reachable for Accessibility Insights, inspect.exe, FlaUInspect or WinAppDriver. It is fixed on <code>develop</code>, and the <a href="../controls/flyouts">Flyouts</a> page has the detail.</p>
