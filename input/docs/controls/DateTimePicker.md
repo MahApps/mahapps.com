@@ -23,6 +23,12 @@ Description: A date and time picker with a calendar and a clock
 
 `SelectedDateTime` is the one to bind. There is no separate date and time property — a `DateTimePicker` is one value, which is the point of it.
 
+With no `Culture` the control follows the thread's culture, and a `Language` set on it or passed down from further up wins over that.
+
+:::{.alert .alert-warning}
+In a released version the thread is never asked. Without a `Culture` the picker goes by `Language`, which starts out at `en-US` however the thread is set, so a picker nobody said anything to shows `3/17/2026 2:35:00 PM` on a German machine while the `DatePicker` beside it shows `17.03.2026`. Set `Culture` and it behaves. Fixed on `develop`, which is [#4064](https://github.com/MahApps/MahApps.Metro/issues/4064).
+:::
+
 `DateTimePicker` also takes over the `DatePicker` properties for the calendar half: `DisplayDate`, `DisplayDateStart`, `DisplayDateEnd`, `FirstDayOfWeek`, `IsTodayHighlighted` and `SelectedDateFormat`.
 
 :::{.alert .alert-info}

@@ -62,7 +62,11 @@ This is not in 2.4.11, nor in the 3.0 release candidate. Fixed for the next rele
 
 The default is `Long`, which is why an untouched picker already shows `2:30:00 PM` rather than `2:30 PM`.
 
-With no `Culture` the control follows the thread's culture, and `Language` changes are watched too. `de-DE` gives a twenty-four-hour clock and drops the AM/PM list from the drop-down.
+With no `Culture` the control follows the thread's culture, and a `Language` set on it or passed down from further up wins over that. `de-DE` gives a twenty-four-hour clock and drops the AM/PM list from the drop-down.
+
+:::{.alert .alert-warning}
+In a released version the thread is never asked. Without a `Culture` the picker goes by `Language`, which starts out at `en-US` however the thread is set, so a picker nobody said anything to shows an American time on a German machine while the `DatePicker` beside it shows a German date. Set `Culture` and it behaves. Fixed on `develop`, which is [#4064](https://github.com/MahApps/MahApps.Metro/issues/4064).
+:::
 
 ## The drop-down
 
