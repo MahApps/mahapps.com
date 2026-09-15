@@ -43,6 +43,8 @@ The style sets `IsTodayHighlighted="True"`, so today's date is filled in the acc
 | `PickerVisibility` | `TimePartVisibility` | `HourMinute` | which of the three lists appear |
 | `HandVisibility` | `TimePartVisibility` | `HourMinute` | which hands the clock draws |
 | `Orientation` | `Orientation` | `Horizontal` | calendar beside the clock, or above it |
+| `IsNowButtonVisible` | `bool` | `True` | the button that sets the picker to the here and now |
+| `NowButtonContent` | `object` | `Now` | what that button says |
 
 `TimePartVisibility` is a flags enum — `Hour`, `Minute`, `Second`, plus `HourMinute` and `All`. Seconds are off by default in both places:
 
@@ -57,6 +59,24 @@ The style sets `IsTodayHighlighted="True"`, so today's date is filled in the acc
 ```
 
 Each has a matching `HoursItemStringFormat`, `MinutesItemStringFormat` and `SecondsItemStringFormat` for how the entries are written.
+
+## The Now button
+
+Under the calendar and the clock sits a button that puts the picker on the current date and time, both halves in one press, so nobody has to walk a calendar and three lists to say what the clock on the wall already says. It is there without being asked for; a form that has no use for it switches it off:
+
+```xml
+<mah:DateTimePicker IsNowButtonVisible="False" />
+```
+
+`NowButtonContent` is the caption, an ordinary content property, because *Now* is a word that wants translating:
+
+```xml
+<mah:DateTimePicker NowButtonContent="Jetzt" />
+```
+
+:::{.alert .alert-info}
+**The button is new on `develop`.** It is in neither 2.4.11 nor the 3.0 release candidate, and it arrives visible, which is [#4153](https://github.com/MahApps/MahApps.Metro/issues/4153). A drop-down that has always shown nothing but a calendar and a clock will have a button beneath them once that ships, so a layout with no room to spare wants `IsNowButtonVisible="False"`.
+:::
 
 ## Two nicer alternatives
 

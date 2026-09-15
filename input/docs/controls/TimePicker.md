@@ -78,6 +78,8 @@ In a released version the thread is never asked. Without a `Culture` the picker 
 | `PickerVisibility` | `TimePartVisibility` | `HourMinute` | which lists appear |
 | `HandVisibility` | `TimePartVisibility` | `HourMinute` | which hands the clock draws |
 | `IsDropDownOpen` | `bool` | `False` | |
+| `IsNowButtonVisible` | `bool` | `True` | the button that sets the picker to the time of day |
+| `NowButtonContent` | `object` | `Now` | what that button says |
 
 `TimePartVisibility` is a flags enum — `Hour`, `Minute`, `Second`, plus the combinations `HourMinute` and `All`. Seconds are off in both places by default, so turning them on takes two properties:
 
@@ -94,6 +96,8 @@ In a released version the thread is never asked. Without a `Culture` the picker 
 ```
 
 Each has a matching `HoursItemStringFormat`, `MinutesItemStringFormat` and `SecondsItemStringFormat`.
+
+The button under the lists puts the picker on the time of day in one press. It is the same one the `DateTimePicker` carries, described on [its page](DateTimePicker) along with the caption property and the note that it is new on `develop`.
 
 ## Two nicer alternatives
 
