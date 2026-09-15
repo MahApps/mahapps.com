@@ -390,6 +390,9 @@ TabControlHelper
 <p><img src="images/tabcontrolhelper-underline.png" alt="A green underline, and the underline moved to the top" /></p>
 <p>Set <code>Underlined</code> on the <code>TabControl</code> and it reaches the items; setting it on a single <code>TabItem</code> underlines just that one.</p>
 <p>The underline and the caption are painted separately, so a strip that answers the mouse in one colour wants the matching brush from <a href="headeredcontrolhelper">HeaderedControlHelper</a> as well.</p>
+<div class="alert alert-info"><p><strong>A brush cleared to <code>null</code> takes the line away in a released version.</strong> Each state is painted from its own brush and nothing stood in for one that was empty, so binding <code>UnderlineSelectedBrush</code> to something that can be cleared left the selected tab with no line at all. On <code>develop</code> a state nobody handed a brush to falls back to the nearest one that was: the selected tab and a tab under the mouse to <code>UnderlineBrush</code>, the selected tab under the mouse to <code>UnderlineSelectedBrush</code>. The styles set all four, so a strip nobody says anything to looks the way it always did.</p>
+<p><code>MetroTabItem</code> had a second helping of this. The trigger painting the line of the selected tab watched the header rather than the tab, so running the pointer onto the line itself left that state and the line went out from under it. Both templates watch the tab now.</p>
+</div>
 <h2 id="transitions">Transitions</h2>
 <table>
 <thead>
