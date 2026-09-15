@@ -199,6 +199,23 @@ A range slider has two values, so a key has to be told which one it means: the t
 New on `develop`. In a released version a `RangeSlider` does nothing at all when a key is pressed.
 :::
 
+## Driving one from a test
+
+A range slider holds two values, and no automation pattern holds two. What a client is handed is the control for the range and one of the outer thumbs for each end of it:
+
+| | |
+| --- | --- |
+| the control | a slider, reading out both ends at once as its item status |
+| `PART_LeftThumb` | the lower value, to read and to set |
+| `PART_RightThumb` | the upper value, the same way |
+| `PART_MiddleThumb` | moves the whole range, so it carries no value |
+
+Setting one end through a client goes through the same rules as dragging it: `MinRange` holds, and neither end passes the other.
+
+:::{.alert .alert-warning}
+**In a released version the control is not in the automation tree at all.** Only the three thumbs of its template are, hanging off the window with nothing to say what they belong to, so a tool can drag a handle but cannot read a value or set one. New on `develop`, which is [#4454](https://github.com/MahApps/MahApps.Metro/issues/4454).
+:::
+
 ## Origin
 
 The control came from the Avalon Controls Library (MS-PL) by way of [this fork](https://github.com/jogibear9988/avaloncontrolslib); the original CodePlex site is gone. It has been rewritten considerably since.
