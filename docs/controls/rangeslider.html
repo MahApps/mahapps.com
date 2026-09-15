@@ -535,6 +535,37 @@ RangeSlider
 <p><code>MinRange</code> holds against the keyboard as well, and a thumb pressed against the other one stops there instead of pushing it along. A ring around the thumb says which one has the keyboard. Tabbing onto the control hands the keys to the lower thumb.</p>
 <div class="alert alert-info"><p>New on <code>develop</code>. In a released version a <code>RangeSlider</code> does nothing at all when a key is pressed.</p>
 </div>
+<h2 id="driving-one-from-a-test">Driving one from a test</h2>
+<p>A range slider holds two values, and no automation pattern holds two. What a client is handed is the control for the range and one of the outer thumbs for each end of it:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the control</td>
+<td>a slider, reading out both ends at once as its item status</td>
+</tr>
+<tr>
+<td><code>PART_LeftThumb</code></td>
+<td>the lower value, to read and to set</td>
+</tr>
+<tr>
+<td><code>PART_RightThumb</code></td>
+<td>the upper value, the same way</td>
+</tr>
+<tr>
+<td><code>PART_MiddleThumb</code></td>
+<td>moves the whole range, so it carries no value</td>
+</tr>
+</tbody>
+</table>
+<p>Setting one end through a client goes through the same rules as dragging it: <code>MinRange</code> holds, and neither end passes the other.</p>
+<div class="alert alert-warning"><p><strong>In a released version the control is not in the automation tree at all.</strong> Only the three thumbs of its template are, hanging off the window with nothing to say what they belong to, so a tool can drag a handle but cannot read a value or set one. New on <code>develop</code>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>
+</div>
 <h2 id="origin">Origin</h2>
 <p>The control came from the Avalon Controls Library (MS-PL) by way of <a href="https://github.com/jogibear9988/avaloncontrolslib">this fork</a>; the original CodePlex site is gone. It has been rewritten considerably since.</p>
 
@@ -555,6 +586,7 @@ RangeSlider
                     <div class="sidebar-nav-item"><a href="#events">Events</a></div>
                     <div class="sidebar-nav-item"><a href="#mouse-wheel">Mouse wheel</a></div>
                     <div class="sidebar-nav-item"><a href="#keyboard">Keyboard</a></div>
+                    <div class="sidebar-nav-item"><a href="#driving-one-from-a-test">Driving one from a test</a></div>
                     <div class="sidebar-nav-item"><a href="#origin">Origin</a></div>
             </div>
         </div>
