@@ -585,6 +585,11 @@ public enum OverlayBehavior
 </code></pre>
 <p>So <code>IconOverlayBehavior=&quot;Flyouts&quot;</code> does put the icon above one. A modal flyout still wins over both.</p>
 </div>
+<h2 id="what-it-means-for-an-inspection-tool">What it means for an inspection tool</h2>
+<p>The <code>FlyoutsControl</code> lies over the whole window, so a flyout can come in from any side. It paints nothing while every flyout is shut, and a mouse click goes straight through it to the content underneath.</p>
+<div class="alert alert-warning"><p><strong>On .NET 8 and later, in a released version, this leaves nothing in the window reachable for a UI automation tool.</strong> Accessibility Insights, inspect.exe, FlaUInspect and WinAppDriver all ask Windows what sits under the pointer, and that question goes by the box an element occupies rather than by what a click would hit. Point at a button in a <code>MetroWindow</code> and the answer is the flyouts control, whatever is actually drawn there. On .NET 7 the same window answers with the button, and so does a plain <code>Window</code> on either.</p>
+<p>Fixed on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>: the control answers a point only while a flyout is open, and reports itself off screen while none is. An open flyout is found the way it always was. Until that ships, a tool that picks the element by keyboard focus rather than by pointer gets through.</p>
+</div>
 <h2 id="related">Related</h2>
 <p><a href="metrowindow">MetroWindow</a> hosts them and owns the overlay behaviour. <a href="customvalidationpopup">CustomValidationPopup</a> suppresses itself while a flyout is animating, which is what <code>Flyout</code>'s animation state is used for elsewhere.</p>
 
@@ -608,6 +613,7 @@ public enum OverlayBehavior
                     <div class="sidebar-nav-item"><a href="#shadow">Shadow</a></div>
                     <div class="sidebar-nav-item"><a href="#animation-and-focus">Animation and focus</a></div>
                     <div class="sidebar-nav-item"><a href="#overlay-behaviour-on-the-window">Overlay behaviour on the window</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-it-means-for-an-inspection-tool">What it means for an inspection tool</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
