@@ -57,6 +57,16 @@ So `Left` moves both layers past each other, while `LeftReplace` slides the new 
 In a released version this does not work, in two ways. The property is registered with `DependencyProperty.Register` rather than `RegisterAttached`, so the markup above does not compile: `MC3015: The attached property 'TransitioningContentControl.Transition' is not defined on 'StackPanel' or one of its base classes`. And the default style carries `<Setter Property="Transition" Value="Default" />`, which beats an inherited value in the [precedence order](https://learn.microsoft.com/en-us/dotnet/desktop/wpf/properties/dependency-property-value-precedence), so even `SetValue` on a parent leaves every control at `Default`. Both changed on `develop` and ship with the next release.
 :::
 
+## What a change of content costs
+
+Changing the content builds the view that arrives. The one leaving is already standing and stays where it is until it has faded.
+
+:::{.alert .alert-info}
+New on `develop`. In a released version both were built, so in a view model first application the constructor of a view runs as it leaves the screen, with whatever work hangs off it. That is [#4108](https://github.com/MahApps/MahApps.Metro/issues/4108).
+
+Content sharing a template with what is showing still builds one view. A fade shows both at once, so both have to be there, which is the one thing a plain `ContentControl` gets away with that this cannot.
+:::
+
 ## When the content changes again mid-transition
 
 | Property | Type | Default |
