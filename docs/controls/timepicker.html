@@ -411,7 +411,9 @@ TimePicker
 </tbody>
 </table>
 <p>The default is <code>Long</code>, which is why an untouched picker already shows <code>2:30:00 PM</code> rather than <code>2:30 PM</code>.</p>
-<p>With no <code>Culture</code> the control follows the thread's culture, and <code>Language</code> changes are watched too. <code>de-DE</code> gives a twenty-four-hour clock and drops the AM/PM list from the drop-down.</p>
+<p>With no <code>Culture</code> the control follows the thread's culture, and a <code>Language</code> set on it or passed down from further up wins over that. <code>de-DE</code> gives a twenty-four-hour clock and drops the AM/PM list from the drop-down.</p>
+<div class="alert alert-warning"><p>In a released version the thread is never asked. Without a <code>Culture</code> the picker goes by <code>Language</code>, which starts out at <code>en-US</code> however the thread is set, so a picker nobody said anything to shows an American time on a German machine while the <code>DatePicker</code> beside it shows a German date. Set <code>Culture</code> and it behaves. Fixed on <code>develop</code>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4064">#4064</a>.</p>
+</div>
 <h2 id="the-drop-down">The drop-down</h2>
 <p><img src="images/timepicker-dropdown.png" alt="The clock and the three lists" /></p>
 <table>

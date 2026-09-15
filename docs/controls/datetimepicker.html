@@ -369,6 +369,9 @@ DateTimePicker
 </tbody>
 </table>
 <p><code>SelectedDateTime</code> is the one to bind. There is no separate date and time property — a <code>DateTimePicker</code> is one value, which is the point of it.</p>
+<p>With no <code>Culture</code> the control follows the thread's culture, and a <code>Language</code> set on it or passed down from further up wins over that.</p>
+<div class="alert alert-warning"><p>In a released version the thread is never asked. Without a <code>Culture</code> the picker goes by <code>Language</code>, which starts out at <code>en-US</code> however the thread is set, so a picker nobody said anything to shows <code>3/17/2026 2:35:00 PM</code> on a German machine while the <code>DatePicker</code> beside it shows <code>17.03.2026</code>. Set <code>Culture</code> and it behaves. Fixed on <code>develop</code>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4064">#4064</a>.</p>
+</div>
 <p><code>DateTimePicker</code> also takes over the <code>DatePicker</code> properties for the calendar half: <code>DisplayDate</code>, <code>DisplayDateStart</code>, <code>DisplayDateEnd</code>, <code>FirstDayOfWeek</code>, <code>IsTodayHighlighted</code> and <code>SelectedDateFormat</code>.</p>
 <div class="alert alert-info"><p>The style sets <code>IsTodayHighlighted=&quot;True&quot;</code>, so today's date is filled in the accent colour whether or not it is the selected day. Set it to <code>False</code> to switch that off.</p>
 </div>
