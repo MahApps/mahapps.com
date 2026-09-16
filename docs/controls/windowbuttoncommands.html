@@ -398,6 +398,9 @@ SystemCommands.CloseWindow(this.ParentWindow);
 </code></pre>
 <p><code>GetCaption</code> loads <code>User32.dll</code> and pulls string resources 900, 901, 903 and 905 out of it with <code>LoadString</code>. So the tooltips are Windows' own, already in the user's display language, and they are only worth setting if you want something other than the system wording.</p>
 <p><code>Restore</code> is the caption used while the window is maximised, when the middle button restores instead of maximising.</p>
+<div class="alert alert-info"><p><strong>On <code>develop</code> these texts usually do not reach the screen at all, and that is deliberate.</strong> The three buttons report themselves to Windows as the window's own caption buttons, through <code>NonClientControlProperties.HitTestResult</code> in the template. That is what a snap layout hangs off, along with the hover colours Windows paints and the layout menu on the maximise button. Windows then draws the tooltips as well, in its own wording and the system language.</p>
+<p>The properties are still there and still fill the <code>ToolTip</code> of the buttons, which is what a template of your own sees. There is no way to have both: a template that leaves the hit test result unset gets its tooltips back and gives up the snap layout along with them. This is <a href="https://github.com/MahApps/MahApps.Metro/issues/4487">#4487</a>.</p>
+</div>
 <h2 id="styling-the-three-buttons">Styling the three buttons</h2>
 <p>Six properties, one per button per base colour:</p>
 <table>
