@@ -31,7 +31,7 @@
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
 
-        <title>MahApps.Metro - VisibilityHelper</title>
+        <title>MahApps.Metro - AutoSuggestBox</title>
     </head>
     <body class="d-flex flex-column">
         <div class="flex-grow-1 d-flex flex-column">
@@ -94,11 +94,11 @@
                                         <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
 
         <span><a href="/mahapps.com/docs">Documentation</a></span>
-        <span><a href="/mahapps.com/docs/helper">Helper Classes</a></span>
+        <span><a href="/mahapps.com/docs/controls">Controls</a></span>
                                         </div>
                                         <div class="text-white m-0 text-break title">
 
-VisibilityHelper
+AutoSuggestBox
                                         </div>
                                     </div>
                                         <div class="navbar navbar-expand-md navbar-dark p-0">
@@ -137,7 +137,7 @@ VisibilityHelper
     <a href="/mahapps.com/docs/controls">Controls</a>
 </div>                <div class="sidebar-nav-children">
 
-<div class="sidebar-nav-item">
+<div class="sidebar-nav-item active">
     <a href="/mahapps.com/docs/controls/autosuggestbox">AutoSuggestBox</a>
 </div>
 <div class="sidebar-nav-item">
@@ -327,58 +327,247 @@ VisibilityHelper
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/validationhelper">ValidationHelper</a>
 </div>
-<div class="sidebar-nav-item active">
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/visibilityhelper">VisibilityHelper</a>
 </div>                </div>
     </div>
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>Applies to any <code>UIElement</code>. Three properties, all of them shortcuts for a <code>BooleanToVisibilityConverter</code> you would otherwise have to declare and reference.</p>
+<p><code>AutoSuggestBox</code> is a text box with a list that comes up while the user types, the way a search field offers what you might have meant. It derives from <code>ComboBox</code>, so everything a <code>ComboBox</code> can do it can do too, and it wears the same clothes as every other MahApps text control.</p>
+<div class="alert alert-info"><p><strong><code>AutoSuggestBox</code> is on <code>develop</code> and ships with the next release.</strong> It is not in 2.4.11.</p>
+</div>
+<pre><code class="language-xml">&lt;mah:AutoSuggestBox x:Name=&quot;ArtistBox&quot;
+                    Width=&quot;300&quot;
+                    DisplayMemberPath=&quot;Name&quot;
+                    QuerySubmitted=&quot;OnQuerySubmitted&quot;
+                    TextChanged=&quot;OnTextChanged&quot;
+                    mah:TextBoxHelper.ClearTextButton=&quot;True&quot;
+                    mah:TextBoxHelper.Watermark=&quot;Artist&quot; /&gt;
+</code></pre>
+<pre><code class="language-csharp">private void OnTextChanged(object sender, RoutedEventArgs e)
+{
+    if (((AutoSuggestBoxTextChangedEventArgs)e).Reason != AutoSuggestionBoxTextChangeReason.UserInput)
+    {
+        return;
+    }
+
+    this.ArtistBox.ItemsSource = this.artists
+                                     .Where(artist =&gt; artist.Name.StartsWith(this.ArtistBox.Text, StringComparison.CurrentCultureIgnoreCase))
+                                     .Take(10)
+                                     .ToList();
+}
+
+private void OnQuerySubmitted(object sender, RoutedEventArgs e)
+{
+    var args = (AutoSuggestBoxQuerySubmittedEventArgs)e;
+
+    this.Search(args.ChosenSuggestion as Artist, args.QueryText);
+}
+</code></pre>
+<h2 id="how-it-works">How it works</h2>
+<p>The box does not filter anything. It says that the text changed and who changed it, and the application answers by filling <code>ItemsSource</code> with whatever it thinks fits. That is the whole contract, and it is deliberate: matching, sorting, casing, accents and the question of what counts as a hit all belong where the data is, not in a set of filter modes here. It is also how WinUI's <code>AutoSuggestBox</code> works.</p>
+<p>So there is no <code>FilterMode</code>, no <code>CustomFilter</code> and no <code>SearchMemberPath</code>. There is a <code>TextChanged</code> event and your own code.</p>
+<h2 id="properties">Properties</h2>
 <table>
 <thead>
 <tr>
 <th>Property</th>
 <th>Type</th>
 <th>Default</th>
-<th><code>true</code> means</th>
-<th><code>false</code> means</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>IsVisible</code></td>
-<td><code>bool?</code></td>
-<td><code>null</code></td>
-<td><code>Visible</code></td>
-<td><code>Collapsed</code></td>
-</tr>
-<tr>
-<td><code>IsCollapsed</code></td>
-<td><code>bool?</code></td>
-<td><code>null</code></td>
-<td><code>Collapsed</code></td>
-<td><code>Visible</code></td>
-</tr>
-<tr>
-<td><code>IsHidden</code></td>
-<td><code>bool?</code></td>
-<td><code>null</code></td>
-<td><code>Hidden</code></td>
-<td><code>Visible</code></td>
+<td><code>UpdateTextOnSelect</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+<td>write the picked suggestion into the text box</td>
 </tr>
 </tbody>
 </table>
-<pre><code class="language-xml">&lt;TextBlock mah:VisibilityHelper.IsVisible=&quot;{Binding HasResults}&quot; Text=&quot;...&quot; /&gt;
-
-&lt;Button mah:VisibilityHelper.IsCollapsed=&quot;{Binding IsReadOnly}&quot; Content=&quot;Edit&quot; /&gt;
-</code></pre>
-<p><code>IsVisible</code> is the common one. <code>IsCollapsed</code> is there so a view model property that reads naturally in the negative — <code>IsReadOnly</code>, <code>IsBusy</code> — does not need inverting. <code>IsHidden</code> keeps the element's space reserved, which stops a layout jumping as things appear and disappear.</p>
-<div class="alert alert-info"><p>All three are <code>bool?</code>, but <code>null</code> is not a third state. The callback runs <code>value == true ? … : …</code>, so <code>null</code> is treated exactly like <code>false</code>. Never setting the property leaves <code>Visibility</code> alone, because the callback never runs — but binding one to a nullable that goes to <code>null</code> collapses the element rather than leaving it as it was.</p>
+<p>Everything else is inherited and works as it does on a <code>ComboBox</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ItemsSource</code>, <code>ItemTemplate</code>, <code>ItemTemplateSelector</code></td>
+<td>the suggestions and how they are drawn</td>
+</tr>
+<tr>
+<td><code>DisplayMemberPath</code></td>
+<td>which member of a suggestion is shown, and written into the text</td>
+</tr>
+<tr>
+<td><code>TextSearch.TextPath</code></td>
+<td>the same, when the shown text and the written text differ</td>
+</tr>
+<tr>
+<td><code>Text</code></td>
+<td>what stands in the box, two-way by default</td>
+</tr>
+<tr>
+<td><code>SelectedItem</code></td>
+<td>the suggestion the user is on, <code>null</code> while they are only typing</td>
+</tr>
+<tr>
+<td><code>IsDropDownOpen</code></td>
+<td>whether the list is up; set it yourself to open or close it</td>
+</tr>
+<tr>
+<td><code>MaxDropDownHeight</code></td>
+<td>how tall the list may get</td>
+</tr>
+</tbody>
+</table>
+<p>Three properties are set for you and are not meant to be changed: <code>IsEditable</code> is <code>True</code>, <code>IsTextSearchEnabled</code> is <code>False</code>, so WPF does not complete the text behind your back while the user is still typing, and <code>StaysOpenOnEdit</code> is <code>True</code>, so the list stays up between keystrokes.</p>
+<h2 id="events">Events</h2>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th>Arguments</th>
+<th>Raised</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TextChanged</code></td>
+<td><code>AutoSuggestBoxTextChangedEventArgs</code></td>
+<td>after the text changed, whoever changed it</td>
+</tr>
+<tr>
+<td><code>SuggestionChosen</code></td>
+<td><code>AutoSuggestBoxSuggestionChosenEventArgs</code></td>
+<td>when the user lands on a suggestion, by arrow key or by click</td>
+</tr>
+<tr>
+<td><code>QuerySubmitted</code></td>
+<td><code>AutoSuggestBoxQuerySubmittedEventArgs</code></td>
+<td>when the user is done, by <kbd>Enter</kbd> or by clicking a suggestion</td>
+</tr>
+</tbody>
+</table>
+<p>All three are bubbling routed events, so they can be handled further up or attached from a style.</p>
+<p><code>AutoSuggestBoxTextChangedEventArgs.Reason</code> says who wrote the text:</p>
+<table>
+<thead>
+<tr>
+<th>Reason</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>UserInput</code></td>
+<td>the user typed, and this is the one worth new suggestions</td>
+</tr>
+<tr>
+<td><code>ProgrammaticChange</code></td>
+<td>code or a binding set <code>Text</code></td>
+</tr>
+<tr>
+<td><code>SuggestionChosen</code></td>
+<td>the user picked a suggestion and the box wrote it in</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p><strong>Check the reason before you go looking for suggestions.</strong> Picking a suggestion writes it into the text box, which changes the text again. Answering that with a fresh search finds the item the box has just offered, replaces the list, and the selection and the text go with it. The box keeps the three cases apart so that a single <code>if</code> at the top of the handler is all it takes.</p>
 </div>
-<p>They write to the element's <code>Visibility</code>, so setting two of them on the same element is a contradiction — the last one to change wins. Pick one.</p>
+<p><code>AutoSuggestBoxQuerySubmittedEventArgs</code> carries both halves of the answer:</p>
+<table>
+<thead>
+<tr>
+<th>Member</th>
+<th>Type</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>QueryText</code></td>
+<td><code>string?</code></td>
+<td>what stands in the box</td>
+</tr>
+<tr>
+<td><code>ChosenSuggestion</code></td>
+<td><code>object?</code></td>
+<td>the suggestion the user picked, or <code>null</code> if they only typed</td>
+</tr>
+</tbody>
+</table>
+<p><code>AutoSuggestBoxSuggestionChosenEventArgs.SelectedItem</code> is the suggestion the user landed on.</p>
+<h2 id="when-the-list-shows-itself">When the list shows itself</h2>
+<p>The list comes up once there is text in the box and there is something to show, and it goes away when either of those stops being true. An empty list is never shown, because an empty popup is a sliver of border under a text box and nothing else.</p>
+<p>Suggestions do not have to be there by the time the text changes. An application that goes off to a database or a service hands them over later, and the list comes up when they arrive:</p>
+<pre><code class="language-csharp">private async void OnTextChanged(object sender, RoutedEventArgs e)
+{
+    if (((AutoSuggestBoxTextChangedEventArgs)e).Reason != AutoSuggestionBoxTextChangeReason.UserInput)
+    {
+        return;
+    }
+
+    var query = this.Box.Text;
+    var hits = await this.service.SuggestAsync(query).ConfigureAwait(true);
+
+    // the user has typed on in the meantime, so this answer is stale
+    if (this.Box.Text != query)
+    {
+        return;
+    }
+
+    this.Box.ItemsSource = hits;
+}
+</code></pre>
+<p>There is no delay property. Where a request per keystroke is too much, hold the keystrokes back in the handler:</p>
+<pre><code class="language-csharp">private readonly DispatcherTimer typingPause = new() { Interval = TimeSpan.FromMilliseconds(300) };
+</code></pre>
+<p>Restart that timer on every <code>UserInput</code>, and do the asking in its <code>Tick</code>.</p>
+<h2 id="picking-a-suggestion">Picking a suggestion</h2>
+<p>Clicking a suggestion, or arrowing onto one and pressing <kbd>Enter</kbd>, writes it into the text box and submits. What is written is the same text a <code>ComboBox</code> would write, so <code>DisplayMemberPath</code> and <code>TextSearch.TextPath</code> decide it for objects.</p>
+<p>Set <code>UpdateTextOnSelect</code> to <code>False</code> where the suggestions are not text the user is composing but shortcuts to somewhere, a hit list the application opens on its own for instance. The typed text then stays as it was, and <code>QuerySubmitted</code> still hands you the item that was picked.</p>
+<p><kbd>Esc</kbd> closes the list and submits nothing.</p>
+<h2 id="styling">Styling</h2>
+<p>The control is styled as <code>MahApps.Styles.AutoSuggestBox</code>, which stands on <code>MahApps.Styles.ComboBox</code>, so the brushes, the fonts, the focus and mouse-over borders and the validation template are the ones every other MahApps input control uses. The template is its own: there is nothing to drop down by hand here, so there is no arrow, and the spot it would sit in takes one button instead.</p>
+<p>The usual <a href="../helper/textboxhelper">TextBoxHelper</a> properties are passed through to the inner text box:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Watermark</code>, <code>WatermarkAlignment</code>, <code>WatermarkTrimming</code></td>
+<td>the hint in an empty box</td>
+</tr>
+<tr>
+<td><code>UseFloatingWatermark</code></td>
+<td>let the hint rise above the text once there is text</td>
+</tr>
+<tr>
+<td><code>ClearTextButton</code></td>
+<td>put a clear button in the button spot</td>
+</tr>
+<tr>
+<td><code>ButtonCommand</code>, <code>ButtonContent</code>, <code>ButtonTemplate</code>, <code>ButtonWidth</code></td>
+<td>or put your own button there, a magnifier for instance</td>
+</tr>
+</tbody>
+</table>
+<p><code>ComboBoxHelper.MaxLength</code> and <code>ComboBoxHelper.CharacterCasing</code> reach the text box as well.</p>
+<p>With neither <code>ClearTextButton</code> nor a <code>ButtonCommand</code> set, the button spot collapses and the text takes the whole width.</p>
+<h2 id="what-a-client-is-told">What a client is told</h2>
+<p>The box reports itself as an <code>AutoSuggestBox</code> and as a combo box control type, and hands over its text as a value, so a test or a screen reader gets the box rather than the text field inside it.</p>
 <h2 id="related">Related</h2>
-<p>For hiding a whole region rather than one element, WPF's own <code>BooleanToVisibilityConverter</code> on a container is still the simpler answer; these properties earn their keep on the individual controls, where the converter reference is the bulk of the markup.</p>
+<p><a href="MultiSelectionComboBox">MultiSelectionComboBox</a> where the user picks several items rather than typing free text, <a href="../helper/textboxhelper">TextBoxHelper</a> for the watermark and the buttons, <a href="../styles/validation">validation</a> for the error treatment.</p>
 
 
                                         </div>
@@ -387,10 +576,17 @@ VisibilityHelper
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#how-it-works">How it works</a></div>
+                    <div class="sidebar-nav-item"><a href="#properties">Properties</a></div>
+                    <div class="sidebar-nav-item"><a href="#events">Events</a></div>
+                    <div class="sidebar-nav-item"><a href="#when-the-list-shows-itself">When the list shows itself</a></div>
+                    <div class="sidebar-nav-item"><a href="#picking-a-suggestion">Picking a suggestion</a></div>
+                    <div class="sidebar-nav-item"><a href="#styling">Styling</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-a-client-is-told">What a client is told</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/helper/visibilityhelper.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/AutoSuggestBox.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
                             </div>
