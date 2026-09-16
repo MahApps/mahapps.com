@@ -362,6 +362,26 @@ Input Dialog
 
 var name = await this.ShowInputAsync(&quot;What is your name?&quot;, &quot;This will appear on your profile.&quot;, settings);
 </code></pre>
+<h2 id="checking-what-was-typed">Checking what was typed</h2>
+<p><strong><code>InputDialogSettings</code> is on <code>develop</code> and ships with the next release.</strong> It is not in 2.4.11, where
+the only way to turn an answer down is to take it, look at it and ask again.</p>
+<p>Left to itself the dialog hands back whatever is in the box. <code>InputDialogSettings</code> adds a check that
+decides whether it may be left at all:</p>
+<pre><code class="language-csharp">var settings = new InputDialogSettings
+               {
+                   ValidateInput = input =&gt; input?.Length &gt;= 3 ? null : &quot;at least three characters&quot;
+               };
+
+var name = await this.ShowInputAsync(&quot;What is your name?&quot;, &quot;This will appear on your profile.&quot;, settings);
+</code></pre>
+<p>The check runs every time the affirmative button is pressed, and on <kbd>Enter</kbd>. Return <code>null</code>
+to let the dialog close, or the reason it cannot: the dialog stays where it is, the box is marked the
+way any invalid field is, and what was returned is shown with it. Typing over the line takes the mark
+off again.</p>
+<p>Backing out is not checked. The negative button, <kbd>Esc</kbd> and the <code>CancellationToken</code> all still
+give <code>null</code> straight away, whatever is in the box.</p>
+<p><code>InputDialogSettings</code> derives from <code>MetroDialogSettings</code>, so everything below applies to it as well,
+and a call that passes plain settings keeps behaving as it always has.</p>
 <h2 id="colour-scheme">Colour scheme</h2>
 <p><code>ColorScheme</code> works as it does for the other dialogs: <code>Theme</code> follows the current theme, <code>Accented</code> fills the dialog with the accent colour, <code>Inverted</code> uses the inverse of the theme.</p>
 <p><img src="images/inputdialog-colorscheme.png" alt="Theme and Accented colour schemes" /></p>
@@ -378,6 +398,10 @@ var name = await this.ShowInputAsync(&quot;What is your name?&quot;, &quot;This 
 <tr>
 <td><code>DefaultText</code></td>
 <td>prefills the box</td>
+</tr>
+<tr>
+<td><code>ValidateInput</code></td>
+<td>on <code>InputDialogSettings</code>, <code>develop</code> only: decides whether the dialog may be left, see above</td>
 </tr>
 <tr>
 <td><code>AffirmativeButtonText</code></td>
@@ -417,7 +441,7 @@ var name = await this.ShowInputAsync(&quot;What is your name?&quot;, &quot;This 
 </tr>
 <tr>
 <td><code>DefaultButtonFocus</code></td>
-<td><strong>ignored</strong> — focus starts in the text box</td>
+<td>on <code>develop</code>: marks the button it names, <strong>ignored</strong> in 2.4.11. The caret starts in the text box either way</td>
 </tr>
 <tr>
 <td><code>DialogResultOnCancel</code></td>
@@ -446,6 +470,7 @@ var name = await this.ShowInputAsync(&quot;What is your name?&quot;, &quot;This 
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-null-result">The null result</a></div>
                     <div class="sidebar-nav-item"><a href="#prefilling-the-box">Prefilling the box</a></div>
+                    <div class="sidebar-nav-item"><a href="#checking-what-was-typed">Checking what was typed</a></div>
                     <div class="sidebar-nav-item"><a href="#colour-scheme">Colour scheme</a></div>
                     <div class="sidebar-nav-item"><a href="#which-settings-actually-apply">Which settings actually apply</a></div>
                     <div class="sidebar-nav-item"><a href="#keyboard">Keyboard</a></div>
