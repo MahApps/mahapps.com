@@ -359,6 +359,28 @@ MultiSelectorHelper
 <pre><code class="language-csharp">public ObservableCollection&lt;Person&gt; SelectedPeople { get; } = new();
 </code></pre>
 <p>Give the property a getter only and fill the existing collection rather than replacing it. Replacing the instance means the helper is still watching the old one.</p>
+<h2 id="listening-for-the-change-yourself">Listening for the change yourself</h2>
+<p>The helper works from the list's <code>SelectionChanged</code>, and so does anything you hook up to the same event. It keeps the collection in step before anybody else is told, so a handler of your own reads the collection as it is by then:</p>
+<pre><code class="language-csharp">private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    // this.SelectedPeople already holds what was just picked
+}
+</code></pre>
+<div class="alert alert-warning"><p><strong>In a released version it is the other way round whenever your handler was hooked up first</strong>, which is what writing <code>SelectionChanged=&quot;...&quot;</code> in XAML does: your handler runs before the helper, and the collection it reads is the one from before the click, one step behind. Fixed on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4458">#4458</a>, where the helper listens on the class rather than on the list, which puts it ahead of anything an application hooks up.</p>
+</div>
+<h2 id="a-list-inside-a-list">A list inside a list</h2>
+<p><code>SelectionChanged</code> is a routed event, so a list sitting in the item template of another one sends its selection up to the outer list as well.</p>
+<div class="alert alert-warning"><p><strong>In a released version the outer helper takes that for its own</strong>, and puts whatever the inner list holds into your collection. Where the two hold different things, that throws:</p>
+<pre><code>System.ArgumentException: The value &quot;Dog&quot; is not of type &quot;Person&quot;
+and cannot be used in this generic collection.
+</code></pre>
+<p>Fixed on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4461">#4461</a>: a change is only taken up by the list it came from. Until that ships, mark the event as handled in the inner list so it does not travel:</p>
+<pre><code class="language-csharp">private void OnInnerSelectionChanged(object sender, SelectionChangedEventArgs e)
+{
+    e.Handled = true;
+}
+</code></pre>
+</div>
 <p><code>SelectedItemBinding</code> is used internally to hold the binding while it is attached; it is not something to set.</p>
 <h2 id="related">Related</h2>
 <p><code>SelectionMode</code> is still WPF's own — the helper synchronises whatever the list allows, so a <code>ListBox</code> left at <code>Single</code> will only ever put one item in your collection.</p>
@@ -370,6 +392,8 @@ MultiSelectorHelper
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#listening-for-the-change-yourself">Listening for the change yourself</a></div>
+                    <div class="sidebar-nav-item"><a href="#a-list-inside-a-list">A list inside a list</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
