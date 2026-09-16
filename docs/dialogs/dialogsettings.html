@@ -462,9 +462,9 @@ var result = await this.ShowMessageAsync(&quot;Delete the file?&quot;, &quot;Thi
 </tr>
 <tr>
 <td><code>DefaultButtonFocus</code></td>
-<td><code>MessageDialogResult</code></td>
-<td><code>Negative</code></td>
-<td>message</td>
+<td><code>MessageDialogResult?</code></td>
+<td>nothing</td>
+<td>message, input, login</td>
 </tr>
 <tr>
 <td><code>DialogResultOnCancel</code></td>
@@ -482,6 +482,15 @@ var result = await this.ShowMessageAsync(&quot;Delete the file?&quot;, &quot;Thi
 </table>
 <p>The three font sizes are only applied when they are not <code>NaN</code>, which is what they start as — leaving one alone keeps the theme's value rather than setting it to zero.</p>
 <h2 id="buttons">Buttons</h2>
+<h3 id="the-one-a-press-of-return-stands-for">The one a press of return stands for</h3>
+<p><code>DefaultButtonFocus</code> names the button that is marked in the accent colour, the one somebody is being nudged towards.</p>
+<p>Left alone it holds nothing, and each dialog then marks what it has always marked: the one that says no in a message dialog, the one that carries on in an input or a login dialog. Name a button and that one is marked instead.</p>
+<pre><code class="language-csharp">await this.ShowInputAsync(&quot;Delete&quot;, &quot;Which file?&quot;,
+                          new MetroDialogSettings { DefaultButtonFocus = MessageDialogResult.Negative });
+</code></pre>
+<p>The caret waits in the field of an input or a login dialog whichever button is marked, since filling that in is what somebody has come to do.</p>
+<div class="alert alert-info"><p><strong>In a released version only the message dialog reads this</strong>, and the setting starts out at <code>Negative</code> rather than holding nothing. An input dialog marks its OK button come what may, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4358">#4358</a>. Both are fixed on <code>develop</code>. Code that reads the setting into a plain <code>MessageDialogResult</code> needs a line changed there, since it is now a <code>MessageDialogResult?</code>; assigning to it and comparing against it are unchanged.</p>
+</div>
 <p>The four button labels cover the most a dialog can show. A message dialog uses as many as its <code>MessageDialogStyle</code> asks for, an input and a login dialog use the first two, and a progress dialog uses only <code>NegativeButtonText</code> for its cancel button.</p>
 <p>Nothing here controls <em>whether</em> a button appears. That is the <code>MessageDialogStyle</code> argument for a message dialog, <code>NegativeButtonVisibility</code> in <code>LoginDialogSettings</code>, and the <code>isCancelable</code> argument of <code>ShowProgressAsync</code>.</p>
 <h2 id="colour-scheme">Colour scheme</h2>
@@ -541,6 +550,9 @@ var result = await this.ShowMessageAsync(&quot;Delete the file?&quot;, &quot;Thi
                     <div class="sidebar-nav-item"><a href="#where-the-settings-come-from">Where the settings come from</a></div>
                     <div class="sidebar-nav-item"><a href="#reference">Reference</a></div>
                     <div class="sidebar-nav-item"><a href="#buttons">Buttons</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#the-one-a-press-of-return-stands-for">The one a press of return stands for</a></div>
+                        </div>
                     <div class="sidebar-nav-item"><a href="#colour-scheme">Colour scheme</a></div>
                     <div class="sidebar-nav-item"><a href="#font-sizes">Font sizes</a></div>
                     <div class="sidebar-nav-item"><a href="#animations">Animations</a></div>
