@@ -453,6 +453,11 @@ var result = await this.ShowMessageAsync(
 <td><code>Theme</code></td>
 </tr>
 <tr>
+<td><code>MessageForeground</code></td>
+<td><code>Brush</code></td>
+<td><code>null</code> — goes with the dialog</td>
+</tr>
+<tr>
 <td><code>DefaultButtonFocus</code></td>
 <td><code>MessageDialogResult</code></td>
 <td><code>Negative</code></td>
@@ -504,6 +509,11 @@ var result = await this.ShowMessageAsync(
 </tr>
 </tbody>
 </table>
+<p><code>MessageForeground</code> writes the message in a colour of its own. The title and the buttons keep theirs, which <code>ColorScheme</code> and the dialog's <code>Foreground</code> do not allow: those colour the whole dialog at once. It is on <code>develop</code> and ships with the next release.</p>
+<pre><code class="language-csharp">await this.ShowMessageAsync(&quot;Careful&quot;, &quot;This cannot be undone.&quot;,
+                            MessageDialogStyle.AffirmativeAndNegative,
+                            new MetroDialogSettings { MessageForeground = Brushes.Red });
+</code></pre>
 <p><code>MaximumBodyHeight</code> gives the message area a fixed height and lets it scroll, which keeps a long message from pushing the dialog past the window. Left at <code>NaN</code> the area sizes itself to the text.</p>
 <p><code>CancellationToken</code> closes the dialog from your own code — cancel the token and the awaited call returns. Note that it returns <code>Affirmative</code> for a one-button dialog and <code>Negative</code> for the others, and that it does <strong>not</strong> honour <code>DialogResultOnCancel</code>, unlike pressing <kbd>Esc</kbd>. If you need to tell a programmatic cancel apart from a button press, track that yourself.</p>
 <p><code>OwnerCanCloseWithDialog</code> allows the window itself to be closed while the dialog is up. By default it cannot be, and the window's close button is disabled for as long as the dialog is showing.</p>

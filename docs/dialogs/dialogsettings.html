@@ -407,6 +407,12 @@ var result = await this.ShowMessageAsync(&quot;Delete the file?&quot;, &quot;Thi
 <td>all</td>
 </tr>
 <tr>
+<td><code>MessageForeground</code></td>
+<td><code>Brush</code></td>
+<td><code>null</code></td>
+<td>message, input, login, progress (<code>develop</code> only)</td>
+</tr>
+<tr>
 <td><code>DialogTitleFontSize</code></td>
 <td><code>double</code></td>
 <td><code>26</code></td>
@@ -497,6 +503,16 @@ var result = await this.ShowMessageAsync(&quot;Delete the file?&quot;, &quot;Thi
 <p><code>MetroDialogColorScheme</code> has three values. <code>Theme</code> draws the dialog in the current theme's background and foreground, <code>Inverted</code> in the inverse theme — light-on-dark under a light theme — and <code>Accented</code> fills it with the accent colour.</p>
 <p><img src="images/dialogsettings-colorscheme.png" alt="The three colour schemes" /></p>
 <p><code>Inverted</code> throws if the current theme has no inverse to switch to, which is the case for a custom theme that was never registered as part of a light/dark pair.</p>
+<h2 id="the-colour-of-the-message">The colour of the message</h2>
+<p><strong><code>MessageForeground</code> is on <code>develop</code> and ships with the next release.</strong> It is not in 2.4.11.</p>
+<p>The message and the title of a dialog both take its <code>Foreground</code>, so setting that colours the whole
+dialog. <code>MessageForeground</code> colours the message alone, which is what a warning usually wants:</p>
+<pre><code class="language-csharp">await this.ShowMessageAsync(&quot;Careful&quot;, &quot;This cannot be undone.&quot;,
+                            MessageDialogStyle.AffirmativeAndNegative,
+                            new MetroDialogSettings { MessageForeground = Brushes.Red });
+</code></pre>
+<p>All four dialogs that show a message read it. Left unset, the message goes with the rest of the
+dialog, the way it always has.</p>
 <h2 id="font-sizes">Font sizes</h2>
 <p><code>DialogTitleFontSize</code>, <code>DialogMessageFontSize</code> and <code>DialogButtonFontSize</code> override the theme's <code>MahApps.Font.Size.Dialog.*</code> resources for one dialog.</p>
 <p><img src="images/dialogsettings-fontsizes.png" alt="Default and custom font sizes" /></p>
@@ -554,6 +570,7 @@ var result = await this.ShowMessageAsync(&quot;Delete the file?&quot;, &quot;Thi
                                 <div class="sidebar-nav-item"><a href="#the-one-a-press-of-return-stands-for">The one a press of return stands for</a></div>
                         </div>
                     <div class="sidebar-nav-item"><a href="#colour-scheme">Colour scheme</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-colour-of-the-message">The colour of the message</a></div>
                     <div class="sidebar-nav-item"><a href="#font-sizes">Font sizes</a></div>
                     <div class="sidebar-nav-item"><a href="#animations">Animations</a></div>
                     <div class="sidebar-nav-item"><a href="#cancellation">Cancellation</a></div>
