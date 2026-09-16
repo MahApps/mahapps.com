@@ -72,13 +72,31 @@ await this.ShowLoginAsync("Sign in", "Message", new LoginDialogSettings(this.Met
 | `OwnerCanCloseWithDialog` | `bool` | `false` | all, but see below |
 | `CustomResourceDictionary` | `ResourceDictionary` | `null` | all |
 | `DefaultText` | `string` | empty | input |
-| `DefaultButtonFocus` | `MessageDialogResult` | `Negative` | message |
+| `DefaultButtonFocus` | `MessageDialogResult?` | nothing | message, input, login |
 | `DialogResultOnCancel` | `MessageDialogResult?` | `null` | message |
 | `MaximumBodyHeight` | `double` | `NaN`, unlimited | message |
 
 The three font sizes are only applied when they are not `NaN`, which is what they start as — leaving one alone keeps the theme's value rather than setting it to zero.
 
 ## Buttons
+
+### The one a press of return stands for
+
+`DefaultButtonFocus` names the button that is marked in the accent colour, the one somebody is being nudged towards.
+
+Left alone it holds nothing, and each dialog then marks what it has always marked: the one that says no in a message dialog, the one that carries on in an input or a login dialog. Name a button and that one is marked instead.
+
+```csharp
+await this.ShowInputAsync("Delete", "Which file?",
+                          new MetroDialogSettings { DefaultButtonFocus = MessageDialogResult.Negative });
+```
+
+The caret waits in the field of an input or a login dialog whichever button is marked, since filling that in is what somebody has come to do.
+
+:::{.alert .alert-info}
+**In a released version only the message dialog reads this**, and the setting starts out at `Negative` rather than holding nothing. An input dialog marks its OK button come what may, which is [#4358](https://github.com/MahApps/MahApps.Metro/issues/4358). Both are fixed on `develop`. Code that reads the setting into a plain `MessageDialogResult` needs a line changed there, since it is now a `MessageDialogResult?`; assigning to it and comparing against it are unchanged.
+:::
+
 
 The four button labels cover the most a dialog can show. A message dialog uses as many as its `MessageDialogStyle` asks for, an input and a login dialog use the first two, and a progress dialog uses only `NegativeButtonText` for its cancel button.
 
