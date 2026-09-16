@@ -133,9 +133,9 @@ Header and separator items are not selectable, but they *do* occupy an index. Wa
 
 ![Options](images/hamburgermenu-options.png)
 
-**`OptionsVisibility` no longer does anything.** It used to: the control template bound the options container's `Visibility` to it, and that worked up to and including MahApps.Metro 1.4.2. The binding was dropped in 1.5.0 when the pane's scroll bar behaviour was reworked ([#2914](https://github.com/MahApps/MahApps.Metro/pull/2914)) and never restored, so the property has been inert since. It is still there, still settable, and still ignored.
+`OptionsVisibility` hides the options list without taking `OptionsItemsSource` away. `Collapsed` leaves the pane to the items, `Hidden` keeps the room the options had.
 
-To leave the options block out, simply do not assign `OptionsItemsSource` — that is the difference shown above.
+**In a released version it does nothing.** The template bound the visibility of the options container to it up to and including MahApps.Metro 1.4.2. That line was dropped in 1.5.0 when the pane's scroll bar behaviour was reworked ([#2914](https://github.com/MahApps/MahApps.Metro/pull/2914)) and never put back, so the property was settable and ignored from there on. It reads again on `develop` and ships with the next release ([#4572](https://github.com/MahApps/MahApps.Metro/issues/4572)). Until then, leave the options block out by not assigning `OptionsItemsSource` at all.
 
 ## Selection, content and navigation
 
@@ -677,7 +677,7 @@ The full template, including all selection and hover triggers, is in `HamburgerM
 | `SelectedOptionsIndex` | `int` | `-1` |
 | `OptionsItemCommand` | `ICommand` | `null` |
 | `OptionsItemCommandParameter` | `object` | `null` |
-| `OptionsVisibility` | `Visibility` | `Visible` — inert since 1.5.0, see above |
+| `OptionsVisibility` | `Visibility` | `Visible` — inert from 1.5.0 to 2.4.11, see above |
 
 ### Hamburger button, header and content
 
