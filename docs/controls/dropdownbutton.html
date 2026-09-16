@@ -384,20 +384,22 @@ this.RaiseEvent(e);
 <p>So a <code>Command</code> on the button runs on <em>every</em> click, including the one that opens the menu. If you only want the item commands, leave <code>Command</code> unset.</p>
 <p><code>DropDownButton</code> implements <code>ICommandSource</code> and overrides <code>IsEnabledCore</code>, so the button disables itself while its command reports <code>CanExecute == false</code>.</p>
 <h3 id="giving-the-items-a-command">Giving the items a command</h3>
-<p>Each <code>MenuItem</code> gets one entry from the <code>ItemsSource</code> as its <code>DataContext</code>, so a command on the item has to reach back out of that context. An <code>ItemContainerStyle</code> is the usual way:</p>
+<p>Each <code>MenuItem</code> gets one entry from the <code>ItemsSource</code> as its <code>DataContext</code>, so a command on the item has to reach back out of that context. An <code>ItemContainerStyle</code> is the usual way, and the way out is through the menu:</p>
 <pre><code class="language-xml">&lt;mah:DropDownButton Content=&quot;Genres&quot;
                     DisplayMemberPath=&quot;Name&quot;
                     ItemsSource=&quot;{Binding Genres}&quot;&gt;
     &lt;mah:DropDownButton.ItemContainerStyle&gt;
         &lt;Style BasedOn=&quot;{StaticResource {x:Type MenuItem}}&quot; TargetType=&quot;{x:Type MenuItem}&quot;&gt;
             &lt;Setter Property=&quot;Command&quot;
-                    Value=&quot;{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:DropDownButton}}, Path=DataContext.GenreCommand}&quot; /&gt;
+                    Value=&quot;{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.DataContext.GenreCommand}&quot; /&gt;
             &lt;Setter Property=&quot;CommandParameter&quot; Value=&quot;{Binding Name}&quot; /&gt;
         &lt;/Style&gt;
     &lt;/mah:DropDownButton.ItemContainerStyle&gt;
 &lt;/mah:DropDownButton&gt;
 </code></pre>
-<p><code>{Binding Name}</code> reads the genre, because that is the item's <code>DataContext</code>; the <code>FindAncestor</code> binding walks out to the button to find the view model.</p>
+<p><code>{Binding Name}</code> reads the genre, because that is the item's <code>DataContext</code>. The other one finds the menu the item sits in and asks what the menu is placed on, which is the button inside the template, and takes the view model from there. <code>Path=DataContext.GenreCommand</code> works as well, since the menu inherits the same view model.</p>
+<div class="alert alert-warning"><p><strong>Do not reach further out than the menu.</strong> A <code>FindAncestor</code> binding for the button itself, or for the <code>UserControl</code> or <code>Window</code> around it, finds its target while the items are first built and nothing afterwards: the menu is a popup of its own, and WPF allows a <code>ContextMenu</code> no parent to walk up to. Hand the view a second view model — which is what a navigation framework such as Prism does when you leave a view and come back to it — and the items are built again, this time with nowhere to go, and their commands end up empty. See <a href="https://github.com/MahApps/MahApps.Metro/issues/4494">#4494</a>.</p>
+</div>
 <div class="alert alert-info"><p>The menu is a <code>ContextMenu</code>, but the <strong>right mouse button does nothing</strong> — <code>OnMouseRightButtonUp</code> marks the event handled. The menu opens on a normal left click, or by setting <code>IsExpanded</code>.</p>
 </div>
 <h2 id="properties">Properties</h2>
