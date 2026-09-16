@@ -465,8 +465,8 @@ HamburgerMenu
 <h2 id="options">Options</h2>
 <p><code>OptionsItemsSource</code> fills a second list pinned to the bottom of the pane — the conventional place for settings or an account entry. It has its own <code>OptionsItemTemplate</code>, <code>OptionsItemTemplateSelector</code>, <code>OptionsItemContainerStyle</code>, <code>SelectedOptionsItem</code>, <code>SelectedOptionsIndex</code>, <code>OptionsItemCommand</code> and <code>OptionsItemCommandParameter</code>.</p>
 <p><img src="images/hamburgermenu-options.png" alt="Options" /></p>
-<p><strong><code>OptionsVisibility</code> no longer does anything.</strong> It used to: the control template bound the options container's <code>Visibility</code> to it, and that worked up to and including MahApps.Metro 1.4.2. The binding was dropped in 1.5.0 when the pane's scroll bar behaviour was reworked (<a href="https://github.com/MahApps/MahApps.Metro/pull/2914">#2914</a>) and never restored, so the property has been inert since. It is still there, still settable, and still ignored.</p>
-<p>To leave the options block out, simply do not assign <code>OptionsItemsSource</code> — that is the difference shown above.</p>
+<p><code>OptionsVisibility</code> hides the options list without taking <code>OptionsItemsSource</code> away. <code>Collapsed</code> leaves the pane to the items, <code>Hidden</code> keeps the room the options had.</p>
+<p><strong>In a released version it does nothing.</strong> The template bound the visibility of the options container to it up to and including MahApps.Metro 1.4.2. That line was dropped in 1.5.0 when the pane's scroll bar behaviour was reworked (<a href="https://github.com/MahApps/MahApps.Metro/pull/2914">#2914</a>) and never put back, so the property was settable and ignored from there on. It reads again on <code>develop</code> and ships with the next release (<a href="https://github.com/MahApps/MahApps.Metro/issues/4572">#4572</a>). Until then, leave the options block out by not assigning <code>OptionsItemsSource</code> at all.</p>
 <h2 id="selection-content-and-navigation">Selection, content and navigation</h2>
 <p><code>SelectedItem</code> and <code>SelectedIndex</code> track the item list, <code>SelectedOptionsItem</code> and <code>SelectedOptionsIndex</code> the options list.</p>
 <p><strong>Setting <code>SelectedIndex</code> in XAML does not fill the content area.</strong> The control assigns <code>Content</code> only when an item is actually invoked, so a menu that starts on index 0 comes up with an empty content area. That is why the samples wire up <code>ItemInvoked</code>:</p>
@@ -1166,7 +1166,7 @@ namespace MahAppsMetroHamburgerMenuNavigation.Navigation
 <tr>
 <td><code>OptionsVisibility</code></td>
 <td><code>Visibility</code></td>
-<td><code>Visible</code> — inert since 1.5.0, see above</td>
+<td><code>Visible</code> — inert from 1.5.0 to 2.4.11, see above</td>
 </tr>
 </tbody>
 </table>
