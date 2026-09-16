@@ -63,6 +63,7 @@ await this.ShowLoginAsync("Sign in", "Message", new LoginDialogSettings(this.Met
 | `FirstAuxiliaryButtonText` | `string` | `null` | message |
 | `SecondAuxiliaryButtonText` | `string` | `null` | message |
 | `ColorScheme` | `MetroDialogColorScheme` | `Theme` | all |
+| `MessageForeground` | `Brush` | `null` | message, input, login, progress (`develop` only) |
 | `DialogTitleFontSize` | `double` | `26` | all |
 | `DialogMessageFontSize` | `double` | `15` | all |
 | `DialogButtonFontSize` | `double` | the system message font size | all |
@@ -109,6 +110,22 @@ Nothing here controls *whether* a button appears. That is the `MessageDialogStyl
 ![The three colour schemes](images/dialogsettings-colorscheme.png)
 
 `Inverted` throws if the current theme has no inverse to switch to, which is the case for a custom theme that was never registered as part of a light/dark pair.
+
+## The colour of the message
+
+**`MessageForeground` is on `develop` and ships with the next release.** It is not in 2.4.11.
+
+The message and the title of a dialog both take its `Foreground`, so setting that colours the whole
+dialog. `MessageForeground` colours the message alone, which is what a warning usually wants:
+
+```csharp
+await this.ShowMessageAsync("Careful", "This cannot be undone.",
+                            MessageDialogStyle.AffirmativeAndNegative,
+                            new MetroDialogSettings { MessageForeground = Brushes.Red });
+```
+
+All four dialogs that show a message read it. Left unset, the message goes with the rest of the
+dialog, the way it always has.
 
 ## Font sizes
 

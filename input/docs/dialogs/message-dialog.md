@@ -101,6 +101,7 @@ var settings = new MetroDialogSettings
 | `FirstAuxiliaryButtonText` | `string` | `null` |
 | `SecondAuxiliaryButtonText` | `string` | `null` |
 | `ColorScheme` | `MetroDialogColorScheme` | `Theme` |
+| `MessageForeground` | `Brush` | `null` — goes with the dialog |
 | `DefaultButtonFocus` | `MessageDialogResult` | `Negative` |
 | `DialogResultOnCancel` | `MessageDialogResult?` | `null` |
 | `DialogTitleFontSize` | `double` | `NaN` — theme decides |
@@ -111,6 +112,14 @@ var settings = new MetroDialogSettings
 | `OwnerCanCloseWithDialog` | `bool` | `false` |
 | `CancellationToken` | `CancellationToken` | `None` |
 | `CustomResourceDictionary` | `ResourceDictionary` | `null` |
+
+`MessageForeground` writes the message in a colour of its own. The title and the buttons keep theirs, which `ColorScheme` and the dialog's `Foreground` do not allow: those colour the whole dialog at once. It is on `develop` and ships with the next release.
+
+```csharp
+await this.ShowMessageAsync("Careful", "This cannot be undone.",
+                            MessageDialogStyle.AffirmativeAndNegative,
+                            new MetroDialogSettings { MessageForeground = Brushes.Red });
+```
 
 `MaximumBodyHeight` gives the message area a fixed height and lets it scroll, which keeps a long message from pushing the dialog past the window. Left at `NaN` the area sizes itself to the text.
 
