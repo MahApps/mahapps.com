@@ -129,6 +129,33 @@ The template does not have to show the `Icon` at all — put an icon-pack glyph 
 
 Because the icon is drawn by a [MultiFrameImage](MultiFrameImage), a multi-resolution `.ico` picks the frame that suits the title bar rather than being stretched — `IconScalingMode` is that control's mode.
 
+### Clicking the icon
+
+The icon behaves like the one on any other window: a left click opens the system menu, a double click closes the window. `ShowSystemMenu` and `CloseOnIconDoubleClick` (both `True`) turn either of those off.
+
+A right click is left to the template, so an icon of your own can bring a menu of its own:
+
+```xml
+<mah:MetroWindow.IconTemplate>
+    <DataTemplate>
+        <Image Margin="4" Source="{Binding}">
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Settings" />
+                    <MenuItem Header="About" />
+                </ContextMenu>
+            </Image.ContextMenu>
+        </Image>
+    </DataTemplate>
+</mah:MetroWindow.IconTemplate>
+```
+
+Where the template has none, the right click falls back to the system menu, which is what Windows does on an icon, and `ShowSystemMenuOnRightClick` turns that off.
+
+:::{.alert .alert-warning}
+**In a released version the system menu takes the right click either way**, so a menu in the template never gets its turn. Fixed on `develop` by [#4488](https://github.com/MahApps/MahApps.Metro/issues/4488).
+:::
+
 ## Flyouts and dialogs
 
 `Flyouts` takes the `FlyoutsControl` holding the window's [flyouts](flyouts), and `FlyoutOverlayBrush` paints the dimming behind a modal one.
