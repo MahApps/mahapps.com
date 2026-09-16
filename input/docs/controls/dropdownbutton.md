@@ -56,7 +56,7 @@ So a `Command` on the button runs on *every* click, including the one that opens
 
 ### Giving the items a command
 
-Each `MenuItem` gets one entry from the `ItemsSource` as its `DataContext`, so a command on the item has to reach back out of that context. An `ItemContainerStyle` is the usual way:
+Each `MenuItem` gets one entry from the `ItemsSource` as its `DataContext`, so a command on the item has to reach back out of that context. An `ItemContainerStyle` is the usual way, and the way out is through the menu:
 
 ```xml
 <mah:DropDownButton Content="Genres"
@@ -65,14 +65,18 @@ Each `MenuItem` gets one entry from the `ItemsSource` as its `DataContext`, so a
     <mah:DropDownButton.ItemContainerStyle>
         <Style BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="{x:Type MenuItem}">
             <Setter Property="Command"
-                    Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type mah:DropDownButton}}, Path=DataContext.GenreCommand}" />
+                    Value="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContextMenu}}, Path=PlacementTarget.DataContext.GenreCommand}" />
             <Setter Property="CommandParameter" Value="{Binding Name}" />
         </Style>
     </mah:DropDownButton.ItemContainerStyle>
 </mah:DropDownButton>
 ```
 
-`{Binding Name}` reads the genre, because that is the item's `DataContext`; the `FindAncestor` binding walks out to the button to find the view model.
+`{Binding Name}` reads the genre, because that is the item's `DataContext`. The other one finds the menu the item sits in and asks what the menu is placed on, which is the button inside the template, and takes the view model from there. `Path=DataContext.GenreCommand` works as well, since the menu inherits the same view model.
+
+:::{.alert .alert-warning}
+**Do not reach further out than the menu.** A `FindAncestor` binding for the button itself, or for the `UserControl` or `Window` around it, finds its target while the items are first built and nothing afterwards: the menu is a popup of its own, and WPF allows a `ContextMenu` no parent to walk up to. Hand the view a second view model — which is what a navigation framework such as Prism does when you leave a view and come back to it — and the items are built again, this time with nowhere to go, and their commands end up empty. See [#4494](https://github.com/MahApps/MahApps.Metro/issues/4494).
+:::
 
 :::{.alert .alert-info}
 The menu is a `ContextMenu`, but the **right mouse button does nothing** — `OnMouseRightButtonUp` marks the event handled. The menu opens on a normal left click, or by setting `IsExpanded`.
