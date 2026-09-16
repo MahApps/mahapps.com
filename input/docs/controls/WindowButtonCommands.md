@@ -65,6 +65,12 @@ if (string.IsNullOrWhiteSpace(this.Minimize))
 
 `Restore` is the caption used while the window is maximised, when the middle button restores instead of maximising.
 
+:::{.alert .alert-info}
+**On `develop` these texts usually do not reach the screen at all, and that is deliberate.** The three buttons report themselves to Windows as the window's own caption buttons, through `NonClientControlProperties.HitTestResult` in the template. That is what a snap layout hangs off, along with the hover colours Windows paints and the layout menu on the maximise button. Windows then draws the tooltips as well, in its own wording and the system language.
+
+The properties are still there and still fill the `ToolTip` of the buttons, which is what a template of your own sees. There is no way to have both: a template that leaves the hit test result unset gets its tooltips back and gives up the snap layout along with them. This is [#4487](https://github.com/MahApps/MahApps.Metro/issues/4487).
+:::
+
 ## Styling the three buttons
 
 Six properties, one per button per base colour:
