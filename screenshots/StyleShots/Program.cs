@@ -1616,9 +1616,9 @@ namespace StyleShots
 
             await CaptureAsync("controls", "flipview-bannerforeground",
                 Showcase(
-                    ("BannerForeground=Red", Flip(@"SelectedIndex=""1"" BannerText=""Probe"" BannerBackground=""White"" BannerOpacity=""1"" BannerForeground=""Red""")),
-                    ("Foreground=Red on the FlipView", Flip(@"SelectedIndex=""1"" BannerText=""Probe"" BannerBackground=""White"" BannerOpacity=""1"" Foreground=""Red""")),
-                    ("both", Flip(@"SelectedIndex=""1"" BannerText=""Probe"" BannerBackground=""White"" BannerOpacity=""1"" Foreground=""Blue"" BannerForeground=""Red"""))));
+                    ("BannerForeground=Red", Flip(@"SelectedIndex=""1"" BannerText=""42"" BannerBackground=""White"" BannerOpacity=""1"" BannerForeground=""Red""")),
+                    ("Foreground=Red on the FlipView", Flip(@"SelectedIndex=""1"" BannerText=""42"" BannerBackground=""White"" BannerOpacity=""1"" Foreground=""Red""")),
+                    ("both", Flip(@"SelectedIndex=""1"" BannerText=""42"" BannerBackground=""White"" BannerOpacity=""1"" Foreground=""Blue"" BannerForeground=""Red"""))));
 
             await CaptureAsync("controls", "flipview-index",
                 Showcase(
@@ -3298,7 +3298,7 @@ namespace StyleShots
                     ("a derived style whose own Template only survives horizontally",
                         Xaml(@"<StackPanel>
                                  <StackPanel.Resources>
-                                   <Style x:Key=""Probe"" BasedOn=""{StaticResource MahApps.Styles.Slider.Win10}"" TargetType=""Slider"">
+                                   <Style x:Key=""RedSlider"" BasedOn=""{StaticResource MahApps.Styles.Slider.Win10}"" TargetType=""Slider"">
                                      <Setter Property=""Template"">
                                        <Setter.Value>
                                          <ControlTemplate TargetType=""Slider"">
@@ -3308,8 +3308,8 @@ namespace StyleShots
                                      </Setter>
                                    </Style>
                                  </StackPanel.Resources>
-                                 <Slider Width=""120"" Height=""14"" Margin=""0 0 0 8"" Value=""40"" Style=""{StaticResource Probe}"" />
-                                 <Slider Width=""14"" Height=""80"" Orientation=""Vertical"" Value=""40"" Style=""{StaticResource Probe}"" />
+                                 <Slider Width=""120"" Height=""14"" Margin=""0 0 0 8"" Value=""40"" Style=""{StaticResource RedSlider}"" />
+                                 <Slider Width=""14"" Height=""80"" Orientation=""Vertical"" Value=""40"" Style=""{StaticResource RedSlider}"" />
                                </StackPanel>"))));
 
             await CaptureAsync("styles", "slider-vertical",

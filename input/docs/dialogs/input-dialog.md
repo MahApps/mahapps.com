@@ -48,6 +48,34 @@ var settings = new MetroDialogSettings
 var name = await this.ShowInputAsync("What is your name?", "This will appear on your profile.", settings);
 ```
 
+## Checking what was typed
+
+**`InputDialogSettings` is on `develop` and ships with the next release.** It is not in 2.4.11, where
+the only way to turn an answer down is to take it, look at it and ask again.
+
+Left to itself the dialog hands back whatever is in the box. `InputDialogSettings` adds a check that
+decides whether it may be left at all:
+
+```csharp
+var settings = new InputDialogSettings
+               {
+                   ValidateInput = input => input?.Length >= 3 ? null : "at least three characters"
+               };
+
+var name = await this.ShowInputAsync("What is your name?", "This will appear on your profile.", settings);
+```
+
+The check runs every time the affirmative button is pressed, and on <kbd>Enter</kbd>. Return `null`
+to let the dialog close, or the reason it cannot: the dialog stays where it is, the box is marked the
+way any invalid field is, and what was returned is shown with it. Typing over the line takes the mark
+off again.
+
+Backing out is not checked. The negative button, <kbd>Esc</kbd> and the `CancellationToken` all still
+give `null` straight away, whatever is in the box.
+
+`InputDialogSettings` derives from `MetroDialogSettings`, so everything below applies to it as well,
+and a call that passes plain settings keeps behaving as it always has.
+
 ## Colour scheme
 
 `ColorScheme` works as it does for the other dialogs: `Theme` follows the current theme, `Accented` fills the dialog with the accent colour, `Inverted` uses the inverse of the theme.
@@ -61,6 +89,7 @@ var name = await this.ShowInputAsync("What is your name?", "This will appear on 
 | Setting | Effect on an input dialog |
 | --- | --- |
 | `DefaultText` | prefills the box |
+| `ValidateInput` | on `InputDialogSettings`, `develop` only: decides whether the dialog may be left, see above |
 | `AffirmativeButtonText` | label of the confirm button, `OK` by default |
 | `NegativeButtonText` | label of the cancel button, `Cancel` by default |
 | `ColorScheme` | as above |
@@ -70,7 +99,7 @@ var name = await this.ShowInputAsync("What is your name?", "This will appear on 
 | `CancellationToken` | closes the dialog; the call returns `null` |
 | `CustomResourceDictionary` | resources for the dialog |
 | `FirstAuxiliaryButtonText`, `SecondAuxiliaryButtonText` | **ignored** — an input dialog has exactly two buttons |
-| `DefaultButtonFocus` | **ignored** — focus starts in the text box |
+| `DefaultButtonFocus` | on `develop`: marks the button it names, **ignored** in 2.4.11. The caret starts in the text box either way |
 | `DialogResultOnCancel` | **ignored** — cancelling always gives `null` |
 | `MaximumBodyHeight` | **ignored** — only the message dialog uses it |
 
