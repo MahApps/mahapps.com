@@ -559,6 +559,25 @@ MetroWindow
 &lt;/mah:MetroWindow.IconTemplate&gt;
 </code></pre>
 <p>Because the icon is drawn by a <a href="MultiFrameImage">MultiFrameImage</a>, a multi-resolution <code>.ico</code> picks the frame that suits the title bar rather than being stretched — <code>IconScalingMode</code> is that control's mode.</p>
+<h3 id="clicking-the-icon">Clicking the icon</h3>
+<p>The icon behaves like the one on any other window: a left click opens the system menu, a double click closes the window. <code>ShowSystemMenu</code> and <code>CloseOnIconDoubleClick</code> (both <code>True</code>) turn either of those off.</p>
+<p>A right click is left to the template, so an icon of your own can bring a menu of its own:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow.IconTemplate&gt;
+    &lt;DataTemplate&gt;
+        &lt;Image Margin=&quot;4&quot; Source=&quot;{Binding}&quot;&gt;
+            &lt;Image.ContextMenu&gt;
+                &lt;ContextMenu&gt;
+                    &lt;MenuItem Header=&quot;Settings&quot; /&gt;
+                    &lt;MenuItem Header=&quot;About&quot; /&gt;
+                &lt;/ContextMenu&gt;
+            &lt;/Image.ContextMenu&gt;
+        &lt;/Image&gt;
+    &lt;/DataTemplate&gt;
+&lt;/mah:MetroWindow.IconTemplate&gt;
+</code></pre>
+<p>Where the template has none, the right click falls back to the system menu, which is what Windows does on an icon, and <code>ShowSystemMenuOnRightClick</code> turns that off.</p>
+<div class="alert alert-warning"><p><strong>In a released version the system menu takes the right click either way</strong>, so a menu in the template never gets its turn. Fixed on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4488">#4488</a>.</p>
+</div>
 <h2 id="flyouts-and-dialogs">Flyouts and dialogs</h2>
 <p><code>Flyouts</code> takes the <code>FlyoutsControl</code> holding the window's <a href="flyouts">flyouts</a>, and <code>FlyoutOverlayBrush</code> paints the dimming behind a modal one.</p>
 <table>
@@ -712,6 +731,9 @@ MetroWindow
                     <div class="sidebar-nav-item"><a href="#borders-glow-and-shadow">Borders, glow and shadow</a></div>
                     <div class="sidebar-nav-item"><a href="#the-window-buttons">The window buttons</a></div>
                     <div class="sidebar-nav-item"><a href="#title-bar-commands-and-the-icon">Title-bar commands and the icon</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#clicking-the-icon">Clicking the icon</a></div>
+                        </div>
                     <div class="sidebar-nav-item"><a href="#flyouts-and-dialogs">Flyouts and dialogs</a></div>
                     <div class="sidebar-nav-item"><a href="#a-windowsformshost-over-a-dialog">A WindowsFormsHost over a dialog</a></div>
                     <div class="sidebar-nav-item"><a href="#position-dragging-and-startup">Position, dragging and startup</a></div>
