@@ -57,6 +57,7 @@ This is not in 2.4.11, nor in the 3.0 release candidate. Fixed for the next rele
 | Property | Type | Default | |
 | --- | --- | --- | --- |
 | `SelectedTimeFormat` | `TimePickerFormat` | **`Long`** | `Long` shows seconds, `Short` does not |
+| `SelectedDateTimeFormat` | `string` | `null` | a format of your own, which overrules the enum (on `develop`) |
 | `Culture` | `CultureInfo` | `null` | formatting and the twelve- or twenty-four-hour clock |
 | `IsReadOnly` | `bool` | `False` | |
 
@@ -67,6 +68,16 @@ With no `Culture` the control follows the thread's culture, and a `Language` set
 :::{.alert .alert-warning}
 In a released version the thread is never asked. Without a `Culture` the picker goes by `Language`, which starts out at `en-US` however the thread is set, so a picker nobody said anything to shows an American time on a German machine while the `DatePicker` beside it shows a German date. Set `Culture` and it behaves. Fixed on `develop`, which is [#4064](https://github.com/MahApps/MahApps.Metro/issues/4064).
 :::
+
+### A format of your own
+
+`SelectedDateTimeFormat` takes a [custom format string](https://learn.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings) and is read back through the same format first, so a value the picker wrote always parses:
+
+```xml
+<mah:TimePicker SelectedDateTimeFormat="HH:mm" />
+```
+
+It sits on `TimePickerBase`, so both pickers take one, and [DateTimePicker](DateTimePicker#the-format) covers it in full. So does `DateTimeValidationError`, the event that says what was typed when the field holds something that is not a time — both are new on `develop` ([#4644](https://github.com/MahApps/MahApps.Metro/issues/4644) and [#4645](https://github.com/MahApps/MahApps.Metro/issues/4645)).
 
 ## The drop-down
 

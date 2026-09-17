@@ -18,6 +18,7 @@ Description: A date and time picker with a calendar and a clock
 | --- | --- | --- |
 | `SelectedDateTime` | `DateTime?` | the whole value, date and time together |
 | `SelectedTimeFormat` | `TimePickerFormat` | `Long` (14:30:00), the default, or `Short` (14:30) |
+| `SelectedDateTimeFormat` | `string` | a format of your own, which overrules the two enums (on `develop`) |
 | `Culture` | `CultureInfo` | formatting and the twelve- or twenty-four-hour clock |
 | `IsReadOnly` | `bool` | |
 
@@ -33,6 +34,31 @@ In a released version the thread is never asked. Without a `Culture` the picker 
 
 :::{.alert .alert-info}
 The style sets `IsTodayHighlighted="True"`, so today's date is filled in the accent colour whether or not it is the selected day. Set it to `False` to switch that off.
+:::
+
+## The format
+
+`SelectedTimeFormat` and `SelectedDateFormat` choose between the culture's short and long patterns, and in a released version that is the whole choice. `SelectedDateTimeFormat` says it outright:
+
+```xml
+<mah:DateTimePicker SelectedDateTimeFormat="dd.MM.yyyy HH:mm"
+                    SelectedDateTime="{Binding Appointment}" />
+```
+
+It is a [custom date and time format string](https://learn.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings). Set, it has the first word over both enums; left alone, they go on deciding what the field reads. It holds for the field only — the hour, minute and second lists in the drop-down still go by `HoursItemStringFormat` and the two beside it.
+
+What the user types is read back through the same format first, so a value the picker wrote itself always parses. That matters wherever the culture would make something else of the text: with `Culture="en-US"` and the format above, `03.04.2026` is the third of April going in and the third of April coming back, not the fourth of March. Anything else the culture can still make sense of is accepted as before, so a format costs nothing in what may be typed.
+
+:::{.alert .alert-info}
+**`SelectedDateTimeFormat` is new on `develop`**, which is [#4644](https://github.com/MahApps/MahApps.Metro/issues/4644). It is in neither 2.4.11 nor the 3.0 release candidate. There, the way to a format of your own is a `CultureInfo` with its patterns bent into shape:
+
+```csharp
+var ci = new CultureInfo("de-DE");
+ci.DateTimeFormat.LongTimePattern = "HH:mm";
+picker.Culture = ci;
+```
+
+That reaches the drop-down and the twelve- or twenty-four-hour clock as well, so a culture rewritten for the field changes more than the field.
 :::
 
 ## What the drop-down shows
@@ -198,6 +224,27 @@ Both pickers set a watermark: *Select a date* and *Select a time*. They are ordi
 ## Validation
 
 Both carry `MahApps.Templates.ValidationError`, so a failed binding gets the red border and the popup described on the [Validation](../styles/validation) page.
+
+### When what was typed is not a date
+
+Put something in the field that is not a date and leave it: the picker clears the value and writes the field back from that. `DateTimeValidationError` carries the text that would not parse, and it is the only way to tell that apart from somebody emptying the field on purpose, because both end as a `SelectedDateTime` of null.
+
+```xml
+<mah:DateTimePicker DateTimeValidationError="OnDateTimeValidationError" />
+```
+
+```csharp
+private void OnDateTimeValidationError(object sender, DateTimeValidationErrorEventArgs e)
+{
+    this.hint.Text = $"{e.Text} is not a date I can read.";
+}
+```
+
+It is a routed event, so a form can listen once further up the tree instead of on every picker it holds. An emptied field raises nothing: clearing a date is a thing somebody meant to do.
+
+:::{.alert .alert-info}
+**`DateTimeValidationError` is new on `develop`**, which is [#4645](https://github.com/MahApps/MahApps.Metro/issues/4645). It is in neither 2.4.11 nor the 3.0 release candidate, where there is nothing to hook at all: the value goes, the field is overwritten, and a typo and a deliberately emptied field look exactly alike from the outside.
+:::
 
 ## Related
 
