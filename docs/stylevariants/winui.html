@@ -256,10 +256,24 @@ WinUI
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<div class="alert alert-warning"><p><strong>MahApps.Metro does not ship a WinUI variant.</strong> There is no <code>Styles/WinUI/</code> folder, no <code>WinUI</code> style key anywhere in the library, and nothing to merge — in 2.4.11 or on <code>develop</code>.</p>
+<p>WinUI is what Windows 11 draws: rounded corners, the accent used sparingly, chrome that recedes until you point at it.</p>
+<div class="alert alert-info"><p><strong><code>Styles/WinUI/Controls.xaml</code> is on <code>develop</code> and ships with the next release.</strong> 2.4.11 has no WinUI style at all; there, the drop-in dictionaries further down this page are the whole of it.</p>
 </div>
-<p>What exists instead is a set of <strong>drop-in dictionaries written for this documentation</strong>. They give individual controls a Fluent 2 look — rounded corners, the accent used sparingly, chrome that recedes — and they are not part of the NuGet package. Download the ones you want and merge them into your application.</p>
-<h2 id="the-dictionaries">The dictionaries</h2>
+<h2 id="the-set">The set</h2>
+<p>The set has one style of its own so far, the text box, and hands down the <a href="win10">Win10</a> one for every control it has nothing for yet. That reads thinner than it is. The two looks belong to the same family, so a Windows 10 control sits next to a WinUI one far better than a Metro one would, and every WinUI style that gets written takes one of those places.</p>
+<p>It goes <em>in place of</em> <code>Styles/Controls.xaml</code>, because it merges <code>Styles/Win10/Controls.xaml</code>, which in turn merges <code>Styles/Controls.xaml</code>:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary.MergedDictionaries&gt;
+    &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/WinUI/Controls.xaml&quot; /&gt;
+    &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml&quot; /&gt;
+    &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml&quot; /&gt;
+&lt;/ResourceDictionary.MergedDictionaries&gt;
+</code></pre>
+<p>Merge it into a window or a panel rather than into <code>App.xaml</code> and it reaches that part of the tree alone.</p>
+<h2 id="what-the-library-has-of-its-own">What the library has of its own</h2>
+<p><code>MahApps.Styles.TextBox.WinUI</code> is a light translucent fill, a border you have to look for that is a touch stronger along its bottom edge, and with the caret a solid fill, a line of accent underneath and rounded corners. The delete button comes and goes with the caret the way the UWP box does, while a button carrying a command of your own stays where it is.</p>
+<p>What it is made of sits in the theme as <code>MahApps.Colors.WinUI.*</code> and <code>MahApps.Brushes.TextControl.WinUI.*</code>, taken from the WinUI values themselves, and the border thicknesses and the padding are resources a style of your own can answer differently without replacing the template. <a href="../styles/textbox">TextBox</a> covers it.</p>
+<h2 id="drop-in-dictionaries-from-this-site">Drop-in dictionaries from this site</h2>
+<p>For the controls the set does not reach yet, this documentation ships <strong>drop-in dictionaries</strong> in the same look. They are written for these pages and are not part of the NuGet package, and their keys already read the way the library's do, so nothing has to be renamed when one of them moves in:</p>
 <table>
 <thead>
 <tr>
@@ -286,7 +300,7 @@ WinUI
 </tr>
 </tbody>
 </table>
-<p>Merge them after the library's own <code>Controls.xaml</code>:</p>
+<p>Merge them after whichever of the library's dictionaries you are on:</p>
 <pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
 &lt;ResourceDictionary Source=&quot;Styles/Controls.Calendar.WinUI.xaml&quot; /&gt;
 &lt;ResourceDictionary Source=&quot;Styles/Controls.DateTimePicker.WinUI.xaml&quot; /&gt;
@@ -304,7 +318,7 @@ WinUI
 <li>the <a href="../styles/scrollbars">ScrollBar</a> dictionary <em>is</em> a template replacement, because a WinUI scrollbar's expand-on-hover behaviour cannot be reached from a style at all</li>
 </ul>
 <h2 id="related">Related</h2>
-<p><a href="win10">Win 10 (UWP)</a> — the library does ship a few control styles in that older look, and this site adds more. <a href="clean">Clean</a> and <a href="vs">Visual Studio</a> are the two variants that really are in the package.</p>
+<p><a href="win10">Win 10 (UWP)</a> is the older of the two looks and the one this set falls back on. <a href="clean">Clean</a> and <a href="vs">Visual Studio</a> are variants of a different kind: Clean restyles the window chrome, Visual Studio turns the whole application into a tool window.</p>
 
 
                                         </div>
@@ -313,7 +327,9 @@ WinUI
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#the-dictionaries">The dictionaries</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-set">The set</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-the-library-has-of-its-own">What the library has of its own</a></div>
+                    <div class="sidebar-nav-item"><a href="#drop-in-dictionaries-from-this-site">Drop-in dictionaries from this site</a></div>
                     <div class="sidebar-nav-item"><a href="#styles-not-replacement-templates">Styles, not replacement templates</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>

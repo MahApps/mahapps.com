@@ -322,6 +322,43 @@ TextBox
 </table>
 <p>On the <code>.Button</code> style the click handler is wired unconditionally, so setting <code>ClearTextButton</code> as well makes the button run the command <em>and</em> clear the box.</p>
 <p>Clearing calls <code>TextBox.Clear()</code> and pushes the empty value back through the <code>Text</code> binding, so a bound view model sees the change.</p>
+<h2 id="the-windows-10-and-winui-styles">The Windows 10 and WinUI styles</h2>
+<div class="alert alert-info"><p><strong><code>MahApps.Styles.TextBox.Win10</code> and <code>MahApps.Styles.TextBox.WinUI</code> are on <code>develop</code> and ship with the next release.</strong> Neither is in 2.4.11.</p>
+</div>
+<p>Two further styles draw the box the way Windows draws one rather than the way Metro does. They share a template and differ in what they paint.</p>
+<p><code>MahApps.Styles.TextBox.Win10</code> is a fill darker than the page, a frame two pixels thick all the way round, and the box turning white with the accent around it once the caret is in. <code>MahApps.Styles.TextBox.WinUI</code> is nearly the opposite: a light translucent fill, a border you have to look for that is a touch stronger along its bottom edge, and with the caret a solid fill, a line of accent underneath and rounded corners.</p>
+<p>On both of them the delete button comes and goes with the caret, the way the UWP box does, while a button carrying a <code>ButtonCommand</code> of your own stays where it is.</p>
+<p>What each one is made of sits in the theme, <code>MahApps.Brushes.TextControl.*</code> for the Win10 style and <code>MahApps.Brushes.TextControl.WinUI.*</code> for the other, the WinUI set taken from the WinUI values themselves. Both point <code>ControlsHelper.DisabledBorderBrush</code> at what their own set has for a control with nothing left to say.</p>
+<p>The border thicknesses and the padding are resources too, so a style of your own can answer them differently without replacing the template:</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TextControlBorderThemeThickness</code></td>
+<td>the border with no caret in the box</td>
+</tr>
+<tr>
+<td><code>TextControlBorderThemeThicknessFocused</code></td>
+<td>the border with the caret in it</td>
+</tr>
+<tr>
+<td><code>TextControlThemePadding</code></td>
+<td>the room around the text</td>
+</tr>
+<tr>
+<td><code>TextControlPlaceholderMargin</code></td>
+<td>where the watermark sits</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-warning"><p><strong>Along an edge that only changes colour, keep both thicknesses the same.</strong> A border counts towards the height of the control, so one that grows when the box takes the caret moves everything standing under it — visible at 100% scaling, hidden at 125% by the rounding of the layout. That is why the WinUI style draws its bottom edge two pixels thick either way.</p>
+</div>
+<p>Each of the two is also a whole style set, applied to every control at once rather than box by box: see <a href="../stylevariants/win10">Win 10 (UWP)</a> and <a href="../stylevariants/winui">WinUI</a>.</p>
 <h2 id="watermark">Watermark</h2>
 <p><img src="images/textbox-watermark.png" alt="Watermark, filled, and the floating variant" /></p>
 <pre><code class="language-xml">&lt;TextBox mah:TextBoxHelper.Watermark=&quot;Search&quot; /&gt;
@@ -417,6 +454,7 @@ public string Query { get; set; }
                         <div class="sidebar-nav-children">
                                 <div class="sidebar-nav-item"><a href="#which-flag-shows-the-button">Which flag shows the button</a></div>
                         </div>
+                    <div class="sidebar-nav-item"><a href="#the-windows-10-and-winui-styles">The Windows 10 and WinUI styles</a></div>
                     <div class="sidebar-nav-item"><a href="#watermark">Watermark</a></div>
                     <div class="sidebar-nav-item"><a href="#buttons">Buttons</a></div>
                     <div class="sidebar-nav-item"><a href="#helper-properties">Helper properties</a></div>

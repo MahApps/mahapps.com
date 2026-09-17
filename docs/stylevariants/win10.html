@@ -256,14 +256,23 @@ Win 10 (UWP)
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>Win10 is <strong>not a variant in the sense that <a href="clean">Clean</a> and <a href="vs">Visual Studio</a> are.</strong> There is no <code>Styles/Win10/</code> folder and no dictionary to merge. What the library ships is a handful of individually keyed styles that you apply one control at a time.</p>
+<p>The Win10 styles draw a control the way UWP drew it on Windows 10: a filled accent square for a check box rather than an outline with a tick, a ring with a solid centre for a radio button, a rounded pill for the slider thumb, and a frame two pixels thick around a text box that turns accent-coloured once the caret is in it.</p>
 <p><img src="images/win10-controls.png" alt="The default styles and the Win10 ones" /></p>
-<pre><code class="language-xml">&lt;CheckBox Content=&quot;a check box&quot; Style=&quot;{DynamicResource MahApps.Styles.CheckBox.Win10}&quot; /&gt;
-&lt;RadioButton Content=&quot;a radio button&quot; Style=&quot;{DynamicResource MahApps.Styles.RadioButton.Win10}&quot; /&gt;
-&lt;Slider Value=&quot;40&quot; Style=&quot;{DynamicResource MahApps.Styles.Slider.Win10}&quot; /&gt;
+<p>Three of them are already what a control wears with nothing merged on your side: the <a href="../styles/slider">Slider</a>, the <a href="../controls/rangeslider">RangeSlider</a> and the <a href="../controls/WindowButtonCommands">WindowButtonCommands</a>.</p>
+<h2 id="the-set">The set</h2>
+<div class="alert alert-info"><p><strong><code>Styles/Win10/Controls.xaml</code> is on <code>develop</code> and ships with the next release.</strong> It is not in 2.4.11, where the styles below are individual keys you apply one control at a time.</p>
+</div>
+<p>The set goes <em>in place of</em> <code>Styles/Controls.xaml</code> rather than next to it, because it merges that dictionary itself and puts its own styles in front of it:</p>
+<pre><code class="language-xml">&lt;ResourceDictionary.MergedDictionaries&gt;
+    &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Win10/Controls.xaml&quot; /&gt;
+    &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml&quot; /&gt;
+    &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml&quot; /&gt;
+&lt;/ResourceDictionary.MergedDictionaries&gt;
 </code></pre>
-<p>The Win10 check box is a filled accent square rather than an outline with a tick, the radio button a ring with a solid centre, and the slider thumb a rounded pill instead of a bar.</p>
-<h2 id="what-the-library-provides">What the library provides</h2>
+<p>Everything the library has is still there. What comes out in the Windows 10 look is the <code>Button</code>, the <code>RepeatButton</code>, the <code>CheckBox</code>, the <code>RadioButton</code>, the <code>TextBox</code> and the four <a href="../controls/numericupdown">up-downs</a>; every other control keeps the default look, because the set has nothing of its own for it.</p>
+<p>Merge it into a window or a panel rather than into <code>App.xaml</code> and it reaches that part of the tree alone. The demo does exactly that, to stand the three sets next to each other.</p>
+<h2 id="the-individual-styles">The individual styles</h2>
+<p>Nothing forces the whole set on you. Every style in it has a key, and always has had one:</p>
 <table>
 <thead>
 <tr>
@@ -272,6 +281,10 @@ Win 10 (UWP)
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code>MahApps.Styles.Button.Win10</code>, <code>…Button.Accent.Win10</code></td>
+<td><a href="../styles/buttons">Buttons</a></td>
+</tr>
 <tr>
 <td><code>MahApps.Styles.CheckBox.Win10</code></td>
 <td><a href="../styles/checkbox">CheckBox</a></td>
@@ -283,6 +296,14 @@ Win 10 (UWP)
 <tr>
 <td><code>MahApps.Styles.RadioButton.Win10</code></td>
 <td><a href="../styles/radiobutton">RadioButton</a></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TextBox.Win10</code> (on <code>develop</code>)</td>
+<td><a href="../styles/textbox">TextBox</a></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.NumericUpDown.Win10</code> (on <code>develop</code>)</td>
+<td><a href="../controls/numericupdown">NumericUpDown</a></td>
 </tr>
 <tr>
 <td><code>MahApps.Styles.Slider.Win10</code></td>
@@ -299,13 +320,16 @@ Win 10 (UWP)
 </tbody>
 </table>
 <p>Each brings its own supporting pieces — <code>MahApps.Templates.Slider.Horizontal.Win10</code> and <code>.Vertical.Win10</code>, <code>MahApps.Styles.Thumb.Slider.Win10</code>, the two <code>RepeatButton.Slider.*Track.Win10</code> styles, the range slider's thumb and templates, and light and dark close-button styles for the window buttons.</p>
-<p>To apply one everywhere, declare an implicit style based on it:</p>
+<p>To apply one everywhere without taking the set, declare an implicit style based on it:</p>
 <pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.CheckBox.Win10}&quot; TargetType=&quot;{x:Type CheckBox}&quot; /&gt;
 </code></pre>
+<p><code>MahApps.Styles.CheckBox.DataGrid.Win10</code> is the one style the set leaves out, because a DataGrid column takes its style through <code>ElementStyle</code> and <code>EditingElementStyle</code> rather than by type.</p>
+<div class="alert alert-info"><p><code>MahApps.Styles.NumericUpDown.Win10</code> was called <code>MahApps.Styles.NumericUpDown.Fluent</code> up to and including 2.4.11. What it draws — a border that thickens when the control takes the caret, chevrons on the spin buttons, the text against the left edge — is this look and not the <a href="winui">WinUI</a> one, so it is named for what it is.</p>
+</div>
 <div class="alert alert-info"><p>The <a href="clean">Clean</a> variant uses <code>MahApps.Styles.WindowButtonCommands.Clean.Win10</code> for its title-bar buttons, so if you are already on Clean you have the Win10 window buttons.</p>
 </div>
 <h2 id="additions-from-this-site">Additions from this site</h2>
-<p>The library stops at those six. For several other controls this documentation ships <strong>drop-in dictionaries</strong> in the same look, written for these pages and not part of the package:</p>
+<p>The library stops at the controls above. For several others this documentation ships <strong>drop-in dictionaries</strong> in the same look, written for these pages and not part of the package:</p>
 <table>
 <thead>
 <tr>
@@ -328,9 +352,9 @@ Win 10 (UWP)
 </tr>
 </tbody>
 </table>
-<p>Download them, merge them after <code>Controls.xaml</code>, and read the page each one belongs to — several note what the built-in templates do and do not let a style reach.</p>
+<p>Download them, merge them after the set, and read the page each one belongs to — several note what the built-in templates do and do not let a style reach.</p>
 <h2 id="related">Related</h2>
-<p><a href="winui">WinUI</a> for the newer Fluent look, which the library does not cover at all. <a href="clean">Clean</a> and <a href="vs">Visual Studio</a> for the two real variants.</p>
+<p><a href="winui">WinUI</a> is the newer of the two looks, and its set stands on this one. <a href="clean">Clean</a> and <a href="vs">Visual Studio</a> are variants of a different kind: Clean restyles the window chrome, Visual Studio turns the whole application into a tool window.</p>
 
 
                                         </div>
@@ -339,7 +363,8 @@ Win 10 (UWP)
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#what-the-library-provides">What the library provides</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-set">The set</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-individual-styles">The individual styles</a></div>
                     <div class="sidebar-nav-item"><a href="#additions-from-this-site">Additions from this site</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
