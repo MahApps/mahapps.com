@@ -369,25 +369,7 @@ private void OnQuerySubmitted(object sender, RoutedEventArgs e)
 <p>The box does not filter anything. It says that the text changed and who changed it, and the application answers by filling <code>ItemsSource</code> with whatever it thinks fits. That is the whole contract, and it is deliberate: matching, sorting, casing, accents and the question of what counts as a hit all belong where the data is, not in a set of filter modes here. It is also how WinUI's <code>AutoSuggestBox</code> works.</p>
 <p>So there is no <code>FilterMode</code>, no <code>CustomFilter</code> and no <code>SearchMemberPath</code>. There is a <code>TextChanged</code> event and your own code.</p>
 <h2 id="properties">Properties</h2>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>UpdateTextOnSelect</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-<td>write the picked suggestion into the text box</td>
-</tr>
-</tbody>
-</table>
-<p>Everything else is inherited and works as it does on a <code>ComboBox</code>:</p>
+<p>The control adds none of its own. Everything it needs a <code>ComboBox</code> already has:</p>
 <table>
 <thead>
 <tr>
@@ -530,9 +512,32 @@ private void OnQuerySubmitted(object sender, RoutedEventArgs e)
 </code></pre>
 <p>Restart that timer on every <code>UserInput</code>, and do the asking in its <code>Tick</code>.</p>
 <h2 id="picking-a-suggestion">Picking a suggestion</h2>
-<p>Clicking a suggestion, or arrowing onto one and pressing <kbd>Enter</kbd>, writes it into the text box and submits. What is written is the same text a <code>ComboBox</code> would write, so <code>DisplayMemberPath</code> and <code>TextSearch.TextPath</code> decide it for objects.</p>
-<p>Set <code>UpdateTextOnSelect</code> to <code>False</code> where the suggestions are not text the user is composing but shortcuts to somewhere, a hit list the application opens on its own for instance. The typed text then stays as it was, and <code>QuerySubmitted</code> still hands you the item that was picked.</p>
-<p><kbd>Esc</kbd> closes the list and submits nothing.</p>
+<p>A suggestion the user lands on is written into the text box, and what gets written is the text a <code>ComboBox</code> would write, so <code>DisplayMemberPath</code> and <code>TextSearch.TextPath</code> decide it for objects. Every way of choosing one is a deliberate act, so there is no switch to keep the choice out of the box. Where the box should read differently afterwards, empty for instance, <code>QuerySubmitted</code> is the place to set it.</p>
+<h2 id="the-keyboard">The keyboard</h2>
+<table>
+<thead>
+<tr>
+<th>Key</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><kbd>↓</kbd> <kbd>↑</kbd></td>
+<td>walk the list. The box takes what they land on and marks it, so typing on replaces it and starts a fresh query</td>
+</tr>
+<tr>
+<td><kbd>Enter</kbd></td>
+<td>submit. With a suggestion walked to, <code>ChosenSuggestion</code> is that suggestion; otherwise the typed text is the whole query</td>
+</tr>
+<tr>
+<td><kbd>Esc</kbd></td>
+<td>close the list and submit nothing</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-info"><p><kbd>Esc</kbd> does not bring back what the user had typed before they walked the list. That is how an editable <code>ComboBox</code> has always behaved and the suggestion box does not change it.</p>
+</div>
 <h2 id="styling">Styling</h2>
 <p>The control is styled as <code>MahApps.Styles.AutoSuggestBox</code>, which stands on <code>MahApps.Styles.ComboBox</code>, so the brushes, the fonts, the focus and mouse-over borders and the validation template are the ones every other MahApps input control uses. The template is its own: there is nothing to drop down by hand here, so there is no arrow, and the spot it would sit in takes one button instead.</p>
 <p>The usual <a href="../helper/textboxhelper">TextBoxHelper</a> properties are passed through to the inner text box:</p>
@@ -581,6 +586,7 @@ private void OnQuerySubmitted(object sender, RoutedEventArgs e)
                     <div class="sidebar-nav-item"><a href="#events">Events</a></div>
                     <div class="sidebar-nav-item"><a href="#when-the-list-shows-itself">When the list shows itself</a></div>
                     <div class="sidebar-nav-item"><a href="#picking-a-suggestion">Picking a suggestion</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-keyboard">The keyboard</a></div>
                     <div class="sidebar-nav-item"><a href="#styling">Styling</a></div>
                     <div class="sidebar-nav-item"><a href="#what-a-client-is-told">What a client is told</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
