@@ -59,4 +59,4 @@ The tab look is the most distinctive part: the selected tab is accent-filled and
 
 ## Related
 
-[Clean](clean) is the library's other variant, and a much smaller one. [Win10](win10) is a set of individual control styles rather than a variant, and [WinUI](winui) is not in the library at all.
+[Clean](clean) is the other window variant, and a much smaller one. [Win10](win10) and [WinUI](winui) are a different kind of thing: whole style sets you merge in place of `Controls.xaml`, rather than chrome on top of it.

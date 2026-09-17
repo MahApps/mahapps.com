@@ -2,7 +2,7 @@ Title: Clean
 Description: A quieter window chrome, with a white title bar
 ---
 
-The Clean variant replaces the accent-coloured window chrome with a white title bar, a centred title and dark buttons. It is the smaller of the library's two variants: it restyles the window and four other things, and leaves every ordinary control alone.
+The Clean variant replaces the accent-coloured window chrome with a white title bar, a centred title and dark buttons. It is the smaller of the library's two window variants: it restyles the window and four other things, and leaves every ordinary control alone.
 
 ![The default MetroWindow and the Clean one](images/clean-window.png)
 
@@ -48,4 +48,4 @@ Notice what is *not* in that list: buttons, text boxes, check boxes, lists, tabs
 
 ## Related
 
-[Visual Studio](vs) is the library's other variant and a much broader one. [Win10](win10) and [WinUI](winui) are not variants in the same sense — see those pages.
+[Visual Studio](vs) is the other window variant and a much broader one. [Win10](win10) and [WinUI](winui) are a different kind of thing: whole style sets you merge in place of `Controls.xaml`, rather than chrome on top of it.

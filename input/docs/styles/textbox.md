@@ -55,6 +55,35 @@ On the `.Button` style the click handler is wired unconditionally, so setting `C
 
 Clearing calls `TextBox.Clear()` and pushes the empty value back through the `Text` binding, so a bound view model sees the change.
 
+## The Windows 10 and WinUI styles
+
+:::{.alert .alert-info}
+**`MahApps.Styles.TextBox.Win10` and `MahApps.Styles.TextBox.WinUI` are on `develop` and ship with the next release.** Neither is in 2.4.11.
+:::
+
+Two further styles draw the box the way Windows draws one rather than the way Metro does. They share a template and differ in what they paint.
+
+`MahApps.Styles.TextBox.Win10` is a fill darker than the page, a frame two pixels thick all the way round, and the box turning white with the accent around it once the caret is in. `MahApps.Styles.TextBox.WinUI` is nearly the opposite: a light translucent fill, a border you have to look for that is a touch stronger along its bottom edge, and with the caret a solid fill, a line of accent underneath and rounded corners.
+
+On both of them the delete button comes and goes with the caret, the way the UWP box does, while a button carrying a `ButtonCommand` of your own stays where it is.
+
+What each one is made of sits in the theme, `MahApps.Brushes.TextControl.*` for the Win10 style and `MahApps.Brushes.TextControl.WinUI.*` for the other, the WinUI set taken from the WinUI values themselves. Both point `ControlsHelper.DisabledBorderBrush` at what their own set has for a control with nothing left to say.
+
+The border thicknesses and the padding are resources too, so a style of your own can answer them differently without replacing the template:
+
+| Resource | |
+| --- | --- |
+| `TextControlBorderThemeThickness` | the border with no caret in the box |
+| `TextControlBorderThemeThicknessFocused` | the border with the caret in it |
+| `TextControlThemePadding` | the room around the text |
+| `TextControlPlaceholderMargin` | where the watermark sits |
+
+:::{.alert .alert-warning}
+**Along an edge that only changes colour, keep both thicknesses the same.** A border counts towards the height of the control, so one that grows when the box takes the caret moves everything standing under it — visible at 100% scaling, hidden at 125% by the rounding of the layout. That is why the WinUI style draws its bottom edge two pixels thick either way.
+:::
+
+Each of the two is also a whole style set, applied to every control at once rather than box by box: see [Win 10 (UWP)](../stylevariants/win10) and [WinUI](../stylevariants/winui).
+
 ## Watermark
 
 ![Watermark, filled, and the floating variant](images/textbox-watermark.png)

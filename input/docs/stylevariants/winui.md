@@ -1,14 +1,38 @@
 Title: WinUI
-Description: A Fluent look, assembled from drop-in dictionaries this site provides
+Description: The look Windows 11 draws, as a set that is only getting started
 ---
 
-:::{.alert .alert-warning}
-**MahApps.Metro does not ship a WinUI variant.** There is no `Styles/WinUI/` folder, no `WinUI` style key anywhere in the library, and nothing to merge — in 2.4.11 or on `develop`.
+WinUI is what Windows 11 draws: rounded corners, the accent used sparingly, chrome that recedes until you point at it.
+
+:::{.alert .alert-info}
+**`Styles/WinUI/Controls.xaml` is on `develop` and ships with the next release.** 2.4.11 has no WinUI style at all; there, the drop-in dictionaries further down this page are the whole of it.
 :::
 
-What exists instead is a set of **drop-in dictionaries written for this documentation**. They give individual controls a Fluent 2 look — rounded corners, the accent used sparingly, chrome that recedes — and they are not part of the NuGet package. Download the ones you want and merge them into your application.
+## The set
 
-## The dictionaries
+The set has one style of its own so far, the text box, and hands down the [Win10](win10) one for every control it has nothing for yet. That reads thinner than it is. The two looks belong to the same family, so a Windows 10 control sits next to a WinUI one far better than a Metro one would, and every WinUI style that gets written takes one of those places.
+
+It goes *in place of* `Styles/Controls.xaml`, because it merges `Styles/Win10/Controls.xaml`, which in turn merges `Styles/Controls.xaml`:
+
+```xml
+<ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/WinUI/Controls.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+    <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml" />
+</ResourceDictionary.MergedDictionaries>
+```
+
+Merge it into a window or a panel rather than into `App.xaml` and it reaches that part of the tree alone.
+
+## What the library has of its own
+
+`MahApps.Styles.TextBox.WinUI` is a light translucent fill, a border you have to look for that is a touch stronger along its bottom edge, and with the caret a solid fill, a line of accent underneath and rounded corners. The delete button comes and goes with the caret the way the UWP box does, while a button carrying a command of your own stays where it is.
+
+What it is made of sits in the theme as `MahApps.Colors.WinUI.*` and `MahApps.Brushes.TextControl.WinUI.*`, taken from the WinUI values themselves, and the border thicknesses and the padding are resources a style of your own can answer differently without replacing the template. [TextBox](../styles/textbox) covers it.
+
+## Drop-in dictionaries from this site
+
+For the controls the set does not reach yet, this documentation ships **drop-in dictionaries** in the same look. They are written for these pages and are not part of the NuGet package, and their keys already read the way the library's do, so nothing has to be renamed when one of them moves in:
 
 | | Covers | Page |
 | --- | --- | --- |
@@ -16,7 +40,7 @@ What exists instead is a set of **drop-in dictionaries written for this document
 | [`Controls.DateTimePicker.WinUI.xaml`](../../assets/xaml/Controls.DateTimePicker.WinUI.xaml) | `DateTimePicker`, `TimePicker` | [DateTimePicker](../controls/DateTimePicker), [TimePicker](../controls/TimePicker) |
 | [`Controls.ScrollBar.WinUI.xaml`](../../assets/xaml/Controls.ScrollBar.WinUI.xaml) | `ScrollBar`, `ScrollViewer` | [ScrollBars](../styles/scrollbars) |
 
-Merge them after the library's own `Controls.xaml`:
+Merge them after whichever of the library's dictionaries you are on:
 
 ```xml
 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
@@ -44,4 +68,4 @@ Where it was not possible, the pages say so plainly rather than pretending. Two 
 
 ## Related
 
-[Win 10 (UWP)](win10) — the library does ship a few control styles in that older look, and this site adds more. [Clean](clean) and [Visual Studio](vs) are the two variants that really are in the package.
+[Win 10 (UWP)](win10) is the older of the two looks and the one this set falls back on. [Clean](clean) and [Visual Studio](vs) are variants of a different kind: Clean restyles the window chrome, Visual Studio turns the whole application into a tool window.
