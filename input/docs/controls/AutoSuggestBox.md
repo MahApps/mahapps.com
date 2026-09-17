@@ -48,11 +48,7 @@ So there is no `FilterMode`, no `CustomFilter` and no `SearchMemberPath`. There 
 
 ## Properties
 
-| Property | Type | Default | |
-| --- | --- | --- | --- |
-| `UpdateTextOnSelect` | `bool` | `True` | write the picked suggestion into the text box |
-
-Everything else is inherited and works as it does on a `ComboBox`:
+The control adds none of its own. Everything it needs a `ComboBox` already has:
 
 | Property | |
 | --- | --- |
@@ -134,11 +130,19 @@ Restart that timer on every `UserInput`, and do the asking in its `Tick`.
 
 ## Picking a suggestion
 
-Clicking a suggestion, or arrowing onto one and pressing <kbd>Enter</kbd>, writes it into the text box and submits. What is written is the same text a `ComboBox` would write, so `DisplayMemberPath` and `TextSearch.TextPath` decide it for objects.
+A suggestion the user lands on is written into the text box, and what gets written is the text a `ComboBox` would write, so `DisplayMemberPath` and `TextSearch.TextPath` decide it for objects. Every way of choosing one is a deliberate act, so there is no switch to keep the choice out of the box. Where the box should read differently afterwards, empty for instance, `QuerySubmitted` is the place to set it.
 
-Set `UpdateTextOnSelect` to `False` where the suggestions are not text the user is composing but shortcuts to somewhere, a hit list the application opens on its own for instance. The typed text then stays as it was, and `QuerySubmitted` still hands you the item that was picked.
+## The keyboard
 
-<kbd>Esc</kbd> closes the list and submits nothing.
+| Key | |
+| --- | --- |
+| <kbd>↓</kbd> <kbd>↑</kbd> | walk the list. The box takes what they land on and marks it, so typing on replaces it and starts a fresh query |
+| <kbd>Enter</kbd> | submit. With a suggestion walked to, `ChosenSuggestion` is that suggestion; otherwise the typed text is the whole query |
+| <kbd>Esc</kbd> | close the list and submit nothing |
+
+:::{.alert .alert-info}
+<kbd>Esc</kbd> does not bring back what the user had typed before they walked the list. That is how an editable `ComboBox` has always behaved and the suggestion box does not change it.
+:::
 
 ## Styling
 
