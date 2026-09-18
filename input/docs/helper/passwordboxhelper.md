@@ -29,7 +29,7 @@ The library shows the indicator by looking the template part up and setting its 
 
 ## The reveal button
 
-The reveal button is not part of the base style. It comes with `MahApps.Styles.PasswordBox.Button.Revealed` or `MahApps.Styles.PasswordBox.Win8`, and shows the password only while it is held down:
+The reveal button is not part of the base style. It comes with `MahApps.Styles.PasswordBox.Button.Revealed` (called `MahApps.Styles.PasswordBox.Revealed` on `develop`) or `MahApps.Styles.PasswordBox.Win8`, and shows the password only while it is held down:
 
 ```xml
 <PasswordBox Style="{StaticResource MahApps.Styles.PasswordBox.Button.Revealed}"

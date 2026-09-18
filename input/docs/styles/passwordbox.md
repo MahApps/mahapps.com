@@ -33,9 +33,13 @@ Four styles are meant to be set on a `PasswordBox`. Each inherits from the one a
 | Style | |
 | --- | --- |
 | `MahApps.Styles.PasswordBox` | the base. What the implicit style applies |
-| `MahApps.Styles.PasswordBox.Button` | adds a command button, driven by `TextBoxHelper.ButtonCommand` |
-| `MahApps.Styles.PasswordBox.Button.Revealed` | adds a button that shows the password while it is held down |
-| `MahApps.Styles.PasswordBox.Win8` | `Button.Revealed` with a larger font, no focus visual and `AllowDrop` |
+| `MahApps.Styles.PasswordBox.Button` | adds a command button, driven by `TextBoxHelper.ButtonCommand`. Gone on `develop` |
+| `MahApps.Styles.PasswordBox.Button.Revealed` | adds a button that shows the password while it is held down. Called `MahApps.Styles.PasswordBox.Revealed` on `develop` |
+| `MahApps.Styles.PasswordBox.Win8` | the revealed style with a larger font, no focus visual and `AllowDrop` |
+
+:::{.alert .alert-info}
+Two of those names changed after 2.4.11 and the keys on `develop` are fewer: `MahApps.Styles.PasswordBox.Button.Revealed` is now `MahApps.Styles.PasswordBox.Revealed`, and `MahApps.Styles.PasswordBox.Button` is gone, since the base style runs `ClearControlCommand` itself rather than leaving the button to a style of its own. Three styles instead of four, and on `develop` the code below needs the shorter name.
+:::
 
 ```xml
 <PasswordBox Style="{StaticResource MahApps.Styles.PasswordBox.Button.Revealed}" />
@@ -93,6 +97,8 @@ The base style and the `.Button` styles put the same button in the same place, b
 | `MahApps.Styles.PasswordBox` | `TextBoxHelper.ClearTextButton` is `True` | clears the box |
 | `MahApps.Styles.PasswordBox.Button` | always — the style sets `TextBoxHelper.TextButton` | runs `ButtonCommand` |
 | `MahApps.Styles.PasswordBox.Button.Revealed` | `TextBoxHelper.ClearTextButton` is `True` | clears the box |
+
+On `develop` the middle row is gone with the style, and the last one is called `MahApps.Styles.PasswordBox.Revealed`.
 
 ### Clear button
 
