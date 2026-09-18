@@ -400,6 +400,12 @@ TimePicker
 <td><code>Long</code> shows seconds, <code>Short</code> does not</td>
 </tr>
 <tr>
+<td><code>SelectedDateTimeFormat</code></td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>a format of your own, which overrules the enum (on <code>develop</code>)</td>
+</tr>
+<tr>
 <td><code>Culture</code></td>
 <td><code>CultureInfo</code></td>
 <td><code>null</code></td>
@@ -417,6 +423,11 @@ TimePicker
 <p>With no <code>Culture</code> the control follows the thread's culture, and a <code>Language</code> set on it or passed down from further up wins over that. <code>de-DE</code> gives a twenty-four-hour clock and drops the AM/PM list from the drop-down.</p>
 <div class="alert alert-warning"><p>In a released version the thread is never asked. Without a <code>Culture</code> the picker goes by <code>Language</code>, which starts out at <code>en-US</code> however the thread is set, so a picker nobody said anything to shows an American time on a German machine while the <code>DatePicker</code> beside it shows a German date. Set <code>Culture</code> and it behaves. Fixed on <code>develop</code>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4064">#4064</a>.</p>
 </div>
+<h3 id="a-format-of-your-own">A format of your own</h3>
+<p><code>SelectedDateTimeFormat</code> takes a <a href="https://learn.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings">custom format string</a> and is read back through the same format first, so a value the picker wrote always parses:</p>
+<pre><code class="language-xml">&lt;mah:TimePicker SelectedDateTimeFormat=&quot;HH:mm&quot; /&gt;
+</code></pre>
+<p>It sits on <code>TimePickerBase</code>, so both pickers take one, and <a href="DateTimePicker#the-format">DateTimePicker</a> covers it in full. So does <code>DateTimeValidationError</code>, the event that says what was typed when the field holds something that is not a time — both are new on <code>develop</code> (<a href="https://github.com/MahApps/MahApps.Metro/issues/4644">#4644</a> and <a href="https://github.com/MahApps/MahApps.Metro/issues/4645">#4645</a>).</p>
 <h2 id="the-drop-down">The drop-down</h2>
 <p><img src="images/timepicker-dropdown.png" alt="The clock and the three lists" /></p>
 <table>
@@ -534,6 +545,9 @@ TimePicker
                     <div class="sidebar-nav-item"><a href="#how-it-differs-from-datetimepicker">How it differs from DateTimePicker</a></div>
                     <div class="sidebar-nav-item"><a href="#the-value">The value</a></div>
                     <div class="sidebar-nav-item"><a href="#format-and-culture">Format and culture</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#a-format-of-your-own">A format of your own</a></div>
+                        </div>
                     <div class="sidebar-nav-item"><a href="#the-drop-down">The drop-down</a></div>
                     <div class="sidebar-nav-item"><a href="#two-nicer-alternatives">Two nicer alternatives</a></div>
                         <div class="sidebar-nav-children">

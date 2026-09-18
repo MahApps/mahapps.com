@@ -360,6 +360,11 @@ DateTimePicker
 <td><code>Long</code> (14:30:00), the default, or <code>Short</code> (14:30)</td>
 </tr>
 <tr>
+<td><code>SelectedDateTimeFormat</code></td>
+<td><code>string</code></td>
+<td>a format of your own, which overrules the two enums (on <code>develop</code>)</td>
+</tr>
+<tr>
 <td><code>Culture</code></td>
 <td><code>CultureInfo</code></td>
 <td>formatting and the twelve- or twenty-four-hour clock</td>
@@ -377,6 +382,20 @@ DateTimePicker
 </div>
 <p><code>DateTimePicker</code> also takes over the <code>DatePicker</code> properties for the calendar half: <code>DisplayDate</code>, <code>DisplayDateStart</code>, <code>DisplayDateEnd</code>, <code>FirstDayOfWeek</code>, <code>IsTodayHighlighted</code> and <code>SelectedDateFormat</code>.</p>
 <div class="alert alert-info"><p>The style sets <code>IsTodayHighlighted=&quot;True&quot;</code>, so today's date is filled in the accent colour whether or not it is the selected day. Set it to <code>False</code> to switch that off.</p>
+</div>
+<h2 id="the-format">The format</h2>
+<p><code>SelectedTimeFormat</code> and <code>SelectedDateFormat</code> choose between the culture's short and long patterns, and in a released version that is the whole choice. <code>SelectedDateTimeFormat</code> says it outright:</p>
+<pre><code class="language-xml">&lt;mah:DateTimePicker SelectedDateTimeFormat=&quot;dd.MM.yyyy HH:mm&quot;
+                    SelectedDateTime=&quot;{Binding Appointment}&quot; /&gt;
+</code></pre>
+<p>It is a <a href="https://learn.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings">custom date and time format string</a>. Set, it has the first word over both enums; left alone, they go on deciding what the field reads. It holds for the field only — the hour, minute and second lists in the drop-down still go by <code>HoursItemStringFormat</code> and the two beside it.</p>
+<p>What the user types is read back through the same format first, so a value the picker wrote itself always parses. That matters wherever the culture would make something else of the text: with <code>Culture=&quot;en-US&quot;</code> and the format above, <code>03.04.2026</code> is the third of April going in and the third of April coming back, not the fourth of March. Anything else the culture can still make sense of is accepted as before, so a format costs nothing in what may be typed.</p>
+<div class="alert alert-info"><p><strong><code>SelectedDateTimeFormat</code> is new on <code>develop</code></strong>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4644">#4644</a>. It is in neither 2.4.11 nor the 3.0 release candidate. There, the way to a format of your own is a <code>CultureInfo</code> with its patterns bent into shape:</p>
+<pre><code class="language-csharp">var ci = new CultureInfo(&quot;de-DE&quot;);
+ci.DateTimeFormat.LongTimePattern = &quot;HH:mm&quot;;
+picker.Culture = ci;
+</code></pre>
+<p>That reaches the drop-down and the twelve- or twenty-four-hour clock as well, so a culture rewritten for the field changes more than the field.</p>
 </div>
 <h2 id="what-the-drop-down-shows">What the drop-down shows</h2>
 <table>
@@ -532,6 +551,18 @@ DateTimePicker
 <p><code>DatePickerHelper.DropDownButtonContent</code> is the glyph on the button — the <code>TimePicker</code> style points it at a clock path, the <code>DateTimePicker</code> keeps the calendar one.</p>
 <h2 id="validation">Validation</h2>
 <p>Both carry <code>MahApps.Templates.ValidationError</code>, so a failed binding gets the red border and the popup described on the <a href="../styles/validation">Validation</a> page.</p>
+<h3 id="when-what-was-typed-is-not-a-date">When what was typed is not a date</h3>
+<p>Put something in the field that is not a date and leave it: the picker clears the value and writes the field back from that. <code>DateTimeValidationError</code> carries the text that would not parse, and it is the only way to tell that apart from somebody emptying the field on purpose, because both end as a <code>SelectedDateTime</code> of null.</p>
+<pre><code class="language-xml">&lt;mah:DateTimePicker DateTimeValidationError=&quot;OnDateTimeValidationError&quot; /&gt;
+</code></pre>
+<pre><code class="language-csharp">private void OnDateTimeValidationError(object sender, DateTimeValidationErrorEventArgs e)
+{
+    this.hint.Text = $&quot;{e.Text} is not a date I can read.&quot;;
+}
+</code></pre>
+<p>It is a routed event, so a form can listen once further up the tree instead of on every picker it holds. An emptied field raises nothing: clearing a date is a thing somebody meant to do.</p>
+<div class="alert alert-info"><p><strong><code>DateTimeValidationError</code> is new on <code>develop</code></strong>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4645">#4645</a>. It is in neither 2.4.11 nor the 3.0 release candidate, where there is nothing to hook at all: the value goes, the field is overwritten, and a typo and a deliberately emptied field look exactly alike from the outside.</p>
+</div>
 <h2 id="related">Related</h2>
 <p><a href="TimePicker">TimePicker</a> for the time alone, <a href="../styles/datepicker">DatePicker</a> for the date alone, and <a href="../styles/calendar">Calendar</a> for the calendar the drop-down shows — including the two variants these styles reuse.</p>
 
@@ -543,6 +574,7 @@ DateTimePicker
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-value">The value</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-format">The format</a></div>
                     <div class="sidebar-nav-item"><a href="#what-the-drop-down-shows">What the drop-down shows</a></div>
                     <div class="sidebar-nav-item"><a href="#the-now-button">The Now button</a></div>
                     <div class="sidebar-nav-item"><a href="#two-nicer-alternatives">Two nicer alternatives</a></div>
@@ -552,6 +584,9 @@ DateTimePicker
                         </div>
                     <div class="sidebar-nav-item"><a href="#watermarks-and-the-clear-button">Watermarks and the clear button</a></div>
                     <div class="sidebar-nav-item"><a href="#validation">Validation</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#when-what-was-typed-is-not-a-date">When what was typed is not a date</a></div>
+                        </div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
