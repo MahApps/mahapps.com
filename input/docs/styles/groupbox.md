@@ -19,7 +19,7 @@ A `GroupBox` gets an accent-filled header band and a bordered body. There are tw
 | Style | Lives in | |
 | --- | --- | --- |
 | `MahApps.Styles.GroupBox` | `Controls.xaml` | the implicit one: accent header band, bordered body |
-| `MahApps.Styles.GroupBox.Clean` | `Styles/Clean/Controls.xaml` | no band; the header is plain text above a hairline |
+| `MahApps.Styles.GroupBox.Clean` | `Styles/Clean/Controls.xaml` | no band; the header is plain text, and a hairline runs down either side of the body |
 | `MahApps.Styles.GroupBox.VisualStudio` | `Styles/VS/Controls.xaml` | the Visual Studio tool-window look |
 
 :::{.alert .alert-warning}
