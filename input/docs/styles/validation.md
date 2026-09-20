@@ -37,8 +37,12 @@ It opens on any of three conditions, all of which also require the control to ac
 | | |
 | --- | --- |
 | the control has keyboard focus within it | the default: tab into a bad field and the message appears |
-| the pointer is over the red triangle, with `ValidationHelper.ShowValidationErrorOnMouseOver` | opt in per control |
-| the pointer is over the triangle, with `ShowValidationErrorOnMouseOver` on the popup | the same, set on the popup instead |
+| the pointer is over the red triangle | opt in with `ValidationHelper.ShowValidationErrorOnMouseOver` on the control or with `ShowValidationErrorOnMouseOver` on the popup, either one is enough |
+| `ValidationHelper.AlwaysShowValidationError` is on | the message stays up whatever the focus and the pointer do |
+
+:::{.alert .alert-info}
+`AlwaysShowValidationError` is new in `develop` and not in 2.4.11, and so is `ValidationHelper.ShowValidationErrorOnKeyboardFocus`, which is how the first row is switched off. On `develop` that row wants both the property on the control, `True` unless somebody says otherwise, and `ShowValidationErrorOnKeyboardFocus` on the popup.
+:::
 
 ```xml
 <TextBox Text="{Binding Age, ValidatesOnDataErrors=True}"
@@ -98,4 +102,4 @@ The template also reads `ControlsHelper.CornerRadius` from the adorned control a
 
 ## Related
 
-[TextBox](textbox), [ComboBox](combobox) and [DatePicker](datepicker) are the controls that carry the template; [ValidationHelper](../helper/validationhelper) has the two attached properties.
+[TextBox](textbox), [ComboBox](combobox) and [DatePicker](datepicker) are the controls that carry the template; [ValidationHelper](../helper/validationhelper) has the switches.

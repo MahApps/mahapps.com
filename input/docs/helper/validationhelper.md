@@ -3,12 +3,18 @@ Title: ValidationHelper
 Description: How the validation error popup behaves
 ---
 
-Applies to any `UIElement`. Two properties, both about the popup MahApps shows next to a control whose binding failed validation.
+Applies to any `UIElement`. Four properties, all of them about the popup MahApps shows next to a control whose binding failed validation.
 
 | Property | Type | Default | |
 | --- | --- | --- | --- |
 | `CloseOnMouseLeftButtonDown` | `bool` | `false` | clicking anywhere dismisses the popup |
-| `ShowValidationErrorOnMouseOver` | `bool` | `false` | show the error when the pointer is over the control rather than only while it has focus |
+| `ShowValidationErrorOnMouseOver` | `bool` | `false` | show the error while the pointer is over the red triangle rather than only while the control has focus |
+| `ShowValidationErrorOnKeyboardFocus` | `bool` | `true` | the focus route itself, which this is what switches off |
+| `AlwaysShowValidationError` | `bool` | `false` | keep the message up whatever the focus and the pointer do |
+
+:::{.alert .alert-info}
+The last two are new in `develop` and are not in 2.4.11, which has the first two.
+:::
 
 ```xml
 <TextBox Text="{Binding Age, ValidatesOnDataErrors=True}"
