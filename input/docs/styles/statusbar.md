@@ -100,6 +100,24 @@ A `StatusBarItem` is a `ContentControl`, so anything goes in it — a [ProgressB
 </StatusBarItem>
 ```
 
+## Something at the right end
+
+A status bar arranges its items in a `DockPanel`, so `DockPanel.Dock="Right"` is what moves one to the other side. That alone does not do it: the panel a status bar brings has `LastChildFill` on, the last item therefore takes everything that is left over, and its content stays where it started. Hand the bar a panel of its own and the docking works:
+
+```xml
+<StatusBar>
+    <StatusBar.ItemsPanel>
+        <ItemsPanelTemplate>
+            <DockPanel LastChildFill="False" />
+        </ItemsPanelTemplate>
+    </StatusBar.ItemsPanel>
+    <StatusBarItem Content="Ready" />
+    <StatusBarItem DockPanel.Dock="Right" Content="Ln 42, Col 7" />
+</StatusBar>
+```
+
+That is WPF's doing rather than the library's: a status bar with no style at all behaves the same way.
+
 ## The Clean variant
 
 `Styles/Clean/StatusBar.xaml` holds `MahApps.Styles.StatusBar.Clean` and `MahApps.Styles.Separator.Clean`. Each is the ordinary style with one setter changed — the foreground and the separator colour move from `IdealForeground` to `MahApps.Brushes.ThemeForeground`, so the text is dark rather than light.
