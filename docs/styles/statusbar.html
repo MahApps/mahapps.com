@@ -352,6 +352,19 @@ StatusBar
     &lt;ProgressBar Width=&quot;120&quot; Height=&quot;10&quot; IsIndeterminate=&quot;True&quot; /&gt;
 &lt;/StatusBarItem&gt;
 </code></pre>
+<h2 id="something-at-the-right-end">Something at the right end</h2>
+<p>A status bar arranges its items in a <code>DockPanel</code>, so <code>DockPanel.Dock=&quot;Right&quot;</code> is what moves one to the other side. That alone does not do it: the panel a status bar brings has <code>LastChildFill</code> on, the last item therefore takes everything that is left over, and its content stays where it started. Hand the bar a panel of its own and the docking works:</p>
+<pre><code class="language-xml">&lt;StatusBar&gt;
+    &lt;StatusBar.ItemsPanel&gt;
+        &lt;ItemsPanelTemplate&gt;
+            &lt;DockPanel LastChildFill=&quot;False&quot; /&gt;
+        &lt;/ItemsPanelTemplate&gt;
+    &lt;/StatusBar.ItemsPanel&gt;
+    &lt;StatusBarItem Content=&quot;Ready&quot; /&gt;
+    &lt;StatusBarItem DockPanel.Dock=&quot;Right&quot; Content=&quot;Ln 42, Col 7&quot; /&gt;
+&lt;/StatusBar&gt;
+</code></pre>
+<p>That is WPF's doing rather than the library's: a status bar with no style at all behaves the same way.</p>
 <h2 id="the-clean-variant">The Clean variant</h2>
 <p><code>Styles/Clean/StatusBar.xaml</code> holds <code>MahApps.Styles.StatusBar.Clean</code> and <code>MahApps.Styles.Separator.Clean</code>. Each is the ordinary style with one setter changed — the foreground and the separator colour move from <code>IdealForeground</code> to <code>MahApps.Brushes.ThemeForeground</code>, so the text is dark rather than light.</p>
 <div class="alert alert-warning"><p>The dictionary is not merged by <code>Controls.xaml</code>; add <code>Styles/Clean/StatusBar.xaml</code> first. And note that the variant does <strong>not</strong> change the background — the window-title triggers are inherited along with everything else, so on a dark accent you would be putting dark text on it. It is meant for the Clean style set, where the title brush is light.</p>
@@ -370,6 +383,7 @@ StatusBar
                     <div class="sidebar-nav-item"><a href="#the-separator-is-not-applied-for-you">The separator is not applied for you</a></div>
                     <div class="sidebar-nav-item"><a href="#fonts">Fonts</a></div>
                     <div class="sidebar-nav-item"><a href="#items">Items</a></div>
+                    <div class="sidebar-nav-item"><a href="#something-at-the-right-end">Something at the right end</a></div>
                     <div class="sidebar-nav-item"><a href="#the-clean-variant">The Clean variant</a></div>
             </div>
         </div>

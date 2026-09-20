@@ -390,7 +390,7 @@ ComboBox
 </code></pre>
 <p><a href="../helper/itemhelper">ItemHelper</a> has the full list of states.</p>
 <h3 id="long-lists">Long lists</h3>
-<p><code>MahApps.Styles.ComboBox.Virtualized</code> is the base style plus <code>VirtualizingStackPanel.IsVirtualizing</code>, <code>IsVirtualizingWhenGrouping</code> and recycling mode. Reach for it once the list is long enough that opening it stutters:</p>
+<p><code>MahApps.Styles.ComboBox.Virtualized</code> is the base style plus <code>VirtualizingStackPanel.IsVirtualizing</code>, <code>IsVirtualizingWhenGrouping</code> and recycling mode. The drop down virtualises without it as well, so what the key really buys is the recycling: the containers of the rows scrolled past are handed on instead of left behind, which is what stops a long list from stuttering the further it is scrolled:</p>
 <pre><code class="language-xml">&lt;ComboBox Style=&quot;{StaticResource MahApps.Styles.ComboBox.Virtualized}&quot;
           ItemsSource=&quot;{Binding Albums}&quot;
           DisplayMemberPath=&quot;Title&quot;

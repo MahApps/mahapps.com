@@ -449,6 +449,10 @@ HamburgerMenu
 <p><code>PanePlacement</code> moves the whole pane to the other side:</p>
 <p><img src="images/hamburgermenu-paneplacement.png" alt="PanePlacement" /></p>
 <p><code>VerticalScrollBarOnLeftSide</code> puts the item list's scroll bar on the left, which reads better when the pane sits on the right.</p>
+<p><code>VerticalScrollBarVisibility</code> says when the item list shows that scroll bar. The default <code>Auto</code> fades it in while the pointer is over the open pane and fades it out again a second after the pointer has left, so a pane with more items than room looks exactly like one without until somebody hovers over it. <code>Visible</code> keeps the bar there for as long as the pane is open, which is what you want when the reader should see at a glance that the menu goes on. <code>Hidden</code> and <code>Disabled</code> take it away. <code>OptionsVerticalScrollBarVisibility</code> does the same for the options list at the bottom, where the default is <code>Disabled</code>. A closed pane never shows a bar, whatever the setting, since it would sit on top of the icons.</p>
+<pre><code class="language-xml">&lt;mah:HamburgerMenu VerticalScrollBarVisibility=&quot;Visible&quot; /&gt;
+</code></pre>
+<p><strong>Both properties are new on <code>develop</code> and ship with the next release</strong> (<a href="https://github.com/MahApps/MahApps.Metro/issues/4549">#4549</a>). Up to and including 2.4.11 the two lists get <code>Auto</code> and <code>Disabled</code> from the template, where nothing can override them: <code>ScrollViewer.VerticalScrollBarVisibility</code> on the menu itself does not reach the lists inside it.</p>
 <h2 id="the-hamburger-button-and-the-pane-header">The hamburger button and the pane header</h2>
 <p><code>HamburgerMenuHeaderTemplate</code> fills the strip at the top of the pane, next to — or instead of — the hamburger button. Set <code>HamburgerVisibility</code> to <code>Collapsed</code> when your own toggle lives elsewhere.</p>
 <p><img src="images/hamburgermenu-header.png" alt="Pane header" /></p>
@@ -1105,6 +1109,11 @@ namespace MahAppsMetroHamburgerMenuNavigation.Navigation
 <td><code>False</code></td>
 </tr>
 <tr>
+<td><code>VerticalScrollBarVisibility</code></td>
+<td><code>ScrollBarVisibility</code></td>
+<td><code>Auto</code></td>
+</tr>
+<tr>
 <td><code>ItemFocusVisualStyle</code></td>
 <td><code>Style</code></td>
 <td>read-only, recalculated by the control</td>
@@ -1145,6 +1154,11 @@ namespace MahAppsMetroHamburgerMenuNavigation.Navigation
 <td><code>OptionsItemContainerStyle</code></td>
 <td><code>Style</code></td>
 <td><code>MahApps.Styles.ListBoxItem.HamburgerMenuItem</code></td>
+</tr>
+<tr>
+<td><code>OptionsVerticalScrollBarVisibility</code></td>
+<td><code>ScrollBarVisibility</code></td>
+<td><code>Disabled</code></td>
 </tr>
 <tr>
 <td><code>SelectedOptionsItem</code></td>

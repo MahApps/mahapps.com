@@ -291,7 +291,7 @@ Buttons
 </tr>
 </tbody>
 </table>
-<div class="alert alert-info"><p>Look at the captions in the figure above: the default style upper-cases its content, but the square styles set <code>ContentCharacterCasing</code> to <strong><code>Lower</code></strong>, so <code>Content=&quot;Save&quot;</code> comes out as <em>save</em>. It is a deliberate part of the look rather than an accident, but it surprises people who expect the content verbatim. Set the property to <code>Normal</code> if you want it as written.</p>
+<div class="alert alert-info"><p>Look at the captions in the figure above: the default style upper-cases its content, but the square styles set <code>ContentCharacterCasing</code> to <strong><code>Lower</code></strong>, so <code>Content=&quot;Save&quot;</code> comes out as <em>save</em>. It is a deliberate part of the look rather than an accident, but it surprises people who expect the content verbatim. Set the property to <code>Normal</code> if you want it as written, or, since both casings come out of resources rather than out of the styles, override <code>MahApps.CharacterCasing.Button.Square</code> once and every square button follows. The default style reads <code>MahApps.CharacterCasing.Button</code> the same way.</p>
 </div>
 <p><code>MahApps.Styles.Button.MetroSquare</code> is a third square variant, and it leaves the casing alone:</p>
 <p><img src="images/buttons-metrosquare.png" alt="MetroSquare and its accented variant" /></p>
@@ -313,6 +313,7 @@ Buttons
 </tr>
 </tbody>
 </table>
+<p><strong>Both of those keys are on their way out.</strong> They were dropped from the library in July 2022 as unused, and no release carries that removal yet, so 2.4.11 still has them and the next version will not. The nearest thing left afterwards is <code>MahApps.Styles.Button.Square</code> with <code>ControlsHelper.ContentCharacterCasing</code> back at <code>Normal</code>.</p>
 <h2 id="circle-flat-and-chromeless">Circle, flat and chromeless</h2>
 <p><img src="images/buttons-circle-flat.png" alt="A circle button, a flat button and a chromeless one" /></p>
 <table>
@@ -345,6 +346,31 @@ Buttons
 <p><code>Chromeless</code> is what the library uses for the small buttons inside a text box or a picker, and it is the one to reach for when a button should read as part of another control rather than as a button.</p>
 <div class="alert alert-info"><p>The flat button needs no extra import. Older documentation says to merge <code>Styles/Controls.FlatButton.xaml</code> — that dictionary still exists, but all it does is make the flat style <strong>implicit for every <code>Button</code> in scope</strong>. <code>MahApps.Styles.Button.Flat</code> itself lives in <code>Controls.Buttons.xaml</code>, which <code>Controls.xaml</code> already merges, so referencing it by key works out of the box.</p>
 </div>
+<h2 id="the-windows-10-set">The Windows 10 set</h2>
+<p><strong>Three more keys are on <code>develop</code> and in no release yet.</strong> Not one of them is in 2.4.11:</p>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Button.Win10</code></td>
+<td>the flat button with a two pixel border and the content font at its normal weight, in place of the bold, upper-cased button font</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.Accent.Win10</code></td>
+<td>the same one filled with the accent colour</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.Flat.Accent</code></td>
+<td>built on the accented one, with the ordinary button colours painted back over it</td>
+</tr>
+</tbody>
+</table>
+<p>The last name promises more accent than it shows. <code>Flat.Accent</code> is the plain button at rest with a one pixel border, hovering moves that border to the accent colour, and the accent fills the button only while it is really held down.</p>
 <h2 id="dialog-buttons">Dialog buttons</h2>
 <p>The three styles the built-in dialogs use are public, which is what makes a <a href="../dialogs/custom-dialogs">custom dialog</a> look like the built-in ones:</p>
 <p><img src="images/buttons-dialogs.png" alt="The three dialog button styles" /></p>
@@ -445,6 +471,7 @@ Buttons
                     <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
                     <div class="sidebar-nav-item"><a href="#the-square-styles">The square styles</a></div>
                     <div class="sidebar-nav-item"><a href="#circle-flat-and-chromeless">Circle, flat and chromeless</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-windows-10-set">The Windows 10 set</a></div>
                     <div class="sidebar-nav-item"><a href="#dialog-buttons">Dialog buttons</a></div>
                     <div class="sidebar-nav-item"><a href="#toggle-buttons">Toggle buttons</a></div>
                     <div class="sidebar-nav-item"><a href="#the-rest">The rest</a></div>
