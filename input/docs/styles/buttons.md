@@ -35,7 +35,7 @@ Along with it the style sets `ControlsHelper.CornerRadius` to `3`, which is your
 | `MahApps.Styles.Button.Square.Highlight` | the same filled with the highlight colour, a darker accent |
 
 :::{.alert .alert-info}
-Look at the captions in the figure above: the default style upper-cases its content, but the square styles set `ContentCharacterCasing` to **`Lower`**, so `Content="Save"` comes out as *save*. It is a deliberate part of the look rather than an accident, but it surprises people who expect the content verbatim. Set the property to `Normal` if you want it as written.
+Look at the captions in the figure above: the default style upper-cases its content, but the square styles set `ContentCharacterCasing` to **`Lower`**, so `Content="Save"` comes out as *save*. It is a deliberate part of the look rather than an accident, but it surprises people who expect the content verbatim. Set the property to `Normal` if you want it as written, or, since both casings come out of resources rather than out of the styles, override `MahApps.CharacterCasing.Button.Square` once and every square button follows. The default style reads `MahApps.CharacterCasing.Button` the same way.
 :::
 
 `MahApps.Styles.Button.MetroSquare` is a third square variant, and it leaves the casing alone:
@@ -46,6 +46,8 @@ Look at the captions in the figure above: the default style upper-cases its cont
 | --- | --- |
 | `MahApps.Styles.Button.MetroSquare` | transparent with a 2 pixel border and wider padding |
 | `MahApps.Styles.Button.MetroSquare.Accent` | the same filled with the accent colour |
+
+**Both of those keys are on their way out.** They were dropped from the library in July 2022 as unused, and no release carries that removal yet, so 2.4.11 still has them and the next version will not. The nearest thing left afterwards is `MahApps.Styles.Button.Square` with `ControlsHelper.ContentCharacterCasing` back at `Normal`.
 
 ## Circle, flat and chromeless
 
@@ -70,6 +72,18 @@ The circle button has no content of its own, so give it one:
 :::{.alert .alert-info}
 The flat button needs no extra import. Older documentation says to merge `Styles/Controls.FlatButton.xaml` — that dictionary still exists, but all it does is make the flat style **implicit for every `Button` in scope**. `MahApps.Styles.Button.Flat` itself lives in `Controls.Buttons.xaml`, which `Controls.xaml` already merges, so referencing it by key works out of the box.
 :::
+
+## The Windows 10 set
+
+**Three more keys are on `develop` and in no release yet.** Not one of them is in 2.4.11:
+
+| Style | |
+| --- | --- |
+| `MahApps.Styles.Button.Win10` | the flat button with a two pixel border and the content font at its normal weight, in place of the bold, upper-cased button font |
+| `MahApps.Styles.Button.Accent.Win10` | the same one filled with the accent colour |
+| `MahApps.Styles.Button.Flat.Accent` | built on the accented one, with the ordinary button colours painted back over it |
+
+The last name promises more accent than it shows. `Flat.Accent` is the plain button at rest with a one pixel border, hovering moves that border to the accent colour, and the accent fills the button only while it is really held down.
 
 ## Dialog buttons
 
