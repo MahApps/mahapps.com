@@ -408,7 +408,7 @@ namespace SimpleApp
 }
 </code></pre>
 <h2 id="unregister-views-that-come-and-go">Unregister views that come and go</h2>
-<div class="alert alert-warning"><p><strong>A registration that is never removed keeps the view model and the window alive for the lifetime of the process.</strong></p>
+<div class="alert alert-warning"><p><strong>In 2.4.11 a registration that is never removed keeps the view model and the window alive for the lifetime of the process.</strong></p>
 </div>
 <p><code>DialogParticipation</code> keeps its registrations in a static dictionary that maps the context to the element it was registered on. Both are held by a strong reference, and an entry is only removed when the attached property <em>changes</em>. Closing a window does not change it.</p>
 <p>For a main window that lives as long as the application this makes no difference. For a dialog window or a view that is opened repeatedly it does: every instance leaves its view model behind, and memory grows with each round.</p>
@@ -423,6 +423,7 @@ namespace SimpleApp
 }
 </code></pre>
 <p>Setting the property to <code>null</code> removes the old value from the dictionary and puts nothing back, which is exactly what is wanted. For a <code>UserControl</code> that is swapped in and out, do the same from <code>Unloaded</code>.</p>
+<p><strong>On <code>develop</code> this is nothing you have to remember any more</strong>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4573">#4573</a>: the registrations live in a <code>ConditionalWeakTable</code>, so one lasts exactly as long as the context it was made for and a window that is closed takes its entry with it. Clearing the property by hand still works, and it is still the way to take a registration back while the view and the view model are both still around.</p>
 <h2 id="views-that-move-into-a-window-of-their-own">Views that move into a window of their own</h2>
 <p>A view can end up in a window that did not exist when it was registered. A tab torn out of a <a href="https://github.com/ButchersBoy/Dragablz">Dragablz</a> <code>TabablzControl</code> is the usual way this happens. The registration itself carries over, because it points at the element rather than at the window, and the coordinator works out the window each time it is asked. What matters is the kind of window the view lands in: Dragablz opens a plain <code>Window</code> for a torn off tab unless it is told otherwise, and asking for a dialog from there gives you <code>Context is not inside a MetroWindow.</code></p>
 <p>That window is yours to make, through the <code>IInterTabClient</code> on the <code>InterTabController</code>:</p>
