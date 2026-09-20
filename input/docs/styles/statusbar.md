@@ -56,7 +56,7 @@ Both panels are the same markup. If you need a status bar in a plain `Window`, i
 
 ![A bare separator and a styled one](images/statusbar-separator.png)
 
-A `<Separator/>` inside a `StatusBar` takes its style from `StatusBar.SeparatorStyleKey`, and **MahApps does not define that key**. The bar therefore gets WPF's default separator — a dark grey line, which on an accent-coloured strip is the wrong end of the palette. The MahApps one is `IdealForeground` at 0.75 opacity, which is what belongs there.
+A `<Separator/>` inside a `StatusBar` takes its style from `StatusBar.SeparatorStyleKey`, and **MahApps does not define that key**. The bar therefore gets the separator the system theme supplies, which is inset from the top and bottom of the strip and drawn for a grey one rather than for an accent-coloured one. The MahApps separator is `IdealForeground` at 0.75 opacity over the whole height of the bar, which is what belongs there.
 
 `MahApps.Styles.Separator.StatusBar` exists; it just has to be asked for, on every separator:
 
@@ -64,13 +64,19 @@ A `<Separator/>` inside a `StatusBar` takes its style from `StatusBar.SeparatorS
 <Separator Style="{StaticResource MahApps.Styles.Separator.StatusBar}" />
 ```
 
-One line in the bar's resources does it for all of them:
+:::{.alert .alert-warning}
+**An implicit style will not do it for all of them.** While it prepares the containers, a `StatusBar` hands every separator a resource reference to `SeparatorStyleKey`, and that beats an implicit `TargetType="{x:Type Separator}"` style, so one put in the bar's resources without a key changes nothing. Under the key it does, and then the one line really is all of them:
 
 ```xml
 <StatusBar.Resources>
-    <Style BasedOn="{StaticResource MahApps.Styles.Separator.StatusBar}" TargetType="{x:Type Separator}" />
+    <Style x:Key="{x:Static StatusBar.SeparatorStyleKey}"
+           BasedOn="{StaticResource MahApps.Styles.Separator.StatusBar}"
+           TargetType="{x:Type Separator}" />
 </StatusBar.Resources>
 ```
+
+The same style under the same key in `App.xaml` covers every status bar in the application. Naming the style on the separator itself keeps working either way, since a style set there is a local value and the bar leaves that alone.
+:::
 
 ## Fonts
 
