@@ -339,7 +339,7 @@ TreeView
     &lt;/Setter&gt;
 &lt;/Style&gt;
 </code></pre>
-<p><code>Background=&quot;Transparent&quot;</code> on the border matters — without it only the glyph itself answers clicks, and hitting a 12-unit triangle is fiddly. See <a href="../helper/treeviewitemhelper">TreeViewItemHelper</a>.</p>
+<p><code>Background=&quot;Transparent&quot;</code> on the border matters: without it only the glyph itself answers clicks. The default style does the same thing, a 16-unit grid with a transparent background around an arrow of 6, which is what makes the whole button and not just the triangle a target. See <a href="../helper/treeviewitemhelper">TreeViewItemHelper</a>.</p>
 <p>A node with no children hides the button rather than drawing a disabled one: the template has a <code>HasItems=&quot;False&quot;</code> trigger for that, which is why <em>Music</em> in the figure has no triangle.</p>
 <h2 id="virtualisation">Virtualisation</h2>
 <p>A tree is the control where this matters most, because every expanded branch adds nodes:</p>

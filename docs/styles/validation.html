@@ -285,15 +285,17 @@ Validation
 <td>the default: tab into a bad field and the message appears</td>
 </tr>
 <tr>
-<td>the pointer is over the red triangle, with <code>ValidationHelper.ShowValidationErrorOnMouseOver</code></td>
-<td>opt in per control</td>
+<td>the pointer is over the red triangle</td>
+<td>opt in with <code>ValidationHelper.ShowValidationErrorOnMouseOver</code> on the control or with <code>ShowValidationErrorOnMouseOver</code> on the popup, either one is enough</td>
 </tr>
 <tr>
-<td>the pointer is over the triangle, with <code>ShowValidationErrorOnMouseOver</code> on the popup</td>
-<td>the same, set on the popup instead</td>
+<td><code>ValidationHelper.AlwaysShowValidationError</code> is on</td>
+<td>the message stays up whatever the focus and the pointer do</td>
 </tr>
 </tbody>
 </table>
+<div class="alert alert-info"><p><code>AlwaysShowValidationError</code> is new in <code>develop</code> and not in 2.4.11, and so is <code>ValidationHelper.ShowValidationErrorOnKeyboardFocus</code>, which is how the first row is switched off. On <code>develop</code> that row wants both the property on the control, <code>True</code> unless somebody says otherwise, and <code>ShowValidationErrorOnKeyboardFocus</code> on the popup.</p>
+</div>
 <pre><code class="language-xml">&lt;TextBox Text=&quot;{Binding Age, ValidatesOnDataErrors=True}&quot;
          mah:ValidationHelper.ShowValidationErrorOnMouseOver=&quot;True&quot; /&gt;
 </code></pre>
@@ -332,7 +334,7 @@ Validation
 <p>For a change of colour only, the six brushes are enough: <code>MahApps.Brushes.Control.Validation</code> for the border, <code>Validation1</code> to <code>Validation5</code> for the popup's layers, and <code>MahApps.Brushes.Text.Validation</code> for the message.</p>
 <p>The template also reads <code>ControlsHelper.CornerRadius</code> from the adorned control and rounds its top-right corner to match, so a rounded text box keeps its shape when it goes red.</p>
 <h2 id="related">Related</h2>
-<p><a href="textbox">TextBox</a>, <a href="combobox">ComboBox</a> and <a href="datepicker">DatePicker</a> are the controls that carry the template; <a href="../helper/validationhelper">ValidationHelper</a> has the two attached properties.</p>
+<p><a href="textbox">TextBox</a>, <a href="combobox">ComboBox</a> and <a href="datepicker">DatePicker</a> are the controls that carry the template; <a href="../helper/validationhelper">ValidationHelper</a> has the switches.</p>
 
 
                                         </div>

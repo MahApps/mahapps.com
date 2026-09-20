@@ -411,6 +411,9 @@ MetroContentControl
 <pre><code class="language-csharp">this.contentControl.Reload();
 </code></pre>
 <p>It returns without doing anything when <code>TransitionsEnabled</code> is <code>False</code> <strong>or</strong> when <code>OnlyLoadTransition</code> is <code>True</code> — the latter is easy to miss, since the two properties otherwise look unrelated.</p>
+<div class="alert alert-warning"><p>In 2.4.11, <code>Reload()</code> on a control with <code>ReverseTransition=&quot;True&quot;</code> plays the <strong>leaving</strong> animation rather than the arriving one and leaves the content at opacity 0, thirty units to the left, where it stays until something makes the control load again. The forward direction is fine.</p>
+<p>Fixed on <code>develop</code>: the reverse branch now goes to the same <code>AfterLoadedReverse</code> state that the loaded handler uses. Until the next release, either leave <code>ReverseTransition</code> off where you call <code>Reload()</code> or set the state yourself.</p>
+</div>
 <p><code>ReloadBehavior</code> wires <code>Reload()</code> to two common triggers, so you rarely have to call it yourself:</p>
 <pre><code class="language-xml">&lt;mah:MetroContentControl mah:ReloadBehavior.OnDataContextChanged=&quot;True&quot;&gt;
     &lt;!--  content  --&gt;

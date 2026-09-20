@@ -270,7 +270,7 @@ TextBox
 </code></pre>
 <p>Leaving out the <code>BasedOn</code> throws the template away with it, and with the template go the watermark, the buttons and the validation adorner.</p>
 <h2 id="the-explicit-styles">The explicit styles</h2>
-<p>Three styles are meant to be set on a <code>TextBox</code>, each inheriting from the one above it.</p>
+<p>Two styles are meant to be set on a <code>TextBox</code>, the second inheriting from the first.</p>
 <table>
 <thead>
 <tr>
@@ -284,44 +284,47 @@ TextBox
 <td>the base. What the implicit style applies</td>
 </tr>
 <tr>
-<td><code>MahApps.Styles.TextBox.Button</code></td>
-<td>adds a command button, driven by <code>TextBoxHelper.ButtonCommand</code></td>
-</tr>
-<tr>
 <td><code>MahApps.Styles.TextBox.Search</code></td>
-<td>the same with a magnifier as the button's icon</td>
+<td>the same with a magnifier as the button's icon and the library's search command behind it</td>
 </tr>
 </tbody>
 </table>
+<div class="alert alert-info"><p><strong>In a released version there is a third, <code>MahApps.Styles.TextBox.Button</code>.</strong> It added a button bound to <code>TextBoxHelper.ButtonCommand</code>, and it is what 2.4.11 has. It is gone on <code>develop</code>: the base style carries the button now, so a command of your own needs no style but the base one. Asking for the old name after that ships leaves the box without a template at all.</p>
+</div>
 <pre><code class="language-xml">&lt;TextBox Style=&quot;{StaticResource MahApps.Styles.TextBox.Search}&quot;
          mah:TextBoxHelper.ButtonCommand=&quot;{Binding SearchCommand}&quot;
          mah:TextBoxHelper.Watermark=&quot;Search&quot; /&gt;
 </code></pre>
-<h3 id="which-flag-shows-the-button">Which flag shows the button</h3>
-<p>The base style and the <code>.Button</code> style put the same button in the same place, but gate it differently — which is the thing to know before wondering why a <code>ButtonCommand</code> never fires.</p>
+<h3 id="what-shows-the-button">What shows the button</h3>
+<p>There is one button in the template, and two things bring it out. It is collapsed only while both are absent, which is the thing to know before wondering why a <code>ButtonCommand</code> never fires.</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th>Button appears when</th>
+<th>Set</th>
+<th>Button appears</th>
 <th>What clicking it does</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>MahApps.Styles.TextBox</code></td>
-<td><code>TextBoxHelper.ClearTextButton</code> is <code>True</code></td>
+<td><code>TextBoxHelper.ClearTextButton=&quot;True&quot;</code></td>
+<td>yes</td>
 <td>clears the box</td>
 </tr>
 <tr>
-<td><code>MahApps.Styles.TextBox.Button</code></td>
-<td>always — the style sets <code>TextBoxHelper.TextButton</code></td>
-<td>runs <code>ButtonCommand</code></td>
+<td><code>TextBoxHelper.ButtonCommand</code></td>
+<td>yes</td>
+<td>runs that command</td>
+</tr>
+<tr>
+<td>neither</td>
+<td>no</td>
+<td></td>
 </tr>
 </tbody>
 </table>
-<p>On the <code>.Button</code> style the click handler is wired unconditionally, so setting <code>ClearTextButton</code> as well makes the button run the command <em>and</em> clear the box.</p>
-<p>Clearing calls <code>TextBox.Clear()</code> and pushes the empty value back through the <code>Text</code> binding, so a bound view model sees the change.</p>
+<p>With the clear button switched on, a trigger points the button at <code>MahAppsCommands.ClearControlCommand</code>, and a trigger beats the template binding to <code>ButtonCommand</code>, so a box that asks for both clears rather than running the command.</p>
+<p>Clearing goes through that command, which is bound for the control classes rather than handled in the style, and it refuses to run unless <code>ClearTextButton</code> says so. For a <code>TextBox</code> it empties the text and pushes the empty value back through the <code>Text</code> binding, so a bound view model sees the change; for a <code>RichTextBox</code> it clears the blocks of the document.</p>
 <h2 id="the-windows-10-and-winui-styles">The Windows 10 and WinUI styles</h2>
 <div class="alert alert-info"><p><strong><code>MahApps.Styles.TextBox.Win10</code> and <code>MahApps.Styles.TextBox.WinUI</code> are on <code>develop</code> and ship with the next release.</strong> Neither is in 2.4.11.</p>
 </div>
@@ -414,33 +417,17 @@ public string Query { get; set; }
 <pre><code class="language-xml">&lt;TextBox SpellCheck.IsEnabled=&quot;True&quot; /&gt;
 </code></pre>
 <h2 id="richtextbox">RichTextBox</h2>
-<p><code>RichTextBox</code> gets the same treatment — an implicit style, and a <code>.Button</code> variant.</p>
+<p><code>RichTextBox</code> gets the same treatment, one implicit style matching the <code>TextBox</code> look, <code>MahApps.Styles.RichTextBox</code>.</p>
 <p><img src="images/textbox-richtextbox.png" alt="The two RichTextBox styles" /></p>
-<table>
-<thead>
-<tr>
-<th>Style</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>MahApps.Styles.RichTextBox</code></td>
-<td>the base, matching the <code>TextBox</code> look</td>
-</tr>
-<tr>
-<td><code>MahApps.Styles.RichTextBox.Button</code></td>
-<td>adds a command button</td>
-</tr>
-</tbody>
-</table>
-<div class="alert alert-info"><p>The <code>RichTextBox</code> variant behaves differently from the <code>TextBox</code> one. Its button is <strong>always visible</strong> — no flag hides it — and it never clears: the clearing behaviour is switched off and the button binds straight to <code>ButtonCommand</code>. <code>ButtonCommandParameter</code> defaults to the <code>RichTextBox</code> itself, so the command receives the control without you passing anything.</p>
+<div class="alert alert-info"><p><strong>In a released version this one is the odd one out.</strong> 2.4.11 has a second style, <code>MahApps.Styles.RichTextBox.Button</code>, whose button is always visible, no flag hiding it, and which never clears anything: it binds straight to <code>ButtonCommand</code>. On <code>develop</code> that style is gone and the base one behaves the way the text box does, the clear button included, since the clearing is <code>MahAppsCommands.ClearControlCommand</code> for both. <code>ButtonCommandParameter</code> still defaults to the control itself, so a command of your own receives it without anything being passed.</p>
 </div>
 <h2 id="validation-and-busy-state">Validation and busy state</h2>
 <p><code>Validation.ErrorTemplate</code> is set to <code>MahApps.Templates.ValidationError</code>, so a failing validation rule is drawn the way it is on every other MahApps input control. How that popup behaves — whether it shows on hover, whether a click dismisses it — is <a href="../helper/validationhelper">ValidationHelper</a>.</p>
-<p><code>TextBoxHelper.IsWaitingForData</code> runs a pulsing glow around the box, which suits a value that is being fetched or checked:</p>
+<div class="alert alert-info"><p><strong><code>TextBoxHelper.IsWaitingForData</code> is in the released version only.</strong> It ran a pulsing glow around the box for a value being fetched or checked, and 2.4.11 still has it:</p>
 <pre><code class="language-xml">&lt;TextBox mah:TextBoxHelper.IsWaitingForData=&quot;{Binding IsLoading}&quot; /&gt;
 </code></pre>
+<p>It was removed on <code>develop</code> along with the rest of that generation of the text box styles. For the same job now, put a <a href="../controls/progressring">ProgressRing</a> or an indeterminate <a href="progressbar">ProgressBar</a> next to the box.</p>
+</div>
 
 
                                         </div>
@@ -452,7 +439,7 @@ public string Query { get; set; }
                     <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
                     <div class="sidebar-nav-item"><a href="#the-explicit-styles">The explicit styles</a></div>
                         <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#which-flag-shows-the-button">Which flag shows the button</a></div>
+                                <div class="sidebar-nav-item"><a href="#what-shows-the-button">What shows the button</a></div>
                         </div>
                     <div class="sidebar-nav-item"><a href="#the-windows-10-and-winui-styles">The Windows 10 and WinUI styles</a></div>
                     <div class="sidebar-nav-item"><a href="#watermark">Watermark</a></div>

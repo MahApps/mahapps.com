@@ -327,15 +327,19 @@ StatusBar
 </div>
 <h2 id="the-separator-is-not-applied-for-you">The separator is not applied for you</h2>
 <p><img src="images/statusbar-separator.png" alt="A bare separator and a styled one" /></p>
-<p>A <code>&lt;Separator/&gt;</code> inside a <code>StatusBar</code> takes its style from <code>StatusBar.SeparatorStyleKey</code>, and <strong>MahApps does not define that key</strong>. The bar therefore gets WPF's default separator — a dark grey line, which on an accent-coloured strip is the wrong end of the palette. The MahApps one is <code>IdealForeground</code> at 0.75 opacity, which is what belongs there.</p>
+<p>A <code>&lt;Separator/&gt;</code> inside a <code>StatusBar</code> takes its style from <code>StatusBar.SeparatorStyleKey</code>, and <strong>MahApps does not define that key</strong>. The bar therefore gets the separator the system theme supplies, which is inset from the top and bottom of the strip and drawn for a grey one rather than for an accent-coloured one. The MahApps separator is <code>IdealForeground</code> at 0.75 opacity over the whole height of the bar, which is what belongs there.</p>
 <p><code>MahApps.Styles.Separator.StatusBar</code> exists; it just has to be asked for, on every separator:</p>
 <pre><code class="language-xml">&lt;Separator Style=&quot;{StaticResource MahApps.Styles.Separator.StatusBar}&quot; /&gt;
 </code></pre>
-<p>One line in the bar's resources does it for all of them:</p>
+<div class="alert alert-warning"><p><strong>An implicit style will not do it for all of them.</strong> While it prepares the containers, a <code>StatusBar</code> hands every separator a resource reference to <code>SeparatorStyleKey</code>, and that beats an implicit <code>TargetType=&quot;{x:Type Separator}&quot;</code> style, so one put in the bar's resources without a key changes nothing. Under the key it does, and then the one line really is all of them:</p>
 <pre><code class="language-xml">&lt;StatusBar.Resources&gt;
-    &lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.Separator.StatusBar}&quot; TargetType=&quot;{x:Type Separator}&quot; /&gt;
+    &lt;Style x:Key=&quot;{x:Static StatusBar.SeparatorStyleKey}&quot;
+           BasedOn=&quot;{StaticResource MahApps.Styles.Separator.StatusBar}&quot;
+           TargetType=&quot;{x:Type Separator}&quot; /&gt;
 &lt;/StatusBar.Resources&gt;
 </code></pre>
+<p>The same style under the same key in <code>App.xaml</code> covers every status bar in the application. Naming the style on the separator itself keeps working either way, since a style set there is a local value and the bar leaves that alone.</p>
+</div>
 <h2 id="fonts">Fonts</h2>
 <p>Like <a href="menus">menus</a>, the status bar takes its font family, style and weight from the Windows shell settings rather than from <code>Fonts.xaml</code>:</p>
 <pre><code class="language-xml">&lt;Setter Property=&quot;FontFamily&quot; Value=&quot;{DynamicResource {x:Static SystemFonts.StatusFontFamilyKey}}&quot; /&gt;

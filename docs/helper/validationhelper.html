@@ -334,7 +334,7 @@ ValidationHelper
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>Applies to any <code>UIElement</code>. Two properties, both about the popup MahApps shows next to a control whose binding failed validation.</p>
+<p>Applies to any <code>UIElement</code>. Four properties, all of them about the popup MahApps shows next to a control whose binding failed validation.</p>
 <table>
 <thead>
 <tr>
@@ -355,10 +355,24 @@ ValidationHelper
 <td><code>ShowValidationErrorOnMouseOver</code></td>
 <td><code>bool</code></td>
 <td><code>false</code></td>
-<td>show the error when the pointer is over the control rather than only while it has focus</td>
+<td>show the error while the pointer is over the red triangle rather than only while the control has focus</td>
+</tr>
+<tr>
+<td><code>ShowValidationErrorOnKeyboardFocus</code></td>
+<td><code>bool</code></td>
+<td><code>true</code></td>
+<td>the focus route itself, which this is what switches off</td>
+</tr>
+<tr>
+<td><code>AlwaysShowValidationError</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>keep the message up whatever the focus and the pointer do</td>
 </tr>
 </tbody>
 </table>
+<div class="alert alert-info"><p>The last two are new in <code>develop</code> and are not in 2.4.11, which has the first two.</p>
+</div>
 <pre><code class="language-xml">&lt;TextBox Text=&quot;{Binding Age, ValidatesOnDataErrors=True}&quot;
          mah:ValidationHelper.ShowValidationErrorOnMouseOver=&quot;True&quot;
          mah:ValidationHelper.CloseOnMouseLeftButtonDown=&quot;True&quot; /&gt;

@@ -352,17 +352,17 @@ ToolTip
 <tbody>
 <tr>
 <td><code>InitialShowDelay</code></td>
-<td>system, ~1000 ms</td>
+<td>1000 ms</td>
 <td>how long the pointer has to rest first</td>
 </tr>
 <tr>
 <td><code>ShowDuration</code></td>
-<td>5000 ms</td>
-<td>how long it stays; raise it for anything worth reading</td>
+<td><code>Int32.MaxValue</code></td>
+<td>how long it stays, which is until the pointer leaves</td>
 </tr>
 <tr>
 <td><code>BetweenShowDelay</code></td>
-<td>system, ~100 ms</td>
+<td>100 ms</td>
 <td>grace period in which the next tooltip appears at once</td>
 </tr>
 <tr>
@@ -380,10 +380,10 @@ ToolTip
 <pre><code class="language-xml">&lt;Button Content=&quot;Save&quot;
         IsEnabled=&quot;False&quot;
         ToolTip=&quot;Nothing to save yet&quot;
-        ToolTipService.ShowOnDisabled=&quot;True&quot;
-        ToolTipService.ShowDuration=&quot;20000&quot; /&gt;
+        ToolTipService.ShowOnDisabled=&quot;True&quot; /&gt;
 </code></pre>
 <p><code>ShowOnDisabled</code> is the one worth remembering: a disabled control with an unexplained reason is exactly where a tooltip earns its keep, and by default it will not show one.</p>
+<p>The five seconds quoted for <code>ShowDuration</code> in most places is not what WPF registers. The default is <code>Int32.MaxValue</code>, on .NET Framework and on modern .NET alike, so a tooltip stays for as long as the pointer rests on the control. Setting the property shortens it rather than lengthening it.</p>
 <h2 id="related">Related</h2>
 <p><a href="slider">Slider</a> and <a href="../controls/rangeslider">RangeSlider</a> have their own value tooltip through <code>AutoToolTipPlacement</code>, which is a separate mechanism and does not use this style. Validation errors are drawn by <code>CustomValidationPopup</code> rather than by a tooltip — see <a href="validation">Validation</a>.</p>
 
