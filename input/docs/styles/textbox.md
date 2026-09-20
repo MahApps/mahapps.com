@@ -28,13 +28,16 @@ Leaving out the `BasedOn` throws the template away with it, and with the templat
 
 ## The explicit styles
 
-Three styles are meant to be set on a `TextBox`, each inheriting from the one above it.
+Two styles are meant to be set on a `TextBox`, the second inheriting from the first.
 
 | Style | |
 | --- | --- |
 | `MahApps.Styles.TextBox` | the base. What the implicit style applies |
-| `MahApps.Styles.TextBox.Button` | adds a command button, driven by `TextBoxHelper.ButtonCommand` |
-| `MahApps.Styles.TextBox.Search` | the same with a magnifier as the button's icon |
+| `MahApps.Styles.TextBox.Search` | the same with a magnifier as the button's icon and the library's search command behind it |
+
+:::{.alert .alert-info}
+**In a released version there is a third, `MahApps.Styles.TextBox.Button`.** It added a button bound to `TextBoxHelper.ButtonCommand`, and it is what 2.4.11 has. It is gone on `develop`: the base style carries the button now, so a command of your own needs no style but the base one. Asking for the old name after that ships leaves the box without a template at all.
+:::
 
 ```xml
 <TextBox Style="{StaticResource MahApps.Styles.TextBox.Search}"
@@ -42,18 +45,19 @@ Three styles are meant to be set on a `TextBox`, each inheriting from the one ab
          mah:TextBoxHelper.Watermark="Search" />
 ```
 
-### Which flag shows the button
+### What shows the button
 
-The base style and the `.Button` style put the same button in the same place, but gate it differently — which is the thing to know before wondering why a `ButtonCommand` never fires.
+There is one button in the template, and two things bring it out. It is collapsed only while both are absent, which is the thing to know before wondering why a `ButtonCommand` never fires.
 
-| | Button appears when | What clicking it does |
+| Set | Button appears | What clicking it does |
 | --- | --- | --- |
-| `MahApps.Styles.TextBox` | `TextBoxHelper.ClearTextButton` is `True` | clears the box |
-| `MahApps.Styles.TextBox.Button` | always — the style sets `TextBoxHelper.TextButton` | runs `ButtonCommand` |
+| `TextBoxHelper.ClearTextButton="True"` | yes | clears the box |
+| `TextBoxHelper.ButtonCommand` | yes | runs that command |
+| neither | no | |
 
-On the `.Button` style the click handler is wired unconditionally, so setting `ClearTextButton` as well makes the button run the command *and* clear the box.
+With the clear button switched on, a trigger points the button at `MahAppsCommands.ClearControlCommand`, and a trigger beats the template binding to `ButtonCommand`, so a box that asks for both clears rather than running the command.
 
-Clearing calls `TextBox.Clear()` and pushes the empty value back through the `Text` binding, so a bound view model sees the change.
+Clearing goes through that command, which is bound for the control classes rather than handled in the style, and it refuses to run unless `ClearTextButton` says so. For a `TextBox` it empties the text and pushes the empty value back through the `Text` binding, so a bound view model sees the change; for a `RichTextBox` it clears the blocks of the document.
 
 ## The Windows 10 and WinUI styles
 
@@ -141,25 +145,24 @@ That second one is a nicety worth knowing about: this is enough to get both.
 
 ## RichTextBox
 
-`RichTextBox` gets the same treatment — an implicit style, and a `.Button` variant.
+`RichTextBox` gets the same treatment, one implicit style matching the `TextBox` look, `MahApps.Styles.RichTextBox`.
 
 ![The two RichTextBox styles](images/textbox-richtextbox.png)
 
-| Style | |
-| --- | --- |
-| `MahApps.Styles.RichTextBox` | the base, matching the `TextBox` look |
-| `MahApps.Styles.RichTextBox.Button` | adds a command button |
-
 :::{.alert .alert-info}
-The `RichTextBox` variant behaves differently from the `TextBox` one. Its button is **always visible** — no flag hides it — and it never clears: the clearing behaviour is switched off and the button binds straight to `ButtonCommand`. `ButtonCommandParameter` defaults to the `RichTextBox` itself, so the command receives the control without you passing anything.
+**In a released version this one is the odd one out.** 2.4.11 has a second style, `MahApps.Styles.RichTextBox.Button`, whose button is always visible, no flag hiding it, and which never clears anything: it binds straight to `ButtonCommand`. On `develop` that style is gone and the base one behaves the way the text box does, the clear button included, since the clearing is `MahAppsCommands.ClearControlCommand` for both. `ButtonCommandParameter` still defaults to the control itself, so a command of your own receives it without anything being passed.
 :::
 
 ## Validation and busy state
 
 `Validation.ErrorTemplate` is set to `MahApps.Templates.ValidationError`, so a failing validation rule is drawn the way it is on every other MahApps input control. How that popup behaves — whether it shows on hover, whether a click dismisses it — is [ValidationHelper](../helper/validationhelper).
 
-`TextBoxHelper.IsWaitingForData` runs a pulsing glow around the box, which suits a value that is being fetched or checked:
+:::{.alert .alert-info}
+**`TextBoxHelper.IsWaitingForData` is in the released version only.** It ran a pulsing glow around the box for a value being fetched or checked, and 2.4.11 still has it:
 
 ```xml
 <TextBox mah:TextBoxHelper.IsWaitingForData="{Binding IsLoading}" />
 ```
+
+It was removed on `develop` along with the rest of that generation of the text box styles. For the same job now, put a [ProgressRing](../controls/progressring) or an indeterminate [ProgressBar](progressbar) next to the box.
+:::
