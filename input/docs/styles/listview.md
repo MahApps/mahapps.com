@@ -49,9 +49,9 @@ The list's own template wraps everything in `MahApps.Styles.ScrollViewer.GridVie
 ## Pixel scrolling by default
 
 :::{.alert .alert-info}
-`MahApps.Styles.ListView` sets `ScrollViewer.CanContentScroll` to **`False`**, where [ListBox](listbox) sets it to `True`. A `ListView` therefore scrolls by pixel, which is smooth and right for rows of differing heights, and it means the list is **not** virtualised: every row is realised up front.
+**In a released version a `ListView` does not virtualise at all.** 2.4.11 sets `ScrollViewer.CanContentScroll` to **`False`** on `MahApps.Styles.ListView`, where [ListBox](listbox) sets it to `True`, so the list scrolls by pixel, which is smooth and right for rows of differing heights, and every row is realised up front. On `develop` that setter is `True` and a list view virtualises the way a list box does.
 
-For a long list use `MahApps.Styles.ListView.Virtualized`, which turns `CanContentScroll` back on together with recycling virtualisation and deferred scrolling:
+`MahApps.Styles.ListView.Virtualized` is worth having either way. In the released version it is what turns virtualisation on at all; on `develop` it is what makes the containers recycle, since `VirtualizationMode` stays at `Standard` until something sets it on the list itself:
 
 ```xml
 <ListView Style="{StaticResource MahApps.Styles.ListView.Virtualized}" ItemsSource="{Binding ManyRows}" />

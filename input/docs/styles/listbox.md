@@ -127,13 +127,13 @@ Set these on the **item**, through `ItemContainerStyle`, not on the `ListBox`. T
 
 The style bakes in the scroll settings, so a `ScrollViewer` of your own around a `ListBox` is never needed: both bars are `Auto`, `CanContentScroll` is `True` — item-by-item scrolling — and `PanningMode` is `Both` for touch, with `Stylus.IsFlicksEnabled` off.
 
-`MahApps.Styles.ListBox.Virtualized` adds the four properties that turn on a recycling `VirtualizingStackPanel`:
+`MahApps.Styles.ListBox.Virtualized` sets four properties on the list, and virtualisation is not what they switch on: a `ListBox` under the MahApps style already realises only the rows it shows. What the variant brings is the recycling. `VirtualizationMode` goes from `Standard` to `Recycling`, so the container of a row leaving the view is handed to the row coming in rather than thrown away, and `IsVirtualizingWhenGrouping` keeps that going once the list is grouped:
 
 ```xml
 <ListBox Style="{StaticResource MahApps.Styles.ListBox.Virtualized}" ItemsSource="{Binding ManyItems}" />
 ```
 
-The base style already swaps in a virtualising panel if you set `VirtualizingStackPanel.IsVirtualizing="True"` yourself; the variant is the same thing with the other three properties along for the ride.
+The panel is not where those settings count. The base style swaps in a `VirtualizingStackPanel` carrying all three of them as soon as `VirtualizingStackPanel.IsVirtualizing` is `True`, which it is unless somebody turns it off, but WPF reads them off the list rather than off the panel. Without the variant the mode therefore stays `Standard`, whatever the panel says.
 
 Grouping is the exception the template handles for you: with `IsGrouping` on and `IsVirtualizingWhenGrouping` off, it turns `CanContentScroll` back off, because item-based scrolling and non-virtualised groups do not mix.
 

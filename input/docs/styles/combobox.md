@@ -136,7 +136,7 @@ That style is where the item colours come from, and it sets eleven `ItemHelper` 
 
 ### Long lists
 
-`MahApps.Styles.ComboBox.Virtualized` is the base style plus `VirtualizingStackPanel.IsVirtualizing`, `IsVirtualizingWhenGrouping` and recycling mode. Reach for it once the list is long enough that opening it stutters:
+`MahApps.Styles.ComboBox.Virtualized` is the base style plus `VirtualizingStackPanel.IsVirtualizing`, `IsVirtualizingWhenGrouping` and recycling mode. The drop down virtualises without it as well, so what the key really buys is the recycling: the containers of the rows scrolled past are handed on instead of left behind, which is what stops a long list from stuttering the further it is scrolled:
 
 ```xml
 <ComboBox Style="{StaticResource MahApps.Styles.ComboBox.Virtualized}"
