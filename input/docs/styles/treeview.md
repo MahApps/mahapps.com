@@ -92,7 +92,7 @@ The default is `MahApps.Styles.ToggleButton.TreeViewItem.ExpandCollapse`, a fill
 </Style>
 ```
 
-`Background="Transparent"` on the border matters — without it only the glyph itself answers clicks, and hitting a 12-unit triangle is fiddly. See [TreeViewItemHelper](../helper/treeviewitemhelper).
+`Background="Transparent"` on the border matters: without it only the glyph itself answers clicks. The default style does the same thing, a 16-unit grid with a transparent background around an arrow of 6, which is what makes the whole button and not just the triangle a target. See [TreeViewItemHelper](../helper/treeviewitemhelper).
 
 A node with no children hides the button rather than drawing a disabled one: the template has a `HasItems="False"` trigger for that, which is why *Music* in the figure has no triangle.
 
