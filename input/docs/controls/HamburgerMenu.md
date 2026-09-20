@@ -105,6 +105,14 @@ Header and separator items are not selectable, but they *do* occupy an index. Wa
 
 `VerticalScrollBarOnLeftSide` puts the item list's scroll bar on the left, which reads better when the pane sits on the right.
 
+`VerticalScrollBarVisibility` says when the item list shows that scroll bar. The default `Auto` fades it in while the pointer is over the open pane and fades it out again a second after the pointer has left, so a pane with more items than room looks exactly like one without until somebody hovers over it. `Visible` keeps the bar there for as long as the pane is open, which is what you want when the reader should see at a glance that the menu goes on. `Hidden` and `Disabled` take it away. `OptionsVerticalScrollBarVisibility` does the same for the options list at the bottom, where the default is `Disabled`. A closed pane never shows a bar, whatever the setting, since it would sit on top of the icons.
+
+```xml
+<mah:HamburgerMenu VerticalScrollBarVisibility="Visible" />
+```
+
+**Both properties are new on `develop` and ship with the next release** ([#4549](https://github.com/MahApps/MahApps.Metro/issues/4549)). Up to and including 2.4.11 the two lists get `Auto` and `Disabled` from the template, where nothing can override them: `ScrollViewer.VerticalScrollBarVisibility` on the menu itself does not reach the lists inside it.
+
 ## The hamburger button and the pane header
 
 `HamburgerMenuHeaderTemplate` fills the strip at the top of the pane, next to — or instead of — the hamburger button. Set `HamburgerVisibility` to `Collapsed` when your own toggle lives elsewhere.
@@ -662,6 +670,7 @@ The full template, including all selection and hover triggers, is in `HamburgerM
 | `ItemCommandParameter` | `object` | `null` |
 | `ShowSelectionIndicator` | `bool` | `False` |
 | `VerticalScrollBarOnLeftSide` | `bool` | `False` |
+| `VerticalScrollBarVisibility` | `ScrollBarVisibility` | `Auto` |
 | `ItemFocusVisualStyle` | `Style` | read-only, recalculated by the control |
 
 ### Options
@@ -673,6 +682,7 @@ The full template, including all selection and hover triggers, is in `HamburgerM
 | `OptionsItemTemplate` | `DataTemplate` | `null` |
 | `OptionsItemTemplateSelector` | `DataTemplateSelector` | `null` |
 | `OptionsItemContainerStyle` | `Style` | `MahApps.Styles.ListBoxItem.HamburgerMenuItem` |
+| `OptionsVerticalScrollBarVisibility` | `ScrollBarVisibility` | `Disabled` |
 | `SelectedOptionsItem` | `object` | `null` |
 | `SelectedOptionsIndex` | `int` | `-1` |
 | `OptionsItemCommand` | `ICommand` | `null` |
