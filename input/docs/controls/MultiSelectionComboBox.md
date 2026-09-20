@@ -35,6 +35,10 @@ Description: The documentation for the MultiSelectionComboBox
 
 The `MultiSelectionComboBox` is like a normal `ComboBox`, but instead of limit the selection to one item, the user is allowed to select multiple items.  
 
+:::{.alert .alert-info}
+This control is not in 2.4.11. It arrives with the next release and is in the 3.0.0 prereleases.
+:::
+
 # The user interface
 ![MultiSelectionComboBox with numbers](images/MultiSelectionComboBox_Numbered.png)
 
@@ -114,7 +118,7 @@ The default one wraps each item in a nugget like container:
 
 ![](images/MultiSelectionComboBox_DefaultStyle.png)
 
-If you want to provide an option to remove from the selected items you can use `MahApps.Styles.MulitselectionComboBoxSelectedItem.Removeable` which will add a delete button next to each item: 
+If you want to provide an option to remove from the selected items you can use `MahApps.Styles.MultiSelectionComboBoxSelectedItem.Removable` which will add a delete button next to each item: 
 
 ![](images/MultiSelectionComboBox_SelectedItemContainerStyle_Removeable.png)
 
