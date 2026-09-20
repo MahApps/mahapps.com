@@ -19,7 +19,7 @@ this.Navigate(new OverviewPage());
 The bar above the content is part of the window, not something you add. The title next to the buttons is the navigated **`Page.Title`**, and the two circle buttons enable themselves from `CanGoBack` and `CanGoForward` — in the figure the window has navigated twice, so back is live and forward is not.
 
 :::{.alert .alert-info}
-Unlike almost every other control in the library, this one is **compiled XAML, not a `ControlTemplate`**. `MetroNavigationWindow.xaml` is a `MetroWindow` subclass with the bar laid out inside it, so there is no template to override and no way to restyle or rearrange the buttons. Everything a [MetroWindow](metrowindow) offers — `GlowBrush`, `WindowTitleBrush`, flyouts, the window commands — still applies, because it *is* one.
+Unlike almost every other control in the library, this one is **compiled XAML, not a `ControlTemplate`**. `MetroNavigationWindow.xaml` is a `MetroWindow` subclass with the bar laid out inside it, so there is no template to override and no way to restyle or rearrange the buttons. It also means the window cannot be the root of a XAML file of your own: `<mah:MetroNavigationWindow x:Class="…">` is turned down by the compiler with `MC6017`, since a type that was itself defined in XAML cannot be subclassed in XAML. Build the window in code and keep the markup for the pages. Everything a [MetroWindow](metrowindow) offers — `GlowBrush`, `WindowTitleBrush`, flyouts, the window commands — still applies, because it *is* one.
 :::
 
 ## Navigating

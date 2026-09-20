@@ -58,6 +58,12 @@ this.contentControl.Reload();
 
 It returns without doing anything when `TransitionsEnabled` is `False` **or** when `OnlyLoadTransition` is `True` — the latter is easy to miss, since the two properties otherwise look unrelated.
 
+:::{.alert .alert-warning}
+In 2.4.11, `Reload()` on a control with `ReverseTransition="True"` plays the **leaving** animation rather than the arriving one and leaves the content at opacity 0, thirty units to the left, where it stays until something makes the control load again. The forward direction is fine.
+
+Fixed on `develop`: the reverse branch now goes to the same `AfterLoadedReverse` state that the loaded handler uses. Until the next release, either leave `ReverseTransition` off where you call `Reload()` or set the state yourself.
+:::
+
 `ReloadBehavior` wires `Reload()` to two common triggers, so you rarely have to call it yourself:
 
 ```xml

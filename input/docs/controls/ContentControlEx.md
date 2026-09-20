@@ -35,6 +35,8 @@ The converter returns anything that is not a `string` untouched, so wrapping the
 
 `ContentCharacterCasing` is registered with `FrameworkPropertyMetadataOptions.Inherits`, so a nested `ContentControlEx` picks the value up from an outer one — the fourth panel in the first figure.
 
+It only reaches as far as the tree carries it. Because the property is registered on `ContentControlEx` rather than attached, an element in between that does not have it ends the inheritance: the content of a `ContentControlEx` inherits, the same control one panel deeper does not.
+
 :::{.alert .alert-warning}
 It inherits, but it is **not an attached property**. `<StackPanel mah:ContentControlEx.ContentCharacterCasing="Upper">` fails to parse; the value can only be set on a `ContentControlEx` itself.
 
