@@ -90,9 +90,9 @@ None of this is MahApps — the style changes how a tooltip looks, not when it a
 
 | Attached property | WPF default | |
 | --- | --- | --- |
-| `InitialShowDelay` | system, ~1000 ms | how long the pointer has to rest first |
-| `ShowDuration` | 5000 ms | how long it stays; raise it for anything worth reading |
-| `BetweenShowDelay` | system, ~100 ms | grace period in which the next tooltip appears at once |
+| `InitialShowDelay` | 1000 ms | how long the pointer has to rest first |
+| `ShowDuration` | `Int32.MaxValue` | how long it stays, which is until the pointer leaves |
+| `BetweenShowDelay` | 100 ms | grace period in which the next tooltip appears at once |
 | `ShowOnDisabled` | `False` | set it to show *why* a control is disabled |
 | `Placement`, `PlacementTarget` | `Mouse` | |
 
@@ -100,11 +100,12 @@ None of this is MahApps — the style changes how a tooltip looks, not when it a
 <Button Content="Save"
         IsEnabled="False"
         ToolTip="Nothing to save yet"
-        ToolTipService.ShowOnDisabled="True"
-        ToolTipService.ShowDuration="20000" />
+        ToolTipService.ShowOnDisabled="True" />
 ```
 
 `ShowOnDisabled` is the one worth remembering: a disabled control with an unexplained reason is exactly where a tooltip earns its keep, and by default it will not show one.
+
+The five seconds quoted for `ShowDuration` in most places is not what WPF registers. The default is `Int32.MaxValue`, on .NET Framework and on modern .NET alike, so a tooltip stays for as long as the pointer rests on the control. Setting the property shortens it rather than lengthening it.
 
 ## Related
 
