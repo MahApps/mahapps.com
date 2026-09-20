@@ -95,7 +95,7 @@ namespace SimpleApp
 ## Unregister views that come and go
 
 :::{.alert .alert-warning}
-**A registration that is never removed keeps the view model and the window alive for the lifetime of the process.**
+**In 2.4.11 a registration that is never removed keeps the view model and the window alive for the lifetime of the process.**
 :::
 
 `DialogParticipation` keeps its registrations in a static dictionary that maps the context to the element it was registered on. Both are held by a strong reference, and an entry is only removed when the attached property *changes*. Closing a window does not change it.
@@ -116,6 +116,8 @@ public partial class MyDialogWindow : MetroWindow
 ```
 
 Setting the property to `null` removes the old value from the dictionary and puts nothing back, which is exactly what is wanted. For a `UserControl` that is swapped in and out, do the same from `Unloaded`.
+
+**On `develop` this is nothing you have to remember any more**, which is [#4573](https://github.com/MahApps/MahApps.Metro/issues/4573): the registrations live in a `ConditionalWeakTable`, so one lasts exactly as long as the context it was made for and a window that is closed takes its entry with it. Clearing the property by hand still works, and it is still the way to take a registration back while the view and the view model are both still around.
 
 ## Views that move into a window of their own
 
