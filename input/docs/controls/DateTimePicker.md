@@ -71,6 +71,9 @@ That reaches the drop-down and the twelve- or twenty-four-hour clock as well, so
 | `Orientation` | `Orientation` | `Horizontal` | calendar beside the clock, or above it |
 | `IsNowButtonVisible` | `bool` | `True` | the button that sets the picker to the here and now |
 | `NowButtonContent` | `object` | `Now` | what that button says |
+| `ClockSize` | `double` | `120` | how large the face is drawn (on `develop`) |
+| `ClockStyle` | `Style` | `null` | the look of the clock (on `develop`) |
+| `PopupStyle` | `Style` | the built-in one | the drop-down itself (on `develop`) |
 
 `TimePartVisibility` is a flags enum — `Hour`, `Minute`, `Second`, plus `HourMinute` and `All`. Seconds are off by default in both places:
 
@@ -85,6 +88,10 @@ That reaches the drop-down and the twelve- or twenty-four-hour clock as well, so
 ```
 
 Each has a matching `HoursItemStringFormat`, `MinutesItemStringFormat` and `SecondsItemStringFormat` for how the entries are written.
+
+:::{.alert .alert-info}
+**The clock is a control of its own on `develop`**, [AnalogClock](AnalogClock), and `ClockSize`, `ClockStyle` and `PopupStyle` are the three properties that reach it and the popup around it without a copy of the template. [#4514](https://github.com/MahApps/MahApps.Metro/issues/4514), written up on [the TimePicker page](TimePicker#reaching-into-the-drop-down).
+:::
 
 ## The Now button
 
@@ -107,6 +114,10 @@ Under the calendar and the clock sits a button that puts the picker on the curre
 ## Two nicer alternatives
 
 The built-in drop-down puts the accent-banded [Calendar](../styles/calendar) next to the clock. This site ships two drop-in dictionaries that give the picker the same treatment as the [calendar variants](../styles/calendar): a rounded Fluent look and a square Windows 10 one.
+
+:::{.alert .alert-info}
+**On `develop` the field and the time selection come with the library.** The Windows 10 and the WinUI sets carry both pickers under these same keys, so merging `Styles/Win10/Controls.xaml` or `Styles/WinUI/Controls.xaml` is the whole of it ([#4514](https://github.com/MahApps/MahApps.Metro/issues/4514)). The calendar half is still a download: the library's variants leave `CalendarStyle` on the accent-banded calendar, so a Win10 or WinUI calendar in the drop-down means merging the calendar dictionary below and pointing `CalendarStyle` at it.
+:::
 
 ![The built-in field, the Win10 one and the WinUI one](images/datetimepicker-variants.png)
 

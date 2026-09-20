@@ -91,6 +91,9 @@ It sits on `TimePickerBase`, so both pickers take one, and [DateTimePicker](Date
 | `IsDropDownOpen` | `bool` | `False` | |
 | `IsNowButtonVisible` | `bool` | `True` | the button that sets the picker to the time of day |
 | `NowButtonContent` | `object` | `Now` | what that button says |
+| `ClockSize` | `double` | `120` | how large the face is drawn (on `develop`) |
+| `ClockStyle` | `Style` | `null` | the look of the clock (on `develop`) |
+| `PopupStyle` | `Style` | the built-in one | the drop-down itself (on `develop`) |
 
 `TimePartVisibility` is a flags enum — `Hour`, `Minute`, `Second`, plus the combinations `HourMinute` and `All`. Seconds are off in both places by default, so turning them on takes two properties:
 
@@ -110,9 +113,46 @@ Each has a matching `HoursItemStringFormat`, `MinutesItemStringFormat` and `Seco
 
 The button under the lists puts the picker on the time of day in one press. It is the same one the `DateTimePicker` carries, described on [its page](DateTimePicker) along with the caption property and the note that it is new on `develop`.
 
+### Reaching into the drop-down
+
+:::{.alert .alert-info}
+**The three properties below and the `AnalogClock` control are new on `develop`**, which is [#4514](https://github.com/MahApps/MahApps.Metro/issues/4514). In a released version the clock and the popup are markup in the middle of the shared template, so the only way at either of them is a copy of the whole template.
+:::
+
+The clock face is a control of its own, [AnalogClock](AnalogClock), and the picker carries three properties that reach it and the popup around it.
+
+`ClockSize` is the one the issue asked for. The face is drawn at its natural 120 and scaled to whatever size it is given, so one number takes the ring, the dots and the hands with it, and the drop-down grows to fit:
+
+```xml
+<mah:TimePicker ClockSize="200" />
+```
+
+`ClockStyle` is the look of that clock, anything an `AnalogClock` style can say. The size is not part of it: it comes from `ClockSize`, because the template hands that to the clock and what a template sets on one of its own elements beats what a style sets on it.
+
+```xml
+<mah:TimePicker>
+    <mah:TimePicker.ClockStyle>
+        <Style BasedOn="{StaticResource MahApps.Styles.AnalogClock}" TargetType="{x:Type mah:AnalogClock}">
+            <Setter Property="BorderBrush" Value="{DynamicResource MahApps.Brushes.Gray5}" />
+            <Setter Property="BorderThickness" Value="1" />
+        </Style>
+    </mah:TimePicker.ClockStyle>
+</mah:TimePicker>
+```
+
+`PopupStyle` is the drop-down: where it is placed, how far it is offset, how much room it may take. Stand your own on `MahApps.Styles.Popup.TimePickerBase`, which is what a popup needs to behave like a drop-down and used to sit on the element in the template:
+
+```xml
+<Style x:Key="DropUp" BasedOn="{StaticResource MahApps.Styles.Popup.TimePickerBase}" TargetType="{x:Type Popup}">
+    <Setter Property="Placement" Value="Top" />
+</Style>
+```
+
 ## Two nicer alternatives
 
-The same two drop-in dictionaries that restyle the [DateTimePicker](DateTimePicker) carry a `TimePicker` style each.
+On `develop` the two other style sets carry the pickers themselves, so there is nothing to download: merge `Styles/Win10/Controls.xaml` or `Styles/WinUI/Controls.xaml` instead of `Styles/Controls.xaml` and the `TimePicker` wears that set without another line ([#4514](https://github.com/MahApps/MahApps.Metro/issues/4514)). The keys are the same ones the drop-ins use, `MahApps.Styles.TimePicker.Win10` and `MahApps.Styles.TimePicker.WinUI`, and both sets bring the field chrome of their text boxes along with the time selection described below.
+
+In a released version they are the two drop-in dictionaries that restyle the [DateTimePicker](DateTimePicker), one `TimePicker` style each.
 
 ![The built-in field, the Win10 one and the WinUI one](images/timepicker-variants.png)
 
