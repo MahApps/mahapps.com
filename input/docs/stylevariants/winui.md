@@ -40,6 +40,8 @@ For the controls the set does not reach yet, this documentation ships **drop-in 
 | [`Controls.DateTimePicker.WinUI.xaml`](../../assets/xaml/Controls.DateTimePicker.WinUI.xaml) | `DateTimePicker`, `TimePicker` | [DateTimePicker](../controls/DateTimePicker), [TimePicker](../controls/TimePicker) |
 | [`Controls.ScrollBar.WinUI.xaml`](../../assets/xaml/Controls.ScrollBar.WinUI.xaml) | `ScrollBar`, `ScrollViewer` | [ScrollBars](../styles/scrollbars) |
 
+On `develop` the calendar and the two pickers moved into the set itself, under these same keys, and the set applies them without anything being merged. What follows is for 2.4.11 and the release candidate, and for the scroll bar, which is still a file.
+
 Merge them after whichever of the library's dictionaries you are on:
 
 ```xml

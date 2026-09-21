@@ -72,6 +72,8 @@ The library stops at the controls above. For several others this documentation s
 | [`Controls.DateTimePicker.Win10.xaml`](../../assets/xaml/Controls.DateTimePicker.Win10.xaml) | [DateTimePicker](../controls/DateTimePicker) and [TimePicker](../controls/TimePicker) |
 | [`Controls.ScrollBar.Win10.xaml`](../../assets/xaml/Controls.ScrollBar.Win10.xaml) | [ScrollBars](../styles/scrollbars) |
 
+On `develop` the calendar and the two pickers are no longer among them: the set carries those itself, under the same keys, so only the scroll bar is left to download. In a released version all three are files.
+
 Download them, merge them after the set, and read the page each one belongs to — several note what the built-in templates do and do not let a style reach.
 
 ## Related

@@ -116,7 +116,7 @@ Under the calendar and the clock sits a button that puts the picker on the curre
 The built-in drop-down puts the accent-banded [Calendar](../styles/calendar) next to the clock. This site ships two drop-in dictionaries that give the picker the same treatment as the [calendar variants](../styles/calendar): a rounded Fluent look and a square Windows 10 one.
 
 :::{.alert .alert-info}
-**On `develop` the field and the time selection come with the library.** The Windows 10 and the WinUI sets carry both pickers under these same keys, so merging `Styles/Win10/Controls.xaml` or `Styles/WinUI/Controls.xaml` is the whole of it ([#4514](https://github.com/MahApps/MahApps.Metro/issues/4514)). The calendar half is still a download: the library's variants leave `CalendarStyle` on the accent-banded calendar, so a Win10 or WinUI calendar in the drop-down means merging the calendar dictionary below and pointing `CalendarStyle` at it.
+**On `develop` the whole of it comes with the library**, the field, the time selection and the calendar beside it. The Windows 10 and the WinUI sets carry both pickers and both calendars under these same keys, so merging `Styles/Win10/Controls.xaml` or `Styles/WinUI/Controls.xaml` is all there is to do ([#4514](https://github.com/MahApps/MahApps.Metro/issues/4514) and the calendars after it). What follows is for 2.4.11 and the release candidate.
 :::
 
 ![The built-in field, the Win10 one and the WinUI one](images/datetimepicker-variants.png)
