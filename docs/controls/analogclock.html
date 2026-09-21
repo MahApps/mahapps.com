@@ -31,7 +31,7 @@
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
 
-        <title>MahApps.Metro - ToggleSwitch</title>
+        <title>MahApps.Metro - AnalogClock</title>
     </head>
     <body class="d-flex flex-column">
         <div class="flex-grow-1 d-flex flex-column">
@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="text-white m-0 text-break title">
 
-ToggleSwitch
+AnalogClock
                                         </div>
                                     </div>
                                         <div class="navbar navbar-expand-md navbar-dark p-0">
@@ -137,7 +137,7 @@ ToggleSwitch
     <a href="/mahapps.com/docs/controls">Controls</a>
 </div>                <div class="sidebar-nav-children">
 
-<div class="sidebar-nav-item">
+<div class="sidebar-nav-item active">
     <a href="/mahapps.com/docs/controls/analogclock">AnalogClock</a>
 </div>
 <div class="sidebar-nav-item">
@@ -230,7 +230,7 @@ ToggleSwitch
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/timepicker">TimePicker</a>
 </div>
-<div class="sidebar-nav-item active">
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/toggleswitch">ToggleSwitch</a>
 </div>
 <div class="sidebar-nav-item">
@@ -337,13 +337,12 @@ ToggleSwitch
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><code>ToggleSwitch</code> is an on/off switch. It does the same job as a <code>CheckBox</code> but says its state in words as well as shape, and it is easier to hit with a finger. It derives from <code>HeaderedContentControl</code> and implements <code>ICommandSource</code>.</p>
-<p><img src="images/toggleswitch-states.png" alt="Off, on, and disabled" /></p>
-<pre><code class="language-xml">&lt;mah:ToggleSwitch Header=&quot;Background sync&quot; IsOn=&quot;{Binding SyncEnabled}&quot; /&gt;
+<p><code>AnalogClock</code> is a round face with an hour, a minute and a second hand. It is the clock the <a href="TimePicker">TimePicker</a> and the <a href="DateTimePicker">DateTimePicker</a> show in their drop-down, and since it is a control you can put one anywhere else as well.</p>
+<pre><code class="language-xml">&lt;mah:AnalogClock Time=&quot;{Binding Departure}&quot; /&gt;
 </code></pre>
-<p><code>IsOn</code> is the state and binds two-way by default. The knob can be clicked or dragged, and the switch is toggled by <kbd>Space</kbd> as well.</p>
-<h2 id="header-and-per-state-content">Header and per-state content</h2>
-<p><img src="images/toggleswitch-content.png" alt="The defaults, and a switch with all three set" /></p>
+<div class="alert alert-info"><p><strong><code>AnalogClock</code> is new on <code>develop</code></strong> and is in neither 2.4.11 nor the 3.0 release candidate. Before it, the face was markup in the middle of the shared picker template, so the only way at it was a copy of that template — which is what <a href="https://github.com/MahApps/MahApps.Metro/issues/4514">#4514</a> was about.</p>
+</div>
+<h2 id="what-it-shows">What it shows</h2>
 <table>
 <thead>
 <tr>
@@ -355,113 +354,59 @@ ToggleSwitch
 </thead>
 <tbody>
 <tr>
-<td><code>Header</code></td>
-<td><code>object</code></td>
+<td><code>Time</code></td>
+<td><code>DateTime?</code></td>
 <td><code>null</code></td>
-<td>a label above the switch, from <code>HeaderedContentControl</code></td>
+<td>where the hands point; only the time of day is read</td>
 </tr>
 <tr>
-<td><code>OnContent</code></td>
-<td><code>object</code></td>
-<td><strong><code>&quot;On&quot;</code></strong></td>
-<td>shown beside the switch while on</td>
-</tr>
-<tr>
-<td><code>OffContent</code></td>
-<td><code>object</code></td>
-<td><strong><code>&quot;Off&quot;</code></strong></td>
-<td>shown beside the switch while off</td>
+<td><code>HandVisibility</code></td>
+<td><code>TimePartVisibility</code></td>
+<td><code>All</code></td>
+<td>which of the three hands are drawn</td>
 </tr>
 </tbody>
 </table>
-<p><code>OnContent</code> and <code>OffContent</code> each have a matching <code>…Template</code>, <code>…TemplateSelector</code> and <code>…StringFormat</code>. Both default to text, which is why an untouched switch already says <em>On</em> and <em>Off</em> — set them to <code>{x:Null}</code> for a bare switch.</p>
-<p>The header is styled through <a href="../helper/headeredcontrolhelper">HeaderedControlHelper</a>: the style sets <code>HeaderFontFamily</code>, <code>HeaderFontSize</code>, <code>HeaderForeground</code> and <code>HeaderMargin</code>, so those are what to change rather than the header's own properties.</p>
-<h3 id="which-side-the-switch-is-on">Which side the switch is on</h3>
-<p><img src="images/toggleswitch-direction.png" alt="RightToLeft and LeftToRight" /></p>
-<p><code>ContentDirection</code> is a <code>FlowDirection</code> that decides whether the switch sits before or after its on/off content.</p>
-<div class="alert alert-info"><p>The dependency property's default is <code>LeftToRight</code>, but <code>MahApps.Styles.ToggleSwitch</code> sets <strong><code>RightToLeft</code></strong>, and that style is applied to every <code>ToggleSwitch</code> through <code>Generic.xaml</code>. So the effective default is <code>RightToLeft</code> — switch on the left, text on its right — and setting <code>LeftToRight</code> is what mirrors it.</p>
-</div>
-<h2 id="width">Width</h2>
-<p><img src="images/toggleswitch-width.png" alt="The default width, MinWidth 0, and MinWidth 0 with no content" /></p>
-<div class="alert alert-warning"><p>A <code>ToggleSwitch</code> is <strong>much wider than it looks</strong>. The style sets</p>
-<pre><code class="language-xml">&lt;Setter Property=&quot;MinWidth&quot; Value=&quot;{DynamicResource ToggleSwitchThemeMinWidth}&quot; /&gt;
+<p>The clock shows what it is given and nothing else — it does not tick. A wall clock is a binding to something that changes, a view model property a <code>DispatcherTimer</code> keeps on the current time:</p>
+<pre><code class="language-xml">&lt;mah:AnalogClock Time=&quot;{Binding Now}&quot; /&gt;
 </code></pre>
-<p>and <code>ToggleSwitchThemeMinWidth</code> is <strong>154</strong>. The switch and its label take far less, so the rest is invisible padding that still consumes layout space — the tinted boxes in the figure are the controls' actual bounds.</p>
-<p>In a tight layout set <code>MinWidth=&quot;0&quot;</code>, and clear <code>OnContent</code> and <code>OffContent</code> if you do not want the words either.</p>
-</div>
-<p><code>ContentPadding</code> (default: an empty <code>Thickness</code>) pads the on/off content, and the theme exposes <code>ToggleSwitchPreContentMargin</code>, <code>ToggleSwitchPostContentMargin</code> and <code>ToggleSwitchContentSpaceMargin</code> as <code>GridLength</code> resources for the spacing around it.</p>
-<h2 id="reacting-to-a-change">Reacting to a change</h2>
-<p>There are four hooks and they do <strong>not</strong> fire in the same situations. This is the part worth getting right.</p>
+<p><code>TimePartVisibility</code> is the same flags enum the pickers use: <code>Hour</code>, <code>Minute</code>, <code>Second</code>, plus <code>HourMinute</code> and <code>All</code>. A face without the thin second hand is one setter:</p>
+<pre><code class="language-xml">&lt;mah:AnalogClock HandVisibility=&quot;HourMinute&quot; Time=&quot;{Binding Departure}&quot; /&gt;
+</code></pre>
+<h2 id="size-and-colour">Size and colour</h2>
+<p>The face is drawn at a natural 120 by 120 and scaled to whatever size the clock is given, so the ring, the dots around it and the three hands keep their proportions at any size and there is one number to set:</p>
+<pre><code class="language-xml">&lt;mah:AnalogClock Width=&quot;240&quot; Height=&quot;240&quot; /&gt;
+</code></pre>
+<p><code>BorderBrush</code> and <code>BorderThickness</code> are the ring, <code>Foreground</code> the hands and the dot in the middle, <code>Background</code> the face behind them. The ring is on the accent by default and the hands follow the theme foreground. Because the whole face is scaled, a border of two on a clock drawn at twice its natural size is four on the screen.</p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th>Fires when</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Toggled</code></td>
-<td><code>IsOn</code> changes <strong>for any reason</strong> — a click, a binding, a property set in code</td>
-</tr>
-<tr>
-<td><code>Command</code></td>
-<td>the user toggles the switch, in either direction</td>
-</tr>
-<tr>
-<td><code>OnCommand</code></td>
-<td>the user toggles it <strong>on</strong></td>
-</tr>
-<tr>
-<td><code>OffCommand</code></td>
-<td>the user toggles it <strong>off</strong></td>
-</tr>
-</tbody>
-</table>
-<p>The commands are executed from <code>Toggle()</code>, which only user interaction reaches:</p>
-<pre><code class="language-csharp">private void Toggle()
-{
-    var newValue = !this.IsOn;
-    this.SetCurrentValue(IsOnProperty, BooleanBoxes.Box(newValue));
-
-    CommandHelpers.ExecuteCommandSource(this);
-    CommandHelpers.ExecuteCommandSource(this, newValue ? this.OnCommand : this.OffCommand);
-}
-</code></pre>
-<p><code>Toggled</code>, by contrast, is raised from the <code>IsOn</code> property-changed callback. So setting <code>IsOn</code> in code raises <code>Toggled</code> and runs <strong>no</strong> command, while a click does both. Pick <code>Toggled</code> for &quot;the value changed&quot; and the commands for &quot;the user changed it&quot;.</p>
-<p><code>Command</code> and the pair share one <code>CommandParameter</code> and <code>CommandTarget</code>. All three can be set at once; <code>Command</code> runs first.</p>
-<div class="alert alert-warning"><p><strong><code>Toggled</code> is not a routed event.</strong> Despite its <code>RoutedEventHandler</code> signature it is a plain CLR event:</p>
-<pre><code class="language-csharp">public event RoutedEventHandler Toggled;
-</code></pre>
-<p>It is raised with <code>Toggled?.Invoke(this, new RoutedEventArgs())</code>, so it does not bubble and cannot be attached with an <code>EventSetter</code> in a style or handled on a parent element. Subscribe on the switch itself, or use the commands.</p>
-</div>
-<h2 id="other-properties">Other properties</h2>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
+<th>Style</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>IsPressed</code></td>
-<td><code>bool</code>, read-only</td>
-<td>whether the switch is being pressed or dragged</td>
+<td><code>MahApps.Styles.AnalogClock</code></td>
+<td>the default one, accent ring and theme-coloured hands</td>
 </tr>
 <tr>
-<td><code>ContentPadding</code></td>
-<td><code>Thickness</code></td>
-<td>padding around the on/off content</td>
+<td><code>MahApps.Styles.AnalogClock.Win10</code></td>
+<td>the hands in the foreground of a Windows 10 text control</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.AnalogClock.WinUI</code></td>
+<td>the same for WinUI</td>
 </tr>
 </tbody>
 </table>
-<p>The template parts are <code>SwitchKnobBounds</code>, <code>SwitchKnob</code>, <code>KnobTranslateTransform</code> and <code>SwitchThumb</code>, plus a content presenter for each of the header, content, on-content and off-content. The <code>Thumb</code> is what makes the knob draggable, and <code>ToggleSwitchTranslateDuration</code> (0.5 s) is the resource that times the slide.</p>
-<h2 id="validation">Validation</h2>
-<p>The style sets <code>Validation.ErrorTemplate</code> to <code>MahApps.Templates.ValidationError</code>, so a failed binding on <code>IsOn</code> gets the same treatment as any other input control — see <a href="../styles/validation">Validation</a>.</p>
+<p>Neither the Windows 10 nor the WinUI set shows a clock in its picker drop-down, because neither Windows 10 nor Fluent has a clock face — the columns are the whole time selection there. The two styles are for a clock you place yourself, and for a picker in those sets that is told <code>IsClockVisible=&quot;True&quot;</code>.</p>
+<h2 id="in-a-picker">In a picker</h2>
+<p>The picker owns the clock in its drop-down, so it is reached through the picker rather than directly: <code>ClockSize</code> for how large it is drawn, <code>ClockStyle</code> for its look, <code>IsClockVisible</code> for whether it is there at all, and <code>HandVisibility</code>, which the picker passes down. <a href="TimePicker#reaching-into-the-drop-down">The TimePicker page</a> has them together.</p>
+<pre><code class="language-xml">&lt;mah:TimePicker ClockSize=&quot;200&quot; HandVisibility=&quot;All&quot; /&gt;
+</code></pre>
 <h2 id="related">Related</h2>
-<p><a href="../helper/headeredcontrolhelper">HeaderedControlHelper</a> for the header's font and colour. <a href="../helper/togglebuttonhelper">ToggleButtonHelper</a> and the <a href="../styles/checkbox">CheckBox</a> styles cover the other two-state controls.</p>
+<p><a href="TimePicker">TimePicker</a> and <a href="DateTimePicker">DateTimePicker</a> for the pickers this face came out of.</p>
 
 
                                         </div>
@@ -470,18 +415,13 @@ ToggleSwitch
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#header-and-per-state-content">Header and per-state content</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#which-side-the-switch-is-on">Which side the switch is on</a></div>
-                        </div>
-                    <div class="sidebar-nav-item"><a href="#width">Width</a></div>
-                    <div class="sidebar-nav-item"><a href="#reacting-to-a-change">Reacting to a change</a></div>
-                    <div class="sidebar-nav-item"><a href="#other-properties">Other properties</a></div>
-                    <div class="sidebar-nav-item"><a href="#validation">Validation</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-it-shows">What it shows</a></div>
+                    <div class="sidebar-nav-item"><a href="#size-and-colour">Size and colour</a></div>
+                    <div class="sidebar-nav-item"><a href="#in-a-picker">In a picker</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/toggleswitch.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/AnalogClock.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
                             </div>

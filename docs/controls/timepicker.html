@@ -138,6 +138,9 @@ TimePicker
 </div>                <div class="sidebar-nav-children">
 
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/analogclock">AnalogClock</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/autosuggestbox">AutoSuggestBox</a>
 </div>
 <div class="sidebar-nav-item">
@@ -476,6 +479,24 @@ TimePicker
 <td><code>Now</code></td>
 <td>what that button says</td>
 </tr>
+<tr>
+<td><code>ClockSize</code></td>
+<td><code>double</code></td>
+<td><code>120</code></td>
+<td>how large the face is drawn (on <code>develop</code>)</td>
+</tr>
+<tr>
+<td><code>ClockStyle</code></td>
+<td><code>Style</code></td>
+<td><code>null</code></td>
+<td>the look of the clock (on <code>develop</code>)</td>
+</tr>
+<tr>
+<td><code>PopupStyle</code></td>
+<td><code>Style</code></td>
+<td>the built-in one</td>
+<td>the drop-down itself (on <code>develop</code>)</td>
+</tr>
 </tbody>
 </table>
 <p><code>TimePartVisibility</code> is a flags enum — <code>Hour</code>, <code>Minute</code>, <code>Second</code>, plus the combinations <code>HourMinute</code> and <code>All</code>. Seconds are off in both places by default, so turning them on takes two properties:</p>
@@ -487,8 +508,31 @@ TimePicker
 </code></pre>
 <p>Each has a matching <code>HoursItemStringFormat</code>, <code>MinutesItemStringFormat</code> and <code>SecondsItemStringFormat</code>.</p>
 <p>The button under the lists puts the picker on the time of day in one press. It is the same one the <code>DateTimePicker</code> carries, described on <a href="DateTimePicker">its page</a> along with the caption property and the note that it is new on <code>develop</code>.</p>
+<h3 id="reaching-into-the-drop-down">Reaching into the drop-down</h3>
+<div class="alert alert-info"><p><strong>The three properties below and the <code>AnalogClock</code> control are new on <code>develop</code></strong>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4514">#4514</a>. In a released version the clock and the popup are markup in the middle of the shared template, so the only way at either of them is a copy of the whole template.</p>
+</div>
+<p>The clock face is a control of its own, <a href="AnalogClock">AnalogClock</a>, and the picker carries three properties that reach it and the popup around it.</p>
+<p><code>ClockSize</code> is the one the issue asked for. The face is drawn at its natural 120 and scaled to whatever size it is given, so one number takes the ring, the dots and the hands with it, and the drop-down grows to fit:</p>
+<pre><code class="language-xml">&lt;mah:TimePicker ClockSize=&quot;200&quot; /&gt;
+</code></pre>
+<p><code>ClockStyle</code> is the look of that clock, anything an <code>AnalogClock</code> style can say. The size is not part of it: it comes from <code>ClockSize</code>, because the template hands that to the clock and what a template sets on one of its own elements beats what a style sets on it.</p>
+<pre><code class="language-xml">&lt;mah:TimePicker&gt;
+    &lt;mah:TimePicker.ClockStyle&gt;
+        &lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.AnalogClock}&quot; TargetType=&quot;{x:Type mah:AnalogClock}&quot;&gt;
+            &lt;Setter Property=&quot;BorderBrush&quot; Value=&quot;{DynamicResource MahApps.Brushes.Gray5}&quot; /&gt;
+            &lt;Setter Property=&quot;BorderThickness&quot; Value=&quot;1&quot; /&gt;
+        &lt;/Style&gt;
+    &lt;/mah:TimePicker.ClockStyle&gt;
+&lt;/mah:TimePicker&gt;
+</code></pre>
+<p><code>PopupStyle</code> is the drop-down: where it is placed, how far it is offset, how much room it may take. Stand your own on <code>MahApps.Styles.Popup.TimePickerBase</code>, which is what a popup needs to behave like a drop-down and used to sit on the element in the template:</p>
+<pre><code class="language-xml">&lt;Style x:Key=&quot;DropUp&quot; BasedOn=&quot;{StaticResource MahApps.Styles.Popup.TimePickerBase}&quot; TargetType=&quot;{x:Type Popup}&quot;&gt;
+    &lt;Setter Property=&quot;Placement&quot; Value=&quot;Top&quot; /&gt;
+&lt;/Style&gt;
+</code></pre>
 <h2 id="two-nicer-alternatives">Two nicer alternatives</h2>
-<p>The same two drop-in dictionaries that restyle the <a href="DateTimePicker">DateTimePicker</a> carry a <code>TimePicker</code> style each.</p>
+<p>On <code>develop</code> the two other style sets carry the pickers themselves, so there is nothing to download: merge <code>Styles/Win10/Controls.xaml</code> or <code>Styles/WinUI/Controls.xaml</code> instead of <code>Styles/Controls.xaml</code> and the <code>TimePicker</code> wears that set without another line (<a href="https://github.com/MahApps/MahApps.Metro/issues/4514">#4514</a>). The keys are the same ones the drop-ins use, <code>MahApps.Styles.TimePicker.Win10</code> and <code>MahApps.Styles.TimePicker.WinUI</code>, and both sets bring the field chrome of their text boxes along with the time selection described below.</p>
+<p>In a released version they are the two drop-in dictionaries that restyle the <a href="DateTimePicker">DateTimePicker</a>, one <code>TimePicker</code> style each.</p>
 <p><img src="images/timepicker-variants.png" alt="The built-in field, the Win10 one and the WinUI one" /></p>
 <table>
 <thead>
@@ -549,6 +593,9 @@ TimePicker
                                 <div class="sidebar-nav-item"><a href="#a-format-of-your-own">A format of your own</a></div>
                         </div>
                     <div class="sidebar-nav-item"><a href="#the-drop-down">The drop-down</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#reaching-into-the-drop-down">Reaching into the drop-down</a></div>
+                        </div>
                     <div class="sidebar-nav-item"><a href="#two-nicer-alternatives">Two nicer alternatives</a></div>
                         <div class="sidebar-nav-children">
                                 <div class="sidebar-nav-item"><a href="#what-they-change">What they change</a></div>

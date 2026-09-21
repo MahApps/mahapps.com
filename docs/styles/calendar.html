@@ -319,7 +319,9 @@ Calendar
 <h2 id="a-winui-look">A WinUI look</h2>
 <p>The built-in calendar is the Metro design the library was named for: a solid accent header bar, bold day titles and square cells. Here is what the same control looks like with a WinUI-flavoured style beside it:</p>
 <p><img src="images/calendar-styles.png" alt="The built-in calendar and the WinUI variant" /></p>
-<p>The right-hand one is <code>MahApps.Styles.Calendar.WinUI</code>, a drop-in dictionary this site ships as a <strong><a href="../../assets/xaml/Controls.Calendar.WinUI.xaml">downloadable file</a></strong>. It is not part of MahApps.Metro; it is a worked example of how far these four styles can be taken.</p>
+<p>The right-hand one is <code>MahApps.Styles.Calendar.WinUI</code>, a drop-in dictionary this site ships as a <strong><a href="../../assets/xaml/Controls.Calendar.WinUI.xaml">downloadable file</a></strong>. In a released version it is not part of MahApps.Metro; it is a worked example of how far these four styles can be taken.</p>
+<div class="alert alert-info"><p><strong>On <code>develop</code> both calendars are in the library.</strong> <code>Styles/Controls.Calendar.xaml</code> carries them under the keys they have here, the Windows 10 and the WinUI sets apply them to every <code>Calendar</code> in the application, and the pickers of those sets hand them to their drop-down through <code>CalendarStyle</code>. Nothing to download and nothing to merge on that branch. The files here stay for 2.4.11 and the release candidate.</p>
+</div>
 <p>It is called <em>WinUI</em> rather than <em>Win10</em> on purpose. Rounded corners and circular day cells are <strong>Fluent 2</strong>, the refresh that arrived with WinUI 2.6 and Windows 11. The Windows 10 era of Fluent was square throughout — which is what the library's existing <code>MahApps.Styles.CheckBox.Win10</code> and <code>RadioButton.Win10</code> follow, neither of which sets a corner radius. There is a square variant below.</p>
 <p>What it changes:</p>
 <ul>
