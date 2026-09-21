@@ -256,7 +256,7 @@ DataGrid
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><code>DataGrid</code> ships with WPF; MahApps restyles it and everything inside it. There is one alternative style, and a set of properties for the parts of a grid that WPF gives you no other way to reach.</p>
+<p><code>DataGrid</code> ships with WPF; MahApps restyles it and everything inside it. There is one alternative look, one variant for long grids, and a set of properties for the parts of a grid that WPF gives you no other way to reach.</p>
 <p><img src="images/datagrid-styles.png" alt="The default DataGrid and the Azure variant" /></p>
 <h2 id="the-implicit-style">The implicit style</h2>
 <p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.DataGrid</code> to every <code>DataGrid</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
@@ -345,6 +345,18 @@ DataGrid
 <p><code>EnableCellEditAssist</code> is the one that changes how the grid feels: without it, a check box column needs one click to select the cell and another to hit the box.</p>
 <div class="alert alert-warning"><p><code>DataGridHelper.SelectionUnit</code> is not <code>DataGrid.SelectionUnit</code>. The MahApps cell and row styles read the attached one to decide what to highlight; WPF's own property still decides what selection actually does. Set both when you change it.</p>
 </div>
+<h2 id="virtualisation">Virtualisation</h2>
+<p>A <code>DataGrid</code> virtualises its rows by itself — <code>EnableRowVirtualization</code> is <code>True</code> out of the box — and the MahApps style sets <code>ScrollViewer.CanContentScroll</code> to <code>True</code>, so it scrolls by item rather than by pixel. Two things are off until you ask for them: <code>EnableColumnVirtualization</code>, and <code>VirtualizingPanel.IsVirtualizingWhenGrouping</code>, which is the one that hurts. A grouped grid realises a row for every item it has, and the style's own trigger then switches <code>CanContentScroll</code> back off, because item scrolling and non-virtualised groups do not mix. A few hundred grouped rows take seconds to appear that way, and scroll no better afterwards.</p>
+<p><code>MahApps.Styles.DataGrid.Virtualized</code> is the base style with all of it turned on: rows, columns, item scrolling, recycled containers and virtualisation while grouping.</p>
+<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding GroupedAlbums}&quot;
+          Style=&quot;{StaticResource MahApps.Styles.DataGrid.Virtualized}&quot; /&gt;
+</code></pre>
+<div class="alert alert-info"><p><strong>The key is on <code>develop</code> and in no release yet.</strong> 2.4.11 does not have it; the four <code>.Virtualized</code> styles it does carry belong to <a href="listbox">ListBox</a>, <a href="listview">ListView</a>, <a href="combobox">ComboBox</a> and <a href="treeview">TreeView</a>. Until it ships, the two properties a grid lacks by default go onto the grid itself:</p>
+<pre><code class="language-xml">&lt;DataGrid VirtualizingPanel.IsVirtualizingWhenGrouping=&quot;True&quot;
+          VirtualizingPanel.VirtualizationMode=&quot;Recycling&quot; /&gt;
+</code></pre>
+</div>
+<p>Column virtualisation is the part of that style worth a thought before you use it, which is also why it is a style of its own rather than a change to the implicit one. An <code>Auto</code> column width needs every cell of that column measured, and not measuring the cells that are off screen is precisely what column virtualisation does, so the two work against each other. Explicit or star widths keep the layout still while the grid scrolls sideways; otherwise set <code>EnableColumnVirtualization</code> back to <code>False</code> on the grid and keep the rest.</p>
 <h2 id="grouping">Grouping</h2>
 <p>Grouping is WPF's own, and MahApps styles the group headers through <code>MahApps.Styles.GroupItem.DataGrid</code>, whose expander uses <code>MahApps.Styles.ToggleButton.ExpanderHeader.Down.DataGrid.GroupItem</code>. Point the grid's <code>GroupStyle</code> at it:</p>
 <pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding GroupedAlbums}&quot;&gt;
@@ -353,7 +365,7 @@ DataGrid
     &lt;/DataGrid.GroupStyle&gt;
 &lt;/DataGrid&gt;
 </code></pre>
-<p>As with a <a href="combobox">ComboBox</a>, the grouping itself comes from the bound collection being a grouped view, not from the grid.</p>
+<p>As with a <a href="combobox">ComboBox</a>, the grouping itself comes from the bound collection being a grouped view, not from the grid. The container style only dresses the headers; what grouping costs is the virtualisation above.</p>
 <h2 id="related">Related</h2>
 <p>The columns and the controls inside them have a page of their own: <a href="datagridcolumns">DataGrid Columns</a>.</p>
 
@@ -367,6 +379,7 @@ DataGrid
                     <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
                     <div class="sidebar-nav-item"><a href="#the-azure-style">The Azure style</a></div>
                     <div class="sidebar-nav-item"><a href="#padding-and-selection">Padding and selection</a></div>
+                    <div class="sidebar-nav-item"><a href="#virtualisation">Virtualisation</a></div>
                     <div class="sidebar-nav-item"><a href="#grouping">Grouping</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
