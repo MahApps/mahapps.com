@@ -10,7 +10,7 @@ WinUI is what Windows 11 draws: rounded corners, the accent used sparingly, chro
 
 ## The set
 
-The set has one style of its own so far, the text box, and hands down the [Win10](win10) one for every control it has nothing for yet. That reads thinner than it is. The two looks belong to the same family, so a Windows 10 control sits next to a WinUI one far better than a Metro one would, and every WinUI style that gets written takes one of those places.
+The set has the text box and the scroll bar of its own, along with the calendar and the two pickers that moved in on `develop`, and hands down the [Win10](win10) one for every control it has nothing for yet. That reads thinner than it is. The two looks belong to the same family, so a Windows 10 control sits next to a WinUI one far better than a Metro one would, and every WinUI style that gets written takes one of those places.
 
 It goes *in place of* `Styles/Controls.xaml`, because it merges `Styles/Win10/Controls.xaml`, which in turn merges `Styles/Controls.xaml`:
 
@@ -30,6 +30,8 @@ Merge it into a window or a panel rather than into `App.xaml` and it reaches tha
 
 What it is made of sits in the theme as `MahApps.Colors.WinUI.*` and `MahApps.Brushes.TextControl.WinUI.*`, taken from the WinUI values themselves, and the border thicknesses and the padding are resources a style of your own can answer differently without replacing the template. [TextBox](../styles/textbox) covers it.
 
+`MahApps.Styles.ScrollBar.WinUI` is the Fluent bar in both its visualisations: a two-unit line at the edge of the content that grows inwards into a thumb with a chevron at either end once the pointer is on it. The set applies `MahApps.Styles.ScrollViewer.WinUI` with it, which lays the bars over the content rather than beside it, so the sixteen units the expanded bar needs cost no layout while nobody is pointing at it. Leave that much padding at the edge of anything interactive. [ScrollBars](../styles/scrollbars) covers both.
+
 ## Drop-in dictionaries from this site
 
 For the controls the set does not reach yet, this documentation ships **drop-in dictionaries** in the same look. They are written for these pages and are not part of the NuGet package, and their keys already read the way the library's do, so nothing has to be renamed when one of them moves in:
@@ -40,7 +42,7 @@ For the controls the set does not reach yet, this documentation ships **drop-in 
 | [`Controls.DateTimePicker.WinUI.xaml`](../../assets/xaml/Controls.DateTimePicker.WinUI.xaml) | `DateTimePicker`, `TimePicker` | [DateTimePicker](../controls/DateTimePicker), [TimePicker](../controls/TimePicker) |
 | [`Controls.ScrollBar.WinUI.xaml`](../../assets/xaml/Controls.ScrollBar.WinUI.xaml) | `ScrollBar`, `ScrollViewer` | [ScrollBars](../styles/scrollbars) |
 
-On `develop` the calendar and the two pickers moved into the set itself, under these same keys, and the set applies them without anything being merged. What follows is for 2.4.11 and the release candidate, and for the scroll bar, which is still a file.
+On `develop` all three moved into the set itself, under these same keys, and the set applies them without anything being merged. What follows is for 2.4.11 and the release candidate.
 
 Merge them after whichever of the library's dictionaries you are on:
 
@@ -66,7 +68,7 @@ Where it was possible, these dictionaries change only what the library's templat
 Where it was not possible, the pages say so plainly rather than pretending. Two examples worth knowing before you start:
 
 - the [DateTimePicker](../controls/DateTimePicker)'s drop-down frame stays square whatever you do, because `PART_PopupBorder` has no `CornerRadius` and none of its brushes is a `TemplateBinding` — tracked as [#4582](https://github.com/MahApps/MahApps.Metro/issues/4582)
-- the [ScrollBar](../styles/scrollbars) dictionary *is* a template replacement, because a WinUI scrollbar's expand-on-hover behaviour cannot be reached from a style at all
+- the [ScrollBar](../styles/scrollbars) style *is* a template replacement, because a WinUI scrollbar's expand-on-hover behaviour cannot be reached from the library's template at all
 
 ## Related
 

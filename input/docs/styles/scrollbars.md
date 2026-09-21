@@ -54,7 +54,7 @@ A `Viewbox` scales it, so the coordinate space of the geometry does not matter.
 
 ## Size
 
-Four resources, all `14` by default, and a consistent change needs all four:
+Four resources, all `12` by default, and a consistent change needs all four:
 
 ![A default scroll viewer and one with 22-unit bars](images/scrollbars-size.png)
 
@@ -68,6 +68,10 @@ Four resources, all `14` by default, and a consistent change needs all four:
 ```
 
 The first two are the thickness of the bar itself; the other two size the arrow buttons. Override only the first pair and the bar gets wider while the arrows stay small in the middle of it.
+
+:::{.alert .alert-info}
+**The default was `14` up to and including 2.4.11 and is `12` on `develop`.** The figure above is the released version, so its default bar is the wider one. Nothing else about the four resources changed.
+:::
 
 The vertical template also overrides `SystemParameters.VerticalScrollBarButtonHeightKey` to `50` inside the track, which is what `Track` uses as the minimum thumb length — so a vertical thumb never shrinks below 50 units however long the content is. The horizontal template sets no equivalent.
 
@@ -87,25 +91,31 @@ That helper also carries the mouse wheel behaviour — horizontal scrolling, bub
 
 ## Two nicer alternatives
 
-The built-in scrollbar is spare to the point of being hard to find. This site ships two drop-in dictionaries as worked alternatives — they are not part of MahApps.Metro, and both are written entirely against theme brushes so they follow the light and dark base themes.
+The built-in scrollbar is spare to the point of being hard to find. There are two alternatives, both written entirely against theme brushes so they follow the light and dark base themes:
 
 ![The built-in bar next to the Win10 and WinUI ones](images/scrollbars-alternatives.png)
 
-| | | |
-| --- | --- | --- |
-| **[`Controls.ScrollBar.Win10.xaml`](../../assets/xaml/Controls.ScrollBar.Win10.xaml)** | `MahApps.Styles.ScrollBar.Win10` | square, 16 units, a filled track and chevron buttons that are always there — the Windows 10 desktop bar |
-| **[`Controls.ScrollBar.WinUI.xaml`](../../assets/xaml/Controls.ScrollBar.WinUI.xaml)** | `MahApps.Styles.ScrollBar.WinUI` | the two-visualisation Fluent bar: a thin indicator that morphs into a full scrollbar under the pointer |
+| Style | |
+| --- | --- |
+| `MahApps.Styles.ScrollBar.Win10` | square, 16 units, a filled track and chevron buttons that are always there — the Windows 10 desktop bar |
+| `MahApps.Styles.ScrollBar.WinUI` | the two-visualisation Fluent bar: a thin indicator that morphs into a full scrollbar under the pointer |
 
-Merge the one you want after `Controls.xaml` and give `ScrollBar` an implicit style, since both are keyed:
+Both are keyed, so nothing changes until you apply one, either per bar or through an implicit style:
+
+```xml
+<Style BasedOn="{StaticResource MahApps.Styles.ScrollBar.WinUI}" TargetType="{x:Type ScrollBar}" />
+```
+
+Either style set already does that for you: [Win 10 (UWP)](../stylevariants/win10) applies the Windows 10 bar, [WinUI](../stylevariants/winui) the WinUI one along with the overlaying scroll viewer below.
+
+:::{.alert .alert-info}
+**Both keys are on `develop` and in no release yet.** 2.4.11 has neither, and for that version this site ships the same two looks as drop-in dictionaries, written before they moved into the library and keyed the same way, so nothing has to be renamed afterwards: [`Controls.ScrollBar.Win10.xaml`](../../assets/xaml/Controls.ScrollBar.Win10.xaml) and [`Controls.ScrollBar.WinUI.xaml`](../../assets/xaml/Controls.ScrollBar.WinUI.xaml). Merge one after `Controls.xaml` and apply it the same way:
 
 ```xml
 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
 <ResourceDictionary Source="Styles/Controls.ScrollBar.WinUI.xaml" />
 ```
-
-```xml
-<Style BasedOn="{StaticResource MahApps.Styles.ScrollBar.WinUI}" TargetType="{x:Type ScrollBar}" />
-```
+:::
 
 ### The two WinUI visualisations
 
@@ -139,7 +149,7 @@ That matters more than it sounds. WPF's `ScrollViewer` template puts each bar in
 
 ![The same bar beside the content and over it](images/scrollbars-winui-overlay.png)
 
-The dictionary therefore also carries `MahApps.Styles.ScrollViewer.WinUI`, whose template lays both bars over the content instead of beside it:
+There is therefore a second style, `MahApps.Styles.ScrollViewer.WinUI`, whose template lays both bars over the content instead of beside it:
 
 ```xml
 <Style BasedOn="{StaticResource MahApps.Styles.ScrollViewer.WinUI}" TargetType="{x:Type ScrollViewer}" />
@@ -153,7 +163,7 @@ Take the guidance's other half with it: leave sixteen units of padding at the ed
 
 ![The two alternatives under the dark base theme](images/scrollbars-alternatives-dark.png)
 
-Every brush in both files is a `MahApps.Brushes.Gray*` or `ThemeBackground`, so there is nothing to change when the base theme flips. The figure above is the same markup with `Dark.Blue` merged instead of `Light.Blue`.
+Every brush in the two is a `MahApps.Brushes.Gray*` or `ThemeBackground`, so there is nothing to change when the base theme flips. The figure above is the same markup with `Dark.Blue` merged instead of `Light.Blue`.
 
 Sizes are resources too — `MahApps.Sizes.ScrollBar.WinUI` for the bar, `.Indicator` and `.Thumb` for the two thumb widths, `.Thumb.MinLength` for how short the thumb may get, and `MahApps.Sizes.ScrollBar.Win10` for the other one — so a thicker bar is one `sys:Double` rather than an edited template.
 
@@ -165,7 +175,7 @@ One part of the Fluent behaviour is missing, and it needs code rather than a tem
 
 ![The Visual Studio scrollbar on a dark ground](images/scrollbars-visualstudio.png)
 
-`MahApps.Styles.ScrollBar.VisualStudio` is 18 units thick instead of 14, and unlike the default it does draw a track and puts its arrows in boxes.
+`MahApps.Styles.ScrollBar.VisualStudio` is 18 units thick instead of 12, and unlike the default it does draw a track and puts its arrows in boxes.
 
 :::{.alert .alert-warning}
 It is **not** merged by `Controls.xaml`. Add `Styles/VS/ScrollBar.xaml` — or `Styles/VS/Controls.xaml`, which pulls it in — along with `Styles/VS/Colors.xaml`, and note that it is drawn for the dark Visual Studio shell.
