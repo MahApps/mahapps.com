@@ -28,6 +28,8 @@ Everything the library has is still there. What comes out in the Windows 10 look
 
 Merge it into a window or a panel rather than into `App.xaml` and it reaches that part of the tree alone. The demo does exactly that, to stand the three sets next to each other.
 
+One thing about the set changes layout rather than looks. Its scrollbar is the two-state one a UWP window draws, a two-unit line until the pointer arrives, so the set also applies a scroll viewer that lays the bars *over* the content instead of beside it. Leave sixteen units of padding at the edge of anything interactive, or an expanded bar will cover it. [ScrollBars](../styles/scrollbars) has the whole story.
+
 ## The individual styles
 
 Nothing forces the whole set on you. Every style in it has a key, and always has had one:
@@ -39,7 +41,7 @@ Nothing forces the whole set on you. Every style in it has a key, and always has
 | `MahApps.Styles.CheckBox.DataGrid.Win10` | [DataGrid columns](../styles/datagridcolumns) |
 | `MahApps.Styles.RadioButton.Win10` | [RadioButton](../styles/radiobutton) |
 | `MahApps.Styles.TextBox.Win10` (on `develop`) | [TextBox](../styles/textbox) |
-| `MahApps.Styles.ScrollBar.Win10` (on `develop`) | [ScrollBars](../styles/scrollbars) |
+| `MahApps.Styles.ScrollBar.Win10`, `…ScrollViewer.Win10` (on `develop`) | [ScrollBars](../styles/scrollbars) |
 | `MahApps.Styles.NumericUpDown.Win10` (on `develop`) | [NumericUpDown](../controls/numericupdown) |
 | `MahApps.Styles.Slider.Win10` | [Slider](../styles/slider) |
 | `MahApps.Styles.RangeSlider.Win10` | [RangeSlider](../controls/rangeslider) |

@@ -97,8 +97,8 @@ The built-in scrollbar is spare to the point of being hard to find. There are tw
 
 | Style | |
 | --- | --- |
-| `MahApps.Styles.ScrollBar.Win10` | square, 16 units, a filled track and chevron buttons that are always there — the Windows 10 desktop bar |
-| `MahApps.Styles.ScrollBar.WinUI` | the two-visualisation Fluent bar: a thin indicator that morphs into a full scrollbar under the pointer |
+| `MahApps.Styles.ScrollBar.Win10` | the bar a UWP window draws: a two-unit line that opens into a square 16-unit bar with a filled track and a chevron at either end |
+| `MahApps.Styles.ScrollBar.WinUI` | the same idea in Fluent shape, a thin indicator that morphs into a rounded bar on a panel |
 
 Both are keyed, so nothing changes until you apply one, either per bar or through an implicit style:
 
@@ -106,10 +106,12 @@ Both are keyed, so nothing changes until you apply one, either per bar or throug
 <Style BasedOn="{StaticResource MahApps.Styles.ScrollBar.WinUI}" TargetType="{x:Type ScrollBar}" />
 ```
 
-Either style set already does that for you: [Win 10 (UWP)](../stylevariants/win10) applies the Windows 10 bar, [WinUI](../stylevariants/winui) the WinUI one along with the overlaying scroll viewer below.
+Either style set already does that for you: [Win 10 (UWP)](../stylevariants/win10) applies the Windows 10 bar, [WinUI](../stylevariants/winui) the WinUI one, and each of them applies the overlaying scroll viewer below with it.
+
+Both are two-state bars, which is the part that matters for layout: while the pointer is elsewhere a bar paints two of its sixteen units and nothing else, so it is meant to lie *over* the content rather than beside it.
 
 :::{.alert .alert-info}
-**Both keys are on `develop` and in no release yet.** 2.4.11 has neither, and for that version this site ships the same two looks as drop-in dictionaries, written before they moved into the library and keyed the same way, so nothing has to be renamed afterwards: [`Controls.ScrollBar.Win10.xaml`](../../assets/xaml/Controls.ScrollBar.Win10.xaml) and [`Controls.ScrollBar.WinUI.xaml`](../../assets/xaml/Controls.ScrollBar.WinUI.xaml). Merge one after `Controls.xaml` and apply it the same way:
+**Both keys are on `develop` and in no release yet.** 2.4.11 has neither, and for that version this site ships the same two looks as drop-in dictionaries, written before they moved into the library and keyed the same way, so nothing has to be renamed afterwards. The Windows 10 file is the older, always-visible desktop bar, which is what the figure above shows as well; the style in the library opens and closes the way this page describes. [`Controls.ScrollBar.Win10.xaml`](../../assets/xaml/Controls.ScrollBar.Win10.xaml) and [`Controls.ScrollBar.WinUI.xaml`](../../assets/xaml/Controls.ScrollBar.WinUI.xaml). Merge one after `Controls.xaml` and apply it the same way:
 
 ```xml
 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
@@ -117,7 +119,7 @@ Either style set already does that for you: [Win 10 (UWP)](../stylevariants/win1
 ```
 :::
 
-### The two WinUI visualisations
+### Two visualisations, twice
 
 Microsoft's [scroll viewer guidance](https://learn.microsoft.com/windows/apps/develop/ui/controls/scroll-controls) treats the Fluent scrollbar as two separate visualisations rather than one state with a hover effect: a panning indicator, and the traditional scrollbar thumb. Which one you see depends on how the region is being scrolled.
 
@@ -137,6 +139,16 @@ The thumb slides inwards through a `ThicknessAnimation` on its `Margin` while a 
 
 The chevrons take their rows the moment they appear, so the track shortens and the thumb shifts slightly. That is not a flaw to design around: the two visualisations genuinely have different track lengths in WinUI too, because the indicator runs the full height and the expanded bar does not.
 
+The Windows 10 bar works the same way, with its own numbers and one difference in structure. Its chevrons keep their rows the whole time and are only faded, so its track never changes length and its line never jumps, which is how the system XAML of the Windows SDK arranges it. Square rather than rounded, a filled track at nine tenths opacity instead of a panel, and a thumb that grows to the full sixteen units instead of to six:
+
+| | at rest | expanded |
+| --- | --- | --- |
+| track | invisible | 16 units, 0.9 opacity |
+| thumb | 2 units, two units in from the edge | 16 units, flush |
+| chevrons | in place, invisible | in place, visible |
+
+The timings of both are the ones the platform carries: `ScrollBarOpacityChangeDuration`, 0.083 seconds, for anything that fades, and `ScrollBarExpandDuration`, 0.167, with a key spline of `0,0,0,1`, for anything that grows. The delay before a bar opens is the one place where these styles deviate. UWP and WinUI both wait `ScrollBarExpandBeginTime`, four tenths of a second, but they start counting when the pointer enters the scrolling region, so the bar stands open by the time the pointer arrives. A WPF trigger only knows about the bar itself, and waiting four tenths once the pointer is already on it reads as a bar that will not open, so these wait a tenth. Leaving a bar snaps it back, as the platform's empty `Collapsed` state does.
+
 For the template root to see the pointer at all, it is `Background="Transparent"` rather than unset. Without that, only the two-unit line answers hit tests and the bar never expands.
 
 ### The bar goes over the content
@@ -149,11 +161,13 @@ That matters more than it sounds. WPF's `ScrollViewer` template puts each bar in
 
 ![The same bar beside the content and over it](images/scrollbars-winui-overlay.png)
 
-There is therefore a second style, `MahApps.Styles.ScrollViewer.WinUI`, whose template lays both bars over the content instead of beside it:
+There is therefore a scroll viewer whose template lays both bars over the content instead of beside it. One template, `MahApps.Templates.ScrollViewer.Overlay`, carried by a style per look, since a bar that paints two of its sixteen units asks the same of its viewer whichever of the two it is:
 
 ```xml
 <Style BasedOn="{StaticResource MahApps.Styles.ScrollViewer.WinUI}" TargetType="{x:Type ScrollViewer}" />
 ```
+
+`MahApps.Styles.ScrollViewer.Win10` is the other one, and the two style sets apply theirs along with the bar.
 
 Take the guidance's other half with it: leave sixteen units of padding at the edge of anything interactive, or the expanded bar will cover it.
 

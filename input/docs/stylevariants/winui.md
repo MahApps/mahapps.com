@@ -30,7 +30,7 @@ Merge it into a window or a panel rather than into `App.xaml` and it reaches tha
 
 What it is made of sits in the theme as `MahApps.Colors.WinUI.*` and `MahApps.Brushes.TextControl.WinUI.*`, taken from the WinUI values themselves, and the border thicknesses and the padding are resources a style of your own can answer differently without replacing the template. [TextBox](../styles/textbox) covers it.
 
-`MahApps.Styles.ScrollBar.WinUI` is the Fluent bar in both its visualisations: a two-unit line at the edge of the content that grows inwards into a thumb with a chevron at either end once the pointer is on it. The set applies `MahApps.Styles.ScrollViewer.WinUI` with it, which lays the bars over the content rather than beside it, so the sixteen units the expanded bar needs cost no layout while nobody is pointing at it. Leave that much padding at the edge of anything interactive. [ScrollBars](../styles/scrollbars) covers both.
+`MahApps.Styles.ScrollBar.WinUI` is the Fluent bar in both its visualisations: a two-unit line at the edge of the content that grows inwards into a thumb with a chevron at either end once the pointer is on it. The set applies `MahApps.Styles.ScrollViewer.WinUI` with it, which lays the bars over the content rather than beside it, so the sixteen units the expanded bar needs cost no layout while nobody is pointing at it. Leave that much padding at the edge of anything interactive. The [Win10](win10) bar works the same way in square shape, and both take their timings from the platform; [ScrollBars](../styles/scrollbars) covers all of it.
 
 ## Drop-in dictionaries from this site
 
