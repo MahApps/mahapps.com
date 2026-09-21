@@ -269,7 +269,7 @@ Win 10 (UWP)
     &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Blue.xaml&quot; /&gt;
 &lt;/ResourceDictionary.MergedDictionaries&gt;
 </code></pre>
-<p>Everything the library has is still there. What comes out in the Windows 10 look is the <code>Button</code>, the <code>RepeatButton</code>, the <code>CheckBox</code>, the <code>RadioButton</code>, the <code>TextBox</code> and the four <a href="../controls/numericupdown">up-downs</a>; every other control keeps the default look, because the set has nothing of its own for it.</p>
+<p>Everything the library has is still there. What comes out in the Windows 10 look is the <code>Button</code>, the <code>RepeatButton</code>, the <code>CheckBox</code>, the <code>RadioButton</code>, the <code>TextBox</code>, the <code>ScrollBar</code>, the four <a href="../controls/numericupdown">up-downs</a>, the <code>Calendar</code>, the <a href="../controls/analogclock">AnalogClock</a> and the two pickers; every other control keeps the default look, because the set has nothing of its own for it.</p>
 <p>Merge it into a window or a panel rather than into <code>App.xaml</code> and it reaches that part of the tree alone. The demo does exactly that, to stand the three sets next to each other.</p>
 <h2 id="the-individual-styles">The individual styles</h2>
 <p>Nothing forces the whole set on you. Every style in it has a key, and always has had one:</p>
@@ -300,6 +300,10 @@ Win 10 (UWP)
 <tr>
 <td><code>MahApps.Styles.TextBox.Win10</code> (on <code>develop</code>)</td>
 <td><a href="../styles/textbox">TextBox</a></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ScrollBar.Win10</code> (on <code>develop</code>)</td>
+<td><a href="../styles/scrollbars">ScrollBars</a></td>
 </tr>
 <tr>
 <td><code>MahApps.Styles.NumericUpDown.Win10</code> (on <code>develop</code>)</td>
@@ -352,7 +356,7 @@ Win 10 (UWP)
 </tr>
 </tbody>
 </table>
-<p>On <code>develop</code> the calendar and the two pickers are no longer among them: the set carries those itself, under the same keys, so only the scroll bar is left to download. In a released version all three are files.</p>
+<p>On <code>develop</code> none of the three is needed any more: the calendar, the two pickers and the scroll bar all moved into the set itself, under the same keys, and the set applies them without anything being merged. In a released version all three are files.</p>
 <p>Download them, merge them after the set, and read the page each one belongs to — several note what the built-in templates do and do not let a style reach.</p>
 <h2 id="related">Related</h2>
 <p><a href="winui">WinUI</a> is the newer of the two looks, and its set stands on this one. <a href="clean">Clean</a> and <a href="vs">Visual Studio</a> are variants of a different kind: Clean restyles the window chrome, Visual Studio turns the whole application into a tool window.</p>

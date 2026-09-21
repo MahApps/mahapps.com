@@ -304,7 +304,7 @@ ScrollBar
 </code></pre>
 <p>A <code>Viewbox</code> scales it, so the coordinate space of the geometry does not matter.</p>
 <h2 id="size">Size</h2>
-<p>Four resources, all <code>14</code> by default, and a consistent change needs all four:</p>
+<p>Four resources, all <code>12</code> by default, and a consistent change needs all four:</p>
 <p><img src="images/scrollbars-size.png" alt="A default scroll viewer and one with 22-unit bars" /></p>
 <pre><code class="language-xml">&lt;ResourceDictionary xmlns:sys=&quot;clr-namespace:System;assembly=mscorlib&quot;&gt;
     &lt;sys:Double x:Key=&quot;MahApps.Sizes.ScrollBar.Width&quot;&gt;22&lt;/sys:Double&gt;
@@ -314,6 +314,8 @@ ScrollBar
 &lt;/ResourceDictionary&gt;
 </code></pre>
 <p>The first two are the thickness of the bar itself; the other two size the arrow buttons. Override only the first pair and the bar gets wider while the arrows stay small in the middle of it.</p>
+<div class="alert alert-info"><p><strong>The default was <code>14</code> up to and including 2.4.11 and is <code>12</code> on <code>develop</code>.</strong> The figure above is the released version, so its default bar is the wider one. Nothing else about the four resources changed.</p>
+</div>
 <p>The vertical template also overrides <code>SystemParameters.VerticalScrollBarButtonHeightKey</code> to <code>50</code> inside the track, which is what <code>Track</code> uses as the minimum thumb length — so a vertical thumb never shrinks below 50 units however long the content is. The horizontal template sets no equivalent.</p>
 <h2 id="scrollviewer">ScrollViewer</h2>
 <p><code>MahApps.Styles.ScrollViewer</code> is a template and one trigger. The template is the usual two-by-two grid — content, vertical bar, horizontal bar — and the trigger is on <a href="../helper/scrollviewerhelper">ScrollViewerHelper</a>:</p>
@@ -324,35 +326,35 @@ ScrollBar
 </code></pre>
 <p>That helper also carries the mouse wheel behaviour — horizontal scrolling, bubbling to an outer scroll viewer, and the end-of-scroll commands you would build endless scrolling on. Its page has the full list; none of it is in this style.</p>
 <h2 id="two-nicer-alternatives">Two nicer alternatives</h2>
-<p>The built-in scrollbar is spare to the point of being hard to find. This site ships two drop-in dictionaries as worked alternatives — they are not part of MahApps.Metro, and both are written entirely against theme brushes so they follow the light and dark base themes.</p>
+<p>The built-in scrollbar is spare to the point of being hard to find. There are two alternatives, both written entirely against theme brushes so they follow the light and dark base themes:</p>
 <p><img src="images/scrollbars-alternatives.png" alt="The built-in bar next to the Win10 and WinUI ones" /></p>
 <table>
 <thead>
 <tr>
-<th></th>
-<th></th>
+<th>Style</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong><a href="../../assets/xaml/Controls.ScrollBar.Win10.xaml"><code>Controls.ScrollBar.Win10.xaml</code></a></strong></td>
 <td><code>MahApps.Styles.ScrollBar.Win10</code></td>
 <td>square, 16 units, a filled track and chevron buttons that are always there — the Windows 10 desktop bar</td>
 </tr>
 <tr>
-<td><strong><a href="../../assets/xaml/Controls.ScrollBar.WinUI.xaml"><code>Controls.ScrollBar.WinUI.xaml</code></a></strong></td>
 <td><code>MahApps.Styles.ScrollBar.WinUI</code></td>
 <td>the two-visualisation Fluent bar: a thin indicator that morphs into a full scrollbar under the pointer</td>
 </tr>
 </tbody>
 </table>
-<p>Merge the one you want after <code>Controls.xaml</code> and give <code>ScrollBar</code> an implicit style, since both are keyed:</p>
+<p>Both are keyed, so nothing changes until you apply one, either per bar or through an implicit style:</p>
+<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.ScrollBar.WinUI}&quot; TargetType=&quot;{x:Type ScrollBar}&quot; /&gt;
+</code></pre>
+<p>Either style set already does that for you: <a href="../stylevariants/win10">Win 10 (UWP)</a> applies the Windows 10 bar, <a href="../stylevariants/winui">WinUI</a> the WinUI one along with the overlaying scroll viewer below.</p>
+<div class="alert alert-info"><p><strong>Both keys are on <code>develop</code> and in no release yet.</strong> 2.4.11 has neither, and for that version this site ships the same two looks as drop-in dictionaries, written before they moved into the library and keyed the same way, so nothing has to be renamed afterwards: <a href="../../assets/xaml/Controls.ScrollBar.Win10.xaml"><code>Controls.ScrollBar.Win10.xaml</code></a> and <a href="../../assets/xaml/Controls.ScrollBar.WinUI.xaml"><code>Controls.ScrollBar.WinUI.xaml</code></a>. Merge one after <code>Controls.xaml</code> and apply it the same way:</p>
 <pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
 &lt;ResourceDictionary Source=&quot;Styles/Controls.ScrollBar.WinUI.xaml&quot; /&gt;
 </code></pre>
-<pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.ScrollBar.WinUI}&quot; TargetType=&quot;{x:Type ScrollBar}&quot; /&gt;
-</code></pre>
+</div>
 <h3 id="the-two-winui-visualisations">The two WinUI visualisations</h3>
 <p>Microsoft's <a href="https://learn.microsoft.com/windows/apps/develop/ui/controls/scroll-controls">scroll viewer guidance</a> treats the Fluent scrollbar as two separate visualisations rather than one state with a hover effect: a panning indicator, and the traditional scrollbar thumb. Which one you see depends on how the region is being scrolled.</p>
 <p>The indicator is a two-unit line at the edge of the content, and that is all there is while the pointer is elsewhere. When the pointer moves over it, it <strong>morphs into the scrollbar proper</strong>: a six-unit thumb on a rounded panel, with a chevron button at each end.</p>
@@ -394,20 +396,20 @@ ScrollBar
 </blockquote>
 <p>That matters more than it sounds. WPF's <code>ScrollViewer</code> template puts each bar in its own grid cell, so sixteen units are reserved whether or not anything is drawn in them — around a two-unit line, most of that column is empty:</p>
 <p><img src="images/scrollbars-winui-overlay.png" alt="The same bar beside the content and over it" /></p>
-<p>The dictionary therefore also carries <code>MahApps.Styles.ScrollViewer.WinUI</code>, whose template lays both bars over the content instead of beside it:</p>
+<p>There is therefore a second style, <code>MahApps.Styles.ScrollViewer.WinUI</code>, whose template lays both bars over the content instead of beside it:</p>
 <pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.ScrollViewer.WinUI}&quot; TargetType=&quot;{x:Type ScrollViewer}&quot; /&gt;
 </code></pre>
 <p>Take the guidance's other half with it: leave sixteen units of padding at the edge of anything interactive, or the expanded bar will cover it.</p>
 <p><code>ScrollViewerHelper.VerticalScrollBarOnLeftSide</code> still works — it flips the bar's <code>HorizontalAlignment</code> rather than swapping grid columns.</p>
 <h3 id="both-follow-the-theme">Both follow the theme</h3>
 <p><img src="images/scrollbars-alternatives-dark.png" alt="The two alternatives under the dark base theme" /></p>
-<p>Every brush in both files is a <code>MahApps.Brushes.Gray*</code> or <code>ThemeBackground</code>, so there is nothing to change when the base theme flips. The figure above is the same markup with <code>Dark.Blue</code> merged instead of <code>Light.Blue</code>.</p>
+<p>Every brush in the two is a <code>MahApps.Brushes.Gray*</code> or <code>ThemeBackground</code>, so there is nothing to change when the base theme flips. The figure above is the same markup with <code>Dark.Blue</code> merged instead of <code>Light.Blue</code>.</p>
 <p>Sizes are resources too — <code>MahApps.Sizes.ScrollBar.WinUI</code> for the bar, <code>.Indicator</code> and <code>.Thumb</code> for the two thumb widths, <code>.Thumb.MinLength</code> for how short the thumb may get, and <code>MahApps.Sizes.ScrollBar.Win10</code> for the other one — so a thicker bar is one <code>sys:Double</code> rather than an edited template.</p>
 <div class="alert alert-info"><p>One part of the Fluent behaviour is missing, and it needs code rather than a template. In WinUI the indicator is <em>conscious of the input method</em>: it appears while the region is scrolled by touch or wheel and fades out again afterwards. These styles show the indicator whenever the content is scrollable, which is what a plain WPF <code>ScrollBar</code> can express on its own.</p>
 </div>
 <h2 id="visual-studio">Visual Studio</h2>
 <p><img src="images/scrollbars-visualstudio.png" alt="The Visual Studio scrollbar on a dark ground" /></p>
-<p><code>MahApps.Styles.ScrollBar.VisualStudio</code> is 18 units thick instead of 14, and unlike the default it does draw a track and puts its arrows in boxes.</p>
+<p><code>MahApps.Styles.ScrollBar.VisualStudio</code> is 18 units thick instead of 12, and unlike the default it does draw a track and puts its arrows in boxes.</p>
 <div class="alert alert-warning"><p>It is <strong>not</strong> merged by <code>Controls.xaml</code>. Add <code>Styles/VS/ScrollBar.xaml</code> — or <code>Styles/VS/Controls.xaml</code>, which pulls it in — along with <code>Styles/VS/Colors.xaml</code>, and note that it is drawn for the dark Visual Studio shell.</p>
 </div>
 <p>Being keyed, it is not applied to anything by itself. Give it an implicit style so the scroll viewers inside pick it up:</p>
