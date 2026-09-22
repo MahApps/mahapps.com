@@ -24,7 +24,7 @@ The set goes *in place of* `Styles/Controls.xaml` rather than next to it, becaus
 </ResourceDictionary.MergedDictionaries>
 ```
 
-Everything the library has is still there. What comes out in the Windows 10 look is the `Button`, the `RepeatButton`, the `CheckBox`, the `RadioButton`, the `TextBox`, the `PasswordBox`, the `ScrollBar`, the four [up-downs](../controls/numericupdown), the `Calendar`, the [AnalogClock](../controls/analogclock) and the two pickers; every other control keeps the default look, because the set has nothing of its own for it.
+Everything the library has is still there. What comes out in the Windows 10 look is the `Button`, the `RepeatButton`, the `CheckBox`, the `RadioButton`, the `TextBox`, the `PasswordBox`, the `RichTextBox`, the `ScrollBar`, the four [up-downs](../controls/numericupdown), the `Calendar`, the [AnalogClock](../controls/analogclock) and the two pickers; every other control keeps the default look, because the set has nothing of its own for it.
 
 Merge it into a window or a panel rather than into `App.xaml` and it reaches that part of the tree alone. The demo does exactly that, to stand the three sets next to each other.
 
@@ -42,6 +42,7 @@ Nothing forces the whole set on you. Every style in it has a key, and always has
 | `MahApps.Styles.RadioButton.Win10` | [RadioButton](../styles/radiobutton) |
 | `MahApps.Styles.TextBox.Win10` (on `develop`) | [TextBox](../styles/textbox) |
 | `MahApps.Styles.PasswordBox.Win10` (on `develop`) | [PasswordBox](../styles/passwordbox) |
+| `MahApps.Styles.RichTextBox.Win10` (on `develop`) | [TextBox](../styles/textbox) |
 | `MahApps.Styles.ScrollBar.Win10`, `…ScrollViewer.Win10` (on `develop`) | [ScrollBars](../styles/scrollbars) |
 | `MahApps.Styles.NumericUpDown.Win10` (on `develop`) | [NumericUpDown](../controls/numericupdown) |
 | `MahApps.Styles.Slider.Win10` | [Slider](../styles/slider) |

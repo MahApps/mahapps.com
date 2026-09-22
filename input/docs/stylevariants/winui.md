@@ -32,6 +32,8 @@ What it is made of sits in the theme as `MahApps.Colors.WinUI.*` and `MahApps.Br
 
 `MahApps.Styles.PasswordBox.WinUI` is that box with the eye of a UWP password box in it, held down to read what has been typed. The eye is there while the caret is in the box and something is written in it, which is what UWP does, and the clear button of the library answers to the same rule. [PasswordBox](../styles/passwordbox) covers it.
 
+`MahApps.Styles.RichTextBox.WinUI` is that box again with a document in it, the scrollbars of the set along its edges and the text clipped to the rounded corners rather than running over them. UWP gives its rich box no button, so the one there is the clear button of the library, which waits for the caret the way the delete button does. [TextBox](../styles/textbox) covers it.
+
 `MahApps.Styles.ScrollBar.WinUI` is the Fluent bar in both its visualisations: a two-unit line at the edge of the content that grows inwards into a thumb with a chevron at either end once the pointer is on it. The set applies `MahApps.Styles.ScrollViewer.WinUI` with it, which lays the bars over the content rather than beside it, so the sixteen units the expanded bar needs cost no layout while nobody is pointing at it. Leave that much padding at the edge of anything interactive. The [Win10](win10) bar works the same way in square shape, and both take their timings from the platform; [ScrollBars](../styles/scrollbars) covers all of it.
 
 ## Drop-in dictionaries from this site

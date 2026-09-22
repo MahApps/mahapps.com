@@ -69,7 +69,7 @@ Two further styles draw the box the way Windows draws one rather than the way Me
 
 `MahApps.Styles.TextBox.Win10` is a fill darker than the page, a frame two pixels thick all the way round, and the box turning white with the accent around it once the caret is in. `MahApps.Styles.TextBox.WinUI` is nearly the opposite: a light translucent fill, a border you have to look for that is a touch stronger along its bottom edge, and with the caret a solid fill, a line of accent underneath and rounded corners.
 
-On both of them the delete button comes and goes with the caret, the way the UWP box does, while a button carrying a `ButtonCommand` of your own stays where it is. It wears `MahApps.Styles.Button.TextControl.Delete`, and the chrome behind it is `MahApps.Templates.Button.TextControl.Win10` or `MahApps.Templates.Button.TextControl.WinUI`, which the [password box](passwordbox) of the same look hands to its own two buttons.
+On both of them the delete button comes and goes with the caret, the way the UWP box does, while a button carrying a `ButtonCommand` of your own stays where it is. It wears `MahApps.Styles.Button.TextControl.Delete`, and the chrome behind it is `MahApps.Templates.Button.TextControl.Win10` or `MahApps.Templates.Button.TextControl.WinUI`, which the [password box](passwordbox) of the same look hands to its own two buttons and the rich text box below to its one.
 
 What each one is made of sits in the theme, `MahApps.Brushes.TextControl.*` for the Win10 style and `MahApps.Brushes.TextControl.WinUI.*` for the other, the WinUI set taken from the WinUI values themselves. Both point `ControlsHelper.DisabledBorderBrush` at what their own set has for a control with nothing left to say.
 
@@ -148,6 +148,10 @@ That second one is a nicety worth knowing about: this is enough to get both.
 `RichTextBox` gets the same treatment, one implicit style matching the `TextBox` look, `MahApps.Styles.RichTextBox`.
 
 ![The two RichTextBox styles](images/textbox-richtextbox.png)
+
+On `develop` it has the two Windows looks as well, `MahApps.Styles.RichTextBox.Win10` and `MahApps.Styles.RichTextBox.WinUI`. Each one is the text box of its look with a document in it, keeping the scrollbars a document needs and the room for as many lines as the box is given. UWP draws no button at all on its rich box, so the one there is the clear button of the library: it wears the chrome the text box hands its own button and comes and goes with the caret the way that one does.
+
+The frame of all three rich text boxes holds the inner grid from here on and clips it to the corners the frame leaves over, so a box with a `ControlsHelper.CornerRadius` no longer lets the fill of its button run over the corner.
 
 :::{.alert .alert-info}
 **In a released version this one is the odd one out.** 2.4.11 has a second style, `MahApps.Styles.RichTextBox.Button`, whose button is always visible, no flag hiding it, and which never clears anything: it binds straight to `ButtonCommand`. On `develop` that style is gone and the base one behaves the way the text box does, the clear button included, since the clearing is `MahAppsCommands.ClearControlCommand` for both. `ButtonCommandParameter` still defaults to the control itself, so a command of your own receives it without anything being passed.
