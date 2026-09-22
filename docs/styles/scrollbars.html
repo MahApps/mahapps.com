@@ -350,7 +350,7 @@ ScrollBar
 <pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.ScrollBar.WinUI}&quot; TargetType=&quot;{x:Type ScrollBar}&quot; /&gt;
 </code></pre>
 <p>Either style set already does that for you: <a href="../stylevariants/win10">Win 10 (UWP)</a> applies the Windows 10 bar, <a href="../stylevariants/winui">WinUI</a> the WinUI one, and each of them applies the overlaying scroll viewer below with it.</p>
-<p>Both are two-state bars, which is the part that matters for layout: while the pointer is elsewhere a bar paints two of its sixteen units and nothing else, so it is meant to lie <em>over</em> the content rather than beside it.</p>
+<p>Both are two-state bars, which is the part that matters for layout: while the pointer is elsewhere a bar paints a two-unit line and nothing else, whether its column is the sixteen units of the Windows 10 bar or the twelve of the WinUI one, so it is meant to lie <em>over</em> the content rather than beside it.</p>
 <div class="alert alert-info"><p><strong>Both keys are on <code>develop</code> and in no release yet.</strong> 2.4.11 has neither, and for that version this site ships the same two looks as drop-in dictionaries, written before they moved into the library and keyed the same way, so nothing has to be renamed afterwards. The Windows 10 file is the older, always-visible desktop bar, which is what the figure above shows as well; the style in the library opens and closes the way this page describes. <a href="../../assets/xaml/Controls.ScrollBar.Win10.xaml"><code>Controls.ScrollBar.Win10.xaml</code></a> and <a href="../../assets/xaml/Controls.ScrollBar.WinUI.xaml"><code>Controls.ScrollBar.WinUI.xaml</code></a>. Merge one after <code>Controls.xaml</code> and apply it the same way:</p>
 <pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
 &lt;ResourceDictionary Source=&quot;Styles/Controls.ScrollBar.WinUI.xaml&quot; /&gt;
@@ -358,9 +358,9 @@ ScrollBar
 </div>
 <h3 id="two-visualisations-twice">Two visualisations, twice</h3>
 <p>Microsoft's <a href="https://learn.microsoft.com/windows/apps/develop/ui/controls/scroll-controls">scroll viewer guidance</a> treats the Fluent scrollbar as two separate visualisations rather than one state with a hover effect: a panning indicator, and the traditional scrollbar thumb. Which one you see depends on how the region is being scrolled.</p>
-<p>The indicator is a two-unit line at the edge of the content, and that is all there is while the pointer is elsewhere. When the pointer moves over it, it <strong>morphs into the scrollbar proper</strong>: a six-unit thumb on a rounded panel, with a chevron button at each end.</p>
+<p>The indicator is a two-unit line near the edge of the content, and that is all there is while the pointer is elsewhere. When the pointer moves over it, it <strong>morphs into the scrollbar proper</strong>: a six-unit thumb on a rounded panel, with a chevron button at each end.</p>
 <p><img src="images/scrollbars-winui-states.png" alt="The WinUI bar as an indicator and as a full scrollbar" /></p>
-<p><strong>The outer edge is the anchor.</strong> The indicator sits flush against the edge of the content, and everything that appears on hover grows <em>inwards</em> — leftwards for a vertical bar, upwards for a horizontal one. <code>IsMouseOver</code> runs all of it over 0.12 seconds:</p>
+<p><strong>The line's own edge is the anchor.</strong> It keeps three units from the edge of the content and stays there, and everything that appears on hover grows <em>inwards</em> — leftwards for a vertical bar, upwards for a horizontal one. <code>IsMouseOver</code> runs all of it over 0.12 seconds:</p>
 <table>
 <thead>
 <tr>
@@ -373,23 +373,24 @@ ScrollBar
 <tr>
 <td>panel</td>
 <td>6 units wide, invisible</td>
-<td>16 units, opaque</td>
+<td>12 units, opaque</td>
 </tr>
 <tr>
 <td>thumb</td>
-<td>2 units, flush at the edge</td>
-<td>6 units, 5 in from it — centred in the panel</td>
+<td>2 units, 3 in from the edge</td>
+<td>6 units, still 3 in from the edge</td>
 </tr>
 <tr>
 <td>chevrons</td>
-<td>not there</td>
-<td>fading in at both ends</td>
+<td>in place, invisible</td>
+<td>in place, visible</td>
 </tr>
 </tbody>
 </table>
-<p>The thumb slides inwards through a <code>ThicknessAnimation</code> on its <code>Margin</code> while a <code>DoubleAnimation</code> widens it, so the two move together and the edge stays put. The exit actions reverse everything.</p>
-<p>The chevrons take their rows the moment they appear, so the track shortens and the thumb shifts slightly. That is not a flaw to design around: the two visualisations genuinely have different track lengths in WinUI too, because the indicator runs the full height and the expanded bar does not.</p>
-<p>The Windows 10 bar works the same way, with its own numbers and one difference in structure. Its chevrons keep their rows the whole time and are only faded, so its track never changes length and its line never jumps, which is how the system XAML of the Windows SDK arranges it. Square rather than rounded, a filled track at nine tenths opacity instead of a panel, and a thumb that grows to the full sixteen units instead of to six:</p>
+<p>Only the width is animated; the margin that holds those three units never moves, so the thumb grows inwards on its own. The exit actions reverse everything.</p>
+<p>The numbers are WinUI's, out of <code>ScrollBar_themeresources.xaml</code>: <code>ScrollBarSize</code> 12, <code>ScrollBarVerticalThumbMinHeight</code> 30, and a resting thumb of eight drawn with a stroke of six and pushed out by <code>ScrollBarThumbOffset</code> 2, which is how three units of air and a two-unit line fall out of it over there. Here they are a margin and a width, which comes to the same picture.</p>
+<p>The chevrons keep their rows the whole time and are only faded, which is what WinUI does as well: over there the two repeat buttons are a row of <code>ScrollBarSize</code> with an opacity of nothing. The track therefore never changes length, and the line at rest stands exactly where the thumb will be.</p>
+<p>The Windows 10 bar works the same way, with its own numbers. Square rather than rounded, a filled track at nine tenths opacity instead of a panel, and a thumb that grows to the full sixteen units instead of to six:</p>
 <table>
 <thead>
 <tr>
@@ -423,9 +424,9 @@ ScrollBar
 <blockquote>
 <p>overlaid as 16px on top of the content inside your ScrollViewer</p>
 </blockquote>
-<p>That matters more than it sounds. WPF's <code>ScrollViewer</code> template puts each bar in its own grid cell, so sixteen units are reserved whether or not anything is drawn in them — around a two-unit line, most of that column is empty:</p>
+<p>That matters more than it sounds. WPF's <code>ScrollViewer</code> template puts each bar in its own grid cell, so the whole width of the bar is reserved whether or not anything is drawn in it — around a two-unit line, most of that column is empty:</p>
 <p><img src="images/scrollbars-winui-overlay.png" alt="The same bar beside the content and over it" /></p>
-<p>There is therefore a scroll viewer whose template lays both bars over the content instead of beside it. One template, <code>MahApps.Templates.ScrollViewer.Overlay</code>, carried by a style per look, since a bar that paints two of its sixteen units asks the same of its viewer whichever of the two it is:</p>
+<p>There is therefore a scroll viewer whose template lays both bars over the content instead of beside it. One template, <code>MahApps.Templates.ScrollViewer.Overlay</code>, carried by a style per look, since a bar that paints two units of its column asks the same of its viewer whichever of the two it is:</p>
 <pre><code class="language-xml">&lt;Style BasedOn=&quot;{StaticResource MahApps.Styles.ScrollViewer.WinUI}&quot; TargetType=&quot;{x:Type ScrollViewer}&quot; /&gt;
 </code></pre>
 <p><code>MahApps.Styles.ScrollViewer.Win10</code> is the other one, and the two style sets apply theirs along with the bar.</p>
