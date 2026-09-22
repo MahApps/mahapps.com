@@ -36,6 +36,8 @@ Four styles are meant to be set on a `PasswordBox`. Each inherits from the one a
 | `MahApps.Styles.PasswordBox.Button` | adds a command button, driven by `TextBoxHelper.ButtonCommand`. Gone on `develop` |
 | `MahApps.Styles.PasswordBox.Button.Revealed` | adds a button that shows the password while it is held down. Called `MahApps.Styles.PasswordBox.Revealed` on `develop` |
 | `MahApps.Styles.PasswordBox.Win8` | the revealed style with a larger font, no focus visual and `AllowDrop` |
+| `MahApps.Styles.PasswordBox.Win10` | the revealed box in the look UWP drew on Windows 10. On `develop` |
+| `MahApps.Styles.PasswordBox.WinUI` | the same box in the look Windows 11 draws. On `develop` |
 
 :::{.alert .alert-info}
 Two of those names changed after 2.4.11 and the keys on `develop` are fewer: `MahApps.Styles.PasswordBox.Button.Revealed` is now `MahApps.Styles.PasswordBox.Revealed`, and `MahApps.Styles.PasswordBox.Button` is gone, since the base style runs `ClearControlCommand` itself rather than leaving the button to a style of its own. Three styles instead of four, and on `develop` the code below needs the shorter name.
@@ -61,6 +63,28 @@ Its content is an attached property, so the eye icon can be swapped out:
 <PasswordBox Style="{StaticResource MahApps.Styles.PasswordBox.Button.Revealed}"
              mah:PasswordBoxHelper.RevealButtonContent="Show" />
 ```
+
+## The Windows 10 and WinUI styles
+
+:::{.alert .alert-info}
+**`MahApps.Styles.PasswordBox.Win10` and `MahApps.Styles.PasswordBox.WinUI` are on `develop` and ship with the next release.** Neither is in 2.4.11.
+:::
+
+Two further styles draw the box the way Windows draws one rather than the way Metro does. Each is the [text box](textbox) of the same look with the eye of a UWP password box where that one keeps its delete button: `MahApps.Styles.PasswordBox.Win10` is a fill darker than the page with a frame two pixels thick that turns accent-coloured once the caret is in, `MahApps.Styles.PasswordBox.WinUI` a light translucent fill with a line along its bottom edge and rounded corners.
+
+Both stand on `MahApps.Styles.PasswordBox.Revealed`, so the eye shows the password while it is held down and hides it again on release. UWP has it there while the caret is in the box and something is written in it, and that is the rule here as well, for the eye and for the clear button alike. A password box nobody is writing in carries neither of the two.
+
+```xml
+<PasswordBox Style="{StaticResource MahApps.Styles.PasswordBox.Win10}"
+             mah:TextBoxHelper.ClearTextButton="True"
+             mah:TextBoxHelper.Watermark="The one you never write down" />
+```
+
+The eye and the clear button are drawn as one button with two glyphs, the way UWP draws them, so both wear `TextBoxHelper.ButtonTemplate` and both take the colour of the text in the box. They carry a style key each, `MahApps.Styles.Button.TextControl.Reveal` and `MahApps.Styles.Button.TextControl.Delete`, so a word about the eye need not be a word about every delete button in the application.
+
+The border thicknesses and the padding are resources here too, the same four keys the text box of that look reads, and [TextBox](textbox) covers what each of them does.
+
+Each of the two is also part of a whole style set, applied to every control at once rather than box by box: see [Win 10 (UWP)](../stylevariants/win10) and [WinUI](../stylevariants/winui).
 
 ## The caps lock warning
 
@@ -97,6 +121,7 @@ The base style and the `.Button` styles put the same button in the same place, b
 | `MahApps.Styles.PasswordBox` | `TextBoxHelper.ClearTextButton` is `True` | clears the box |
 | `MahApps.Styles.PasswordBox.Button` | always — the style sets `TextBoxHelper.TextButton` | runs `ButtonCommand` |
 | `MahApps.Styles.PasswordBox.Button.Revealed` | `TextBoxHelper.ClearTextButton` is `True` | clears the box |
+| `MahApps.Styles.PasswordBox.Win10`, `.WinUI` | `TextBoxHelper.ClearTextButton` is `True` and the caret is in the box | clears the box |
 
 On `develop` the middle row is gone with the style, and the last one is called `MahApps.Styles.PasswordBox.Revealed`.
 
@@ -149,10 +174,14 @@ What is worth knowing here is which of them the style already sets, because thos
 | `TextBoxHelper.TextButton` | `.Button` | `True` |
 | `TextBoxHelper.ButtonTemplate` | `.Button`, `.Button.Revealed` | the chromeless button template |
 | `PasswordBoxHelper.RevealButtonContent` | `.Button.Revealed` | the eye icon |
+| `TextBoxHelper.ButtonWidth` | `.Win10`, `.WinUI` | `30`, the width UWP and WinUI give that button |
+| `TextBoxHelper.ButtonTemplate` | `.Win10`, `.WinUI` | the chrome a UWP box draws behind its buttons |
+| `PasswordBoxHelper.RevealButtonContent` | `.Win10`, `.WinUI` | the eye out of the symbol font |
+| `ControlsHelper.CornerRadius` | `.WinUI` | `3` |
 
 `IsMonitoring` is the load-bearing one: it keeps `HasText` current and raises the events the caps lock indicator and the floating watermark hang off. Leave it alone unless you have replaced the style without a `BasedOn`.
 
-Nothing sets `ControlsHelper.CornerRadius`, so that one starts at zero:
+Apart from the WinUI style, which rounds its corners by three, nothing sets `ControlsHelper.CornerRadius`, so that one starts at zero:
 
 ```xml
 <PasswordBox mah:ControlsHelper.CornerRadius="4"

@@ -36,6 +36,15 @@ The reveal button is not part of the base style. It comes with `MahApps.Styles.P
              mah:PasswordBoxHelper.RevealButtonContent="Show" />
 ```
 
+
+On `develop` the Windows 10 and the WinUI password box carry it as well, as the eye a UWP box carries, and there it is drawn out of the symbol font rather than as the path icon of the styles above. Both set `RevealButtonContent` and `RevealButtonContentTemplate` for that, so a content of your own wants the template answered too:
+
+```xml
+<PasswordBox Style="{StaticResource MahApps.Styles.PasswordBox.Win10}"
+             mah:PasswordBoxHelper.RevealButtonContent="Show"
+             mah:PasswordBoxHelper.RevealButtonContentTemplate="{x:Null}" />
+```
+
 ![The PasswordBox styles](../styles/images/passwordbox-styles.png)
 
 ## Related

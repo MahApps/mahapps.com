@@ -69,7 +69,7 @@ Two further styles draw the box the way Windows draws one rather than the way Me
 
 `MahApps.Styles.TextBox.Win10` is a fill darker than the page, a frame two pixels thick all the way round, and the box turning white with the accent around it once the caret is in. `MahApps.Styles.TextBox.WinUI` is nearly the opposite: a light translucent fill, a border you have to look for that is a touch stronger along its bottom edge, and with the caret a solid fill, a line of accent underneath and rounded corners.
 
-On both of them the delete button comes and goes with the caret, the way the UWP box does, while a button carrying a `ButtonCommand` of your own stays where it is.
+On both of them the delete button comes and goes with the caret, the way the UWP box does, while a button carrying a `ButtonCommand` of your own stays where it is. It wears `MahApps.Styles.Button.TextControl.Delete`, and the chrome behind it is `MahApps.Templates.Button.TextControl.Win10` or `MahApps.Templates.Button.TextControl.WinUI`, which the [password box](passwordbox) of the same look hands to its own two buttons.
 
 What each one is made of sits in the theme, `MahApps.Brushes.TextControl.*` for the Win10 style and `MahApps.Brushes.TextControl.WinUI.*` for the other, the WinUI set taken from the WinUI values themselves. Both point `ControlsHelper.DisabledBorderBrush` at what their own set has for a control with nothing left to say.
 

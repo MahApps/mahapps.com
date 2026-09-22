@@ -10,7 +10,7 @@ WinUI is what Windows 11 draws: rounded corners, the accent used sparingly, chro
 
 ## The set
 
-The set has the text box and the scroll bar of its own, along with the calendar and the two pickers that moved in on `develop`, and hands down the [Win10](win10) one for every control it has nothing for yet. That reads thinner than it is. The two looks belong to the same family, so a Windows 10 control sits next to a WinUI one far better than a Metro one would, and every WinUI style that gets written takes one of those places.
+The set has the text box, the password box and the scroll bar of its own, along with the calendar and the two pickers that moved in on `develop`, and hands down the [Win10](win10) one for every control it has nothing for yet. That reads thinner than it is. The two looks belong to the same family, so a Windows 10 control sits next to a WinUI one far better than a Metro one would, and every WinUI style that gets written takes one of those places.
 
 It goes *in place of* `Styles/Controls.xaml`, because it merges `Styles/Win10/Controls.xaml`, which in turn merges `Styles/Controls.xaml`:
 
@@ -29,6 +29,8 @@ Merge it into a window or a panel rather than into `App.xaml` and it reaches tha
 `MahApps.Styles.TextBox.WinUI` is a light translucent fill, a border you have to look for that is a touch stronger along its bottom edge, and with the caret a solid fill, a line of accent underneath and rounded corners. The delete button comes and goes with the caret the way the UWP box does, while a button carrying a command of your own stays where it is.
 
 What it is made of sits in the theme as `MahApps.Colors.WinUI.*` and `MahApps.Brushes.TextControl.WinUI.*`, taken from the WinUI values themselves, and the border thicknesses and the padding are resources a style of your own can answer differently without replacing the template. [TextBox](../styles/textbox) covers it.
+
+`MahApps.Styles.PasswordBox.WinUI` is that box with the eye of a UWP password box in it, held down to read what has been typed. The eye is there while the caret is in the box and something is written in it, which is what UWP does, and the clear button of the library answers to the same rule. [PasswordBox](../styles/passwordbox) covers it.
 
 `MahApps.Styles.ScrollBar.WinUI` is the Fluent bar in both its visualisations: a two-unit line at the edge of the content that grows inwards into a thumb with a chevron at either end once the pointer is on it. The set applies `MahApps.Styles.ScrollViewer.WinUI` with it, which lays the bars over the content rather than beside it, so the sixteen units the expanded bar needs cost no layout while nobody is pointing at it. Leave that much padding at the edge of anything interactive. The [Win10](win10) bar works the same way in square shape, and both take their timings from the platform; [ScrollBars](../styles/scrollbars) covers all of it.
 
