@@ -105,13 +105,15 @@ Header and separator items are not selectable, but they *do* occupy an index. Wa
 
 `VerticalScrollBarOnLeftSide` puts the item list's scroll bar on the left, which reads better when the pane sits on the right.
 
-`VerticalScrollBarVisibility` says when the item list shows that scroll bar. The default `Auto` fades it in while the pointer is over the open pane and fades it out again a second after the pointer has left, so a pane with more items than room looks exactly like one without until somebody hovers over it. `Visible` keeps the bar there for as long as the pane is open, which is what you want when the reader should see at a glance that the menu goes on. `Hidden` and `Disabled` take it away. `OptionsVerticalScrollBarVisibility` does the same for the options list at the bottom, where the default is `Disabled`. A closed pane never shows a bar, whatever the setting, since it would sit on top of the icons.
+`VerticalScrollBarVisibility` says when the item list shows that scroll bar. The default `Auto` fades it in while the pointer is over the pane and fades it out again a second after the pointer has left. `Visible` keeps the bar there, which is what you want when the reader should see at a glance that the menu goes on. `Hidden` and `Disabled` take it away. `OptionsVerticalScrollBarVisibility` does the same for the options list at the bottom, where the default is `Disabled`.
+
+A list with more items than room says so even while the pointer is somewhere else. The panning indicator, two units at the edge of the items, is as long and as far down as the thumb of the bar it stands for, and it steps aside as soon as that bar comes in. Two units fit a closed pane as well, where the bar itself would lie on the icons, so the strip of icons says where in the menu the reader is just as the open pane does. The line is the one the scroll bar of your style set draws at rest, so an application that pins `MahApps.Styles.ScrollBar.Win10` or `MahApps.Styles.ScrollBar.WinUI` instead of merging the set should pin `MahApps.Styles.Thumb.ScrollBar.PanningIndicator` along with it.
 
 ```xml
 <mah:HamburgerMenu VerticalScrollBarVisibility="Visible" />
 ```
 
-**Both properties are new on `develop` and ship with the next release** ([#4549](https://github.com/MahApps/MahApps.Metro/issues/4549)). Up to and including 2.4.11 the two lists get `Auto` and `Disabled` from the template, where nothing can override them: `ScrollViewer.VerticalScrollBarVisibility` on the menu itself does not reach the lists inside it.
+**Both properties and the panning indicator are new on `develop` and ship with the next release** ([#4549](https://github.com/MahApps/MahApps.Metro/issues/4549), [#3568](https://github.com/MahApps/MahApps.Metro/issues/3568)). Up to and including 2.4.11 the two lists get `Auto` and `Disabled` from the template, where nothing can override them: `ScrollViewer.VerticalScrollBarVisibility` on the menu itself does not reach the lists inside it.
 
 ## The hamburger button and the pane header
 
