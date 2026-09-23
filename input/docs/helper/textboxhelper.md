@@ -45,6 +45,7 @@ public string Query { get; set; }
 | Property | Type | Default | |
 | --- | --- | --- | --- |
 | `ClearTextButton` | `bool` | `false` | show a button that clears the control |
+| `ClearTextButtonFollowsFocus` | `bool` | `false` | show that button only while the control has the caret and something is written in it (on `develop`) |
 | `TextButton` | `bool` | `false` | show the button without the clearing behaviour |
 | `ButtonCommand` | `ICommand` | `null` | invoked when the button is clicked |
 | `ButtonCommandParameter` | `object` | the control itself | passed to that command |
@@ -65,6 +66,8 @@ public string Query { get; set; }
 Clearing does more than empty the control: it pushes the empty value back through the binding, so a bound view model sees it.
 
 `ButtonCommand` turns the same button into one of your own — a search box that searches, for instance. Set both and the click runs the command *and* clears the box.
+
+`ClearTextButtonFollowsFocus` asks for the rule a UWP box follows: the delete button is there while the caret is in the control and something is written in it, and gone the rest of the time. The Windows 10 and the WinUI text boxes draw that rule in their own templates; the three pickers share one template across the sets, so the [Win10](../stylevariants/win10) and [WinUI](../stylevariants/winui) picker styles ask for it with this flag. A button carrying a `ButtonCommand` of your own is not the delete button and stays where it is either way.
 
 :::{.alert .alert-info}
 Which flag makes the button appear depends on the style. The plain text box and password box templates gate it on `ClearTextButton`; the `.Button` variants of those styles gate it on `TextButton`, which the style sets for you. If a `ButtonCommand` never fires, that is usually why.

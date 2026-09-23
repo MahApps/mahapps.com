@@ -36,6 +36,8 @@ What it is made of sits in the theme as `MahApps.Colors.WinUI.*` and `MahApps.Br
 
 `MahApps.Styles.DatePicker.WinUI` is that box once more with a calendar behind the button. The border is a touch stronger along its bottom edge and turns into the accent there while the caret is in the field, and the drop-down is the WinUI calendar, round day cells and all. [DatePicker](../styles/datepicker) covers it.
 
+The three pickers of the set follow the two habits the text box has: the clear button waits for the caret and something written, and a picker that is switched off takes the disabled colours rather than a veil. [DatePicker](../styles/datepicker) has the detail.
+
 `MahApps.Styles.ScrollBar.WinUI` is the Fluent bar in both its visualisations: a two-unit line at the edge of the content that grows inwards into a thumb with a chevron at either end once the pointer is on it. The set applies `MahApps.Styles.ScrollViewer.WinUI` with it, which lays the bars over the content rather than beside it, so the sixteen units the expanded bar needs cost no layout while nobody is pointing at it. Leave that much padding at the edge of anything interactive. The [Win10](win10) bar works the same way in square shape, and both take their timings from the platform; [ScrollBars](../styles/scrollbars) covers all of it.
 
 ## Drop-in dictionaries from this site

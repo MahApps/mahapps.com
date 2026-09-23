@@ -52,6 +52,8 @@ The [Win10](../stylevariants/win10) and [WinUI](../stylevariants/winui) sets app
 <DatePicker Style="{StaticResource MahApps.Styles.DatePicker.WinUI}" />
 ```
 
+Two habits came with the pickers of those two sets, both of them what the [TextBox](../styles/textbox) of the same set already did. The clear button is there only while the caret is in the field and something is written in it, the way a UWP box shows its delete button, which is `TextBoxHelper.ClearTextButtonFollowsFocus`. And a picker that is switched off says so with the disabled colours of its set instead of with a veil drawn over it, which is `ControlsHelper.DisabledVisualElementVisibility` set to `Collapsed` along with `ControlsHelper.DisabledBorderBrush`. The Metro picker asks for neither and looks the way it always has.
+
 The template behind all three keeps its inner grid inside the frame and clips it to the corners that frame leaves over, so with a corner radius the fill of a button no longer runs over the rounding. The text box, the password box and the rich text box are built the same way.
 
 ## The clear button

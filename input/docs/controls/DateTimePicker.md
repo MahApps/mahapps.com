@@ -119,6 +119,8 @@ The built-in drop-down puts the accent-banded [Calendar](../styles/calendar) nex
 **On `develop` the whole of it comes with the library**, the field, the time selection and the calendar beside it. The Windows 10 and the WinUI sets carry both pickers and both calendars under these same keys, so merging `Styles/Win10/Controls.xaml` or `Styles/WinUI/Controls.xaml` is all there is to do ([#4514](https://github.com/MahApps/MahApps.Metro/issues/4514) and the calendars after it). What follows is for 2.4.11 and the release candidate.
 :::
 
+Two habits came with the pickers of those two sets, both of them what the [TextBox](../styles/textbox) of the same set already did. The clear button is there only while the caret is in the field and something is written in it, the way a UWP box shows its delete button, which is `TextBoxHelper.ClearTextButtonFollowsFocus`. And a picker that is switched off says so with the disabled colours of its set instead of with a veil drawn over it, which is `ControlsHelper.DisabledVisualElementVisibility` set to `Collapsed` along with `ControlsHelper.DisabledBorderBrush`. The Metro picker asks for neither and looks the way it always has.
+
 ![The built-in field, the Win10 one and the WinUI one](images/datetimepicker-variants.png)
 
 | | | |
