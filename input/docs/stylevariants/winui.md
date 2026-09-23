@@ -30,6 +30,8 @@ Merge it into a window or a panel rather than into `App.xaml` and it reaches tha
 
 What it is made of sits in the theme as `MahApps.Colors.WinUI.*` and `MahApps.Brushes.TextControl.WinUI.*`, taken from the WinUI values themselves, and the border thicknesses and the padding are resources a style of your own can answer differently without replacing the template. [TextBox](../styles/textbox) covers it.
 
+How round any of it is comes from two keys rather than from the styles: `MahApps.CornerRadius.WinUI.Control` and `MahApps.CornerRadius.WinUI.Overlay`, four and eight, which are WinUI's own `ControlCornerRadius` and `OverlayCornerRadius`. Every style of the set reads one of the two, so overriding one key rounds the whole set differently. Three keys keep a radius of their own because it is neither of those: the day cell of the calendar is a pill, and the scroll bar is drawn to its own width.
+
 `MahApps.Styles.PasswordBox.WinUI` is that box with the eye of a UWP password box in it, held down to read what has been typed. The eye is there while the caret is in the box and something is written in it, which is what UWP does, and the clear button of the library answers to the same rule. [PasswordBox](../styles/passwordbox) covers it.
 
 `MahApps.Styles.RichTextBox.WinUI` is that box again with a document in it, the scrollbars of the set along its edges and the text clipped to the rounded corners rather than running over them. UWP gives its rich box no button, so the one there is the clear button of the library, which waits for the caret the way the delete button does. [TextBox](../styles/textbox) covers it.
