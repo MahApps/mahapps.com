@@ -46,7 +46,7 @@ Both of the Windows styles differ from the default one in more than colour, as w
 | `Padding` | `6 0 0 0` | `8 0 0 0` | `8 6 0 0` |
 | `VerticalContentAlignment` | `Center` | `Center` | `Top` |
 
-The dot of the WinUI button is twelve at rest, fourteen under the pointer and ten while the button is held down, which is the whole of the animation WinUI plays there and the one part of it a style can say. It is set through `RadioButtonHelper.RadioCheckSize` in two triggers, so your own style can answer either state differently.
+The dot of the WinUI button is twelve at rest and ten while the button is held down, through `RadioButtonHelper.RadioCheckSize` in a trigger, so a style of your own can answer that state differently. WinUI grows it to fourteen under the pointer as well, and that one is left out: fourteen leaves three units of ring, which WPF draws unevenly, and without the animation WinUI plays over it the jump is a worse trade than the pointer saying itself in the colour alone.
 
 :::{.alert .alert-warning}
 `MinWidth="120"` applies here too. A Win10 radio button is at least 120 pixels wide however short its label, which spreads a horizontal row of them far apart. Set `MinWidth="0"` where that is not what you want.
