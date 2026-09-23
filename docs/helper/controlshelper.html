@@ -374,6 +374,12 @@ ControlsHelper
 <td>border while the pointer is over the control</td>
 </tr>
 <tr>
+<td><code>BottomBorderBrush</code></td>
+<td><code>Brush</code></td>
+<td>unset</td>
+<td>the bottom edge of the border, where a style draws that one stronger. On <code>develop</code></td>
+</tr>
+<tr>
 <td><code>ContentCharacterCasing</code></td>
 <td><code>CharacterCasing</code></td>
 <td><code>Normal</code></td>
@@ -409,6 +415,7 @@ ControlsHelper
 <pre><code class="language-xml">&lt;Button mah:ControlsHelper.ContentCharacterCasing=&quot;Normal&quot; Content=&quot;Save&quot; /&gt;
 </code></pre>
 <p><strong>The border brushes default to transparent, and the styles fill them in.</strong> The MahApps text box style sets <code>FocusBorderBrush</code> to <code>MahApps.Brushes.TextBox.Border.Focus</code> and <code>MouseOverBorderBrush</code> to <code>MahApps.Brushes.TextBox.Border.MouseOver</code>. Reading the raw default is therefore misleading — what a styled control actually shows is whatever its style set.</p>
+<p><strong><code>BottomBorderBrush</code> is what the WinUI look draws along the bottom edge.</strong> That edge is a border of its own in the template, carrying nothing but the line, so it follows the corners of the frame behind it and stays two units whatever the control is high. The WinUI text box, password box, rich text box and pickers set it; every other set leaves it unset and draws nothing there. On those styles <code>FocusBorderBrush</code> colours that edge rather than the whole frame, which is how WinUI marks the caret.</p>
 <p><code>DisabledVisualElementVisibility</code> set to <code>Collapsed</code> removes the wash that MahApps draws over a disabled control, which is worth doing when the control is inside something already dimmed.</p>
 
 
