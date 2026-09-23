@@ -13,6 +13,7 @@ The general-purpose one. Where the other helpers belong to a single control, `Co
 | `FocusBorderBrush` | `Brush` | transparent | border while the control has keyboard focus |
 | `FocusBorderThickness` | `Thickness` | `0` | its thickness, where the template uses one. Obsolete on `develop`, see below |
 | `MouseOverBorderBrush` | `Brush` | transparent | border while the pointer is over the control |
+| `BottomBorderBrush` | `Brush` | unset | the bottom edge of the border, where a style draws that one stronger. On `develop` |
 | `ContentCharacterCasing` | `CharacterCasing` | `Normal` | converts the content to upper or lower case |
 | `DisabledVisualElementVisibility` | `Visibility` | `Visible` | the overlay drawn over a disabled control |
 | `RecognizesAccessKey` | `bool` | `true` | whether an underscore in the content marks an access key |
@@ -36,5 +37,7 @@ The general-purpose one. Where the other helpers belong to a single control, `Co
 ```
 
 **The border brushes default to transparent, and the styles fill them in.** The MahApps text box style sets `FocusBorderBrush` to `MahApps.Brushes.TextBox.Border.Focus` and `MouseOverBorderBrush` to `MahApps.Brushes.TextBox.Border.MouseOver`. Reading the raw default is therefore misleading — what a styled control actually shows is whatever its style set.
+
+**`BottomBorderBrush` is what the WinUI look draws along the bottom edge.** That edge is a border of its own in the template, carrying nothing but the line, so it follows the corners of the frame behind it and stays two units whatever the control is high. The WinUI text box, password box, rich text box and pickers set it; every other set leaves it unset and draws nothing there. On those styles `FocusBorderBrush` colours that edge rather than the whole frame, which is how WinUI marks the caret.
 
 `DisabledVisualElementVisibility` set to `Collapsed` removes the wash that MahApps draws over a disabled control, which is worth doing when the control is inside something already dimmed.

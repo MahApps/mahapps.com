@@ -73,6 +73,8 @@ On both of them the delete button comes and goes with the caret, the way the UWP
 
 What each one is made of sits in the theme, `MahApps.Brushes.TextControl.*` for the Win10 style and `MahApps.Brushes.TextControl.WinUI.*` for the other, the WinUI set taken from the WinUI values themselves. Both point `ControlsHelper.DisabledBorderBrush` at what their own set has for a control with nothing left to say.
 
+The stronger line along the bottom edge of a WinUI box is a border of its own in the template rather than a gradient over the frame, and `ControlsHelper.BottomBorderBrush` is the brush for it. It keeps the corners of the frame behind it and stays two units whatever the box is high, which a gradient cannot: WPF works out where the colours of one land once and keeps that for the brush rather than for the control. On these styles `FocusBorderBrush` colours that edge instead of the whole frame.
+
 The border thicknesses and the padding are resources too, so a style of your own can answer them differently without replacing the template:
 
 | Resource | |
