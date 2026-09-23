@@ -10,7 +10,7 @@ WinUI is what Windows 11 draws: rounded corners, the accent used sparingly, chro
 
 ## The set
 
-The set has the text box, the password box, the check box, the radio button, the combo box and the scroll bar of its own, along with the calendar, the date picker and the two MahApps pickers that moved in on `develop`, and hands down the [Win10](win10) one for every control it has nothing for yet. That reads thinner than it is. The two looks belong to the same family, so a Windows 10 control sits next to a WinUI one far better than a Metro one would, and every WinUI style that gets written takes one of those places.
+The set has the text box, the password box, the check box, the radio button, the combo box, the four [up-downs](../controls/numericupdown) and the scroll bar of its own, along with the calendar, the date picker and the two MahApps pickers that moved in on `develop`, and hands down the [Win10](win10) one for every control it has nothing for yet. That reads thinner than it is. The two looks belong to the same family, so a Windows 10 control sits next to a WinUI one far better than a Metro one would, and every WinUI style that gets written takes one of those places.
 
 It goes *in place of* `Styles/Controls.xaml`, because it merges `Styles/Win10/Controls.xaml`, which in turn merges `Styles/Controls.xaml`:
 
@@ -39,6 +39,8 @@ What it is made of sits in the theme as `MahApps.Colors.WinUI.*` and `MahApps.Br
 The three pickers of the set follow the two habits the text box has: the clear button waits for the caret and something written, and a picker that is switched off takes the disabled colours rather than a veil. [DatePicker](../styles/datepicker) has the detail.
 
 `MahApps.Styles.ComboBox.WinUI` is that box with a list behind a chevron. The border is a touch stronger along its bottom edge and turns into the accent there while the caret is in it, and the list is a flyout of rounded tiles where the row that is picked carries the accent as a short bar along its left edge rather than being filled with it. [ComboBox](../styles/combobox) covers it.
+
+`MahApps.Styles.NumericUpDown.WinUI` is that box with a pair of buttons standing in it. It is the text box down to the fill, the padding and the delete button; what it adds is the two chevrons at the right end, drawn in the quieter of the two text colours until the pointer reaches one of them, and the cell behind the one it reaches. The border is a touch stronger along its bottom edge and turns into the accent there while the caret is in the field. The same style covers all four up-downs, since they share a base class. [NumericUpDown](../controls/numericupdown) covers it.
 
 `MahApps.Styles.CheckBox.WinUI` and `MahApps.Styles.RadioButton.WinUI` are the Fluent 2 pair: a rounded box and a ring of twenty, each with a hairline round a fill a shade off the page, each turning accent once it is ticked or picked. What sits on that accent is the ideal foreground the theme works out for it rather than a fixed black or white. [CheckBox](../styles/checkbox) and [RadioButton](../styles/radiobutton) cover them.
 

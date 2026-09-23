@@ -92,6 +92,16 @@ Hiding the buttons does not make the control read-only — the arrow keys, the w
 </Style>
 ```
 
+## The Windows looks
+
+`MahApps.Styles.NumericUpDown.Win10` and `MahApps.Styles.NumericUpDown.WinUI` draw the control the way Windows does: the text box of that set with the two buttons standing inside its frame, the number against the left edge and a chevron on each button instead of a plus and a minus. Either style covers all four up-downs, and a control that is switched off says so with the colours of its set rather than with a veil over it.
+
+```xml
+<mah:NumericUpDown Style="{DynamicResource MahApps.Styles.NumericUpDown.WinUI}" Value="42" />
+```
+
+[Win 10 (UWP)](../stylevariants/win10) and [WinUI](../stylevariants/winui) have the whole set.
+
 ## Formatting
 
 ![No format, N2, C2 and a custom format](images/numericupdown-format.png)

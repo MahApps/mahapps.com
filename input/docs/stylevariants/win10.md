@@ -64,7 +64,7 @@ To apply one everywhere without taking the set, declare an implicit style based 
 `MahApps.Styles.CheckBox.DataGrid.Win10` is the one style the set leaves out, because a DataGrid column takes its style through `ElementStyle` and `EditingElementStyle` rather than by type.
 
 :::{.alert .alert-info}
-`MahApps.Styles.NumericUpDown.Win10` was called `MahApps.Styles.NumericUpDown.Fluent` up to and including 2.4.11. What it draws — a border that thickens when the control takes the caret, chevrons on the spin buttons, the text against the left edge — is this look and not the [WinUI](winui) one, so it is named for what it is.
+`MahApps.Styles.NumericUpDown.Win10` was called `MahApps.Styles.NumericUpDown.Fluent` up to and including 2.4.11. What it draws — a border that thickens when the control takes the caret, chevrons on the spin buttons, the text against the left edge — is this look and not the [WinUI](winui) one, so it is named for what it is. On `develop` it is the text box of this set with those two buttons standing in it, which is where its fill, its frame, its padding and its delete button come from, so an up-down and a text box next to each other in a form are the same height and the same colour.
 :::
 
 :::{.alert .alert-info}
