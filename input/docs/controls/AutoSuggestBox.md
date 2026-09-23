@@ -161,10 +161,27 @@ The usual [TextBoxHelper](../helper/textboxhelper) properties are passed through
 
 With neither `ClearTextButton` nor a `ButtonCommand` set, the button spot collapses and the text takes the whole width.
 
+## The Windows looks
+
+There are two more styles, `MahApps.Styles.AutoSuggestBox.Win10` and `MahApps.Styles.AutoSuggestBox.WinUI`, and each of them is the combo box of that set with the chevron taken off it. That is the point: a suggestion box and a combo box standing next to each other in a form are the same height and the same colour, down to the fill, the frame, the padding and the delete button.
+
+```xml
+<mah:AutoSuggestBox Width="300"
+                    Style="{DynamicResource MahApps.Styles.AutoSuggestBox.WinUI}"
+                    mah:TextBoxHelper.ClearTextButton="True"
+                    mah:TextBoxHelper.Watermark="Artist" />
+```
+
+The Windows 10 one turns white with an accent frame once the caret is in it. The WinUI one rounds its corners and draws the border a touch stronger along the bottom edge, which turns into the accent there instead. That edge is a border of its own, two units thick either way, so a box with the caret in it is as tall as the one beside it and nothing under it moves.
+
+The list follows along. It is the drop-down of that set, the rows and all: square rows picked out with the accent turned right down in the Windows 10 one, rounded tiles with a short accent bar along the left edge of the row that is picked in the WinUI one. The delete button of both sets waits until there is something to delete, and a box that is switched off says so with its colours rather than with a veil over it.
+
+Merging `Styles/Win10/Controls.xaml` or `Styles/WinUI/Controls.xaml` applies the matching style to every suggestion box in that part of the tree. [Win 10 (UWP)](../stylevariants/win10) and [WinUI](../stylevariants/winui) have the whole set.
+
 ## What a client is told
 
 The box reports itself as an `AutoSuggestBox` and as a combo box control type, and hands over its text as a value, so a test or a screen reader gets the box rather than the text field inside it.
 
 ## Related
 
-[MultiSelectionComboBox](MultiSelectionComboBox) where the user picks several items rather than typing free text, [TextBoxHelper](../helper/textboxhelper) for the watermark and the buttons, [validation](../styles/validation) for the error treatment.
+[MultiSelectionComboBox](MultiSelectionComboBox) where the user picks several items rather than typing free text, [ComboBox](../styles/combobox) for the box this one is cut from, [TextBoxHelper](../helper/textboxhelper) for the watermark and the buttons, [validation](../styles/validation) for the error treatment.
