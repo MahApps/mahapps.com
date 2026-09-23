@@ -267,7 +267,7 @@ RadioButton
     &lt;Setter Property=&quot;mah:RadioButtonHelper.RadioSize&quot; Value=&quot;22&quot; /&gt;
 &lt;/Style&gt;
 </code></pre>
-<h2 id="the-two-styles">The two styles</h2>
+<h2 id="the-three-styles">The three styles</h2>
 <table>
 <thead>
 <tr>
@@ -284,17 +284,22 @@ RadioButton
 <td><code>MahApps.Styles.RadioButton.Win10</code></td>
 <td>the Windows 10 look: a heavier ring, and the ring turns accent-coloured when selected</td>
 </tr>
+<tr>
+<td><code>MahApps.Styles.RadioButton.WinUI</code> (on <code>develop</code>)</td>
+<td>the WinUI look: a hairline ring on a fill a shade off the page, filled with the accent and a dot in the middle once it is picked</td>
+</tr>
 </tbody>
 </table>
 <pre><code class="language-xml">&lt;RadioButton Style=&quot;{StaticResource MahApps.Styles.RadioButton.Win10}&quot; Content=&quot;Medium&quot; /&gt;
 </code></pre>
-<p>The Win10 style derives from the default one and, as with the check box, differs in more than colour:</p>
+<p>Both of the Windows styles differ from the default one in more than colour, as with the check box:</p>
 <table>
 <thead>
 <tr>
 <th></th>
 <th>default</th>
 <th>Win10</th>
+<th>WinUI</th>
 </tr>
 </thead>
 <tbody>
@@ -302,34 +307,47 @@ RadioButton
 <td><code>RadioSize</code></td>
 <td><code>18</code></td>
 <td><code>20</code></td>
+<td><code>20</code></td>
 </tr>
 <tr>
 <td><code>RadioCheckSize</code></td>
 <td><code>10</code></td>
-<td><code>10</code></td>
+<td><code>12</code></td>
+<td><code>12</code></td>
 </tr>
 <tr>
 <td><code>RadioStrokeThickness</code></td>
 <td><code>1</code></td>
 <td><code>2</code></td>
+<td><code>1</code></td>
 </tr>
 <tr>
 <td><code>MinHeight</code></td>
 <td>—</td>
+<td><code>32</code></td>
 <td><code>32</code></td>
 </tr>
 <tr>
 <td><code>MinWidth</code></td>
 <td>—</td>
 <td><code>120</code></td>
+<td><code>120</code></td>
 </tr>
 <tr>
 <td><code>Padding</code></td>
 <td><code>6 0 0 0</code></td>
 <td><code>8 0 0 0</code></td>
+<td><code>8 6 0 0</code></td>
+</tr>
+<tr>
+<td><code>VerticalContentAlignment</code></td>
+<td><code>Center</code></td>
+<td><code>Center</code></td>
+<td><code>Top</code></td>
 </tr>
 </tbody>
 </table>
+<p>The dot of the WinUI button is twelve at rest and ten while the button is held down, through <code>RadioButtonHelper.RadioCheckSize</code> in a trigger, so a style of your own can answer that state differently. WinUI grows it to fourteen under the pointer as well, and that one is left out: fourteen leaves three units of ring, which WPF draws unevenly, and without the animation WinUI plays over it the jump is a worse trade than the pointer saying itself in the colour alone.</p>
 <div class="alert alert-warning"><p><code>MinWidth=&quot;120&quot;</code> applies here too. A Win10 radio button is at least 120 pixels wide however short its label, which spreads a horizontal row of them far apart. Set <code>MinWidth=&quot;0&quot;</code> where that is not what you want.</p>
 </div>
 <h2 id="the-states">The states</h2>
@@ -377,7 +395,7 @@ RadioButton
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-two-styles">The two styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-three-styles">The three styles</a></div>
                     <div class="sidebar-nav-item"><a href="#the-states">The states</a></div>
                     <div class="sidebar-nav-item"><a href="#grouping">Grouping</a></div>
                     <div class="sidebar-nav-item"><a href="#content-on-the-other-side">Content on the other side</a></div>

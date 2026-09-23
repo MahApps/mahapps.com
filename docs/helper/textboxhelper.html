@@ -419,6 +419,12 @@ public string Query { get; set; }
 <td>show a button that clears the control</td>
 </tr>
 <tr>
+<td><code>ClearTextButtonFollowsFocus</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>show that button only while the control has the caret and something is written in it (on <code>develop</code>)</td>
+</tr>
+<tr>
 <td><code>TextButton</code></td>
 <td><code>bool</code></td>
 <td><code>false</code></td>
@@ -481,6 +487,7 @@ public string Query { get; set; }
 </code></pre>
 <p>Clearing does more than empty the control: it pushes the empty value back through the binding, so a bound view model sees it.</p>
 <p><code>ButtonCommand</code> turns the same button into one of your own — a search box that searches, for instance. Set both and the click runs the command <em>and</em> clears the box.</p>
+<p><code>ClearTextButtonFollowsFocus</code> asks for the rule a UWP box follows: the delete button is there while the caret is in the control and something is written in it, and gone the rest of the time. The Windows 10 and the WinUI text boxes draw that rule in their own templates; the three pickers share one template across the sets, so the <a href="../stylevariants/win10">Win10</a> and <a href="../stylevariants/winui">WinUI</a> picker styles ask for it with this flag. A button carrying a <code>ButtonCommand</code> of your own is not the delete button and stays where it is either way.</p>
 <div class="alert alert-info"><p>Which flag makes the button appear depends on the style. The plain text box and password box templates gate it on <code>ClearTextButton</code>; the <code>.Button</code> variants of those styles gate it on <code>TextButton</code>, which the style sets for you. If a <code>ButtonCommand</code> never fires, that is usually why.</p>
 </div>
 <h2 id="monitoring">Monitoring</h2>

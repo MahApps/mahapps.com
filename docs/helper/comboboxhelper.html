@@ -337,7 +337,7 @@ ComboBoxHelper
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>Applies to <code>ComboBox</code>. Two properties, both about the text an editable combo box accepts — a <code>ComboBox</code> has no <code>MaxLength</code> or <code>CharacterCasing</code> of its own, so these fill the gap that <code>TextBox</code> does not have.</p>
+<p>Applies to <code>ComboBox</code>. Two properties are about the text an editable combo box accepts — a <code>ComboBox</code> has no <code>MaxLength</code> or <code>CharacterCasing</code> of its own, so these fill the gap that <code>TextBox</code> does not have. Three more are about the list that drops out of it.</p>
 <p><img src="images/comboboxhelper.png" alt="CharacterCasing on an editable ComboBox" /></p>
 <table>
 <thead>
@@ -368,6 +368,42 @@ ComboBoxHelper
           mah:ComboBoxHelper.MaxLength=&quot;10&quot; /&gt;
 </code></pre>
 <p>Both only apply while <code>IsEditable</code> is <code>True</code>. On a drop-down-only combo box there is no text box for them to reach.</p>
+<h2 id="the-drop-down">The drop-down</h2>
+<p>On <code>develop</code> the fill, the frame and the corners of the list are the box's own rather than three keys everything else reads too. A list hangs over whatever is behind it, so it needs a chrome that can differ from the one the box wears, and a set that gives its boxes a look of its own wants the same one here:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>DropDownBackground</code></td>
+<td><code>Brush</code></td>
+<td><code>null</code></td>
+<td>what the list is filled with</td>
+</tr>
+<tr>
+<td><code>DropDownBorderBrush</code></td>
+<td><code>Brush</code></td>
+<td><code>null</code></td>
+<td>the frame around it</td>
+</tr>
+<tr>
+<td><code>DropDownCornerRadius</code></td>
+<td><code>CornerRadius</code></td>
+<td><code>0</code></td>
+<td>how far its corners are rounded</td>
+</tr>
+</tbody>
+</table>
+<p><code>MahApps.Styles.ComboBox</code> sets the first two from <code>MahApps.Brushes.ComboBox.PopupBackground</code> and <code>MahApps.Brushes.ComboBox.PopupBorder</code>, so overriding either key in a theme still does what it always did.</p>
+<pre><code class="language-xml">&lt;ComboBox mah:ComboBoxHelper.DropDownBorderBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+          mah:ComboBoxHelper.DropDownCornerRadius=&quot;8&quot; /&gt;
+</code></pre>
 <h2 id="related">Related</h2>
 <p>Most of what else a <code>ComboBox</code> offers comes from other helpers: the watermark and the clear button from <a href="textboxhelper">TextBoxHelper</a>, the corner radius and focus brushes from <a href="controlshelper">ControlsHelper</a>, and the brushes for the items in the drop-down from <a href="itemhelper">ItemHelper</a>.</p>
 
@@ -378,6 +414,7 @@ ComboBoxHelper
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-drop-down">The drop-down</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>

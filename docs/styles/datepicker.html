@@ -293,9 +293,29 @@ DatePicker
 <td><code>DatePickerTextBox</code></td>
 <td>the same, used by <code>TimePicker</code> and <code>DateTimePicker</code>; it only forwards the automation properties from the picker to the box</td>
 </tr>
+<tr>
+<td><code>MahApps.Styles.DatePicker.Win10</code> (on <code>develop</code>)</td>
+<td><code>DatePicker</code></td>
+<td>the picker in the Windows 10 look</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.DatePicker.WinUI</code> (on <code>develop</code>)</td>
+<td><code>DatePicker</code></td>
+<td>and in the WinUI one</td>
+</tr>
 </tbody>
 </table>
 <p>Besides the look, the picker style also sets three behavioural defaults you may want to change: <code>SelectedDateFormat</code> to <code>Short</code>, <code>IsTodayHighlighted</code> to <code>True</code>, and <code>CalendarStyle</code> to <code>MahApps.Styles.Calendar.Base</code>.</p>
+<h2 id="the-two-windows-looks">The two Windows looks</h2>
+<p>On <code>develop</code> the picker has a style in each of the two Windows sets, and either one is the text box of that set with a calendar behind the button.</p>
+<p><code>MahApps.Styles.DatePicker.Win10</code> takes the fill, the two-unit frame and the padding <code>MahApps.Styles.TextBox.Win10</code> has, and the accent runs round the frame while the caret is in the field.</p>
+<p><code>MahApps.Styles.DatePicker.WinUI</code> stands on that one: a translucent fill, rounded corners, and a border that is a touch stronger along its bottom edge and turns into the accent there once the caret is in. That edge is a border of its own in the template and two units thick either way, so the picker stays as tall as it was and nothing under it moves. The brush for it is <code>ControlsHelper.BottomBorderBrush</code>, which is on <a href="../helper/controlshelper">ControlsHelper</a>.</p>
+<p>Each of the two hands its own calendar to the drop-down, <code>MahApps.Styles.Calendar.Win10</code> and <code>MahApps.Styles.Calendar.WinUI</code>, so the square day cells and the round ones come along with the field.</p>
+<p>The <a href="../stylevariants/win10">Win10</a> and <a href="../stylevariants/winui">WinUI</a> sets apply them to every <code>DatePicker</code> in the tree they are merged into. One picker at a time:</p>
+<pre><code class="language-xml">&lt;DatePicker Style=&quot;{StaticResource MahApps.Styles.DatePicker.WinUI}&quot; /&gt;
+</code></pre>
+<p>Two habits came with the pickers of those two sets, both of them what the <a href="../styles/textbox">TextBox</a> of the same set already did. The clear button is there only while the caret is in the field and something is written in it, the way a UWP box shows its delete button, which is <code>TextBoxHelper.ClearTextButtonFollowsFocus</code>. And a picker that is switched off says so with the disabled colours of its set instead of with a veil drawn over it, which is <code>ControlsHelper.DisabledVisualElementVisibility</code> set to <code>Collapsed</code> along with <code>ControlsHelper.DisabledBorderBrush</code>. The Metro picker asks for neither and looks the way it always has.</p>
+<p>The template behind all three keeps its inner grid inside the frame and clips it to the corners that frame leaves over, so with a corner radius the fill of a button no longer runs over the rounding. The text box, the password box and the rich text box are built the same way.</p>
 <h2 id="the-clear-button">The clear button</h2>
 <p><code>ClearTextButton</code> puts an ✕ next to the calendar button, which empties the picker.</p>
 <pre><code class="language-xml">&lt;DatePicker mah:TextBoxHelper.ClearTextButton=&quot;True&quot; /&gt;
@@ -413,6 +433,7 @@ DatePicker
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
                     <div class="sidebar-nav-item"><a href="#the-styles">The styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-two-windows-looks">The two Windows looks</a></div>
                     <div class="sidebar-nav-item"><a href="#the-clear-button">The clear button</a></div>
                     <div class="sidebar-nav-item"><a href="#watermark">Watermark</a></div>
                     <div class="sidebar-nav-item"><a href="#the-calendar">The calendar</a></div>

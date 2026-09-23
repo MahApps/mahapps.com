@@ -288,9 +288,29 @@ ComboBox
 <td>the same with UI virtualization switched on</td>
 </tr>
 <tr>
+<td><code>MahApps.Styles.ComboBox.Win10</code></td>
+<td><code>ComboBox</code></td>
+<td>the Windows 10 look (on <code>develop</code>)</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ComboBox.WinUI</code></td>
+<td><code>ComboBox</code></td>
+<td>the WinUI look (on <code>develop</code>)</td>
+</tr>
+<tr>
 <td><code>MahApps.Styles.ComboBoxItem</code></td>
 <td><code>ComboBoxItem</code></td>
 <td>one row in the drop-down</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ComboBoxItem.Win10</code></td>
+<td><code>ComboBoxItem</code></td>
+<td>one row in the Windows 10 list (on <code>develop</code>)</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ComboBoxItem.WinUI</code></td>
+<td><code>ComboBoxItem</code></td>
+<td>one row in the WinUI list (on <code>develop</code>)</td>
 </tr>
 <tr>
 <td><code>MahApps.Styles.TextBox.ComboBox.Editable</code></td>
@@ -298,13 +318,32 @@ ComboBox
 <td>the text box an editable combo box types into</td>
 </tr>
 <tr>
+<td><code>MahApps.Styles.TextBox.ComboBox.Editable.Win10</code>, <code>…WinUI</code></td>
+<td><code>TextBox</code></td>
+<td>the same with the caret and the selection of that set (on <code>develop</code>)</td>
+</tr>
+<tr>
 <td><code>MahApps.Styles.ToggleButton.ComboBoxDropDown</code></td>
 <td><code>ToggleButton</code></td>
 <td>the arrow that opens it</td>
 </tr>
+<tr>
+<td><code>MahApps.Styles.ToggleButton.ComboBoxDropDown.Win10</code></td>
+<td><code>ToggleButton</code></td>
+<td>the same with the chevron both Windows sets draw (on <code>develop</code>)</td>
+</tr>
 </tbody>
 </table>
-<p>The last two are building blocks of the template rather than something to set yourself.</p>
+<p>The last four are building blocks of the template rather than something to set yourself.</p>
+<h2 id="the-two-windows-looks">The two Windows looks</h2>
+<p>On <code>develop</code> the box has a style in each of the two Windows sets, and either one is the text box of that set with a list behind a chevron instead of the filled triangle the Metro box draws.</p>
+<p><code>MahApps.Styles.ComboBox.Win10</code> is <code>MahApps.Styles.TextBox.Win10</code> with a list behind the chevron, and it is that box down to the detail: the same fill, the same two units of frame, the same padding, the same delete button and the same watermark standing against the text rather than four units off it. The accent runs round the frame while the caret is in it, and an editable one types into the text box of that set through <code>MahApps.Styles.TextBox.ComboBox.Editable.Win10</code>. Its rows are <code>MahApps.Styles.ComboBoxItem.Win10</code>: the full width of the list, square, and the one that is picked carries the accent turned right down behind it rather than the accent itself, which is what keeps the text on it readable without a colour of its own.</p>
+<p><code>MahApps.Styles.ComboBox.WinUI</code> stands on that one and does the same with <code>MahApps.Styles.TextBox.WinUI</code>: rounded corners, and a border that is a touch stronger along its bottom edge and turns into the accent there once the caret is in. That edge is a border of its own in the template and two units thick either way, so the box stays as tall as it was and nothing under it moves. Its rows are <code>MahApps.Styles.ComboBoxItem.WinUI</code>, rounded tiles with air around them, and the row that is picked carries the accent as a short bar along its left edge. The list itself is rounded a little more than the box, the way a Fluent flyout is.</p>
+<p>Both sets set their own <code>ItemContainerStyle</code>, so a single box in the Windows look brings its rows with it and nothing else has to be merged. The <a href="../stylevariants/win10">Win10</a> and <a href="../stylevariants/winui">WinUI</a> sets apply both styles to every <code>ComboBox</code> in the tree they are merged into. One box at a time:</p>
+<pre><code class="language-xml">&lt;ComboBox Style=&quot;{StaticResource MahApps.Styles.ComboBox.WinUI}&quot; /&gt;
+</code></pre>
+<p>A box of either set that is switched off says so with the disabled colours of that set instead of with a veil drawn over it, which is <code>ControlsHelper.DisabledVisualElementVisibility</code> set to <code>Collapsed</code> along with <code>ControlsHelper.DisabledBorderBrush</code>. The Metro box asks for neither and looks the way it always has.</p>
+<p>The template behind all three keeps its inner grid inside the frame and clips it to the corners that frame leaves over, so with a corner radius the fill of a button no longer runs over the rounding. The text box, the password box, the rich text box and the date picker are built the same way.</p>
 <h2 id="watermark">Watermark</h2>
 <pre><code class="language-xml">&lt;ComboBox mah:TextBoxHelper.Watermark=&quot;Pick someone&quot; /&gt;
 </code></pre>
@@ -453,6 +492,16 @@ this.GroupedAlbums = view.View;
 <td><code>MahApps.Brushes.ComboBox.Border.MouseOver</code></td>
 </tr>
 <tr>
+<td><code>ComboBoxHelper.DropDownBackground</code></td>
+<td><code>MahApps.Styles.ComboBox</code></td>
+<td><code>MahApps.Brushes.ComboBox.PopupBackground</code></td>
+</tr>
+<tr>
+<td><code>ComboBoxHelper.DropDownBorderBrush</code></td>
+<td><code>MahApps.Styles.ComboBox</code></td>
+<td><code>MahApps.Brushes.ComboBox.PopupBorder</code></td>
+</tr>
+<tr>
 <td>eleven <code>ItemHelper</code> brushes</td>
 <td><code>MahApps.Styles.ComboBoxItem</code></td>
 <td>the theme's selection and hover colours</td>
@@ -472,6 +521,7 @@ this.GroupedAlbums = view.View;
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
                     <div class="sidebar-nav-item"><a href="#the-styles">The styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-two-windows-looks">The two Windows looks</a></div>
                     <div class="sidebar-nav-item"><a href="#watermark">Watermark</a></div>
                     <div class="sidebar-nav-item"><a href="#clear-button">Clear button</a></div>
                         <div class="sidebar-nav-children">

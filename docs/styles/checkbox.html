@@ -267,7 +267,7 @@ CheckBox
     &lt;Setter Property=&quot;mah:CheckBoxHelper.CheckSize&quot; Value=&quot;22&quot; /&gt;
 &lt;/Style&gt;
 </code></pre>
-<h2 id="the-two-styles">The two styles</h2>
+<h2 id="the-three-styles">The three styles</h2>
 <table>
 <thead>
 <tr>
@@ -284,17 +284,22 @@ CheckBox
 <td><code>MahApps.Styles.CheckBox.Win10</code></td>
 <td>the Windows 10 look: the box fills with the accent colour and the tick turns white</td>
 </tr>
+<tr>
+<td><code>MahApps.Styles.CheckBox.WinUI</code> (on <code>develop</code>)</td>
+<td>the WinUI look: a rounded box a shade off the page with a hairline round it, the accent with a tick in it once it is ticked</td>
+</tr>
 </tbody>
 </table>
 <pre><code class="language-xml">&lt;CheckBox Style=&quot;{StaticResource MahApps.Styles.CheckBox.Win10}&quot; Content=&quot;Checked&quot; /&gt;
 </code></pre>
-<p>The Win10 style derives from the default one and differs in more than colour, which matters if you mix the two in one dialog:</p>
+<p>Both of the Windows styles differ from the default one in more than colour, which matters if you mix them in one dialog:</p>
 <table>
 <thead>
 <tr>
 <th></th>
 <th>default</th>
 <th>Win10</th>
+<th>WinUI</th>
 </tr>
 </thead>
 <tbody>
@@ -302,29 +307,48 @@ CheckBox
 <td><code>CheckSize</code></td>
 <td><code>18</code></td>
 <td><code>20</code></td>
+<td><code>20</code></td>
 </tr>
 <tr>
 <td><code>CheckStrokeThickness</code></td>
 <td><code>1</code></td>
 <td><code>2</code></td>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>CheckCornerRadius</code></td>
+<td><code>0</code></td>
+<td><code>0</code></td>
+<td><code>4</code></td>
 </tr>
 <tr>
 <td><code>MinHeight</code></td>
 <td>—</td>
+<td><code>32</code></td>
 <td><code>32</code></td>
 </tr>
 <tr>
 <td><code>MinWidth</code></td>
 <td>—</td>
 <td><code>120</code></td>
+<td><code>120</code></td>
 </tr>
 <tr>
 <td><code>Padding</code></td>
 <td><code>6 0 0 0</code></td>
 <td><code>8 0 0 0</code></td>
+<td><code>8 5 0 0</code></td>
+</tr>
+<tr>
+<td><code>VerticalContentAlignment</code></td>
+<td><code>Center</code></td>
+<td><code>Center</code></td>
+<td><code>Top</code></td>
 </tr>
 </tbody>
 </table>
+<p>The WinUI box puts its label against the top of the row rather than in the middle of it, the way WinUI has it, so a label of several lines starts level with the box instead of being centred beside it as a block. It also stands on the default style rather than on the Windows 10 one, which is the one place the WinUI set parts company with that habit: the Windows 10 box drops the stroke of its box in the states where the fill says the state on its own, and a WinUI box keeps that stroke in every one of them.</p>
+<p>What sits on the accent, the tick and the dot of the <a href="radiobutton">RadioButton</a>, is the ideal foreground the theme works out for that accent rather than a colour of its own. WinUI writes those as black or white per theme, because its accent is a light one in the dark theme and a dark one in the light theme; the accent here is the accent of the theme and stays what it is.</p>
 <div class="alert alert-warning"><p><code>MinWidth=&quot;120&quot;</code> is the one to watch. A Win10 check box is at least 120 pixels wide however short its label, so a row of them in a <code>StackPanel</code> with <code>Orientation=&quot;Horizontal&quot;</code> comes out spaced far apart. Set <code>MinWidth=&quot;0&quot;</code> where that is not what you want.</p>
 </div>
 <h2 id="the-states">The states</h2>
@@ -360,7 +384,7 @@ CheckBox
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-two-styles">The two styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-three-styles">The three styles</a></div>
                     <div class="sidebar-nav-item"><a href="#the-states">The states</a></div>
                     <div class="sidebar-nav-item"><a href="#content-on-the-other-side">Content on the other side</a></div>
                     <div class="sidebar-nav-item"><a href="#changing-the-look">Changing the look</a></div>
