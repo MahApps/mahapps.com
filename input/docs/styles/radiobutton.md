@@ -22,27 +22,31 @@ To extend rather than replace, base your own style on the keyed one:
 </Style>
 ```
 
-## The two styles
+## The three styles
 
 | Style | |
 | --- | --- |
 | `MahApps.Styles.RadioButton` | the default: a thin ring with a filled dot when selected |
 | `MahApps.Styles.RadioButton.Win10` | the Windows 10 look: a heavier ring, and the ring turns accent-coloured when selected |
+| `MahApps.Styles.RadioButton.WinUI` (on `develop`) | the WinUI look: a hairline ring on a fill a shade off the page, filled with the accent and a dot in the middle once it is picked |
 
 ```xml
 <RadioButton Style="{StaticResource MahApps.Styles.RadioButton.Win10}" Content="Medium" />
 ```
 
-The Win10 style derives from the default one and, as with the check box, differs in more than colour:
+Both of the Windows styles differ from the default one in more than colour, as with the check box:
 
-| | default | Win10 |
-| --- | --- | --- |
-| `RadioSize` | `18` | `20` |
-| `RadioCheckSize` | `10` | `10` |
-| `RadioStrokeThickness` | `1` | `2` |
-| `MinHeight` | — | `32` |
-| `MinWidth` | — | `120` |
-| `Padding` | `6 0 0 0` | `8 0 0 0` |
+| | default | Win10 | WinUI |
+| --- | --- | --- | --- |
+| `RadioSize` | `18` | `20` | `20` |
+| `RadioCheckSize` | `10` | `12` | `12` |
+| `RadioStrokeThickness` | `1` | `2` | `1` |
+| `MinHeight` | — | `32` | `32` |
+| `MinWidth` | — | `120` | `120` |
+| `Padding` | `6 0 0 0` | `8 0 0 0` | `8 6 0 0` |
+| `VerticalContentAlignment` | `Center` | `Center` | `Top` |
+
+The dot of the WinUI button is twelve at rest, fourteen under the pointer and ten while the button is held down, which is the whole of the animation WinUI plays there and the one part of it a style can say. It is set through `RadioButtonHelper.RadioCheckSize` in two triggers, so your own style can answer either state differently.
 
 :::{.alert .alert-warning}
 `MinWidth="120"` applies here too. A Win10 radio button is at least 120 pixels wide however short its label, which spreads a horizontal row of them far apart. Set `MinWidth="0"` where that is not what you want.

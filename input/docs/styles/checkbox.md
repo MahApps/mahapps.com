@@ -22,26 +22,33 @@ To extend rather than replace, base your own style on the keyed one:
 </Style>
 ```
 
-## The two styles
+## The three styles
 
 | Style | |
 | --- | --- |
 | `MahApps.Styles.CheckBox` | the default: an outlined box with a coloured tick inside it |
 | `MahApps.Styles.CheckBox.Win10` | the Windows 10 look: the box fills with the accent colour and the tick turns white |
+| `MahApps.Styles.CheckBox.WinUI` (on `develop`) | the WinUI look: a rounded box a shade off the page with a hairline round it, the accent with a tick in it once it is ticked |
 
 ```xml
 <CheckBox Style="{StaticResource MahApps.Styles.CheckBox.Win10}" Content="Checked" />
 ```
 
-The Win10 style derives from the default one and differs in more than colour, which matters if you mix the two in one dialog:
+Both of the Windows styles differ from the default one in more than colour, which matters if you mix them in one dialog:
 
-| | default | Win10 |
-| --- | --- | --- |
-| `CheckSize` | `18` | `20` |
-| `CheckStrokeThickness` | `1` | `2` |
-| `MinHeight` | — | `32` |
-| `MinWidth` | — | `120` |
-| `Padding` | `6 0 0 0` | `8 0 0 0` |
+| | default | Win10 | WinUI |
+| --- | --- | --- | --- |
+| `CheckSize` | `18` | `20` | `20` |
+| `CheckStrokeThickness` | `1` | `2` | `1` |
+| `CheckCornerRadius` | `0` | `0` | `4` |
+| `MinHeight` | — | `32` | `32` |
+| `MinWidth` | — | `120` | `120` |
+| `Padding` | `6 0 0 0` | `8 0 0 0` | `8 5 0 0` |
+| `VerticalContentAlignment` | `Center` | `Center` | `Top` |
+
+The WinUI box puts its label against the top of the row rather than in the middle of it, the way WinUI has it, so a label of several lines starts level with the box instead of being centred beside it as a block. It also stands on the default style rather than on the Windows 10 one, which is the one place the WinUI set parts company with that habit: the Windows 10 box drops the stroke of its box in the states where the fill says the state on its own, and a WinUI box keeps that stroke in every one of them.
+
+What sits on the accent, the tick and the dot of the [RadioButton](radiobutton), is the ideal foreground the theme works out for that accent rather than a colour of its own. WinUI writes those as black or white per theme, because its accent is a light one in the dark theme and a dark one in the light theme; the accent here is the accent of the theme and stays what it is.
 
 :::{.alert .alert-warning}
 `MinWidth="120"` is the one to watch. A Win10 check box is at least 120 pixels wide however short its label, so a row of them in a `StackPanel` with `Orientation="Horizontal"` comes out spaced far apart. Set `MinWidth="0"` where that is not what you want.
