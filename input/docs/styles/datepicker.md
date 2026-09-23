@@ -31,8 +31,28 @@ To extend rather than replace, base your own style on the keyed one:
 | `MahApps.Styles.DatePicker` | `DatePicker` | the picker. What the implicit style applies |
 | `MahApps.Styles.DatePickerTextBox` | `DatePickerTextBox` | the text box inside it |
 | `MahApps.Styles.DatePickerTextBox.TimePickerBase` | `DatePickerTextBox` | the same, used by `TimePicker` and `DateTimePicker`; it only forwards the automation properties from the picker to the box |
+| `MahApps.Styles.DatePicker.Win10` (on `develop`) | `DatePicker` | the picker in the Windows 10 look |
+| `MahApps.Styles.DatePicker.WinUI` (on `develop`) | `DatePicker` | and in the WinUI one |
 
 Besides the look, the picker style also sets three behavioural defaults you may want to change: `SelectedDateFormat` to `Short`, `IsTodayHighlighted` to `True`, and `CalendarStyle` to `MahApps.Styles.Calendar.Base`.
+
+## The two Windows looks
+
+On `develop` the picker has a style in each of the two Windows sets, and either one is the text box of that set with a calendar behind the button.
+
+`MahApps.Styles.DatePicker.Win10` takes the fill, the two-unit frame and the padding `MahApps.Styles.TextBox.Win10` has, and the accent runs round the frame while the caret is in the field.
+
+`MahApps.Styles.DatePicker.WinUI` stands on that one: a translucent fill, rounded corners, and a border that is a touch stronger along its bottom edge and turns into the accent there once the caret is in. That edge is a border of its own in the template and two units thick either way, so the picker stays as tall as it was and nothing under it moves. The brush for it is `ControlsHelper.BottomBorderBrush`, which is on [ControlsHelper](../helper/controlshelper).
+
+Each of the two hands its own calendar to the drop-down, `MahApps.Styles.Calendar.Win10` and `MahApps.Styles.Calendar.WinUI`, so the square day cells and the round ones come along with the field.
+
+The [Win10](../stylevariants/win10) and [WinUI](../stylevariants/winui) sets apply them to every `DatePicker` in the tree they are merged into. One picker at a time:
+
+```xml
+<DatePicker Style="{StaticResource MahApps.Styles.DatePicker.WinUI}" />
+```
+
+The template behind all three keeps its inner grid inside the frame and clips it to the corners that frame leaves over, so with a corner radius the fill of a button no longer runs over the rounding. The text box, the password box and the rich text box are built the same way.
 
 ## The clear button
 
