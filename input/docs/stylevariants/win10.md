@@ -24,11 +24,11 @@ The set goes *in place of* `Styles/Controls.xaml` rather than next to it, becaus
 </ResourceDictionary.MergedDictionaries>
 ```
 
-Everything the library has is still there. What comes out in the Windows 10 look is the `Button`, the `RepeatButton`, the `CheckBox`, the `RadioButton`, the `TextBox`, the `PasswordBox`, the `RichTextBox`, the `ScrollBar`, the four [up-downs](../controls/numericupdown), the `Calendar`, the `DatePicker`, the [AnalogClock](../controls/analogclock) and the two pickers; every other control keeps the default look, because the set has nothing of its own for it.
+Everything the library has is still there. What comes out in the Windows 10 look is the `Button`, the `RepeatButton`, the `CheckBox`, the `RadioButton`, the `TextBox`, the `PasswordBox`, the `RichTextBox`, the `ComboBox`, the `ScrollBar`, the four [up-downs](../controls/numericupdown), the `Calendar`, the `DatePicker`, the [AnalogClock](../controls/analogclock) and the two pickers; every other control keeps the default look, because the set has nothing of its own for it.
 
 Merge it into a window or a panel rather than into `App.xaml` and it reaches that part of the tree alone. The demo does exactly that, to stand the three sets next to each other.
 
-The pickers of the set carry two habits its text box already had: the clear button is there only while the caret is in the field and something is written in it, and a picker that is switched off says so with the disabled colours rather than with a veil over it. [DatePicker](../styles/datepicker) has the detail.
+The pickers of the set carry two habits its text box already had: the clear button is there only while the caret is in the field and something is written in it, and a picker that is switched off says so with the disabled colours rather than with a veil over it. [DatePicker](../styles/datepicker) has the detail. The combo box of the set takes the second of the two.
 
 One thing about the set changes layout rather than looks. Its scrollbar is the two-state one a UWP window draws, a two-unit line until the pointer arrives, so the set also applies a scroll viewer that lays the bars *over* the content instead of beside it. Leave sixteen units of padding at the edge of anything interactive, or an expanded bar will cover it. [ScrollBars](../styles/scrollbars) has the whole story.
 
@@ -45,6 +45,7 @@ Nothing forces the whole set on you. Every style in it has a key, and always has
 | `MahApps.Styles.TextBox.Win10` (on `develop`) | [TextBox](../styles/textbox) |
 | `MahApps.Styles.PasswordBox.Win10` (on `develop`) | [PasswordBox](../styles/passwordbox) |
 | `MahApps.Styles.RichTextBox.Win10` (on `develop`) | [TextBox](../styles/textbox) |
+| `MahApps.Styles.ComboBox.Win10`, `…ComboBoxItem.Win10` (on `develop`) | [ComboBox](../styles/combobox) |
 | `MahApps.Styles.DatePicker.Win10` (on `develop`) | [DatePicker](../styles/datepicker) |
 | `MahApps.Styles.ScrollBar.Win10`, `…ScrollViewer.Win10` (on `develop`) | [ScrollBars](../styles/scrollbars) |
 | `MahApps.Styles.NumericUpDown.Win10` (on `develop`) | [NumericUpDown](../controls/numericupdown) |

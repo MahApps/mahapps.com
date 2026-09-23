@@ -28,11 +28,35 @@ To extend rather than replace, base your own style on the keyed one:
 | --- | --- | --- |
 | `MahApps.Styles.ComboBox` | `ComboBox` | the box. What the implicit style applies |
 | `MahApps.Styles.ComboBox.Virtualized` | `ComboBox` | the same with UI virtualization switched on |
+| `MahApps.Styles.ComboBox.Win10` | `ComboBox` | the Windows 10 look (on `develop`) |
+| `MahApps.Styles.ComboBox.WinUI` | `ComboBox` | the WinUI look (on `develop`) |
 | `MahApps.Styles.ComboBoxItem` | `ComboBoxItem` | one row in the drop-down |
+| `MahApps.Styles.ComboBoxItem.Win10` | `ComboBoxItem` | one row in the Windows 10 list (on `develop`) |
+| `MahApps.Styles.ComboBoxItem.WinUI` | `ComboBoxItem` | one row in the WinUI list (on `develop`) |
 | `MahApps.Styles.TextBox.ComboBox.Editable` | `TextBox` | the text box an editable combo box types into |
+| `MahApps.Styles.TextBox.ComboBox.Editable.Win10`, `…WinUI` | `TextBox` | the same with the caret and the selection of that set (on `develop`) |
 | `MahApps.Styles.ToggleButton.ComboBoxDropDown` | `ToggleButton` | the arrow that opens it |
+| `MahApps.Styles.ToggleButton.ComboBoxDropDown.Win10` | `ToggleButton` | the same with the chevron both Windows sets draw (on `develop`) |
 
-The last two are building blocks of the template rather than something to set yourself.
+The last four are building blocks of the template rather than something to set yourself.
+
+## The two Windows looks
+
+On `develop` the box has a style in each of the two Windows sets, and either one is the text box of that set with a list behind a chevron instead of the filled triangle the Metro box draws.
+
+`MahApps.Styles.ComboBox.Win10` is `MahApps.Styles.TextBox.Win10` with a list behind the chevron, and it is that box down to the detail: the same fill, the same two units of frame, the same padding, the same delete button and the same watermark standing against the text rather than four units off it. The accent runs round the frame while the caret is in it, and an editable one types into the text box of that set through `MahApps.Styles.TextBox.ComboBox.Editable.Win10`. Its rows are `MahApps.Styles.ComboBoxItem.Win10`: the full width of the list, square, and the one that is picked carries the accent turned right down behind it rather than the accent itself, which is what keeps the text on it readable without a colour of its own.
+
+`MahApps.Styles.ComboBox.WinUI` stands on that one and does the same with `MahApps.Styles.TextBox.WinUI`: rounded corners, and a border that is a touch stronger along its bottom edge and turns into the accent there once the caret is in. That edge is a border of its own in the template and two units thick either way, so the box stays as tall as it was and nothing under it moves. Its rows are `MahApps.Styles.ComboBoxItem.WinUI`, rounded tiles with air around them, and the row that is picked carries the accent as a short bar along its left edge. The list itself is rounded a little more than the box, the way a Fluent flyout is.
+
+Both sets set their own `ItemContainerStyle`, so a single box in the Windows look brings its rows with it and nothing else has to be merged. The [Win10](../stylevariants/win10) and [WinUI](../stylevariants/winui) sets apply both styles to every `ComboBox` in the tree they are merged into. One box at a time:
+
+```xml
+<ComboBox Style="{StaticResource MahApps.Styles.ComboBox.WinUI}" />
+```
+
+A box of either set that is switched off says so with the disabled colours of that set instead of with a veil drawn over it, which is `ControlsHelper.DisabledVisualElementVisibility` set to `Collapsed` along with `ControlsHelper.DisabledBorderBrush`. The Metro box asks for neither and looks the way it always has.
+
+The template behind all three keeps its inner grid inside the frame and clips it to the corners that frame leaves over, so with a corner radius the fill of a button no longer runs over the rounding. The text box, the password box, the rich text box and the date picker are built the same way.
 
 ## Watermark
 
@@ -190,6 +214,8 @@ What the styles themselves set:
 | `TextBoxHelper.ButtonFontSize` | `MahApps.Styles.ComboBox` | `MahApps.Font.Size.Button.ClearText` |
 | `ControlsHelper.FocusBorderBrush` | `MahApps.Styles.ComboBox` | `MahApps.Brushes.ComboBox.Border.Focus` |
 | `ControlsHelper.MouseOverBorderBrush` | `MahApps.Styles.ComboBox` | `MahApps.Brushes.ComboBox.Border.MouseOver` |
+| `ComboBoxHelper.DropDownBackground` | `MahApps.Styles.ComboBox` | `MahApps.Brushes.ComboBox.PopupBackground` |
+| `ComboBoxHelper.DropDownBorderBrush` | `MahApps.Styles.ComboBox` | `MahApps.Brushes.ComboBox.PopupBorder` |
 | eleven `ItemHelper` brushes | `MahApps.Styles.ComboBoxItem` | the theme's selection and hover colours |
 
 Note the focus and mouse-over brushes are the `ComboBox` ones, not the `TextBox` ones the other input controls use.
