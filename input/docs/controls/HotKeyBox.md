@@ -120,7 +120,24 @@ Because `GetHashCode` and `Equals` are implemented, `HotKey` works correctly as 
 
 ## Styling
 
-The template is a single `TextBox`, and the usual [TextBoxHelper](../helper/textboxhelper) properties are passed through to it: `Watermark`, `UseFloatingWatermark`, `WatermarkAlignment` and `WatermarkTrimming`. `ControlsHelper.FocusBorderBrush` and `MouseOverBorderBrush` are set by the style, as is `Validation.ErrorTemplate`, so a failed binding gets the usual [validation](../styles/validation) treatment.
+The template is a single `TextBox`, and the usual [TextBoxHelper](../helper/textboxhelper) properties are passed through to it: `Watermark`, `UseFloatingWatermark`, `WatermarkAlignment` and `WatermarkTrimming`. `ControlsHelper.FocusBorderBrush` and `MouseOverBorderBrush` are set by the style and handed to that box, and on `develop` so are `BottomBorderBrush`, `DisabledBorderBrush` and `DisabledVisualElementVisibility`, so everything the frame does is said on the control rather than on the box inside it. `Validation.ErrorTemplate` is set by the style too, so a failed binding gets the usual [validation](../styles/validation) treatment.
+
+## The Windows looks
+
+:::{.alert .alert-info}
+New on `develop`.
+:::
+
+`MahApps.Styles.HotKeyBox.Win10` and `MahApps.Styles.HotKeyBox.WinUI` put the box in the look of the [Windows 10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set. Since the template is one text box filling the control, either style is the text box of that set: the same fill, the same frame, the same padding, the same delete button, and the same colours under the pointer and with the caret in it, so a shortcut box and a text box standing next to each other in a form are the same height and the same colour. The WinUI one rounds its corners and says the focus with the stronger line along its bottom edge instead of a frame round the whole box.
+
+```xml
+<mah:HotKeyBox Width="175"
+               mah:TextBoxHelper.ClearTextButton="True"
+               mah:TextBoxHelper.Watermark="Press a shortcut"
+               Style="{DynamicResource MahApps.Styles.HotKeyBox.WinUI}" />
+```
+
+Merging one of the two sets gives every shortcut box that look without naming the style.
 
 ## What a client is told
 
@@ -132,4 +149,4 @@ New on `develop`. In a released version the box itself is not in the automation 
 
 ## Related
 
-[TextBoxHelper](../helper/textboxhelper) for the watermark, [ControlsHelper](../helper/controlshelper) for the casing and border brushes.
+[TextBoxHelper](../helper/textboxhelper) for the watermark, [ControlsHelper](../helper/controlshelper) for the casing and border brushes, [TextBox](../styles/textbox) for the box the control is made of.
