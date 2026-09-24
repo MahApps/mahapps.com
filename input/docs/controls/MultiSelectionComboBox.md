@@ -100,6 +100,23 @@ If you want a single line you can use `MahApps.Styles.MultiSelectionComboBox.Hor
 
 ![](images/MultiSelectionComboBox_HorizontalStyle.png)
 
+## The Windows looks
+
+:::{.alert .alert-info}
+New on `develop`.
+:::
+
+`MahApps.Styles.MultiSelectionComboBox.Win10` and `MahApps.Styles.MultiSelectionComboBox.WinUI` put the control in the look of the [Windows 10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set. Either one is the combo box of that set holding more than one answer: the same fill, the same frame, the same padding, the same chevron and the same rows in the list that comes down, so the two standing next to each other in a form are the same height and the same colour. The WinUI one rounds its corners and says the focus with the stronger line along its bottom edge.
+
+```xml
+<mah:MultiSelectionComboBox Width="320"
+                            ItemsSource="{Binding Names}"
+                            SelectionMode="Multiple"
+                            Style="{DynamicResource MahApps.Styles.MultiSelectionComboBox.WinUI}" />
+```
+
+Merging one of the two sets gives every one of these boxes that look without naming the style.
+
 ## ItemContainer-Styles
 
 MahApps ships two build in styles for the item container visible when the `DropDown` is open. 
@@ -107,6 +124,8 @@ MahApps ships two build in styles for the item container visible when the `DropD
 The default style (`MahApps.Styles.MultiSelectionComboBoxItem`) looks like the one from the normal `ComboBox`. 
 
 If you want to present `CheckBoxes` to the user you can use the `MahApps.Styles.MultiSelectionComboBoxItem.CheckBox` style: 
+
+The two Windows sets bring their own rows along, `MahApps.Styles.MultiSelectionComboBoxItem.Win10` and `…WinUI` with `…CheckBox.Win10` and `…CheckBox.WinUI` beside them, and the set picks the plain one for you. All four share the one template, `MahApps.Templates.MultiSelectionComboBoxItem.CheckBox`, so what tells them apart is the colours.
 
 ![](images/MultiSelectionComboBox_DropDown_CheckBox.png)
 
