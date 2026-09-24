@@ -37,6 +37,7 @@ Description: The documentation for the ColorPicker, ColorCanvas, ColorPalette an
   - [Properties](#properties-3)
   - [Events](#events-2)
   - [DynamicResources](#dynamicresources-2)
+  - [The Windows looks](#the-windows-looks)
   - [Example](#example-4)
     - [Basic example](#basic-example)
     - [Using the `SelectedColorChanged`-Event](#using-the-selectedcolorchanged-event)
@@ -538,6 +539,24 @@ The `RecentColorPalette` is a special `ColorPalette` which is used to store the 
 | MahApps.Styles.TabControl.ColorPicker    | Style        | Overrides the `Style` for the `TabControl` inside the `DropDown` |
 | MahApps.Styles.ToggleButton.ColorPickerDropDown | Style        | Overrides the `Style` for the `ColorPicker`-`ToggleButton` |
 | MahApps.Styles.ColorPalette.ColorPickerDropDown | Style        | Overrides the `Style` for the `ColorPicker`-[`ColorPalette`](#colorpalette) |
+
+## The Windows looks
+
+:::{.alert .alert-info}
+New on `develop`.
+:::
+
+`MahApps.Styles.ColorPicker.Win10` and `MahApps.Styles.ColorPicker.WinUI` put the control in the look of the [Windows 10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set. Either one is the combo box of that set with a swatch and the name of a colour where the one pick would stand: the same fill, the same frame, the same padding and the same chevron, so a picker and a combo box standing next to each other in a form are the same height and the same colour. The WinUI one rounds its corners and says the focus with the stronger line along its bottom edge.
+
+What comes down behind the field follows the set as well. The groups of swatches are headed by plain text rather than by a filled bar, because neither Windows 10 nor WinUI heads a group with one, and the boxes on the canvas are the text box and the up-down of the set. WinUI rounds the swatches, the square hue and value are picked in, the preview and the bars by the same number it rounds a control by.
+
+```xml
+<mah:ColorPicker Width="280"
+                 SelectedColor="{Binding MyColor}"
+                 Style="{DynamicResource MahApps.Styles.ColorPicker.WinUI}" />
+```
+
+Merging one of the two sets gives every picker that look without naming the style. `MahApps.Styles.ColorCanvas.Win10`, `…ColorCanvas.WinUI`, `MahApps.Styles.ColorPalette.Win10` and `…ColorPalette.WinUI` are the canvas and the palette on their own, for a window that shows either of them without the drop-down.
 
 ## Example
 

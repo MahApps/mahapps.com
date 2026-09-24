@@ -24,7 +24,7 @@ The set goes *in place of* `Styles/Controls.xaml` rather than next to it, becaus
 </ResourceDictionary.MergedDictionaries>
 ```
 
-Everything the library has is still there. What comes out in the Windows 10 look is the `Button`, the `RepeatButton`, the `CheckBox`, the `RadioButton`, the `TextBox`, the `PasswordBox`, the `RichTextBox`, the `ComboBox`, the [box that holds several picks](../controls/MultiSelectionComboBox), the [suggestion box](../controls/AutoSuggestBox), the [shortcut box](../controls/HotKeyBox), the `ScrollBar`, the four [up-downs](../controls/numericupdown), the `Calendar`, the `DatePicker`, the [AnalogClock](../controls/analogclock) and the two pickers; every other control keeps the default look, because the set has nothing of its own for it.
+Everything the library has is still there. What comes out in the Windows 10 look is the `Button`, the `RepeatButton`, the `CheckBox`, the `RadioButton`, the `TextBox`, the `PasswordBox`, the `RichTextBox`, the `ComboBox`, the [box that holds several picks](../controls/MultiSelectionComboBox), the [suggestion box](../controls/AutoSuggestBox), the [shortcut box](../controls/HotKeyBox), the [colour picker](../controls/ColorPicker), the `ScrollBar`, the four [up-downs](../controls/numericupdown), the `Calendar`, the `DatePicker`, the [AnalogClock](../controls/analogclock) and the two pickers; every other control keeps the default look, because the set has nothing of its own for it.
 
 Merge it into a window or a panel rather than into `App.xaml` and it reaches that part of the tree alone. The demo does exactly that, to stand the three sets next to each other.
 
@@ -49,6 +49,7 @@ Nothing forces the whole set on you. Every style in it has a key, and always has
 | `MahApps.Styles.AutoSuggestBox.Win10` (on `develop`) | [AutoSuggestBox](../controls/AutoSuggestBox) |
 | `MahApps.Styles.MultiSelectionComboBox.Win10` (on `develop`) | [MultiSelectionComboBox](../controls/MultiSelectionComboBox) |
 | `MahApps.Styles.HotKeyBox.Win10` (on `develop`) | [HotKeyBox](../controls/HotKeyBox) |
+| `MahApps.Styles.ColorPicker.Win10`, `…ColorCanvas.Win10`, `…ColorPalette.Win10` (on `develop`) | [ColorPicker](../controls/ColorPicker) |
 | `MahApps.Styles.DatePicker.Win10` (on `develop`) | [DatePicker](../styles/datepicker) |
 | `MahApps.Styles.ScrollBar.Win10`, `…ScrollViewer.Win10` (on `develop`) | [ScrollBars](../styles/scrollbars) |
 | `MahApps.Styles.NumericUpDown.Win10` (on `develop`) | [NumericUpDown](../controls/numericupdown) |
