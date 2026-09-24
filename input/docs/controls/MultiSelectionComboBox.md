@@ -139,6 +139,8 @@ The default one wraps each item in a nugget like container:
 
 If you want to provide an option to remove from the selected items you can use `MahApps.Styles.MultiSelectionComboBoxSelectedItem.Removable` which will add a delete button next to each item: 
 
+The two Windows sets bring their own nuggets along, `MahApps.Styles.MultiSelectionComboBoxSelectedItem.Win10` and `…WinUI` with `…Removable.Win10` and `…Removable.WinUI` beside them, and the set picks the plain one for you. A nugget of those two is a layer over the box rather than a colour of its own, because the box of either set changes its fill under the pointer and again while the list is down, and a nugget in a fixed grey would land on one of those colours.
+
 ![](images/MultiSelectionComboBox_SelectedItemContainerStyle_Removeable.png)
 
 # Selection
