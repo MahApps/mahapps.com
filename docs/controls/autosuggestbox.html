@@ -572,10 +572,20 @@ private void OnQuerySubmitted(object sender, RoutedEventArgs e)
 </table>
 <p><code>ComboBoxHelper.MaxLength</code> and <code>ComboBoxHelper.CharacterCasing</code> reach the text box as well.</p>
 <p>With neither <code>ClearTextButton</code> nor a <code>ButtonCommand</code> set, the button spot collapses and the text takes the whole width.</p>
+<h2 id="the-windows-looks">The Windows looks</h2>
+<p>There are two more styles, <code>MahApps.Styles.AutoSuggestBox.Win10</code> and <code>MahApps.Styles.AutoSuggestBox.WinUI</code>, and each of them is the combo box of that set with the chevron taken off it. That is the point: a suggestion box and a combo box standing next to each other in a form are the same height and the same colour, down to the fill, the frame, the padding and the delete button.</p>
+<pre><code class="language-xml">&lt;mah:AutoSuggestBox Width=&quot;300&quot;
+                    Style=&quot;{DynamicResource MahApps.Styles.AutoSuggestBox.WinUI}&quot;
+                    mah:TextBoxHelper.ClearTextButton=&quot;True&quot;
+                    mah:TextBoxHelper.Watermark=&quot;Artist&quot; /&gt;
+</code></pre>
+<p>The Windows 10 one turns white with an accent frame once the caret is in it. The WinUI one rounds its corners and draws the border a touch stronger along the bottom edge, which turns into the accent there instead. That edge is a border of its own, two units thick either way, so a box with the caret in it is as tall as the one beside it and nothing under it moves.</p>
+<p>The list follows along. It is the drop-down of that set, the rows and all: square rows picked out with the accent turned right down in the Windows 10 one, rounded tiles with a short accent bar along the left edge of the row that is picked in the WinUI one. The delete button of both sets waits until there is something to delete, and a box that is switched off says so with its colours rather than with a veil over it.</p>
+<p>Merging <code>Styles/Win10/Controls.xaml</code> or <code>Styles/WinUI/Controls.xaml</code> applies the matching style to every suggestion box in that part of the tree. <a href="../stylevariants/win10">Win 10 (UWP)</a> and <a href="../stylevariants/winui">WinUI</a> have the whole set.</p>
 <h2 id="what-a-client-is-told">What a client is told</h2>
 <p>The box reports itself as an <code>AutoSuggestBox</code> and as a combo box control type, and hands over its text as a value, so a test or a screen reader gets the box rather than the text field inside it.</p>
 <h2 id="related">Related</h2>
-<p><a href="MultiSelectionComboBox">MultiSelectionComboBox</a> where the user picks several items rather than typing free text, <a href="../helper/textboxhelper">TextBoxHelper</a> for the watermark and the buttons, <a href="../styles/validation">validation</a> for the error treatment.</p>
+<p><a href="MultiSelectionComboBox">MultiSelectionComboBox</a> where the user picks several items rather than typing free text, <a href="../styles/combobox">ComboBox</a> for the box this one is cut from, <a href="../helper/textboxhelper">TextBoxHelper</a> for the watermark and the buttons, <a href="../styles/validation">validation</a> for the error treatment.</p>
 
 
                                         </div>
@@ -591,6 +601,7 @@ private void OnQuerySubmitted(object sender, RoutedEventArgs e)
                     <div class="sidebar-nav-item"><a href="#picking-a-suggestion">Picking a suggestion</a></div>
                     <div class="sidebar-nav-item"><a href="#the-keyboard">The keyboard</a></div>
                     <div class="sidebar-nav-item"><a href="#styling">Styling</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-windows-looks">The Windows looks</a></div>
                     <div class="sidebar-nav-item"><a href="#what-a-client-is-told">What a client is told</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>

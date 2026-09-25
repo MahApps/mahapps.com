@@ -512,6 +512,11 @@ NumericUpDown
     &lt;/Style.Triggers&gt;
 &lt;/Style&gt;
 </code></pre>
+<h2 id="the-windows-looks">The Windows looks</h2>
+<p><code>MahApps.Styles.NumericUpDown.Win10</code> and <code>MahApps.Styles.NumericUpDown.WinUI</code> draw the control the way Windows does: the text box of that set with the two buttons standing inside its frame, the number against the left edge and a chevron on each button instead of a plus and a minus. Either style covers all four up-downs, and a control that is switched off says so with the colours of its set rather than with a veil over it.</p>
+<pre><code class="language-xml">&lt;mah:NumericUpDown Style=&quot;{DynamicResource MahApps.Styles.NumericUpDown.WinUI}&quot; Value=&quot;42&quot; /&gt;
+</code></pre>
+<p><a href="../stylevariants/win10">Win 10 (UWP)</a> and <a href="../stylevariants/winui">WinUI</a> have the whole set.</p>
 <h2 id="formatting">Formatting</h2>
 <p><img src="images/numericupdown-format.png" alt="No format, N2, C2 and a custom format" /></p>
 <p><code>StringFormat</code> takes a standard or custom .NET numeric format string:</p>
@@ -633,6 +638,7 @@ NumericUpDown
                     <div class="sidebar-nav-item"><a href="#the-value-and-its-range">The value and its range</a></div>
                     <div class="sidebar-nav-item"><a href="#how-the-user-changes-it">How the user changes it</a></div>
                     <div class="sidebar-nav-item"><a href="#the-buttons">The buttons</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-windows-looks">The Windows looks</a></div>
                     <div class="sidebar-nav-item"><a href="#formatting">Formatting</a></div>
                         <div class="sidebar-nav-children">
                                 <div class="sidebar-nav-item"><a href="#a-hexadecimal-stringformat">A hexadecimal StringFormat</a></div>

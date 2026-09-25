@@ -391,6 +391,7 @@ ColorPicker
 <li><a href="#properties-3">Properties</a></li>
 <li><a href="#events-2">Events</a></li>
 <li><a href="#dynamicresources-2">DynamicResources</a></li>
+<li><a href="#the-windows-looks">The Windows looks</a></li>
 <li><a href="#example-4">Example</a>
 <ul>
 <li><a href="#basic-example">Basic example</a></li>
@@ -1429,6 +1430,16 @@ The <code>DataTemplate</code> should be designed for this <code>DataType</code>:
 </tr>
 </tbody>
 </table>
+<h2 id="the-windows-looks">The Windows looks</h2>
+<div class="alert alert-info"><p>New on <code>develop</code>.</p>
+</div>
+<p><code>MahApps.Styles.ColorPicker.Win10</code> and <code>MahApps.Styles.ColorPicker.WinUI</code> put the control in the look of the <a href="../stylevariants/win10">Windows 10</a> and the <a href="../stylevariants/winui">WinUI</a> set. Either one is the combo box of that set with a swatch and the name of a colour where the one pick would stand: the same fill, the same frame, the same padding and the same chevron, so a picker and a combo box standing next to each other in a form are the same height and the same colour. The WinUI one rounds its corners and says the focus with the stronger line along its bottom edge.</p>
+<p>What comes down behind the field follows the set as well. The groups of swatches are headed by plain text rather than by a filled bar, because neither Windows 10 nor WinUI heads a group with one, and the boxes on the canvas are the text box and the up-down of the set. WinUI rounds the swatches, the square hue and value are picked in, the preview and the bars by the same number it rounds a control by.</p>
+<pre><code class="language-xml">&lt;mah:ColorPicker Width=&quot;280&quot;
+                 SelectedColor=&quot;{Binding MyColor}&quot;
+                 Style=&quot;{DynamicResource MahApps.Styles.ColorPicker.WinUI}&quot; /&gt;
+</code></pre>
+<p>Merging one of the two sets gives every picker that look without naming the style. <code>MahApps.Styles.ColorCanvas.Win10</code>, <code>…ColorCanvas.WinUI</code>, <code>MahApps.Styles.ColorPalette.Win10</code>, <code>…ColorPalette.WinUI</code>, <code>MahApps.Styles.ColorEyeDropper.Win10</code> and <code>…ColorEyeDropper.WinUI</code> are the canvas, the palette and the eye dropper on their own, for a window that shows any of them without the drop-down. The dropper of either set is the button of that set, and on a canvas it keeps the corners of the box it stands against.</p>
 <h2 id="example-4">Example</h2>
 <h3 id="basic-example">Basic example</h3>
 <pre><code class="language-xml">&lt;!-- make sure to add the right namespace --&gt;
@@ -1593,6 +1604,7 @@ private void ColorPicker_SelectedColorChanged(object sender, RoutedPropertyChang
                                 <div class="sidebar-nav-item"><a href="#properties-3">Properties</a></div>
                                 <div class="sidebar-nav-item"><a href="#events-2">Events</a></div>
                                 <div class="sidebar-nav-item"><a href="#dynamicresources-2">DynamicResources</a></div>
+                                <div class="sidebar-nav-item"><a href="#the-windows-looks">The Windows looks</a></div>
                                 <div class="sidebar-nav-item"><a href="#example-4">Example</a></div>
                         </div>
             </div>

@@ -579,16 +579,28 @@ MultiSelectionComboBox
 <p><img src="images/MultiSelectionComboBox_DefaultStyle.png" alt="" /></p>
 <p>If you want a single line you can use <code>MahApps.Styles.MultiSelectionComboBox.Horizontal</code> which will show a horizontal <code>ScrollViewer</code>, if not all items fit into the available space.</p>
 <p><img src="images/MultiSelectionComboBox_HorizontalStyle.png" alt="" /></p>
+<h2 id="the-windows-looks">The Windows looks</h2>
+<div class="alert alert-info"><p>New on <code>develop</code>.</p>
+</div>
+<p><code>MahApps.Styles.MultiSelectionComboBox.Win10</code> and <code>MahApps.Styles.MultiSelectionComboBox.WinUI</code> put the control in the look of the <a href="../stylevariants/win10">Windows 10</a> and the <a href="../stylevariants/winui">WinUI</a> set. Either one is the combo box of that set holding more than one answer: the same fill, the same frame, the same padding, the same chevron and the same rows in the list that comes down, so the two standing next to each other in a form are the same height and the same colour. The WinUI one rounds its corners and says the focus with the stronger line along its bottom edge.</p>
+<pre><code class="language-xml">&lt;mah:MultiSelectionComboBox Width=&quot;320&quot;
+                            ItemsSource=&quot;{Binding Names}&quot;
+                            SelectionMode=&quot;Multiple&quot;
+                            Style=&quot;{DynamicResource MahApps.Styles.MultiSelectionComboBox.WinUI}&quot; /&gt;
+</code></pre>
+<p>Merging one of the two sets gives every one of these boxes that look without naming the style.</p>
 <h2 id="itemcontainer-styles">ItemContainer-Styles</h2>
 <p>MahApps ships two build in styles for the item container visible when the <code>DropDown</code> is open.</p>
 <p>The default style (<code>MahApps.Styles.MultiSelectionComboBoxItem</code>) looks like the one from the normal <code>ComboBox</code>.</p>
 <p>If you want to present <code>CheckBoxes</code> to the user you can use the <code>MahApps.Styles.MultiSelectionComboBoxItem.CheckBox</code> style:</p>
+<p>The two Windows sets bring their own rows along, <code>MahApps.Styles.MultiSelectionComboBoxItem.Win10</code> and <code>…WinUI</code> with <code>…CheckBox.Win10</code> and <code>…CheckBox.WinUI</code> beside them, and the set picks the plain one for you. All four share the one template, <code>MahApps.Templates.MultiSelectionComboBoxItem.CheckBox</code>, so what tells them apart is the colours.</p>
 <p><img src="images/MultiSelectionComboBox_DropDown_CheckBox.png" alt="" /></p>
 <h2 id="selecteditemcontainer-styles">SelectedItemContainer-Styles</h2>
 <p>Also for this MahApps ships two build in styles. Please note that these are only applied if <code>IsEditable=false</code>.</p>
 <p>The default one wraps each item in a nugget like container:</p>
 <p><img src="images/MultiSelectionComboBox_DefaultStyle.png" alt="" /></p>
 <p>If you want to provide an option to remove from the selected items you can use <code>MahApps.Styles.MultiSelectionComboBoxSelectedItem.Removable</code> which will add a delete button next to each item:</p>
+<p>The two Windows sets bring their own nuggets along, <code>MahApps.Styles.MultiSelectionComboBoxSelectedItem.Win10</code> and <code>…WinUI</code> with <code>…Removable.Win10</code> and <code>…Removable.WinUI</code> beside them, and the set picks the plain one for you. A nugget of those two is a layer over the box rather than a colour of its own, because the box of either set changes its fill under the pointer and again while the list is down, and a nugget in a fixed grey would land on one of those colours.</p>
 <p><img src="images/MultiSelectionComboBox_SelectedItemContainerStyle_Removeable.png" alt="" /></p>
 <h1 id="selection">Selection</h1>
 <h2 id="selectionmode">SelectionMode</h2>
@@ -765,6 +777,7 @@ MultiSelectionComboBox
                     <div class="sidebar-nav-item"><a href="#styles">Styles</a></div>
                         <div class="sidebar-nav-children">
                                 <div class="sidebar-nav-item"><a href="#multiselectioncombobox-styles">MultiSelectionComboBox-Styles</a></div>
+                                <div class="sidebar-nav-item"><a href="#the-windows-looks">The Windows looks</a></div>
                                 <div class="sidebar-nav-item"><a href="#itemcontainer-styles">ItemContainer-Styles</a></div>
                                 <div class="sidebar-nav-item"><a href="#selecteditemcontainer-styles">SelectedItemContainer-Styles</a></div>
                         </div>

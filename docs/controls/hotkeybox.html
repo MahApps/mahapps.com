@@ -436,13 +436,23 @@ a.Equals(b)   // true
 </div>
 <p>Because <code>GetHashCode</code> and <code>Equals</code> are implemented, <code>HotKey</code> works correctly as a dictionary key — which is the usual way to keep a table of shortcuts.</p>
 <h2 id="styling">Styling</h2>
-<p>The template is a single <code>TextBox</code>, and the usual <a href="../helper/textboxhelper">TextBoxHelper</a> properties are passed through to it: <code>Watermark</code>, <code>UseFloatingWatermark</code>, <code>WatermarkAlignment</code> and <code>WatermarkTrimming</code>. <code>ControlsHelper.FocusBorderBrush</code> and <code>MouseOverBorderBrush</code> are set by the style, as is <code>Validation.ErrorTemplate</code>, so a failed binding gets the usual <a href="../styles/validation">validation</a> treatment.</p>
+<p>The template is a single <code>TextBox</code>, and the usual <a href="../helper/textboxhelper">TextBoxHelper</a> properties are passed through to it: <code>Watermark</code>, <code>UseFloatingWatermark</code>, <code>WatermarkAlignment</code> and <code>WatermarkTrimming</code>. <code>ControlsHelper.FocusBorderBrush</code> and <code>MouseOverBorderBrush</code> are set by the style and handed to that box, and on <code>develop</code> so are <code>BottomBorderBrush</code>, <code>DisabledBorderBrush</code> and <code>DisabledVisualElementVisibility</code>, so everything the frame does is said on the control rather than on the box inside it. <code>Validation.ErrorTemplate</code> is set by the style too, so a failed binding gets the usual <a href="../styles/validation">validation</a> treatment.</p>
+<h2 id="the-windows-looks">The Windows looks</h2>
+<div class="alert alert-info"><p>New on <code>develop</code>.</p>
+</div>
+<p><code>MahApps.Styles.HotKeyBox.Win10</code> and <code>MahApps.Styles.HotKeyBox.WinUI</code> put the box in the look of the <a href="../stylevariants/win10">Windows 10</a> and the <a href="../stylevariants/winui">WinUI</a> set. Since the template is one text box filling the control, either style is the text box of that set: the same fill, the same frame, the same padding, the same delete button, and the same colours under the pointer and with the caret in it, so a shortcut box and a text box standing next to each other in a form are the same height and the same colour. The WinUI one rounds its corners and says the focus with the stronger line along its bottom edge instead of a frame round the whole box.</p>
+<pre><code class="language-xml">&lt;mah:HotKeyBox Width=&quot;175&quot;
+               mah:TextBoxHelper.ClearTextButton=&quot;True&quot;
+               mah:TextBoxHelper.Watermark=&quot;Press a shortcut&quot;
+               Style=&quot;{DynamicResource MahApps.Styles.HotKeyBox.WinUI}&quot; /&gt;
+</code></pre>
+<p>Merging one of the two sets gives every shortcut box that look without naming the style.</p>
 <h2 id="what-a-client-is-told">What a client is told</h2>
 <p>The box hands over the combination it holds as its value, so a test or a screen reader gets <code>Ctrl + F5</code> rather than having to read the text field inside it.</p>
 <div class="alert alert-info"><p>New on <code>develop</code>. In a released version the box itself is not in the automation tree, only the text field of its template, which does carry the same text. This is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>
 </div>
 <h2 id="related">Related</h2>
-<p><a href="../helper/textboxhelper">TextBoxHelper</a> for the watermark, <a href="../helper/controlshelper">ControlsHelper</a> for the casing and border brushes.</p>
+<p><a href="../helper/textboxhelper">TextBoxHelper</a> for the watermark, <a href="../helper/controlshelper">ControlsHelper</a> for the casing and border brushes, <a href="../styles/textbox">TextBox</a> for the box the control is made of.</p>
 
 
                                         </div>
@@ -457,6 +467,7 @@ a.Equals(b)   // true
                     <div class="sidebar-nav-item"><a href="#what-it-displays">What it displays</a></div>
                     <div class="sidebar-nav-item"><a href="#the-hotkey-class">The HotKey class</a></div>
                     <div class="sidebar-nav-item"><a href="#styling">Styling</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-windows-looks">The Windows looks</a></div>
                     <div class="sidebar-nav-item"><a href="#what-a-client-is-told">What a client is told</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
