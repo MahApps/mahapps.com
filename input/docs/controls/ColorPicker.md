@@ -556,7 +556,7 @@ What comes down behind the field follows the set as well. The groups of swatches
                  Style="{DynamicResource MahApps.Styles.ColorPicker.WinUI}" />
 ```
 
-Merging one of the two sets gives every picker that look without naming the style. `MahApps.Styles.ColorCanvas.Win10`, `…ColorCanvas.WinUI`, `MahApps.Styles.ColorPalette.Win10` and `…ColorPalette.WinUI` are the canvas and the palette on their own, for a window that shows either of them without the drop-down.
+Merging one of the two sets gives every picker that look without naming the style. `MahApps.Styles.ColorCanvas.Win10`, `…ColorCanvas.WinUI`, `MahApps.Styles.ColorPalette.Win10`, `…ColorPalette.WinUI`, `MahApps.Styles.ColorEyeDropper.Win10` and `…ColorEyeDropper.WinUI` are the canvas, the palette and the eye dropper on their own, for a window that shows any of them without the drop-down. The dropper of either set is the button of that set, and on a canvas it keeps the corners of the box it stands against.
 
 ## Example
 

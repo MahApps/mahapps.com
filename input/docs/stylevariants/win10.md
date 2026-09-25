@@ -49,7 +49,7 @@ Nothing forces the whole set on you. Every style in it has a key, and always has
 | `MahApps.Styles.AutoSuggestBox.Win10` (on `develop`) | [AutoSuggestBox](../controls/AutoSuggestBox) |
 | `MahApps.Styles.MultiSelectionComboBox.Win10` (on `develop`) | [MultiSelectionComboBox](../controls/MultiSelectionComboBox) |
 | `MahApps.Styles.HotKeyBox.Win10` (on `develop`) | [HotKeyBox](../controls/HotKeyBox) |
-| `MahApps.Styles.ColorPicker.Win10`, `…ColorCanvas.Win10`, `…ColorPalette.Win10` (on `develop`) | [ColorPicker](../controls/ColorPicker) |
+| `MahApps.Styles.ColorPicker.Win10`, `…ColorCanvas.Win10`, `…ColorPalette.Win10`, `…ColorEyeDropper.Win10` (on `develop`) | [ColorPicker](../controls/ColorPicker) |
 | `MahApps.Styles.DatePicker.Win10` (on `develop`) | [DatePicker](../styles/datepicker) |
 | `MahApps.Styles.ScrollBar.Win10`, `…ScrollViewer.Win10` (on `develop`) | [ScrollBars](../styles/scrollbars) |
 | `MahApps.Styles.NumericUpDown.Win10` (on `develop`) | [NumericUpDown](../controls/numericupdown) |
