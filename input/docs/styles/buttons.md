@@ -85,6 +85,19 @@ The flat button needs no extra import. Older documentation says to merge `Styles
 
 The last name promises more accent than it shows. `Flat.Accent` is the plain button at rest with a one pixel border, hovering moves that border to the accent colour, and the accent fills the button only while it is really held down.
 
+## The WinUI set
+
+**Two more keys, also on `develop` and in no release yet:**
+
+| Style | |
+| --- | --- |
+| `MahApps.Styles.Button.WinUI` | the Windows 10 button in the colours Windows 11 gives it |
+| `MahApps.Styles.Button.Accent.WinUI` | the same one filled with the accent colour |
+
+It is the Windows 10 button with rounded corners, one pixel of border instead of two and the padding WinUI leaves around a word. What is new is the line along the bottom, drawn a shade stronger than the rest of the border, which is what makes the button look as if it stood a little above the page. Press it and that line goes, so a button that is down reads as lying flat. The accented one is framed by a thin white above and a black below rather than by the grey of the quiet one.
+
+Both round themselves by `MahApps.CornerRadius.WinUI.Control` rather than by a number of their own, and both carry a minimum height of 32, the one every other control of that set has, so a button holding nothing but an icon is still as tall as the box beside it. The line along the bottom is a border of its own in the template reading `ControlsHelper.BottomBorderBrush`, which is why the Windows 10 button, leaving that brush unset, draws nothing there. The frame itself stops short of the bottom, since two translucent lines lying on top of each other come out brighter than either of them.
+
 ## Dialog buttons
 
 The three styles the built-in dialogs use are public, which is what makes a [custom dialog](../dialogs/custom-dialogs) look like the built-in ones:
