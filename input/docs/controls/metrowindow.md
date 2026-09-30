@@ -21,7 +21,6 @@ It has around fifty properties. They are grouped here by what they do rather tha
 | `TitleTemplate` | `DataTemplate` | `null` | replace the title's presentation entirely |
 | `WindowTitleBrush` | `Brush` | `Transparent` | the bar's background |
 | `NonActiveWindowTitleBrush` | `Brush` | `Gray` | the same while the window is inactive |
-| `UseNoneWindowStyle` | `bool` | `False` | no title bar and no border at all |
 
 `TitleCharacterCasing="Normal"` is the one most people reach for first — the third panel above.
 
@@ -42,34 +41,44 @@ A normal border is `BorderBrush` plus `BorderThickness`, inherited from `Window`
                  BorderThickness="1" />
 ```
 
-`GlowBrush` instead draws a soft glow around the frame:
+`GlowColor` instead draws a soft glow around the frame. The default style sets it to the accent, so a window glows without being asked to:
 
 ```xml
-<mah:MetroWindow GlowBrush="{DynamicResource MahApps.Brushes.Accent}" />
+<mah:MetroWindow GlowColor="{DynamicResource MahApps.Colors.Accent}" />
 ```
 
 ![A window with a glow](images/metrowindow_glow.png)
 
-:::{.alert .alert-info}
-The glow is painted by **separate windows around the frame**, not by the window's own visual tree. A `BorderThickness="0"` window with no `GlowBrush` therefore has no edge at all — the middle panel of the first figure.
+:::{.alert .alert-warning}
+**The glow is a colour now, not a brush.** `GlowBrush` and `NonActiveGlowBrush` were in 2.4.11; on `develop` they are `GlowColor` and `NonActiveGlowColor`, which came along when the window moved onto ControlzEx's `WindowChromeWindow`. Reach for a `MahApps.Colors.…` key rather than a `MahApps.Brushes.…` one, and set the colour to `{x:Null}` to take the glow away.
 :::
 
-For a drop shadow and no border, set `BorderThickness="0"` with a dark `GlowBrush`:
+:::{.alert .alert-info}
+The glow is painted by **separate windows around the frame**, not by the window's own visual tree. A `BorderThickness="0"` window with no glow colour therefore has no edge at all — the middle panel of the first figure.
+:::
+
+For a drop shadow and no border, set `BorderThickness="0"` with a dark glow:
 
 ```xml
 <mah:MetroWindow BorderThickness="0"
-                 GlowBrush="Black"
+                 GlowColor="Black"
                  ResizeMode="CanResizeWithGrip"
                  WindowTransitionsEnabled="False" />
 ```
 
 | Property | Type | Default | |
 | --- | --- | --- | --- |
-| `GlowBrush` | `Brush` | `null` | |
-| `NonActiveGlowBrush` | `Brush` | | the glow while inactive |
+| `GlowColor` | `Color?` | the accent | the glow while the window is active |
+| `NonActiveGlowColor` | `Color?` | the theme foreground | the same while it is not |
+| `GlowDepth` | `int` | | how far the glow reaches |
+| `IsGlowTransitionEnabled` | `bool` | | whether it fades between the two colours |
+| `PreferDWMBorderColor` | `bool` | | let Windows draw the border itself where it can, instead of the glow windows |
+| `CornerPreference` | `WindowCornerPreference` | `Default` | `DoNotRound`, `Round` or `RoundSmall`, which is what Windows 11 rounds the corners by |
 | `NonActiveBorderBrush` | `Brush` | `Gray` | |
 | `KeepBorderOnMaximize` | `bool` | `True` | |
 | `ResizeBorderThickness` | `Thickness` | `6` | the invisible grab area for resizing |
+
+Everything in that table down to `CornerPreference` comes from ControlzEx rather than from MahApps, since `MetroWindow` derives from `WindowChromeWindow` now. `IgnoreTaskbarOnMaximize`, `ShowMinButton` and `ShowMaxRestoreButton` moved there as well, and are set on a `MetroWindow` exactly as before.
 
 ## The window buttons
 
@@ -208,7 +217,6 @@ The price is that the hosted control disappears and comes back. It is only hidde
 | `IgnoreTaskbarOnMaximize` | `bool` | `False` | maximise over the taskbar |
 | `IsWindowDraggable` | `bool` | `True` | drag the window by its title bar |
 | `WindowTransitionsEnabled` | `bool` | `True` | the content's entrance animation |
-| `TryToBeFlickerFree` | `bool` | `False` | |
 
 :::{.alert .alert-warning}
 `SaveWindowPosition="True"` is a nice convenience and a real support risk. If a monitor is detached between exit and restart, the window can come back **off screen** with no way for the user to get at it. Provide a reset, or validate the restored placement against the current screens yourself.

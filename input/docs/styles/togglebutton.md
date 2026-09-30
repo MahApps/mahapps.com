@@ -53,13 +53,12 @@ The circle style has no content of its own and is meant to carry an icon. Anythi
 
 The icon takes the button's `Foreground`, and the template switches that to `MahApps.Brushes.IdealForeground` while the button is checked — so a glyph you draw in the accent colour disappears against the checked fill. Leave the `Foreground` alone unless you also handle the checked state.
 
-For a `Path` rather than a glyph, the library's own icon style keeps it scaled and coloured correctly:
+For a `Path` rather than a glyph, [PathIcon](../controls/fonticon#pathicon) keeps it scaled and coloured correctly:
 
 ```xml
 <ToggleButton Width="48" Height="48" Style="{StaticResource MahApps.Styles.ToggleButton.Circle}">
-    <ContentControl Width="20" Height="20"
-                    Content="M12,2L15,9L22,9L16,14L18,21L12,17L6,21L8,14L2,9L9,9Z"
-                    Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}" />
+    <mah:PathIcon Width="20" Height="20"
+                  Data="M12,2L15,9L22,9L16,14L18,21L12,17L6,21L8,14L2,9L9,9Z" />
 </ToggleButton>
 ```
 

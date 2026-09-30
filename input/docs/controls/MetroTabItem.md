@@ -45,15 +45,15 @@ The button's size follows `HeaderedControlHelper.HeaderFontSize` through a conve
 
 The button raises no `Click` you can handle — a `CloseTabItemAction` behaviour is attached to it, and that runs a fixed sequence:
 
-1. **The item's `CloseTabCommand`** executes, if it is set and `CanExecute` allows it.
-2. Then the control's `CloseThisTabItem` runs, which either executes the **control's** `CloseTabCommand` and stops, or raises the cancellable `TabItemClosingEvent` and removes the tab.
+1. **The item's `CloseTabCommand`** is asked whether it can run. `CanExecute` returning `false` keeps the tab and ends it there; otherwise the command runs.
+2. Then the control's `CloseThisTabItem` runs, which raises the closing event and, unless a handler says no, either executes the **control's** `CloseTabCommand` or removes the tab.
 
-:::{.alert .alert-warning}
-The two commands are not alternatives, and this is the part that catches people:
+So there are three ways to keep a tab: a `CanExecute` of `false` on the item's command, a cancelled closing event on the [MetroTabControl](metrotabcontrol), or a `CloseTabCommand` on the control, which takes the removal over entirely.
 
-**The item's command cannot stop the tab from closing.** It runs first, the sequence continues regardless, and a `CanExecute` that returns `false` only means the command does not run — the tab still goes. Use it for the side effect: save the document, log the close, release a handle.
+:::{.alert .alert-info}
+**The first of those three is new on `develop`.** In 2.4.11 the item's command could not stop anything: a `CanExecute` of `false` only meant the command did not run, and the tab went anyway.
 
-To *prevent* a close you need one of the other two: set `CloseTabCommand` on the [MetroTabControl](metrotabcontrol), which replaces the removal entirely, or handle `TabItemClosingEvent` and set `e.Cancel`.
+The button itself is disabled while the answer is `false`, so the case only shows when the answer turns without the command saying that it has.
 :::
 
 ```xml
@@ -63,7 +63,7 @@ To *prevent* a close you need one of the other two: set `CloseTabCommand` on the
                   CloseTabCommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Header}" />
 ```
 
-`CloseTabCommandParameter` does double duty: it is the parameter for the item's command, and — when the item's command is not set — the control's `CloseTabCommand` receives it too, falling back to the `MetroTabItem` itself.
+`CloseTabCommandParameter` does double duty: it is the parameter for the item's command, and the control's `CloseTabCommand` is handed it as well, falling back to the `MetroTabItem` itself where the item has none.
 
 ## The plain TabItem alternative
 

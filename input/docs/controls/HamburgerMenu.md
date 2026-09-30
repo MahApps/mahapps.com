@@ -206,7 +206,7 @@ This sample goes further than the snippets above: the menu is bound to a view mo
                       Title="MainWindow"
                       Width="600"
                       Height="450"
-                      GlowBrush="{DynamicResource MahApps.Brushes.AccentBase}"
+                      GlowColor="{DynamicResource MahApps.Colors.AccentBase}"
                       WindowStartupLocation="CenterScreen"
                       WindowTransitionsEnabled="False"
                       mc:Ignorable="d">

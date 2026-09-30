@@ -148,7 +148,7 @@ The title bar is yours to fill. The numbers below refer to the markers in this s
 3. **`WindowButtonCommands`** lets you restyle the minimise, maximise/restore and close buttons. Their visibility also follows `ResizeMode`: `NoResize` collapses both, `CanMinimize` collapses maximise/restore.
 4. **`ResizeMode="CanResizeWithGrip"`** shows a resize grip in the bottom right corner.
 
-Not marked in the screenshot, but used in the sample below: **`GlowBrush`** draws the coloured border around the window.
+Not marked in the screenshot, but used in the sample below: **`GlowColor`** draws the coloured glow around the window. It is set to the accent by the default style, so the line below only says out loud what a window does anyway.
 
 :::{.alert .alert-info}
 The cupcake and octocat below come from [MahApps.Metro.IconPacks](https://github.com/MahApps/MahApps.Metro.IconPacks), a separate package.
@@ -165,7 +165,7 @@ The cupcake and octocat below come from [MahApps.Metro.IconPacks](https://github
                  Title="MainWindow"
                  Width="800"
                  Height="450"
-                 GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
+                 GlowColor="{DynamicResource MahApps.Colors.Accent}"
                  ResizeMode="CanResizeWithGrip"
                  WindowStartupLocation="CenterScreen"
                  mc:Ignorable="d">

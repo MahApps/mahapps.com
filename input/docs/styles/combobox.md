@@ -108,9 +108,8 @@ A permanently visible ✕ next to an empty box is noise. A trigger on the style 
           mah:TextBoxHelper.ButtonContent="M42.5,22A12.5,12.5 0 0,1 55,34.5A12.5,12.5 0 0,1 42.5,47C40.14,47 37.92,46.34 36,45.24L26.97,54.27C25.8,55.44 23.9,55.44 22.73,54.27C21.56,53.1 21.56,51.2 22.73,50.03L31.8,40.96C30.66,39.08 30,36.86 30,34.5A12.5,12.5 0 0,1 42.5,22Z">
     <mah:TextBoxHelper.ButtonContentTemplate>
         <DataTemplate>
-            <ContentControl Width="16" Height="16" Padding="3"
-                            Content="{Binding Mode=OneWay}"
-                            Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}" />
+            <mah:PathIcon Width="16" Height="16" Padding="3"
+                          Data="{Binding Mode=OneWay}" />
         </DataTemplate>
     </mah:TextBoxHelper.ButtonContentTemplate>
 </ComboBox>

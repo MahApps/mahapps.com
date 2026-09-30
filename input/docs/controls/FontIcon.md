@@ -1,5 +1,5 @@
 Title: FontIcon
-Description: An icon drawn as a glyph from a symbol font
+Description: The two icon controls, one a glyph and one a path
 ---
 
 `FontIcon` draws one character from a symbol font. That is the whole control: a `Glyph` property and a template that puts it in a `TextBlock`.
@@ -45,7 +45,7 @@ This is exactly why you should **not** write `FontFamily="Segoe MDL2 Assets"` on
 
 `FontIcon` derives from `Control`, so it has no size or brush properties of its own — a glyph is text, and `FontSize`, `FontWeight`, `FontStyle` and `Foreground` are what shape it. The default `FontSize` is **20**.
 
-`Foreground` has no setter in the style, so it inherits. That is what makes an icon inside a button follow the button's colour without being told:
+`Foreground` is registered to inherit and the style sets none, so an icon takes its colour from around it. What happens when the icon is handed to a control as content is under [IconElement](#iconelement) below:
 
 ![A FontIcon as button content, beside a label, and inheriting the foreground](images/fonticon-in-controls.png)
 
@@ -77,10 +77,32 @@ Codes are private-use code points assigned by the font's designers, so they mean
 There is **no `Symbol` enumeration** in MahApps.Metro. That is a UWP and WinUI API, and older documentation mentioned it here by mistake. In WPF you write the code point yourself, as `&#xE713;` in XAML or `"\uE713"` in C#.
 :::
 
+## PathIcon
+
+`PathIcon` is the other icon in the library. It draws vector geometry rather than a glyph, and it is what the library's own templates use for the chevron on a [DropDownButton](dropdownbutton), the clear button on a text box and marks of that kind.
+
+```xml
+<mah:PathIcon Data="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
+```
+
+`Data` is a `Geometry` with a `GeometryConverter` on it, so the path markup syntax works straight from the attribute. The template puts the path in a `Viewbox` and stretches it uniformly, which means `Width` and `Height`, both **16** to begin with, are what size an icon and `Padding` is the room left around it. The path is filled with `Foreground` and never stroked, so a geometry drawn as an outline comes out solid.
+
+:::{.alert .alert-info}
+`PathIcon` is new on `develop`. In 2.4.11 the same thing was a `ContentControl` carrying `MahApps.Styles.ContentControl.PathIcon` with the geometry as its `Content`, and that style key is gone.
+:::
+
 ## IconElement
 
-`FontIcon` derives from `IconElement`, an abstract class that derives from `Control` and adds nothing at all — it exists as a common base so icon types can be treated alike. `FontIcon` is currently the only one in the library, so there is no reason to type a property as `IconElement` rather than `FontIcon` today.
+`FontIcon` and `PathIcon` both derive from `IconElement`, which is where the colour is settled.
+
+`Foreground` is registered on it to inherit, and an icon that was given none of its own takes the one of its **visual** parent rather than its logical one. That is the difference that matters: an icon handed to a `Button` as content is put into the button's template, so its logical parent is the button and its visual parent is whatever part of the template holds the content. Binding to the visual parent is what makes the icon follow the colour the template is painting with, including the one a checked or disabled state switches to.
+
+`InheritsForegroundFromVisualParent` is the read-only property saying whether that is happening. It is `True` while the icon carries no `Foreground` of its own and its two parents differ, which is exactly the case of an icon handed to a control as content. Give the icon a `Foreground` and it stops, and the colour you set is the colour it keeps.
+
+:::{.alert .alert-info}
+`IconElement` was an empty base class in 2.4.11 with `FontIcon` as its only subclass. Both the colour handling and `PathIcon` are new on `develop`.
+:::
 
 ## Related
 
-For vector icons rather than font glyphs, `MahApps.Styles.ContentControl.PathIcon` takes path geometry as its content and is what the library's own templates use for chevrons and similar marks.
+[MahApps.Metro.IconPacks](https://github.com/MahApps/MahApps.Metro.IconPacks) is the separate package with the large icon sets in it, if neither a symbol font nor a path of your own is what you want. [Buttons](../styles/buttons) and [ToggleButton](../styles/togglebutton) show an icon used as the content of a control.

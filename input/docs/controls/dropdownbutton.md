@@ -113,7 +113,7 @@ The menu is a `ContextMenu`, but the **right mouse button does nothing** — `On
 <mah:DropDownButton Content="Artists" ArrowVisibility="Collapsed" />
 ```
 
-The chevron is a Material `ChevronDown` path drawn through `MahApps.Styles.ContentControl.PathIcon`. `ArrowMouseOverBrush` defaults to the accent brush, which is why the arrow picks up colour on hover while the rest of the button does not.
+The chevron is a Material `ChevronDown` path drawn by a [PathIcon](fonticon#pathicon). `ArrowMouseOverBrush` defaults to the accent brush, which is why the arrow picks up colour on hover while the rest of the button does not.
 
 ## What a client is told
 
