@@ -55,12 +55,12 @@ Menu entries come from `ItemsSource`, usually a `HamburgerMenuItemCollection` wr
 
 ## Menu items
 
-All item types derive from `HamburgerMenuItemBase`, which is a `Freezable` — not a `UIElement`. They carry data, and the templates above turn them into visuals.
+All item types derive from `HamburgerMenuItemBase`, which is a `FrameworkContentElement` — not a `UIElement`. They carry data, and the templates above turn them into visuals.
 
 | Type | Adds | Purpose |
 | --- | --- | --- |
-| `HamburgerMenuItemBase` | `Tag`, `IsVisible` | base of all items |
-| `HamburgerMenuItem` | `Label`, `TargetPageType`, `Command`, `CommandParameter`, `CommandTarget`, `IsEnabled`, `ToolTip` | a selectable entry |
+| `HamburgerMenuItemBase` | `IsVisible` | base of all items |
+| `HamburgerMenuItem` | `Label`, `TargetPageType`, `Command`, `CommandParameter`, `CommandTarget` | a selectable entry |
 | `HamburgerMenuGlyphItem` | `Glyph` (string) | entry with a font glyph |
 | `HamburgerMenuIconItem` | `Icon` (object) | entry with an arbitrary element as icon |
 | `HamburgerMenuImageItem` | `Thumbnail` (`ImageSource`) | entry with a picture |
@@ -68,6 +68,12 @@ All item types derive from `HamburgerMenuItemBase`, which is a `Freezable` — n
 | `HamburgerMenuSeparatorItem` | — | a divider line |
 
 ![Item types](images/hamburgermenu-itemtypes.png)
+
+:::{.alert .alert-info}
+**The base was a `Freezable` in 2.4.11 and is a `FrameworkContentElement` on `develop`.** `Tag`, `IsEnabled` and `ToolTip` are no longer properties of the MahApps types; they are the framework's own and work as they do anywhere else, so nothing written in XAML needs changing.
+
+What the swap bought is the logical tree. The menu takes its items into it, which is what lets a `DynamicResource` inside an item hear about a theme change, and what lets a binding in one reach the `DataContext` of the window around it. A `Freezable` had neither.
+:::
 
 Header and separator items are not selectable, but they *do* occupy an index. Watch out when setting `SelectedIndex` by hand: in the menu above index 0 is the `LIBRARY` header, so the first real entry is index 1.
 
