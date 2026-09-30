@@ -45,8 +45,11 @@ The circle and the arrow in the header are drawn in the foreground of the header
 | `ToggleButtonForeground` | `Brush` | the circle and the arrow |
 | `ToggleButtonForegroundMouseOver` | `Brush` | while the mouse is over the header |
 | `ToggleButtonForegroundPressed` | `Brush` | while the header is held down |
+| `ToggleButtonBackground` | `Brush` | what the glyph sits on |
+| `ToggleButtonBackgroundMouseOver` | `Brush` | the same while the mouse is over the header |
+| `ToggleButtonBackgroundPressed` | `Brush` | the same while the header is held down |
 
-**All three are on `develop` and ship with the next release.** Left unset, they hand nothing over and the glyph follows the header. Set them on the `Expander`; it passes them to the toggle button that draws them.
+**All six are on `develop` and ship with the next release.** Left unset, they hand nothing over: the glyph follows the header and sits on nothing. Set them on the `Expander`; it passes them to the toggle button that draws them. A background left empty is left empty rather than falling back, so the ground under the glyph can be given a colour for one state alone.
 
 ```xml
 <Expander Header="Details"

@@ -17,6 +17,7 @@ Applies to `TabControl` and `TabItem`. Three groups: the underline that marks th
 | `UnderlineSelectedBrush` | `Brush` | `null` | under the selected tab |
 | `UnderlineMouseOverBrush` | `Brush` | `null` | under a tab the pointer is over |
 | `UnderlineMouseOverSelectedBrush` | `Brush` | `null` | under the selected tab, pointer over it |
+| `UnderlineMargin` | `Thickness` | `0` | room around the line, so it need not run the whole width of the tab (on `develop`) |
 
 `UnderlinedType` has four values. `None` is the default and draws nothing; `TabItems` underlines every tab; `SelectedTabItem` underlines only the selected one; `TabPanel` draws a line under the whole strip and a coloured one under the selected tab.
 

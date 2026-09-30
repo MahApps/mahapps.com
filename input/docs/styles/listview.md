@@ -46,6 +46,20 @@ The header content sits in a `mah:ContentControlEx`, which is what makes the cas
 
 The list's own template wraps everything in `MahApps.Styles.ScrollViewer.GridView` rather than the ordinary scroll viewer — that is the one that keeps the header row in place while the rows scroll under it. See [ScrollBar](scrollbars).
 
+### Dragging a column into another place
+
+Dragging a header shows a line where the column would land. WPF draws that line navy and gives you no say in it, which on a dark theme is a navy line on a dark ground.
+
+:::{.alert .alert-info}
+**New on `develop`.** The template uses `GridViewHeaderRowPresenterEx` rather than WPF's own presenter, which colours the line with `ItemHelper.GridViewHeaderIndicatorBrush`. The list style sets it to the accent, and setting it on the `ListView` is how you pick another colour.
+
+```xml
+<ListView mah:ItemHelper.GridViewHeaderIndicatorBrush="{DynamicResource MahApps.Brushes.Gray2}" />
+```
+
+In 2.4.11 the line is navy and stays navy.
+:::
+
 ## Pixel scrolling by default
 
 :::{.alert .alert-info}

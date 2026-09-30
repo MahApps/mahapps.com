@@ -46,9 +46,9 @@ public string Query { get; set; }
 | --- | --- | --- | --- |
 | `ClearTextButton` | `bool` | `false` | show a button that clears the control |
 | `ClearTextButtonFollowsFocus` | `bool` | `false` | show that button only while the control has the caret and something is written in it (on `develop`) |
-| `TextButton` | `bool` | `false` | show the button without the clearing behaviour |
 | `ButtonCommand` | `ICommand` | `null` | invoked when the button is clicked |
 | `ButtonCommandParameter` | `object` | the control itself | passed to that command |
+| `ButtonCommandTarget` | `IInputElement` | `null` | what a routed command is aimed at (on `develop`) |
 | `ButtonContent` | `object` | an ✕ glyph | what the button shows |
 | `ButtonContentTemplate` | `DataTemplate` | | how that content is drawn |
 | `ButtonTemplate` | `ControlTemplate` | `null` | template of the button itself |
@@ -70,7 +70,7 @@ Clearing does more than empty the control: it pushes the empty value back throug
 `ClearTextButtonFollowsFocus` asks for the rule a UWP box follows: the delete button is there while the caret is in the control and something is written in it, and gone the rest of the time. The Windows 10 and the WinUI text boxes draw that rule in their own templates; the three pickers share one template across the sets, so the [Win10](../stylevariants/win10) and [WinUI](../stylevariants/winui) picker styles ask for it with this flag. A button carrying a `ButtonCommand` of your own is not the delete button and stays where it is either way.
 
 :::{.alert .alert-info}
-Which flag makes the button appear depends on the style. The plain text box and password box templates gate it on `ClearTextButton`; the `.Button` variants of those styles gate it on `TextButton`, which the style sets for you. If a `ButtonCommand` never fires, that is usually why.
+**`TextButton` is in the released version only.** In 2.4.11 the `.Button` variants of the text box and password box styles gated the button on it rather than on `ClearTextButton`, which is the usual reason a `ButtonCommand` never fires there. Both the flag and those styles are gone on `develop`: the base style carries the button, so `ClearTextButton` is all there is to set.
 :::
 
 ## Monitoring
@@ -81,10 +81,13 @@ Which flag makes the button appear depends on the style. The plain text box and 
 | `HasText` | `bool` | `false` | whether there is content — written by the monitoring, read by you |
 | `TextLength` | `int` | `0` | how much — likewise |
 | `SelectAllOnFocus` | `bool` | `false` | select the content when the control gains focus |
-| `IsWaitingForData` | `bool` | `false` | pulse a glow around the control while a value is being fetched |
 | `IsSpellCheckContextMenuEnabled` | `bool` | `false` | give a `TextBox` or `RichTextBox` the spell-check context menu |
 
 `IsMonitoring` is what keeps `HasText` and `TextLength` current, and it is what the watermark and the buttons hang off. The MahApps styles turn it on, so leave it alone unless you have replaced a style without a `BasedOn`.
+
+:::{.alert .alert-info}
+**`IsWaitingForData` is in the released version only.** It pulsed a glow around the control while a value was being fetched, and 2.4.11 still has it. It went on `develop` along with that generation of the text box styles; a [ProgressRing](../controls/progressring) or an indeterminate [ProgressBar](../styles/progressbar) beside the control does the same job now.
+:::
 
 `HasText` is useful in your own triggers:
 

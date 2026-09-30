@@ -204,8 +204,14 @@ This hands the password around as a plain `string`, which lives in memory until 
 
 ## Validation and busy state
 
-`Validation.ErrorTemplate` is set to `MahApps.Templates.ValidationError`, so a failing validation rule on the password binding is drawn the same way as on any other MahApps input control. `TextBoxHelper.IsWaitingForData` runs a pulsing glow around the box, which suits a password that is being checked against a server:
+`Validation.ErrorTemplate` is set to `MahApps.Templates.ValidationError`, so a failing validation rule on the password binding is drawn the same way as on any other MahApps input control.
+
+:::{.alert .alert-info}
+**`TextBoxHelper.IsWaitingForData` is in the released version only.** It ran a pulsing glow around the box, which suited a password being checked against a server, and 2.4.11 still has it:
 
 ```xml
 <PasswordBox mah:TextBoxHelper.IsWaitingForData="{Binding IsLoading}" />
 ```
+
+It went on `develop` with that generation of the styles. A [ProgressRing](../controls/progressring) beside the box says the same thing now.
+:::

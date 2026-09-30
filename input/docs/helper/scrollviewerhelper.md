@@ -15,6 +15,7 @@ Applies to `ScrollViewer`, `ItemsControl` and any `UIElement`, so it reaches a l
 | `EndOfVerticalScrollReachedCommand` | `ICommand` | `null` | invoked when the bottom is reached |
 | `EndOfHorizontalScrollReachedCommand` | `ICommand` | `null` | invoked when the right-hand end is reached |
 | `EndOfScrollReachedCommandParameter` | `object` | `null` | passed to either command |
+| `ScrollContentPresenterMargin` | `Thickness` | `0` | room around what is scrolled, so the bar can sit over it (on `develop`) |
 
 ```xml
 <ScrollViewer mah:ScrollViewerHelper.VerticalScrollBarOnLeftSide="True">
