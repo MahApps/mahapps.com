@@ -204,6 +204,9 @@ MultiSelectionComboBox
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item active">
@@ -241,9 +244,6 @@ MultiSelectionComboBox
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ MultiSelectionComboBox
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ MultiSelectionComboBox
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ MultiSelectionComboBox
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -337,249 +346,203 @@ MultiSelectionComboBox
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<h1 id="table-of-content">Table of content</h1>
-<!-- Start Document Outline -->
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#the-user-interface">The user interface</a></li>
-<li><a href="#common-properties">Common Properties</a></li>
-<li><a href="#styles">Styles</a>
-<ul>
-<li><a href="#multiselectioncombobox-styles">MultiSelectionComboBox-Styles</a></li>
-<li><a href="#itemcontainer-styles">ItemContainer-Styles</a></li>
-<li><a href="#selecteditemcontainer-styles">SelectedItemContainer-Styles</a></li>
-</ul>
-</li>
-<li><a href="#selection">Selection</a>
-<ul>
-<li><a href="#selectionmode">SelectionMode</a></li>
-<li><a href="#selecteditemsorder">SelectedItemsOrder</a></li>
-</ul>
-</li>
-<li><a href="#text-processing">Text processing</a>
-<ul>
-<li><a href="#separator">Separator</a></li>
-<li><a href="#custom-text">Custom text</a>
-<ul>
-<li><a href="#customize-the-overlay">Customize the overlay</a></li>
-</ul>
-</li>
-<li><a href="#selecting-items-from-text-input">Selecting items from text input</a>
-<ul>
-<li><a href="#basic-example">Basic Example</a></li>
-<li><a href="#custom-objecttostringcomparer-example">Custom ObjectToStringComparer Example</a></li>
-</ul>
-</li>
-<li><a href="#adding-new-items-from-text-input">Adding new items from text input</a>
-<ul>
-<li><a href="#basic-example-1">Basic Example</a></li>
-<li><a href="#custom-stringtoobjectparser-example">Custom StringToObjectParser Example</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<!-- End Document Outline -->
-<hr />
-<h1 id="introduction">Introduction</h1>
-<p>The <code>MultiSelectionComboBox</code> is like a normal <code>ComboBox</code>, but instead of limit the selection to one item, the user is allowed to select multiple items.</p>
+<p><code>MultiSelectionComboBox</code> is a <code>ComboBox</code> that holds more than one pick. Everything a <code>ComboBox</code> can do it can do, and the properties below come on top.</p>
 <div class="alert alert-info"><p>This control is not in 2.4.11. It arrives with the next release and is in the 3.0.0 prereleases.</p>
 </div>
-<h1 id="the-user-interface">The user interface</h1>
-<p><img src="images/MultiSelectionComboBox_Numbered.png" alt="MultiSelectionComboBox with numbers" /></p>
+<p><img src="images/MultiSelectionComboBox_Numbered.png" alt="The field, the chevron and the list that comes down" /></p>
 <table>
 <thead>
 <tr>
 <th>No.</th>
-<th>Description</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>01</td>
-<td>Displays the selected item(s), or, if the control is in editable mode, a <code>TextBox</code> representing a concatenated <code>string</code></td>
+<td>the picks, or a text box holding them as one string while the control is editable</td>
 </tr>
 <tr>
 <td>02</td>
-<td>This button opens or closes the <code>DrowDown</code> (No. 03)</td>
+<td>the chevron that opens and closes the list</td>
 </tr>
 <tr>
 <td>03</td>
-<td>A <code>DropDown</code> which displays all available items. Selected items are highlighted (blue background in the sample image)</td>
+<td>the list, with the picks marked</td>
 </tr>
 </tbody>
 </table>
-<h1 id="common-properties">Common Properties</h1>
-<p>This control has all properties which are known from the normal <code>ComboBox</code> and in addition the following properties.</p>
+<h2 id="selection">Selection</h2>
+<p><code>SelectionMode</code> takes <code>Single</code>, <code>Multiple</code> or <code>Extended</code>, the <a href="https://docs.microsoft.com/dotnet/api/system.windows.controls.selectionmode">same three</a> a <code>ListBox</code> takes, and starts out <code>Single</code>. Anything else is rejected, so a fourth value cannot be set by mistake.</p>
 <table>
 <thead>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Description</th>
+<th>Default</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>AcceptsReturn</td>
-<td>bool</td>
-<td>Gets or sets if the <code>TextBox</code> accepts return (editable mode only)</td>
+<td><code>SelectionMode</code></td>
+<td><code>SelectionMode</code></td>
+<td><code>Single</code></td>
+<td>how many items may be picked</td>
 </tr>
 <tr>
-<td>DisabledPopupOverlayContent</td>
-<td>object?</td>
-<td>Gets or sets the content to render above the <code>DropDown</code> when the <code>DropDown</code> is disabled (<a href="#customize-the-overlay">more</a>)</td>
+<td><code>SelectedItems</code></td>
+<td><code>IList</code></td>
+<td><code>null</code></td>
+<td>what is picked, in <code>OrderSelectedItemsBy</code> order; read-only</td>
 </tr>
 <tr>
-<td>DisabledPopupOverlayContentTemplate</td>
-<td>DataTemplate?</td>
-<td>Gets or sets the <code>DataTemplate</code> to render above the <code>DropDown</code> when the control has custom text (<a href="#customize-the-overlay">more</a>)</td>
+<td><code>DisplaySelectedItems</code></td>
+<td><code>IEnumerable</code></td>
+<td><code>null</code></td>
+<td>the same in the order they are drawn; read-only</td>
 </tr>
 <tr>
-<td>DropDownFooterContent</td>
-<td>object?</td>
-<td>Gets or sets the content of the <code>DropDown</code> footer</td>
+<td><code>OrderSelectedItemsBy</code></td>
+<td><code>SelectedItemsOrderType</code></td>
+<td><code>SelectedOrder</code></td>
+<td><code>SelectedOrder</code> keeps the order they were picked in, <code>ItemsSourceOrder</code> the order they stand in the source</td>
 </tr>
 <tr>
-<td>DropDownFooterContentStringFormat</td>
-<td>string?</td>
-<td>Gets or sets the string format of the <code>DropDown</code> footer</td>
+<td><code>InterceptKeyboardSelection</code></td>
+<td><code>bool</code></td>
+<td><code>true</code></td>
+<td>whether ▲ and ▼ move the pick; <code>Single</code> only</td>
 </tr>
 <tr>
-<td>DropDownFooterContentTemplate</td>
-<td>DataTemplate?</td>
-<td>Gets or sets the <code>DataTemplate</code> for the <code>DropDown</code> footer content</td>
-</tr>
-<tr>
-<td>DropDownFooterContentTemplateSelector</td>
-<td>DataTemplateSelector?</td>
-<td>Gets or sets the <code>DataTemplateSelector</code> for the <code>DropDown</code> footer content</td>
-</tr>
-<tr>
-<td>DropDownHeaderContent</td>
-<td>object?</td>
-<td>Gets or sets the content of the <code>DropDown</code> header</td>
-</tr>
-<tr>
-<td>DropDownHeaderContentStringFormat</td>
-<td>string?</td>
-<td>Gets or sets the string format of the <code>DropDown</code> header</td>
-</tr>
-<tr>
-<td>DropDownHeaderContentTemplate</td>
-<td>DataTemplate?</td>
-<td>Gets or sets the <code>DataTemplate</code> for the <code>DropDown</code> header content</td>
-</tr>
-<tr>
-<td>DropDownHeaderContentTemplateSelector</td>
-<td>DataTemplateSelector?</td>
-<td>Gets or sets the <code>DataTemplateSelector</code> for the <code>DropDown</code> header content</td>
-</tr>
-<tr>
-<td>EditableTextStringComparision</td>
-<td>StringComparison</td>
-<td>Gets or Sets the <code>StringComparison</code> that is used to check if the entered text matches to the <code>SelectedItems</code></td>
-</tr>
-<tr>
-<td>HasCustomText</td>
-<td>bool</td>
-<td>Indicates if the text is user defined. This property is read-only</td>
-</tr>
-<tr>
-<td>InterceptKeyboardSelection</td>
-<td>bool</td>
-<td>Gets or sets if the user can select items from the keyboard, e.g. with the ▲ ▼ Keys. This property is only applied when the <code>SelectionMode</code> is <code>Single</code>.</td>
-</tr>
-<tr>
-<td>InterceptMouseWheelSelection</td>
-<td>bool</td>
-<td>Gets or sets if the user can select items by mouse wheel. This property is only applied when the <code>SelectionMode</code> is <code>Single</code>.</td>
-</tr>
-<tr>
-<td>IsDropDownFooterVisible</td>
-<td>bool</td>
-<td>Gets or sets if the footer in the <code>DropDown</code> is visible</td>
-</tr>
-<tr>
-<td>IsDropDownHeaderVisible</td>
-<td>bool</td>
-<td>Gets or sets if the header in the <code>DropDown</code> is visible</td>
-</tr>
-<tr>
-<td>ObjectToStringComparer</td>
-<td>ICompareObjectToString?</td>
-<td>Gets or sets a function that is used to check if the entered text matches an object that should be selected (<a href="#selecting-items-from-text-input">more</a>)</td>
-</tr>
-<tr>
-<td>OrderSelectedItemsBy</td>
-<td>SelectedItemsOrderType</td>
-<td>Gets or sets how the <code>SelectedItems</code> should be sorted (<a href="#selecteditemsorder">more</a>).</td>
-</tr>
-<tr>
-<td>SelectedItemContainerStyle</td>
-<td>Style?</td>
-<td>Gets or sets the <code>Style</code> that is applied to the selected items</td>
-</tr>
-<tr>
-<td>SelectedItemContainerStyleSelector</td>
-<td>StyleSelector?</td>
-<td>Gets or sets the <code>StyleSelector</code> that is applied to the selected items</td>
-</tr>
-<tr>
-<td>SelectedItems</td>
-<td>IList?</td>
-<td>Gets a read-only list which holds the currently selected items.</td>
-</tr>
-<tr>
-<td>SelectedItemsPanelTemplate</td>
-<td>ItemsPanelTemplate?</td>
-<td>Gets or sets the template that defines the <code>Panel</code> that controls the layout of the selected items.</td>
-</tr>
-<tr>
-<td>SelectedItemStringFormat</td>
-<td>string?</td>
-<td>Gets or sets how to format the selected items if they are displayed as strings.</td>
-</tr>
-<tr>
-<td>SelectedItemTemplate</td>
-<td>DataTemplate?</td>
-<td>Gets or sets the <code>DataTemplate</code> used to display the <code>SelcetedItems</code></td>
-</tr>
-<tr>
-<td>SelectedItemTemplateSelector</td>
-<td>DataTemplateSelector?</td>
-<td>Gets or sets the <code>DataTemplateSelector</code> for the selected items</td>
-</tr>
-<tr>
-<td>SelectionMode</td>
-<td>SelectionMode</td>
-<td>Gets or sets the <code>SelectionMode</code></td>
-</tr>
-<tr>
-<td>SelectItemsFromTextInputDelay</td>
-<td>int</td>
-<td>Gets or Sets the delay in milliseconds to wait before the selection is updated during text input. If this value is -1 the selection will not be updated during text input. <br><div class="alert alert-info"><strong>Note</strong>: You also need to set an <code>ObjectToStringComparer</code> to get this to work. </div></td>
-</tr>
-<tr>
-<td>Separator</td>
-<td>string?</td>
-<td>Gets or sets the separator which will be used if the <code>MultiSelectionComboBox</code> is editable.</td>
-</tr>
-<tr>
-<td>StringToObjectParser</td>
-<td>IParseStringToObject?</td>
-<td>Gets or sets a parser-class that implements <code>IParseStringToObject</code> (<a href="#adding-new-items-from-text-input">more</a>)</td>
+<td><code>InterceptMouseWheelSelection</code></td>
+<td><code>bool</code></td>
+<td><code>true</code></td>
+<td>whether the wheel moves the pick; <code>Single</code> only</td>
 </tr>
 </tbody>
 </table>
-<h1 id="styles">Styles</h1>
-<h2 id="multiselectioncombobox-styles">MultiSelectionComboBox-Styles</h2>
-<p>MahApps ships two build in styles for this control.</p>
-<p>The default style (<code>MahApps.Styles.MultiSelectionComboBox</code>) wraps the selected items, if not all fits into a single line:</p>
-<p><img src="images/MultiSelectionComboBox_DefaultStyle.png" alt="" /></p>
-<p>If you want a single line you can use <code>MahApps.Styles.MultiSelectionComboBox.Horizontal</code> which will show a horizontal <code>ScrollViewer</code>, if not all items fit into the available space.</p>
-<p><img src="images/MultiSelectionComboBox_HorizontalStyle.png" alt="" /></p>
-<h2 id="the-windows-looks">The Windows looks</h2>
+<p><code>SelectedItem</code>, <code>SelectedIndex</code> and <code>SelectedValue</code> are declared anew on the control, hiding the three a <code>ComboBox</code> brings. <code>SelectedItems</code> is the one to read wherever more than one item may be picked.</p>
+<h2 id="drawing-the-picks">Drawing the picks</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SelectedItemTemplate</code></td>
+<td><code>DataTemplate</code></td>
+<td><code>null</code></td>
+<td>what one pick is made of</td>
+</tr>
+<tr>
+<td><code>SelectedItemTemplateSelector</code></td>
+<td><code>DataTemplateSelector</code></td>
+<td><code>null</code></td>
+<td>one template per pick</td>
+</tr>
+<tr>
+<td><code>SelectedItemStringFormat</code></td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>the format the picks are written in</td>
+</tr>
+<tr>
+<td><code>SelectedItemContainerStyle</code></td>
+<td><code>Style</code></td>
+<td><code>null</code></td>
+<td>the container around one pick</td>
+</tr>
+<tr>
+<td><code>SelectedItemContainerStyleSelector</code></td>
+<td><code>StyleSelector</code></td>
+<td><code>null</code></td>
+<td>one style per pick</td>
+</tr>
+<tr>
+<td><code>SelectedItemsPanelTemplate</code></td>
+<td><code>ItemsPanelTemplate</code></td>
+<td><code>null</code></td>
+<td>the panel the picks are laid out in</td>
+</tr>
+<tr>
+<td><code>TextWrapping</code></td>
+<td><code>TextWrapping</code></td>
+<td><code>NoWrap</code></td>
+<td>whether the text in the field wraps</td>
+</tr>
+<tr>
+<td><code>HorizontalScrollBarVisibility</code> <code>VerticalScrollBarVisibility</code></td>
+<td><code>ScrollBarVisibility</code></td>
+<td><code>Auto</code></td>
+<td>the scroll bars of the field</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-header-and-the-footer-of-the-list">The header and the footer of the list</h2>
+<p>Both are hidden to begin with and neither is drawn until it is switched on.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsDropDownHeaderVisible</code> <code>IsDropDownFooterVisible</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>whether they are drawn</td>
+</tr>
+<tr>
+<td><code>DropDownHeaderContent</code> <code>DropDownFooterContent</code></td>
+<td><code>object</code></td>
+<td><code>null</code></td>
+<td>what stands in them</td>
+</tr>
+<tr>
+<td><code>DropDownHeaderContentTemplate</code> <code>DropDownFooterContentTemplate</code></td>
+<td><code>DataTemplate</code></td>
+<td><code>null</code></td>
+<td>what that content is made of</td>
+</tr>
+<tr>
+<td><code>DropDownHeaderContentTemplateSelector</code> <code>DropDownFooterContentTemplateSelector</code></td>
+<td><code>DataTemplateSelector</code></td>
+<td><code>null</code></td>
+<td>one template per content</td>
+</tr>
+<tr>
+<td><code>DropDownHeaderContentStringFormat</code> <code>DropDownFooterContentStringFormat</code></td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>the format the content is written in</td>
+</tr>
+</tbody>
+</table>
+<h2 id="the-styles">The styles</h2>
+<p>The default, <code>MahApps.Styles.MultiSelectionComboBox</code>, wraps the picks onto a second line when they do not fit on one.</p>
+<p><img src="images/MultiSelectionComboBox_DefaultStyle.png" alt="The picks wrapped onto several lines" /></p>
+<p><code>MahApps.Styles.MultiSelectionComboBox.Horizontal</code> keeps them on one line and gives them a horizontal scroll bar instead.</p>
+<p><img src="images/MultiSelectionComboBox_HorizontalStyle.png" alt="The picks on one line with a scroll bar" /></p>
+<h3 id="the-rows-in-the-list">The rows in the list</h3>
+<p><code>MahApps.Styles.MultiSelectionComboBoxItem</code> is the default and looks like a row of an ordinary <code>ComboBox</code>. <code>MahApps.Styles.MultiSelectionComboBoxItem.CheckBox</code> puts a check box in front of every row, which says what is picked without relying on the highlight.</p>
+<p><img src="images/MultiSelectionComboBox_DropDown_CheckBox.png" alt="Rows with a check box in front" /></p>
+<p>The two Windows sets bring their own rows along, <code>MahApps.Styles.MultiSelectionComboBoxItem.Win10</code> and <code>…WinUI</code> with <code>…CheckBox.Win10</code> and <code>…CheckBox.WinUI</code> beside them, and the set picks the plain one for you. All four share the one template, <code>MahApps.Templates.MultiSelectionComboBoxItem.CheckBox</code>, so what tells them apart is the colours.</p>
+<h3 id="the-containers-around-the-picks">The containers around the picks</h3>
+<p>These apply while <code>IsEditable</code> is <code>False</code>, since an editable control shows one string rather than a row of containers.</p>
+<p>The default wraps every pick in a nugget. <code>MahApps.Styles.MultiSelectionComboBoxSelectedItem.Removable</code> adds a delete button to each one, which runs <code>MultiSelectionComboBox.RemoveItemCommand</code> against the pick it sits on.</p>
+<p><img src="images/MultiSelectionComboBox_SelectedItemContainerStyle_Removeable.png" alt="A nugget per pick, each with a delete button" /></p>
+<p>The two Windows sets bring their own nuggets along, <code>MahApps.Styles.MultiSelectionComboBoxSelectedItem.Win10</code> and <code>…WinUI</code> with <code>…Removable.Win10</code> and <code>…Removable.WinUI</code> beside them, and the set picks the plain one for you. A nugget of those two is a layer over the box rather than a colour of its own, because the box of either set changes its fill under the pointer and again while the list is down, and a nugget in a fixed grey would land on one of those colours.</p>
+<h3 id="the-windows-looks">The Windows looks</h3>
 <div class="alert alert-info"><p>New on <code>develop</code>.</p>
 </div>
 <p><code>MahApps.Styles.MultiSelectionComboBox.Win10</code> and <code>MahApps.Styles.MultiSelectionComboBox.WinUI</code> put the control in the look of the <a href="../stylevariants/win10">Windows 10</a> and the <a href="../stylevariants/winui">WinUI</a> set. Either one is the combo box of that set holding more than one answer: the same fill, the same frame, the same padding, the same chevron and the same rows in the list that comes down, so the two standing next to each other in a form are the same height and the same colour. The WinUI one rounds its corners and says the focus with the stronger line along its bottom edge.</p>
@@ -589,179 +552,156 @@ MultiSelectionComboBox
                             Style=&quot;{DynamicResource MahApps.Styles.MultiSelectionComboBox.WinUI}&quot; /&gt;
 </code></pre>
 <p>Merging one of the two sets gives every one of these boxes that look without naming the style.</p>
-<h2 id="itemcontainer-styles">ItemContainer-Styles</h2>
-<p>MahApps ships two build in styles for the item container visible when the <code>DropDown</code> is open.</p>
-<p>The default style (<code>MahApps.Styles.MultiSelectionComboBoxItem</code>) looks like the one from the normal <code>ComboBox</code>.</p>
-<p>If you want to present <code>CheckBoxes</code> to the user you can use the <code>MahApps.Styles.MultiSelectionComboBoxItem.CheckBox</code> style:</p>
-<p>The two Windows sets bring their own rows along, <code>MahApps.Styles.MultiSelectionComboBoxItem.Win10</code> and <code>…WinUI</code> with <code>…CheckBox.Win10</code> and <code>…CheckBox.WinUI</code> beside them, and the set picks the plain one for you. All four share the one template, <code>MahApps.Templates.MultiSelectionComboBoxItem.CheckBox</code>, so what tells them apart is the colours.</p>
-<p><img src="images/MultiSelectionComboBox_DropDown_CheckBox.png" alt="" /></p>
-<h2 id="selecteditemcontainer-styles">SelectedItemContainer-Styles</h2>
-<p>Also for this MahApps ships two build in styles. Please note that these are only applied if <code>IsEditable=false</code>.</p>
-<p>The default one wraps each item in a nugget like container:</p>
-<p><img src="images/MultiSelectionComboBox_DefaultStyle.png" alt="" /></p>
-<p>If you want to provide an option to remove from the selected items you can use <code>MahApps.Styles.MultiSelectionComboBoxSelectedItem.Removable</code> which will add a delete button next to each item:</p>
-<p>The two Windows sets bring their own nuggets along, <code>MahApps.Styles.MultiSelectionComboBoxSelectedItem.Win10</code> and <code>…WinUI</code> with <code>…Removable.Win10</code> and <code>…Removable.WinUI</code> beside them, and the set picks the plain one for you. A nugget of those two is a layer over the box rather than a colour of its own, because the box of either set changes its fill under the pointer and again while the list is down, and a nugget in a fixed grey would land on one of those colours.</p>
-<p><img src="images/MultiSelectionComboBox_SelectedItemContainerStyle_Removeable.png" alt="" /></p>
-<h1 id="selection">Selection</h1>
-<h2 id="selectionmode">SelectionMode</h2>
-<p>The <code>MultiSelectionComboBox</code> supports all <a href="https://docs.microsoft.com/en-us/dotnet/api/system.windows.controls.selectionmode"><code>SelectionModes</code></a> which are known from other controls with multi selection support (for example <code>ListBox</code>).</p>
-<h2 id="selecteditemsorder">SelectedItemsOrder</h2>
-<p>This <code>enum</code> defines how the selected items should be presented to the user. The following values are possible:</p>
+<h2 id="the-text-of-an-editable-control">The text of an editable control</h2>
+<p><code>Separator</code> is what the picks are joined with, and what typed text is split on again. It is worth choosing one that cannot turn up inside an item, since a separator that can is a separator the control will split on in the wrong place.</p>
 <table>
 <thead>
 <tr>
-<th>Value</th>
-<th>Description</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>SelectedOrder</td>
-<td>Displays the selected items in the same order as they were selected</td>
+<td><code>Separator</code></td>
+<td><code>string</code></td>
+<td><code>null</code></td>
+<td>what the picks are joined with and split on</td>
 </tr>
 <tr>
-<td>ItemsSourceOrder</td>
-<td>Displays the selected items in the same order as they are stored in the <code>ItemsSource</code></td>
+<td><code>EditableTextStringComparision</code></td>
+<td><code>StringComparison</code></td>
+<td><code>Ordinal</code></td>
+<td>how typed text is matched against the items</td>
+</tr>
+<tr>
+<td><code>AcceptsReturn</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>whether Return puts a line break in the field</td>
+</tr>
+<tr>
+<td><code>HasCustomText</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>whether what stands in the field is something the user typed; read-only</td>
+</tr>
+<tr>
+<td><code>SelectItemsFromTextInputDelay</code></td>
+<td><code>int</code></td>
+<td><code>-1</code></td>
+<td>how long to wait before matching typed text, in milliseconds; <code>-1</code> waits for the field to lose focus</td>
 </tr>
 </tbody>
 </table>
-<h1 id="text-processing">Text processing</h1>
-<h2 id="separator">Separator</h2>
-<p>The <code>Separator</code> is used to concatenate the selected items into one single string. if the text comes from user input, the <code>Separator</code> is also used to split the input string into fragments which will be used to select the requested items.</p>
-<div class="alert alert-info"><p><strong>Note</strong>:</p>
-<p>Take care which Separator to use. Ideally it should not be a valid (sub)-string of your items, as this may mess up with selection.</p>
-</div>
-<h2 id="custom-text">Custom text</h2>
-<p>If the text entered into the editable <code>TextBox</code> does not match the <code>string</code> representation of the <code>SelectedItems</code>, the <code>DropDown</code> will show an overlay above the <code>Items</code> and will disable selection. This will prevent loss any user input. The property <code>HasCustomText</code> will be set to <code>true</code> in this case.</p>
-<p><img src="images/MultiSelectionComboBox_OverlayDisabled.png" alt="" /></p>
-<p><em>Build-in overlay</em></p>
-<h3 id="customize-the-overlay">Customize the overlay</h3>
-<p>If you don't like the build-in overlay, you can roll your own as shown below.</p>
+<h3 id="when-the-text-no-longer-matches-the-picks">When the text no longer matches the picks</h3>
+<p>Text in the field that does not read back as the picks is something the user typed and has not finished. <code>HasCustomText</code> goes <code>true</code>, and the list that comes down is covered by an overlay and stops taking picks, so nothing the user wrote is thrown away behind their back.</p>
+<p><img src="images/MultiSelectionComboBox_OverlayDisabled.png" alt="The list covered while the text is the user's own" /></p>
+<p><code>DisabledPopupOverlayContent</code> and <code>DisabledPopupOverlayContentTemplate</code> put something else there. <code>MultiSelectionComboBox.ClearContentCommand</code> is what puts the text back to the picks, so a button running it is the way out of the state.</p>
 <pre><code class="language-xml">&lt;mah:MultiSelectionComboBox ItemsSource=&quot;{Binding Animals}&quot;
                             IsEditable=&quot;True&quot;
-                            Text=&quot;CustomText&quot; &gt;
+                            Text=&quot;CustomText&quot;&gt;
     &lt;mah:MultiSelectionComboBox.DisabledPopupOverlayContentTemplate&gt;
         &lt;DataTemplate&gt;
-            &lt;!-- Note: mah:MultiSelectionComboBox.ClearContentCommand will reset the text to match the SelectedItems representation if executed --&gt;
-            &lt;Button Background=&quot;{DynamicResource MahApps.Brushes.Accent4}&quot; 
+            &lt;Button Background=&quot;{DynamicResource MahApps.Brushes.Accent4}&quot;
                     BorderThickness=&quot;0&quot;
                     Command=&quot;{x:Static mah:MultiSelectionComboBox.ClearContentCommand}&quot;&gt;
-                &lt;TextBlock Text=&quot;🤷&quot; 
-                           VerticalAlignment=&quot;Center&quot; 
-                           HorizontalAlignment=&quot;Center&quot; 
-                           FontSize=&quot;50&quot; /&gt;
+                &lt;TextBlock HorizontalAlignment=&quot;Center&quot;
+                           VerticalAlignment=&quot;Center&quot;
+                           FontSize=&quot;50&quot;
+                           Text=&quot;🤷&quot; /&gt;
             &lt;/Button&gt;
         &lt;/DataTemplate&gt;
     &lt;/mah:MultiSelectionComboBox.DisabledPopupOverlayContentTemplate&gt;
 &lt;/mah:MultiSelectionComboBox&gt;
 </code></pre>
-<p>The result will look like this:</p>
-<p><img src="images/MultiSelectionComboBox_OverlayDisabled_Custom.png" alt="" /></p>
-<h2 id="selecting-items-from-text-input">Selecting items from text input</h2>
-<p>If the control is editable and you have set a <code>ObjectToStringComparer</code>, the <code>MultiSelectionComboBox</code> will try to select the items from the user input. The build-in comparer will compare the input string fragments with the objects string representation while taking the <a href="https://docs.microsoft.com/en-us/dotnet/api/system.stringcomparison"><code>StringComparison</code></a> into account.</p>
-<h3 id="basic-example">Basic Example</h3>
-<pre><code class="language-xml">&lt;!--
-    - The Separator must be defined for automatic item selection.
-    - The SelectItemsFromTextInputDelay is optional. If it is set to -1,
-      it means the items will be selected only after LostFocus.
-    - The EditableTextStringComparision is optional.
-    - We use the build in comparer (DefaultObjectToStringComparer), but you can also use your own.
---&gt;
-
-&lt;mah:MultiSelectionComboBox ItemsSource=&quot;{Binding Animals}&quot;            
-                            SelectionMode=&quot;Multiple&quot;
-                            IsEditable=&quot;True&quot;
-                            Separator=&quot;, &quot;
-                            SelectItemsFromTextInputDelay=&quot;200&quot;
+<p><img src="images/MultiSelectionComboBox_OverlayDisabled_Custom.png" alt="An overlay of one's own" /></p>
+<h2 id="picking-items-by-typing">Picking items by typing</h2>
+<p>An editable control with an <code>ObjectToStringComparer</code> picks the items the typed text names. The comparer that comes with the library, <code>DefaultObjectToStringComparer</code>, holds each fragment against the string the item writes itself as, under the <code>EditableTextStringComparision</code> in force.</p>
+<p><code>Separator</code> has to be set for this, since it is what the typed text is cut into fragments along.</p>
+<pre><code class="language-xml">&lt;mah:MultiSelectionComboBox ItemsSource=&quot;{Binding Animals}&quot;
                             EditableTextStringComparision=&quot;OrdinalIgnoreCase&quot;
-                            ObjectToStringComparer=&quot;{mah:DefaultObjectToStringComparer}&quot; /&gt;
+                            IsEditable=&quot;True&quot;
+                            ObjectToStringComparer=&quot;{mah:DefaultObjectToStringComparer}&quot;
+                            SelectItemsFromTextInputDelay=&quot;200&quot;
+                            SelectionMode=&quot;Multiple&quot;
+                            Separator=&quot;, &quot; /&gt;
 </code></pre>
-<h3 id="custom-objecttostringcomparer-example">Custom ObjectToStringComparer Example</h3>
-<p>You can use any class that implements the <code>ICompareObjectToString</code> interface to compare your items to the entered text. For this example lets assume you have the following class <code>User</code> where you want to select the items by <code>Userame</code> or <code>MailAddress</code>.</p>
-<pre><code class="language-cs">public class User
+<h3 id="a-comparer-of-your-own">A comparer of your own</h3>
+<p>Anything implementing <code>ICompareObjectToString</code> can do the matching instead. Say the items are users and either the user name or the mail address should name one:</p>
+<pre><code class="language-csharp">public class User
 {
-    public string Username {get; set;}
-    public string Name {get; set;}
-    public string GivenName {get; set;}
-    public string MailAddress {get; set;}
+    public string Username { get; set; }
+    public string Name { get; set; }
+    public string GivenName { get; set; }
+    public string MailAddress { get; set; }
 }
 </code></pre>
-<p>We can now implement the interface as shown below:</p>
-<pre><code class="language-cs">public class MyUserToStringComparer : ICompareObjectToString
+<pre><code class="language-csharp">public class MyUserToStringComparer : ICompareObjectToString
 {
-    // This function is expected to be implemented. Returns true if the item matches, otherise false.
     public bool CheckIfStringMatchesObject(
-        string? input,                      // The text fragment to test 
-        object? objectToCompare,            // The item to test for match
-        StringComparison stringComparison,  // The string comparison to use
-        string? stringFormat)               // The string format to use
+        string? input,                      // the fragment that was typed
+        object? objectToCompare,            // the item to hold it against
+        StringComparison stringComparison,  // the comparison in force
+        string? stringFormat)               // the format in force
     {
-        // we cast the object to compare to a user.
-        var user = objectToCompare as User;
-        
-        // if the input is null or the user is null we return false. 
-        if (input is null || user is null)
+        if (input is null || objectToCompare is not User user)
         {
             return false;
         }
-        
-        // If either the Username or the MailAddress matches the provided  
-        // input string we return true, otherwise we return false.
-        return input.Equals(user.Username, stringComparison) 
+
+        return input.Equals(user.Username, stringComparison)
                || input.Equals(user.MailAddress, stringComparison);
     }
 }
-
 </code></pre>
-<h2 id="adding-new-items-from-text-input">Adding new items from text input</h2>
-<p>If the control is editable and you have set a <code>StringToObjectParser</code>, the <code>MultiSelectionComboBox</code> will try to create a new item if the item was not found (see <a href="#selecting-items-from-text-input">Selecting items from text input</a>). The build-in parser will try to use reflection to create a new item from the input string, but you can also provide your own implementation.</p>
-<h3 id="basic-example-1">Basic Example</h3>
+<h2 id="adding-items-by-typing">Adding items by typing</h2>
+<p>A <code>StringToObjectParser</code> on top of that makes a new item out of a fragment that names nothing in the source. <code>DefaultStringToObjectParser</code> builds one by reflection, which is enough for a list of strings or of anything with a type converter.</p>
 <pre><code class="language-xml">&lt;mah:MultiSelectionComboBox ItemsSource=&quot;{Binding Animals}&quot;
-                            SelectionMode=&quot;Multiple&quot;
-                            IsEditable=&quot;True&quot;
-                            Separator=&quot;, &quot;
-                            SelectItemsFromTextInputDelay=&quot;200&quot;
                             EditableTextStringComparision=&quot;OrdinalIgnoreCase&quot;
-                            ObjectToStringComparer=&quot;{mah:DefaultObjectToStringComparer}&quot; 
+                            IsEditable=&quot;True&quot;
+                            ObjectToStringComparer=&quot;{mah:DefaultObjectToStringComparer}&quot;
+                            SelectItemsFromTextInputDelay=&quot;200&quot;
+                            SelectionMode=&quot;Multiple&quot;
+                            Separator=&quot;, &quot;
                             StringToObjectParser=&quot;{x:Static mah:DefaultStringToObjectParser.Instance}&quot; /&gt;
 </code></pre>
-<h3 id="custom-stringtoobjectparser-example">Custom StringToObjectParser Example</h3>
-<p>You can use any class that implements the <code>IParseStringToObject</code> interface to parse the user input to a new object. The interface has one member called <code>TryCreateObjectFromString</code>. Let's assume we have a <code>List&lt;string&gt;</code> called <code>Animals</code>. The user can add new animals, but before adding a new animal, we want the user to confirm the input.</p>
-<pre><code class="language-cs">public class MyObjectParser : IParseStringToObject
+<p>Two events sit around the parser. <code>AddingItem</code> is raised before the new item goes in, carrying the <code>Input</code>, the <code>ParsedObject</code> the parser made, the <code>TargetList</code> it is bound for and the <code>Parser</code> that did the work. <code>ParsedObject</code> can be replaced there, and either setting <code>Accepted</code> to <code>False</code> or marking the event <code>Handled</code> keeps the item out. The list it would go into is the <code>ItemsSource</code> itself, so a source that is read-only never gains an item however the event is answered. <code>AddedItem</code> follows once it is in, with the <code>AddedItem</code> itself and the <code>TargetList</code> it went into.</p>
+<h3 id="a-parser-of-your-own">A parser of your own</h3>
+<p><code>IParseStringToObject</code> has one member. The one below asks before it adds, which is something a parser can do and the control cannot.</p>
+<pre><code class="language-csharp">public class MyObjectParser : IParseStringToObject
 {
-    // This function is expected to be implemented. Returns true if the item could be created, otherise false.
     public bool TryCreateObjectFromString(
-        string? input,                      // The input string to parse
-        out object? result,                 // return the object here if successful, otherwise return null
-        CultureInfo? culture = null,        // The culture which should be used to parse. This parameter is optional
-        string? stringFormat = null,        // The string format to apply. This parameter is optional
-        Type? elementType = null)           // The Type to which the input should be converted to. This parameter is optional
+        string? input,                      // the text to parse
+        out object? result,                 // the object, or null
+        CultureInfo? culture = null,        // optional
+        string? stringFormat = null,        // optional
+        Type? elementType = null)           // optional, the type to parse to
     {
-        // if we got an empty string, we return false and set the result to null
+        result = null;
+
         if (string.IsNullOrWhiteSpace(input))
         {
-            result = null;
             return false;
         }
 
-        // We ask the user for confirmation
-        if (MessageBox.Show(
-            $&quot;Do you want to add \&quot;{input}\&quot; to the animals list?&quot;, 
-            &quot;Add Animal&quot;, 
-            MessageBoxButtons.YesNo) == DialogResult.Yes)
+        if (MessageBox.Show($&quot;Do you want to add \&quot;{input}\&quot; to the animals list?&quot;,
+                            &quot;Add animal&quot;,
+                            MessageBoxButton.YesNo) != MessageBoxResult.Yes)
         {
-            // The user accepted this item. As our List contains only strings, we can just return the input string.
-            result = input;  
-            return true;
-        }
-        else
-        {
-            result = null;
             return false;
         }
+
+        // the list holds strings, so the input is the item
+        result = input;
+        return true;
     }
 }
 </code></pre>
+<h2 id="related">Related</h2>
+<p><a href="autosuggestbox">AutoSuggestBox</a> is the other box that answers as you type, with one pick rather than several. The plain drop-down is described under <a href="../styles/combobox">ComboBox</a>, and <a href="../helper/comboboxhelper">ComboBoxHelper</a> carries the knobs both of them read.</p>
 
 
                                         </div>
@@ -770,29 +710,28 @@ MultiSelectionComboBox
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#table-of-content">Table of content</a></div>
-                    <div class="sidebar-nav-item"><a href="#introduction">Introduction</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-user-interface">The user interface</a></div>
-                    <div class="sidebar-nav-item"><a href="#common-properties">Common Properties</a></div>
-                    <div class="sidebar-nav-item"><a href="#styles">Styles</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#multiselectioncombobox-styles">MultiSelectionComboBox-Styles</a></div>
-                                <div class="sidebar-nav-item"><a href="#the-windows-looks">The Windows looks</a></div>
-                                <div class="sidebar-nav-item"><a href="#itemcontainer-styles">ItemContainer-Styles</a></div>
-                                <div class="sidebar-nav-item"><a href="#selecteditemcontainer-styles">SelectedItemContainer-Styles</a></div>
-                        </div>
                     <div class="sidebar-nav-item"><a href="#selection">Selection</a></div>
+                    <div class="sidebar-nav-item"><a href="#drawing-the-picks">Drawing the picks</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-header-and-the-footer-of-the-list">The header and the footer of the list</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-styles">The styles</a></div>
                         <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#selectionmode">SelectionMode</a></div>
-                                <div class="sidebar-nav-item"><a href="#selecteditemsorder">SelectedItemsOrder</a></div>
+                                <div class="sidebar-nav-item"><a href="#the-rows-in-the-list">The rows in the list</a></div>
+                                <div class="sidebar-nav-item"><a href="#the-containers-around-the-picks">The containers around the picks</a></div>
+                                <div class="sidebar-nav-item"><a href="#the-windows-looks">The Windows looks</a></div>
                         </div>
-                    <div class="sidebar-nav-item"><a href="#text-processing">Text processing</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-text-of-an-editable-control">The text of an editable control</a></div>
                         <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#separator">Separator</a></div>
-                                <div class="sidebar-nav-item"><a href="#custom-text">Custom text</a></div>
-                                <div class="sidebar-nav-item"><a href="#selecting-items-from-text-input">Selecting items from text input</a></div>
-                                <div class="sidebar-nav-item"><a href="#adding-new-items-from-text-input">Adding new items from text input</a></div>
+                                <div class="sidebar-nav-item"><a href="#when-the-text-no-longer-matches-the-picks">When the text no longer matches the picks</a></div>
                         </div>
+                    <div class="sidebar-nav-item"><a href="#picking-items-by-typing">Picking items by typing</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#a-comparer-of-your-own">A comparer of your own</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#adding-items-by-typing">Adding items by typing</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#a-parser-of-your-own">A parser of your own</a></div>
+                        </div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
         <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/MultiSelectionComboBox.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>

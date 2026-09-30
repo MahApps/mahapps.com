@@ -204,6 +204,9 @@ MetroTabControl
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ MetroTabControl
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ MetroTabControl
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ MetroTabControl
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ MetroTabControl
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -349,7 +358,7 @@ MetroTabControl
 &lt;/mah:MetroTabControl&gt;
 </code></pre>
 <p>Its style is based on <code>MahApps.Styles.TabControl</code>, so everything on the <a href="../styles/tabcontrol">TabControl styles</a> page applies: the placement triggers, the underline through <a href="../helper/tabcontrolhelper">TabControlHelper</a>, the large header font.</p>
-<p>Bind <code>ItemsSource</code> and you do not have to make the items yourself — <code>GetContainerForItemOverride</code> hands back a <a href="MetroTabItem">MetroTabItem</a>, not a plain <code>TabItem</code>, so the close button is available either way.</p>
+<p>Bind <code>ItemsSource</code> and you do not have to make the items yourself — <code>GetContainerForItemOverride</code> hands back a <a href="metrotabitem">MetroTabItem</a>, not a plain <code>TabItem</code>, so the close button is available either way.</p>
 <h2 id="keeping-the-visual-tree">Keeping the visual tree</h2>
 <table>
 <thead>
@@ -397,7 +406,65 @@ MetroTabControl
 <p><code>MetroTabControl</code> derives from <code>TabControlEx</code> (ControlzEx), which is where the holder mechanism comes from. Note that it is the <em>template</em> that decides: a template of your own without <code>PART_ItemsHolder</code> will not keep anything, whatever the property says.</p>
 </div>
 <h2 id="closing-tabs">Closing tabs</h2>
-<p><code>CloseTabCommand</code> on the control replaces the whole removal:</p>
+<p>A tab goes only when everyone who was asked agrees. Once a close button is clicked:</p>
+<ol>
+<li>the item's own <code>CloseTabCommand</code>, if it has one, is asked whether it can run. A <code>No</code> keeps the tab and ends it there; a <code>Yes</code> runs the command. See <a href="metrotabitem">MetroTabItem</a>.</li>
+<li>the closing event is raised, and any handler can say no.</li>
+<li>the control's <code>CloseTabCommand</code>, if it has one, is asked and run. The removal is then whoever handles it to do.</li>
+<li>with no command on the control, the item is taken out: of <code>Items</code> when there is no <code>ItemsSource</code>, of the bound collection otherwise, matching either the container or its <code>DataContext</code>.</li>
+</ol>
+<div class="alert alert-info"><p><strong>Steps 1 and 2 are new on <code>develop</code>.</strong> In 2.4.11 a command that answered <code>No</code> still lost its tab, and a <code>CloseTabCommand</code> on the control meant the closing event was never raised at all. Both are fixed, which also means a handler that cancels now stops a <code>CloseTabCommand</code> on the control as well.</p>
+</div>
+<h3 id="saying-no">Saying no</h3>
+<table>
+<thead>
+<tr>
+<th>Event</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TabItemClosing</code></td>
+<td>raised before the tab goes</td>
+</tr>
+<tr>
+<td><code>TabItemClosingEvent</code></td>
+<td>the same event under the name it was given first; both are raised, this one before the other</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-csharp">private void OnTabItemClosing(object sender, BaseMetroTabControl.TabItemClosingEventArgs e)
+{
+    if (e.ClosingTabItem.Header.ToString() == &quot;Home&quot;)
+    {
+        e.Cancel = true;
+    }
+}
+</code></pre>
+<pre><code class="language-xml">&lt;mah:MetroTabControl TabItemClosing=&quot;OnTabItemClosing&quot; /&gt;
+</code></pre>
+<p><code>TabItemClosingEventArgs</code> derives from <code>CancelEventArgs</code>, so <code>e.Cancel = true</code> keeps the tab where it is. Every handler is given args of its own and the first one to cancel is the last one asked.</p>
+<h3 id="taking-your-time-over-the-answer">Taking your time over the answer</h3>
+<p>A handler that has to ask somebody before it answers asks for a deferral first. The closing waits for it, so the answer can arrive after a dialog, a save or a call over the wire, and the handler can be <code>async</code>.</p>
+<pre><code class="language-csharp">private async void OnTabItemClosing(object sender, BaseMetroTabControl.TabItemClosingEventArgs e)
+{
+    using var deferral = e.GetDeferral();
+
+    var answer = await this.ShowMessageAsync(&quot;Close this tab?&quot;,
+                                             &quot;What is in it has not been saved.&quot;,
+                                             MessageDialogStyle.AffirmativeAndNegative);
+
+    e.Cancel = answer != MessageDialogResult.Affirmative;
+}
+</code></pre>
+<p><code>GetDeferral</code> hands back a <code>TabItemClosingDeferral</code>, and the closing goes on once it is completed. A <code>using</code> declaration completes it when the handler returns, which is what the example relies on; <code>Complete()</code> does it by hand, and saying it twice does nothing.</p>
+<div class="alert alert-warning"><p>A deferral that is never completed leaves the tab where it is for good. Take one inside a <code>using</code>, or complete it in a <code>finally</code>.</p>
+</div>
+<p>Nothing changes for a handler that does not ask for one. With no deferral taken the whole thing stays synchronous, exactly as it was.</p>
+<div class="alert alert-info"><p><code>TabItemClosing</code>, the deferral and the veto are on <code>develop</code> and ship with the next release. In 2.4.11 there is <code>TabItemClosingEvent</code> alone, and it has to answer on the spot.</p>
+</div>
+<h3 id="the-command-on-the-control">The command on the control</h3>
 <table>
 <thead>
 <tr>
@@ -417,26 +484,8 @@ MetroTabControl
 <pre><code class="language-xml">&lt;mah:MetroTabControl CloseTabCommand=&quot;{Binding CloseDocumentCommand}&quot; /&gt;
 </code></pre>
 <p>The parameter is the item's <code>CloseTabCommandParameter</code> if it has one, otherwise the <code>MetroTabItem</code> itself.</p>
-<div class="alert alert-warning"><p>When this command is set, <strong>the control does not remove the tab and does not raise <code>TabItemClosingEvent</code></strong> — it runs the command and stops. Removing the item is then yours to do.</p>
+<div class="alert alert-warning"><p>When this command is set the control does <strong>not</strong> remove the tab. It runs the command and stops, so taking the item out is yours to do. What changed on <code>develop</code> is that the closing event is raised before the command, and a handler that cancels keeps the command from running at all.</p>
 </div>
-<p>With no command set, the control raises a cancellable event instead:</p>
-<pre><code class="language-csharp">private void OnTabItemClosing(object sender, BaseMetroTabControl.TabItemClosingEventArgs e)
-{
-    if (e.ClosingTabItem.Header.ToString() == &quot;Home&quot;)
-    {
-        e.Cancel = true;
-    }
-}
-</code></pre>
-<pre><code class="language-xml">&lt;mah:MetroTabControl TabItemClosingEvent=&quot;OnTabItemClosing&quot; /&gt;
-</code></pre>
-<p><code>TabItemClosingEventArgs</code> derives from <code>CancelEventArgs</code>, so <code>e.Cancel = true</code> keeps the tab. Left alone, the control removes the item — from <code>Items</code> when there is no <code>ItemsSource</code>, and from the bound collection otherwise, matching either the container or its <code>DataContext</code>.</p>
-<p>The whole order, once a close button is clicked:</p>
-<ol>
-<li>the item's own <code>CloseTabCommand</code>, if set, runs — see <a href="MetroTabItem">MetroTabItem</a>;</li>
-<li>the control's <code>CloseTabCommand</code>, if set, runs and nothing further happens;</li>
-<li>otherwise <code>TabItemClosingEvent</code> is raised, and unless it is cancelled the item is removed.</li>
-</ol>
 <h2 id="tabstripmargin">TabStripMargin</h2>
 <table>
 <thead>
@@ -489,6 +538,11 @@ MetroTabControl
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#keeping-the-visual-tree">Keeping the visual tree</a></div>
                     <div class="sidebar-nav-item"><a href="#closing-tabs">Closing tabs</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#saying-no">Saying no</a></div>
+                                <div class="sidebar-nav-item"><a href="#taking-your-time-over-the-answer">Taking your time over the answer</a></div>
+                                <div class="sidebar-nav-item"><a href="#the-command-on-the-control">The command on the control</a></div>
+                        </div>
                     <div class="sidebar-nav-item"><a href="#tabstripmargin">TabStripMargin</a></div>
                     <div class="sidebar-nav-item"><a href="#the-animated-siblings">The animated siblings</a></div>
             </div>

@@ -204,6 +204,9 @@ ItemHelper
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ ItemHelper
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ ItemHelper
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ ItemHelper
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item active">
@@ -305,6 +311,9 @@ ItemHelper
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -354,7 +363,7 @@ ItemHelper
 </code></pre>
 <p>Keep the <code>BasedOn</code>, or the item loses its template along with everything else the style sets.</p>
 <h2 id="the-states">The states</h2>
-<p>Each row is a pair — a <code>...BackgroundBrush</code> and a <code>...ForegroundBrush</code>.</p>
+<p>Each row is a set of three: a <code>...BackgroundBrush</code>, a <code>...ForegroundBrush</code> and a <code>...BorderBrush</code>.</p>
 <table>
 <thead>
 <tr>
@@ -397,7 +406,21 @@ ItemHelper
 </tr>
 </tbody>
 </table>
-<p>The split between <code>ActiveSelection</code> and <code>Selected</code> is the one that catches people out: a list that loses focus draws its selection with the second pair, so recolouring only <code>ActiveSelection</code> leaves the selection reverting to the theme colour as soon as the user clicks elsewhere.</p>
+<p>The split between <code>ActiveSelection</code> and <code>Selected</code> is the one that catches people out: a list that loses focus draws its selection with the second set, so recolouring only <code>ActiveSelection</code> leaves the selection reverting to the theme colour as soon as the user clicks elsewhere.</p>
+<div class="alert alert-info"><p><strong>The eight <code>...BorderBrush</code> properties are new on <code>develop</code>.</strong> In 2.4.11 each state is a pair, background and foreground, and the frame around a row cannot be coloured per state. The Windows 10 and the WinUI list styles are what wanted them: both mark a row by its edge rather than by filling it.</p>
+</div>
+<p><code>IsMouseLeftButtonPressed</code> and <code>IsMouseRightButtonPressed</code> are read-only and say which of the two pressed states a row is in, should you want to trigger on that yourself.</p>
+<h2 id="a-box-saying-what-is-picked">A box saying what is picked</h2>
+<div class="alert alert-info"><p>New on <code>develop</code>.</p>
+</div>
+<p><code>IsMultiSelectCheckBoxEnabled</code> puts a check box in front of every row, the way Windows marks a list that takes more than one answer. Set it on the list:</p>
+<pre><code class="language-xml">&lt;ListBox SelectionMode=&quot;Multiple&quot; mah:ItemHelper.IsMultiSelectCheckBoxEnabled=&quot;True&quot; /&gt;
+</code></pre>
+<p>The box says what is picked and nothing more. It is the row under it that answers the pointer, so clicking anywhere on the row picks it, exactly as without the box.</p>
+<p>Nothing is drawn while <code>SelectionMode</code> is <code>Single</code>. The flag is weighed against the mode and the answer is handed down the tree, where the read-only <code>ShowsMultiSelectCheckBox</code> is what the row templates trigger on. A list that switches between one answer and several therefore gains and loses the boxes on its own.</p>
+<p><code>MultiSelectCheckBoxSource</code> is what that weighing writes into, and it is there because a read-only property cannot be the target of a binding. Bind to it only to take the decision over yourself.</p>
+<h2 id="the-sort-indicator-of-a-listview">The sort indicator of a ListView</h2>
+<p><code>GridViewHeaderIndicatorBrush</code> is the colour of the mark a <code>GridViewHeaderRowPresenter</code> shows while a column is being dragged into a new place. It is set on the <code>ListView</code>, not on an item, and is new on <code>develop</code>.</p>
 <h2 id="related">Related</h2>
 <p>For the items of a <code>ComboBox</code> drop-down the same properties apply, set through the combo box's <code>ItemContainerStyle</code>. <code>TreeViewItem</code> takes them directly; see also <a href="treeviewitemhelper">TreeViewItemHelper</a> for its expander button.</p>
 
@@ -409,6 +432,8 @@ ItemHelper
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-states">The states</a></div>
+                    <div class="sidebar-nav-item"><a href="#a-box-saying-what-is-picked">A box saying what is picked</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-sort-indicator-of-a-listview">The sort indicator of a ListView</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>

@@ -204,6 +204,9 @@ HamburgerMenu
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ HamburgerMenu
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ HamburgerMenu
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ HamburgerMenu
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ HamburgerMenu
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -379,7 +388,7 @@ HamburgerMenu
 &lt;/DataTemplate&gt;
 </code></pre>
 <h2 id="menu-items">Menu items</h2>
-<p>All item types derive from <code>HamburgerMenuItemBase</code>, which is a <code>Freezable</code> — not a <code>UIElement</code>. They carry data, and the templates above turn them into visuals.</p>
+<p>All item types derive from <code>HamburgerMenuItemBase</code>, which is a <code>FrameworkContentElement</code> — not a <code>UIElement</code>. They carry data, and the templates above turn them into visuals.</p>
 <table>
 <thead>
 <tr>
@@ -391,12 +400,12 @@ HamburgerMenu
 <tbody>
 <tr>
 <td><code>HamburgerMenuItemBase</code></td>
-<td><code>Tag</code>, <code>IsVisible</code></td>
+<td><code>IsVisible</code></td>
 <td>base of all items</td>
 </tr>
 <tr>
 <td><code>HamburgerMenuItem</code></td>
-<td><code>Label</code>, <code>TargetPageType</code>, <code>Command</code>, <code>CommandParameter</code>, <code>CommandTarget</code>, <code>IsEnabled</code>, <code>ToolTip</code></td>
+<td><code>Label</code>, <code>TargetPageType</code>, <code>Command</code>, <code>CommandParameter</code>, <code>CommandTarget</code></td>
 <td>a selectable entry</td>
 </tr>
 <tr>
@@ -427,6 +436,9 @@ HamburgerMenu
 </tbody>
 </table>
 <p><img src="images/hamburgermenu-itemtypes.png" alt="Item types" /></p>
+<div class="alert alert-info"><p><strong>The base was a <code>Freezable</code> in 2.4.11 and is a <code>FrameworkContentElement</code> on <code>develop</code>.</strong> <code>Tag</code>, <code>IsEnabled</code> and <code>ToolTip</code> are no longer properties of the MahApps types; they are the framework's own and work as they do anywhere else, so nothing written in XAML needs changing.</p>
+<p>What the swap bought is the logical tree. The menu takes its items into it, which is what lets a <code>DynamicResource</code> inside an item hear about a theme change, and what lets a binding in one reach the <code>DataContext</code> of the window around it. A <code>Freezable</code> had neither.</p>
+</div>
 <p>Header and separator items are not selectable, but they <em>do</em> occupy an index. Watch out when setting <code>SelectedIndex</code> by hand: in the menu above index 0 is the <code>LIBRARY</code> header, so the first real entry is index 1.</p>
 <pre><code class="language-xml">&lt;mah:HamburgerMenu.ItemsSource&gt;
     &lt;mah:HamburgerMenuItemCollection&gt;
@@ -522,7 +534,7 @@ HamburgerMenu
                       Title=&quot;MainWindow&quot;
                       Width=&quot;600&quot;
                       Height=&quot;450&quot;
-                      GlowBrush=&quot;{DynamicResource MahApps.Brushes.AccentBase}&quot;
+                      GlowColor=&quot;{DynamicResource MahApps.Colors.AccentBase}&quot;
                       WindowStartupLocation=&quot;CenterScreen&quot;
                       WindowTransitionsEnabled=&quot;False&quot;
                       mc:Ignorable=&quot;d&quot;&gt;

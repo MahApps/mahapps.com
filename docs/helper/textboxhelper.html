@@ -204,6 +204,9 @@ TextBoxHelper
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ TextBoxHelper
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ TextBoxHelper
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ TextBoxHelper
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ TextBoxHelper
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -425,12 +434,6 @@ public string Query { get; set; }
 <td>show that button only while the control has the caret and something is written in it (on <code>develop</code>)</td>
 </tr>
 <tr>
-<td><code>TextButton</code></td>
-<td><code>bool</code></td>
-<td><code>false</code></td>
-<td>show the button without the clearing behaviour</td>
-</tr>
-<tr>
 <td><code>ButtonCommand</code></td>
 <td><code>ICommand</code></td>
 <td><code>null</code></td>
@@ -441,6 +444,12 @@ public string Query { get; set; }
 <td><code>object</code></td>
 <td>the control itself</td>
 <td>passed to that command</td>
+</tr>
+<tr>
+<td><code>ButtonCommandTarget</code></td>
+<td><code>IInputElement</code></td>
+<td><code>null</code></td>
+<td>what a routed command is aimed at (on <code>develop</code>)</td>
 </tr>
 <tr>
 <td><code>ButtonContent</code></td>
@@ -488,7 +497,7 @@ public string Query { get; set; }
 <p>Clearing does more than empty the control: it pushes the empty value back through the binding, so a bound view model sees it.</p>
 <p><code>ButtonCommand</code> turns the same button into one of your own — a search box that searches, for instance. Set both and the click runs the command <em>and</em> clears the box.</p>
 <p><code>ClearTextButtonFollowsFocus</code> asks for the rule a UWP box follows: the delete button is there while the caret is in the control and something is written in it, and gone the rest of the time. The Windows 10 and the WinUI text boxes draw that rule in their own templates; the three pickers share one template across the sets, so the <a href="../stylevariants/win10">Win10</a> and <a href="../stylevariants/winui">WinUI</a> picker styles ask for it with this flag. A button carrying a <code>ButtonCommand</code> of your own is not the delete button and stays where it is either way.</p>
-<div class="alert alert-info"><p>Which flag makes the button appear depends on the style. The plain text box and password box templates gate it on <code>ClearTextButton</code>; the <code>.Button</code> variants of those styles gate it on <code>TextButton</code>, which the style sets for you. If a <code>ButtonCommand</code> never fires, that is usually why.</p>
+<div class="alert alert-info"><p><strong><code>TextButton</code> is in the released version only.</strong> In 2.4.11 the <code>.Button</code> variants of the text box and password box styles gated the button on it rather than on <code>ClearTextButton</code>, which is the usual reason a <code>ButtonCommand</code> never fires there. Both the flag and those styles are gone on <code>develop</code>: the base style carries the button, so <code>ClearTextButton</code> is all there is to set.</p>
 </div>
 <h2 id="monitoring">Monitoring</h2>
 <table>
@@ -526,12 +535,6 @@ public string Query { get; set; }
 <td>select the content when the control gains focus</td>
 </tr>
 <tr>
-<td><code>IsWaitingForData</code></td>
-<td><code>bool</code></td>
-<td><code>false</code></td>
-<td>pulse a glow around the control while a value is being fetched</td>
-</tr>
-<tr>
 <td><code>IsSpellCheckContextMenuEnabled</code></td>
 <td><code>bool</code></td>
 <td><code>false</code></td>
@@ -540,6 +543,8 @@ public string Query { get; set; }
 </tbody>
 </table>
 <p><code>IsMonitoring</code> is what keeps <code>HasText</code> and <code>TextLength</code> current, and it is what the watermark and the buttons hang off. The MahApps styles turn it on, so leave it alone unless you have replaced a style without a <code>BasedOn</code>.</p>
+<div class="alert alert-info"><p><strong><code>IsWaitingForData</code> is in the released version only.</strong> It pulsed a glow around the control while a value was being fetched, and 2.4.11 still has it. It went on <code>develop</code> along with that generation of the text box styles; a <a href="../controls/progressring">ProgressRing</a> or an indeterminate <a href="../styles/progressbar">ProgressBar</a> beside the control does the same job now.</p>
+</div>
 <p><code>HasText</code> is useful in your own triggers:</p>
 <pre><code class="language-xml">&lt;DataTrigger Binding=&quot;{Binding (mah:TextBoxHelper.HasText), ElementName=Search}&quot; Value=&quot;True&quot;&gt;
     &lt;Setter Property=&quot;Visibility&quot; Value=&quot;Visible&quot; /&gt;

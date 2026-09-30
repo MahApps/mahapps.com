@@ -204,6 +204,9 @@ AnalogClock
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ AnalogClock
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ AnalogClock
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ AnalogClock
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ AnalogClock
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -337,7 +346,7 @@ AnalogClock
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><code>AnalogClock</code> is a round face with an hour, a minute and a second hand. It is the clock the <a href="TimePicker">TimePicker</a> and the <a href="DateTimePicker">DateTimePicker</a> show in their drop-down, and since it is a control you can put one anywhere else as well.</p>
+<p><code>AnalogClock</code> is a round face with an hour, a minute and a second hand. It is the clock the <a href="timepicker">TimePicker</a> and the <a href="datetimepicker">DateTimePicker</a> show in their drop-down, and since it is a control you can put one anywhere else as well.</p>
 <pre><code class="language-xml">&lt;mah:AnalogClock Time=&quot;{Binding Departure}&quot; /&gt;
 </code></pre>
 <div class="alert alert-info"><p><strong><code>AnalogClock</code> is new on <code>develop</code></strong> and is in neither 2.4.11 nor the 3.0 release candidate. Before it, the face was markup in the middle of the shared picker template, so the only way at it was a copy of that template — which is what <a href="https://github.com/MahApps/MahApps.Metro/issues/4514">#4514</a> was about.</p>
@@ -402,11 +411,11 @@ AnalogClock
 </table>
 <p>Neither the Windows 10 nor the WinUI set shows a clock in its picker drop-down, because neither Windows 10 nor Fluent has a clock face — the columns are the whole time selection there. The two styles are for a clock you place yourself, and for a picker in those sets that is told <code>IsClockVisible=&quot;True&quot;</code>.</p>
 <h2 id="in-a-picker">In a picker</h2>
-<p>The picker owns the clock in its drop-down, so it is reached through the picker rather than directly: <code>ClockSize</code> for how large it is drawn, <code>ClockStyle</code> for its look, <code>IsClockVisible</code> for whether it is there at all, and <code>HandVisibility</code>, which the picker passes down. <a href="TimePicker#reaching-into-the-drop-down">The TimePicker page</a> has them together.</p>
+<p>The picker owns the clock in its drop-down, so it is reached through the picker rather than directly: <code>ClockSize</code> for how large it is drawn, <code>ClockStyle</code> for its look, <code>IsClockVisible</code> for whether it is there at all, and <code>HandVisibility</code>, which the picker passes down. <a href="timepicker#reaching-into-the-drop-down">The TimePicker page</a> has them together.</p>
 <pre><code class="language-xml">&lt;mah:TimePicker ClockSize=&quot;200&quot; HandVisibility=&quot;All&quot; /&gt;
 </code></pre>
 <h2 id="related">Related</h2>
-<p><a href="TimePicker">TimePicker</a> and <a href="DateTimePicker">DateTimePicker</a> for the pickers this face came out of.</p>
+<p><a href="timepicker">TimePicker</a> and <a href="datetimepicker">DateTimePicker</a> for the pickers this face came out of.</p>
 
 
                                         </div>

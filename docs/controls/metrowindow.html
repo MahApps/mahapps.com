@@ -203,6 +203,9 @@ MetroWindow
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
+<div class="sidebar-nav-item active">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
@@ -241,9 +244,6 @@ MetroWindow
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item active">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ MetroWindow
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ MetroWindow
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ MetroWindow
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -399,12 +408,6 @@ MetroWindow
 <td><code>Gray</code></td>
 <td>the same while the window is inactive</td>
 </tr>
-<tr>
-<td><code>UseNoneWindowStyle</code></td>
-<td><code>bool</code></td>
-<td><code>False</code></td>
-<td>no title bar and no border at all</td>
-</tr>
 </tbody>
 </table>
 <p><code>TitleCharacterCasing=&quot;Normal&quot;</code> is the one most people reach for first — the third panel above.</p>
@@ -417,15 +420,17 @@ MetroWindow
 <pre><code class="language-xml">&lt;mah:MetroWindow BorderBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
                  BorderThickness=&quot;1&quot; /&gt;
 </code></pre>
-<p><code>GlowBrush</code> instead draws a soft glow around the frame:</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow GlowBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot; /&gt;
+<p><code>GlowColor</code> instead draws a soft glow around the frame. The default style sets it to the accent, so a window glows without being asked to:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow GlowColor=&quot;{DynamicResource MahApps.Colors.Accent}&quot; /&gt;
 </code></pre>
 <p><img src="images/metrowindow_glow.png" alt="A window with a glow" /></p>
-<div class="alert alert-info"><p>The glow is painted by <strong>separate windows around the frame</strong>, not by the window's own visual tree. A <code>BorderThickness=&quot;0&quot;</code> window with no <code>GlowBrush</code> therefore has no edge at all — the middle panel of the first figure.</p>
+<div class="alert alert-warning"><p><strong>The glow is a colour now, not a brush.</strong> <code>GlowBrush</code> and <code>NonActiveGlowBrush</code> were in 2.4.11; on <code>develop</code> they are <code>GlowColor</code> and <code>NonActiveGlowColor</code>, which came along when the window moved onto ControlzEx's <code>WindowChromeWindow</code>. Reach for a <code>MahApps.Colors.…</code> key rather than a <code>MahApps.Brushes.…</code> one, and set the colour to <code>{x:Null}</code> to take the glow away.</p>
 </div>
-<p>For a drop shadow and no border, set <code>BorderThickness=&quot;0&quot;</code> with a dark <code>GlowBrush</code>:</p>
+<div class="alert alert-info"><p>The glow is painted by <strong>separate windows around the frame</strong>, not by the window's own visual tree. A <code>BorderThickness=&quot;0&quot;</code> window with no glow colour therefore has no edge at all — the middle panel of the first figure.</p>
+</div>
+<p>For a drop shadow and no border, set <code>BorderThickness=&quot;0&quot;</code> with a dark glow:</p>
 <pre><code class="language-xml">&lt;mah:MetroWindow BorderThickness=&quot;0&quot;
-                 GlowBrush=&quot;Black&quot;
+                 GlowColor=&quot;Black&quot;
                  ResizeMode=&quot;CanResizeWithGrip&quot;
                  WindowTransitionsEnabled=&quot;False&quot; /&gt;
 </code></pre>
@@ -440,16 +445,40 @@ MetroWindow
 </thead>
 <tbody>
 <tr>
-<td><code>GlowBrush</code></td>
-<td><code>Brush</code></td>
-<td><code>null</code></td>
-<td></td>
+<td><code>GlowColor</code></td>
+<td><code>Color?</code></td>
+<td>the accent</td>
+<td>the glow while the window is active</td>
 </tr>
 <tr>
-<td><code>NonActiveGlowBrush</code></td>
-<td><code>Brush</code></td>
+<td><code>NonActiveGlowColor</code></td>
+<td><code>Color?</code></td>
+<td>the theme foreground</td>
+<td>the same while it is not</td>
+</tr>
+<tr>
+<td><code>GlowDepth</code></td>
+<td><code>int</code></td>
 <td></td>
-<td>the glow while inactive</td>
+<td>how far the glow reaches</td>
+</tr>
+<tr>
+<td><code>IsGlowTransitionEnabled</code></td>
+<td><code>bool</code></td>
+<td></td>
+<td>whether it fades between the two colours</td>
+</tr>
+<tr>
+<td><code>PreferDWMBorderColor</code></td>
+<td><code>bool</code></td>
+<td></td>
+<td>let Windows draw the border itself where it can, instead of the glow windows</td>
+</tr>
+<tr>
+<td><code>CornerPreference</code></td>
+<td><code>WindowCornerPreference</code></td>
+<td><code>Default</code></td>
+<td><code>DoNotRound</code>, <code>Round</code> or <code>RoundSmall</code>, which is what Windows 11 rounds the corners by</td>
 </tr>
 <tr>
 <td><code>NonActiveBorderBrush</code></td>
@@ -471,6 +500,7 @@ MetroWindow
 </tr>
 </tbody>
 </table>
+<p>Everything in that table down to <code>CornerPreference</code> comes from ControlzEx rather than from MahApps, since <code>MetroWindow</code> derives from <code>WindowChromeWindow</code> now. <code>IgnoreTaskbarOnMaximize</code>, <code>ShowMinButton</code> and <code>ShowMaxRestoreButton</code> moved there as well, and are set on a <code>MetroWindow</code> exactly as before.</p>
 <h2 id="the-window-buttons">The window buttons</h2>
 <p><img src="images/metrowindow-buttons.png" alt="All three, a disabled close button, and only the close button" /></p>
 <p>There are two pairs of properties, and they do different things:</p>
@@ -493,10 +523,10 @@ MetroWindow
 </tbody>
 </table>
 <p>All six default to <code>True</code>. The middle panel above is a disabled close button — still there, still visibly a button; the right-hand one has the other two removed outright.</p>
-<p><code>WindowButtonCommands</code> is the control itself, should you want to reach it — see <a href="WindowButtonCommands">WindowButtonCommands</a>, which also has the cancellable <code>ClosingWindow</code> event.</p>
+<p><code>WindowButtonCommands</code> is the control itself, should you want to reach it — see <a href="windowbuttoncommands">WindowButtonCommands</a>, which also has the cancellable <code>ClosingWindow</code> event.</p>
 <p><code>ShowSystemMenu</code> and <code>ShowSystemMenuOnRightClick</code> (both <code>True</code>) control the system menu.</p>
 <h2 id="title-bar-commands-and-the-icon">Title-bar commands and the icon</h2>
-<p><code>LeftWindowCommands</code> and <code>RightWindowCommands</code> take a <a href="WindowCommands">WindowCommands</a> each, for your own buttons at either end of the bar. <code>OverrideDefaultWindowCommandsBrush</code> forces a brush onto all of them at once.</p>
+<p><code>LeftWindowCommands</code> and <code>RightWindowCommands</code> take a <a href="windowcommands">WindowCommands</a> each, for your own buttons at either end of the bar. <code>OverrideDefaultWindowCommandsBrush</code> forces a brush onto all of them at once.</p>
 <table>
 <thead>
 <tr>
@@ -523,7 +553,7 @@ MetroWindow
 <td><code>IconScalingMode</code></td>
 <td><code>MultiFrameImageMode</code></td>
 <td><code>ScaleDownLargerFrame</code></td>
-<td>see <a href="MultiFrameImage">MultiFrameImage</a></td>
+<td>see <a href="multiframeimage">MultiFrameImage</a></td>
 </tr>
 <tr>
 <td><code>IconBitmapScalingMode</code></td>
@@ -564,7 +594,7 @@ MetroWindow
     &lt;/DataTemplate&gt;
 &lt;/mah:MetroWindow.IconTemplate&gt;
 </code></pre>
-<p>Because the icon is drawn by a <a href="MultiFrameImage">MultiFrameImage</a>, a multi-resolution <code>.ico</code> picks the frame that suits the title bar rather than being stretched — <code>IconScalingMode</code> is that control's mode.</p>
+<p>Because the icon is drawn by a <a href="multiframeimage">MultiFrameImage</a>, a multi-resolution <code>.ico</code> picks the frame that suits the title bar rather than being stretched — <code>IconScalingMode</code> is that control's mode.</p>
 <h3 id="clicking-the-icon">Clicking the icon</h3>
 <p>The icon behaves like the one on any other window: a left click opens the system menu, a double click closes the window. <code>ShowSystemMenu</code> and <code>CloseOnIconDoubleClick</code> (both <code>True</code>) turn either of those off.</p>
 <p>A right click is left to the template, so an icon of your own can bring a menu of its own:</p>
@@ -700,12 +730,6 @@ MetroWindow
 <td><code>True</code></td>
 <td>the content's entrance animation</td>
 </tr>
-<tr>
-<td><code>TryToBeFlickerFree</code></td>
-<td><code>bool</code></td>
-<td><code>False</code></td>
-<td></td>
-</tr>
 </tbody>
 </table>
 <div class="alert alert-warning"><p><code>SaveWindowPosition=&quot;True&quot;</code> is a nice convenience and a real support risk. If a monitor is detached between exit and restart, the window can come back <strong>off screen</strong> with no way for the user to get at it. Provide a reset, or validate the restored placement against the current screens yourself.</p>
@@ -722,9 +746,9 @@ MetroWindow
 <p>It has no dependency on the configuration system, and it behaves the same on every target framework. Writing your own implementation is a small interface away if you would rather keep the placement in a database or next to the rest of your own settings.</p>
 <div class="alert alert-info"><p><code>WindowPlacementFileSettings</code> is on <code>develop</code> and ships with the next release. In a released version, write the interface yourself, it is <code>Placement</code>, <code>Reload</code>, <code>Save</code>, <code>Upgrade</code>, <code>UpgradeSettings</code> and <code>Reset</code>.</p>
 </div>
-<p><code>IsWindowDraggable</code> is what <a href="MetroThumbContentControl">MetroThumbContentControl</a> checks — the title bar is one of those, and dragging it is what moves the window.</p>
+<p><code>IsWindowDraggable</code> is what <a href="metrothumbcontentcontrol">MetroThumbContentControl</a> checks — the title bar is one of those, and dragging it is what moves the window.</p>
 <h2 id="related">Related</h2>
-<p><a href="WindowCommands">WindowCommands</a> and <a href="WindowButtonCommands">WindowButtonCommands</a> for the title bar's two sets of buttons. <a href="flyouts">Flyouts</a> for the overlay panels and the overlay-behaviour table. <a href="MetroNavigationWindow">MetroNavigationWindow</a> is a <code>MetroWindow</code> with a navigation bar built in.</p>
+<p><a href="windowcommands">WindowCommands</a> and <a href="windowbuttoncommands">WindowButtonCommands</a> for the title bar's two sets of buttons. <a href="flyouts">Flyouts</a> for the overlay panels and the overlay-behaviour table. <a href="metronavigationwindow">MetroNavigationWindow</a> is a <code>MetroWindow</code> with a navigation bar built in.</p>
 
 
                                         </div>

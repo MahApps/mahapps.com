@@ -204,6 +204,9 @@ ExpanderHelper
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ ExpanderHelper
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ ExpanderHelper
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ ExpanderHelper
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ ExpanderHelper
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -411,9 +420,24 @@ ExpanderHelper
 <td><code>Brush</code></td>
 <td>while the header is held down</td>
 </tr>
+<tr>
+<td><code>ToggleButtonBackground</code></td>
+<td><code>Brush</code></td>
+<td>what the glyph sits on</td>
+</tr>
+<tr>
+<td><code>ToggleButtonBackgroundMouseOver</code></td>
+<td><code>Brush</code></td>
+<td>the same while the mouse is over the header</td>
+</tr>
+<tr>
+<td><code>ToggleButtonBackgroundPressed</code></td>
+<td><code>Brush</code></td>
+<td>the same while the header is held down</td>
+</tr>
 </tbody>
 </table>
-<p><strong>All three are on <code>develop</code> and ship with the next release.</strong> Left unset, they hand nothing over and the glyph follows the header. Set them on the <code>Expander</code>; it passes them to the toggle button that draws them.</p>
+<p><strong>All six are on <code>develop</code> and ship with the next release.</strong> Left unset, they hand nothing over: the glyph follows the header and sits on nothing. Set them on the <code>Expander</code>; it passes them to the toggle button that draws them. A background left empty is left empty rather than falling back, so the ground under the glyph can be given a colour for one state alone.</p>
 <pre><code class="language-xml">&lt;Expander Header=&quot;Details&quot;
           mah:ExpanderHelper.ToggleButtonForeground=&quot;{DynamicResource MahApps.Brushes.Gray2}&quot;
           mah:ExpanderHelper.ToggleButtonForegroundMouseOver=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;&gt;

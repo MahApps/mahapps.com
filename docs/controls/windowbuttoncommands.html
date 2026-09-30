@@ -204,6 +204,9 @@ WindowButtonCommands
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ WindowButtonCommands
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ WindowButtonCommands
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ WindowButtonCommands
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ WindowButtonCommands
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -427,7 +436,7 @@ SystemCommands.CloseWindow(this.ParentWindow);
 </tr>
 </tbody>
 </table>
-<p><code>Theme</code> is a <code>string</code> holding a base-colour name and defaults to <code>ThemeManager.BaseColorLight</code>. Changing it swaps which set of three styles the buttons use — the same arrangement as <a href="WindowCommands">WindowCommands</a> and its <code>LightTemplate</code> / <code>DarkTemplate</code> pair.</p>
+<p><code>Theme</code> is a <code>string</code> holding a base-colour name and defaults to <code>ThemeManager.BaseColorLight</code>. Changing it swaps which set of three styles the buttons use — the same arrangement as <a href="windowcommands">WindowCommands</a> and its <code>LightTemplate</code> / <code>DarkTemplate</code> pair.</p>
 <p>That is six properties to set for one visual change, so in practice it is easier to restyle the buttons through the theme brushes, or to set the same style on both members of a pair when the title bar's base colour never changes.</p>
 <p><code>ParentWindow</code> is a read-only property pointing at the hosting <a href="metrowindow">MetroWindow</a>.</p>
 <h2 id="hiding-them-and-keeping-them-over-flyouts">Hiding them, and keeping them over flyouts</h2>
@@ -438,7 +447,7 @@ SystemCommands.CloseWindow(this.ParentWindow);
 </code></pre>
 <p><code>WindowButtonCommandsOverlayBehavior</code> decides whether the buttons stay visible above an open <a href="flyouts">Flyout</a>. It is an <code>OverlayBehavior</code> and defaults to <strong><code>Always</code></strong>, which is why the window buttons are drawn over the flyouts in the figures on the <a href="flyouts">Flyouts</a> page. A modal flyout still covers them.</p>
 <h2 id="related">Related</h2>
-<p><a href="WindowCommands">WindowCommands</a> for your own buttons at either end of the title bar, <a href="metrowindow">MetroWindow</a> for the window itself and the <code>Show…Button</code> properties, and <a href="flyouts">Flyouts</a> for the overlay behaviour.</p>
+<p><a href="windowcommands">WindowCommands</a> for your own buttons at either end of the title bar, <a href="metrowindow">MetroWindow</a> for the window itself and the <code>Show…Button</code> properties, and <a href="flyouts">Flyouts</a> for the overlay behaviour.</p>
 
 
                                         </div>

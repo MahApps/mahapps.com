@@ -302,11 +302,10 @@ ToggleButton
 &lt;/ToggleButton&gt;
 </code></pre>
 <p>The icon takes the button's <code>Foreground</code>, and the template switches that to <code>MahApps.Brushes.IdealForeground</code> while the button is checked — so a glyph you draw in the accent colour disappears against the checked fill. Leave the <code>Foreground</code> alone unless you also handle the checked state.</p>
-<p>For a <code>Path</code> rather than a glyph, the library's own icon style keeps it scaled and coloured correctly:</p>
+<p>For a <code>Path</code> rather than a glyph, <a href="../controls/fonticon#pathicon">PathIcon</a> keeps it scaled and coloured correctly:</p>
 <pre><code class="language-xml">&lt;ToggleButton Width=&quot;48&quot; Height=&quot;48&quot; Style=&quot;{StaticResource MahApps.Styles.ToggleButton.Circle}&quot;&gt;
-    &lt;ContentControl Width=&quot;20&quot; Height=&quot;20&quot;
-                    Content=&quot;M12,2L15,9L22,9L16,14L18,21L12,17L6,21L8,14L2,9L9,9Z&quot;
-                    Style=&quot;{DynamicResource MahApps.Styles.ContentControl.PathIcon}&quot; /&gt;
+    &lt;mah:PathIcon Width=&quot;20&quot; Height=&quot;20&quot;
+                  Data=&quot;M12,2L15,9L22,9L16,14L18,21L12,17L6,21L8,14L2,9L9,9Z&quot; /&gt;
 &lt;/ToggleButton&gt;
 </code></pre>
 <h2 id="togglebuttonhelper-does-not-apply-here">ToggleButtonHelper does not apply here</h2>

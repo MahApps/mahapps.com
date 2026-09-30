@@ -31,7 +31,7 @@
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
 
-        <title>MahApps.Metro - Progress Dialog</title>
+        <title>MahApps.Metro - ProgressBarHelper</title>
     </head>
     <body class="d-flex flex-column">
         <div class="flex-grow-1 d-flex flex-column">
@@ -94,11 +94,11 @@
                                         <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
 
         <span><a href="/mahapps.com/docs">Documentation</a></span>
-        <span><a href="/mahapps.com/docs/dialogs">Dialogs</a></span>
+        <span><a href="/mahapps.com/docs/helper">Helper Classes</a></span>
                                         </div>
                                         <div class="text-white m-0 text-break title">
 
-Progress Dialog
+ProgressBarHelper
                                         </div>
                                     </div>
                                         <div class="navbar navbar-expand-md navbar-dark p-0">
@@ -259,7 +259,7 @@ Progress Dialog
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/dialogs/login-dialogs">Login Dialog</a>
 </div>
-<div class="sidebar-nav-item active">
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/dialogs/progress-dialogs">Progress Dialog</a>
 </div>
 <div class="sidebar-nav-item">
@@ -312,7 +312,7 @@ Progress Dialog
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
 </div>
-<div class="sidebar-nav-item">
+<div class="sidebar-nav-item active">
     <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -346,193 +346,65 @@ Progress Dialog
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>A progress dialog reports how far a long-running operation has got. Like the other dialogs it is drawn inside the <code>MetroWindow</code> rather than in a window of its own.</p>
-<p>It is the one dialog that does not wait for an answer. <code>ShowProgressAsync</code> returns as soon as the dialog is on screen and hands you a <code>ProgressDialogController</code> — the handle you drive the dialog with, and the only way to close it again:</p>
-<pre><code class="language-csharp">private async void OnCopyClick(object sender, RoutedEventArgs e)
-{
-    var controller = await this.ShowProgressAsync(&quot;Copying files&quot;, &quot;Starting...&quot;);
-
-    for (var i = 0; i &lt; files.Count; i++)
-    {
-        controller.SetMessage($&quot;{i} of {files.Count} files copied&quot;);
-        controller.SetProgress((double)i / files.Count);
-
-        await CopyAsync(files[i]);
-    }
-
-    await controller.CloseAsync();
-}
-</code></pre>
-<p><img src="images/progressdialog-basic.png" alt="A progress dialog" /></p>
-<p>The dialog reserves the space for the cancel button whether or not it is shown, which is why both panels are the same height. Pass <code>isCancelable: true</code> to fill it.</p>
-<p>From a view model, use the <a href="mvvm-dialog">dialog coordinator</a> rather than reaching for the window — <code>IDialogCoordinator.ShowProgressAsync</code> takes the same arguments after the context object.</p>
-<div class="alert alert-warning"><p>Whatever happens, the dialog stays up until something calls <code>CloseAsync</code>. There is no button that dismisses it, <kbd>Esc</kbd> does nothing, and — unlike the other dialogs — neither does the <code>CancellationToken</code>. Put the call in a <code>finally</code> block if the work can throw.</p>
+<p>Applies to <code>ProgressBar</code>. Every property here is read by the <a href="../stylevariants/winui">Windows 10 and WinUI</a> bar styles; the default MahApps bar looks at none of them.</p>
+<div class="alert alert-info"><p><code>ProgressBarHelper</code> is new in <code>develop</code> and is not in 2.4.11.</p>
 </div>
-<h2 id="progress-runs-from-0-to-1">Progress runs from 0 to 1</h2>
-<p>The progress bar is created with <code>Minimum=&quot;0.0&quot;</code> and <code>Maximum=&quot;1.0&quot;</code>, not 0 to 100. <code>SetProgress</code> throws <code>ArgumentOutOfRangeException</code> for anything outside that range, so the percentage that looks like the obvious argument fails on the first call:</p>
-<pre><code class="language-csharp">controller.SetProgress(0.25);   // a quarter done
-controller.SetProgress(25);     // ArgumentOutOfRangeException
-</code></pre>
-<p>Set your own range instead of scaling every value if that reads better:</p>
-<pre><code class="language-csharp">controller.Minimum = 0;
-controller.Maximum = files.Count;
-controller.SetProgress(i);
-</code></pre>
-<h2 id="the-controller">The controller</h2>
 <table>
 <thead>
 <tr>
-<th>Member</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>SetProgress(double)</code></td>
-<td>sets the value and switches the bar back to determinate</td>
+<td><code>ShowPaused</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>draw the bar as work that is on hold</td>
 </tr>
 <tr>
-<td><code>SetIndeterminate()</code></td>
-<td>switches the bar to the indeterminate animation</td>
+<td><code>ShowError</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>draw the bar as work that has gone wrong</td>
 </tr>
 <tr>
-<td><code>Minimum</code>, <code>Maximum</code></td>
-<td>the range, <code>0.0</code> to <code>1.0</code> by default</td>
+<td><code>EllipseDiameter</code></td>
+<td><code>double</code></td>
+<td><code>0</code></td>
+<td>how big the dots of an indeterminate run are</td>
 </tr>
 <tr>
-<td><code>SetMessage(string)</code></td>
-<td>replaces the body text</td>
+<td><code>EllipseOffset</code></td>
+<td><code>double</code></td>
+<td><code>0</code></td>
+<td>how much room there is between two of them</td>
 </tr>
 <tr>
-<td><code>SetTitle(string)</code></td>
-<td>replaces the title</td>
-</tr>
-<tr>
-<td><code>SetCancelable(bool)</code></td>
-<td>shows or hides the cancel button after the fact</td>
-</tr>
-<tr>
-<td><code>SetProgressBarForegroundBrush(Brush)</code></td>
-<td>recolours the bar</td>
-</tr>
-<tr>
-<td><code>IsCanceled</code></td>
-<td><code>true</code> once the user has pressed cancel</td>
-</tr>
-<tr>
-<td><code>IsOpen</code></td>
-<td><code>false</code> once <code>CloseAsync</code> has finished</td>
-</tr>
-<tr>
-<td><code>Canceled</code></td>
-<td>raised when the user presses cancel</td>
-</tr>
-<tr>
-<td><code>Closed</code></td>
-<td>raised when <code>CloseAsync</code> has finished</td>
-</tr>
-<tr>
-<td><code>CloseAsync()</code></td>
-<td>closes the dialog</td>
+<td><code>AdjustIndeterminateAnimation</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>fit that animation to the width the bar actually has</td>
 </tr>
 </tbody>
 </table>
-<p>Every one of these marshals to the UI thread by itself, so they can be called straight from the worker that is doing the work.</p>
-<p><code>CloseAsync</code> throws <code>InvalidOperationException</code> if the dialog is no longer visible, so close it exactly once.</p>
-<h2 id="cancelling">Cancelling</h2>
-<p>Pressing cancel does <strong>not</strong> close the dialog. It disables the cancel button, sets <code>IsCanceled</code> and raises <code>Canceled</code> — the operation is expected to notice, stop, and close the dialog itself:</p>
-<p><img src="images/progressdialog-canceled.png" alt="The cancel button after it was pressed" /></p>
-<p>That gives you somewhere to run the rollback while the dialog is still telling the user something is happening. Polling <code>IsCanceled</code> in the loop is the usual shape:</p>
-<pre><code class="language-csharp">var controller = await this.ShowProgressAsync(&quot;Copying files&quot;, &quot;Starting...&quot;, isCancelable: true);
-
-foreach (var file in files)
-{
-    if (controller.IsCanceled)
-    {
-        break;
-    }
-
-    controller.SetMessage($&quot;Copying {file.Name}&quot;);
-    await CopyAsync(file);
-}
-
-await controller.CloseAsync();
+<h2 id="paused-and-error">Paused and error</h2>
+<p>Windows gives a progress bar three colours rather than one: the ordinary accent, a yellow for work that is waiting on something, and a red for work that failed. <code>ShowPaused</code> and <code>ShowError</code> are how a bar is put into the second and the third.</p>
+<pre><code class="language-xml">&lt;ProgressBar Style=&quot;{StaticResource MahApps.Styles.ProgressBar.WinUI}&quot;
+             Value=&quot;{Binding Progress}&quot;
+             mah:ProgressBarHelper.ShowError=&quot;{Binding HasFailed}&quot;
+             mah:ProgressBarHelper.ShowPaused=&quot;{Binding IsWaiting}&quot; /&gt;
 </code></pre>
-<p>Use the <code>Canceled</code> event where the work is not a loop you control — to signal a <code>CancellationTokenSource</code> of your own, for instance:</p>
-<pre><code class="language-csharp">var cts = new CancellationTokenSource();
-controller.Canceled += (_, _) =&gt; cts.Cancel();
-</code></pre>
-<div class="alert alert-info"><p>The <code>CancellationToken</code> in <code>MetroDialogSettings</code> does the same thing as the button, not more: it marks the dialog cancelled and raises <code>Canceled</code>. It does not close it. That differs from the message, input and login dialogs, where the token ends the dialog and the call returns.</p>
-</div>
-<h2 id="indeterminate">Indeterminate</h2>
-<p><code>SetIndeterminate()</code> switches the bar to the animation that says <em>something is happening</em> without saying how much is left — the state to use before the total is known. Any later <code>SetProgress</code> switches it back.</p>
-<p><img src="images/progressdialog-indeterminate.png" alt="An indeterminate progress dialog" /></p>
-<h2 id="colour-scheme">Colour scheme</h2>
-<p><code>ColorScheme</code> works as it does for the other dialogs. The bar itself follows only in part: under <code>Theme</code> it is drawn in the accent colour, under <code>Accented</code> and <code>Inverted</code> in the theme foreground, so that it stays visible against the filled background.</p>
-<p><img src="images/progressdialog-colorscheme.png" alt="Theme and Accented colour schemes" /></p>
-<h2 id="which-settings-actually-apply">Which settings actually apply</h2>
-<p><code>MetroDialogSettings</code> is shared by all the dialog types, and a progress dialog reads only part of it.</p>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Effect on a progress dialog</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>NegativeButtonText</code></td>
-<td>label of the cancel button, <code>Cancel</code> by default</td>
-</tr>
-<tr>
-<td><code>ColorScheme</code></td>
-<td>as above</td>
-</tr>
-<tr>
-<td><code>DialogTitleFontSize</code>, <code>DialogMessageFontSize</code>, <code>DialogButtonFontSize</code></td>
-<td>as for the other dialogs</td>
-</tr>
-<tr>
-<td><code>AnimateShow</code>, <code>AnimateHide</code></td>
-<td>as for the other dialogs</td>
-</tr>
-<tr>
-<td><code>OwnerCanCloseWithDialog</code></td>
-<td>whether the window can be closed while the dialog is up</td>
-</tr>
-<tr>
-<td><code>CancellationToken</code></td>
-<td>marks the dialog cancelled; <strong>does not close it</strong></td>
-</tr>
-<tr>
-<td><code>CustomResourceDictionary</code></td>
-<td>resources for the dialog</td>
-</tr>
-<tr>
-<td><code>AffirmativeButtonText</code>, <code>FirstAuxiliaryButtonText</code>, <code>SecondAuxiliaryButtonText</code></td>
-<td><strong>ignored</strong> — a progress dialog has at most the cancel button</td>
-</tr>
-<tr>
-<td><code>DefaultButtonFocus</code></td>
-<td><strong>ignored</strong></td>
-</tr>
-<tr>
-<td><code>DefaultText</code></td>
-<td><strong>ignored</strong> — only the input dialog uses it</td>
-</tr>
-<tr>
-<td><code>DialogResultOnCancel</code></td>
-<td><strong>ignored</strong> — a progress dialog has no result</td>
-</tr>
-<tr>
-<td><code>MaximumBodyHeight</code></td>
-<td><strong>ignored</strong> — only the message dialog uses it</td>
-</tr>
-</tbody>
-</table>
-<p>Note that whether the cancel button is shown is not a setting: it is the <code>isCancelable</code> argument of <code>ShowProgressAsync</code>, or <code>SetCancelable</code> later on.</p>
-<h2 id="outside-a-metrowindow">Outside a MetroWindow</h2>
-<p>There is no external variant. The message, input and login dialogs each have a <code>ShowModal...External</code> method that opens them in a window of their own; the progress dialog has none, so it needs a <code>MetroWindow</code> to be drawn into.</p>
+<p>Error wins where both are set. The colours come from <code>MahApps.Brushes.ProgressBar.Win10.Paused</code> and <code>…Error</code>, and from <code>MahApps.Brushes.ProgressBar.WinUI.Paused</code> and <code>…Error</code>, so a set of your own is a resource away.</p>
+<h2 id="the-dots">The dots</h2>
+<p>An indeterminate Windows 10 bar is five dots crossing it rather than a block or a stripe. <code>EllipseDiameter</code> sizes them and <code>EllipseOffset</code> is the room between two, both left to the style, which is where the numbers that match Windows live.</p>
+<p><code>AdjustIndeterminateAnimation</code> is the reason the run looks right at any width. WPF writes the distances of a storyboard down when the template is built, so an animation authored for one width crosses too far or stops short at another. With the flag on, the helper takes the storyboard the template brought, writes the numbers for the width the bar has at that moment into a copy of it, and runs the copy, redoing it when the bar is resized.</p>
+<p>A template asking for that has to name the element the dots live in <code>ContainingGrid</code> and hand its unadjusted storyboard over under the key <code>IndeterminateStoryboard</code>, the way <code>MahApps.Styles.ProgressBar.Win10</code> does. It costs nothing while the bar is determinate: the storyboard is only started once <code>IsIndeterminate</code> is <code>True</code> and is taken off again as soon as it is not.</p>
+<h2 id="related">Related</h2>
+<p><a href="../styles/progressbar">ProgressBar</a> is the control itself and its own styles, <a href="../controls/metroprogressbar">MetroProgressBar</a> the MahApps bar with the dots built in, and <a href="../controls/progressring">ProgressRing</a> the round one.</p>
 
 
                                         </div>
@@ -541,16 +413,12 @@ controller.Canceled += (_, _) =&gt; cts.Cancel();
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#progress-runs-from-0-to-1">Progress runs from 0 to 1</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-controller">The controller</a></div>
-                    <div class="sidebar-nav-item"><a href="#cancelling">Cancelling</a></div>
-                    <div class="sidebar-nav-item"><a href="#indeterminate">Indeterminate</a></div>
-                    <div class="sidebar-nav-item"><a href="#colour-scheme">Colour scheme</a></div>
-                    <div class="sidebar-nav-item"><a href="#which-settings-actually-apply">Which settings actually apply</a></div>
-                    <div class="sidebar-nav-item"><a href="#outside-a-metrowindow">Outside a MetroWindow</a></div>
+                    <div class="sidebar-nav-item"><a href="#paused-and-error">Paused and error</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-dots">The dots</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/dialogs/progress-dialogs.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/helper/progressbarhelper.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
                             </div>

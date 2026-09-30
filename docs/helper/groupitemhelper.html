@@ -31,7 +31,7 @@
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
 
-        <title>MahApps.Metro - Progress Dialog</title>
+        <title>MahApps.Metro - GroupItemHelper</title>
     </head>
     <body class="d-flex flex-column">
         <div class="flex-grow-1 d-flex flex-column">
@@ -94,11 +94,11 @@
                                         <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
 
         <span><a href="/mahapps.com/docs">Documentation</a></span>
-        <span><a href="/mahapps.com/docs/dialogs">Dialogs</a></span>
+        <span><a href="/mahapps.com/docs/helper">Helper Classes</a></span>
                                         </div>
                                         <div class="text-white m-0 text-break title">
 
-Progress Dialog
+GroupItemHelper
                                         </div>
                                     </div>
                                         <div class="navbar navbar-expand-md navbar-dark p-0">
@@ -259,7 +259,7 @@ Progress Dialog
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/dialogs/login-dialogs">Login Dialog</a>
 </div>
-<div class="sidebar-nav-item active">
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/dialogs/progress-dialogs">Progress Dialog</a>
 </div>
 <div class="sidebar-nav-item">
@@ -297,7 +297,7 @@ Progress Dialog
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
-<div class="sidebar-nav-item">
+<div class="sidebar-nav-item active">
     <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -346,193 +346,73 @@ Progress Dialog
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>A progress dialog reports how far a long-running operation has got. Like the other dialogs it is drawn inside the <code>MetroWindow</code> rather than in a window of its own.</p>
-<p>It is the one dialog that does not wait for an answer. <code>ShowProgressAsync</code> returns as soon as the dialog is on screen and hands you a <code>ProgressDialogController</code> — the handle you drive the dialog with, and the only way to close it again:</p>
-<pre><code class="language-csharp">private async void OnCopyClick(object sender, RoutedEventArgs e)
-{
-    var controller = await this.ShowProgressAsync(&quot;Copying files&quot;, &quot;Starting...&quot;);
-
-    for (var i = 0; i &lt; files.Count; i++)
-    {
-        controller.SetMessage($&quot;{i} of {files.Count} files copied&quot;);
-        controller.SetProgress((double)i / files.Count);
-
-        await CopyAsync(files[i]);
-    }
-
-    await controller.CloseAsync();
-}
-</code></pre>
-<p><img src="images/progressdialog-basic.png" alt="A progress dialog" /></p>
-<p>The dialog reserves the space for the cancel button whether or not it is shown, which is why both panels are the same height. Pass <code>isCancelable: true</code> to fill it.</p>
-<p>From a view model, use the <a href="mvvm-dialog">dialog coordinator</a> rather than reaching for the window — <code>IDialogCoordinator.ShowProgressAsync</code> takes the same arguments after the context object.</p>
-<div class="alert alert-warning"><p>Whatever happens, the dialog stays up until something calls <code>CloseAsync</code>. There is no button that dismisses it, <kbd>Esc</kbd> does nothing, and — unlike the other dialogs — neither does the <code>CancellationToken</code>. Put the call in a <code>finally</code> block if the work can throw.</p>
+<p>Applies to a grouped <code>ListView</code> or <code>ListBox</code>. It gives a group of items two things beyond standing there: a header that holds at the top while its own items pass under it, and a box in that header picking the whole group at once.</p>
+<div class="alert alert-info"><p><code>GroupItemHelper</code> is new in <code>develop</code> and is not in 2.4.11.</p>
 </div>
-<h2 id="progress-runs-from-0-to-1">Progress runs from 0 to 1</h2>
-<p>The progress bar is created with <code>Minimum=&quot;0.0&quot;</code> and <code>Maximum=&quot;1.0&quot;</code>, not 0 to 100. <code>SetProgress</code> throws <code>ArgumentOutOfRangeException</code> for anything outside that range, so the percentage that looks like the obvious argument fails on the first call:</p>
-<pre><code class="language-csharp">controller.SetProgress(0.25);   // a quarter done
-controller.SetProgress(25);     // ArgumentOutOfRangeException
-</code></pre>
-<p>Set your own range instead of scaling every value if that reads better:</p>
-<pre><code class="language-csharp">controller.Minimum = 0;
-controller.Maximum = files.Count;
-controller.SetProgress(i);
-</code></pre>
-<h2 id="the-controller">The controller</h2>
 <table>
 <thead>
 <tr>
-<th>Member</th>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
 <th></th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>SetProgress(double)</code></td>
-<td>sets the value and switches the bar back to determinate</td>
+<td><code>IsHeaderSticky</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>hold the header at the top while the group scrolls under it</td>
 </tr>
 <tr>
-<td><code>SetIndeterminate()</code></td>
-<td>switches the bar to the indeterminate animation</td>
+<td><code>CanSelectAllItems</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>let the box in the header stand for every item of the group</td>
 </tr>
 <tr>
-<td><code>Minimum</code>, <code>Maximum</code></td>
-<td>the range, <code>0.0</code> to <code>1.0</code> by default</td>
+<td><code>GroupContainerStyle</code></td>
+<td><code>Style</code></td>
+<td><code>null</code></td>
+<td>the style for a group</td>
 </tr>
 <tr>
-<td><code>SetMessage(string)</code></td>
-<td>replaces the body text</td>
+<td><code>GroupContainerStyleWithCheckBox</code></td>
+<td><code>Style</code></td>
+<td><code>null</code></td>
+<td>the same with a box beside the name of the group</td>
 </tr>
 <tr>
-<td><code>SetTitle(string)</code></td>
-<td>replaces the title</td>
-</tr>
-<tr>
-<td><code>SetCancelable(bool)</code></td>
-<td>shows or hides the cancel button after the fact</td>
-</tr>
-<tr>
-<td><code>SetProgressBarForegroundBrush(Brush)</code></td>
-<td>recolours the bar</td>
-</tr>
-<tr>
-<td><code>IsCanceled</code></td>
-<td><code>true</code> once the user has pressed cancel</td>
-</tr>
-<tr>
-<td><code>IsOpen</code></td>
-<td><code>false</code> once <code>CloseAsync</code> has finished</td>
-</tr>
-<tr>
-<td><code>Canceled</code></td>
-<td>raised when the user presses cancel</td>
-</tr>
-<tr>
-<td><code>Closed</code></td>
-<td>raised when <code>CloseAsync</code> has finished</td>
-</tr>
-<tr>
-<td><code>CloseAsync()</code></td>
-<td>closes the dialog</td>
+<td><code>IsGroupSelected</code></td>
+<td><code>bool?</code></td>
+<td><code>null</code></td>
+<td>whether the group is picked; <code>null</code> for some of it</td>
 </tr>
 </tbody>
 </table>
-<p>Every one of these marshals to the UI thread by itself, so they can be called straight from the worker that is doing the work.</p>
-<p><code>CloseAsync</code> throws <code>InvalidOperationException</code> if the dialog is no longer visible, so close it exactly once.</p>
-<h2 id="cancelling">Cancelling</h2>
-<p>Pressing cancel does <strong>not</strong> close the dialog. It disables the cancel button, sets <code>IsCanceled</code> and raises <code>Canceled</code> — the operation is expected to notice, stop, and close the dialog itself:</p>
-<p><img src="images/progressdialog-canceled.png" alt="The cancel button after it was pressed" /></p>
-<p>That gives you somewhere to run the rollback while the dialog is still telling the user something is happening. Polling <code>IsCanceled</code> in the loop is the usual shape:</p>
-<pre><code class="language-csharp">var controller = await this.ShowProgressAsync(&quot;Copying files&quot;, &quot;Starting...&quot;, isCancelable: true);
-
-foreach (var file in files)
-{
-    if (controller.IsCanceled)
-    {
-        break;
-    }
-
-    controller.SetMessage($&quot;Copying {file.Name}&quot;);
-    await CopyAsync(file);
-}
-
-await controller.CloseAsync();
+<p>Both of the first two are set on the <strong>list</strong>, not on the group, because a group is built and thrown away again as the list scrolls. They inherit, so the value on the list reaches every group in it.</p>
+<pre><code class="language-xml">&lt;ListView ItemsSource=&quot;{Binding AlbumsView}&quot;
+          SelectionMode=&quot;Extended&quot;
+          Style=&quot;{StaticResource MahApps.Styles.ListView.Win10}&quot;
+          mah:GroupItemHelper.CanSelectAllItems=&quot;True&quot;
+          mah:GroupItemHelper.IsHeaderSticky=&quot;True&quot;
+          mah:ItemHelper.IsMultiSelectCheckBoxEnabled=&quot;True&quot; /&gt;
 </code></pre>
-<p>Use the <code>Canceled</code> event where the work is not a loop you control — to signal a <code>CancellationTokenSource</code> of your own, for instance:</p>
-<pre><code class="language-csharp">var cts = new CancellationTokenSource();
-controller.Canceled += (_, _) =&gt; cts.Cancel();
-</code></pre>
-<div class="alert alert-info"><p>The <code>CancellationToken</code> in <code>MetroDialogSettings</code> does the same thing as the button, not more: it marks the dialog cancelled and raises <code>Canceled</code>. It does not close it. That differs from the message, input and login dialogs, where the token ends the dialog and the call returns.</p>
+<p><code>MahApps.Styles.ListView.Win10</code> asks for both already, and <code>MahApps.Styles.ListView.WinUI</code> brings the two group styles along without the sticky header.</p>
+<h2 id="the-header-that-stays">The header that stays</h2>
+<p>WPF lays a group out as one <code>GroupItem</code> holding a header with the items under it, and scrolls the two together, so the header of the group you are reading leaves the top of the view before its own items do.</p>
+<p>Holding it means moving it down by as much as the group has already passed the top edge, and no further than the bottom of that group, so the next group pushes it out of the way rather than drawing over it. The move is a render transform, so nothing is laid out again while the list scrolls.</p>
+<div class="alert alert-warning"><p><strong>The list has to scroll by the pixel.</strong> A list scrolling by the row, which is what WPF does unless told otherwise, never lets a group past the top edge at all: it puts a whole row at the top and shifts the contents of the group instead, so there is nothing to hold. Set <code>VirtualizingPanel.ScrollUnit</code> to <code>Pixel</code>, which is what <code>MahApps.Styles.ListView.Win10</code> does.</p>
+<p>A style of its own has to name the element to hold <code>PART_Header</code>, and that element has to be free to draw over the items, which means the two sharing one cell of a grid with the header declared after them.</p>
 </div>
-<h2 id="indeterminate">Indeterminate</h2>
-<p><code>SetIndeterminate()</code> switches the bar to the animation that says <em>something is happening</em> without saying how much is left — the state to use before the total is known. Any later <code>SetProgress</code> switches it back.</p>
-<p><img src="images/progressdialog-indeterminate.png" alt="An indeterminate progress dialog" /></p>
-<h2 id="colour-scheme">Colour scheme</h2>
-<p><code>ColorScheme</code> works as it does for the other dialogs. The bar itself follows only in part: under <code>Theme</code> it is drawn in the accent colour, under <code>Accented</code> and <code>Inverted</code> in the theme foreground, so that it stays visible against the filled background.</p>
-<p><img src="images/progressdialog-colorscheme.png" alt="Theme and Accented colour schemes" /></p>
-<h2 id="which-settings-actually-apply">Which settings actually apply</h2>
-<p><code>MetroDialogSettings</code> is shared by all the dialog types, and a progress dialog reads only part of it.</p>
-<table>
-<thead>
-<tr>
-<th>Setting</th>
-<th>Effect on a progress dialog</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>NegativeButtonText</code></td>
-<td>label of the cancel button, <code>Cancel</code> by default</td>
-</tr>
-<tr>
-<td><code>ColorScheme</code></td>
-<td>as above</td>
-</tr>
-<tr>
-<td><code>DialogTitleFontSize</code>, <code>DialogMessageFontSize</code>, <code>DialogButtonFontSize</code></td>
-<td>as for the other dialogs</td>
-</tr>
-<tr>
-<td><code>AnimateShow</code>, <code>AnimateHide</code></td>
-<td>as for the other dialogs</td>
-</tr>
-<tr>
-<td><code>OwnerCanCloseWithDialog</code></td>
-<td>whether the window can be closed while the dialog is up</td>
-</tr>
-<tr>
-<td><code>CancellationToken</code></td>
-<td>marks the dialog cancelled; <strong>does not close it</strong></td>
-</tr>
-<tr>
-<td><code>CustomResourceDictionary</code></td>
-<td>resources for the dialog</td>
-</tr>
-<tr>
-<td><code>AffirmativeButtonText</code>, <code>FirstAuxiliaryButtonText</code>, <code>SecondAuxiliaryButtonText</code></td>
-<td><strong>ignored</strong> — a progress dialog has at most the cancel button</td>
-</tr>
-<tr>
-<td><code>DefaultButtonFocus</code></td>
-<td><strong>ignored</strong></td>
-</tr>
-<tr>
-<td><code>DefaultText</code></td>
-<td><strong>ignored</strong> — only the input dialog uses it</td>
-</tr>
-<tr>
-<td><code>DialogResultOnCancel</code></td>
-<td><strong>ignored</strong> — a progress dialog has no result</td>
-</tr>
-<tr>
-<td><code>MaximumBodyHeight</code></td>
-<td><strong>ignored</strong> — only the message dialog uses it</td>
-</tr>
-</tbody>
-</table>
-<p>Note that whether the cancel button is shown is not a setting: it is the <code>isCancelable</code> argument of <code>ShowProgressAsync</code>, or <code>SetCancelable</code> later on.</p>
-<h2 id="outside-a-metrowindow">Outside a MetroWindow</h2>
-<p>There is no external variant. The message, input and login dialogs each have a <code>ShowModal...External</code> method that opens them in a window of their own; the progress dialog has none, so it needs a <code>MetroWindow</code> to be drawn into.</p>
+<h2 id="the-box-that-picks-a-group">The box that picks a group</h2>
+<p><code>CanSelectAllItems</code> lets the box in a group header stand for all of the items under it: ticking it picks them, clearing it lets them go, and a group only some of whose items are picked shows the third state. It needs a list that allows more than one item to be picked, since there is nothing for it to do otherwise.</p>
+<p><code>IsGroupSelected</code> is that answer as a property, <code>true</code>, <code>false</code> or <code>null</code> for a group that is partly picked, should you want to read or write it yourself.</p>
+<p>The box only appears where <a href="itemhelper">ItemHelper</a>'s <code>IsMultiSelectCheckBoxEnabled</code> asks for boxes on the rows as well. That is what <code>GroupContainerStyleWithCheckBox</code> is for: the helper hands that style to a group instead of the plain <code>GroupContainerStyle</code> while both flags are asking for it.</p>
+<p>Two styles rather than one with a trigger inside it, because a trigger naming an attached property of this library costs a thrown exception every time WPF builds the style from inside a page, where the <code>mah:</code> prefix means nothing.</p>
+<h2 id="related">Related</h2>
+<p><a href="itemhelper">ItemHelper</a> carries the per-state brushes of the rows and the box saying what is picked. <a href="../styles/listview">ListView</a> and <a href="../styles/listbox">ListBox</a> are the lists themselves.</p>
 
 
                                         </div>
@@ -541,16 +421,12 @@ controller.Canceled += (_, _) =&gt; cts.Cancel();
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#progress-runs-from-0-to-1">Progress runs from 0 to 1</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-controller">The controller</a></div>
-                    <div class="sidebar-nav-item"><a href="#cancelling">Cancelling</a></div>
-                    <div class="sidebar-nav-item"><a href="#indeterminate">Indeterminate</a></div>
-                    <div class="sidebar-nav-item"><a href="#colour-scheme">Colour scheme</a></div>
-                    <div class="sidebar-nav-item"><a href="#which-settings-actually-apply">Which settings actually apply</a></div>
-                    <div class="sidebar-nav-item"><a href="#outside-a-metrowindow">Outside a MetroWindow</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-header-that-stays">The header that stays</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-box-that-picks-a-group">The box that picks a group</a></div>
+                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/dialogs/progress-dialogs.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/helper/groupitemhelper.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
                             </div>

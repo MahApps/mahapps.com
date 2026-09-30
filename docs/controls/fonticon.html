@@ -204,6 +204,9 @@ FontIcon
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ FontIcon
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ FontIcon
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ FontIcon
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ FontIcon
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -359,7 +368,7 @@ FontIcon
 <h2 id="size-and-colour">Size and colour</h2>
 <p><img src="images/fonticon-size.png" alt="FontSize 12, 20, 32 and 48 with a Foreground" /></p>
 <p><code>FontIcon</code> derives from <code>Control</code>, so it has no size or brush properties of its own — a glyph is text, and <code>FontSize</code>, <code>FontWeight</code>, <code>FontStyle</code> and <code>Foreground</code> are what shape it. The default <code>FontSize</code> is <strong>20</strong>.</p>
-<p><code>Foreground</code> has no setter in the style, so it inherits. That is what makes an icon inside a button follow the button's colour without being told:</p>
+<p><code>Foreground</code> is registered to inherit and the style sets none, so an icon takes its colour from around it. What happens when the icon is handed to a control as content is under <a href="#iconelement">IconElement</a> below:</p>
 <p><img src="images/fonticon-in-controls.png" alt="A FontIcon as button content, beside a label, and inheriting the foreground" /></p>
 <pre><code class="language-xml">&lt;Button Foreground=&quot;#FFE64A19&quot;&gt;
     &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
@@ -380,10 +389,21 @@ FontIcon
 <p>Codes are private-use code points assigned by the font's designers, so they mean nothing outside that font. For <em>Segoe MDL2 Assets</em>, Microsoft publishes the full list in the <a href="https://learn.microsoft.com/windows/apps/design/style/segoe-ui-symbol-font">Segoe MDL2 Assets icon list</a>; the <em>Character Map</em> utility shipped with Windows will also show them.</p>
 <div class="alert alert-info"><p>There is <strong>no <code>Symbol</code> enumeration</strong> in MahApps.Metro. That is a UWP and WinUI API, and older documentation mentioned it here by mistake. In WPF you write the code point yourself, as <code>&amp;#xE713;</code> in XAML or <code>&quot;\uE713&quot;</code> in C#.</p>
 </div>
+<h2 id="pathicon">PathIcon</h2>
+<p><code>PathIcon</code> is the other icon in the library. It draws vector geometry rather than a glyph, and it is what the library's own templates use for the chevron on a <a href="dropdownbutton">DropDownButton</a>, the clear button on a text box and marks of that kind.</p>
+<pre><code class="language-xml">&lt;mah:PathIcon Data=&quot;M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z&quot; /&gt;
+</code></pre>
+<p><code>Data</code> is a <code>Geometry</code> with a <code>GeometryConverter</code> on it, so the path markup syntax works straight from the attribute. The template puts the path in a <code>Viewbox</code> and stretches it uniformly, which means <code>Width</code> and <code>Height</code>, both <strong>16</strong> to begin with, are what size an icon and <code>Padding</code> is the room left around it. The path is filled with <code>Foreground</code> and never stroked, so a geometry drawn as an outline comes out solid.</p>
+<div class="alert alert-info"><p><code>PathIcon</code> is new on <code>develop</code>. In 2.4.11 the same thing was a <code>ContentControl</code> carrying <code>MahApps.Styles.ContentControl.PathIcon</code> with the geometry as its <code>Content</code>, and that style key is gone.</p>
+</div>
 <h2 id="iconelement">IconElement</h2>
-<p><code>FontIcon</code> derives from <code>IconElement</code>, an abstract class that derives from <code>Control</code> and adds nothing at all — it exists as a common base so icon types can be treated alike. <code>FontIcon</code> is currently the only one in the library, so there is no reason to type a property as <code>IconElement</code> rather than <code>FontIcon</code> today.</p>
+<p><code>FontIcon</code> and <code>PathIcon</code> both derive from <code>IconElement</code>, which is where the colour is settled.</p>
+<p><code>Foreground</code> is registered on it to inherit, and an icon that was given none of its own takes the one of its <strong>visual</strong> parent rather than its logical one. That is the difference that matters: an icon handed to a <code>Button</code> as content is put into the button's template, so its logical parent is the button and its visual parent is whatever part of the template holds the content. Binding to the visual parent is what makes the icon follow the colour the template is painting with, including the one a checked or disabled state switches to.</p>
+<p><code>InheritsForegroundFromVisualParent</code> is the read-only property saying whether that is happening. It is <code>True</code> while the icon carries no <code>Foreground</code> of its own and its two parents differ, which is exactly the case of an icon handed to a control as content. Give the icon a <code>Foreground</code> and it stops, and the colour you set is the colour it keeps.</p>
+<div class="alert alert-info"><p><code>IconElement</code> was an empty base class in 2.4.11 with <code>FontIcon</code> as its only subclass. Both the colour handling and <code>PathIcon</code> are new on <code>develop</code>.</p>
+</div>
 <h2 id="related">Related</h2>
-<p>For vector icons rather than font glyphs, <code>MahApps.Styles.ContentControl.PathIcon</code> takes path geometry as its content and is what the library's own templates use for chevrons and similar marks.</p>
+<p><a href="https://github.com/MahApps/MahApps.Metro.IconPacks">MahApps.Metro.IconPacks</a> is the separate package with the large icon sets in it, if neither a symbol font nor a path of your own is what you want. <a href="../styles/buttons">Buttons</a> and <a href="../styles/togglebutton">ToggleButton</a> show an icon used as the content of a control.</p>
 
 
                                         </div>
@@ -396,6 +416,7 @@ FontIcon
                     <div class="sidebar-nav-item"><a href="#size-and-colour">Size and colour</a></div>
                     <div class="sidebar-nav-item"><a href="#it-is-decoration-not-a-control">It is decoration, not a control</a></div>
                     <div class="sidebar-nav-item"><a href="#finding-glyph-codes">Finding glyph codes</a></div>
+                    <div class="sidebar-nav-item"><a href="#pathicon">PathIcon</a></div>
                     <div class="sidebar-nav-item"><a href="#iconelement">IconElement</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>

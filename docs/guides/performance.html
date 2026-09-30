@@ -141,6 +141,9 @@ Performance with many views
     <a href="/mahapps.com/docs/guides/quick-start">Quick Start</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/guides/migration-to-v3.0">Migration to v3.0</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/guides/migration-to-v2.0">Migration to v2.0</a>
 </div>
 <div class="sidebar-nav-item active">
@@ -214,7 +217,7 @@ public partial class App : Application
 </code></pre>
 <p>The empty loop body is the whole point: asking for the entries is what resolves them.</p>
 <h3 id="keep-the-tabs-you-switch-between">Keep the tabs you switch between</h3>
-<p>Where views are tabs, the cheapest answer is not to rebuild them at all. <a href="../controls/MetroTabControl">MetroTabControl</a> can keep each tab's content alive:</p>
+<p>Where views are tabs, the cheapest answer is not to rebuild them at all. <a href="../controls/metrotabcontrol">MetroTabControl</a> can keep each tab's content alive:</p>
 <pre><code class="language-xml">&lt;mah:MetroTabControl KeepVisualTreeInMemoryWhenChangingTabs=&quot;True&quot; /&gt;
 </code></pre>
 <p>That trades memory for time, and it only helps for switching between tabs that already exist. Views that genuinely come and go still add their references.</p>

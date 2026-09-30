@@ -204,6 +204,9 @@ TimePicker
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ TimePicker
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ TimePicker
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ TimePicker
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ TimePicker
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -337,12 +346,12 @@ TimePicker
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><code>TimePicker</code> is a text field with a drop-down for picking a time. It is <a href="DateTimePicker">DateTimePicker</a> without the calendar half — both derive from <code>TimePickerBase</code> and share one control template.</p>
+<p><code>TimePicker</code> is a text field with a drop-down for picking a time. It is <a href="datetimepicker">DateTimePicker</a> without the calendar half — both derive from <code>TimePickerBase</code> and share one control template.</p>
 <p><img src="images/timepicker-closed.png" alt="Empty, with a value, and with a clear button" /></p>
 <pre><code class="language-xml">&lt;mah:TimePicker Width=&quot;170&quot; SelectedDateTime=&quot;{Binding Departure}&quot; /&gt;
 </code></pre>
 <h2 id="how-it-differs-from-datetimepicker">How it differs from DateTimePicker</h2>
-<p>Almost nothing separates the two, which is worth knowing because everything on the <a href="DateTimePicker">DateTimePicker</a> page applies here as well.</p>
+<p>Almost nothing separates the two, which is worth knowing because everything on the <a href="datetimepicker">DateTimePicker</a> page applies here as well.</p>
 <table>
 <thead>
 <tr>
@@ -369,7 +378,7 @@ TimePicker
 </tr>
 </tbody>
 </table>
-<div class="alert alert-info"><p><code>IsDatePickerVisible</code> is a <strong>read-only</strong> dependency property with a <code>protected</code> setter, so you cannot turn the calendar back on from XAML. Use a <a href="DateTimePicker">DateTimePicker</a> if you want both halves.</p>
+<div class="alert alert-info"><p><code>IsDatePickerVisible</code> is a <strong>read-only</strong> dependency property with a <code>protected</code> setter, so you cannot turn the calendar back on from XAML. Use a <a href="datetimepicker">DateTimePicker</a> if you want both halves.</p>
 </div>
 <h2 id="the-value">The value</h2>
 <p><code>SelectedDateTime</code> is a <code>DateTime?</code>, not a <code>TimeSpan</code> — the same property the <code>DateTimePicker</code> uses. When the user types a time, <code>TimePicker</code> parses it and keeps whatever date was there:</p>
@@ -430,7 +439,7 @@ TimePicker
 <p><code>SelectedDateTimeFormat</code> takes a <a href="https://learn.microsoft.com/dotnet/standard/base-types/custom-date-and-time-format-strings">custom format string</a> and is read back through the same format first, so a value the picker wrote always parses:</p>
 <pre><code class="language-xml">&lt;mah:TimePicker SelectedDateTimeFormat=&quot;HH:mm&quot; /&gt;
 </code></pre>
-<p>It sits on <code>TimePickerBase</code>, so both pickers take one, and <a href="DateTimePicker#the-format">DateTimePicker</a> covers it in full. So does <code>DateTimeValidationError</code>, the event that says what was typed when the field holds something that is not a time — both are new on <code>develop</code> (<a href="https://github.com/MahApps/MahApps.Metro/issues/4644">#4644</a> and <a href="https://github.com/MahApps/MahApps.Metro/issues/4645">#4645</a>).</p>
+<p>It sits on <code>TimePickerBase</code>, so both pickers take one, and <a href="datetimepicker#the-format">DateTimePicker</a> covers it in full. So does <code>DateTimeValidationError</code>, the event that says what was typed when the field holds something that is not a time — both are new on <code>develop</code> (<a href="https://github.com/MahApps/MahApps.Metro/issues/4644">#4644</a> and <a href="https://github.com/MahApps/MahApps.Metro/issues/4645">#4645</a>).</p>
 <h2 id="the-drop-down">The drop-down</h2>
 <p><img src="images/timepicker-dropdown.png" alt="The clock and the three lists" /></p>
 <table>
@@ -507,11 +516,11 @@ TimePicker
 <pre><code class="language-xml">&lt;mah:TimePicker SourceMinutes=&quot;{Binding QuarterHours}&quot; /&gt;
 </code></pre>
 <p>Each has a matching <code>HoursItemStringFormat</code>, <code>MinutesItemStringFormat</code> and <code>SecondsItemStringFormat</code>.</p>
-<p>The button under the lists puts the picker on the time of day in one press. It is the same one the <code>DateTimePicker</code> carries, described on <a href="DateTimePicker">its page</a> along with the caption property and the note that it is new on <code>develop</code>.</p>
+<p>The button under the lists puts the picker on the time of day in one press. It is the same one the <code>DateTimePicker</code> carries, described on <a href="datetimepicker">its page</a> along with the caption property and the note that it is new on <code>develop</code>.</p>
 <h3 id="reaching-into-the-drop-down">Reaching into the drop-down</h3>
 <div class="alert alert-info"><p><strong>The three properties below and the <code>AnalogClock</code> control are new on <code>develop</code></strong>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4514">#4514</a>. In a released version the clock and the popup are markup in the middle of the shared template, so the only way at either of them is a copy of the whole template.</p>
 </div>
-<p>The clock face is a control of its own, <a href="AnalogClock">AnalogClock</a>, and the picker carries three properties that reach it and the popup around it.</p>
+<p>The clock face is a control of its own, <a href="analogclock">AnalogClock</a>, and the picker carries three properties that reach it and the popup around it.</p>
 <p><code>ClockSize</code> is the one the issue asked for. The face is drawn at its natural 120 and scaled to whatever size it is given, so one number takes the ring, the dots and the hands with it, and the drop-down grows to fit:</p>
 <pre><code class="language-xml">&lt;mah:TimePicker ClockSize=&quot;200&quot; /&gt;
 </code></pre>
@@ -532,7 +541,7 @@ TimePicker
 </code></pre>
 <h2 id="two-nicer-alternatives">Two nicer alternatives</h2>
 <p>On <code>develop</code> the two other style sets carry the pickers themselves, so there is nothing to download: merge <code>Styles/Win10/Controls.xaml</code> or <code>Styles/WinUI/Controls.xaml</code> instead of <code>Styles/Controls.xaml</code> and the <code>TimePicker</code> wears that set without another line (<a href="https://github.com/MahApps/MahApps.Metro/issues/4514">#4514</a>). The keys are the same ones the drop-ins use, <code>MahApps.Styles.TimePicker.Win10</code> and <code>MahApps.Styles.TimePicker.WinUI</code>, and both sets bring the field chrome of their text boxes along with the time selection described below.</p>
-<p>In a released version they are the two drop-in dictionaries that restyle the <a href="DateTimePicker">DateTimePicker</a>, one <code>TimePicker</code> style each.</p>
+<p>In a released version they are the two drop-in dictionaries that restyle the <a href="datetimepicker">DateTimePicker</a>, one <code>TimePicker</code> style each.</p>
 <p><img src="images/timepicker-variants.png" alt="The built-in field, the Win10 one and the WinUI one" /></p>
 <table>
 <thead>
@@ -555,7 +564,7 @@ TimePicker
 </tr>
 </tbody>
 </table>
-<p>The files are named for the <code>DateTimePicker</code> because they cover both controls. For a <code>TimePicker</code> you only need the one dictionary — the calendar dictionary the <a href="DateTimePicker">DateTimePicker</a> page asks for is used by the <code>DateTimePicker</code> styles alone.</p>
+<p>The files are named for the <code>DateTimePicker</code> because they cover both controls. For a <code>TimePicker</code> you only need the one dictionary — the calendar dictionary the <a href="datetimepicker">DateTimePicker</a> page asks for is used by the <code>DateTimePicker</code> styles alone.</p>
 <pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
 &lt;ResourceDictionary Source=&quot;Styles/Controls.DateTimePicker.WinUI.xaml&quot; /&gt;
 </code></pre>
@@ -567,7 +576,7 @@ TimePicker
 <p>No chrome, no chevrons, just centred numbers. Open a column and the selected value is an accent-filled pill:</p>
 <p><img src="images/timepicker-dropdown-winui-open.png" alt="The hour column open" /></p>
 <p>The Win10 variant is the same row; the two only part company inside the open list, where one pill is rounded and the other square. Set <code>IsClockVisible=&quot;True&quot;</code> in a derived style to keep the clock.</p>
-<p>Reaching those lists at all needs a trick, because they are plain <code>ComboBox</code>es with no style of their own — see <a href="DateTimePicker">the DateTimePicker page</a> for how <code>Style.Resources</code> scopes an implicit style to one control's drop-down.</p>
+<p>Reaching those lists at all needs a trick, because they are plain <code>ComboBox</code>es with no style of their own — see <a href="datetimepicker">the DateTimePicker page</a> for how <code>Style.Resources</code> scopes an implicit style to one control's drop-down.</p>
 <div class="alert alert-warning"><p>The drop-down frame stays square in a released version, whichever variant you use, because <code>PART_PopupBorder</code> in the shared template has no <code>CornerRadius</code>. It is <strong>fixed on <code>develop</code></strong> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4582">#4582</a>, where that border follows <code>ControlsHelper.CornerRadius</code> and clips its content to it. Its background and border colour still come from the <code>MahApps.Brushes.Control.Background</code> and <code>.Border</code> keys rather than from the control.</p>
 </div>
 <h2 id="watermark-and-the-clear-button">Watermark and the clear button</h2>
@@ -577,7 +586,7 @@ TimePicker
                 mah:TextBoxHelper.ClearTextButton=&quot;True&quot; /&gt;
 </code></pre>
 <h2 id="related">Related</h2>
-<p><a href="DateTimePicker">DateTimePicker</a> for date and time together — and for the properties both controls share. <a href="../styles/datepicker">DatePicker</a> for the date alone.</p>
+<p><a href="datetimepicker">DateTimePicker</a> for date and time together — and for the properties both controls share. <a href="../styles/datepicker">DatePicker</a> for the date alone.</p>
 
 
                                         </div>

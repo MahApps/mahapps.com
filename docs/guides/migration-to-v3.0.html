@@ -31,7 +31,7 @@
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
 
-        <title>MahApps.Metro - What a screen reader hears</title>
+        <title>MahApps.Metro - Migration to v3.0</title>
     </head>
     <body class="d-flex flex-column">
         <div class="flex-grow-1 d-flex flex-column">
@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="text-white m-0 text-break title">
 
-What a screen reader hears
+Migration to v3.0
                                         </div>
                                     </div>
                                         <div class="navbar navbar-expand-md navbar-dark p-0">
@@ -140,7 +140,7 @@ What a screen reader hears
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/guides/quick-start">Quick Start</a>
 </div>
-<div class="sidebar-nav-item">
+<div class="sidebar-nav-item active">
     <a href="/mahapps.com/docs/guides/migration-to-v3.0">Migration to v3.0</a>
 </div>
 <div class="sidebar-nav-item">
@@ -149,79 +149,206 @@ What a screen reader hears
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/guides/performance">Performance with many views</a>
 </div>
-<div class="sidebar-nav-item active">
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/guides/accessibility">What a screen reader hears</a>
 </div>                </div>
     </div>
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>A screen reader, an inspection tool and a UI test all ask the same thing: what is this element, what is it called, and what does it hold. WPF answers most of that from the control itself, and a control library has to fill in the rest.</p>
-<h2 id="names-for-buttons-drawn-from-a-picture">Names for buttons drawn from a picture</h2>
-<p>The name of a button comes from its content, and the content of a button drawn from a glyph is the path that glyph is cut from. Point a screen reader at one and it reads the coordinates out.</p>
-<p>Every button of this kind carries a name of its own: the clear button on a text box, the one that opens a picker, the arrows of a scroll bar, the ones that scroll a tab strip, the button that shuts a flyout, the window buttons, and the overflow button beside the window commands.</p>
-<div class="alert alert-warning"><p><strong>In a released version several of them read out their path data.</strong> The button that opens a picker announces a page and a half of coordinates, and the one that empties a text box announces the letter its cross is cut from. Fixed on <code>develop</code>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>
+<p>This guide covers the step from 2.4.11 to 3.0. It is a much smaller step than <a href="migration-to-v2.0">the one to v2.0</a> was: a handful of names went, a few more changed shape, and most of what is new is new rather than different.</p>
+<p>The part worth reading twice is <a href="#what-changed-without-telling-you">what changed without telling you</a>. Everything above it the compiler or the XAML parser will point at; everything in it compiles and then behaves differently.</p>
+<div class="alert alert-info"><p>v3 is not released yet. What is described here is <code>develop</code> and the 3.0.0 prereleases, and it can still move before it ships.</p>
 </div>
-<h3 id="they-are-translated">They are translated</h3>
-<p>Microsoft asks for an accessible name the same way it asks for anything on screen: accurate, concise, unambiguous and localized. The names live in <code>Lang/Automation.resx</code>, with a German set beside it, and a language nobody has translated falls back to English, the way the colour names do. A translation is a welcome pull request: copy <code>Automation.resx</code> to <code>Automation.&lt;culture&gt;.resx</code> and fill in the values.</p>
-<p>The button that opens a picker says <em>Show Calendar</em>, which is the wording WPF gives its own <code>DatePicker</code>, and <em>Show Clock</em> where the drop-down has no calendar in it.</p>
-<h2 id="what-each-control-tells-a-client">What each control tells a client</h2>
+<h2 id="start-with-the-target-framework">Start with the target framework</h2>
+<p>This is the first thing to settle, because nothing else matters until the package restores.</p>
 <table>
 <thead>
 <tr>
 <th></th>
-<th></th>
+<th>2.4.11</th>
+<th>v3</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>Tile</code></td>
-<td>named after its <code>Title</code> when the content leaves the name empty</td>
+<td>.NET Framework</td>
+<td>4.5.2, 4.6, 4.7</td>
+<td><strong>4.6.2</strong></td>
 </tr>
 <tr>
-<td><code>Badged</code></td>
-<td>hands the badge over as the status of what it wraps</td>
+<td>.NET</td>
+<td>Core 3.0, Core 3.1</td>
+<td><strong>6.0 and 8.0</strong>, Windows</td>
 </tr>
 <tr>
-<td><code>RangeSlider</code></td>
-<td>a slider reading out both ends, with each outer thumb carrying the value it stands for</td>
-</tr>
-<tr>
-<td><code>HotKeyBox</code></td>
-<td>hands over the combination it holds</td>
-</tr>
-<tr>
-<td><code>DropDownButton</code></td>
-<td>a button that opens and shuts, named after what it says on it</td>
-</tr>
-<tr>
-<td><code>FlipView</code></td>
-<td>says which page is showing and how many there are</td>
-</tr>
-<tr>
-<td><code>ColorCanvas</code></td>
-<td>every channel named after the letter beside it, slider and box alike</td>
-</tr>
-<tr>
-<td><code>FlyoutsControl</code></td>
-<td>answers a point only while a flyout is open, so the content underneath stays reachable</td>
-</tr>
-<tr>
-<td><code>ToggleSwitch</code>, <code>NumericUpDown</code>, <code>MetroWindow</code>, <code>Flyout</code>, <code>MetroHeader</code>, <code>ProgressRing</code>, <code>WindowCommands</code></td>
-<td>carry a peer of their own</td>
+<td>ControlzEx</td>
+<td>4.x</td>
+<td><strong>7.0</strong></td>
 </tr>
 </tbody>
 </table>
-<p>Everything else takes what its base type gives it. A <code>MetroTabControl</code> is a tab control, a <code>MetroProgressBar</code> a progress bar, a <code>SplitButton</code> a combo box, and each of them reports the class name of that base type rather than its own.</p>
-<div class="alert alert-warning"><p><strong>All of these are new on <code>develop</code>.</strong> In a released version a <code>HotKeyBox</code> is not in the tree, so the combination it holds hangs off nothing; a <code>DropDownButton</code> arrives as a list with no name, because the entries of its menu are its items and the button is nowhere to be seen; a <code>FlipView</code> is an empty list; and the seven channels of a <code>ColorCanvas</code> are sliders nobody named. This is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>
-<p>The odd one out is <code>RevealImage</code>. Its <code>Text</code> was never bound to anything in the template, so the caption was missing from the screen as much as from a reader. Also fixed on <code>develop</code>.</p>
-</div>
-<p>A flip view is the one that could not be given the usual shape. It builds nothing for the pages it is not showing, so there is no list of pages for a client to walk through. Rather than offer an empty selection it says where in the run the current page is, and the page itself, banner and all, is in the tree the way any content is.</p>
-<h2 id="reaching-a-window-at-all">Reaching a window at all</h2>
-<p>An inspection tool asks Windows what sits under the pointer, and that question goes by the box an element occupies rather than by what a click would hit. Anything lying over the whole window answers it, whether or not it draws something.</p>
-<p>That is what the flyouts control did from .NET 8 on, which left nothing in a <code>MetroWindow</code> reachable for Accessibility Insights, inspect.exe, FlaUInspect or WinAppDriver. It is fixed on <code>develop</code>, and the <a href="../controls/flyouts">Flyouts</a> page has the detail.</p>
+<p>An application on .NET Framework 4.5.2 or 4.6 has to move to 4.6.2 or later. One on .NET Core 3.1 has to move to .NET 6 or later.</p>
+<p>ControlzEx going from 4 to 7 is what carries most of the window changes below, and it is worth knowing that <code>ThemeManager</code>, <code>Theme</code> and <code>LibraryTheme</code> are its types rather than MahApps ones. That was already true in 2.4.11.</p>
+<h2 id="the-window">The window</h2>
+<p><code>MetroWindow</code> derives from <code>ControlzEx.WindowChromeWindow</code> now rather than straight from <code>Window</code>. Most of what moved moved quietly: <code>IgnoreTaskbarOnMaximize</code>, <code>KeepBorderOnMaximize</code>, <code>ResizeBorderThickness</code>, <code>ShowMinButton</code> and <code>ShowMaxRestoreButton</code> are properties of that base now and are set on a <code>MetroWindow</code> exactly as before.</p>
+<p>Three do not.</p>
+<table>
+<thead>
+<tr>
+<th>2.4.11</th>
+<th>v3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GlowBrush</code></td>
+<td><code>GlowColor</code>, a <code>Color?</code></td>
+</tr>
+<tr>
+<td><code>NonActiveGlowBrush</code></td>
+<td><code>NonActiveGlowColor</code>, a <code>Color?</code></td>
+</tr>
+<tr>
+<td><code>UseNoneWindowStyle=&quot;True&quot;</code></td>
+<td><code>ShowTitleBar=&quot;False&quot;</code>, which is all it ever did</td>
+</tr>
+<tr>
+<td><code>TryToBeFlickerFree</code></td>
+<td>gone, with nothing in its place</td>
+</tr>
+</tbody>
+</table>
+<p>The glow taking a colour rather than a brush means the resource key changes with it:</p>
+<pre><code class="language-xml">&lt;!-- 2.4.11 --&gt;
+&lt;mah:MetroWindow GlowBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot; /&gt;
+
+&lt;!-- v3 --&gt;
+&lt;mah:MetroWindow GlowColor=&quot;{DynamicResource MahApps.Colors.Accent}&quot; /&gt;
+</code></pre>
+<p>In return the base brings <code>GlowDepth</code>, <code>IsGlowTransitionEnabled</code>, <code>PreferDWMBorderColor</code> and <code>CornerPreference</code>, the last of which is how Windows 11 is asked to round the corners or leave them square. <a href="../controls/metrowindow">MetroWindow</a> has the table.</p>
+<h2 id="style-keys-that-are-gone">Style keys that are gone</h2>
+<p>Eleven keys were removed. A <code>StaticResource</code> to one of them throws at load; a <code>DynamicResource</code> quietly resolves to nothing, which for a <code>Style</code> means a control with no template at all.</p>
+<table>
+<thead>
+<tr>
+<th>Gone</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.Button.MetroSquare</code></td>
+<td><code>MahApps.Styles.Button.Square</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.Button.MetroSquare.Accent</code></td>
+<td><code>MahApps.Styles.Button.Square.Accent</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.ContentControl.PathIcon</code></td>
+<td>the <code>PathIcon</code> control, see below</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.TextBox.Button</code></td>
+<td>the base style carries the button now</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.RichTextBox.Button</code></td>
+<td>the same</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.PasswordBox.Button</code></td>
+<td>the same</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.PasswordBox.Button.Revealed</code></td>
+<td><code>MahApps.Styles.PasswordBox.Revealed</code></td>
+</tr>
+<tr>
+<td><code>MahApps.DropShadowEffect.WaitingForData</code></td>
+<td>nothing; the feature went</td>
+</tr>
+<tr>
+<td><code>MahApps.Storyboard.WaitingForData</code></td>
+<td>the same</td>
+</tr>
+<tr>
+<td><code>MahApps.Templates.DateTimePicker.MinuteIndicator</code></td>
+<td><code>MahApps.Templates.AnalogClock.MinuteIndicator</code></td>
+</tr>
+<tr>
+<td><code>MahApps.Templates.DateTimePicker.FiveMinuteIndicator</code></td>
+<td><code>MahApps.Templates.AnalogClock.FiveMinuteIndicator</code></td>
+</tr>
+</tbody>
+</table>
+<p>The three <code>.Button</code> styles and <code>TextBoxHelper.TextButton</code> went together. In 2.4.11 a button of your own on a text box needed that style, and the style set the flag that made the button appear. On v3 the base style carries the button, so <code>TextBoxHelper.ButtonCommand</code> on an ordinary box is all it takes.</p>
+<pre><code class="language-xml">&lt;!-- 2.4.11 --&gt;
+&lt;TextBox Style=&quot;{StaticResource MahApps.Styles.TextBox.Button}&quot;
+         mah:TextBoxHelper.ButtonCommand=&quot;{Binding SearchCommand}&quot; /&gt;
+
+&lt;!-- v3 --&gt;
+&lt;TextBox mah:TextBoxHelper.ButtonCommand=&quot;{Binding SearchCommand}&quot; /&gt;
+</code></pre>
+<h2 id="attached-properties-that-are-gone">Attached properties that are gone</h2>
+<table>
+<thead>
+<tr>
+<th>Gone</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TextBoxHelper.TextButton</code></td>
+<td><code>TextBoxHelper.ClearTextButton</code>, see above</td>
+</tr>
+<tr>
+<td><code>TextBoxHelper.IsWaitingForData</code></td>
+<td>a <a href="../controls/progressring">ProgressRing</a> or an indeterminate bar beside the control</td>
+</tr>
+<tr>
+<td><code>TextBoxHelper.IsClearTextButtonBehaviorEnabled</code></td>
+<td>nothing; the templates set it, and the clearing is <code>MahAppsCommands.ClearControlCommand</code> now</td>
+</tr>
+<tr>
+<td><code>ControlsHelper.FocusBorderThickness</code></td>
+<td>marked obsolete rather than removed; <code>ControlsHelper.FocusBorderBrush</code> colours the border the control already has, without the jump a thicker one causes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="types-that-changed-shape">Types that changed shape</h2>
+<p><strong><code>PathIcon</code> is a control.</strong> In 2.4.11 a vector icon was a <code>ContentControl</code> wearing a style with the geometry as its content. Now it is a control of its own with a <code>Data</code> property, which is what the library's own templates use.</p>
+<pre><code class="language-xml">&lt;!-- 2.4.11 --&gt;
+&lt;ContentControl Width=&quot;16&quot; Height=&quot;16&quot;
+                Content=&quot;M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z&quot;
+                Style=&quot;{DynamicResource MahApps.Styles.ContentControl.PathIcon}&quot; /&gt;
+
+&lt;!-- v3 --&gt;
+&lt;mah:PathIcon Width=&quot;16&quot; Height=&quot;16&quot; Data=&quot;M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z&quot; /&gt;
+</code></pre>
+<p><strong><code>ColorHelper</code> is an instance class.</strong> It was static. Calls go through <code>ColorHelper.DefaultInstance</code> or through an instance of your own, <code>ColorNamesDictionary</code> is read-only, the dictionary key is <code>Color</code> rather than <code>Color?</code>, and <code>GetColorName</code> takes a third argument saying whether the alpha channel counts. <code>ColorFromString</code> and <code>GetColorName</code> are <code>virtual</code>, so the whole lookup can be replaced, which is what the change was for. <a href="../controls/colorpicker">ColorPicker</a> has the detail.</p>
+<p><strong><code>NumericUpDown</code> has a generic base.</strong> It derives from <code>NumericUpDownBase&lt;double&gt;</code> now, with <code>DecimalUpDown</code>, <code>IntegerUpDown</code> and <code>LongUpDown</code> beside it. <code>Value</code> is still a <code>double?</code> on <code>NumericUpDown</code> itself and nothing in XAML changes. What does change is the implicit style: it targets <code>NumericUpDownBase</code>, and WPF matches an implicit style by the exact type, so a style of your own needs a one-line entry per control. <a href="../controls/numericupdown">NumericUpDown</a> shows it.</p>
+<p><strong>A HamburgerMenu item is a <code>FrameworkContentElement</code>.</strong> It was a <code>Freezable</code>. <code>Tag</code>, <code>IsEnabled</code> and <code>ToolTip</code> are the framework's own properties now rather than MahApps ones, so nothing in XAML changes; what you gain is that the items sit in the logical tree, where a <code>DynamicResource</code> hears about a theme change and a binding reaches the <code>DataContext</code> of the window.</p>
+<p><strong>Four public types went.</strong> <code>BindableResourceBehavior</code>, <code>BorderlessWindowBehavior</code>, <code>WinApiHelper</code> and <code>MetroTabItemCloseButtonWidthConverter</code>. <code>Flyout.OverrideFlyoutResources</code> went with them, so a <code>Flyout</code> of your own that overrode it no longer compiles.</p>
+<p><strong>The dialogs lost their external window API.</strong> <code>BaseMetroDialog.RequestCloseAsync</code>, <code>OnRequestClose</code> and <code>ParentDialogWindow</code> are gone, and a login dialog now follows the window it belongs to. <a href="../dialogs/custom-dialogs">Custom dialogs</a> covers what is left.</p>
+<h2 id="what-changed-without-telling-you">What changed without telling you</h2>
+<p>Everything here compiles, loads and then does something else.</p>
+<p><strong>A window glows now.</strong> The default style sets <code>GlowColor</code> to the accent, which it never did in 2.4.11. An application that deliberately had no glow has one, and takes it away with <code>GlowColor=&quot;{x:Null}&quot;</code>.</p>
+<p><strong>A <code>ProgressBar</code> honours <code>Foreground</code>.</strong> In 2.4.11 the template filled the indicator from <code>MahApps.Brushes.Progress</code> rather than from a template binding, so <code>Foreground</code> was dead and the way to recolour one bar was a resource of its own. Both work now, and an application that set <code>Foreground</code> in passing and saw nothing happen will suddenly see it. <a href="https://github.com/MahApps/MahApps.Metro/issues/4579">#4579</a>.</p>
+<p><strong>A close button on a tab can be turned down.</strong> A <code>CloseTabCommand</code> on a <code>MetroTabItem</code> whose <code>CanExecute</code> says no now keeps its tab; in 2.4.11 the command simply did not run and the tab went anyway. A handler of the closing event can also stop a <code>CloseTabCommand</code> on the control, which it could not before, because the event was not raised at all when that command was set. <a href="../controls/metrotabcontrol">MetroTabControl</a>.</p>
+<p><strong>A numeric grid cell is a <code>TextBlock</code> at rest.</strong> <code>DataGridNumericUpDownColumn</code> showed a stripped-down <code>NumericUpDown</code> in every cell that was not being edited and shows plain text now. A style of your own hung on <code>MahApps.Styles.NumericUpDown.DataGrid</code> no longer reaches the cell; the resting style is <code>MahApps.Styles.TextBlock.NumericUpDown.DataGrid</code>.</p>
+<p><strong>An expander glyph keeps the header's colour under the pointer.</strong> It used to turn grey, which on the accent coloured band it sits on left almost nothing to see. <a href="https://github.com/MahApps/MahApps.Metro/issues/4386">#4386</a>.</p>
+<p><strong>An underline falls back rather than vanishing.</strong> <code>TabControlHelper</code>'s four underline brushes each painted their own state and nothing stood in for one that was empty, so a brush bound to something that could be cleared left the tab with no line. A state nobody handed a brush to now falls back to the nearest one that was.</p>
+<p><strong>A dialog knows its window earlier.</strong> <code>OwningWindow</code> is set when the dialog is shown rather than later, which matters to code that reads it from a handler.</p>
+<h2 id="what-is-new-and-worth-picking-up">What is new and worth picking up</h2>
+<p>Two whole style sets, <a href="../stylevariants/win10">Windows 10</a> and <a href="../stylevariants/winui">WinUI</a>, which put the whole library in the look of one of those two. They are opt-in: merge one dictionary and every control follows.</p>
+<p>New controls: <a href="../controls/autosuggestbox">AutoSuggestBox</a>, <a href="../controls/analogclock">AnalogClock</a>, <a href="../controls/multiselectioncombobox">MultiSelectionComboBox</a>, <a href="../controls/fonticon#pathicon">PathIcon</a>, and <code>DecimalUpDown</code>, <code>IntegerUpDown</code> and <code>LongUpDown</code> with a <code>DataGrid</code> column each.</p>
+<p>New helpers: <a href="../helper/groupitemhelper">GroupItemHelper</a> for a group header that holds at the top and picks its whole group, <a href="../helper/progressbarhelper">ProgressBarHelper</a> for the paused and error colours of a bar, and <a href="../helper/contextmenuhelper">ContextMenuHelper</a> for a menu that names its items the way Windows does.</p>
+<p>Elsewhere: a closing tab can be <a href="../controls/metrotabcontrol#taking-your-time-over-the-answer">held while a handler asks</a>, an input dialog can <a href="../dialogs/input-dialog">check what was typed</a>, a window can keep its placement <a href="../controls/metrowindow#where-the-placement-is-stored">in a file rather than in the application settings</a>, and every custom control has an automation peer, so <a href="accessibility">what a screen reader hears</a> is a good deal more than it was.</p>
 <h2 id="related">Related</h2>
-<p><a href="../controls/rangeslider">RangeSlider</a> and <a href="../styles/slider">Slider</a> describe how a test drives them. <a href="../controls/tile">Tile</a> and <a href="../controls/badged">Badged</a> say what each hands to a reader.</p>
+<p><a href="quick-start">Quick Start</a> is the shortest path to a working window. <a href="migration-to-v2.0">Migration to v2.0</a> is the older guide and still the place to look for the v1 resource key renames, since those names have not come back.</p>
 
 
                                         </div>
@@ -230,16 +357,17 @@ What a screen reader hears
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#names-for-buttons-drawn-from-a-picture">Names for buttons drawn from a picture</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#they-are-translated">They are translated</a></div>
-                        </div>
-                    <div class="sidebar-nav-item"><a href="#what-each-control-tells-a-client">What each control tells a client</a></div>
-                    <div class="sidebar-nav-item"><a href="#reaching-a-window-at-all">Reaching a window at all</a></div>
+                    <div class="sidebar-nav-item"><a href="#start-with-the-target-framework">Start with the target framework</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-window">The window</a></div>
+                    <div class="sidebar-nav-item"><a href="#style-keys-that-are-gone">Style keys that are gone</a></div>
+                    <div class="sidebar-nav-item"><a href="#attached-properties-that-are-gone">Attached properties that are gone</a></div>
+                    <div class="sidebar-nav-item"><a href="#types-that-changed-shape">Types that changed shape</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-changed-without-telling-you">What changed without telling you</a></div>
+                    <div class="sidebar-nav-item"><a href="#what-is-new-and-worth-picking-up">What is new and worth picking up</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/guides/accessibility.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/guides/migration-to-v3.0.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
                             </div>

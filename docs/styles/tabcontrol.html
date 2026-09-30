@@ -302,7 +302,7 @@ TabControl
 <p><code>AnimatedSingleRow</code> does the same and additionally keeps the header strip on one line. Where the default <code>TabPanel</code> wraps overflowing tabs onto a second row, this one puts them in a scroll viewer with a left and a right button:</p>
 <pre><code class="language-xml">&lt;TabControl Style=&quot;{StaticResource MahApps.Styles.TabControl.AnimatedSingleRow}&quot; /&gt;
 </code></pre>
-<p>Both are keyed, so they have to be asked for. They are ordinary <code>TabControl</code> styles — for the MahApps controls that do the same thing, see <a href="../controls/MetroTabControl">MetroTabControl</a>.</p>
+<p>Both are keyed, so they have to be asked for. They are ordinary <code>TabControl</code> styles — for the MahApps controls that do the same thing, see <a href="../controls/metrotabcontrol">MetroTabControl</a>.</p>
 <h2 id="where-the-strip-sits">Where the strip sits</h2>
 <p><img src="images/tabcontrol-placement.png" alt="Top, Bottom, Left and Right" /></p>
 <p><code>TabStripPlacement</code> is WPF's, and the item template has a trigger for each of the four values, so the selected tab and its underline turn to face the content whichever side the strip is on.</p>
@@ -323,7 +323,7 @@ TabControl
 <p><code>BorderThickness</code> is <code>0</code> while <code>BorderBrush</code> is the accent — the border is what the selected-tab marker uses, so switching the thickness on gives you an accent frame rather than a hairline.</p>
 <p>The header sits in a <code>mah:ContentControlEx</code>, so <code>ControlsHelper.ContentCharacterCasing</code> works on a tab header, and <code>HeaderedControlHelper</code> supplies the font.</p>
 <h2 id="related">Related</h2>
-<p><a href="../controls/MetroTabControl">MetroTabControl</a> is the MahApps control with closable tabs and a choice about whether tab contents stay in memory; <a href="../controls/MetroTabItem">MetroTabItem</a> is its item.</p>
+<p><a href="../controls/metrotabcontrol">MetroTabControl</a> is the MahApps control with closable tabs and a choice about whether tab contents stay in memory; <a href="../controls/metrotabitem">MetroTabItem</a> is its item.</p>
 
 
                                         </div>

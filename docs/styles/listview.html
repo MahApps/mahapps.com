@@ -311,6 +311,13 @@ ListView
 </code></pre>
 <p>The header content sits in a <code>mah:ContentControlEx</code>, which is what makes the casing work, and a <code>Thumb</code> on the right edge is the resize gripper.</p>
 <p>The list's own template wraps everything in <code>MahApps.Styles.ScrollViewer.GridView</code> rather than the ordinary scroll viewer — that is the one that keeps the header row in place while the rows scroll under it. See <a href="scrollbars">ScrollBar</a>.</p>
+<h3 id="dragging-a-column-into-another-place">Dragging a column into another place</h3>
+<p>Dragging a header shows a line where the column would land. WPF draws that line navy and gives you no say in it, which on a dark theme is a navy line on a dark ground.</p>
+<div class="alert alert-info"><p><strong>New on <code>develop</code>.</strong> The template uses <code>GridViewHeaderRowPresenterEx</code> rather than WPF's own presenter, which colours the line with <code>ItemHelper.GridViewHeaderIndicatorBrush</code>. The list style sets it to the accent, and setting it on the <code>ListView</code> is how you pick another colour.</p>
+<pre><code class="language-xml">&lt;ListView mah:ItemHelper.GridViewHeaderIndicatorBrush=&quot;{DynamicResource MahApps.Brushes.Gray2}&quot; /&gt;
+</code></pre>
+<p>In 2.4.11 the line is navy and stays navy.</p>
+</div>
 <h2 id="pixel-scrolling-by-default">Pixel scrolling by default</h2>
 <div class="alert alert-info"><p><strong>In a released version a <code>ListView</code> does not virtualise at all.</strong> 2.4.11 sets <code>ScrollViewer.CanContentScroll</code> to <strong><code>False</code></strong> on <code>MahApps.Styles.ListView</code>, where <a href="listbox">ListBox</a> sets it to <code>True</code>, so the list scrolls by pixel, which is smooth and right for rows of differing heights, and every row is realised up front. On <code>develop</code> that setter is <code>True</code> and a list view virtualises the way a list box does.</p>
 <p><code>MahApps.Styles.ListView.Virtualized</code> is worth having either way. In the released version it is what turns virtualisation on at all; on <code>develop</code> it is what makes the containers recycle, since <code>VirtualizationMode</code> stays at <code>Standard</code> until something sets it on the list itself:</p>
@@ -365,6 +372,9 @@ ListView
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#column-headers">Column headers</a></div>
+                        <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#dragging-a-column-into-another-place">Dragging a column into another place</a></div>
+                        </div>
                     <div class="sidebar-nav-item"><a href="#pixel-scrolling-by-default">Pixel scrolling by default</a></div>
                     <div class="sidebar-nav-item"><a href="#rows-that-cannot-be-selected">Rows that cannot be selected</a></div>
                     <div class="sidebar-nav-item"><a href="#striping-the-rows">Striping the rows</a></div>

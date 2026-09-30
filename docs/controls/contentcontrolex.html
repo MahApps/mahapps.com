@@ -204,6 +204,9 @@ ContentControlEx
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ ContentControlEx
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ ContentControlEx
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ ContentControlEx
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ ContentControlEx
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -392,10 +401,10 @@ ContentControlEx
 <p>The default here is <code>False</code>, which is the opposite of what a <code>Button</code> template normally does, so a template that wants access keys has to say so.</p>
 <h2 id="buttons-in-the-title-bar">Buttons in the title bar</h2>
 <p>The behaviour with no property is in <code>OnContentChanged</code>. When the content is an <code>IInputElement</code>, <code>ContentControlEx</code> binds that content's <code>WindowChrome.IsHitTestVisibleInChrome</code> to its own, and clears the binding when the content is replaced.</p>
-<p>That single binding is why a button placed in a <a href="metrowindow">MetroWindow</a>'s title bar can be clicked at all. The title bar is window chrome as far as the system is concerned, and chrome swallows mouse input unless an element opts out; <code>ContentControlEx</code> passes that opt-out down to whatever you put inside it, so <a href="WindowCommands">WindowCommands</a> and the window title work without anyone setting the attached property by hand.</p>
+<p>That single binding is why a button placed in a <a href="metrowindow">MetroWindow</a>'s title bar can be clicked at all. The title bar is window chrome as far as the system is concerned, and chrome swallows mouse input unless an element opts out; <code>ContentControlEx</code> passes that opt-out down to whatever you put inside it, so <a href="windowcommands">WindowCommands</a> and the window title work without anyone setting the attached property by hand.</p>
 <h2 id="where-it-turns-up">Where it turns up</h2>
-<p>Eighteen other dictionaries in the library use it as their content presenter, among them the styles for <a href="../styles/buttons">Buttons</a>, <a href="../styles/tabcontrol">TabControl</a> and <a href="MetroTabItem">MetroTabItem</a>, <a href="../styles/groupbox">GroupBox</a> and <a href="../styles/expander">Expander</a> headers, <a href="../styles/tooltip">ToolTip</a>, <code>GridViewColumnHeader</code> in a <a href="../styles/listview">ListView</a>, <a href="../styles/toolbar">ToolBar</a>, <a href="splitbutton">SplitButton</a> and <a href="dropdownbutton">DropDownButton</a>, <a href="MetroHeader">MetroHeader</a> and <a href="WindowCommands">WindowCommands</a>.</p>
-<p><code>MahApps.Styles.MetroThumbContentControl</code> is <code>MahApps.Styles.ContentControlEx</code> with nothing changed — see <a href="MetroThumbContentControl">MetroThumbContentControl</a>.</p>
+<p>Eighteen other dictionaries in the library use it as their content presenter, among them the styles for <a href="../styles/buttons">Buttons</a>, <a href="../styles/tabcontrol">TabControl</a> and <a href="metrotabitem">MetroTabItem</a>, <a href="../styles/groupbox">GroupBox</a> and <a href="../styles/expander">Expander</a> headers, <a href="../styles/tooltip">ToolTip</a>, <code>GridViewColumnHeader</code> in a <a href="../styles/listview">ListView</a>, <a href="../styles/toolbar">ToolBar</a>, <a href="splitbutton">SplitButton</a> and <a href="dropdownbutton">DropDownButton</a>, <a href="metroheader">MetroHeader</a> and <a href="windowcommands">WindowCommands</a>.</p>
+<p><code>MahApps.Styles.MetroThumbContentControl</code> is <code>MahApps.Styles.ContentControlEx</code> with nothing changed — see <a href="metrothumbcontentcontrol">MetroThumbContentControl</a>.</p>
 <h2 id="the-style">The style</h2>
 <p><code>MahApps.Styles.ContentControlEx</code> is applied through <code>Generic.xaml</code>, so a <code>ContentControlEx</code> you place yourself is styled already. It is deliberately unobtrusive: a transparent background, <code>Focusable</code> and <code>IsTabStop</code> both <code>False</code>, and everything stretched. It is a presenter, not a control the user interacts with.</p>
 

@@ -204,6 +204,9 @@ DateTimePicker
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ DateTimePicker
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ DateTimePicker
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ DateTimePicker
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ DateTimePicker
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -337,7 +346,7 @@ DateTimePicker
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><code>DateTimePicker</code> is a text field with a drop-down that holds a calendar, an analogue clock and three lists for hour, minute and AM/PM. <a href="TimePicker">TimePicker</a> is the same control without the calendar; both derive from <code>TimePickerBase</code>, so everything below applies to either unless it mentions a date.</p>
+<p><code>DateTimePicker</code> is a text field with a drop-down that holds a calendar, an analogue clock and three lists for hour, minute and AM/PM. <a href="timepicker">TimePicker</a> is the same control without the calendar; both derive from <code>TimePickerBase</code>, so everything below applies to either unless it mentions a date.</p>
 <p><img src="images/datetimepicker-closed.png" alt="A DateTimePicker and a TimePicker" /></p>
 <pre><code class="language-xml">&lt;mah:DateTimePicker Width=&quot;190&quot; SelectedDateTime=&quot;{Binding Appointment}&quot; /&gt;
 </code></pre>
@@ -474,7 +483,7 @@ picker.Culture = ci;
 <pre><code class="language-xml">&lt;mah:TimePicker SourceMinutes=&quot;{Binding QuarterHours}&quot; /&gt;
 </code></pre>
 <p>Each has a matching <code>HoursItemStringFormat</code>, <code>MinutesItemStringFormat</code> and <code>SecondsItemStringFormat</code> for how the entries are written.</p>
-<div class="alert alert-info"><p><strong>The clock is a control of its own on <code>develop</code></strong>, <a href="AnalogClock">AnalogClock</a>, and <code>ClockSize</code>, <code>ClockStyle</code> and <code>PopupStyle</code> are the three properties that reach it and the popup around it without a copy of the template. <a href="https://github.com/MahApps/MahApps.Metro/issues/4514">#4514</a>, written up on <a href="TimePicker#reaching-into-the-drop-down">the TimePicker page</a>.</p>
+<div class="alert alert-info"><p><strong>The clock is a control of its own on <code>develop</code></strong>, <a href="analogclock">AnalogClock</a>, and <code>ClockSize</code>, <code>ClockStyle</code> and <code>PopupStyle</code> are the three properties that reach it and the popup around it without a copy of the template. <a href="https://github.com/MahApps/MahApps.Metro/issues/4514">#4514</a>, written up on <a href="timepicker#reaching-into-the-drop-down">the TimePicker page</a>.</p>
 </div>
 <h2 id="the-now-button">The Now button</h2>
 <p>Under the calendar and the clock sits a button that puts the picker on the current date and time, both halves in one press, so nobody has to walk a calendar and three lists to say what the clock on the wall already says. It is there without being asked for; a form that has no use for it switches it off:</p>
@@ -590,7 +599,7 @@ picker.Culture = ci;
 <div class="alert alert-info"><p><strong><code>DateTimeValidationError</code> is new on <code>develop</code></strong>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4645">#4645</a>. It is in neither 2.4.11 nor the 3.0 release candidate, where there is nothing to hook at all: the value goes, the field is overwritten, and a typo and a deliberately emptied field look exactly alike from the outside.</p>
 </div>
 <h2 id="related">Related</h2>
-<p><a href="TimePicker">TimePicker</a> for the time alone, <a href="../styles/datepicker">DatePicker</a> for the date alone, and <a href="../styles/calendar">Calendar</a> for the calendar the drop-down shows — including the two variants these styles reuse.</p>
+<p><a href="timepicker">TimePicker</a> for the time alone, <a href="../styles/datepicker">DatePicker</a> for the date alone, and <a href="../styles/calendar">Calendar</a> for the calendar the drop-down shows — including the two variants these styles reuse.</p>
 
 
                                         </div>

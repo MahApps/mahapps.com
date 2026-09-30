@@ -204,6 +204,9 @@ MetroAnimatedSingleRowTabControl
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ MetroAnimatedSingleRowTabControl
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ MetroAnimatedSingleRowTabControl
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ MetroAnimatedSingleRowTabControl
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ MetroAnimatedSingleRowTabControl
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -337,7 +346,7 @@ MetroAnimatedSingleRowTabControl
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><code>MetroAnimatedSingleRowTabControl</code> is <a href="MetroAnimatedTabControl">MetroAnimatedTabControl</a> with one difference: its tab headers stay on a <strong>single row and scroll</strong>, instead of wrapping onto further rows.</p>
+<p><code>MetroAnimatedSingleRowTabControl</code> is <a href="metroanimatedtabcontrol">MetroAnimatedTabControl</a> with one difference: its tab headers stay on a <strong>single row and scroll</strong>, instead of wrapping onto further rows.</p>
 <p><img src="images/animatedtabcontrol-headers.png" alt="The same six tabs in both controls" /></p>
 <pre><code class="language-xml">&lt;mah:MetroAnimatedSingleRowTabControl&gt;
     &lt;TabItem Header=&quot;Overview&quot;&gt;
@@ -363,9 +372,9 @@ MetroAnimatedSingleRowTabControl
 <pre><code class="language-xml">&lt;Setter Property=&quot;mah:ScrollViewerHelper.IsHorizontalScrollWheelEnabled&quot; Value=&quot;True&quot; /&gt;
 </code></pre>
 <p>So the mouse wheel scrolls the header row sideways without holding <kbd>Shift</kbd>. See <a href="../helper/scrollviewerhelper">ScrollViewerHelper</a>.</p>
-<p>Everything else is shared: the same <code>BaseMetroTabControl</code> API as <a href="MetroTabControl">MetroTabControl</a>, and the same <a href="transitioningcontentcontrol">TransitioningContentControl</a> driving the content animation.</p>
+<p>Everything else is shared: the same <code>BaseMetroTabControl</code> API as <a href="metrotabcontrol">MetroTabControl</a>, and the same <a href="transitioningcontentcontrol">TransitioningContentControl</a> driving the content animation.</p>
 <h2 id="two-templates-one-per-orientation">Two templates, one per orientation</h2>
-<p>Both controls react to <code>TabStripPlacement</code>, but they do it differently. <a href="MetroAnimatedTabControl">MetroAnimatedTabControl</a> has <strong>one</strong> template and rearranges its own grid from <code>ControlTemplate.Triggers</code>. This control instead ships <strong>two</strong> templates and swaps between them from <code>Style.Triggers</code>:</p>
+<p>Both controls react to <code>TabStripPlacement</code>, but they do it differently. <a href="metroanimatedtabcontrol">MetroAnimatedTabControl</a> has <strong>one</strong> template and rearranges its own grid from <code>ControlTemplate.Triggers</code>. This control instead ships <strong>two</strong> templates and swaps between them from <code>Style.Triggers</code>:</p>
 <table>
 <thead>
 <tr>
@@ -402,13 +411,13 @@ MetroAnimatedSingleRowTabControl
 <p><a href="splitbutton">SplitButton</a> and the <a href="../styles/slider">Slider</a> styles have the same shape and the same trap.</p>
 </div>
 <h2 id="choosing-the-transition">Choosing the transition</h2>
-<p>As with <a href="MetroAnimatedTabControl">MetroAnimatedTabControl</a>, <code>TabControlHelper.Transition</code> picks the animation and defaults to <code>Left</code>:</p>
+<p>As with <a href="metroanimatedtabcontrol">MetroAnimatedTabControl</a>, <code>TabControlHelper.Transition</code> picks the animation and defaults to <code>Left</code>:</p>
 <pre><code class="language-xml">&lt;mah:MetroAnimatedSingleRowTabControl mah:TabControlHelper.Transition=&quot;Up&quot;&gt;
 </code></pre>
 <p><img src="images/animatedtabcontrol-transition.png" alt="Left, Up and Normal, caught early in the transition" /></p>
 <p><code>Normal</code> turns the animation off while keeping the rest of the template.</p>
 <h2 id="related">Related</h2>
-<p><a href="MetroAnimatedTabControl">MetroAnimatedTabControl</a> for the wrapping-header version, <a href="MetroTabControl">MetroTabControl</a> for the shared API, <a href="../helper/scrollviewerhelper">ScrollViewerHelper</a> for the horizontal wheel, and <a href="transitioningcontentcontrol">TransitioningContentControl</a> for the transitions.</p>
+<p><a href="metroanimatedtabcontrol">MetroAnimatedTabControl</a> for the wrapping-header version, <a href="metrotabcontrol">MetroTabControl</a> for the shared API, <a href="../helper/scrollviewerhelper">ScrollViewerHelper</a> for the horizontal wheel, and <a href="transitioningcontentcontrol">TransitioningContentControl</a> for the transitions.</p>
 
 
                                         </div>

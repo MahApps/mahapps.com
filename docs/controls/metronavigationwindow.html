@@ -204,6 +204,9 @@ MetroNavigationWindow
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ MetroNavigationWindow
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ MetroNavigationWindow
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ MetroNavigationWindow
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ MetroNavigationWindow
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -346,7 +355,7 @@ MetroNavigationWindow
 <pre><code class="language-csharp">this.Navigate(new OverviewPage());
 </code></pre>
 <p>The bar above the content is part of the window, not something you add. The title next to the buttons is the navigated <strong><code>Page.Title</code></strong>, and the two circle buttons enable themselves from <code>CanGoBack</code> and <code>CanGoForward</code> — in the figure the window has navigated twice, so back is live and forward is not.</p>
-<div class="alert alert-info"><p>Unlike almost every other control in the library, this one is <strong>compiled XAML, not a <code>ControlTemplate</code></strong>. <code>MetroNavigationWindow.xaml</code> is a <code>MetroWindow</code> subclass with the bar laid out inside it, so there is no template to override and no way to restyle or rearrange the buttons. It also means the window cannot be the root of a XAML file of your own: <code>&lt;mah:MetroNavigationWindow x:Class=&quot;…&quot;&gt;</code> is turned down by the compiler with <code>MC6017</code>, since a type that was itself defined in XAML cannot be subclassed in XAML. Build the window in code and keep the markup for the pages. Everything a <a href="metrowindow">MetroWindow</a> offers — <code>GlowBrush</code>, <code>WindowTitleBrush</code>, flyouts, the window commands — still applies, because it <em>is</em> one.</p>
+<div class="alert alert-info"><p>Unlike almost every other control in the library, this one is <strong>compiled XAML, not a <code>ControlTemplate</code></strong>. <code>MetroNavigationWindow.xaml</code> is a <code>MetroWindow</code> subclass with the bar laid out inside it, so there is no template to override and no way to restyle or rearrange the buttons. It also means the window cannot be the root of a XAML file of your own: <code>&lt;mah:MetroNavigationWindow x:Class=&quot;…&quot;&gt;</code> is turned down by the compiler with <code>MC6017</code>, since a type that was itself defined in XAML cannot be subclassed in XAML. Build the window in code and keep the markup for the pages. Everything a <a href="metrowindow">MetroWindow</a> offers — <code>GlowColor</code>, <code>WindowTitleBrush</code>, flyouts, the window commands — still applies, because it <em>is</em> one.</p>
 </div>
 <h2 id="navigating">Navigating</h2>
 <p>The API mirrors <code>NavigationWindow</code>, and every call is forwarded to the internal <code>Frame</code>:</p>

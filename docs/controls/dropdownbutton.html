@@ -204,6 +204,9 @@ DropDownButton
     <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
 </div>
 <div class="sidebar-nav-item">
@@ -241,9 +244,6 @@ DropDownButton
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
 </div>                </div>
 
 <div class="sidebar-nav-item has-children">
@@ -283,6 +283,9 @@ DropDownButton
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -295,6 +298,9 @@ DropDownButton
     <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -305,6 +311,9 @@ DropDownButton
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
 </div>
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
@@ -489,7 +498,7 @@ this.RaiseEvent(e);
 <p><img src="images/dropdownbutton-arrow.png" alt="The default arrow, a recoloured one, and none at all" /></p>
 <pre><code class="language-xml">&lt;mah:DropDownButton Content=&quot;Artists&quot; ArrowVisibility=&quot;Collapsed&quot; /&gt;
 </code></pre>
-<p>The chevron is a Material <code>ChevronDown</code> path drawn through <code>MahApps.Styles.ContentControl.PathIcon</code>. <code>ArrowMouseOverBrush</code> defaults to the accent brush, which is why the arrow picks up colour on hover while the rest of the button does not.</p>
+<p>The chevron is a Material <code>ChevronDown</code> path drawn by a <a href="fonticon#pathicon">PathIcon</a>. <code>ArrowMouseOverBrush</code> defaults to the accent brush, which is why the arrow picks up colour on hover while the rest of the button does not.</p>
 <h2 id="what-a-client-is-told">What a client is told</h2>
 <p>It is a button that opens and shuts, named after its <code>Content</code>, and a client can open it through the expand pattern rather than having to press it.</p>
 <div class="alert alert-info"><p>New on <code>develop</code>. In a released version the entries of the menu are the items of the control, which made it a list with no name, the button and its caption nowhere to be seen. This is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>

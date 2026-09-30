@@ -141,6 +141,9 @@ Quick Start
     <a href="/mahapps.com/docs/guides/quick-start">Quick Start</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/guides/migration-to-v3.0">Migration to v3.0</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/guides/migration-to-v2.0">Migration to v2.0</a>
 </div>
 <div class="sidebar-nav-item">
@@ -256,7 +259,7 @@ namespace SampleApp
 <li><strong><code>WindowButtonCommands</code></strong> lets you restyle the minimise, maximise/restore and close buttons. Their visibility also follows <code>ResizeMode</code>: <code>NoResize</code> collapses both, <code>CanMinimize</code> collapses maximise/restore.</li>
 <li><strong><code>ResizeMode=&quot;CanResizeWithGrip&quot;</code></strong> shows a resize grip in the bottom right corner.</li>
 </ol>
-<p>Not marked in the screenshot, but used in the sample below: <strong><code>GlowBrush</code></strong> draws the coloured border around the window.</p>
+<p>Not marked in the screenshot, but used in the sample below: <strong><code>GlowColor</code></strong> draws the coloured glow around the window. It is set to the accent by the default style, so the line below only says out loud what a window does anyway.</p>
 <div class="alert alert-info"><p>The cupcake and octocat below come from <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">MahApps.Metro.IconPacks</a>, a separate package.</p>
 </div>
 <pre><code class="language-xml">&lt;mah:MetroWindow x:Class=&quot;SampleApp.MainWindow&quot;
@@ -269,7 +272,7 @@ namespace SampleApp
                  Title=&quot;MainWindow&quot;
                  Width=&quot;800&quot;
                  Height=&quot;450&quot;
-                 GlowBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
+                 GlowColor=&quot;{DynamicResource MahApps.Colors.Accent}&quot;
                  ResizeMode=&quot;CanResizeWithGrip&quot;
                  WindowStartupLocation=&quot;CenterScreen&quot;
                  mc:Ignorable=&quot;d&quot;&gt;

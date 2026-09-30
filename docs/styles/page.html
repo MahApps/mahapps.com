@@ -292,7 +292,7 @@ Page
 </table>
 <p>Those three will look familiar: they are exactly what the <code>MetroWindow</code> style hands down to everything inside it — see <a href="text">Text</a>. The <code>Page</code> style exists because a page does not get them.</p>
 <h2 id="a-frame-is-a-wall">A Frame is a wall</h2>
-<p>A <code>Page</code> is hosted by a <code>Frame</code>, whether directly or inside a <a href="../controls/MetroNavigationWindow">MetroNavigationWindow</a>, and a <code>Frame</code> is a boundary for <strong>property value inheritance</strong>. <code>Foreground</code> and <code>TextElement.FontSize</code> set on the window stop there; the page starts again from WPF's own defaults.</p>
+<p>A <code>Page</code> is hosted by a <code>Frame</code>, whether directly or inside a <a href="../controls/metronavigationwindow">MetroNavigationWindow</a>, and a <code>Frame</code> is a boundary for <strong>property value inheritance</strong>. <code>Foreground</code> and <code>TextElement.FontSize</code> set on the window stop there; the page starts again from WPF's own defaults.</p>
 <p>It is a boundary for <strong>resource lookup</strong> as well. A <code>ResourceDictionary</code> merged into an element above the frame does not reach the page inside it — a <code>DynamicResource</code> in the page resolves from <code>Application.Resources</code> instead.</p>
 <p><img src="images/page-style.png" alt="A page with and without the style, on a dark surface" /></p>
 <p>Both frames above sit on the same dark surface. The left page has no style, so it has no background and keeps WPF's near-black default text — invisible against it. The right one is the same page with <code>MahApps.Styles.Page</code>, which gives it the theme background and the theme foreground.</p>
@@ -305,7 +305,7 @@ Page
 </code></pre>
 <p>There is nothing in the style that makes this unsafe — it sets no template and touches no layout, so an implicit <code>Page</code> style has none of the reach an implicit <a href="text">TextBlock</a> style would.</p>
 <h2 id="related">Related</h2>
-<p><a href="../controls/MetroNavigationWindow">MetroNavigationWindow</a> is the window that hosts pages, and <a href="text">Text</a> explains where the same three values come from for everything that is not behind a frame.</p>
+<p><a href="../controls/metronavigationwindow">MetroNavigationWindow</a> is the window that hosts pages, and <a href="text">Text</a> explains where the same three values come from for everything that is not behind a frame.</p>
 
 
                                         </div>
