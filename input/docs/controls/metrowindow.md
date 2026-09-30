@@ -1,4 +1,3 @@
-Order: 10
 Title: MetroWindow
 Description: The window that everything else in MahApps.Metro is built on
 ---
