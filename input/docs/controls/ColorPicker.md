@@ -1,267 +1,75 @@
 Title: ColorPicker
-Description: The documentation for the ColorPicker, ColorCanvas, ColorPalette and ColorEyeDropper
+Description: Four controls for picking a colour, and the names the library gives one
 ---
 
-# Table of content
-<!-- Start Document Outline -->
+Four controls pick a `System.Windows.Media.Color`.
 
-- [Table of content](#table-of-content)
-- [Introduction](#introduction)
-- [ColorNamesDictionary and ColorHelper](#colornamesdictionary-and-colorhelper)
-  - [Looking up a color name](#looking-up-a-color-name)
-  - [Getting a color from a given name](#getting-a-color-from-a-given-name)
-    - [Examples](#examples)
-  - [How to provide custom color names](#how-to-provide-custom-color-names)
-    - [Example](#example)
-  - [Provide translations for a language of your choice](#provide-translations-for-a-language-of-your-choice)
-  - [Use your own `ColorHelper`](#use-your-own-colorhelper)
-- [ColorCanvas](#colorcanvas)
-  - [The user interface](#the-user-interface)
-  - [Properties](#properties)
-  - [Events](#events)
-  - [DynamicResources](#dynamicresources)
-  - [Example](#example-1)
-- [ColorPalette](#colorpalette)
-  - [The user interface](#the-user-interface-1)
-  - [Properties](#properties-1)
-  - [DynamicResources](#dynamicresources-1)
-  - [Example](#example-2)
-  - [Build in color palettes](#build-in-color-palettes)
-- [ColorEyeDropper](#coloreyedropper)
-  - [The user interface](#the-user-interface-2)
-  - [Properties](#properties-2)
-  - [Events](#events-1)
-  - [Example](#example-3)
-- [ColorPicker](#colorpicker)
-  - [The user interface](#the-user-interface-3)
-  - [Properties](#properties-3)
-  - [Events](#events-2)
-  - [DynamicResources](#dynamicresources-2)
-  - [The Windows looks](#the-windows-looks)
-  - [Example](#example-4)
-    - [Basic example](#basic-example)
-    - [Using the `SelectedColorChanged`-Event](#using-the-selectedcolorchanged-event)
-    - [Customizing the content of the color picker](#customizing-the-content-of-the-color-picker)
+| Control | What it is |
+| --- | --- |
+| [`ColorCanvas`](#colorcanvas) | a colour set channel by channel, as [ARGB](https://en.wikipedia.org/wiki/RGB_color_model) or [AHSV](https://en.wikipedia.org/wiki/HSL_and_HSV) |
+| [`ColorPalette`](#colorpalette) | a swatch of colours to choose from, a `ListBox` underneath |
+| [`ColorEyeDropper`](#coloreyedropper) | a colour taken from any pixel on the screen, your application or not |
+| [`ColorPicker`](#colorpicker) | the other three in a drop-down, a combo box to look at |
 
-<!-- End Document Outline -->
+`ColorCanvas` and `ColorPicker` both derive from `ColorPickerBase`, so everything in the next section belongs to both.
 
----
+## The colour itself
 
-# Introduction
+| Property | Type | Default | |
+| --- | --- | --- | --- |
+| `SelectedColor` | `Color?` | `null` | the colour, two-way by default |
+| `DefaultColor` | `Color?` | `null` | what `SelectedColor` falls back to instead of staying `null` |
+| `SelectedHSVColor` | `HSVColor` | black | the same colour in hue, saturation and value; read-only |
+| `ColorName` | `string` | `null` | the name of the colour, two-way by default |
+| `ColorNamesDictionary` | `Dictionary<Color, string>` | `null` | the names to look it up in, see [the names](#colour-names-and-the-colorhelper) |
+| `ColorHelper` | `ColorHelper` | `null` | who does the looking up, see [the names](#colour-names-and-the-colorhelper) |
+| `A` `R` `G` `B` | `byte` | `255` `0` `0` `0` | the four ARGB channels, each two-way by default |
+| `Hue` | `double` | `0` | 0° to 360° |
+| `Saturation` `Value` | `double` | `0` | 0% to 100% |
 
-The `ColorPicker` controls can be used to select any `System.Windows.Media.Color` (in this document simply called `Color`). There are four different controls available to select a `Color`.
+The channel properties are not a second copy of the colour. Setting one writes `SelectedColor`, and setting `SelectedColor` writes all of them, which is what lets a slider bind to `R` and a text box to `ColorName` on the same control.
 
-| Control                               | Use case                                 |
-|---------------------------------------|------------------------------------------|
-| [`ColorCanvas`](#colorcanvas)         | Select a `Color` by specifying its [ARGB](https://en.wikipedia.org/wiki/RGB_color_model) or [AHSV](https://en.wikipedia.org/wiki/HSL_and_HSV) channels. |
-| [`ColorPalette`](#colorpalette)       | Select a `Color` from predefined colors presented in a special `ListBox`. |
-| [`ColorEyeDropper`](#coloreyedropper) | Select a `Color` from anywhere on the screen. |
-| [`ColorPicker`](#colorpicker)         | A combination of the three controls above presented in a `ComboBox` like control. |
+Every label beside a field can be given words of your own. All nine are typed `object` rather than `string`, so a label can be an icon or a whole template instead of text.
 
-# ColorNamesDictionary and ColorHelper
+| Property | Default | | Property | Default |
+| --- | --- | --- | --- | --- |
+| `LabelAlphaChannel` | `"A"` | | `LabelHueChannel` | `"H"` |
+| `LabelRedChannel` | `"R"` | | `LabelSaturationChannel` | `"S"` |
+| `LabelGreenChannel` | `"G"` | | `LabelValueChannel` | `"V"` |
+| `LabelBlueChannel` | `"B"` | | `LabelColorPreview` | `"Preview"` |
+| | | | `LabelColorName` | `"Name"` |
 
-Colors may have a name which is localize-able if you want to. The color names are stored in a `Dictionary<Color?, string>` which is used to get the name of the provided `Color`. 
+Five switches decide how much of the control is drawn. All of them start out `true`.
 
-## Looking up a color name
+| Property | |
+| --- | --- |
+| `AreRgbChannelsVisible` | the A, R, G and B sliders |
+| `AreHsvChannelsVisible` | the hue, saturation and value sliders |
+| `IsAlphaChannelVisible` | the alpha slider, and whether the name is looked up with the alpha channel |
+| `IsColorNameVisible` | the field the name is typed into |
+| `IsEyeDropperVisible` | the dropper button |
 
-If you want to look up a name of a given `Color` in code behind use this line: 
+`SelectedColorChanged` is raised when the colour changes. It is a `RoutedPropertyChangedEventHandler<Color?>`, so the handler is handed the old colour along with the new one.
 
-```csharp
-string nameOfTheColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.GetColorName(myColor, theDictionaryToUse);
-```
+## ColorCanvas
 
-:::{.alert .alert-info}
-***Note***  
-If you set the second parameter to 'null' the default dictionary will be used.
-:::
+`ColorCanvas` is `ColorPickerBase` with a template and nothing else: no property of its own, only the parts below.
 
-## Getting a color from a given name
+![The channels, the square, the name field and the preview](images/ColorPicker_ColorCanvas_Numbered.png)
 
-You can also get back the color by looking up its name. The routine will first check the dictionary for the first occurrence of the given name and if it was not found it will try to use [`ColorConverter.ConvertFromString`](https://docs.microsoft.com/en-us/dotnet/api/system.windows.media.colorconverter.convertfromstring) which also accepts the HTML-Notation of the `Color`. If the `Color` cannot be found it will return null.
-
-### Examples
-
-```csharp
-Color? myColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.ColorFromString(myColorName, theDictionaryToUse);
-
-// this will look up the German word "Blau" and returns blue color
-Color? myColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.ColorFromString("Blau", null);
-
-// this will look up the HTML-notation "#FF000000" and returns black color
-Color? myColor = MahApps.Metro.Controls.ColorHelper.DefaultInstance.ColorFromString("#FF000000", null);
-```
-
-:::{.alert .alert-info}
-***Note***  
-If you set the second parameter to 'null' the default dictionary will be used.
-:::
-
-## How to provide custom color names
-
-You can change the build in dictionary via `MahApps.Metro.Controls.ColorHelper.ColorNamesDictionary` by adding, removing or changing any color name. You can also create your own `Dictionary<Color?, string>` anywhere in your `Model` or `ViewModel` to provide your own color names. That way you can use also different dictionaries for different `ColorPicker`.
-
-### Example
-
-```csharp
-Dictionary<Color?, string> myColorNames = new Dictionary<Color?, string>()
-{
-    { Colors.Green, "every thing is fine" }, 
-    { Colors.Yellow, "warning" },
-    { Colors.Red, "error" }
-};
-
-public Dictionary<Color?, string> MyColorNames
-{
-    get { return myColorNames; }    
-}
-```
+| No. | |
+| --- | --- |
+| 01 to 03 | the red, green and blue channel, 0 to 255 |
+| 04 | the hue, 0° to 360° |
+| 05, 06 | the saturation and the value, 0% to 100% |
+| 07 | the alpha channel, 0 to 255 |
+| 08 | the colour name, or its HTML notation |
+| 09 | a [`ColorEyeDropper`](#coloreyedropper) for a colour from anywhere on the screen |
+| 10 | the saturation and the value dragged in one square |
+| 11 | the colour as it stands |
 
 ```xml
-<!-- example usage -->
-<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
-<mah:ColorPicker ColorNamesDictionary="{Binding MyColorNames}" />
-```
-
-## Provide translations for a language of your choice
-
-Currently implemented color languages are
-
-- English
-- German
-
-You can help providing translations to the build in dictionary.
-
-We recommend using the [ResXManager](https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager).
-
-## Use your own `ColorHelper`
-
-The `ColorHelper` can be derived from which lets you create your own logic for `ColorFromString` and `GetColorName`:
-
-```csharp
-// Add this to your using-section
-using MahApps.Metro.Controls;
-
-namespace MyNamespace
-{
-    public class MyColorHelper : ColorHelper
-    {
-        public static new readonly MyColorHelper DefaultInstance = new();
-
-        public override Color? ColorFromString(string? colorName, Dictionary<Color, string>? colorNamesDictionary)
-        {
-            // Your logic goes here
-            return myFoundColor;
-        }
-    
-        public override string? GetColorName(Color? color, Dictionary<Color, string>? colorNamesDictionary, bool useAlphaChannel)
-        {
-            // Your logic goes here
-            return theNameOfMyColor;
-        }
-    }
-}
-```
-
-You can then use this class like every other Property:
-
-```xml
-<!-- make sure to add the right namespace -->
-<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
-
-<mah:ColorPicker ColorHelper="[[Bind here to your ColorHelper]]" />
-<mah:ColorCanvas ColorHelper="[[Bind here to your ColorHelper]]" />
-<mah:ColorPalette ColorHelper="[[Bind here to your ColorHelper]]" />
-
-<!-- example usage -->
-<!-- xmlns:my="clr-namespace:MyNamespace;assembly=YourAssembly" -->
-<mah:ColorPicker ColorHelper="{Binding Source={x:Static my:MyColorHelper.DefaultInstance}}" />
-```
-
-# ColorCanvas
-
-The `ColorCanvas` control lets the user select a `Color` by the following options:
-
-- Changing the ARGB-Values
-- Changing the HSV-Values
-- Entering the color name or HTML-notation
-- Picking a color from anywhere of the screen
-
-## The user interface
-
-![](images/ColorPicker_ColorCanvas_Numbered.png)
-
-| No. | Description                              |
-|-----|------------------------------------------|
-| 01  | Red color channel from 0 to 255          |
-| 02  | Green color channel from 0 to 255        |
-| 03  | Blue color channel from 0 to 255         |
-| 04  | Hue channel from 0° to 360°              |
-| 05  | Saturation channel from 0% to 100%       |
-| 06  | Value channel from 0% to 100 %           |
-| 07  | Alpha channel from 0 to 255              |
-| 08  | The color name or HTML-notation          |
-| 09  | A [`ColorEyeDropper`](#coloreyedropper) to select a color from anywhere of the screen |
-| 10  | Select the saturation and value by moving the cross-hair in horizontally and vertically direction |
-| 11  | A preview of the selected color          |
-
-## Properties
-
-| Property               | Type                       | Description                              |
-|------------------------|----------------------------|------------------------------------------|
-| SelectedColor          | Color?                     | Gets or sets the selected color          |
-| DefaultColor           | Color?                     | Gets or sets the default color if the `SelectedColor` is `null` |
-| SelectedHSVColor       | HSVColor                   | Gets the selected color as `HSVColor`    |
-| ColorName              | string                     | Gets or sets the name of the selected color [(see also `ColorHelper`)](#colornamesdictionary-and-colorhelper) |
-| ColorNamesDictionary   | Dictionary<Color?, string> | Gets or sets the `Dictionary<Color?, string>` used to get or set the `ColorName` [(see also `ColorHelper`)](#colornamesdictionary-and-colorhelper) |
-| A                      | byte                       | Gets or sets the alpha channel           |
-| R                      | byte                       | Gets or sets the red channel             |
-| G                      | byte                       | Gets or sets the green channel           |
-| B                      | byte                       | Gets or sets the blue-channel            |
-| Hue                    | double                     | Gets or sets the hue channel             |
-| Saturation             | double                     | Gets or sets the Saturation-channel      |
-| Value                  | double                     | Gets or sets the Value-channel           |
-| LabelAlphaChannel      | string                     | Gets or sets the `Label` for the Alpha-channel |
-| LabelRedChannel        | string                     | Gets or sets the `Label` for the Red-channel |
-| LabelGreenChannel      | string                     | Gets or sets the `Label` for the Green-channel |
-| LabelBlueChannel       | string                     | Gets or sets the `Label` for the Blue-channel |
-| LabelHueChannel        | string                     | Gets or sets the `Label` for the Hue-channel |
-| LabelSaturationChannel | string                     | Gets or sets the `Label` for the Saturation-channel |
-| LabelValueChannel      | string                     | Gets or sets the `Label` for the Value-channel |
-| LabelColorPreview      | string                     | Gets or sets the `Label` for the preview field |
-| LabelColorName         | string                     | Gets or sets the `Label` for the color name |
-| AreRgbChannelsVisible  | bool                       | Gets or sets if the slider for the `RGB`-channels are visible. The default is `true`                                                               |
-| AreHsvChannelsVisible  | bool                       | Gets or sets if the slider for the `HSV`-channels are visible. The default is `true`                                                               |
-| IsAlphaChannelVisible  | bool                       | Gets or sets if the slider for the `Alpha`-channel isvisible. The default is `true`                                                                |
-| IsColorNameVisible     | bool                       | Gets or sets if the entry for the `ColorName` is visible. The default is `true`                                                                    |
-| IsEyeDropperVisible    | bool                       | Gets or sets if the `EyeDropper` is visible. The default is `true`                                                                                 |
-| ColorHelper           | ColorHelper                 | Gets or sets the  [ColorHelper](#colornamesdictionary-and-colorhelper) to use |
-## Events
-
-| Event                  | Description                             |
-|------------------------|-----------------------------------------|
-| `SelectedColorChanged` | Occurs when the `SelectedColor` changed |
-
-## DynamicResources
-
-You can override the following `Resources` to modify the appearance of the `ColorCanvas` further. 
-
-| Key                                      | Type         | Description                              |
-|------------------------------------------|--------------|------------------------------------------|
-| MahApps.Brushes.Tile                     | Brush        | Overrides the checkered `Brush` which is visible if the color is transparent |
-| MahApps.DataTemplates.ColorPicker.NoColor | DataTemplate | Overrides the `DataTemplate` of the preview if no color is selected |
-| MahApps.Styles.Slider.ColorComponent.ARGB | Style        | Overrides the `Style` of the A-, R-, G- and B-`Slider` |
-| MahApps.Styles.Slider.ColorComponent.Hue | Style        | Overrides the `Style` of the Hue-Slider  |
-| MahApps.Styles.Slider.ColorComponent.SV  | Style        | Overrides the `Style` of the S- and V-`Slider` |
-| MahApps.Styles.ColorEyeDropper.ColorCanvas | Style        | Overrides the Style of the `ColorEyeDropper` |
-
-## Example
-
-```xml
-<!-- make sure to add the right namespace -->
-<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
-
-<mah:ColorCanvas x:Name="ColorCanvasExample"
-                 SelectedColor="Blue"
+<mah:ColorCanvas SelectedColor="Blue"
                  DefaultColor="Transparent"
                  LabelAlphaChannel="Alpha"
                  LabelBlueChannel="Blue"
@@ -269,137 +77,97 @@ You can override the following `Resources` to modify the appearance of the `Colo
                  LabelRedChannel="Red" />
 ```
 
-# ColorPalette
+These resources shape what the template draws.
 
-The `ColorPalette` control can be used to present the user a swatch of predefined colors. As this control is derived from `System.Windows.Controls.ListBox` you can use all functionality know from the `ListBox` control.
+| Key | Type | |
+| --- | --- | --- |
+| `MahApps.Brushes.Tile` | `Brush` | the chequerboard behind a colour that is not opaque |
+| `MahApps.DataTemplates.ColorPicker.NoColor` | `DataTemplate` | the preview while nothing is picked |
+| `MahApps.Styles.Slider.ColorComponent.ARGB` | `Style` | the A, R, G and B sliders |
+| `MahApps.Styles.Slider.ColorComponent.Hue` | `Style` | the hue slider |
+| `MahApps.Styles.Slider.ColorComponent.SV` | `Style` | the saturation and value sliders |
+| `MahApps.Styles.ColorEyeDropper.ColorCanvas` | `Style` | the dropper in the corner |
 
-## The user interface
+## ColorPalette
 
-![](images/ColorPicker_ColorPalette_Numbered.png)
+`ColorPalette` derives from `ListBox`, so the colours go into `Items` or `ItemsSource` and the pick is read from `SelectedValue`, `SelectedItem` or `SelectedIndex` as on any list.
 
-| No | Description                              |
-|----|------------------------------------------|
-| 01 | The header of the `ColorPalette`         |
-| 02 | Displays the available colors            |
-| 03 | The currently selected color is highlighted |
+![The header, the swatches, and the one that is selected](images/ColorPicker_ColorPalette_Numbered.png)
 
-## Properties
+| No | |
+| --- | --- |
+| 01 | the header |
+| 02 | the colours |
+| 03 | the selected colour, marked |
 
-The available colors can be either added directly to the `Items` or by binding to the `ItemsSource`. The selection can be handled by binding to `SelectedValue`, `SelectedItem` or `SelectedIndex`. 
+It adds five properties of its own.
 
-In addition to this the `ColorPalette` provides the following properties.
-
-| Property             | Type                       | Description                              |
-|----------------------|----------------------------|------------------------------------------|
-| Header               | object                     | Gets or sets the header content          |
-| HeaderTemplate       | DataTemplate               | Gets or sets the header template         |
-| ColorNamesDictionary | Dictionary<Color?, string> | Gets or sets the `Dictionary<Color?, string>` used to get or set the ColorName [(see also `ColorHelper`)](#colornamesdictionary-and-colorhelper) |
-| ColorHelper           | ColorHelper                 | Gets or sets the  [ColorHelper](#colornamesdictionary-and-colorhelper) to use |
-
-## DynamicResources
-
-| Key                                      | Type         | Description                              |
-|------------------------------------------|--------------|------------------------------------------|
-| MahApps.Sizes.ColorListBox.ItemWidth     | double       | Overrides the width of the items         |
-| MahApps.Sizes.ColorListBox.ItemHeight    | double       | Overrides the height of the items        |
-| MahApps.Brushes.Tile.Small               | Brush        | Overrides the checkered Brush which is visible if the color is transparent |
-| MahApps.Styles.ListBoxItem.ColorPaletteItem | Style        | Overrides the `Style` of the items       |
-| MahApps.Templates.ColorPaletteItem       | DataTemplate | Overrides the `DataTemplate` of the items |
-| MahApps.Styles.ColorPalette              | Style        | Overrides the default `Style` for the `ColorPalette` |
-
-## Example
-
-The below example shows how to use the `ColorPalette` via setting the `ItemsSource` to a build in `ColorPalette`. 
+| Property | Type | Default | |
+| --- | --- | --- | --- |
+| `Header` | `object` | `null` | the caption above the swatches |
+| `HeaderTemplate` | `DataTemplate` | `null` | how the caption is drawn |
+| `ColorNamesDictionary` | `Dictionary<Color, string>` | `null` | the names the tooltips are taken from |
+| `ColorHelper` | `ColorHelper` | `null` | who does the looking up |
+| `IsAlphaChannelVisible` | `bool` | `true` | whether a name is looked up with the alpha channel |
 
 ```xml
-<!-- make sure to add the right namespace -->
-<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+<mah:ColorPalette Header="An example palette" ItemsSource="{x:Static mah:BuildInColorPalettes.WpfColorsPalette}" />
+```
 
-<mah:ColorPalette Header="An Example Palette" 
-                  ItemsSource="{x:Static mah:BuildInColorPalettes.WpfColorsPalette}" />
-``` 
-
-:::{.alert .alert-info}
-***Note***  
-MahApps provides [build in color palettes](#build-in-color-palettes)
-:::
-
-The second example shows how to add colors directly in `XAML`.
+Colours can also be written straight into the markup.
 
 ```xml
-<!-- make sure to add the right namespace -->
-<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
-
-<mah:ColorPalette Header="A second Example Palette" >
+<mah:ColorPalette Header="A second example palette">
     <Color>Red</Color>
     <Color>Green</Color>
     <Color>Blue</Color>
 </mah:ColorPalette>
 ```
 
-## Build in color palettes 
+| Key | Type | |
+| --- | --- | --- |
+| `MahApps.Sizes.ColorListBox.ItemWidth` | `double` | the width of one swatch |
+| `MahApps.Sizes.ColorListBox.ItemHeight` | `double` | the height of one swatch |
+| `MahApps.Brushes.Tile.Small` | `Brush` | the chequerboard behind a swatch that is not opaque |
+| `MahApps.Styles.ListBoxItem.ColorPaletteItem` | `Style` | one swatch |
+| `MahApps.Templates.ColorPaletteItem` | `DataTemplate` | what a swatch is made of |
+| `MahApps.Styles.ColorPalette` | `Style` | the palette itself |
 
-MahApps provides the following build in ColorPalettes:
+### The palettes the library brings
 
-- WpfColorsPalette (all colors in `Sytem.Windows.Media.Colors`)
-- StandardColorsPalette (the primary colors)
-- RecentColors (used to store the recently selected colors)
+`BuildInColorPalettes` carries three of them. `StandardColorsPalette` is the primary colours, a plain `Color[]`. `WpfColorsPalette` is everything in `System.Windows.Media.Colors`, sorted by hue, then saturation, then value downwards. `RecentColors` is where a picker keeps what was chosen lately.
 
-All build in `ColorPalettes` are internally an `ObservableCollection`, so you can modify them to your needs.
+The last two are an `ObservableCollection`, so adding to one or taking from it shows up in every palette bound to it.
 
-# ColorEyeDropper
+## ColorEyeDropper
 
-The `ColorEyeDropper` control lets the user select a `Color` with the mouse directly from anywhere on the screen, even outside of your `Application`. As this control is derived from `System.Windows.Controls.Button` you can use all functionality know from the `Button` control.
+`ColorEyeDropper` derives from `Button` and reads a pixel off the screen, including one outside your own window.
 
-## The user interface
+Pressing it turns the cursor into a dropper and brings up a preview. The button stays down while the pointer moves, a magnifier with a cross hair shows which pixel is under it, and `SelectedColor` is written when the button is let go.
 
-If the user presses the left mouse button on the `ColorEyeDropper` the cursor will change to an eye-dropper symbol and a preview popup will appear. Now the user needs to keep the mouse pressed while dragging the mouse to the desired pixel. A magnifier with a cross hair helps getting the exact pixel position. As soon as the user releases the left mouse button the `SelectedColor` will get updated. 
+![The button, the cursor, the preview and the magnifier](images/ColorPicker_ColorEyeDropper_Numbered.png)
 
-![](images/ColorPicker_ColorEyeDropper_Numbered.png)
+![The dropper while a colour is being taken](images/ColorPicker_ColorEyeDropper_Running.png)
 
-| No | Description                              |
-|----|------------------------------------------|
-| 01 | The `Button` to start the `ColorEyeDropper` |
-| 02 | The cursor while selecting a color       |
-| 03 | A preview of the selected color          |
-| 04 | A magnifier with a cross hair            |
+| Property | Type | Default | |
+| --- | --- | --- | --- |
+| `SelectedColor` | `Color?` | `null` | the colour that was taken, two-way by default |
+| `PreviewImageOuterPixelCount` | `int` | `2` | how many pixels around the pointer the magnifier shows |
+| `EyeDropperCursor` | `Cursor` | `null` | the cursor while a colour is being taken |
+| `PreviewContentTemplate` | `DataTemplate` | `null` | what the preview is made of |
 
-![](images/ColorPicker_ColorEyeDropper_Running.png)
-
-## Properties
-
-| Property                    | Type         | Description                              |
-|-----------------------------|--------------|------------------------------------------|
-| SelectedColor               | Color?       | Gets or sets the selected color          |
-| PreviewImageOuterPixelCount | int          | Gets or sets how many pixels the preview magnifier should render around the curent mouse position. The default is `2` |
-| EyeDropperCursor            | Cursor       | Gets or sets the `Cursor` when in selection mode |
-| PreviewContentTemplate      | DataTemplate | Gets or sets the `DataTemplate` of the preview `Popup` |
-
-## Events
-
-| Event                  | Description                             |
-|------------------------|-----------------------------------------|
-| SelectedColorChanged | Occurs when the `SelectedColor` changed |
-
-## Example
+It raises `SelectedColorChanged` in the same shape the other controls do.
 
 ```xml
-<!-- make sure to add the right namespace -->
-<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
-
-<mah:ColorEyeDropper Content="This is my EyeDropper"
-                     SelectedColor="{Binding Path=MyColorToBind}" />
+<mah:ColorEyeDropper Content="This is my EyeDropper" SelectedColor="{Binding MyColorToBind}" />
 ```
 
-If you want to modify the preview template please take a look to the below example. It shows how to make a circular magnifier with the preview color shown in the outer circle.
+`PreviewContentTemplate` is written against `MahApps.Metro.Controls.ColorEyePreviewData`, which carries the magnified `PreviewImage` and a `PreviewBrush` of the pixel under the cross hair. The template below makes the magnifier round and paints the ring in the colour it is about to take.
 
-![](images/ColorPicker_ColorEyeDropper_CustomPreviewTemplate.png)
+![A round magnifier with the colour in its ring](images/ColorPicker_ColorEyeDropper_CustomPreviewTemplate.png)
 
 ```xml
-<!-- make sure to add the right namespace -->
-<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
 <!-- xmlns:po="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" -->
-
 <mah:ColorEyeDropper Content="{iconPacks:Material Kind=Eyedropper}"
                      SelectedColor="{DynamicResource MahApps.Colors.AccentBase}">
     <mah:ColorEyeDropper.PreviewContentTemplate>
@@ -433,224 +201,101 @@ If you want to modify the preview template please take a look to the below examp
 </mah:ColorEyeDropper>
 ```
 
-:::{.alert .alert-info}
-***Note***  
-The `DataTemplate` should be designed for this `DataType`:  `MahApps.Metro.Controls.ColorEyePreviewData`
-:::
+## ColorPicker
 
-# ColorPicker
+`ColorPicker` is a field with a drop-down that holds up to five [palettes](#colorpalette) on one tab and a [canvas](#colorcanvas) on the other.
 
-This control lets the user select a `Color` in a `ComboBox`-like control. The user can either select a `Color` from a predefined [`ColorPalette`](#colorpalette) or select a custom one in a [`ColorCanvas`](#colorcanvas).
+![The drop-down open on the palettes tab](images/ColorPicker_Opened_Numbered.png)
 
-## The user interface
+| No | |
+| --- | --- |
+| 01 | the chevron that opens and closes the drop-down |
+| 02 | the palettes tab and the advanced tab |
+| 03 | the colour as it stands |
+| 04 | a floating watermark, if one was asked for |
+| 05 | a clear button, which puts `SelectedColor` back to `DefaultColor` or to `null` |
 
-![](images/ColorPicker_Opened_Numbered.png)
+Everything under [the colour itself](#the-colour-itself) applies, and these come on top.
 
-| No | Description                              |
-|----|------------------------------------------|
-| 01 | Press the arrow to open or close the drop down |
-| 02 | Select between the predefined colors tab and the advanced tab |
-| 03 | Displays the selected color              |
-| 04 | Optional: Shows a floating watermark     |
-| 05 | Optional: A clear button to reset the `SelectedColor` either to `DefaultColor` or `null` |
+| Property | Type | Default | |
+| --- | --- | --- | --- |
+| `SelectedColorTemplate` | `DataTemplate` | `null` | what the field shows, see [the content of the field](#the-content-of-the-field) |
+| `DropDownHeight` `DropDownWidth` | `double` | `300` | the size of what comes down |
+| `IsDropDownOpen` | `bool` | `false` | whether it is down, two-way by default |
+| `CloseOnSelectedColorChanged` | `bool` | `false` | whether picking from a palette closes it again |
+| `IsColorPalettesTabVisible` | `bool` | `true` | the palettes tab |
+| `IsAdvancedTabVisible` | `bool` | `true` | the canvas tab |
+| `ColorPalettesTabHeader` | `object` | `"Palettes"` | the caption of the palettes tab |
+| `AdvancedTabHeader` | `object` | `"Advanced"` | the caption of the canvas tab |
+| `ColorPalettesTabHeaderTemplate` `AdvancedTabHeaderTemplate` | `DataTemplate` | `null` | how those captions are drawn |
+| `TabControlStyle` | `Style` | `null` | the `TabControl` inside the drop-down |
+| `TabItemStyle` | `Style` | `null` | its two tabs |
 
-## Properties
+`DropDownOpened` and `DropDownClosed` say when the drop-down moved, `SelectedColorChanged` when the colour did.
 
-| Property                       | Type                       | Description                              |
-|--------------------------------|----------------------------|------------------------------------------|
-| SelectedColor                  | Color?                     | Gets or sets the selected color          |
-| DefaultColor                   | Color?                     | Gets or sets the default color if the `SelectedColor` is `null` |
-| SelectedHSVColor               | HSVColor                   | Gets the selected color as `HSVColor`    |
-| ColorName                      | string                     | Gets or sets the name of the selected color [(see also `ColorHelper`)](#colornamesdictionary-and-colorhelper) |
-| ColorNamesDictionary           | Dictionary<Color?, string> | Gets or sets the `Dictionary<Color?, string>` used to get or set the `ColorName` [(see also `ColorHelper`)](#colornamesdictionary-and-colorhelper) |
-| A                              | byte                       | Gets or sets the alpha channel           |
-| R                              | byte                       | Gets or sets the red channel             |
-| G                              | byte                       | Gets or sets the green channel           |
-| B                              | byte                       | Gets or sets the blue-channel            |
-| Hue                            | double                     | Gets or sets the hue channel             |
-| Saturation                     | double                     | Gets or sets the Saturation-channel      |
-| Value                          | double                     | Gets or sets the Value-channel           |
-| AddToRecentColorsTrigger       | AddToRecentColorsTrigger   | Gets or sets the [`AddToRecentColorsTrigger`](#addtorecentcolorstrigger) |
-| LabelAlphaChannel              | string                     | Gets or sets the `Label` for the alpha-channel |
-| LabelRedChannel                | string                     | Gets or sets the `Label` for the red-channel |
-| LabelGreenChannel              | string                     | Gets or sets the `Label` for the green-channel |
-| LabelBlueChannel               | string                     | Gets or sets the `Label` for the blue-channel |
-| LabelHueChannel                | string                     | Gets or sets the `Label` for the hue-channel |
-| LabelSaturationChannel         | string                     | Gets or sets the `Label` for the saturation-channel |
-| LabelValueChannel              | string                     | Gets or sets the `Label` for the value-channel |
-| LabelColorPreview              | string                     | Gets or sets the `Label` for the preview field |
-| LabelColorName                 | string                     | Gets or sets the `Label` for the color name |
-| ColorPalettesTabHeader         | object                     | Gets or sets the `Header` of the `ColorPalettes`-tab |
-| ColorPalettesTabHeaderTemplate | DataTemplate               | Gets or sets the `DataTemplate` for the `Header` of the `ColorPalettes`-tab |
-| AdvancedTabHeader              | object                     | Gets or sets the `Header` of the `ColorCanvas`-tab |
-| AdvancedTabHeaderTemplate      | DataTemplate               | Gets or sets the `DataTemplate` for the `Header` of the `ColorCanvas`-tab |
-| DropDownHeight                 | double                     | Gets or sets the height of the `DropDown` |
-| DropDownWidth                  | double                     | Gets or sets the width of the `DropDown` |
-| IsDropDownOpen                 | bool                       | Gets or sets whether the `DropDown` is open |
-| IsAdvancedTabVisible           | bool                       | Gets or sets whether the advanced tab is visible |
-| IsColorPalettesTabVisible      | bool                       | Gets or sets whether the standard tab is visible |
-| AreRgbChannelsVisible  | bool                       | Gets or sets if the slider for the `RGB`-channels are visible. The default is `true`                                                               |
-| AreHsvChannelsVisible  | bool                       | Gets or sets if the slider for the `HSV`-channels are visible. The default is `true`                                                               |
-| IsAlphaChannelVisible  | bool                       | Gets or sets if the slider for the `Alpha`-channel is visible. The default is `true`                                                                |
-| IsColorNameVisible     | bool                       | Gets or sets if the entry for the `ColorName` is visible. The default is `true`                                                                    |
-| IsEyeDropperVisible    | bool                       | Gets or sets if the `EyeDropper` is visible. The default is `true`                                                                                 |
-| TabControlStyle                | Style                      | Gets or sets the `Style` for the `TabControl` inside the `DropDown` |
-| TabItemStyle                   | Style                      | Gets or sets the `Style` for the `TabItems` inside the `DropDown` |
-| ColorHelper           | ColorHelper                 | Gets or sets the  [ColorHelper](#colornamesdictionary-and-colorhelper) to use |
-| CloseOnSelectedColorChanged           | bool                 | Gets or sets whether the `DropDown` should close after a color was selected from a `ColorPalette`. The default is `false` |
+### The five palettes
 
-The `ColorPicker` can hold up to five different [`ColorPalettes`](#colorpalette) which can be controlled by the following properties. As the properties repeat for all five `ColorPalettes` we use <b>[###ColorPalette]</b> as a placeholder. In your code please replace it with one of these names: 
+Each of the five carries the same five properties with its own name in front: `StandardColorPalette`, `AvailableColorPalette`, `RecentColorPalette`, `CustomColorPalette01` and `CustomColorPalette02`.
 
- - StandardColorPalette
- - AvailableColorPalette
- - RecentColorPalette
- - CustomColorPalette01
- - CustomColorPalette02
- 
-| Property                        | Type         | Description                              |
-|---------------------------------|--------------|------------------------------------------|
-| <b>[###ColorPalette]</b>Header         | object       | Gets or sets the header content of the `ColorPalette` |
-| <b>[###ColorPalette]</b>HeaderTemplate | DataTemplate | Gets or sets the header content template of the `ColorPalette` |
-| <b>[###ColorPalette]</b>ItemsSource    | IEnumerable  | Gets or sets the `ItemsSource` of the `ColorPalette` |
-| <b>[###ColorPalette]</b>Style          | Style        | Gets or sets the `Style` of the `ColorPalette` |
-| Is<b>[###ColorPalette]</b>Visible      | bool         | Gets or sets whether the `ColorPalette` is visible |
+| Property | Type | |
+| --- | --- | --- |
+| `<name>Header` | `object` | the caption above the swatches |
+| `<name>HeaderTemplate` | `DataTemplate` | how the caption is drawn |
+| `<name>ItemsSource` | `IEnumerable` | the colours |
+| `<name>Style` | `Style` | the palette |
+| `Is<name>Visible` | `bool` | whether it is drawn at all |
 
-The `RecentColorPalette` is a special `ColorPalette` which is used to store the recent selected colors. To control the behavior of this `ColorPalette` you can use these two properties.
+The headers start out as the name of the palette: `"Standard"`, `"Available"`, `"Recent"`, `"Custom 01"` and `"Custom 02"`. Standard, available and recent are visible to begin with, the two custom ones are not.
 
-| Property                 | Type | Description                              |
-|--------------------------|------|------------------------------------------|
-| AddToRecentColorsTrigger | Enum | Gets or sets the trigger when the `RecentColorsPalette` should be updated. Possible values are `Never`, `ColorPickerClosed` or `SelectedColorChanged`. The default is `ColorPickerClosed` |
-| MaximumRecentColorsCount | int  | This is an attached property which gets or sets the maximum number of recent color items. If the number stored in the `RecentColorPalette` exceeds this value the oldest entries will be removed. |
+### The recent colours
 
-## Events
+The recent palette is the one the picker writes to itself. Two properties decide when, and how far back.
 
-| Event                | Description                              |
-|----------------------|------------------------------------------|
-| DropDownOpened       | Occurs when the `DropDown` opened        |
-| DropDownClosed       | Occurs when the `DropDown` closed        |
-| SelectedColorChanged | Occurs when the `SelectedColor`-Property changed |
-
-## DynamicResources
-
-| Key                                      | Type         | Description                              |
-|------------------------------------------|--------------|------------------------------------------|
-| MahApps.Templates.ColorPickerContent.ColorAndName | DataTemplate | Overrides the default `DataTemplate` for the `SelectedColorTemplate`-Property |
-| MahApps.Brushes.Tile                     | Brush        | Overrides the checkered Brush which is visible if the color is transparent |
-| MahApps.Styles.TabControl.ColorPicker    | Style        | Overrides the `Style` for the `TabControl` inside the `DropDown` |
-| MahApps.Styles.ToggleButton.ColorPickerDropDown | Style        | Overrides the `Style` for the `ColorPicker`-`ToggleButton` |
-| MahApps.Styles.ColorPalette.ColorPickerDropDown | Style        | Overrides the `Style` for the `ColorPicker`-[`ColorPalette`](#colorpalette) |
-
-## The Windows looks
-
-:::{.alert .alert-info}
-New on `develop`.
-:::
-
-`MahApps.Styles.ColorPicker.Win10` and `MahApps.Styles.ColorPicker.WinUI` put the control in the look of the [Windows 10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set. Either one is the combo box of that set with a swatch and the name of a colour where the one pick would stand: the same fill, the same frame, the same padding and the same chevron, so a picker and a combo box standing next to each other in a form are the same height and the same colour. The WinUI one rounds its corners and says the focus with the stronger line along its bottom edge.
-
-What comes down behind the field follows the set as well. The groups of swatches are headed by plain text rather than by a filled bar, because neither Windows 10 nor WinUI heads a group with one, and the boxes on the canvas are the text box and the up-down of the set. WinUI rounds the swatches, the square hue and value are picked in, the preview and the bars by the same number it rounds a control by.
+| Property | Type | Default | |
+| --- | --- | --- | --- |
+| `AddToRecentColorsTrigger` | `AddToRecentColorsTrigger` | `ColorPickerClosed` | `Never`, `ColorPickerClosed` or `SelectedColorChanged` |
+| `BuildInColorPalettes.MaximumRecentColorsCount` | `int` | | an attached property; the oldest entries go once the palette is longer than this |
 
 ```xml
-<mah:ColorPicker Width="280"
-                 SelectedColor="{Binding MyColor}"
-                 Style="{DynamicResource MahApps.Styles.ColorPicker.WinUI}" />
-```
-
-Merging one of the two sets gives every picker that look without naming the style. `MahApps.Styles.ColorCanvas.Win10`, `…ColorCanvas.WinUI`, `MahApps.Styles.ColorPalette.Win10`, `…ColorPalette.WinUI`, `MahApps.Styles.ColorEyeDropper.Win10` and `…ColorEyeDropper.WinUI` are the canvas, the palette and the eye dropper on their own, for a window that shows any of them without the drop-down. The dropper of either set is the button of that set, and on a canvas it keeps the corners of the box it stands against.
-
-## Example
-
-### Basic example
-```xml
-<!-- make sure to add the right namespace -->
-<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
-
-<mah:ColorPicker SelectedColor="{Binding myColor}" 
+<mah:ColorPicker SelectedColor="{Binding MyColor}"
+                 AddToRecentColorsTrigger="SelectedColorChanged"
+                 mah:BuildInColorPalettes.MaximumRecentColorsCount="10"
                  mah:TextBoxHelper.ClearTextButton="True"
                  mah:TextBoxHelper.UseFloatingWatermark="True"
-                 mah:TextBoxHelper.Watermark="Select a color"
-                 AddToRecentColorsTrigger="SelectedColorChanged" />
+                 mah:TextBoxHelper.Watermark="Select a color" />
 ```
 
-### Using the `SelectedColorChanged`-Event
+`RecentColors` on `BuildInColorPalettes` is one collection for the whole application, so two pickers left alone share a history.
 
-The following example shows how the `SelectedColorChanged`-Event can be used to create a custom theme. 
+| Key | Type | |
+| --- | --- | --- |
+| `MahApps.Templates.ColorPickerContent.ColorAndName` | `DataTemplate` | the default `SelectedColorTemplate` |
+| `MahApps.Brushes.Tile` | `Brush` | the chequerboard behind a colour that is not opaque |
+| `MahApps.Styles.TabControl.ColorPicker` | `Style` | the `TabControl` in the drop-down |
+| `MahApps.Styles.ToggleButton.ColorPickerDropDown` | `Style` | the chevron |
+| `MahApps.Styles.ColorPalette.ColorPickerDropDown` | `Style` | a [palette](#colorpalette) in the drop-down |
 
-```xml
-<!-- make sure to add the right namespace -->
-<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
+### The content of the field
 
-<mah:ColorPicker SelectedColorChanged="ColorPicker_SelectedColorChanged"
-                 mah:TextBoxHelper.ClearTextButton="True"
-                 mah:TextBoxHelper.UseFloatingWatermark="True"
-                 mah:TextBoxHelper.Watermark="Select a color"
-                 AddToRecentColorsTrigger="SelectedColorChanged" />
-```
+`SelectedColorTemplate` decides what stands where the pick is shown, **03** in the figure above. Two templates come with the library, both in [ColorPicker.xaml](https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Themes/ColorPicker/ColorPicker.xaml).
 
-The event event is handled in the code behind section:
+`MahApps.Templates.ColorPickerContent.ColorAndName` is the default, a swatch with the name of the colour beside it.
 
-```csharp
-// Make sure you have addes these usings into your usings section
-using ControlzEx.Theming;
-using System.Windows;
-using System.Windows.Media;
+![A swatch with the colour name](images/ColorPicker_SelectedColorTemplate_ColorAndName.png)
 
-private void ColorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
-{
-    if (e.NewValue.HasValue)
-    {
-        Theme newTheme = new Theme(name: "CustomTheme",
-                                   displayName: "CustomTheme",
-                                   baseColorScheme: "Light",
-                                   colorScheme: "CustomAccent",
-                                   primaryAccentColor: e.NewValue.Value,
-                                   showcaseBrush: new SolidColorBrush(e.NewValue.Value),
-                                   isRuntimeGenerated: true,
-                                   isHighContrast: false);
-
-        ThemeManager.Current.ChangeTheme(Application.Current, newTheme);
-    }
-}
-```
-
-![](images/ColorPicker_ThemeExample.png)
-
-### Customizing the content of the color picker
-
-This section shows how the content (**`03`** in the picture below) can be customized
-
-![](images/ColorPicker_Opened_Numbered.png)
-
-There are also some build-in `DataTemplate`s: [MahApps.Metro Source ▶ Themes ▶ ColorPicker ▶ ColorPicker.xaml](https://github.com/MahApps/MahApps.Metro/blob/a636cc8295742a230682ad7c5033cf4520b0916c/src/MahApps.Metro/Themes/ColorPicker/ColorPicker.xaml#L13-L64)
-
-`ColorAndName` (default)
+`MahApps.Templates.ColorPickerContent.ColorOnly` drops the name.
 
 ```xml
 <mah:ColorPicker Width="150"
-                 SelectedColor="red"
-                 SelectedColorTemplate="{DynamicResource MahApps.Templates.ColorPickerContent.ColorAndName}" />
-```
-
-![](images/ColorPicker_SelectedColorTemplate_ColorAndName.png)
-
-`ColorOnly`
-
-```xml
-<mah:ColorPicker Width="150"
-                 SelectedColor="red"
+                 SelectedColor="Red"
                  SelectedColorTemplate="{DynamicResource MahApps.Templates.ColorPickerContent.ColorOnly}" />
 ```
 
-![](images/ColorPicker_SelectedColorTemplate_ColorOnly.png)
+![The swatch on its own](images/ColorPicker_SelectedColorTemplate_ColorOnly.png)
 
-A custom `DataTemplate` could look like this:
+A template of your own is bound against the `Color?` itself. The one below fills a round swatch with it and writes the colour over the top in whichever of black and white can be read on it, which is what `BackgroundToForegroundConverter` is for. The `DataTrigger` on `{x:Null}` is what hides the whole thing while nothing is picked.
 
 ```xml
-<!-- make sure to add the right namespace -->
-<!-- xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls" -->
-
-<!-- Add a DataTemplate in your Resources-Section. This can be in App.xaml, MainWindow.xaml or any other place. Here we define it inside a UserControl -->
-
 <UserControl.Resources>
     <DataTemplate x:Key="My.Datatemplates.CustomColorPickerContent">
         <Grid x:Name="RootGrid">
@@ -692,13 +337,146 @@ A custom `DataTemplate` could look like this:
     </DataTemplate>
 </UserControl.Resources>
 
-<!-- Now we need to reference our DataTemplate either as StaticResource or DynamicResource -->
 <mah:ColorPicker Height="100"
                  HorizontalAlignment="Left"
-                 SelectedColor="blue"
+                 SelectedColor="Blue"
                  SelectedColorTemplate="{StaticResource My.Datatemplates.CustomColorPickerContent}" />
 ```
 
-The final result will look like this: 
+![The colour written across a round swatch](images/ColorPicker_CustomDataTemplate.png)
 
-![](images/ColorPicker_CustomDataTemplate.png)
+### A theme from the colour that was picked
+
+`SelectedColorChanged` carries the new colour, which is enough to build a `Theme` around it and hand that to ControlzEx.
+
+```xml
+<mah:ColorPicker SelectedColorChanged="ColorPicker_SelectedColorChanged"
+                 AddToRecentColorsTrigger="SelectedColorChanged"
+                 mah:TextBoxHelper.ClearTextButton="True"
+                 mah:TextBoxHelper.UseFloatingWatermark="True"
+                 mah:TextBoxHelper.Watermark="Select a color" />
+```
+
+```csharp
+using ControlzEx.Theming;
+using System.Windows;
+using System.Windows.Media;
+
+private void ColorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+{
+    if (e.NewValue.HasValue)
+    {
+        Theme newTheme = new Theme(name: "CustomTheme",
+                                   displayName: "CustomTheme",
+                                   baseColorScheme: "Light",
+                                   colorScheme: "CustomAccent",
+                                   primaryAccentColor: e.NewValue.Value,
+                                   showcaseBrush: new SolidColorBrush(e.NewValue.Value),
+                                   isRuntimeGenerated: true,
+                                   isHighContrast: false);
+
+        ThemeManager.Current.ChangeTheme(Application.Current, newTheme);
+    }
+}
+```
+
+![The whole window in the colour that was picked](images/ColorPicker_ThemeExample.png)
+
+## Colour names and the ColorHelper
+
+A colour has a name, and the name can be translated. `ColorHelper` turns one into the other, in both directions, against a `Dictionary<Color, string>`.
+
+:::{.alert .alert-warning}
+**`ColorHelper` is an instance class on `develop` and was a static one in 2.4.11.** Calls go through `ColorHelper.DefaultInstance` rather than through the type, `ColorNamesDictionary` is read-only, the dictionary key is `Color` rather than `Color?`, and `GetColorName` takes a third argument saying whether the alpha channel counts.
+:::
+
+```csharp
+// the name of a colour, from the default dictionary, alpha ignored
+string? name = ColorHelper.DefaultInstance.GetColorName(myColor, null, false);
+
+// the short way, which does the same
+string? name = ColorHelper.DefaultInstance.GetColorName(myColor);
+```
+
+Going the other way looks the name up first and falls back to [`ColorConverter.ConvertFromString`](https://docs.microsoft.com/dotnet/api/system.windows.media.colorconverter.convertfromstring), which is what makes the HTML notation work. A name that is neither gives `null`.
+
+```csharp
+// the German word for blue
+Color? blue = ColorHelper.DefaultInstance.ColorFromString("Blau", null);
+
+// the HTML notation
+Color? black = ColorHelper.DefaultInstance.ColorFromString("#FF000000", null);
+```
+
+A `null` dictionary means the one the helper was built with. `DefaultInstance` follows the current culture, `DefaultInstanceInvariant` stays on the invariant one, which is the English names whatever the machine is set to.
+
+The library ships English and German. Translations are welcome, and [ResXManager](https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager) is the comfortable way to write them.
+
+### Names of your own
+
+`ColorHelper.DefaultInstance.ColorNamesDictionary` can be added to, taken from and changed. A dictionary built somewhere else and bound to `ColorNamesDictionary` leaves the default one alone, which is how two pickers in one window end up with different names.
+
+```csharp
+public Dictionary<Color, string> MyColorNames { get; } = new()
+{
+    { Colors.Green, "everything is fine" },
+    { Colors.Yellow, "warning" },
+    { Colors.Red, "error" }
+};
+```
+
+```xml
+<mah:ColorPicker ColorNamesDictionary="{Binding MyColorNames}" />
+```
+
+### A ColorHelper of your own
+
+`ColorFromString` and `GetColorName` are `virtual`, so the whole lookup can be replaced. A `ColorHelper` can also be built on a culture and a resource dictionary type of your own, when the names are to come from your resources rather than from the library's.
+
+```csharp
+using MahApps.Metro.Controls;
+
+public class MyColorHelper : ColorHelper
+{
+    public static new readonly MyColorHelper DefaultInstance = new();
+
+    public override Color? ColorFromString(string? colorName, Dictionary<Color, string>? colorNamesDictionary)
+    {
+        // your logic goes here
+    }
+
+    public override string? GetColorName(Color? color, Dictionary<Color, string>? colorNamesDictionary, bool useAlphaChannel)
+    {
+        // your logic goes here
+    }
+}
+```
+
+`ColorPicker`, `ColorCanvas` and `ColorPalette` all take one through their `ColorHelper` property.
+
+```xml
+<!-- xmlns:my="clr-namespace:MyNamespace;assembly=YourAssembly" -->
+<mah:ColorPicker ColorHelper="{Binding Source={x:Static my:MyColorHelper.DefaultInstance}}" />
+```
+
+## The Windows looks
+
+:::{.alert .alert-info}
+New on `develop`.
+:::
+
+`MahApps.Styles.ColorPicker.Win10` and `MahApps.Styles.ColorPicker.WinUI` put the control in the look of the [Windows 10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set. Either one is the combo box of that set with a swatch and the name of a colour where the one pick would stand: the same fill, the same frame, the same padding and the same chevron, so a picker and a combo box standing next to each other in a form are the same height and the same colour. The WinUI one rounds its corners and says the focus with the stronger line along its bottom edge.
+
+What comes down behind the field follows the set as well. The groups of swatches are headed by plain text rather than by a filled bar, because neither Windows 10 nor WinUI heads a group with one, and the boxes on the canvas are the text box and the up-down of the set. WinUI rounds the swatches, the square hue and value are picked in, the preview and the bars by the same number it rounds a control by.
+
+```xml
+<mah:ColorPicker Width="280"
+                 SelectedColor="{Binding MyColor}"
+                 Style="{DynamicResource MahApps.Styles.ColorPicker.WinUI}" />
+```
+
+Merging one of the two sets gives every picker that look without naming the style. `MahApps.Styles.ColorCanvas.Win10`, `…ColorCanvas.WinUI`, `MahApps.Styles.ColorPalette.Win10`, `…ColorPalette.WinUI`, `MahApps.Styles.ColorEyeDropper.Win10` and `…ColorEyeDropper.WinUI` are the canvas, the palette and the eye dropper on their own, for a window that shows any of them without the drop-down. The dropper of either set is the button of that set, and on a canvas it keeps the corners of the box it stands against.
+
+## Related
+
+The sliders inside the canvas are described under [Slider](../styles/slider), which carries the colour component styles the channels are drawn with. [TextBoxHelper](../helper/textboxhelper) is where the watermark and the clear button on the field come from.
