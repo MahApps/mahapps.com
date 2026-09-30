@@ -130,4 +130,4 @@ Fixed on `develop` by [#4450](https://github.com/MahApps/MahApps.Metro/issues/44
 
 ## Related
 
-[RangeSlider](../controls/rangeslider) is the two-thumb version and uses the same `SliderHelper` brushes. The colour picker's channel sliders are `MahApps.Styles.Slider.ColorComponent` and its variants, which are not meant to be used on their own — see [ColorPicker](../controls/ColorPicker).
+[RangeSlider](../controls/rangeslider) is the two-thumb version and uses the same `SliderHelper` brushes. The colour picker's channel sliders are `MahApps.Styles.Slider.ColorComponent` and its variants, which are not meant to be used on their own — see [ColorPicker](../controls/colorpicker).

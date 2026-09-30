@@ -45,7 +45,7 @@ Every figure on this page sets it to 16, or three tabs would not fit in the widt
 <TabControl Style="{StaticResource MahApps.Styles.TabControl.AnimatedSingleRow}" />
 ```
 
-Both are keyed, so they have to be asked for. They are ordinary `TabControl` styles — for the MahApps controls that do the same thing, see [MetroTabControl](../controls/MetroTabControl).
+Both are keyed, so they have to be asked for. They are ordinary `TabControl` styles — for the MahApps controls that do the same thing, see [MetroTabControl](../controls/metrotabcontrol).
 
 ## Where the strip sits
 
@@ -85,4 +85,4 @@ The header sits in a `mah:ContentControlEx`, so `ControlsHelper.ContentCharacter
 
 ## Related
 
-[MetroTabControl](../controls/MetroTabControl) is the MahApps control with closable tabs and a choice about whether tab contents stay in memory; [MetroTabItem](../controls/MetroTabItem) is its item.
+[MetroTabControl](../controls/metrotabcontrol) is the MahApps control with closable tabs and a choice about whether tab contents stay in memory; [MetroTabItem](../controls/metrotabitem) is its item.

@@ -19,7 +19,7 @@ Description: A TabControl with closable tabs and a choice about the visual tree
 
 Its style is based on `MahApps.Styles.TabControl`, so everything on the [TabControl styles](../styles/tabcontrol) page applies: the placement triggers, the underline through [TabControlHelper](../helper/tabcontrolhelper), the large header font.
 
-Bind `ItemsSource` and you do not have to make the items yourself — `GetContainerForItemOverride` hands back a [MetroTabItem](MetroTabItem), not a plain `TabItem`, so the close button is available either way.
+Bind `ItemsSource` and you do not have to make the items yourself — `GetContainerForItemOverride` hands back a [MetroTabItem](metrotabitem), not a plain `TabItem`, so the close button is available either way.
 
 ## Keeping the visual tree
 
@@ -82,7 +82,7 @@ private void OnTabItemClosing(object sender, BaseMetroTabControl.TabItemClosingE
 
 The whole order, once a close button is clicked:
 
-1. the item's own `CloseTabCommand`, if set, runs — see [MetroTabItem](MetroTabItem);
+1. the item's own `CloseTabCommand`, if set, runs — see [MetroTabItem](metrotabitem);
 2. the control's `CloseTabCommand`, if set, runs and nothing further happens;
 3. otherwise `TabItemClosingEvent` is raised, and unless it is cancelled the item is removed.
 

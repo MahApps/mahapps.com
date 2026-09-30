@@ -55,7 +55,7 @@ Because these are **implicit** styles, merging the dictionary restyles every one
 
 ## Tabs
 
-The tab look is the most distinctive part: the selected tab is accent-filled and carries a close button, as in the figure. That comes from `MahApps.Styles.TabItem.VisualStudio` — see [TabControl](../styles/tabcontrol) and [MetroTabItem](../controls/MetroTabItem) for how closeable tabs work generally.
+The tab look is the most distinctive part: the selected tab is accent-filled and carries a close button, as in the figure. That comes from `MahApps.Styles.TabItem.VisualStudio` — see [TabControl](../styles/tabcontrol) and [MetroTabItem](../controls/metrotabitem) for how closeable tabs work generally.
 
 ## Related
 

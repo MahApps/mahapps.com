@@ -108,7 +108,7 @@ The [Slider](../styles/slider) style has the same shape and the same trap.
 
 ## The drop-down frame
 
-The popup's `PopupBorder` takes its `BorderBrush` from the control, but its `Background` is a fixed `MahApps.Brushes.ThemeBackground`, its `BorderThickness` is a hardcoded `1`, and it has no `CornerRadius` at all. So `ControlsHelper.CornerRadius` rounds the button and leaves the list square. The same shape in the [DateTimePicker](DateTimePicker) template is tracked as [#4582](https://github.com/MahApps/MahApps.Metro/issues/4582).
+The popup's `PopupBorder` takes its `BorderBrush` from the control, but its `Background` is a fixed `MahApps.Brushes.ThemeBackground`, its `BorderThickness` is a hardcoded `1`, and it has no `CornerRadius` at all. So `ControlsHelper.CornerRadius` rounds the button and leaves the list square. The same shape in the [DateTimePicker](datetimepicker) template is tracked as [#4582](https://github.com/MahApps/MahApps.Metro/issues/4582).
 
 ## Related
 

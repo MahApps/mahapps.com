@@ -2,7 +2,7 @@ Title: MetroAnimatedSingleRowTabControl
 Description: An animated MetroTabControl whose headers stay on one scrolling row
 ---
 
-`MetroAnimatedSingleRowTabControl` is [MetroAnimatedTabControl](MetroAnimatedTabControl) with one difference: its tab headers stay on a **single row and scroll**, instead of wrapping onto further rows.
+`MetroAnimatedSingleRowTabControl` is [MetroAnimatedTabControl](metroanimatedtabcontrol) with one difference: its tab headers stay on a **single row and scroll**, instead of wrapping onto further rows.
 
 ![The same six tabs in both controls](images/animatedtabcontrol-headers.png)
 
@@ -41,11 +41,11 @@ and the style turns the horizontal wheel on by default:
 
 So the mouse wheel scrolls the header row sideways without holding <kbd>Shift</kbd>. See [ScrollViewerHelper](../helper/scrollviewerhelper).
 
-Everything else is shared: the same `BaseMetroTabControl` API as [MetroTabControl](MetroTabControl), and the same [TransitioningContentControl](transitioningcontentcontrol) driving the content animation.
+Everything else is shared: the same `BaseMetroTabControl` API as [MetroTabControl](metrotabcontrol), and the same [TransitioningContentControl](transitioningcontentcontrol) driving the content animation.
 
 ## Two templates, one per orientation
 
-Both controls react to `TabStripPlacement`, but they do it differently. [MetroAnimatedTabControl](MetroAnimatedTabControl) has **one** template and rearranges its own grid from `ControlTemplate.Triggers`. This control instead ships **two** templates and swaps between them from `Style.Triggers`:
+Both controls react to `TabStripPlacement`, but they do it differently. [MetroAnimatedTabControl](metroanimatedtabcontrol) has **one** template and rearranges its own grid from `ControlTemplate.Triggers`. This control instead ships **two** templates and swaps between them from `Style.Triggers`:
 
 | `TabStripPlacement` | Template |
 | --- | --- |
@@ -77,7 +77,7 @@ To replace the template, repeat the triggers in your own style:
 
 ## Choosing the transition
 
-As with [MetroAnimatedTabControl](MetroAnimatedTabControl), `TabControlHelper.Transition` picks the animation and defaults to `Left`:
+As with [MetroAnimatedTabControl](metroanimatedtabcontrol), `TabControlHelper.Transition` picks the animation and defaults to `Left`:
 
 ```xml
 <mah:MetroAnimatedSingleRowTabControl mah:TabControlHelper.Transition="Up">
@@ -89,4 +89,4 @@ As with [MetroAnimatedTabControl](MetroAnimatedTabControl), `TabControlHelper.Tr
 
 ## Related
 
-[MetroAnimatedTabControl](MetroAnimatedTabControl) for the wrapping-header version, [MetroTabControl](MetroTabControl) for the shared API, [ScrollViewerHelper](../helper/scrollviewerhelper) for the horizontal wheel, and [TransitioningContentControl](transitioningcontentcontrol) for the transitions.
+[MetroAnimatedTabControl](metroanimatedtabcontrol) for the wrapping-header version, [MetroTabControl](metrotabcontrol) for the shared API, [ScrollViewerHelper](../helper/scrollviewerhelper) for the horizontal wheel, and [TransitioningContentControl](transitioningcontentcontrol) for the transitions.

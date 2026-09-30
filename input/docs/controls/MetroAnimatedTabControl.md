@@ -2,7 +2,7 @@ Title: MetroAnimatedTabControl
 Description: A MetroTabControl that animates the switch between tabs
 ---
 
-`MetroAnimatedTabControl` is a [MetroTabControl](MetroTabControl) whose content slides in when you switch tabs. The class itself is four lines — it derives from `BaseMetroTabControl` and only points at a different default style. Everything below is that style.
+`MetroAnimatedTabControl` is a [MetroTabControl](metrotabcontrol) whose content slides in when you switch tabs. The class itself is four lines — it derives from `BaseMetroTabControl` and only points at a different default style. Everything below is that style.
 
 ![Left, Up and Normal, caught early in the transition](images/animatedtabcontrol-transition.png)
 
@@ -17,7 +17,7 @@ Description: A MetroTabControl that animates the switch between tabs
 </mah:MetroAnimatedTabControl>
 ```
 
-Because it derives from `BaseMetroTabControl`, everything on the [MetroTabControl](MetroTabControl) page applies here too — closeable tabs, `CloseTabCommand`, the header styling through [TabControlHelper](../helper/tabcontrolhelper), and so on.
+Because it derives from `BaseMetroTabControl`, everything on the [MetroTabControl](metrotabcontrol) page applies here too — closeable tabs, `CloseTabCommand`, the header styling through [TabControlHelper](../helper/tabcontrolhelper), and so on.
 
 ## Where the animation comes from
 
@@ -29,7 +29,7 @@ The template hosts the tab content in a [TransitioningContentControl](transition
                                  ... />
 ```
 
-That is the whole mechanism, and it explains both how to change the animation and what its limits are. A plain [MetroTabControl](MetroTabControl) has no `TransitioningContentControl` in its template at all, which is why it does not animate.
+That is the whole mechanism, and it explains both how to change the animation and what its limits are. A plain [MetroTabControl](metrotabcontrol) has no `TransitioningContentControl` in its template at all, which is why it does not animate.
 
 ## Choosing the transition
 
@@ -49,8 +49,8 @@ The headers sit in a plain `TabPanel`, so when they do not fit across the contro
 
 Note that the selected tab's row is moved down next to the content — that is `TabPanel`'s own behaviour, not something MahApps does, and it is why *Overview* appears on the bottom row rather than the top.
 
-If you would rather have one row that scrolls, use [MetroAnimatedSingleRowTabControl](MetroAnimatedSingleRowTabControl), which is the same control with a `ScrollViewer` around the headers.
+If you would rather have one row that scrolls, use [MetroAnimatedSingleRowTabControl](metroanimatedsinglerowtabcontrol), which is the same control with a `ScrollViewer` around the headers.
 
 ## Related
 
-[MetroTabControl](MetroTabControl) for the shared API and the non-animated version. [MetroAnimatedSingleRowTabControl](MetroAnimatedSingleRowTabControl) for the scrolling-header variant. [TransitioningContentControl](transitioningcontentcontrol) for what the transitions actually do.
+[MetroTabControl](metrotabcontrol) for the shared API and the non-animated version. [MetroAnimatedSingleRowTabControl](metroanimatedsinglerowtabcontrol) for the scrolling-header variant. [TransitioningContentControl](transitioningcontentcontrol) for what the transitions actually do.

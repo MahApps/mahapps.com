@@ -65,7 +65,7 @@ The empty loop body is the whole point: asking for the entries is what resolves 
 
 ### Keep the tabs you switch between
 
-Where views are tabs, the cheapest answer is not to rebuild them at all. [MetroTabControl](../controls/MetroTabControl) can keep each tab's content alive:
+Where views are tabs, the cheapest answer is not to rebuild them at all. [MetroTabControl](../controls/metrotabcontrol) can keep each tab's content alive:
 
 ```xml
 <mah:MetroTabControl KeepVisualTreeInMemoryWhenChangingTabs="True" />

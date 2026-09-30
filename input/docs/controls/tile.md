@@ -134,4 +134,4 @@ Both dead properties are **removed on `develop`** (in `bc0c0560`), so they will 
 
 ## Related
 
-`TiltBehavior` for the tilt-on-press effect. [FontIcon](fonticon) is a convenient thing to put inside a tile, and [Badged](Badged) is the alternative when you want a count as a badge rather than beside the icon.
+`TiltBehavior` for the tilt-on-press effect. [FontIcon](fonticon) is a convenient thing to put inside a tile, and [Badged](badged) is the alternative when you want a count as a badge rather than beside the icon.

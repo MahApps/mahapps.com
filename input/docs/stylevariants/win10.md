@@ -6,7 +6,7 @@ The Win10 styles draw a control the way UWP drew it on Windows 10: a filled acce
 
 ![The default styles and the Win10 ones](images/win10-controls.png)
 
-Three of them are already what a control wears with nothing merged on your side: the [Slider](../styles/slider), the [RangeSlider](../controls/rangeslider) and the [WindowButtonCommands](../controls/WindowButtonCommands).
+Three of them are already what a control wears with nothing merged on your side: the [Slider](../styles/slider), the [RangeSlider](../controls/rangeslider) and the [WindowButtonCommands](../controls/windowbuttoncommands).
 
 ## The set
 
@@ -24,7 +24,7 @@ The set goes *in place of* `Styles/Controls.xaml` rather than next to it, becaus
 </ResourceDictionary.MergedDictionaries>
 ```
 
-Everything the library has is still there. What comes out in the Windows 10 look is the `Button`, the `RepeatButton`, the `CheckBox`, the `RadioButton`, the `TextBox`, the `PasswordBox`, the `RichTextBox`, the `ComboBox`, the [box that holds several picks](../controls/MultiSelectionComboBox), the [suggestion box](../controls/AutoSuggestBox), the [shortcut box](../controls/HotKeyBox), the [colour picker](../controls/ColorPicker), the `ScrollBar`, the four [up-downs](../controls/numericupdown), the `Calendar`, the `DatePicker`, the [AnalogClock](../controls/analogclock) and the two pickers; every other control keeps the default look, because the set has nothing of its own for it.
+Everything the library has is still there. What comes out in the Windows 10 look is the `Button`, the `RepeatButton`, the `CheckBox`, the `RadioButton`, the `TextBox`, the `PasswordBox`, the `RichTextBox`, the `ComboBox`, the [box that holds several picks](../controls/multiselectioncombobox), the [suggestion box](../controls/autosuggestbox), the [shortcut box](../controls/hotkeybox), the [colour picker](../controls/colorpicker), the `ScrollBar`, the four [up-downs](../controls/numericupdown), the `Calendar`, the `DatePicker`, the [AnalogClock](../controls/analogclock) and the two pickers; every other control keeps the default look, because the set has nothing of its own for it.
 
 Merge it into a window or a panel rather than into `App.xaml` and it reaches that part of the tree alone. The demo does exactly that, to stand the three sets next to each other.
 
@@ -46,16 +46,16 @@ Nothing forces the whole set on you. Every style in it has a key, and always has
 | `MahApps.Styles.PasswordBox.Win10` (on `develop`) | [PasswordBox](../styles/passwordbox) |
 | `MahApps.Styles.RichTextBox.Win10` (on `develop`) | [TextBox](../styles/textbox) |
 | `MahApps.Styles.ComboBox.Win10`, `…ComboBoxItem.Win10` (on `develop`) | [ComboBox](../styles/combobox) |
-| `MahApps.Styles.AutoSuggestBox.Win10` (on `develop`) | [AutoSuggestBox](../controls/AutoSuggestBox) |
-| `MahApps.Styles.MultiSelectionComboBox.Win10` (on `develop`) | [MultiSelectionComboBox](../controls/MultiSelectionComboBox) |
-| `MahApps.Styles.HotKeyBox.Win10` (on `develop`) | [HotKeyBox](../controls/HotKeyBox) |
-| `MahApps.Styles.ColorPicker.Win10`, `…ColorCanvas.Win10`, `…ColorPalette.Win10`, `…ColorEyeDropper.Win10` (on `develop`) | [ColorPicker](../controls/ColorPicker) |
+| `MahApps.Styles.AutoSuggestBox.Win10` (on `develop`) | [AutoSuggestBox](../controls/autosuggestbox) |
+| `MahApps.Styles.MultiSelectionComboBox.Win10` (on `develop`) | [MultiSelectionComboBox](../controls/multiselectioncombobox) |
+| `MahApps.Styles.HotKeyBox.Win10` (on `develop`) | [HotKeyBox](../controls/hotkeybox) |
+| `MahApps.Styles.ColorPicker.Win10`, `…ColorCanvas.Win10`, `…ColorPalette.Win10`, `…ColorEyeDropper.Win10` (on `develop`) | [ColorPicker](../controls/colorpicker) |
 | `MahApps.Styles.DatePicker.Win10` (on `develop`) | [DatePicker](../styles/datepicker) |
 | `MahApps.Styles.ScrollBar.Win10`, `…ScrollViewer.Win10` (on `develop`) | [ScrollBars](../styles/scrollbars) |
 | `MahApps.Styles.NumericUpDown.Win10` (on `develop`) | [NumericUpDown](../controls/numericupdown) |
 | `MahApps.Styles.Slider.Win10` | [Slider](../styles/slider) |
 | `MahApps.Styles.RangeSlider.Win10` | [RangeSlider](../controls/rangeslider) |
-| `MahApps.Styles.WindowButtonCommands.Win10` | [WindowButtonCommands](../controls/WindowButtonCommands) |
+| `MahApps.Styles.WindowButtonCommands.Win10` | [WindowButtonCommands](../controls/windowbuttoncommands) |
 
 Each brings its own supporting pieces — `MahApps.Templates.Slider.Horizontal.Win10` and `.Vertical.Win10`, `MahApps.Styles.Thumb.Slider.Win10`, the two `RepeatButton.Slider.*Track.Win10` styles, the range slider's thumb and templates, and light and dark close-button styles for the window buttons.
 
@@ -82,7 +82,7 @@ The library stops at the controls above. For several others this documentation s
 | | |
 | --- | --- |
 | [`Controls.Calendar.Win10.xaml`](../../assets/xaml/Controls.Calendar.Win10.xaml) | a square calendar — see [Calendar](../styles/calendar) |
-| [`Controls.DateTimePicker.Win10.xaml`](../../assets/xaml/Controls.DateTimePicker.Win10.xaml) | [DateTimePicker](../controls/DateTimePicker) and [TimePicker](../controls/TimePicker) |
+| [`Controls.DateTimePicker.Win10.xaml`](../../assets/xaml/Controls.DateTimePicker.Win10.xaml) | [DateTimePicker](../controls/datetimepicker) and [TimePicker](../controls/timepicker) |
 | [`Controls.ScrollBar.Win10.xaml`](../../assets/xaml/Controls.ScrollBar.Win10.xaml) | [ScrollBars](../styles/scrollbars) |
 
 On `develop` none of the three is needed any more: the calendar, the two pickers and the scroll bar all moved into the set itself, under the same keys, and the set applies them without anything being merged. In a released version all three are files.

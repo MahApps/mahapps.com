@@ -2,7 +2,7 @@ Title: DateTimePicker
 Description: A date and time picker with a calendar and a clock
 ---
 
-`DateTimePicker` is a text field with a drop-down that holds a calendar, an analogue clock and three lists for hour, minute and AM/PM. [TimePicker](TimePicker) is the same control without the calendar; both derive from `TimePickerBase`, so everything below applies to either unless it mentions a date.
+`DateTimePicker` is a text field with a drop-down that holds a calendar, an analogue clock and three lists for hour, minute and AM/PM. [TimePicker](timepicker) is the same control without the calendar; both derive from `TimePickerBase`, so everything below applies to either unless it mentions a date.
 
 ![A DateTimePicker and a TimePicker](images/datetimepicker-closed.png)
 
@@ -90,7 +90,7 @@ That reaches the drop-down and the twelve- or twenty-four-hour clock as well, so
 Each has a matching `HoursItemStringFormat`, `MinutesItemStringFormat` and `SecondsItemStringFormat` for how the entries are written.
 
 :::{.alert .alert-info}
-**The clock is a control of its own on `develop`**, [AnalogClock](AnalogClock), and `ClockSize`, `ClockStyle` and `PopupStyle` are the three properties that reach it and the popup around it without a copy of the template. [#4514](https://github.com/MahApps/MahApps.Metro/issues/4514), written up on [the TimePicker page](TimePicker#reaching-into-the-drop-down).
+**The clock is a control of its own on `develop`**, [AnalogClock](analogclock), and `ClockSize`, `ClockStyle` and `PopupStyle` are the three properties that reach it and the popup around it without a copy of the template. [#4514](https://github.com/MahApps/MahApps.Metro/issues/4514), written up on [the TimePicker page](timepicker#reaching-into-the-drop-down).
 :::
 
 ## The Now button
@@ -261,4 +261,4 @@ It is a routed event, so a form can listen once further up the tree instead of o
 
 ## Related
 
-[TimePicker](TimePicker) for the time alone, [DatePicker](../styles/datepicker) for the date alone, and [Calendar](../styles/calendar) for the calendar the drop-down shows — including the two variants these styles reuse.
+[TimePicker](timepicker) for the time alone, [DatePicker](../styles/datepicker) for the date alone, and [Calendar](../styles/calendar) for the calendar the drop-down shows — including the two variants these styles reuse.

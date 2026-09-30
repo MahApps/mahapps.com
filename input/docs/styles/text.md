@@ -113,7 +113,7 @@ The general-purpose sizes are `MahApps.Font.Size.Header` (40), `.SubHeader` (29.
 <TextBlock Text="Settings" FontSize="{DynamicResource MahApps.Font.Size.SubHeader}" />
 ```
 
-Families are `MahApps.Fonts.Family.Control` and `.Button` (Segoe UI), `.Header` and `.Window.Title` (Segoe UI Light), and `MahApps.Fonts.Family.SymbolTheme`, which is the Segoe MDL2 Assets icon font the library ships so the icons work on Windows versions that do not have it — see [FontIcon](../controls/FontIcon).
+Families are `MahApps.Fonts.Family.Control` and `.Button` (Segoe UI), `.Header` and `.Window.Title` (Segoe UI Light), and `MahApps.Fonts.Family.SymbolTheme`, which is the Segoe MDL2 Assets icon font the library ships so the icons work on Windows versions that do not have it — see [FontIcon](../controls/fonticon).
 
 MahApps sets no font family for ordinary text, only the size, so plain text uses whatever the window inherits from the system.
 

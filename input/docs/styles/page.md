@@ -27,7 +27,7 @@ Those three will look familiar: they are exactly what the `MetroWindow` style ha
 
 ## A Frame is a wall
 
-A `Page` is hosted by a `Frame`, whether directly or inside a [MetroNavigationWindow](../controls/MetroNavigationWindow), and a `Frame` is a boundary for **property value inheritance**. `Foreground` and `TextElement.FontSize` set on the window stop there; the page starts again from WPF's own defaults.
+A `Page` is hosted by a `Frame`, whether directly or inside a [MetroNavigationWindow](../controls/metronavigationwindow), and a `Frame` is a boundary for **property value inheritance**. `Foreground` and `TextElement.FontSize` set on the window stop there; the page starts again from WPF's own defaults.
 
 It is a boundary for **resource lookup** as well. A `ResourceDictionary` merged into an element above the frame does not reach the page inside it — a `DynamicResource` in the page resolves from `Application.Resources` instead.
 
@@ -53,4 +53,4 @@ There is nothing in the style that makes this unsafe — it sets no template and
 
 ## Related
 
-[MetroNavigationWindow](../controls/MetroNavigationWindow) is the window that hosts pages, and [Text](text) explains where the same three values come from for everything that is not behind a frame.
+[MetroNavigationWindow](../controls/metronavigationwindow) is the window that hosts pages, and [Text](text) explains where the same three values come from for everything that is not behind a frame.

@@ -66,13 +66,13 @@ The default here is `False`, which is the opposite of what a `Button` template n
 
 The behaviour with no property is in `OnContentChanged`. When the content is an `IInputElement`, `ContentControlEx` binds that content's `WindowChrome.IsHitTestVisibleInChrome` to its own, and clears the binding when the content is replaced.
 
-That single binding is why a button placed in a [MetroWindow](metrowindow)'s title bar can be clicked at all. The title bar is window chrome as far as the system is concerned, and chrome swallows mouse input unless an element opts out; `ContentControlEx` passes that opt-out down to whatever you put inside it, so [WindowCommands](WindowCommands) and the window title work without anyone setting the attached property by hand.
+That single binding is why a button placed in a [MetroWindow](metrowindow)'s title bar can be clicked at all. The title bar is window chrome as far as the system is concerned, and chrome swallows mouse input unless an element opts out; `ContentControlEx` passes that opt-out down to whatever you put inside it, so [WindowCommands](windowcommands) and the window title work without anyone setting the attached property by hand.
 
 ## Where it turns up
 
-Eighteen other dictionaries in the library use it as their content presenter, among them the styles for [Buttons](../styles/buttons), [TabControl](../styles/tabcontrol) and [MetroTabItem](MetroTabItem), [GroupBox](../styles/groupbox) and [Expander](../styles/expander) headers, [ToolTip](../styles/tooltip), `GridViewColumnHeader` in a [ListView](../styles/listview), [ToolBar](../styles/toolbar), [SplitButton](splitbutton) and [DropDownButton](dropdownbutton), [MetroHeader](MetroHeader) and [WindowCommands](WindowCommands).
+Eighteen other dictionaries in the library use it as their content presenter, among them the styles for [Buttons](../styles/buttons), [TabControl](../styles/tabcontrol) and [MetroTabItem](metrotabitem), [GroupBox](../styles/groupbox) and [Expander](../styles/expander) headers, [ToolTip](../styles/tooltip), `GridViewColumnHeader` in a [ListView](../styles/listview), [ToolBar](../styles/toolbar), [SplitButton](splitbutton) and [DropDownButton](dropdownbutton), [MetroHeader](metroheader) and [WindowCommands](windowcommands).
 
-`MahApps.Styles.MetroThumbContentControl` is `MahApps.Styles.ContentControlEx` with nothing changed — see [MetroThumbContentControl](MetroThumbContentControl).
+`MahApps.Styles.MetroThumbContentControl` is `MahApps.Styles.ContentControlEx` with nothing changed — see [MetroThumbContentControl](metrothumbcontentcontrol).
 
 ## The style
 

@@ -210,5 +210,5 @@ Three more exist for particular places, and none of them is meant to be applied 
 | Style | |
 | --- | --- |
 | `MahApps.Styles.ScrollViewer.GridView` | the one a [ListView](listview) uses so its column headers stay put while the rows scroll |
-| `MahApps.Styles.ScrollViewer.Hamburger` | inside the [HamburgerMenu](../controls/HamburgerMenu) pane |
+| `MahApps.Styles.ScrollViewer.Hamburger` | inside the [HamburgerMenu](../controls/hamburgermenu) pane |
 | `{ComponentResourceKey MenuScrollViewer}` | a menu that is taller than the screen — see [Menus](menus) |

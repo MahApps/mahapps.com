@@ -2,7 +2,7 @@ Title: MetroTabItem
 Description: A TabItem with a close button
 ---
 
-`MetroTabItem` is a `TabItem` with a close button and the four properties around it. It is what [MetroTabControl](MetroTabControl) creates for you when you bind `ItemsSource`, and its style is based on `MahApps.Styles.TabItem`, so everything on the [TabControl styles](../styles/tabcontrol) page applies here too.
+`MetroTabItem` is a `TabItem` with a close button and the four properties around it. It is what [MetroTabControl](metrotabcontrol) creates for you when you bind `ItemsSource`, and its style is based on `MahApps.Styles.TabItem`, so everything on the [TabControl styles](../styles/tabcontrol) page applies here too.
 
 ![CloseButtonEnabled off and on](images/metrotabitem-closebutton.png)
 
@@ -53,7 +53,7 @@ The two commands are not alternatives, and this is the part that catches people:
 
 **The item's command cannot stop the tab from closing.** It runs first, the sequence continues regardless, and a `CanExecute` that returns `false` only means the command does not run — the tab still goes. Use it for the side effect: save the document, log the close, release a handle.
 
-To *prevent* a close you need one of the other two: set `CloseTabCommand` on the [MetroTabControl](MetroTabControl), which replaces the removal entirely, or handle `TabItemClosingEvent` and set `e.Cancel`.
+To *prevent* a close you need one of the other two: set `CloseTabCommand` on the [MetroTabControl](metrotabcontrol), which replaces the removal entirely, or handle `TabItemClosingEvent` and set `e.Cancel`.
 :::
 
 ```xml
@@ -75,4 +75,4 @@ Those three are read **only by the Visual Studio tab style** in `Styles/VS/TabCo
 
 ## Related
 
-[MetroTabControl](MetroTabControl) for the closing pipeline seen from the other end, [TabControl](../styles/tabcontrol) for the look, and [TabControlHelper](../helper/tabcontrolhelper) for the underline and the transition.
+[MetroTabControl](metrotabcontrol) for the closing pipeline seen from the other end, [TabControl](../styles/tabcontrol) for the look, and [TabControlHelper](../helper/tabcontrolhelper) for the underline and the transition.

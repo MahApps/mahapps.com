@@ -82,4 +82,4 @@ The window decides whether its commands stay visible when a [Flyout](flyouts) is
 
 ## Related
 
-[WindowButtonCommands](WindowButtonCommands) for the minimise, maximise and close buttons at the end of the same title bar. [MetroWindow](metrowindow) hosts both.
+[WindowButtonCommands](windowbuttoncommands) for the minimise, maximise and close buttons at the end of the same title bar. [MetroWindow](metrowindow) hosts both.

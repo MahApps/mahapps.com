@@ -2,7 +2,7 @@ Title: AnalogClock
 Description: The clock face from the picker drop-down, on its own
 ---
 
-`AnalogClock` is a round face with an hour, a minute and a second hand. It is the clock the [TimePicker](TimePicker) and the [DateTimePicker](DateTimePicker) show in their drop-down, and since it is a control you can put one anywhere else as well.
+`AnalogClock` is a round face with an hour, a minute and a second hand. It is the clock the [TimePicker](timepicker) and the [DateTimePicker](datetimepicker) show in their drop-down, and since it is a control you can put one anywhere else as well.
 
 ```xml
 <mah:AnalogClock Time="{Binding Departure}" />
@@ -51,7 +51,7 @@ Neither the Windows 10 nor the WinUI set shows a clock in its picker drop-down, 
 
 ## In a picker
 
-The picker owns the clock in its drop-down, so it is reached through the picker rather than directly: `ClockSize` for how large it is drawn, `ClockStyle` for its look, `IsClockVisible` for whether it is there at all, and `HandVisibility`, which the picker passes down. [The TimePicker page](TimePicker#reaching-into-the-drop-down) has them together.
+The picker owns the clock in its drop-down, so it is reached through the picker rather than directly: `ClockSize` for how large it is drawn, `ClockStyle` for its look, `IsClockVisible` for whether it is there at all, and `HandVisibility`, which the picker passes down. [The TimePicker page](timepicker#reaching-into-the-drop-down) has them together.
 
 ```xml
 <mah:TimePicker ClockSize="200" HandVisibility="All" />
@@ -59,4 +59,4 @@ The picker owns the clock in its drop-down, so it is reached through the picker 
 
 ## Related
 
-[TimePicker](TimePicker) and [DateTimePicker](DateTimePicker) for the pickers this face came out of.
+[TimePicker](timepicker) and [DateTimePicker](datetimepicker) for the pickers this face came out of.

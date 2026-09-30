@@ -143,4 +143,4 @@ Grouping is the exception the template handles for you: with `IsGrouping` on and
 
 ## Related
 
-[ListView](listview) is the same idea with columns, and [ComboBox](combobox) drop-downs use `ListBoxItem` too, so the brushes above colour them as well. The [HamburgerMenu](../controls/HamburgerMenu) pane is a `ListBox` with its own item styles.
+[ListView](listview) is the same idea with columns, and [ComboBox](combobox) drop-downs use `ListBoxItem` too, so the brushes above colour them as well. The [HamburgerMenu](../controls/hamburgermenu) pane is a `ListBox` with its own item styles.

@@ -2,7 +2,7 @@ Title: TimePicker
 Description: A time field with a clock and hour, minute and AM/PM lists
 ---
 
-`TimePicker` is a text field with a drop-down for picking a time. It is [DateTimePicker](DateTimePicker) without the calendar half — both derive from `TimePickerBase` and share one control template.
+`TimePicker` is a text field with a drop-down for picking a time. It is [DateTimePicker](datetimepicker) without the calendar half — both derive from `TimePickerBase` and share one control template.
 
 ![Empty, with a value, and with a clear button](images/timepicker-closed.png)
 
@@ -12,7 +12,7 @@ Description: A time field with a clock and hour, minute and AM/PM lists
 
 ## How it differs from DateTimePicker
 
-Almost nothing separates the two, which is worth knowing because everything on the [DateTimePicker](DateTimePicker) page applies here as well.
+Almost nothing separates the two, which is worth knowing because everything on the [DateTimePicker](datetimepicker) page applies here as well.
 
 | | |
 | --- | --- |
@@ -22,7 +22,7 @@ Almost nothing separates the two, which is worth knowing because everything on t
 | typing into the field | parsed as a time; the date part of `SelectedDateTime` is kept |
 
 :::{.alert .alert-info}
-`IsDatePickerVisible` is a **read-only** dependency property with a `protected` setter, so you cannot turn the calendar back on from XAML. Use a [DateTimePicker](DateTimePicker) if you want both halves.
+`IsDatePickerVisible` is a **read-only** dependency property with a `protected` setter, so you cannot turn the calendar back on from XAML. Use a [DateTimePicker](datetimepicker) if you want both halves.
 :::
 
 ## The value
@@ -77,7 +77,7 @@ In a released version the thread is never asked. Without a `Culture` the picker 
 <mah:TimePicker SelectedDateTimeFormat="HH:mm" />
 ```
 
-It sits on `TimePickerBase`, so both pickers take one, and [DateTimePicker](DateTimePicker#the-format) covers it in full. So does `DateTimeValidationError`, the event that says what was typed when the field holds something that is not a time — both are new on `develop` ([#4644](https://github.com/MahApps/MahApps.Metro/issues/4644) and [#4645](https://github.com/MahApps/MahApps.Metro/issues/4645)).
+It sits on `TimePickerBase`, so both pickers take one, and [DateTimePicker](datetimepicker#the-format) covers it in full. So does `DateTimeValidationError`, the event that says what was typed when the field holds something that is not a time — both are new on `develop` ([#4644](https://github.com/MahApps/MahApps.Metro/issues/4644) and [#4645](https://github.com/MahApps/MahApps.Metro/issues/4645)).
 
 ## The drop-down
 
@@ -111,7 +111,7 @@ It sits on `TimePickerBase`, so both pickers take one, and [DateTimePicker](Date
 
 Each has a matching `HoursItemStringFormat`, `MinutesItemStringFormat` and `SecondsItemStringFormat`.
 
-The button under the lists puts the picker on the time of day in one press. It is the same one the `DateTimePicker` carries, described on [its page](DateTimePicker) along with the caption property and the note that it is new on `develop`.
+The button under the lists puts the picker on the time of day in one press. It is the same one the `DateTimePicker` carries, described on [its page](datetimepicker) along with the caption property and the note that it is new on `develop`.
 
 ### Reaching into the drop-down
 
@@ -119,7 +119,7 @@ The button under the lists puts the picker on the time of day in one press. It i
 **The three properties below and the `AnalogClock` control are new on `develop`**, which is [#4514](https://github.com/MahApps/MahApps.Metro/issues/4514). In a released version the clock and the popup are markup in the middle of the shared template, so the only way at either of them is a copy of the whole template.
 :::
 
-The clock face is a control of its own, [AnalogClock](AnalogClock), and the picker carries three properties that reach it and the popup around it.
+The clock face is a control of its own, [AnalogClock](analogclock), and the picker carries three properties that reach it and the popup around it.
 
 `ClockSize` is the one the issue asked for. The face is drawn at its natural 120 and scaled to whatever size it is given, so one number takes the ring, the dots and the hands with it, and the drop-down grows to fit:
 
@@ -152,7 +152,7 @@ The clock face is a control of its own, [AnalogClock](AnalogClock), and the pick
 
 On `develop` the two other style sets carry the pickers themselves, so there is nothing to download: merge `Styles/Win10/Controls.xaml` or `Styles/WinUI/Controls.xaml` instead of `Styles/Controls.xaml` and the `TimePicker` wears that set without another line ([#4514](https://github.com/MahApps/MahApps.Metro/issues/4514)). The keys are the same ones the drop-ins use, `MahApps.Styles.TimePicker.Win10` and `MahApps.Styles.TimePicker.WinUI`, and both sets bring the field chrome of their text boxes along with the time selection described below.
 
-In a released version they are the two drop-in dictionaries that restyle the [DateTimePicker](DateTimePicker), one `TimePicker` style each.
+In a released version they are the two drop-in dictionaries that restyle the [DateTimePicker](datetimepicker), one `TimePicker` style each.
 
 ![The built-in field, the Win10 one and the WinUI one](images/timepicker-variants.png)
 
@@ -161,7 +161,7 @@ In a released version they are the two drop-in dictionaries that restyle the [Da
 | **[`Controls.DateTimePicker.Win10.xaml`](../../assets/xaml/Controls.DateTimePicker.Win10.xaml)** | `MahApps.Styles.TimePicker.Win10` | square |
 | **[`Controls.DateTimePicker.WinUI.xaml`](../../assets/xaml/Controls.DateTimePicker.WinUI.xaml)** | `MahApps.Styles.TimePicker.WinUI` | rounded |
 
-The files are named for the `DateTimePicker` because they cover both controls. For a `TimePicker` you only need the one dictionary — the calendar dictionary the [DateTimePicker](DateTimePicker) page asks for is used by the `DateTimePicker` styles alone.
+The files are named for the `DateTimePicker` because they cover both controls. For a `TimePicker` you only need the one dictionary — the calendar dictionary the [DateTimePicker](datetimepicker) page asks for is used by the `DateTimePicker` styles alone.
 
 ```xml
 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
@@ -184,7 +184,7 @@ No chrome, no chevrons, just centred numbers. Open a column and the selected val
 
 The Win10 variant is the same row; the two only part company inside the open list, where one pill is rounded and the other square. Set `IsClockVisible="True"` in a derived style to keep the clock.
 
-Reaching those lists at all needs a trick, because they are plain `ComboBox`es with no style of their own — see [the DateTimePicker page](DateTimePicker) for how `Style.Resources` scopes an implicit style to one control's drop-down.
+Reaching those lists at all needs a trick, because they are plain `ComboBox`es with no style of their own — see [the DateTimePicker page](datetimepicker) for how `Style.Resources` scopes an implicit style to one control's drop-down.
 
 :::{.alert .alert-warning}
 The drop-down frame stays square in a released version, whichever variant you use, because `PART_PopupBorder` in the shared template has no `CornerRadius`. It is **fixed on `develop`** by [#4582](https://github.com/MahApps/MahApps.Metro/issues/4582), where that border follows `ControlsHelper.CornerRadius` and clips its content to it. Its background and border colour still come from the `MahApps.Brushes.Control.Background` and `.Border` keys rather than from the control.
@@ -202,4 +202,4 @@ The watermark and the clear button are ordinary [TextBoxHelper](../helper/textbo
 
 ## Related
 
-[DateTimePicker](DateTimePicker) for date and time together — and for the properties both controls share. [DatePicker](../styles/datepicker) for the date alone.
+[DateTimePicker](datetimepicker) for date and time together — and for the properties both controls share. [DatePicker](../styles/datepicker) for the date alone.

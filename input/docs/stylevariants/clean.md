@@ -33,8 +33,8 @@ Merge the dictionary into `App.xaml` instead if the whole application should use
 | Dictionary | Applied to |
 | --- | --- |
 | `Clean/MetroWindow.xaml` | `MetroWindow` |
-| `Clean/WindowButtonCommands.xaml` | [WindowButtonCommands](../controls/WindowButtonCommands) |
-| `Clean/WindowCommands.xaml` | [WindowCommands](../controls/WindowCommands) |
+| `Clean/WindowButtonCommands.xaml` | [WindowButtonCommands](../controls/windowbuttoncommands) |
+| `Clean/WindowCommands.xaml` | [WindowCommands](../controls/windowcommands) |
 | `Clean/GroupBox.xaml` | `GroupBox` |
 | `Clean/StatusBar.xaml` | `StatusBar` |
 

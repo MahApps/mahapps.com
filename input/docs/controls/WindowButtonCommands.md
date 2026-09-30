@@ -80,7 +80,7 @@ Six properties, one per button per base colour:
 | `LightMinButtonStyle`, `LightMaxButtonStyle`, `LightCloseButtonStyle` | used when `Theme` is `"Light"` |
 | `DarkMinButtonStyle`, `DarkMaxButtonStyle`, `DarkCloseButtonStyle` | used when `Theme` is `"Dark"` |
 
-`Theme` is a `string` holding a base-colour name and defaults to `ThemeManager.BaseColorLight`. Changing it swaps which set of three styles the buttons use — the same arrangement as [WindowCommands](WindowCommands) and its `LightTemplate` / `DarkTemplate` pair.
+`Theme` is a `string` holding a base-colour name and defaults to `ThemeManager.BaseColorLight`. Changing it swaps which set of three styles the buttons use — the same arrangement as [WindowCommands](windowcommands) and its `LightTemplate` / `DarkTemplate` pair.
 
 That is six properties to set for one visual change, so in practice it is easier to restyle the buttons through the theme brushes, or to set the same style on both members of a pair when the title bar's base colour never changes.
 
@@ -100,4 +100,4 @@ The window controls both, not this control:
 
 ## Related
 
-[WindowCommands](WindowCommands) for your own buttons at either end of the title bar, [MetroWindow](metrowindow) for the window itself and the `Show…Button` properties, and [Flyouts](flyouts) for the overlay behaviour.
+[WindowCommands](windowcommands) for your own buttons at either end of the title bar, [MetroWindow](metrowindow) for the window itself and the `Show…Button` properties, and [Flyouts](flyouts) for the overlay behaviour.

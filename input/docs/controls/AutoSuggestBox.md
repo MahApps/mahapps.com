@@ -184,4 +184,4 @@ The box reports itself as an `AutoSuggestBox` and as a combo box control type, a
 
 ## Related
 
-[MultiSelectionComboBox](MultiSelectionComboBox) where the user picks several items rather than typing free text, [ComboBox](../styles/combobox) for the box this one is cut from, [TextBoxHelper](../helper/textboxhelper) for the watermark and the buttons, [validation](../styles/validation) for the error treatment.
+[MultiSelectionComboBox](multiselectioncombobox) where the user picks several items rather than typing free text, [ComboBox](../styles/combobox) for the box this one is cut from, [TextBoxHelper](../helper/textboxhelper) for the watermark and the buttons, [validation](../styles/validation) for the error treatment.

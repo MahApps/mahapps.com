@@ -84,19 +84,19 @@ There are two pairs of properties, and they do different things:
 
 All six default to `True`. The middle panel above is a disabled close button — still there, still visibly a button; the right-hand one has the other two removed outright.
 
-`WindowButtonCommands` is the control itself, should you want to reach it — see [WindowButtonCommands](WindowButtonCommands), which also has the cancellable `ClosingWindow` event.
+`WindowButtonCommands` is the control itself, should you want to reach it — see [WindowButtonCommands](windowbuttoncommands), which also has the cancellable `ClosingWindow` event.
 
 `ShowSystemMenu` and `ShowSystemMenuOnRightClick` (both `True`) control the system menu.
 
 ## Title-bar commands and the icon
 
-`LeftWindowCommands` and `RightWindowCommands` take a [WindowCommands](WindowCommands) each, for your own buttons at either end of the bar. `OverrideDefaultWindowCommandsBrush` forces a brush onto all of them at once.
+`LeftWindowCommands` and `RightWindowCommands` take a [WindowCommands](windowcommands) each, for your own buttons at either end of the bar. `OverrideDefaultWindowCommandsBrush` forces a brush onto all of them at once.
 
 | Property | Type | Default | |
 | --- | --- | --- | --- |
 | `ShowIconOnTitleBar` | `bool` | `True` | |
 | `IconTemplate` | `DataTemplate` | `null` | |
-| `IconScalingMode` | `MultiFrameImageMode` | `ScaleDownLargerFrame` | see [MultiFrameImage](MultiFrameImage) |
+| `IconScalingMode` | `MultiFrameImageMode` | `ScaleDownLargerFrame` | see [MultiFrameImage](multiframeimage) |
 | `IconBitmapScalingMode` | `BitmapScalingMode` | | |
 | `IconEdgeMode` | `EdgeMode` | | |
 | `IconOverlayBehavior` | `OverlayBehavior` | `Never` | whether the icon shows over a flyout |
@@ -127,7 +127,7 @@ The template does not have to show the `Icon` at all — put an icon-pack glyph 
 </mah:MetroWindow.IconTemplate>
 ```
 
-Because the icon is drawn by a [MultiFrameImage](MultiFrameImage), a multi-resolution `.ico` picks the frame that suits the title bar rather than being stretched — `IconScalingMode` is that control's mode.
+Because the icon is drawn by a [MultiFrameImage](multiframeimage), a multi-resolution `.ico` picks the frame that suits the title bar rather than being stretched — `IconScalingMode` is that control's mode.
 
 ### Clicking the icon
 
@@ -234,8 +234,8 @@ It has no dependency on the configuration system, and it behaves the same on eve
 `WindowPlacementFileSettings` is on `develop` and ships with the next release. In a released version, write the interface yourself, it is `Placement`, `Reload`, `Save`, `Upgrade`, `UpgradeSettings` and `Reset`.
 :::
 
-`IsWindowDraggable` is what [MetroThumbContentControl](MetroThumbContentControl) checks — the title bar is one of those, and dragging it is what moves the window.
+`IsWindowDraggable` is what [MetroThumbContentControl](metrothumbcontentcontrol) checks — the title bar is one of those, and dragging it is what moves the window.
 
 ## Related
 
-[WindowCommands](WindowCommands) and [WindowButtonCommands](WindowButtonCommands) for the title bar's two sets of buttons. [Flyouts](flyouts) for the overlay panels and the overlay-behaviour table. [MetroNavigationWindow](MetroNavigationWindow) is a `MetroWindow` with a navigation bar built in.
+[WindowCommands](windowcommands) and [WindowButtonCommands](windowbuttoncommands) for the title bar's two sets of buttons. [Flyouts](flyouts) for the overlay panels and the overlay-behaviour table. [MetroNavigationWindow](metronavigationwindow) is a `MetroWindow` with a navigation bar built in.
