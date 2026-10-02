@@ -385,10 +385,16 @@ TimePicker
 <pre><code class="language-csharp">this.SetCurrentValue(SelectedDateTimeProperty,
                      this.SelectedDateTime.GetValueOrDefault().Date + timeSpan.TimeOfDay);
 </code></pre>
+<p>On <code>develop</code> there is a second way in. <code>SelectedTime</code> is a <code>TimeSpan?</code> and carries that same value without the day it falls on, so bind whichever of the two your view model is written for:</p>
+<pre><code class="language-xml">&lt;mah:TimePicker Width=&quot;170&quot; SelectedTime=&quot;{Binding Departure}&quot; /&gt;
+</code></pre>
+<p>The two follow each other. Written to, <code>SelectedTime</code> keeps the day that is already selected and settles on today where there is none, and null clears the selection. More than a day takes the date along, so 25 hours land on the next day at 01:00. It sits on <code>TimePickerBase</code>, so the <a href="datetimepicker">DateTimePicker</a> has it as well, where it is the time half of its value.</p>
+<div class="alert alert-info"><p><strong><code>SelectedTime</code> is new on <code>develop</code></strong>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4080">#4080</a>. It is in neither 2.4.11 nor the 3.0 release candidate, where a view model holding a <code>TimeSpan</code> needs a converter in between.</p>
+</div>
 <div class="alert alert-warning"><p>On an empty picker the date part depends on how the time was set, and the two ways disagree.</p>
 <p><strong>Typing</strong> a time keeps <code>SelectedDateTime.GetValueOrDefault().Date</code>, which is <code>default(DateTime)</code> when nothing was selected — so typing 14:30 gives you <strong>0001-01-01 14:30</strong>.</p>
 <p><strong>Picking</strong> from the drop-down runs through <code>ClockSelectedTimeChanged</code> instead, which falls back to today — so the same 14:30 gives you <strong>today at 14:30</strong>.</p>
-<p>If your view model wants a time on a particular day, seed <code>SelectedDateTime</code> with that date first, or take <code>.TimeOfDay</code> from what you get back.</p>
+<p>If your view model wants a time on a particular day, seed <code>SelectedDateTime</code> with that date first. If it only wants the time, bind <code>SelectedTime</code> and the date part stays out of the way; before <code>develop</code>, take <code>.TimeOfDay</code> from what you get back.</p>
 </div>
 <div class="alert alert-info"><p><strong><code>DateTimeKind</code> is <code>Unspecified</code> on <code>develop</code>. Before that it depended on the order.</strong> Picking the time first produced <code>DateTimeKind.Local</code>, because that path fell back to <code>DateTime.Today</code>, while the calendar and the text field produced <code>Unspecified</code>. A view model bound to <code>SelectedDateTime</code> saw two different kinds from one control.</p>
 <p>This is not in 2.4.11, nor in the 3.0 release candidate. Fixed for the next release in <a href="https://github.com/MahApps/MahApps.Metro/issues/4551">#4551</a>; all three paths report <code>Unspecified</code> now. The date the drop-down falls back to is unchanged, it is still today.</p>

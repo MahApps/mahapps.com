@@ -367,6 +367,11 @@ DateTimePicker
 <td>the whole value, date and time together</td>
 </tr>
 <tr>
+<td><code>SelectedTime</code></td>
+<td><code>TimeSpan?</code></td>
+<td>the time half of it, without the day (on <code>develop</code>)</td>
+</tr>
+<tr>
 <td><code>SelectedTimeFormat</code></td>
 <td><code>TimePickerFormat</code></td>
 <td><code>Long</code> (14:30:00), the default, or <code>Short</code> (14:30)</td>
@@ -388,7 +393,7 @@ DateTimePicker
 </tr>
 </tbody>
 </table>
-<p><code>SelectedDateTime</code> is the one to bind. There is no separate date and time property — a <code>DateTimePicker</code> is one value, which is the point of it.</p>
+<p><code>SelectedDateTime</code> is the one to bind. There is no pair of date and time properties, a <code>DateTimePicker</code> is one value, which is the point of it. What <code>develop</code> adds is <code>SelectedTime</code>, that value's time of day on its own: it reads out of the selection and writes back onto the day already in it, which the <a href="timepicker">TimePicker</a> page covers in full.</p>
 <p>With no <code>Culture</code> the control follows the thread's culture, and a <code>Language</code> set on it or passed down from further up wins over that.</p>
 <div class="alert alert-warning"><p>In a released version the thread is never asked. Without a <code>Culture</code> the picker goes by <code>Language</code>, which starts out at <code>en-US</code> however the thread is set, so a picker nobody said anything to shows <code>3/17/2026 2:35:00 PM</code> on a German machine while the <code>DatePicker</code> beside it shows <code>17.03.2026</code>. Set <code>Culture</code> and it behaves. Fixed on <code>develop</code>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4064">#4064</a>.</p>
 </div>
