@@ -26,7 +26,7 @@ Merge the variant's dictionary and set the window's style:
 
 That is what the demo's `CleanWindowDemo` does. `Clean/Controls.xaml` merges the five dictionaries below **and** declares implicit styles for each of them, so the explicit `Style=` on the window is belt-and-braces rather than required — but harmless, and clearer about intent.
 
-Merge the dictionary into `App.xaml` instead if the whole application should use it.
+Merge the dictionary into `App.xaml` instead if the whole application should use it. Either way `Styles/Controls.xaml` stays where it is: Clean goes on top of the ordinary style set rather than in place of it, and without it every control outside the table below keeps the plain WPF look.
 
 ## What it restyles
 

@@ -10,7 +10,21 @@ Both windows above hold the same markup: a `Menu`, a `TabControl` with two tabs,
 
 ## Opting in
 
-**Two dictionaries, not one.** This is the part that catches people out:
+The variant goes on top of the ordinary style set rather than in place of it, so `App.xaml` keeps what it always had:
+
+```xml
+<Application.Resources>
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+            <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+</Application.Resources>
+```
+
+Then the window, and here **two dictionaries, not one** is what catches people out:
 
 ```xml
 <mah:MetroWindow x:Class="MyApp.MainWindow"
@@ -31,6 +45,10 @@ Both windows above hold the same markup: a `Menu`, a `TabControl` with two tabs,
 `Controls.xaml` brings the templates; **`Colors.xaml` brings the dark palette**. Merge only the first and the variant applies but keeps the ordinary theme colours, so a window comes out looking barely different from the default — the templates are there, the darkness is not.
 
 The demo's `VSDemo` merges both, and so should you.
+:::
+
+:::{.alert .alert-warning}
+Leave `Styles/Controls.xaml` out of `App.xaml` and every control the variant does not cover keeps the plain WPF look, so a `ToolBar` or a `ComboBox` comes out light grey in front of the dark window. The variant restyles the twelve controls below, the ordinary set restyles the rest.
 :::
 
 ## What it restyles
