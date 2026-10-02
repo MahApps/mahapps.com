@@ -273,7 +273,7 @@ Clean
 &lt;/mah:MetroWindow&gt;
 </code></pre>
 <p>That is what the demo's <code>CleanWindowDemo</code> does. <code>Clean/Controls.xaml</code> merges the five dictionaries below <strong>and</strong> declares implicit styles for each of them, so the explicit <code>Style=</code> on the window is belt-and-braces rather than required — but harmless, and clearer about intent.</p>
-<p>Merge the dictionary into <code>App.xaml</code> instead if the whole application should use it.</p>
+<p>Merge the dictionary into <code>App.xaml</code> instead if the whole application should use it. Either way <code>Styles/Controls.xaml</code> stays where it is: Clean goes on top of the ordinary style set rather than in place of it, and without it every control outside the table below keeps the plain WPF look.</p>
 <h2 id="what-it-restyles">What it restyles</h2>
 <table>
 <thead>

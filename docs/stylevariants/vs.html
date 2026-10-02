@@ -260,7 +260,18 @@ Visual Studio
 <p><img src="images/vs-window.png" alt="The default MetroWindow and the Visual Studio one" /></p>
 <p>Both windows above hold the same markup: a <code>Menu</code>, a <code>TabControl</code> with two tabs, a <code>TextBox</code>, a <code>GroupBox</code> and a <code>CheckBox</code>.</p>
 <h2 id="opting-in">Opting in</h2>
-<p><strong>Two dictionaries, not one.</strong> This is the part that catches people out:</p>
+<p>The variant goes on top of the ordinary style set rather than in place of it, so <code>App.xaml</code> keeps what it always had:</p>
+<pre><code class="language-xml">&lt;Application.Resources&gt;
+    &lt;ResourceDictionary&gt;
+        &lt;ResourceDictionary.MergedDictionaries&gt;
+            &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+            &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml&quot; /&gt;
+            &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Blue.xaml&quot; /&gt;
+        &lt;/ResourceDictionary.MergedDictionaries&gt;
+    &lt;/ResourceDictionary&gt;
+&lt;/Application.Resources&gt;
+</code></pre>
+<p>Then the window, and here <strong>two dictionaries, not one</strong> is what catches people out:</p>
 <pre><code class="language-xml">&lt;mah:MetroWindow x:Class=&quot;MyApp.MainWindow&quot;
                  xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
                  Style=&quot;{DynamicResource MahApps.Styles.MetroWindow.VisualStudio}&quot;&gt;
@@ -276,6 +287,8 @@ Visual Studio
 </code></pre>
 <div class="alert alert-warning"><p><code>Controls.xaml</code> brings the templates; <strong><code>Colors.xaml</code> brings the dark palette</strong>. Merge only the first and the variant applies but keeps the ordinary theme colours, so a window comes out looking barely different from the default — the templates are there, the darkness is not.</p>
 <p>The demo's <code>VSDemo</code> merges both, and so should you.</p>
+</div>
+<div class="alert alert-warning"><p>Leave <code>Styles/Controls.xaml</code> out of <code>App.xaml</code> and every control the variant does not cover keeps the plain WPF look, so a <code>ToolBar</code> or a <code>ComboBox</code> comes out light grey in front of the dark window. The variant restyles the twelve controls below, the ordinary set restyles the rest.</p>
 </div>
 <h2 id="what-it-restyles">What it restyles</h2>
 <p><code>VS/Controls.xaml</code> merges twelve dictionaries and declares an implicit style for each:</p>
