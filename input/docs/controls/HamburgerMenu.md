@@ -199,6 +199,8 @@ Either way a `ContentTemplate` renders whatever ends up in `Content`. The common
 
 This sample goes further than the snippets above: the menu is bound to a view model, and a `Frame` inside the content area does the navigating, which also gives the window's back button a back stack to work with. The complete sample is available at [this repository](https://github.com/punker76/code-samples/tree/main/MahAppsMetroHamburgerMenuNavigation).
 
+The frame is the content of the menu, so it belongs inside the control. Put it beside the menu in the same `Grid` cell and it covers the whole thing, pane included. The `HamburgerMenu` page of the Gallery app shows the arrangement written out in XAML, with a journal to walk back through.
+
 ![Navigation](images/hamburgermenunavi.gif)
 
 ```xml
