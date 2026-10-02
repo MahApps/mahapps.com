@@ -1,0 +1,126 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mah="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <!--
+        A Fluent 2 / WinUI look for DateTimePicker and TimePicker: rounded
+        field, the WinUI calendar in the drop-down, and a time selection that
+        drops the analogue clock for three plain columns the way WinUI does.
+
+        This is a style, not a replacement template. Everything it changes is
+        something the built-in template already exposes - a corner radius, the
+        CalendarStyle, IsClockVisible - so it keeps working when the library's
+        template changes. See the page for the two things it cannot reach.
+
+        Drop-in: merge Controls.Calendar.WinUI.xaml and then this dictionary
+        after Controls.xaml, and give the pickers an implicit style based on
+        the two below.
+    -->
+
+    <CornerRadius x:Key="MahApps.CornerRadius.DateTimePicker.WinUI">4</CornerRadius>
+    <system:Double x:Key="MahApps.Sizes.DateTimePicker.WinUI.MinHeight">32</system:Double>
+
+    <!--
+        The hour, minute, second and AM/PM lists in the drop-down are plain
+        ComboBoxes with no Style of their own, so an implicit ComboBox style
+        reaches them. Putting that implicit style in Style.Resources of the
+        picker style rather than in the application's resources is what keeps
+        it from styling every other ComboBox in the application: resource
+        lookup from inside a template walks up to the templated parent's
+        Style.Resources, so the drop-down sees it and nothing else does.
+    -->
+    <Style x:Key="MahApps.Styles.ComboBoxItem.DateTimePicker.WinUI" TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="MinHeight" Value="32" />
+        <Setter Property="Padding" Value="12 6" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                    <!--  A four-line template, only so the selected row can be a rounded pill.  -->
+                    <Border x:Name="Border"
+                            Margin="2 1"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{DynamicResource MahApps.CornerRadius.DateTimePicker.WinUI}"
+                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+                        <ContentPresenter x:Name="ContentPresenter"
+                                          Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="Center"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource MahApps.Brushes.Gray8}" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
+                            <Setter TargetName="ContentPresenter" Property="TextElement.Foreground" Value="{DynamicResource MahApps.Brushes.IdealForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" Value=".5" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MahApps.Styles.ComboBox.DateTimePicker.WinUI"
+           BasedOn="{StaticResource MahApps.Styles.ComboBox}"
+           TargetType="{x:Type ComboBox}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MahApps.Styles.ComboBoxItem.DateTimePicker.WinUI}" />
+        <Setter Property="MaxDropDownHeight" Value="240" />
+        <Setter Property="MinHeight" Value="36" />
+        <Setter Property="MinWidth" Value="48" />
+        <Setter Property="Padding" Value="8 4" />
+        <Setter Property="mah:ControlsHelper.CornerRadius" Value="{DynamicResource MahApps.CornerRadius.DateTimePicker.WinUI}" />
+        <!--  No chevron: the whole field is the toggle, and a column reads better without one.  -->
+        <Setter Property="mah:TextBoxHelper.ButtonWidth" Value="0" />
+    </Style>
+
+    <!--  The ":" between the columns. Kept, but quiet.  -->
+    <Style x:Key="MahApps.Styles.Label.DateTimePicker.WinUI" TargetType="{x:Type Label}">
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Foreground" Value="{DynamicResource MahApps.Brushes.Text}" />
+        <Setter Property="Opacity" Value=".4" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="MahApps.Styles.DateTimePicker.WinUI"
+           BasedOn="{StaticResource {x:Type mah:DateTimePicker}}"
+           TargetType="{x:Type mah:DateTimePicker}">
+        <Style.Resources>
+            <Style BasedOn="{StaticResource MahApps.Styles.ComboBox.DateTimePicker.WinUI}" TargetType="{x:Type ComboBox}" />
+            <Style BasedOn="{StaticResource MahApps.Styles.Label.DateTimePicker.WinUI}" TargetType="{x:Type Label}" />
+        </Style.Resources>
+        <Setter Property="CalendarStyle" Value="{DynamicResource MahApps.Styles.Calendar.WinUI}" />
+        <!--  Fluent has no clock face; the columns are the whole time selection.  -->
+        <Setter Property="IsClockVisible" Value="False" />
+        <Setter Property="MinHeight" Value="{DynamicResource MahApps.Sizes.DateTimePicker.WinUI.MinHeight}" />
+        <Setter Property="Padding" Value="8 4" />
+        <Setter Property="mah:ControlsHelper.CornerRadius" Value="{DynamicResource MahApps.CornerRadius.DateTimePicker.WinUI}" />
+    </Style>
+
+    <Style x:Key="MahApps.Styles.TimePicker.WinUI"
+           BasedOn="{StaticResource {x:Type mah:TimePicker}}"
+           TargetType="{x:Type mah:TimePicker}">
+        <Style.Resources>
+            <Style BasedOn="{StaticResource MahApps.Styles.ComboBox.DateTimePicker.WinUI}" TargetType="{x:Type ComboBox}" />
+            <Style BasedOn="{StaticResource MahApps.Styles.Label.DateTimePicker.WinUI}" TargetType="{x:Type Label}" />
+        </Style.Resources>
+        <Setter Property="IsClockVisible" Value="False" />
+        <Setter Property="MinHeight" Value="{DynamicResource MahApps.Sizes.DateTimePicker.WinUI.MinHeight}" />
+        <Setter Property="Padding" Value="8 4" />
+        <Setter Property="mah:ControlsHelper.CornerRadius" Value="{DynamicResource MahApps.CornerRadius.DateTimePicker.WinUI}" />
+    </Style>
+
+</ResourceDictionary>

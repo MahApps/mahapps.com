@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
+        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
+        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+	    
+        <!-- Lunr search -->
+
+        
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
+
+
+        <title>MahApps.Metro - HamburgerMarginProperty</title>
+    </head>
+    <body class="d-flex flex-column">
+        <div class="flex-grow-1 d-flex flex-column">
+            <div class="bg-nav">
+                <div class="container-xl py-3">
+                    <div class="row">
+                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
+                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
+    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
+            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
+        <span class="site-title text-primary">MahApps.Metro</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
+        <ul class="navbar-nav mr-auto">
+            
+        </ul>
+        <ul class="navbar-nav">
+            
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/controls">Controls</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/api">API</a>
+    </li>
+
+
+            <li class="nav-item">
+    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
+</li>
+
+        </ul>
+    </div>
+</nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex-grow-1 d-flex flex-column">
+                    <!-- Titlebar -->
+                    <div id="titlebar" class="py-4">
+                        <div class="container-xl">
+                            <div class="row">
+                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
+                                    <div class="flex-grow-1">
+                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
+
+			<span><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a>.</span>
+                                        </div>
+                                        <div class="text-white m-0 text-break title">
+
+    <div>Hamburger<wbr>Margin<wbr>Property <small>Field</small></div>
+                                        </div>
+                                    </div>
+                                        <div class="navbar navbar-expand-md navbar-dark p-0">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Under title -->
+                    <div id="undertitle">
+                        <div class="container-xl">
+                            <div class="row">
+                                    <div class="col-md-3 col-lg-2">
+                                    </div>
+                                    <div class="col-md-9 col-lg-8 bg-white">
+                                    </div>
+                                <div class="col-lg-2 d-none d-lg-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Body -->
+                <div class="flex-grow-1 d-flex flex-column">
+                        <div class="container-xl flex-grow-1 d-flex flex-column">
+                            <div class="row flex-grow-1 align-items-stretch">
+                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
+                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+
+	<div class="sidebar-root">
+		        <div class="sidebar-root bg-white mb-3 page-box font-size-sm">
+                <div class="sidebar-nav-item sidebar-header mb-0 pb-0">Namespace</div>
+                <div class="sidebar-nav-item  font-weight-normal mt-0 pt-0"><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></div>
+                <div class="sidebar-nav-item sidebar-header mb-0 pb-0">Type</div>
+                <div class="sidebar-nav-item font-weight-normal mt-0 pt-0"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></div>
+        </div>
+            <div class="sidebar-nav-item sidebar-header">Constructors</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/7F964B42">HamburgerMenu<wbr>()<wbr></a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Event Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/2947DCC7">HamburgerButtonClick</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/A8D1725B">ItemClick</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/23E658C5">ItemInvoked</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/267DD35A">OptionsItemClick</a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Field Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/C2F0BEF1">Can<wbr>Resize<wbr>Open<wbr>Pane<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/B5881E37">Compact<wbr>Pane<wbr>Length<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/12907AD9">Content<wbr>Transition<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/A48C8BB8">DisplayModeProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/71F57B7A">Hamburger<wbr>Button<wbr>Click<wbr>Event</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/2955443A">Hamburger<wbr>Button<wbr>Help<wbr>Text<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/36A25C1D">Hamburger<wbr>Button<wbr>Name<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/38F7474E">Hamburger<wbr>Button<wbr>Style<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/CDDC35E5">Hamburger<wbr>Button<wbr>Template<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/2A459000">Hamburger<wbr>Height<wbr>Property</a></div>
+                    <div class="sidebar-nav-item active"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/F2AB2CEF">Hamburger<wbr>Margin<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/DB9959F9">Hamburger<wbr>Menu<wbr>Header<wbr>Template<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/540484EA">Hamburger<wbr>Visibility<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/B18FFC20">Hamburger<wbr>Width<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/A4D6CDD9">Header<wbr>Item<wbr>Container<wbr>Style<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/C5557809">IsPaneOpenProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/6AC783A9">ItemClickEvent</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/0FE44042">Item<wbr>Command<wbr>Parameter<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/61CDD624">ItemCommandProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/61E0DB61">Item<wbr>Container<wbr>Style<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/C7ADCBD2">Item<wbr>Focus<wbr>Visual<wbr>Style<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/A0E73C3D">ItemInvokedEvent</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/59AA8BD6">ItemsSourceProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/5270D89B">ItemTemplateProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/8F4D25A8">Item<wbr>Template<wbr>Selector<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/7BCC7E01">Maximum<wbr>Open<wbr>Pane<wbr>Length<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/01D2FCEE">Minimum<wbr>Open<wbr>Pane<wbr>Length<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/78351726">Open<wbr>Pane<wbr>Length<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/212C2566">Options<wbr>Item<wbr>Click<wbr>Event</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/B7A10BA0">Options<wbr>Item<wbr>Command<wbr>Parameter<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/53881C9B">Options<wbr>Item<wbr>Command<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/736106E7">Options<wbr>Item<wbr>Container<wbr>Style<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/6BEF4169">Options<wbr>Items<wbr>Source<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/97EBB053">Options<wbr>Item<wbr>Template<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/37086E4A">Options<wbr>Item<wbr>Template<wbr>Selector<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/54D21515">Options<wbr>Visibility<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/0FAB2020">Pane<wbr>Background<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/E53390CF">Pane<wbr>Foreground<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/C4A0CBFD">Pane<wbr>Header<wbr>Margin<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/18FF9821">PaneMarginProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/9BA87B59">Pane<wbr>Placement<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/9AD2B007">Resize<wbr>Thumb<wbr>Style<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/7CAED189">Selected<wbr>Index<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/8C30A06C">SelectedItemProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/0B97171E">Selected<wbr>Options<wbr>Index<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/87CF4078">Selected<wbr>Options<wbr>Item<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/94E4D90F">Separator<wbr>Item<wbr>Container<wbr>Style<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/7BC30217">Show<wbr>Selection<wbr>Indicator<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/53820902">Vertical<wbr>Scroll<wbr>Bar<wbr>On<wbr>Left<wbr>Side<wbr>Property</a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Method Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/DC0D4CEA">OnApplyTemplate<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/7E0CCC70">RaiseItemCommand<wbr>()<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/B87189C7">Raise<wbr>Options<wbr>Item<wbr>Command<wbr>()<wbr></a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Property Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/97C92CA4">CanResizeOpenPane</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/8BE42598">CompactPaneLength</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/2E5ED0CC">ContentTransition</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/57851FBE">DisplayMode</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/B82CA3A8">Hamburger<wbr>Button<wbr>Help<wbr>Text</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/A11DC4BE">HamburgerButtonName</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/4269EF7B">HamburgerButtonStyle</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/15CC78BC">Hamburger<wbr>Button<wbr>Template</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/E2E6A379">HamburgerHeight</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/34C98FBF">HamburgerMargin</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/6D05D3EE">Hamburger<wbr>Menu<wbr>Header<wbr>Template</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/D5752E53">HamburgerVisibility</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/715B65B1">HamburgerWidth</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/D9E04799">Header<wbr>Item<wbr>Container<wbr>Style</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/40513E3A">IsPaneOpen</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/669E642E">ItemCommand</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/EE414AFF">ItemCommandParameter</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/562E8782">ItemContainerStyle</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/BF61A022">ItemFocusVisualStyle</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/BE9D7AC3">Items</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/00831BC6">ItemsSource</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/5763AFB2">ItemTemplate</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/E3D41408">ItemTemplateSelector</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/E2E336F2">Maximum<wbr>Open<wbr>Pane<wbr>Length</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/490573E1">Minimum<wbr>Open<wbr>Pane<wbr>Length</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/07CC59E8">OpenPaneLength</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/9FB893A8">OptionsItemCommand</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/6CAC3693">Options<wbr>Item<wbr>Command<wbr>Parameter</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/DDD2B290">Options<wbr>Item<wbr>Container<wbr>Style</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/C767F6CA">OptionsItems</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/F9A5EC40">OptionsItemsSource</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/C9DE4876">OptionsItemTemplate</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/61396864">Options<wbr>Item<wbr>Template<wbr>Selector</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/4A56DF76">OptionsVisibility</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/3D3F12AA">PaneBackground</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/3D0E158B">PaneForeground</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/AC016887">PaneHeaderMargin</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/14FF9EC4">PaneMargin</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/D15D9F5E">PanePlacement</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/F1DBFA48">ResizeThumbStyle</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/BFE39314">SelectedIndex</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/971FA49B">SelectedItem</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/3FE3AAE7">SelectedOptionsIndex</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/85D7D51B">SelectedOptionsItem</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/1173B3B9">Separator<wbr>Item<wbr>Container<wbr>Style</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/CA4987AF">Show<wbr>Selection<wbr>Indicator</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/969500AC">Vertical<wbr>Scroll<wbr>Bar<wbr>On<wbr>Left<wbr>Side</a></div>
+            </div>
+
+	</div>
+                                            </div>
+                                        </div>
+                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
+
+
+
+
+
+
+        <div class="lead mb-3">Identifies the <code class="language-csharp"><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu/34C98FBF">HamburgerMargin</a></code> dependency property.</div>
+
+    <div class="p-3 bg-light page-box container small">
+        		<dl class="dl-horizontal">
+
+    		    <dt>Namespace</dt>
+    		    <dd><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></dd>
+
+				<dt>Containing Type</dt>
+				<dd><a href="/mahapps.com/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a></dd>
+
+
+
+
+
+
+
+				<dt>Field Type</dt>
+				<dd>DependencyProperty</dd>
+	    </dl>
+
+    </div>
+		<h1 id="Syntax">Syntax</h1>
+		<pre class="language-csharp"><code class="language-csharp">public static readonly DependencyProperty HamburgerMarginProperty</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        </div>
+                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
+                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+
+	        <div class="sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#Syntax">Syntax</a></div>
+            </div>
+        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="p-3 text-white">
+            <div class="container-xl">
+                <p class="text-muted">
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
+    <br/>
+    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br/>
+    Generated by <a href="https://statiq.dev">Statiq</a>
+</p>
+
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script>
+            $(document).ready(function() {
+                quicklink.listen();
+
+                // Bootstrap tooltips
+                $('[data-toggle="tooltip"]').tooltip();
+
+				// Keeps the sidebars in view on wider viewports
+				let left = null;
+				let leftParent = null;
+				let right = null;
+				let rightParent = null;
+                function stickSidebars()
+				{
+				    if (left == null) {
+                        left = $('#left-sidebar');
+                        right = $('#right-sidebar');
+                    }
+                    if (left.length) {
+                        if (window.innerWidth >= 768) {
+                            if (leftParent == null) {
+                                leftParent = left.parent()[0];
+                            }
+                            if (leftParent) {
+                                let leftRect = leftParent.getBoundingClientRect();
+                                stickSidebar(left,  leftRect);
+                            }
+                        } else {
+                            left.css('position', 'relative');
+                            if (left.css('bottom') != 0) {
+                                left.css('bottom', '0');
+                            }
+                        }
+                    }
+                    if (right.length) {
+                        if (window.innerWidth >= 768) {
+                            if (rightParent == null) {
+                                rightParent = right.parent()[0];
+                            }
+                            if (rightParent) {
+                                let rightRect = rightParent.getBoundingClientRect();
+                                stickSidebar(right,  rightRect);
+                            }
+                        } else {
+                            right.css('position', 'relative');
+                            if (right.css('bottom') != 0) {
+                                right.css('bottom', '0');
+                            }
+                        }
+                    }
+				}
+				function stickSidebar(sidebar, rect) {
+                    // Bottom
+                    if (rect.bottom > window.innerHeight) {
+                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
+                    } else {
+                        sidebar.css('bottom', 0);
+                    }
+                    // Top
+                    if (rect.top < 0) {
+                        sidebar.css('position', 'sticky');
+                    } else {
+                        sidebar.css('position', 'absolute');
+                    }
+				}
+				$(window).on("load", function() {
+				    stickSidebars();
+				});
+                $(window).scroll(function() {
+				    stickSidebars();
+				});
+				$(window).resize(function() {
+				    stickSidebars();
+				})
+
+                // Mermaid diagrams
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-fluid');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+            });
+        </script>
+
+        
+
+        <script>
+    anchors.options.placement = 'left';
+    anchors.add();
+
+    // Each <pre> is a horizontal scroll container (Bootstrap sets
+    // overflow: auto), so a button placed inside it scrolls out of view on long
+    // lines. Wrap the block instead and position the button against the
+    // wrapper, which never scrolls.
+    document.querySelectorAll('pre > code').forEach(function (code) {
+        var pre = code.parentNode;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn-copy';
+        button.title = 'Copy to clipboard';
+        button.setAttribute('aria-label', 'Copy to clipboard');
+        button.setAttribute('data-clipboard-snippet', '');
+        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        wrapper.appendChild(button);
+    });
+
+    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+        target: function (trigger) {
+            return trigger.parentNode.querySelector('pre > code');
+        },
+    });
+    clipboardSnippets.on('success', function (e) {
+        var button = e.trigger;
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+        window.setTimeout(function () {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        }, 1500);
+        e.clearSelection();
+    });
+    clipboardSnippets.on('error', function (e) {
+        console.error('Copy failed:', e.action, e.trigger);
+    });
+</script>
+
+    </body>
+</html>

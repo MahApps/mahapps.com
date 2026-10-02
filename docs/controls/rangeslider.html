@@ -1,341 +1,711 @@
-﻿<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+    <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-        <meta name="description">
-        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
-        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
+
+        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
+        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
+        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+	    
+        <!-- Lunr search -->
+
+        
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
+
+
         <title>MahApps.Metro - RangeSlider</title>
-        <link href="/assets/css/highlight.css" rel="stylesheet">
-        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
-        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
-        <link href="/assets/css/theme/theme.css" rel="stylesheet">
-        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
-        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="/assets/css/override.css" rel="stylesheet">
-        <script src="/assets/js/jquery-2.2.3.min.js"></script>
-        <script src="/assets/js/bootstrap.min.js"></script>        
-        <script src="/assets/js/app.min.js"></script>         
-        <script src="/assets/js/highlight.pack.js"></script>   
-        <script src="/assets/js/jquery.slimscroll.min.js"></script>
-        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
-        <script src="/assets/js/mermaid.min.js"></script>
-        <script src="/assets/js/svg-pan-zoom.min.js"></script>
-        <!--[if lt IE 9]>
-        <script src="/assets/js/html5shiv.min.js"></script>
-        <script src="/assets/js/respond.min.js"></script>
-        <![endif]-->  
-
-        <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
-<script type="text/javascript" src="/assets/js/clipboard.min.js"></script>
-
     </head>
-    <body class="hold-transition wyam layout-boxed  ">    
-        <div class="top-banner"></div>
-        <div class="wrapper with-container">
-            <!-- Header -->
-            <header class="main-header">   
-                     
-                <a href="/" class="logo">
+    <body class="d-flex flex-column">
+        <div class="flex-grow-1 d-flex flex-column">
+            <div class="bg-nav">
+                <div class="container-xl py-3">
+                    <div class="row">
+                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
+                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
+    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
+            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
+        <span class="site-title text-primary">MahApps.Metro</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
+        <ul class="navbar-nav mr-auto">
+            
+        </ul>
+        <ul class="navbar-nav">
+            
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="/mahapps.com/docs/controls">Controls</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
+    </li>
 
-                                <!-- mini logo for sidebar mini 50x50 pixels -->
-                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
-                                <!-- logo for regular state and mobile devices -->
-                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
-                                            </a>   
-                         
-                <nav class="navbar navbar-static-top" role="navigation">
-                    <!-- Sidebar toggle button-->
-                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-right"></i>
-                        </a>
-                                        
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <span class="sr-only">Toggle side menu</span>
-                            <i class="fa fa-chevron-circle-down"></i>
-                        </button>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/api">API</a>
+    </li>
+
+
+            <li class="nav-item">
+    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
+</li>
+
+        </ul>
+    </div>
+</nav>
+
+                        </div>
                     </div>
+                </div>
+            </div>
             
-                    <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                        <ul class="nav navbar-nav">                            
-                                    <li><a href="/blog">Blog</a></li>
-        <li class="active"><a href="/docs">Documentation</a></li>
-        <li><a href="/api">API</a></li>
-        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
- 
-                        </ul>       
+            <div class="flex-grow-1 d-flex flex-column">
+                    <!-- Titlebar -->
+                    <div id="titlebar" class="py-4">
+                        <div class="container-xl">
+                            <div class="row">
+                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
+                                    <div class="flex-grow-1">
+                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
+
+        <span><a href="/mahapps.com/docs">Documentation</a></span>
+        <span><a href="/mahapps.com/docs/controls">Controls</a></span>
+                                        </div>
+                                        <div class="text-white m-0 text-break title">
+
+RangeSlider
+                                        </div>
+                                    </div>
+                                        <div class="navbar navbar-expand-md navbar-dark p-0">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <!-- /.navbar-collapse -->
-                
-                    <!-- Navbar Right Menu -->
-                </nav>
-            </header>
-            
-            <!-- Left side column. contains the logo and sidebar -->
-            <aside class="main-sidebar ">
-                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
-                    	
-        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/rangeslider.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
-    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#properties">Properties</a></p>
-<hr class="infobar-hidden">
+                    <!-- Under title -->
+                    <div id="undertitle">
+                        <div class="container-xl">
+                            <div class="row">
+                                    <div class="col-md-3 col-lg-2">
+                                    </div>
+                                    <div class="col-md-9 col-lg-8 bg-white">
+                                    </div>
+                                <div class="col-lg-2 d-none d-lg-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Body -->
+                <div class="flex-grow-1 d-flex flex-column">
+                        <div class="container-xl flex-grow-1 d-flex flex-column">
+                            <div class="row flex-grow-1 align-items-stretch">
+                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
+                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+
+    <div class="sidebar-root">
+
+<div class="sidebar-nav-item has-children">
+    <a href="/mahapps.com/docs/controls">Controls</a>
+</div>                <div class="sidebar-nav-children">
+
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/analogclock">AnalogClock</a>
 </div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/autosuggestbox">AutoSuggestBox</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/badged">Badged Control</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/colorpicker">ColorPicker</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/contentcontrolex">ContentControlEx</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/customvalidationpopup">CustomValidationPopup</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/datetimepicker">DateTimePicker</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/dropdownbutton">DropDownButton</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/flipview">FlipView</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/flyouts">Flyouts</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/fonticon">FontIcon</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/hamburgermenu">HamburgerMenu</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/hotkeybox">HotKeyBox</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metroanimatedsinglerowtabcontrol">MetroAnimatedSingleRowTabControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metroanimatedtabcontrol">MetroAnimatedTabControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrocontentcontrol">MetroContentControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metroheader">MetroHeader</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metronavigationwindow">MetroNavigationWindow</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metroprogressbar">MetroProgressBar</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrotabcontrol">MetroTabControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrotabitem">MetroTabItem</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/multiselectioncombobox">MultiSelectionComboBox</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/numericupdown">NumericUpDown</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/progressring">ProgressRing</a>
+</div>
+<div class="sidebar-nav-item active">
+    <a href="/mahapps.com/docs/controls/rangeslider">RangeSlider</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/splitbutton">SplitButton</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/splitview">SplitView</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/tile">Tile</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/timepicker">TimePicker</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/toggleswitch">ToggleSwitch</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/windowbuttoncommands">WindowButtonCommands</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
+</div>                </div>
 
-                </section>
-                <section class="sidebar">    
-                                     
-                    
+<div class="sidebar-nav-item has-children">
+    <a href="/mahapps.com/docs/dialogs">Dialogs</a>
+</div>                <div class="sidebar-nav-children">
 
-                    <ul class="sidebar-menu">
-                        
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/message-dialog">Message Dialog</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/input-dialog">Input Dialog</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/login-dialogs">Login Dialog</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/progress-dialogs">Progress Dialog</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/mvvm-dialog">MVVM</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/custom-dialogs">Custom Dialogs</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialog Settings</a>
+</div>                </div>
 
-                <li class="treeview active">
-                    <a href="/docs/controls">Controls</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/docs/controls/metrowindow">MetroWindow</a></li>
-                <li><a href="/docs/controls/Badged">Badged Control</a></li>
-                <li><a href="/docs/controls/ColorPicker">ColorPicker</a></li>
-                <li><a href="/docs/controls/ContentControlEx">ContentControlEx</a></li>
-                <li><a href="/docs/controls/CustomValidationPopup">CustomValidationPopup</a></li>
-                <li><a href="/docs/controls/DateTimePicker">DateTimePicker</a></li>
-                <li><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
-                <li><a href="/docs/controls/flipview">FlipView</a></li>
-                <li><a href="/docs/controls/flyouts">Flyouts</a></li>
-                <li><a href="/docs/controls/FontIcon">FontIcon</a></li>
-                <li><a href="/docs/controls/HamburgerMenu">HamburgerMenu</a></li>
-                <li><a href="/docs/controls/HotKeyBox">HotKeyBox</a></li>
-                <li><a href="/docs/controls/MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a></li>
-                <li><a href="/docs/controls/MetroAnimatedTabControl">MetroAnimatedTabControl</a></li>
-                <li><a href="/docs/controls/MetroContentControl">MetroContentControl</a></li>
-                <li><a href="/docs/controls/MetroHeader">MetroHeader</a></li>
-                <li><a href="/docs/controls/MetroNavigationWindow">MetroNavigationWindow</a></li>
-                <li><a href="/docs/controls/metroprogressbar">MetroProgressBar</a></li>
-                <li><a href="/docs/controls/MetroTabControl">MetroTabControl</a></li>
-                <li><a href="/docs/controls/MetroTabItem">MetroTabItem</a></li>
-                <li><a href="/docs/controls/MetroThumbContentControl">MetroThumbContentControl</a></li>
-                <li><a href="/docs/controls/MultiFrameImage">MultiFrameImage</a></li>
-                <li><a href="/docs/controls/MultiSelectionComboBox">MultiSelectionComboBox</a></li>
-                <li><a href="/docs/controls/numericupdown">NumericUpDown</a></li>
-                <li><a href="/docs/controls/progressring">ProgressRing</a></li>
-                <li class="selected"><a href="/docs/controls/rangeslider">RangeSlider</a></li>
-                <li><a href="/docs/controls/splitbutton">SplitButton</a></li>
-                <li><a href="/docs/controls/SplitView">SplitView</a></li>
-                <li><a href="/docs/controls/tile">Tile</a></li>
-                <li><a href="/docs/controls/TimePicker">TimePicker</a></li>
-                <li><a href="/docs/controls/toggleswitch">ToggleSwitch</a></li>
-                <li><a href="/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
-                <li><a href="/docs/controls/WindowButtonCommands">WindowButtonCommands</a></li>
-                <li><a href="/docs/controls/WindowCommands">WindowCommands</a></li>
+<div class="sidebar-nav-item has-children">
+    <a href="/mahapps.com/docs/helper">Helper Classes</a>
+</div>                <div class="sidebar-nav-children">
 
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="/docs/styles">Styles</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/docs/styles/buttons">Buttons</a></li>
-                <li><a href="/docs/styles/calendar">Calendar</a></li>
-                <li><a href="/docs/styles/checkbox">CheckBox</a></li>
-                <li><a href="/docs/styles/combobox">ComboBox</a></li>
-                <li><a href="/docs/styles/datagrid">DataGrid</a></li>
-                <li><a href="/docs/styles/datagridcolumns">DataGrid Columns</a></li>
-                <li><a href="/docs/styles/datepicker">DatePicker</a></li>
-                <li><a href="/docs/styles/expander">Expander</a></li>
-                <li><a href="/docs/styles/gridsplitter">GridSplitter</a></li>
-                <li><a href="/docs/styles/groupbox">GroupBox</a></li>
-                <li><a href="/docs/styles/hyperlink">Hyperlink</a></li>
-                <li><a href="/docs/styles/listbox">ListBox</a></li>
-                <li><a href="/docs/styles/listview">ListView</a></li>
-                <li><a href="/docs/styles/menus">Menus</a></li>
-                <li><a href="/docs/styles/page">Page</a></li>
-                <li><a href="/docs/styles/passwordbox">PasswordBox</a></li>
-                <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
-                <li><a href="/docs/styles/radiobutton">RadioButton</a></li>
-                <li><a href="/docs/styles/scrollbars">ScrollBar</a></li>
-                <li><a href="/docs/styles/slider">Slider</a></li>
-                <li><a href="/docs/styles/statusbar">StatusBar</a></li>
-                <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
-                <li><a href="/docs/styles/text">Text</a></li>
-                <li><a href="/docs/styles/textbox">TextBox</a></li>
-                <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
-                <li><a href="/docs/styles/toolbar">ToolBar</a></li>
-                <li><a href="/docs/styles/tooltip">ToolTip</a></li>
-                <li><a href="/docs/styles/treeview">TreeView</a></li>
-                <li><a href="/docs/styles/validation">Validation</a></li>
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="/docs/stylevariants">Style Variants</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/docs/stylevariants/clean">Clean</a></li>
-                <li><a href="/docs/stylevariants/vs">Visual Studio</a></li>
-                <li><a href="/docs/stylevariants/win10">Win 10 (UWP)</a></li>
-                <li><a href="/docs/stylevariants/winui">WinUI</a></li>
-
-                    </ul>
-                </li>
-                <li><a href="/docs/helper">Helper Classes</a></li>
-                <li class="treeview">
-                    <a href="/docs/dialogs">Dialogs</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/docs/dialogs/message-dialog">Message Dialog</a></li>
-                <li><a href="/docs/dialogs/input-dialog">Input Dialog</a></li>
-                <li><a href="/docs/dialogs/login-dialogs">Login Dialog</a></li>
-                <li><a href="/docs/dialogs/progress-dialogs">Progress Dialog</a></li>
-                <li><a href="/docs/dialogs/mvvm-dialog">MVVM</a></li>
-                <li><a href="/docs/dialogs/custom-dialogs">Custom Dialogs</a></li>
-                <li><a href="/docs/dialogs/dialogsettings">Dialogsettings</a></li>
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="/docs/themes">Themes</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/docs/themes/usage">Usage</a></li>
-                <li><a href="/docs/themes/thememanager">Thememanager</a></li>
-
-                    </ul>
-                </li>
-                <li class="treeview">
-                    <a href="/docs/guides">Guides</a> <a href="#" class="expand"></a>
-                    <ul class="treeview-menu">
-                        
-                <li><a href="/docs/guides/quick-start">Quick Start</a></li>
-                <li><a href="/docs/guides/migration-to-v2.0">Migration to v2.0</a></li>
-
-                    </ul>
-                </li>
-                <li><a href="/docs/usage">Usage</a></li>
-
-                    </ul>
-                            
-                </section>                
-            </aside>
-            
-            <!-- Content Wrapper. Contains page content -->
-            <div class="content-wrapper">
-                
-
-
-
-		<section class="content-header">
-			<h1>RangeSlider</h1>
-		</section>
-	<section class="content">
-		<p>The <code><a href="/api/MahApps.Metro.Controls/RangeSlider">RangeSlider</a></code> control was taken from the <a href="https://avaloncontrolslib.codeplex.com/">Avalon Controls Library</a> (MS-PL) <a href="https://github.com/jogibear9988/avaloncontrolslib">GitHub fork</a>. It lets you select a range of values with a slider and 2 range bars, rather than a single value.</p>
-<p><img src="images/rangeslider.png" class="img-fluid" alt=""></p>
-<h1 id="properties">Properties</h1>
-<ul>
-<li>Orientation: RangeSlider support vertical orientation</li>
-<li><code>IsMoveToPointEnabled</code> feature work like for Slider</li>
-<li>SmallChange / LargeChange: when <code>IsMoveToPointEnabled = False</code> thumbs will move on the value you set in Small / LargeChange</li>
-<li><code>Interval</code>: This property will set interval between changing values when using Small / Larnge change.</li>
-<li><code>IsSnapToTickEnabled</code>:  If set to true, thumbs will snap to ticks like in standard Slider.</li>
-<li>TickBars and Tickplacement: RangeSlider receive support for displaying / hiding ticks and change its ticks width according to minimum and maximum values changed</li>
-<li><code>ExtendedMode</code>: If it set <code>ExtendedMode = False</code> you <strong>cannot</strong> do any manipulations <strong>inside</strong> range except moving thumbs closer/farther to each other with mouse, but if it enabled you <strong>can</strong> use MoveToPoint or Small/Large change <strong>inside</strong> range by clicking <strong>Left mouse button + left or right control button</strong> to move left thumb and <strong>Right mouse button + left or right control button to move right thumb inside range</strong>. If Extended mode = true you also can without problems move whole range by clicking leftmouse button</li>
-<li><code>MoveWholeRange</code>: This property will let you move whole range when using MoveToPoint or Small/Large change (working also inside range)</li>
-<li><code>MinRangeWidth</code>: Sets minimum width of <strong>central</strong> Thumb. It can be in range <strong>from 0 to range_slider_width/2</strong>.</li>
-<li><code>AutoToolTipPlacement</code> will display tooltip, which will move with Thumb and display current value. Implemented for left/central/right thumbs.</li>
-<li><code>AutotoolTipPrecision</code> set the number of digits, which will be shown after dot in autotooltip.</li>
-</ul>
-<pre><code class="language-xml">&lt;mah:RangeSlider Width="200"
-                 Margin="4"
-                 mah:SliderHelper.ChangeValueBy="LargeChange"
-                 mah:SliderHelper.EnableMouseWheel="MouseHover"
-                 AutoToolTipPlacement="TopLeft"
-                 LargeChange="10"
-                 LowerValue="40"
-                 Maximum="100"
-                 Minimum="0"
-                 Orientation="Horizontal"
-                 SmallChange="1"
-                 Style="{DynamicResource MahApps.Styles.RangeSlider.Win10}"
-                 UpperValue="60"&gt;
-  &lt;mah:RangeSlider.AutoToolTipRangeValuesTemplate&gt;
-    &lt;DataTemplate DataType="mah:RangeSliderAutoTooltipValues"&gt;
-      &lt;UniformGrid Columns="2" Rows="2"&gt;
-        &lt;TextBlock HorizontalAlignment="Right" Text="From:" /&gt;
-        &lt;TextBlock HorizontalAlignment="Right" Text="{Binding LowerValue, StringFormat='{}{0:N2}'}" /&gt;
-        &lt;TextBlock HorizontalAlignment="Right" Text="To:" /&gt;
-        &lt;TextBlock HorizontalAlignment="Right" Text="{Binding UpperValue, StringFormat='{}{0:N2}'}" /&gt;
-      &lt;/UniformGrid&gt;
-    &lt;/DataTemplate&gt;
-  &lt;/mah:RangeSlider.AutoToolTipRangeValuesTemplate&gt;
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/checkboxhelper">CheckBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/datagridhelper">DataGridHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/datepickerhelper">DatePickerHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/itemhelper">ItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/multiselectorhelper">MultiSelectorHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/scrollviewerhelper">ScrollViewerHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/sliderhelper">SliderHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/tabcontrolhelper">TabControlHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/textboxhelper">TextBoxHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/togglebuttonhelper">ToggleButtonHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/treeviewitemhelper">TreeViewItemHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/validationhelper">ValidationHelper</a>
+</div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/helper/visibilityhelper">VisibilityHelper</a>
+</div>                </div>
+    </div>
+                                            </div>
+                                        </div>
+                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
+<p><code>RangeSlider</code> picks a range rather than a value. It has three thumbs — one at each end and one for the band between them — and derives from <code>RangeBase</code>, so <code>Minimum</code>, <code>Maximum</code>, <code>SmallChange</code> and <code>LargeChange</code> are the familiar ones. The range itself is <code>LowerValue</code> and <code>UpperValue</code>.</p>
+<p><img src="images/rangeslider-styles.png" alt="The Win10 and default RangeSlider styles" /></p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Width=&quot;190&quot;
+                 Minimum=&quot;0&quot;
+                 Maximum=&quot;100&quot;
+                 LowerValue=&quot;30&quot;
+                 UpperValue=&quot;70&quot; /&gt;
+</code></pre>
+<div class="alert alert-warning"><p>Set <code>Minimum</code> and <code>Maximum</code>. Unlike the <a href="../styles/slider">Slider</a> styles, neither <code>RangeSlider</code> style sets them, so they come straight from <code>RangeBase</code> as <strong>0 and 1</strong> — a range slider without them clamps everything you give it to 1.</p>
+</div>
+<h2 id="the-two-styles">The two styles</h2>
+<table>
+<thead>
+<tr>
+<th>Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MahApps.Styles.RangeSlider.Win10</code></td>
+<td><strong>the implicit one</strong> — a 2px track and tall rounded thumbs</td>
+</tr>
+<tr>
+<td><code>MahApps.Styles.RangeSlider</code></td>
+<td>a thicker track and small grey thumbs</td>
+</tr>
+</tbody>
+</table>
+<p>Both live in <code>Themes/RangeSlider.xaml</code> and the implicit one is applied through <code>Generic.xaml</code>, so neither needs a dictionary merged. As with the plain slider, the Win10 style additionally sets <code>IsMoveToPointEnabled=&quot;True&quot;</code>.</p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Style=&quot;{DynamicResource MahApps.Styles.RangeSlider}&quot; /&gt;
+</code></pre>
+<h2 id="minrange-and-minrangewidth">MinRange and MinRangeWidth</h2>
+<p>These two sound alike and are not:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MinRange</code></td>
+<td>in value units</td>
+<td>how close <code>LowerValue</code> and <code>UpperValue</code> may get. Default <code>0</code></td>
+</tr>
+<tr>
+<td><code>MinRangeWidth</code></td>
+<td>in pixels</td>
+<td>the minimum width of the middle thumb. Default <code>30</code>. Obsolete and without effect on <code>develop</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>MinRangeWidth</code> is the one that surprises people, because it is a floor on the <em>drawn</em> band, not on the values:</p>
+<p><img src="images/rangeslider-minrangewidth.png" alt="The two thumbs at the same value, with and without MinRangeWidth" /></p>
+<p>Both panels have <code>LowerValue</code> and <code>UpperValue</code> at 50. On the left, the default <code>MinRangeWidth</code> of 30 keeps thirty pixels of filled track between the thumbs anyway; only <code>MinRangeWidth=&quot;0&quot;</code> lets them meet.</p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Minimum=&quot;0&quot; Maximum=&quot;100&quot;
+                 LowerValue=&quot;50&quot; UpperValue=&quot;50&quot;
+                 MinRangeWidth=&quot;0&quot; /&gt;
+</code></pre>
+<p>It is also coerced: it can never exceed half the track length. And it is taken off the track before the values are laid out on it, so every pixel of it is a pixel both thumbs are moved away from the tick their value belongs to, and the gap grows along the track. That gap is what <a href="https://github.com/MahApps/MahApps.Metro/issues/4392">#4392</a> and <a href="https://github.com/MahApps/MahApps.Metro/issues/4113">#4113</a> are about.</p>
+<div class="alert alert-warning"><p><strong>Breaking change on <code>develop</code>:</strong> <code>MinRangeWidth</code> does nothing any more. It is marked obsolete, so a build that sets it still runs and warns rather than failing, but neither the values nor the drawing take any notice of it, and it will be removed. What it bought — thirty pixels of band to look at and to grab where the two values sit on the same spot — was paid for with every thumb on the control standing off its tick, and a band of thirty pixels where the range is nothing says the range is something. An empty range is drawn as nothing now, the two thumbs meet, and either of them opens the range again when it is pulled the way it can go. Drop the attribute; nothing takes its place.</p>
+</div>
+<div class="alert alert-info"><p>On <code>develop</code> a thumb also hangs over the end of the track by half its width, so its middle is the point its value stands for and a click with <code>IsMoveToPointEnabled</code> lands on the value under the mouse.</p>
+</div>
+<p><code>MinRange</code> in a released version does more than hold the values apart: it is taken off the scale the thumbs are laid out on as well, which gives the lower thumb a scale of its own that ends at <code>Maximum</code> minus <code>MinRange</code>. With <code>MinRange=&quot;20&quot;</code> on a slider from 0 to 100, a lower value of 80 therefore stands at the very end of the track and the range 80 to 100 is drawn as a sliver, the same range that fills a fifth of the track at 40 to 60. On <code>develop</code> a range of <code>MinRange</code> is the same width wherever it stands.</p>
+<div class="alert alert-warning"><p>In a released version, write <code>MinRange</code> <strong>after</strong> <code>Minimum</code>, <code>Maximum</code> and the two values, and after a <code>Style</code> that carries them. XAML sets a property as it reads it, so <code>MinRange</code> written first is measured against the 0 and 1 a <code>RangeSlider</code> starts out with, and it pins <code>UpperValue</code> down to fit — as a local value, which then beats everything a style has to say. A slider written this way</p>
+<pre><code class="language-xml">&lt;mah:RangeSlider MinRange=&quot;20&quot; Style=&quot;{StaticResource TheRange}&quot; /&gt;
+</code></pre>
+<p>comes up at 0 to 20 rather than at the range the style asks for. Watch out for formatters: XamlStyler sorts attributes by name and puts <code>MinRange</code> in front of <code>Style</code> by itself. Fixed on <code>develop</code>, where <code>MinRange</code> coerces the values instead of assigning them, and where a later <code>Minimum</code> or <code>Maximum</code> asks all three of them again.</p>
+</div>
+<div class="alert alert-info"><p>In a released version the XML documentation on <code>MinRangeWidth</code> reads <em>&quot;Get/sets the minimal distance between two thumbs&quot;</em>, which describes <code>MinRange</code> instead, and the API reference repeats it. The comment on <code>MinRange</code> was rewritten on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4580">#4580</a>, and the one on <code>MinRangeWidth</code> now says that the property does nothing; until that ships, go by the table above.</p>
+</div>
+<h2 id="colours">Colours</h2>
+<p>Both styles take their brushes from <a href="../helper/sliderhelper">SliderHelper</a>, the same twelve as the plain slider — thumb, track and filled track, each with a hover, pressed and disabled variant. The middle thumb is painted from the <code>TrackValue</code> set.</p>
+<p><img src="images/rangeslider-brushes.png" alt="The default colours, a green set, and the disabled state" /></p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Minimum=&quot;0&quot; Maximum=&quot;100&quot; LowerValue=&quot;30&quot; UpperValue=&quot;70&quot;
+                 mah:SliderHelper.ThumbFillBrush=&quot;#FF1B5E20&quot;
+                 mah:SliderHelper.TrackValueFillBrush=&quot;#FF43A047&quot;
+                 mah:SliderHelper.TrackFillBrush=&quot;#FFC8E6C9&quot; /&gt;
+</code></pre>
+<p>Set the <code>Hover</code> and <code>Pressed</code> variants too, or the slider goes back to the theme colour as soon as the pointer is over it.</p>
+<p><code>Foreground</code> is the tick colour here, not the track colour.</p>
+<h2 id="ticks-and-the-selection-range">Ticks and the selection range</h2>
+<p><img src="images/rangeslider-ticks.png" alt="No ticks, ticks on both sides, and a selection range" /></p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Minimum=&quot;0&quot; Maximum=&quot;100&quot; LowerValue=&quot;30&quot; UpperValue=&quot;70&quot;
+                 TickFrequency=&quot;10&quot;
+                 TickPlacement=&quot;Both&quot; /&gt;
+</code></pre>
+<p><code>TickFrequency</code>, <code>Ticks</code>, <code>TickPlacement</code> and <code>IsSnapToTickEnabled</code> behave as they do on a <code>Slider</code>. <code>IsSnapToTickEnabled</code> makes both thumbs land on ticks.</p>
+<p><code>IsSelectionRangeEnabled</code> together with <code>SelectionStart</code> and <code>SelectionEnd</code> marks a sub-range — the grey wedges in the third panel. Those markers are drawn <strong>on the tick bars</strong>, so they are invisible unless <code>TickPlacement</code> is also set.</p>
+<h2 id="interaction">Interaction</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsMoveToPointEnabled</code></td>
+<td><code>False</code>, but <code>True</code> in the Win10 style</td>
+<td>clicking the track jumps the nearest thumb there instead of stepping</td>
+</tr>
+<tr>
+<td><code>Interval</code></td>
+<td><code>100</code></td>
+<td>milliseconds between steps while the button is held, when <code>IsMoveToPointEnabled</code> is off</td>
+</tr>
+<tr>
+<td><code>MoveWholeRange</code></td>
+<td><code>False</code></td>
+<td>a click outside the range moves the whole band instead of just the near thumb</td>
+</tr>
+<tr>
+<td><code>ExtendedMode</code></td>
+<td><code>False</code></td>
+<td>see below</td>
+</tr>
+<tr>
+<td><code>AutoToolTipPlacement</code></td>
+<td><code>None</code></td>
+<td><code>TopLeft</code> or <code>BottomRight</code> to show the value while dragging</td>
+</tr>
+<tr>
+<td><code>AutoToolTipPrecision</code></td>
+<td><code>0</code></td>
+<td>decimal places in that tooltip</td>
+</tr>
+</tbody>
+</table>
+<div class="alert alert-info"><p>On <code>develop</code> a thumb being dragged stops at the other value instead of pushing it along, so the value nobody is holding stays where it was put. A released version hands the drag over to the other thumb once the two meet, and carries on with that one.</p>
+</div>
+<div class="alert alert-info"><p>On <code>develop</code> a click with <code>IsSnapToTickEnabled</code> takes the tick nearest to where it landed. A released version takes the next tick past the click in the direction of travel, so a click a hair short of a tick answers with the tick before it, a whole interval away from what was pointed at. Half way between two ticks is where the answer changes now.</p>
+</div>
+<p>Without <code>ExtendedMode</code>, clicking inside the range only drags the band. With it on, <strong>Ctrl + left click</strong> inside the range moves the lower thumb and <strong>Ctrl + right click</strong> moves the upper one, so both ends stay reachable without leaving the band.</p>
+<p>The middle mouse button toggles <code>MoveWholeRange</code> — undocumented in the library, but it is there.</p>
+<h2 id="vertical">Vertical</h2>
+<p><img src="images/rangeslider-vertical.png" alt="Both styles turned vertical" /></p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Height=&quot;110&quot;
+                 Orientation=&quot;Vertical&quot;
+                 Minimum=&quot;0&quot; Maximum=&quot;100&quot;
+                 LowerValue=&quot;30&quot; UpperValue=&quot;70&quot; /&gt;
+</code></pre>
+<p>Each style carries a second template and swaps to it on <code>Orientation=&quot;Vertical&quot;</code> through a trigger. That trigger beats a <code>Template</code> setter in a style derived from it — see the warning under <a href="../styles/slider#vertical">Slider</a>, which applies here word for word.</p>
+<h2 id="the-drag-tooltip">The drag tooltip</h2>
+<p><code>AutoToolTipPlacement</code> shows the value being dragged. Three templates shape it: <code>AutoToolTipLowerValueTemplate</code> and <code>AutoToolTipUpperValueTemplate</code> for the end thumbs, and <code>AutoToolTipRangeValuesTemplate</code> for the middle one, whose data context is a <code>RangeSliderAutoTooltipValues</code> carrying both values.</p>
+<pre><code class="language-xml">&lt;mah:RangeSlider Width=&quot;190&quot;
+                 Minimum=&quot;0&quot; Maximum=&quot;100&quot;
+                 LowerValue=&quot;30&quot; UpperValue=&quot;70&quot;
+                 AutoToolTipPlacement=&quot;TopLeft&quot;
+                 AutoToolTipPrecision=&quot;2&quot;&gt;
+    &lt;mah:RangeSlider.AutoToolTipRangeValuesTemplate&gt;
+        &lt;DataTemplate DataType=&quot;mah:RangeSliderAutoTooltipValues&quot;&gt;
+            &lt;UniformGrid Columns=&quot;2&quot; Rows=&quot;2&quot;&gt;
+                &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;From:&quot; /&gt;
+                &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;{Binding LowerValue, StringFormat='{}{0:N2}'}&quot; /&gt;
+                &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;To:&quot; /&gt;
+                &lt;TextBlock HorizontalAlignment=&quot;Right&quot; Text=&quot;{Binding UpperValue, StringFormat='{}{0:N2}'}&quot; /&gt;
+            &lt;/UniformGrid&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/mah:RangeSlider.AutoToolTipRangeValuesTemplate&gt;
 &lt;/mah:RangeSlider&gt;
 </code></pre>
+<h2 id="events">Events</h2>
+<p><code>LowerValueChanged</code> and <code>UpperValueChanged</code> fire for the individual ends, <code>RangeSelectionChanged</code> for the range as a whole. Each of the three thumbs also raises its own <code>DragStarted</code>, <code>DragDelta</code> and <code>DragCompleted</code> — <code>LowerThumbDragStarted</code>, <code>CentralThumbDragDelta</code>, <code>UpperThumbDragCompleted</code> and so on — which is what to hang expensive work off, rather than recomputing on every value change while a thumb is moving.</p>
+<h2 id="mouse-wheel">Mouse wheel</h2>
+<p><a href="../helper/sliderhelper">SliderHelper</a> applies here as well:</p>
+<pre><code class="language-xml">&lt;mah:RangeSlider mah:SliderHelper.EnableMouseWheel=&quot;MouseHover&quot;
+                 mah:SliderHelper.ChangeValueBy=&quot;LargeChange&quot;
+                 SmallChange=&quot;1&quot;
+                 LargeChange=&quot;10&quot; /&gt;
+</code></pre>
+<h2 id="keyboard">Keyboard</h2>
+<p>A range slider has two values, so a key has to be told which one it means: the thumb that was last touched is the one the keyboard talks to. Click a thumb, or tab onto the control, and the keys move that value.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Left and right, up and down on an upright slider</td>
+<td>by <code>SmallChange</code></td>
+</tr>
+<tr>
+<td>Page up and page down</td>
+<td>by <code>LargeChange</code></td>
+</tr>
+<tr>
+<td>Home and End</td>
+<td>to <code>Minimum</code> or <code>Maximum</code>, as far as the other value allows</td>
+</tr>
+</tbody>
+</table>
+<p><code>MinRange</code> holds against the keyboard as well, and a thumb pressed against the other one stops there instead of pushing it along. A ring around the thumb says which one has the keyboard. Tabbing onto the control hands the keys to the lower thumb.</p>
+<div class="alert alert-info"><p>New on <code>develop</code>. In a released version a <code>RangeSlider</code> does nothing at all when a key is pressed.</p>
+</div>
+<h2 id="driving-one-from-a-test">Driving one from a test</h2>
+<p>A range slider holds two values, and no automation pattern holds two. What a client is handed is the control for the range and one of the outer thumbs for each end of it:</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the control</td>
+<td>a slider, reading out both ends at once as its item status</td>
+</tr>
+<tr>
+<td><code>PART_LeftThumb</code></td>
+<td>the lower value, to read and to set</td>
+</tr>
+<tr>
+<td><code>PART_RightThumb</code></td>
+<td>the upper value, the same way</td>
+</tr>
+<tr>
+<td><code>PART_MiddleThumb</code></td>
+<td>moves the whole range, so it carries no value</td>
+</tr>
+</tbody>
+</table>
+<p>Setting one end through a client goes through the same rules as dragging it: <code>MinRange</code> holds, and neither end passes the other.</p>
+<div class="alert alert-warning"><p><strong>In a released version the control is not in the automation tree at all.</strong> Only the three thumbs of its template are, hanging off the window with nothing to say what they belong to, so a tool can drag a handle but cannot read a value or set one. New on <code>develop</code>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>
+</div>
+<h2 id="origin">Origin</h2>
+<p>The control came from the Avalon Controls Library (MS-PL) by way of <a href="https://github.com/jogibear9988/avaloncontrolslib">this fork</a>; the original CodePlex site is gone. It has been rewritten considerably since.</p>
 
-	</section>
-                
-            </div>           
-            
-            <!-- Footer -->
-            <footer class="main-footer">
-            </footer>
-            
+
+                                        </div>
+                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
+                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+        <div class="border-bottom mb-3 sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#the-two-styles">The two styles</a></div>
+                    <div class="sidebar-nav-item"><a href="#minrange-and-minrangewidth">MinRange and MinRangeWidth</a></div>
+                    <div class="sidebar-nav-item"><a href="#colours">Colours</a></div>
+                    <div class="sidebar-nav-item"><a href="#ticks-and-the-selection-range">Ticks and the selection range</a></div>
+                    <div class="sidebar-nav-item"><a href="#interaction">Interaction</a></div>
+                    <div class="sidebar-nav-item"><a href="#vertical">Vertical</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-drag-tooltip">The drag tooltip</a></div>
+                    <div class="sidebar-nav-item"><a href="#events">Events</a></div>
+                    <div class="sidebar-nav-item"><a href="#mouse-wheel">Mouse wheel</a></div>
+                    <div class="sidebar-nav-item"><a href="#keyboard">Keyboard</a></div>
+                    <div class="sidebar-nav-item"><a href="#driving-one-from-a-test">Driving one from a test</a></div>
+                    <div class="sidebar-nav-item"><a href="#origin">Origin</a></div>
+            </div>
         </div>
-        <div class="wrapper bottom-wrapper">
-            <footer class="bottom-footer">
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/rangeslider.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="p-3 text-white">
+            <div class="container-xl">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
-    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
-    <br>
-    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br>
-    Generated by <a href="http://wyam.io">Wyam</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
+    <br/>
+    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br/>
+    Generated by <a href="https://statiq.dev">Statiq</a>
 </p>
 
-<script>
-	anchors.options.placement = 'left';
-	anchors.add();
-</script>
-
-<script>
-	var snippets = document.querySelectorAll('pre > code');
-	[].forEach.call(snippets, function (snippet) {
-	  snippet.insertAdjacentHTML(
-	    'beforebegin',
-	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
-	  );
-	});
-	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-	  container: document.getElementById('modal'),
-	  target: function (trigger) {
-	    return trigger.nextElementSibling;
-	  },
-	});
-	clipboardSnippets.on('success', function (e) {
-		console.info('Action:', e.action);
-		console.info('Text:', e.text);
-		console.info('Trigger:', e.trigger);
-		e.clearSelection();
-		// showTooltip(e.trigger, 'Copied!');
-	});
-	clipboardSnippets.on('error', function (e) {
-		console.error('Action:', e.action);
-		console.error('Trigger:', e.trigger);
-		// showTooltip(e.trigger, fallbackMessage(e.action));
-	});
-</script>
-            </footer>
+            </div>
         </div>
-        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
-        
-        <script>           
-            // Close the sidebar if we select an anchor link
-            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
-                $(document.body).removeClass('sidebar-open');
-            });
-            
+
+        <!-- Scripts -->
+        <script>
             $(document).ready(function() {
+                quicklink.listen();
+
+                // Bootstrap tooltips
+                $('[data-toggle="tooltip"]').tooltip();
+
+				// Keeps the sidebars in view on wider viewports
+				let left = null;
+				let leftParent = null;
+				let right = null;
+				let rightParent = null;
+                function stickSidebars()
+				{
+				    if (left == null) {
+                        left = $('#left-sidebar');
+                        right = $('#right-sidebar');
+                    }
+                    if (left.length) {
+                        if (window.innerWidth >= 768) {
+                            if (leftParent == null) {
+                                leftParent = left.parent()[0];
+                            }
+                            if (leftParent) {
+                                let leftRect = leftParent.getBoundingClientRect();
+                                stickSidebar(left,  leftRect);
+                            }
+                        } else {
+                            left.css('position', 'relative');
+                            if (left.css('bottom') != 0) {
+                                left.css('bottom', '0');
+                            }
+                        }
+                    }
+                    if (right.length) {
+                        if (window.innerWidth >= 768) {
+                            if (rightParent == null) {
+                                rightParent = right.parent()[0];
+                            }
+                            if (rightParent) {
+                                let rightRect = rightParent.getBoundingClientRect();
+                                stickSidebar(right,  rightRect);
+                            }
+                        } else {
+                            right.css('position', 'relative');
+                            if (right.css('bottom') != 0) {
+                                right.css('bottom', '0');
+                            }
+                        }
+                    }
+				}
+				function stickSidebar(sidebar, rect) {
+                    // Bottom
+                    if (rect.bottom > window.innerHeight) {
+                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
+                    } else {
+                        sidebar.css('bottom', 0);
+                    }
+                    // Top
+                    if (rect.top < 0) {
+                        sidebar.css('position', 'sticky');
+                    } else {
+                        sidebar.css('position', 'absolute');
+                    }
+				}
+				$(window).on("load", function() {
+				    stickSidebars();
+				});
+                $(window).scroll(function() {
+				    stickSidebars();
+				});
+				$(window).resize(function() {
+				    stickSidebars();
+				})
+
+                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -344,12 +714,12 @@
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });     
+                });
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-responsive');
+                mermaidSvg.addClass('img-fluid');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -363,40 +733,68 @@
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});			                          
+					});
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-                    
+
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
-                
-                $('pre code').each(function(i, block) {
-                    hljs.highlightBlock(block);
-                });  
-            });
-
-            hljs.initHighlightingOnLoad();
-
-            // Back to top
-            $(window).scroll(function() {
-                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
-                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
-                } else {
-                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
-                }
-            });
-            $('#return-to-top').click(function() {      // When arrow is clicked
-                $('body,html').animate({
-                    scrollTop : 0                       // Scroll to top of body
-                }, 500);
             });
         </script>
-    
-</body></html>
+
+        
+
+        <script>
+    anchors.options.placement = 'left';
+    anchors.add();
+
+    // Each <pre> is a horizontal scroll container (Bootstrap sets
+    // overflow: auto), so a button placed inside it scrolls out of view on long
+    // lines. Wrap the block instead and position the button against the
+    // wrapper, which never scrolls.
+    document.querySelectorAll('pre > code').forEach(function (code) {
+        var pre = code.parentNode;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn-copy';
+        button.title = 'Copy to clipboard';
+        button.setAttribute('aria-label', 'Copy to clipboard');
+        button.setAttribute('data-clipboard-snippet', '');
+        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        wrapper.appendChild(button);
+    });
+
+    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+        target: function (trigger) {
+            return trigger.parentNode.querySelector('pre > code');
+        },
+    });
+    clipboardSnippets.on('success', function (e) {
+        var button = e.trigger;
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+        window.setTimeout(function () {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        }, 1500);
+        e.clearSelection();
+    });
+    clipboardSnippets.on('error', function (e) {
+        console.error('Copy failed:', e.action, e.trigger);
+    });
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,59 @@
+<!--
+    A Windows 10 (Fluent 1) flavoured Calendar for MahApps.Metro.
+
+    The Windows 10 design language was square throughout - the rounded corners
+    and circular day cells only arrived with Fluent 2, in WinUI 2.6 and Windows
+    11. That is the whole difference between this and the WinUI calendar, so
+    rather than repeat four templates this dictionary merges that one and turns
+    the corner radii off.
+
+    It matches the library's existing MahApps.Styles.CheckBox.Win10 and
+    RadioButton.Win10, neither of which sets a corner radius either.
+
+        <ResourceDictionary Source="Controls.Calendar.Win10.xaml" />
+        ...
+        <Calendar Style="{StaticResource MahApps.Styles.Calendar.Win10}" />
+
+    Because the radius reaches the templates through
+    mah:ControlsHelper.CornerRadius, the same trick works the other way: give
+    any of these styles a radius of your own and the cells follow.
+-->
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Controls.Calendar.WinUI.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <CornerRadius x:Key="MahApps.CornerRadius.Calendar.Win10">0</CornerRadius>
+
+    <Style x:Key="MahApps.Styles.CalendarDayButton.Win10"
+           BasedOn="{StaticResource MahApps.Styles.CalendarDayButton.WinUI}"
+           TargetType="{x:Type CalendarDayButton}">
+        <Setter Property="mah:ControlsHelper.CornerRadius" Value="{StaticResource MahApps.CornerRadius.Calendar.Win10}" />
+    </Style>
+
+    <Style x:Key="MahApps.Styles.CalendarButton.Win10"
+           BasedOn="{StaticResource MahApps.Styles.CalendarButton.WinUI}"
+           TargetType="{x:Type CalendarButton}">
+        <Setter Property="mah:ControlsHelper.CornerRadius" Value="{StaticResource MahApps.CornerRadius.Calendar.Win10}" />
+    </Style>
+
+    <!--  The header buttons take their radius from the CalendarItem, so squaring
+          the item squares them too - they need no style of their own here.  -->
+    <Style x:Key="MahApps.Styles.CalendarItem.Win10"
+           BasedOn="{StaticResource MahApps.Styles.CalendarItem.WinUI}"
+           TargetType="{x:Type CalendarItem}">
+        <Setter Property="mah:ControlsHelper.CornerRadius" Value="{StaticResource MahApps.CornerRadius.Calendar.Win10}" />
+    </Style>
+
+    <Style x:Key="MahApps.Styles.Calendar.Win10"
+           BasedOn="{StaticResource MahApps.Styles.Calendar.WinUI}"
+           TargetType="{x:Type Calendar}">
+        <Setter Property="CalendarButtonStyle" Value="{StaticResource MahApps.Styles.CalendarButton.Win10}" />
+        <Setter Property="CalendarDayButtonStyle" Value="{StaticResource MahApps.Styles.CalendarDayButton.Win10}" />
+        <Setter Property="CalendarItemStyle" Value="{StaticResource MahApps.Styles.CalendarItem.Win10}" />
+    </Style>
+
+</ResourceDictionary>

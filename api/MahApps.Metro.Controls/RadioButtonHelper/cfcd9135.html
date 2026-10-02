@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
+        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
+        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
+
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
+        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
+	    
+        <!-- Lunr search -->
+
+        
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
+
+<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
+
+
+        <title>MahApps.Metro - GetCheckGlyphFill(UIElement)</title>
+    </head>
+    <body class="d-flex flex-column">
+        <div class="flex-grow-1 d-flex flex-column">
+            <div class="bg-nav">
+                <div class="container-xl py-3">
+                    <div class="row">
+                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
+                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
+    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
+            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
+        <span class="site-title text-primary">MahApps.Metro</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
+        <ul class="navbar-nav mr-auto">
+            
+        </ul>
+        <ul class="navbar-nav">
+            
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/about">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/controls">Controls</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/mahapps.com/api">API</a>
+    </li>
+
+
+            <li class="nav-item">
+    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
+</li>
+
+        </ul>
+    </div>
+</nav>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex-grow-1 d-flex flex-column">
+                    <!-- Titlebar -->
+                    <div id="titlebar" class="py-4">
+                        <div class="container-xl">
+                            <div class="row">
+                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
+                                    <div class="flex-grow-1">
+                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
+
+			<span><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper">RadioButtonHelper</a>.</span>
+                                        </div>
+                                        <div class="text-white m-0 text-break title">
+
+    <div>GetCheckGlyphFill<wbr>(UIElement)<wbr> <small>Method</small></div>
+                                        </div>
+                                    </div>
+                                        <div class="navbar navbar-expand-md navbar-dark p-0">
+                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Under title -->
+                    <div id="undertitle">
+                        <div class="container-xl">
+                            <div class="row">
+                                    <div class="col-md-3 col-lg-2">
+                                    </div>
+                                    <div class="col-md-9 col-lg-8 bg-white">
+                                    </div>
+                                <div class="col-lg-2 d-none d-lg-block">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- Body -->
+                <div class="flex-grow-1 d-flex flex-column">
+                        <div class="container-xl flex-grow-1 d-flex flex-column">
+                            <div class="row flex-grow-1 align-items-stretch">
+                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
+                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+
+	<div class="sidebar-root">
+		        <div class="sidebar-root bg-white mb-3 page-box font-size-sm">
+                <div class="sidebar-nav-item sidebar-header mb-0 pb-0">Namespace</div>
+                <div class="sidebar-nav-item  font-weight-normal mt-0 pt-0"><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></div>
+                <div class="sidebar-nav-item sidebar-header mb-0 pb-0">Type</div>
+                <div class="sidebar-nav-item font-weight-normal mt-0 pt-0"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper">RadioButtonHelper</a></div>
+        </div>
+            <div class="sidebar-nav-item sidebar-header">Field Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/EAEE7C23">Background<wbr>Disabled<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/0B83813D">Background<wbr>Pointer<wbr>Over<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/A45BB86F">Background<wbr>Pressed<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/706A4BA3">Border<wbr>Brush<wbr>Disabled<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/ED46572A">Border<wbr>Brush<wbr>Pointer<wbr>Over<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/310A5B3D">Border<wbr>Brush<wbr>Pressed<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/1E19F86E">Check<wbr>Glyph<wbr>Fill<wbr>Disabled<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/0968643E">Check<wbr>Glyph<wbr>Fill<wbr>Pointer<wbr>Over<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/C4F72E59">Check<wbr>Glyph<wbr>Fill<wbr>Pressed<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/5A6EE5BC">Check<wbr>Glyph<wbr>Fill<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/73E400E2">Check<wbr>Glyph<wbr>Stroke<wbr>Disabled<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/28D51F6C">Check<wbr>Glyph<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/9A69AF72">Check<wbr>Glyph<wbr>Stroke<wbr>Pressed<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/25479708">Check<wbr>Glyph<wbr>Stroke<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/63AC055D">Foreground<wbr>Disabled<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/6547F338">Foreground<wbr>Pointer<wbr>Over<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/A96F86A7">Foreground<wbr>Pressed<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/8FAE9887">Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Disabled<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/00E38324">Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pointer<wbr>Over<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/C2533C5A">Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pressed<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/3D8E03E9">Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/67905FDF">Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Disabled<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/2E2EB7C7">Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/FFAA4EF5">Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pressed<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/DB0D2182">Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/0D3F8C15">Outer<wbr>Ellipse<wbr>Fill<wbr>Disabled<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/5A43B2B4">Outer<wbr>Ellipse<wbr>Fill<wbr>Pointer<wbr>Over<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/0E4A239C">Outer<wbr>Ellipse<wbr>Fill<wbr>Pressed<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/6A7B0C4B">Outer<wbr>Ellipse<wbr>Fill<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/685BE251">Outer<wbr>Ellipse<wbr>Stroke<wbr>Disabled<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/29A83551">Outer<wbr>Ellipse<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/625C6AF6">Outer<wbr>Ellipse<wbr>Stroke<wbr>Pressed<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/D4620CBA">Outer<wbr>Ellipse<wbr>Stroke<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/85C8D7B8">Radio<wbr>Check<wbr>Size<wbr>Property</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/9271343A">RadioSizeProperty</a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/0D3C4743">Radio<wbr>Stroke<wbr>Thickness<wbr>Property</a></div>
+            </div>
+            <div class="sidebar-nav-item sidebar-header">Method Members</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/C57F9D7B">Get<wbr>Background<wbr>Disabled<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/E882FA72">Get<wbr>Background<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/75A8C3F9">GetBackgroundPressed<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/7C5B0ACF">Get<wbr>Border<wbr>Brush<wbr>Disabled<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/82A0F627">Get<wbr>Border<wbr>Brush<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/89265965">Get<wbr>Border<wbr>Brush<wbr>Pressed<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item active"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/CFCD9135">GetCheckGlyphFill<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/AD923EEB">Get<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Disabled<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/13673190">Get<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/7A5133E5">Get<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Pressed<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/BBA140D7">GetCheckGlyphStroke<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/63704404">Get<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Disabled<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/FAD598D7">Get<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/39B5C14A">Get<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Pressed<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/ABBBEF7E">Get<wbr>Foreground<wbr>Disabled<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/9D662E21">Get<wbr>Foreground<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/B2D5508B">GetForegroundPressed<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/AF74A958">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/590EB307">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Disabled<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/7886016C">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/BB835D0B">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pressed<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/0CAC0000">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/38672D8D">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Disabled<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/48499C86">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/A00EFDF0">Get<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pressed<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/3658A8B8">GetOuterEllipseFill<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/11E6E9DC">Get<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Disabled<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/D59B910F">Get<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/911D7CEA">Get<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Pressed<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/BD115B92">Get<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/25135C1B">Get<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Disabled<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/A58433FE">Get<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/EA9D2188">Get<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Pressed<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/29F5CE83">GetRadioCheckSize<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/4A6F5E0B">GetRadioSize<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/E21B038D">Get<wbr>Radio<wbr>Stroke<wbr>Thickness<wbr>(UIElement)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/5F219304">Set<wbr>Background<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/562F6A04">Set<wbr>Background<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/3822820E">SetBackgroundPressed<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/22EC36D3">Set<wbr>Border<wbr>Brush<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/E62AAB80">Set<wbr>Border<wbr>Brush<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/D9B19DA6">Set<wbr>Border<wbr>Brush<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/621560A6">SetCheckGlyphFill<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/2EDFFC86">Set<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/499D6B06">Set<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/6E928869">Set<wbr>Check<wbr>Glyph<wbr>Fill<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/7B7D3130">SetCheckGlyphStroke<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/4EFEC5C4">Set<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/C0CB269D">Set<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/479E31E2">Set<wbr>Check<wbr>Glyph<wbr>Stroke<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/92AB05ED">Set<wbr>Foreground<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/1C6C1D45">Set<wbr>Foreground<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/3EDAADFB">SetForegroundPressed<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/80024B1C">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/32BA6CD2">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/AFCBD2FB">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/98A7BA27">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Fill<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/F9D3AADF">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/54626A1F">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/D2960A17">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/6D5264F6">Set<wbr>Outer<wbr>Ellipse<wbr>Checked<wbr>Stroke<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/9BAD7B87">SetOuterEllipseFill<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/6425F2E0">Set<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/09B18D72">Set<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/B4124961">Set<wbr>Outer<wbr>Ellipse<wbr>Fill<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/2A3DF530">Set<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/CD243B93">Set<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Disabled<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/C09C875F">Set<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Pointer<wbr>Over<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/33385E74">Set<wbr>Outer<wbr>Ellipse<wbr>Stroke<wbr>Pressed<wbr>(UIElement, <wbr>Brush)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/35385ED4">SetRadioCheckSize<wbr>(UIElement, <wbr>double)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/FD5B015D">SetRadioSize<wbr>(UIElement, <wbr>double)<wbr></a></div>
+                    <div class="sidebar-nav-item"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/ED18D6F0">Set<wbr>Radio<wbr>Stroke<wbr>Thickness<wbr>(UIElement, <wbr>double)<wbr></a></div>
+            </div>
+
+	</div>
+                                            </div>
+                                        </div>
+                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
+
+
+
+
+
+
+        <div class="lead mb-3">Helper for getting <code class="language-csharp"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/5A6EE5BC">CheckGlyphFillProperty</a></code> from <span name="element" class="paramref">element</span>.</div>
+
+    <div class="p-3 bg-light page-box container small">
+        		<dl class="dl-horizontal">
+
+    		    <dt>Namespace</dt>
+    		    <dd><a href="/mahapps.com/api/MahApps.Metro.Controls">MahApps<wbr>.Metro<wbr>.Controls</a></dd>
+
+				<dt>Containing Type</dt>
+				<dd><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper">RadioButtonHelper</a></dd>
+
+
+
+
+
+
+
+	    </dl>
+
+    </div>
+		<h1 id="Syntax">Syntax</h1>
+		<pre class="language-csharp"><code class="language-csharp">[Category(AppName.MahApps)]&#xA;[AttachedPropertyBrowsableForType(typeof(RadioButton))]&#xA;public static Brush GetCheckGlyphFill(UIElement element)</code></pre>
+
+
+
+		<h1 id="Attributes">Attributes</h1>
+		<div class="table-responsive">
+			<table class="table table-api table-striped table-hover two-cols">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr>
+							<td>Category</td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Attached<wbr>Property<wbr>Browsable<wbr>For<wbr>Type</td>
+							<td></td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+
+		<h1 id="Parameters">Parameters</h1>
+		<div class="table-responsive">
+			<table class="table table-api table-striped table-hover three-cols">
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+						<tr>
+							<td>element</td>
+							<td>UIElement</td>
+							<td><code class="language-csharp">UIElement</code> to read <code class="language-csharp"><a href="/mahapps.com/api/MahApps.Metro.Controls/RadioButtonHelper/5A6EE5BC">CheckGlyphFillProperty</a></code> from.</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+		<h1 id="ReturnValue">Return Value</h1>
+		<div class="table-responsive">
+			<table class="table table-api table-striped table-hover two-cols">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Brush</td>
+						<td>CheckGlyphFill property value.</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+
+
+
+
+
+
+
+                                        </div>
+                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
+                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
+
+	        <div class="sidebar-root">
+            <div class="sidebar-nav-item sidebar-header">On This Page</div>
+            <div class="sidebar-nav-children">
+                    <div class="sidebar-nav-item"><a href="#Syntax">Syntax</a></div>
+                    <div class="sidebar-nav-item"><a href="#Attributes">Attributes</a></div>
+                    <div class="sidebar-nav-item"><a href="#Parameters">Parameters</a></div>
+                    <div class="sidebar-nav-item"><a href="#ReturnValue">Return Value</a></div>
+            </div>
+        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div id="footer" class="p-3 text-white">
+            <div class="container-xl">
+                <p class="text-muted">
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
+    <br/>
+    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br/>
+    Generated by <a href="https://statiq.dev">Statiq</a>
+</p>
+
+            </div>
+        </div>
+
+        <!-- Scripts -->
+        <script>
+            $(document).ready(function() {
+                quicklink.listen();
+
+                // Bootstrap tooltips
+                $('[data-toggle="tooltip"]').tooltip();
+
+				// Keeps the sidebars in view on wider viewports
+				let left = null;
+				let leftParent = null;
+				let right = null;
+				let rightParent = null;
+                function stickSidebars()
+				{
+				    if (left == null) {
+                        left = $('#left-sidebar');
+                        right = $('#right-sidebar');
+                    }
+                    if (left.length) {
+                        if (window.innerWidth >= 768) {
+                            if (leftParent == null) {
+                                leftParent = left.parent()[0];
+                            }
+                            if (leftParent) {
+                                let leftRect = leftParent.getBoundingClientRect();
+                                stickSidebar(left,  leftRect);
+                            }
+                        } else {
+                            left.css('position', 'relative');
+                            if (left.css('bottom') != 0) {
+                                left.css('bottom', '0');
+                            }
+                        }
+                    }
+                    if (right.length) {
+                        if (window.innerWidth >= 768) {
+                            if (rightParent == null) {
+                                rightParent = right.parent()[0];
+                            }
+                            if (rightParent) {
+                                let rightRect = rightParent.getBoundingClientRect();
+                                stickSidebar(right,  rightRect);
+                            }
+                        } else {
+                            right.css('position', 'relative');
+                            if (right.css('bottom') != 0) {
+                                right.css('bottom', '0');
+                            }
+                        }
+                    }
+				}
+				function stickSidebar(sidebar, rect) {
+                    // Bottom
+                    if (rect.bottom > window.innerHeight) {
+                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
+                    } else {
+                        sidebar.css('bottom', 0);
+                    }
+                    // Top
+                    if (rect.top < 0) {
+                        sidebar.css('position', 'sticky');
+                    } else {
+                        sidebar.css('position', 'absolute');
+                    }
+				}
+				$(window).on("load", function() {
+				    stickSidebars();
+				});
+                $(window).scroll(function() {
+				    stickSidebars();
+				});
+				$(window).resize(function() {
+				    stickSidebars();
+				})
+
+                // Mermaid diagrams
+                mermaid.initialize(
+                {
+                    flowchart:
+                    {
+                        useMaxWidth: false
+                    },
+					startOnLoad: false,
+					cloneCssStyles: false
+                });
+                mermaid.init(undefined, ".mermaid");
+
+                // Remove the max-width setting that Mermaid sets
+                var mermaidSvg = $('.mermaid svg');
+                mermaidSvg.addClass('img-fluid');
+                mermaidSvg.css('max-width', '');
+
+                // Make it scrollable
+				var target = document.querySelector(".mermaid svg");
+				if(target !== null)
+				{
+					var panZoom = window.panZoom = svgPanZoom(target, {
+						zoomEnabled: true,
+						controlIconsEnabled: true,
+						fit: true,
+						center: true,
+                        maxZoom: 20,
+                        zoomScaleSensitivity: 0.6
+					});
+
+                    // Do the reset once right away to fit the diagram
+                    panZoom.resize();
+                    panZoom.fit();
+                    panZoom.center();
+
+                    $(window).resize(function(){
+                        panZoom.resize();
+                        panZoom.fit();
+                        panZoom.center();
+                    });
+				}
+            });
+        </script>
+
+        
+
+        <script>
+    anchors.options.placement = 'left';
+    anchors.add();
+
+    // Each <pre> is a horizontal scroll container (Bootstrap sets
+    // overflow: auto), so a button placed inside it scrolls out of view on long
+    // lines. Wrap the block instead and position the button against the
+    // wrapper, which never scrolls.
+    document.querySelectorAll('pre > code').forEach(function (code) {
+        var pre = code.parentNode;
+        var wrapper = document.createElement('div');
+        wrapper.className = 'code-block';
+        pre.parentNode.insertBefore(wrapper, pre);
+        wrapper.appendChild(pre);
+
+        var button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'btn-copy';
+        button.title = 'Copy to clipboard';
+        button.setAttribute('aria-label', 'Copy to clipboard');
+        button.setAttribute('data-clipboard-snippet', '');
+        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        wrapper.appendChild(button);
+    });
+
+    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+        target: function (trigger) {
+            return trigger.parentNode.querySelector('pre > code');
+        },
+    });
+    clipboardSnippets.on('success', function (e) {
+        var button = e.trigger;
+        button.classList.add('copied');
+        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
+        window.setTimeout(function () {
+            button.classList.remove('copied');
+            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
+        }, 1500);
+        e.clearSelection();
+    });
+    clipboardSnippets.on('error', function (e) {
+        console.error('Copy failed:', e.action, e.trigger);
+    });
+</script>
+
+    </body>
+</html>
