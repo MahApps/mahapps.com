@@ -34,6 +34,18 @@ this.SetCurrentValue(SelectedDateTimeProperty,
                      this.SelectedDateTime.GetValueOrDefault().Date + timeSpan.TimeOfDay);
 ```
 
+On `develop` there is a second way in. `SelectedTime` is a `TimeSpan?` and carries that same value without the day it falls on, so bind whichever of the two your view model is written for:
+
+```xml
+<mah:TimePicker Width="170" SelectedTime="{Binding Departure}" />
+```
+
+The two follow each other. Written to, `SelectedTime` keeps the day that is already selected and settles on today where there is none, and null clears the selection. More than a day takes the date along, so 25 hours land on the next day at 01:00. It sits on `TimePickerBase`, so the [DateTimePicker](datetimepicker) has it as well, where it is the time half of its value.
+
+:::{.alert .alert-info}
+**`SelectedTime` is new on `develop`**, which is [#4080](https://github.com/MahApps/MahApps.Metro/issues/4080). It is in neither 2.4.11 nor the 3.0 release candidate, where a view model holding a `TimeSpan` needs a converter in between.
+:::
+
 :::{.alert .alert-warning}
 On an empty picker the date part depends on how the time was set, and the two ways disagree.
 
@@ -41,7 +53,7 @@ On an empty picker the date part depends on how the time was set, and the two wa
 
 **Picking** from the drop-down runs through `ClockSelectedTimeChanged` instead, which falls back to today — so the same 14:30 gives you **today at 14:30**.
 
-If your view model wants a time on a particular day, seed `SelectedDateTime` with that date first, or take `.TimeOfDay` from what you get back.
+If your view model wants a time on a particular day, seed `SelectedDateTime` with that date first. If it only wants the time, bind `SelectedTime` and the date part stays out of the way; before `develop`, take `.TimeOfDay` from what you get back.
 :::
 
 :::{.alert .alert-info}

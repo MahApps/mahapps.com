@@ -17,12 +17,13 @@ Description: A date and time picker with a calendar and a clock
 | Property | Type | |
 | --- | --- | --- |
 | `SelectedDateTime` | `DateTime?` | the whole value, date and time together |
+| `SelectedTime` | `TimeSpan?` | the time half of it, without the day (on `develop`) |
 | `SelectedTimeFormat` | `TimePickerFormat` | `Long` (14:30:00), the default, or `Short` (14:30) |
 | `SelectedDateTimeFormat` | `string` | a format of your own, which overrules the two enums (on `develop`) |
 | `Culture` | `CultureInfo` | formatting and the twelve- or twenty-four-hour clock |
 | `IsReadOnly` | `bool` | |
 
-`SelectedDateTime` is the one to bind. There is no separate date and time property — a `DateTimePicker` is one value, which is the point of it.
+`SelectedDateTime` is the one to bind. There is no pair of date and time properties, a `DateTimePicker` is one value, which is the point of it. What `develop` adds is `SelectedTime`, that value's time of day on its own: it reads out of the selection and writes back onto the day already in it, which the [TimePicker](timepicker) page covers in full.
 
 With no `Culture` the control follows the thread's culture, and a `Language` set on it or passed down from further up wins over that.
 
