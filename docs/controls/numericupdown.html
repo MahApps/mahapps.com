@@ -354,8 +354,8 @@ NumericUpDown
                    StringFormat=&quot;C2&quot;
                    Value=&quot;{Binding Amount}&quot; /&gt;
 </code></pre>
-<h2 id="four-controls-one-template">Four controls, one template</h2>
-<p><strong>On <code>develop</code> there are four of these, one per type.</strong> They share a base class, a template and every property on this page; all that differs is what <code>Value</code>, <code>Minimum</code>, <code>Maximum</code> and <code>Interval</code> are. A released version has only <code>NumericUpDown</code>.</p>
+<h2 id="five-controls-one-template">Five controls, one template</h2>
+<p><strong>On <code>develop</code> there are five of these, one per type.</strong> They share a base class, a template and every property on this page; all that differs is what <code>Value</code>, <code>Minimum</code>, <code>Maximum</code> and <code>Interval</code> are. A released version has only <code>NumericUpDown</code>.</p>
 <table>
 <thead>
 <tr>
@@ -385,11 +385,24 @@ NumericUpDown
 <td><code>long?</code></td>
 <td>a count past two billion: a file size in bytes, a database identifier</td>
 </tr>
+<tr>
+<td><code>TimeSpanUpDown</code></td>
+<td><code>TimeSpan?</code></td>
+<td>a length of time: how long something runs, how long to wait</td>
+</tr>
 </tbody>
 </table>
 <p><code>NumericUpDown</code> stays a <code>double</code> and keeps every property it had, so nothing written against it needs touching.</p>
 <p>The reason to reach for <code>DecimalUpDown</code> is that a <code>double</code> cannot hold <code>0.1</code>. It holds something very close, and the error shows once such values are added up: stepping a <code>NumericUpDown</code> from <code>0.1</code> twice by <code>0.1</code> leaves <code>Value</code> at <code>0.30000000000000004</code>, where a <code>DecimalUpDown</code> leaves it at <code>0.3</code>. The field reads <code>0.3</code> either way, so the difference only turns up in whatever the value is bound to. Binding a <code>decimal</code> property to a <code>NumericUpDown</code> has the same problem, since the value is carried through a <code>double</code> on the way in and out.</p>
 <p><code>IntegerUpDown</code> and <code>LongUpDown</code> start with <code>NumericInputMode</code> at <code>Numbers</code>, so the decimal separator is refused as a keystroke. A <code>LongUpDown</code> also holds a count exactly all the way to <code>long.MaxValue</code>, which a <code>double</code> stops doing at about nine quadrillion.</p>
+<p><code>TimeSpanUpDown</code> is the odd one out, since its value is no number. It is for a length of time rather than for a time of day, which is what the <a href="timepicker">TimePicker</a> is for and which is why that one stops at a day. Its <code>Interval</code> is a <code>TimeSpan</code> as well, so the step is whatever you write and nothing else: <code>00:00:30</code> counts in half minutes wherever the caret stands, <code>01:00:00</code> in hours.</p>
+<pre><code class="language-xml">&lt;mah:TimeSpanUpDown Minimum=&quot;00:00:00&quot;
+                    Maximum=&quot;1.00:00:00&quot;
+                    Interval=&quot;00:00:30&quot;
+                    Value=&quot;{Binding Timeout}&quot; /&gt;
+</code></pre>
+<div class="alert alert-info"><p><strong><code>TimeSpanUpDown</code> is new on <code>develop</code></strong>, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/3718">#3718</a>. What is typed is read the way the framework reads a <code>TimeSpan</code>, so a bare number is a count of days and five minutes are written <code>0:05</code>. Both ends stop at <code>TimeSpan.MinValue</code> and <code>TimeSpan.MaxValue</code> rather than throwing. The properties that only a number has, <code>NumericInputMode</code>, <code>ParsingNumberStyle</code> and <code>DecimalPointCorrection</code>, come along from the shared base and have nothing to say there.</p>
+</div>
 <h2 id="the-value-and-its-range">The value and its range</h2>
 <table>
 <thead>
@@ -422,7 +435,7 @@ NumericUpDown
 </tr>
 </tbody>
 </table>
-<p><code>T</code> is <code>double</code> for <code>NumericUpDown</code> and the matching type for each of the other three. In a released version everything here is a <code>double</code>.</p>
+<p><code>T</code> is <code>double</code> for <code>NumericUpDown</code> and the matching type for each of the other four. In a released version everything here is a <code>double</code>. The <code>Interval</code> of a <code>TimeSpanUpDown</code> starts at one minute rather than at one of whatever a <code>1</code> would mean there.</p>
 <p><code>Value</code> is <strong>nullable</strong>, so an empty field is a real state rather than zero. Bind to a nullable if the user is allowed to clear it.</p>
 <p><code>SnapToMultipleOfInterval</code> (default <code>False</code>) rounds every new value to the nearest multiple of <code>Interval</code>:</p>
 <pre><code class="language-csharp">value = Math.Round(newValue / this.Interval) * this.Interval;
@@ -522,7 +535,7 @@ NumericUpDown
 &lt;/Style&gt;
 </code></pre>
 <h2 id="the-windows-looks">The Windows looks</h2>
-<p><code>MahApps.Styles.NumericUpDown.Win10</code> and <code>MahApps.Styles.NumericUpDown.WinUI</code> draw the control the way Windows does: the text box of that set with the two buttons standing inside its frame, the number against the left edge and a chevron on each button instead of a plus and a minus. Either style covers all four up-downs, and a control that is switched off says so with the colours of its set rather than with a veil over it.</p>
+<p><code>MahApps.Styles.NumericUpDown.Win10</code> and <code>MahApps.Styles.NumericUpDown.WinUI</code> draw the control the way Windows does: the text box of that set with the two buttons standing inside its frame, the number against the left edge and a chevron on each button instead of a plus and a minus. Either style covers all five up-downs, and a control that is switched off says so with the colours of its set rather than with a veil over it.</p>
 <pre><code class="language-xml">&lt;mah:NumericUpDown Style=&quot;{DynamicResource MahApps.Styles.NumericUpDown.WinUI}&quot; Value=&quot;42&quot; /&gt;
 </code></pre>
 <p><a href="../stylevariants/win10">Win 10 (UWP)</a> and <a href="../stylevariants/winui">WinUI</a> have the whole set.</p>
@@ -643,7 +656,7 @@ NumericUpDown
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#four-controls-one-template">Four controls, one template</a></div>
+                    <div class="sidebar-nav-item"><a href="#five-controls-one-template">Five controls, one template</a></div>
                     <div class="sidebar-nav-item"><a href="#the-value-and-its-range">The value and its range</a></div>
                     <div class="sidebar-nav-item"><a href="#how-the-user-changes-it">How the user changes it</a></div>
                     <div class="sidebar-nav-item"><a href="#the-buttons">The buttons</a></div>
