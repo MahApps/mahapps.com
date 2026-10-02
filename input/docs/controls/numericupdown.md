@@ -14,9 +14,9 @@ Description: A numeric text field with increment and decrement buttons
                    Value="{Binding Amount}" />
 ```
 
-## Four controls, one template
+## Five controls, one template
 
-**On `develop` there are four of these, one per type.** They share a base class, a template and every property on this page; all that differs is what `Value`, `Minimum`, `Maximum` and `Interval` are. A released version has only `NumericUpDown`.
+**On `develop` there are five of these, one per type.** They share a base class, a template and every property on this page; all that differs is what `Value`, `Minimum`, `Maximum` and `Interval` are. A released version has only `NumericUpDown`.
 
 | Control | Value | Use it for |
 | --- | --- | --- |
@@ -24,12 +24,26 @@ Description: A numeric text field with increment and decrement buttons
 | `DecimalUpDown` | `decimal?` | money, and anything else where the digits typed in are the digits that come back out |
 | `IntegerUpDown` | `int?` | something counted: copies, a page number |
 | `LongUpDown` | `long?` | a count past two billion: a file size in bytes, a database identifier |
+| `TimeSpanUpDown` | `TimeSpan?` | a length of time: how long something runs, how long to wait |
 
 `NumericUpDown` stays a `double` and keeps every property it had, so nothing written against it needs touching.
 
 The reason to reach for `DecimalUpDown` is that a `double` cannot hold `0.1`. It holds something very close, and the error shows once such values are added up: stepping a `NumericUpDown` from `0.1` twice by `0.1` leaves `Value` at `0.30000000000000004`, where a `DecimalUpDown` leaves it at `0.3`. The field reads `0.3` either way, so the difference only turns up in whatever the value is bound to. Binding a `decimal` property to a `NumericUpDown` has the same problem, since the value is carried through a `double` on the way in and out.
 
 `IntegerUpDown` and `LongUpDown` start with `NumericInputMode` at `Numbers`, so the decimal separator is refused as a keystroke. A `LongUpDown` also holds a count exactly all the way to `long.MaxValue`, which a `double` stops doing at about nine quadrillion.
+
+`TimeSpanUpDown` is the odd one out, since its value is no number. It is for a length of time rather than for a time of day, which is what the [TimePicker](timepicker) is for and which is why that one stops at a day. Its `Interval` is a `TimeSpan` as well, so the step is whatever you write and nothing else: `00:00:30` counts in half minutes wherever the caret stands, `01:00:00` in hours.
+
+```xml
+<mah:TimeSpanUpDown Minimum="00:00:00"
+                    Maximum="1.00:00:00"
+                    Interval="00:00:30"
+                    Value="{Binding Timeout}" />
+```
+
+:::{.alert .alert-info}
+**`TimeSpanUpDown` is new on `develop`**, which is [#3718](https://github.com/MahApps/MahApps.Metro/issues/3718). What is typed is read the way the framework reads a `TimeSpan`, so a bare number is a count of days and five minutes are written `0:05`. Both ends stop at `TimeSpan.MinValue` and `TimeSpan.MaxValue` rather than throwing. The properties that only a number has, `NumericInputMode`, `ParsingNumberStyle` and `DecimalPointCorrection`, come along from the shared base and have nothing to say there.
+:::
 
 ## The value and its range
 
@@ -40,7 +54,7 @@ The reason to reach for `DecimalUpDown` is that a `double` cannot hold `0.1`. It
 | `Maximum` | `T` | the type's `MaxValue` |
 | `Interval` | `T` | `1` |
 
-`T` is `double` for `NumericUpDown` and the matching type for each of the other three. In a released version everything here is a `double`.
+`T` is `double` for `NumericUpDown` and the matching type for each of the other four. In a released version everything here is a `double`. The `Interval` of a `TimeSpanUpDown` starts at one minute rather than at one of whatever a `1` would mean there.
 
 `Value` is **nullable**, so an empty field is a real state rather than zero. Bind to a nullable if the user is allowed to clear it.
 
@@ -94,7 +108,7 @@ Hiding the buttons does not make the control read-only — the arrow keys, the w
 
 ## The Windows looks
 
-`MahApps.Styles.NumericUpDown.Win10` and `MahApps.Styles.NumericUpDown.WinUI` draw the control the way Windows does: the text box of that set with the two buttons standing inside its frame, the number against the left edge and a chevron on each button instead of a plus and a minus. Either style covers all four up-downs, and a control that is switched off says so with the colours of its set rather than with a veil over it.
+`MahApps.Styles.NumericUpDown.Win10` and `MahApps.Styles.NumericUpDown.WinUI` draw the control the way Windows does: the text box of that set with the two buttons standing inside its frame, the number against the left edge and a chevron on each button instead of a plus and a minus. Either style covers all five up-downs, and a control that is switched off says so with the colours of its set rather than with a veil over it.
 
 ```xml
 <mah:NumericUpDown Style="{DynamicResource MahApps.Styles.NumericUpDown.WinUI}" Value="42" />
