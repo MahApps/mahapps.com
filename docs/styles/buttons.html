@@ -1,606 +1,325 @@
-<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
-                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
-        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
-        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
-	    
-        <!-- Lunr search -->
-
-        
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
-
-<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
-<script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
-
-
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - Buttons</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/assets/js/clipboard.min.js"></script>
+
     </head>
-    <body class="d-flex flex-column">
-        <div class="flex-grow-1 d-flex flex-column">
-            <div class="bg-nav">
-                <div class="container-xl py-3">
-                    <div class="row">
-                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
-                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
-    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
-            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
-        <span class="site-title text-primary">MahApps.Metro</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
-        <ul class="navbar-nav mr-auto">
-            
-        </ul>
-        <ul class="navbar-nav">
-            
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/about">About</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/controls">Controls</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/mahapps.com/docs/styles">Styles</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
-    </li>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
 
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/api">API</a>
-    </li>
-
-
-            <li class="nav-item">
-    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
-</li>
-
-        </ul>
-    </div>
-</nav>
-
-                        </div>
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
                     </div>
-                </div>
-            </div>
             
-            <div class="flex-grow-1 d-flex flex-column">
-                    <!-- Titlebar -->
-                    <div id="titlebar" class="py-4">
-                        <div class="container-xl">
-                            <div class="row">
-                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
-                                    <div class="flex-grow-1">
-                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
-
-        <span><a href="/mahapps.com/docs">Documentation</a></span>
-        <span><a href="/mahapps.com/docs/styles">Styles</a></span>
-                                        </div>
-                                        <div class="text-white m-0 text-break title">
-
-Buttons
-                                        </div>
-                                    </div>
-                                        <div class="navbar navbar-expand-md navbar-dark p-0">
-                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                                                <span class="navbar-toggler-icon"></span>
-                                            </button>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/blog">Blog</a></li>
+        <li class="active"><a href="/docs">Documentation</a></li>
+        <li><a href="/api">API</a></li>
+        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
+ 
+                        </ul>       
                     </div>
-                    <!-- Under title -->
-                    <div id="undertitle">
-                        <div class="container-xl">
-                            <div class="row">
-                                    <div class="col-md-3 col-lg-2">
-                                    </div>
-                                    <div class="col-md-9 col-lg-8 bg-white">
-                                    </div>
-                                <div class="col-lg-2 d-none d-lg-block">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/styles/buttons.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#default">Default</a></p>
+<p><a href="#circle">Circle</a></p>
+<p><a href="#square">Square</a></p>
+<p><a href="#accented-square">Accented Square</a></p>
+<p><a href="#flat">Flat</a></p>
+<hr class="infobar-hidden">
+</div>
 
-                <!-- Body -->
-                <div class="flex-grow-1 d-flex flex-column">
-                        <div class="container-xl flex-grow-1 d-flex flex-column">
-                            <div class="row flex-grow-1 align-items-stretch">
-                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
-                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+                </section>
+                <section class="sidebar">    
+                                     
+                    
 
-    <div class="sidebar-root">
+                    <ul class="sidebar-menu">
+                        
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/styles">Styles</a>
-</div>                <div class="sidebar-nav-children">
+                <li class="treeview">
+                    <a href="/docs/controls">Controls</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/controls/metrowindow">MetroWindow</a></li>
+                <li><a href="/docs/controls/Badged">Badged Control</a></li>
+                <li><a href="/docs/controls/ColorPicker">ColorPicker</a></li>
+                <li><a href="/docs/controls/ContentControlEx">ContentControlEx</a></li>
+                <li><a href="/docs/controls/CustomValidationPopup">CustomValidationPopup</a></li>
+                <li><a href="/docs/controls/DateTimePicker">DateTimePicker</a></li>
+                <li><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
+                <li><a href="/docs/controls/flipview">FlipView</a></li>
+                <li><a href="/docs/controls/flyouts">Flyouts</a></li>
+                <li><a href="/docs/controls/FontIcon">FontIcon</a></li>
+                <li><a href="/docs/controls/HamburgerMenu">HamburgerMenu</a></li>
+                <li><a href="/docs/controls/HotKeyBox">HotKeyBox</a></li>
+                <li><a href="/docs/controls/MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a></li>
+                <li><a href="/docs/controls/MetroAnimatedTabControl">MetroAnimatedTabControl</a></li>
+                <li><a href="/docs/controls/MetroContentControl">MetroContentControl</a></li>
+                <li><a href="/docs/controls/MetroHeader">MetroHeader</a></li>
+                <li><a href="/docs/controls/MetroNavigationWindow">MetroNavigationWindow</a></li>
+                <li><a href="/docs/controls/metroprogressbar">MetroProgressBar</a></li>
+                <li><a href="/docs/controls/MetroTabControl">MetroTabControl</a></li>
+                <li><a href="/docs/controls/MetroTabItem">MetroTabItem</a></li>
+                <li><a href="/docs/controls/MetroThumbContentControl">MetroThumbContentControl</a></li>
+                <li><a href="/docs/controls/MultiFrameImage">MultiFrameImage</a></li>
+                <li><a href="/docs/controls/MultiSelectionComboBox">MultiSelectionComboBox</a></li>
+                <li><a href="/docs/controls/numericupdown">NumericUpDown</a></li>
+                <li><a href="/docs/controls/progressring">ProgressRing</a></li>
+                <li><a href="/docs/controls/rangeslider">RangeSlider</a></li>
+                <li><a href="/docs/controls/splitbutton">SplitButton</a></li>
+                <li><a href="/docs/controls/SplitView">SplitView</a></li>
+                <li><a href="/docs/controls/tile">Tile</a></li>
+                <li><a href="/docs/controls/TimePicker">TimePicker</a></li>
+                <li><a href="/docs/controls/toggleswitch">ToggleSwitch</a></li>
+                <li><a href="/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
+                <li><a href="/docs/controls/WindowButtonCommands">WindowButtonCommands</a></li>
+                <li><a href="/docs/controls/WindowCommands">WindowCommands</a></li>
 
-<div class="sidebar-nav-item active">
-    <a href="/mahapps.com/docs/styles/buttons">Buttons</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/calendar">Calendar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/checkbox">CheckBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/combobox">ComboBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/datagrid">DataGrid</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/datagridcolumns">DataGrid Columns</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/datepicker">DatePicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/expander">Expander</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/gridsplitter">GridSplitter</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/groupbox">GroupBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/hyperlink">Hyperlink</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/listbox">ListBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/listview">ListView</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/menus">Menus</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/page">Page</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/passwordbox">PasswordBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/progressbar">ProgressBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/radiobutton">RadioButton</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/scrollbars">ScrollBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/slider">Slider</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/statusbar">StatusBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/tabcontrol">TabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/text">Text</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/textbox">TextBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/togglebutton">ToggleButton</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/toolbar">ToolBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/tooltip">ToolTip</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/treeview">TreeView</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/validation">Validation</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li class="treeview active">
+                    <a href="/docs/styles">Styles</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li class="selected"><a href="/docs/styles/buttons">Buttons</a></li>
+                <li><a href="/docs/styles/calendar">Calendar</a></li>
+                <li><a href="/docs/styles/checkbox">CheckBox</a></li>
+                <li><a href="/docs/styles/combobox">ComboBox</a></li>
+                <li><a href="/docs/styles/datagrid">DataGrid</a></li>
+                <li><a href="/docs/styles/datagridcolumns">DataGrid Columns</a></li>
+                <li><a href="/docs/styles/datepicker">DatePicker</a></li>
+                <li><a href="/docs/styles/expander">Expander</a></li>
+                <li><a href="/docs/styles/gridsplitter">GridSplitter</a></li>
+                <li><a href="/docs/styles/groupbox">GroupBox</a></li>
+                <li><a href="/docs/styles/hyperlink">Hyperlink</a></li>
+                <li><a href="/docs/styles/listbox">ListBox</a></li>
+                <li><a href="/docs/styles/listview">ListView</a></li>
+                <li><a href="/docs/styles/menus">Menus</a></li>
+                <li><a href="/docs/styles/page">Page</a></li>
+                <li><a href="/docs/styles/passwordbox">PasswordBox</a></li>
+                <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
+                <li><a href="/docs/styles/radiobutton">RadioButton</a></li>
+                <li><a href="/docs/styles/scrollbars">ScrollBar</a></li>
+                <li><a href="/docs/styles/slider">Slider</a></li>
+                <li><a href="/docs/styles/statusbar">StatusBar</a></li>
+                <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
+                <li><a href="/docs/styles/text">Text</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
+                <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
+                <li><a href="/docs/styles/toolbar">ToolBar</a></li>
+                <li><a href="/docs/styles/tooltip">ToolTip</a></li>
+                <li><a href="/docs/styles/treeview">TreeView</a></li>
+                <li><a href="/docs/styles/validation">Validation</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/themes">Themes</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/stylevariants">Style Variants</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/stylevariants/clean">Clean</a></li>
+                <li><a href="/docs/stylevariants/vs">Visual Studio</a></li>
+                <li><a href="/docs/stylevariants/win10">Win 10 (UWP)</a></li>
+                <li><a href="/docs/stylevariants/winui">WinUI</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/themes/usage">Usage</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/themes/thememanager">Thememanager</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li><a href="/docs/helper">Helper Classes</a></li>
+                <li class="treeview">
+                    <a href="/docs/dialogs">Dialogs</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/dialogs/message-dialog">Message Dialog</a></li>
+                <li><a href="/docs/dialogs/input-dialog">Input Dialog</a></li>
+                <li><a href="/docs/dialogs/login-dialogs">Login Dialog</a></li>
+                <li><a href="/docs/dialogs/progress-dialogs">Progress Dialog</a></li>
+                <li><a href="/docs/dialogs/mvvm-dialog">MVVM</a></li>
+                <li><a href="/docs/dialogs/custom-dialogs">Custom Dialogs</a></li>
+                <li><a href="/docs/dialogs/dialogsettings">Dialogsettings</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/stylevariants">Style Variants</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/themes">Themes</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/themes/usage">Usage</a></li>
+                <li><a href="/docs/themes/thememanager">Thememanager</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/clean">Clean</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/vs">Visual Studio</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/win10">Win 10 (UWP)</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/winui">WinUI</a>
-</div>                </div>
-    </div>
-                                            </div>
-                                        </div>
-                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>Every <code>Button</code>, <code>RepeatButton</code> and <code>ToggleButton</code> in a MahApps application is styled without any markup on your side. Beyond that the library ships a set of keyed styles to pick from — square, circular, flat, chromeless — plus a good many that belong to particular controls.</p>
-<p><img src="images/buttons-square.png" alt="The default button and the three square variants" /></p>
-<h2 id="the-implicit-style">The implicit style</h2>
-<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.Button</code> to <code>Button</code> <strong>and</strong> <code>RepeatButton</code>, and <code>MahApps.Styles.ToggleButton</code> to <code>ToggleButton</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
-<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
-</code></pre>
-<p>The default button is a rounded, bordered button with bold, upper-cased content. The upper-casing is not a font trick: the style sets <code>ControlsHelper.ContentCharacterCasing</code> to <code>Upper</code>, and setting it back to <code>Normal</code> gives you the content as written.</p>
-<pre><code class="language-xml">&lt;Button mah:ControlsHelper.ContentCharacterCasing=&quot;Normal&quot; Content=&quot;Save&quot; /&gt;
-</code></pre>
-<p>Along with it the style sets <code>ControlsHelper.CornerRadius</code> to <code>3</code>, which is yours to override. A released version also sets <code>FocusBorderThickness</code> to <code>2</code>, which made the border thicker while the button had the focus and moved its content along with it. That is gone on <code>develop</code>: focus colours the border through <code>FocusBorderBrush</code> and leaves its thickness alone. See <a href="../helper/controlshelper">ControlsHelper</a>.</p>
-<h2 id="the-square-styles">The square styles</h2>
-<pre><code class="language-xml">&lt;Button Style=&quot;{StaticResource MahApps.Styles.Button.Square}&quot; Content=&quot;Save&quot; /&gt;
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>Style</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>MahApps.Styles.Button.Square</code></td>
-<td>a flat-cornered button with a 2 pixel border</td>
-</tr>
-<tr>
-<td><code>MahApps.Styles.Button.Square.Accent</code></td>
-<td>the same filled with the accent colour</td>
-</tr>
-<tr>
-<td><code>MahApps.Styles.Button.Square.Highlight</code></td>
-<td>the same filled with the highlight colour, a darker accent</td>
-</tr>
-</tbody>
-</table>
-<div class="alert alert-info"><p>Look at the captions in the figure above: the default style upper-cases its content, but the square styles set <code>ContentCharacterCasing</code> to <strong><code>Lower</code></strong>, so <code>Content=&quot;Save&quot;</code> comes out as <em>save</em>. It is a deliberate part of the look rather than an accident, but it surprises people who expect the content verbatim. Set the property to <code>Normal</code> if you want it as written, or, since both casings come out of resources rather than out of the styles, override <code>MahApps.CharacterCasing.Button.Square</code> once and every square button follows. The default style reads <code>MahApps.CharacterCasing.Button</code> the same way.</p>
-</div>
-<p><code>MahApps.Styles.Button.MetroSquare</code> is a third square variant, and it leaves the casing alone:</p>
-<p><img src="images/buttons-metrosquare.png" alt="MetroSquare and its accented variant" /></p>
-<table>
-<thead>
-<tr>
-<th>Style</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>MahApps.Styles.Button.MetroSquare</code></td>
-<td>transparent with a 2 pixel border and wider padding</td>
-</tr>
-<tr>
-<td><code>MahApps.Styles.Button.MetroSquare.Accent</code></td>
-<td>the same filled with the accent colour</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Both of those keys are on their way out.</strong> They were dropped from the library in July 2022 as unused, and no release carries that removal yet, so 2.4.11 still has them and the next version will not. The nearest thing left afterwards is <code>MahApps.Styles.Button.Square</code> with <code>ControlsHelper.ContentCharacterCasing</code> back at <code>Normal</code>.</p>
-<h2 id="circle-flat-and-chromeless">Circle, flat and chromeless</h2>
-<p><img src="images/buttons-circle-flat.png" alt="A circle button, a flat button and a chromeless one" /></p>
-<table>
-<thead>
-<tr>
-<th>Style</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>MahApps.Styles.Button.Circle</code></td>
-<td>a round, transparent button with a 2 pixel border, meant for an icon rather than text</td>
-</tr>
-<tr>
-<td><code>MahApps.Styles.Button.Flat</code></td>
-<td>a filled button with no border at all</td>
-</tr>
-<tr>
-<td><code>MahApps.Styles.Button.Chromeless</code></td>
-<td>no border, no background — the content and nothing else</td>
-</tr>
-</tbody>
-</table>
-<p>The circle button has no content of its own, so give it one:</p>
-<pre><code class="language-xml">&lt;Button Width=&quot;48&quot; Height=&quot;48&quot; Style=&quot;{StaticResource MahApps.Styles.Button.Circle}&quot;&gt;
-    &lt;TextBlock FontFamily=&quot;Segoe MDL2 Assets&quot; FontSize=&quot;18&quot; Text=&quot;&amp;#xE72C;&quot; /&gt;
-&lt;/Button&gt;
-</code></pre>
-<p><code>Chromeless</code> is what the library uses for the small buttons inside a text box or a picker, and it is the one to reach for when a button should read as part of another control rather than as a button.</p>
-<div class="alert alert-info"><p>The flat button needs no extra import. Older documentation says to merge <code>Styles/Controls.FlatButton.xaml</code> — that dictionary still exists, but all it does is make the flat style <strong>implicit for every <code>Button</code> in scope</strong>. <code>MahApps.Styles.Button.Flat</code> itself lives in <code>Controls.Buttons.xaml</code>, which <code>Controls.xaml</code> already merges, so referencing it by key works out of the box.</p>
-</div>
-<h2 id="the-windows-10-set">The Windows 10 set</h2>
-<p><strong>Three more keys are on <code>develop</code> and in no release yet.</strong> Not one of them is in 2.4.11:</p>
-<table>
-<thead>
-<tr>
-<th>Style</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>MahApps.Styles.Button.Win10</code></td>
-<td>the flat button with a two pixel border and the content font at its normal weight, in place of the bold, upper-cased button font</td>
-</tr>
-<tr>
-<td><code>MahApps.Styles.Button.Accent.Win10</code></td>
-<td>the same one filled with the accent colour</td>
-</tr>
-<tr>
-<td><code>MahApps.Styles.Button.Flat.Accent</code></td>
-<td>built on the accented one, with the ordinary button colours painted back over it</td>
-</tr>
-</tbody>
-</table>
-<p>The last name promises more accent than it shows. <code>Flat.Accent</code> is the plain button at rest with a one pixel border, hovering moves that border to the accent colour, and the accent fills the button only while it is really held down.</p>
-<h2 id="the-winui-set">The WinUI set</h2>
-<p><strong>Two more keys, also on <code>develop</code> and in no release yet:</strong></p>
-<table>
-<thead>
-<tr>
-<th>Style</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>MahApps.Styles.Button.WinUI</code></td>
-<td>the Windows 10 button in the colours Windows 11 gives it</td>
-</tr>
-<tr>
-<td><code>MahApps.Styles.Button.Accent.WinUI</code></td>
-<td>the same one filled with the accent colour</td>
-</tr>
-</tbody>
-</table>
-<p>It is the Windows 10 button with rounded corners, one pixel of border instead of two and the padding WinUI leaves around a word. What is new is the line along the bottom, drawn a shade stronger than the rest of the border, which is what makes the button look as if it stood a little above the page. Press it and that line goes, so a button that is down reads as lying flat. The accented one is framed by a thin white above and a black below rather than by the grey of the quiet one.</p>
-<p>Both round themselves by <code>MahApps.CornerRadius.WinUI.Control</code> rather than by a number of their own, and both carry a minimum height of 32, the one every other control of that set has, so a button holding nothing but an icon is still as tall as the box beside it. The line along the bottom is a border of its own in the template reading <code>ControlsHelper.BottomBorderBrush</code>, which is why the Windows 10 button, leaving that brush unset, draws nothing there. The frame itself stops short of the bottom, since two translucent lines lying on top of each other come out brighter than either of them.</p>
-<h2 id="dialog-buttons">Dialog buttons</h2>
-<p>The three styles the built-in dialogs use are public, which is what makes a <a href="../dialogs/custom-dialogs">custom dialog</a> look like the built-in ones:</p>
-<p><img src="images/buttons-dialogs.png" alt="The three dialog button styles" /></p>
-<table>
-<thead>
-<tr>
-<th>Style</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>MahApps.Styles.Button.Dialogs</code></td>
-<td>the plain one</td>
-</tr>
-<tr>
-<td><code>MahApps.Styles.Button.Dialogs.Accent</code></td>
-<td>for the affirmative action</td>
-</tr>
-<tr>
-<td><code>MahApps.Styles.Button.Dialogs.AccentHighlight</code></td>
-<td>the highlight variant</td>
-</tr>
-</tbody>
-</table>
-<p>They are <code>MahApps.Styles.Button.Square</code> and its variants with a minimum size and <code>ContentCharacterCasing</code> back at <code>Normal</code> — which is why a dialog button says <em>Cancel</em> rather than <em>cancel</em>.</p>
-<h2 id="toggle-buttons">Toggle buttons</h2>
-<p><code>MahApps.Styles.ToggleButton</code> is the implicit style for <code>ToggleButton</code>, and <code>MahApps.Styles.ToggleButton.Circle</code> and <code>.Flat</code> are the counterparts of <code>Button.Circle</code> and <code>Button.Flat</code>. They have a page of their own: <a href="togglebutton">ToggleButton</a>.</p>
-<h2 id="the-rest">The rest</h2>
-<p>Most of the button styles in the library belong to one control and are not meant to be applied by hand. They are listed here so a name in the resource dictionary is recognisable rather than mysterious:</p>
-<table>
-<thead>
-<tr>
-<th>Prefix</th>
-<th>Belongs to</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>Button.MetroWindow.*</code>, <code>Button.WindowCommands</code>, <code>ToggleButton.WindowCommands</code></td>
-<td>the window chrome and its command buttons</td>
-</tr>
-<tr>
-<td><code>Button.DropDown</code>, <code>Button.Split</code>, <code>Button.Split.Arrow</code></td>
-<td><code>DropDownButton</code> and <code>SplitButton</code></td>
-</tr>
-<tr>
-<td><code>Button.Calendar.*</code></td>
-<td>the calendar header and its arrows</td>
-</tr>
-<tr>
-<td><code>Button.Hamburger</code></td>
-<td>the <code>HamburgerMenu</code> toggle</td>
-</tr>
-<tr>
-<td><code>Button.Reveal</code></td>
-<td>the reveal button of a <code>PasswordBox</code></td>
-</tr>
-<tr>
-<td><code>Button.ToolBar</code>, <code>ToggleButton.ToolBar</code>, <code>ToggleButton.ToolBarOverflow</code></td>
-<td><code>ToolBar</code></td>
-</tr>
-<tr>
-<td><code>Button.FlipView.Navigation</code></td>
-<td>the <code>FlipView</code> arrows</td>
-</tr>
-<tr>
-<td><code>ToggleButton.ExpanderHeader.*</code></td>
-<td>the <code>Expander</code> header, one per direction</td>
-</tr>
-<tr>
-<td><code>ToggleButton.ComboBoxDropDown</code>, <code>ToggleButton.ColorPickerDropDown</code></td>
-<td>the arrow of a <code>ComboBox</code> or <code>ColorPicker</code></td>
-</tr>
-<tr>
-<td><code>ToggleButton.TreeViewItem.ExpandCollapse</code></td>
-<td>the expander of a <code>TreeViewItem</code></td>
-</tr>
-<tr>
-<td><code>*.VisualStudio</code></td>
-<td>the Visual Studio look, in <code>Styles/VS/</code>, which <code>Controls.xaml</code> does not merge</td>
-</tr>
-<tr>
-<td><code>Button.FocusVisualStyle.*</code></td>
-<td>focus adorners used by the styles above</td>
-</tr>
-</tbody>
-</table>
-<p>Basing your own style on one of these is fine — that is how the <a href="../helper/expanderhelper">Expander</a> and <a href="../helper/treeviewitemhelper">TreeViewItem</a> helpers expect you to customise them. Applying one to an ordinary button generally is not, since most assume the template around them.</p>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/guides">Guides</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/guides/quick-start">Quick Start</a></li>
+                <li><a href="/docs/guides/migration-to-v2.0">Migration to v2.0</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="/docs/usage">Usage</a></li>
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
 
 
-                                        </div>
-                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
-                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
-        <div class="border-bottom mb-3 sidebar-root">
-            <div class="sidebar-nav-item sidebar-header">On This Page</div>
-            <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-square-styles">The square styles</a></div>
-                    <div class="sidebar-nav-item"><a href="#circle-flat-and-chromeless">Circle, flat and chromeless</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-windows-10-set">The Windows 10 set</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-winui-set">The WinUI set</a></div>
-                    <div class="sidebar-nav-item"><a href="#dialog-buttons">Dialog buttons</a></div>
-                    <div class="sidebar-nav-item"><a href="#toggle-buttons">Toggle buttons</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-rest">The rest</a></div>
-            </div>
+
+		<section class="content-header">
+			<h1>Buttons</h1>
+		</section>
+	<section class="content">
+		<h1 id="default">Default</h1>
+<p>This just replaces the standard button when you drop in the library, nothing fancy to activate it.<br>
+<img src="images/08_RegularButton.png" class="img-fluid" alt=""></p>
+<h1 id="circle">Circle</h1>
+<p>"Standard" circle button, designed for icons.<br>
+Add the following to a button to apply this style: <code>Style="{DynamicResource MahApps.Styles.Button.Circle}"</code></p>
+<p><img src="images/07_CircleButtons.png" class="img-fluid" alt=""></p>
+<h1 id="square">Square</h1>
+<p>Another WP7 styled button, this time just for text. Like all the buttons here, has normal, clicked, and hover states.</p>
+<p><img src="images/square-button.png" class="img-fluid" alt=""></p>
+<p>Add the following to a button to apply this style: <code>Style="{DynamicResource MahApps.Styles.Button.Square}"</code></p>
+<h1 id="accented-square">Accented Square</h1>
+<p>A slightly modified version of <code>SquareButton</code> that has the current accent color as background color.</p>
+<p><img src="images/accent-square-button.png" class="img-fluid" alt=""></p>
+<p>Add the following to a button to apply this style: <code>Style="{StaticResource MahApps.Styles.Button.Square.Accent}"</code></p>
+<h1 id="flat">Flat</h1>
+<p>This sort of button can be found when you're making a call on Windows Phone - all of the controls (hang up, keypad, etc) are 'flat buttons'.</p>
+<p><img src="images/flatbutton.png" class="img-fluid" alt=""></p>
+<p>Flat button lives in<br>
+<code>&lt;ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.FlatButton.xaml" /&gt;</code></p>
+<p>You'll need to import that as well to use it.</p>
+
+	</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/buttons.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div id="footer" class="p-3 text-white">
-            <div class="container-xl">
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
-    <br/>
-    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br/>
-    Generated by <a href="https://statiq.dev">Statiq</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
+    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
+    <br>
+    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br>
+    Generated by <a href="http://wyam.io">Wyam</a>
 </p>
 
-            </div>
+<script>
+	anchors.options.placement = 'left';
+	anchors.add();
+</script>
+
+<script>
+	var snippets = document.querySelectorAll('pre > code');
+	[].forEach.call(snippets, function (snippet) {
+	  snippet.insertAdjacentHTML(
+	    'beforebegin',
+	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
+	  );
+	});
+	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+	  container: document.getElementById('modal'),
+	  target: function (trigger) {
+	    return trigger.nextElementSibling;
+	  },
+	});
+	clipboardSnippets.on('success', function (e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		e.clearSelection();
+		// showTooltip(e.trigger, 'Copied!');
+	});
+	clipboardSnippets.on('error', function (e) {
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
+		// showTooltip(e.trigger, fallbackMessage(e.action));
+	});
+</script>
+            </footer>
         </div>
-
-        <!-- Scripts -->
-        <script>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
             $(document).ready(function() {
-                quicklink.listen();
-
-                // Bootstrap tooltips
-                $('[data-toggle="tooltip"]').tooltip();
-
-				// Keeps the sidebars in view on wider viewports
-				let left = null;
-				let leftParent = null;
-				let right = null;
-				let rightParent = null;
-                function stickSidebars()
-				{
-				    if (left == null) {
-                        left = $('#left-sidebar');
-                        right = $('#right-sidebar');
-                    }
-                    if (left.length) {
-                        if (window.innerWidth >= 768) {
-                            if (leftParent == null) {
-                                leftParent = left.parent()[0];
-                            }
-                            if (leftParent) {
-                                let leftRect = leftParent.getBoundingClientRect();
-                                stickSidebar(left,  leftRect);
-                            }
-                        } else {
-                            left.css('position', 'relative');
-                            if (left.css('bottom') != 0) {
-                                left.css('bottom', '0');
-                            }
-                        }
-                    }
-                    if (right.length) {
-                        if (window.innerWidth >= 768) {
-                            if (rightParent == null) {
-                                rightParent = right.parent()[0];
-                            }
-                            if (rightParent) {
-                                let rightRect = rightParent.getBoundingClientRect();
-                                stickSidebar(right,  rightRect);
-                            }
-                        } else {
-                            right.css('position', 'relative');
-                            if (right.css('bottom') != 0) {
-                                right.css('bottom', '0');
-                            }
-                        }
-                    }
-				}
-				function stickSidebar(sidebar, rect) {
-                    // Bottom
-                    if (rect.bottom > window.innerHeight) {
-                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
-                    } else {
-                        sidebar.css('bottom', 0);
-                    }
-                    // Top
-                    if (rect.top < 0) {
-                        sidebar.css('position', 'sticky');
-                    } else {
-                        sidebar.css('position', 'absolute');
-                    }
-				}
-				$(window).on("load", function() {
-				    stickSidebars();
-				});
-                $(window).scroll(function() {
-				    stickSidebars();
-				});
-				$(window).resize(function() {
-				    stickSidebars();
-				})
-
-                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -609,12 +328,12 @@ Buttons
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });
+                });     
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-fluid');
+                mermaidSvg.addClass('img-responsive');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -628,68 +347,40 @@ Buttons
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});
+					});			                          
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-
+                    
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
             });
         </script>
-
-        
-
-        <script>
-    anchors.options.placement = 'left';
-    anchors.add();
-
-    // Each <pre> is a horizontal scroll container (Bootstrap sets
-    // overflow: auto), so a button placed inside it scrolls out of view on long
-    // lines. Wrap the block instead and position the button against the
-    // wrapper, which never scrolls.
-    document.querySelectorAll('pre > code').forEach(function (code) {
-        var pre = code.parentNode;
-        var wrapper = document.createElement('div');
-        wrapper.className = 'code-block';
-        pre.parentNode.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
-
-        var button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'btn-copy';
-        button.title = 'Copy to clipboard';
-        button.setAttribute('aria-label', 'Copy to clipboard');
-        button.setAttribute('data-clipboard-snippet', '');
-        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        wrapper.appendChild(button);
-    });
-
-    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-        target: function (trigger) {
-            return trigger.parentNode.querySelector('pre > code');
-        },
-    });
-    clipboardSnippets.on('success', function (e) {
-        var button = e.trigger;
-        button.classList.add('copied');
-        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
-        window.setTimeout(function () {
-            button.classList.remove('copied');
-            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        }, 1500);
-        e.clearSelection();
-    });
-    clipboardSnippets.on('error', function (e) {
-        console.error('Copy failed:', e.action, e.trigger);
-    });
-</script>
-
-    </body>
-</html>
+    
+</body></html>

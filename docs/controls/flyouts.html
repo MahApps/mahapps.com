@@ -1,738 +1,481 @@
-<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
-                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
-        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
-        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
-	    
-        <!-- Lunr search -->
-
-        
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
-
-<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
-<script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
-
-
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - Flyouts</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/assets/js/clipboard.min.js"></script>
+
     </head>
-    <body class="d-flex flex-column">
-        <div class="flex-grow-1 d-flex flex-column">
-            <div class="bg-nav">
-                <div class="container-xl py-3">
-                    <div class="row">
-                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
-                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
-    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
-            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
-        <span class="site-title text-primary">MahApps.Metro</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
-        <ul class="navbar-nav mr-auto">
-            
-        </ul>
-        <ul class="navbar-nav">
-            
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/about">About</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/mahapps.com/docs/controls">Controls</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
-    </li>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
 
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/api">API</a>
-    </li>
-
-
-            <li class="nav-item">
-    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
-</li>
-
-        </ul>
-    </div>
-</nav>
-
-                        </div>
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
                     </div>
-                </div>
-            </div>
             
-            <div class="flex-grow-1 d-flex flex-column">
-                    <!-- Titlebar -->
-                    <div id="titlebar" class="py-4">
-                        <div class="container-xl">
-                            <div class="row">
-                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
-                                    <div class="flex-grow-1">
-                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
-
-        <span><a href="/mahapps.com/docs">Documentation</a></span>
-        <span><a href="/mahapps.com/docs/controls">Controls</a></span>
-                                        </div>
-                                        <div class="text-white m-0 text-break title">
-
-Flyouts
-                                        </div>
-                                    </div>
-                                        <div class="navbar navbar-expand-md navbar-dark p-0">
-                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                                                <span class="navbar-toggler-icon"></span>
-                                            </button>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/blog">Blog</a></li>
+        <li class="active"><a href="/docs">Documentation</a></li>
+        <li><a href="/api">API</a></li>
+        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
+ 
+                        </ul>       
                     </div>
-                    <!-- Under title -->
-                    <div id="undertitle">
-                        <div class="container-xl">
-                            <div class="row">
-                                    <div class="col-md-3 col-lg-2">
-                                    </div>
-                                    <div class="col-md-9 col-lg-8 bg-white">
-                                    </div>
-                                <div class="col-lg-2 d-none d-lg-block">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/flyouts.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"></div>
 
-                <!-- Body -->
-                <div class="flex-grow-1 d-flex flex-column">
-                        <div class="container-xl flex-grow-1 d-flex flex-column">
-                            <div class="row flex-grow-1 align-items-stretch">
-                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
-                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+                </section>
+                <section class="sidebar">    
+                                     
+                    
 
-    <div class="sidebar-root">
+                    <ul class="sidebar-menu">
+                        
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/controls">Controls</a>
-</div>                <div class="sidebar-nav-children">
+                <li class="treeview active">
+                    <a href="/docs/controls">Controls</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/controls/metrowindow">MetroWindow</a></li>
+                <li><a href="/docs/controls/Badged">Badged Control</a></li>
+                <li><a href="/docs/controls/ColorPicker">ColorPicker</a></li>
+                <li><a href="/docs/controls/ContentControlEx">ContentControlEx</a></li>
+                <li><a href="/docs/controls/CustomValidationPopup">CustomValidationPopup</a></li>
+                <li><a href="/docs/controls/DateTimePicker">DateTimePicker</a></li>
+                <li><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
+                <li><a href="/docs/controls/flipview">FlipView</a></li>
+                <li class="selected"><a href="/docs/controls/flyouts">Flyouts</a></li>
+                <li><a href="/docs/controls/FontIcon">FontIcon</a></li>
+                <li><a href="/docs/controls/HamburgerMenu">HamburgerMenu</a></li>
+                <li><a href="/docs/controls/HotKeyBox">HotKeyBox</a></li>
+                <li><a href="/docs/controls/MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a></li>
+                <li><a href="/docs/controls/MetroAnimatedTabControl">MetroAnimatedTabControl</a></li>
+                <li><a href="/docs/controls/MetroContentControl">MetroContentControl</a></li>
+                <li><a href="/docs/controls/MetroHeader">MetroHeader</a></li>
+                <li><a href="/docs/controls/MetroNavigationWindow">MetroNavigationWindow</a></li>
+                <li><a href="/docs/controls/metroprogressbar">MetroProgressBar</a></li>
+                <li><a href="/docs/controls/MetroTabControl">MetroTabControl</a></li>
+                <li><a href="/docs/controls/MetroTabItem">MetroTabItem</a></li>
+                <li><a href="/docs/controls/MetroThumbContentControl">MetroThumbContentControl</a></li>
+                <li><a href="/docs/controls/MultiFrameImage">MultiFrameImage</a></li>
+                <li><a href="/docs/controls/MultiSelectionComboBox">MultiSelectionComboBox</a></li>
+                <li><a href="/docs/controls/numericupdown">NumericUpDown</a></li>
+                <li><a href="/docs/controls/progressring">ProgressRing</a></li>
+                <li><a href="/docs/controls/rangeslider">RangeSlider</a></li>
+                <li><a href="/docs/controls/splitbutton">SplitButton</a></li>
+                <li><a href="/docs/controls/SplitView">SplitView</a></li>
+                <li><a href="/docs/controls/tile">Tile</a></li>
+                <li><a href="/docs/controls/TimePicker">TimePicker</a></li>
+                <li><a href="/docs/controls/toggleswitch">ToggleSwitch</a></li>
+                <li><a href="/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
+                <li><a href="/docs/controls/WindowButtonCommands">WindowButtonCommands</a></li>
+                <li><a href="/docs/controls/WindowCommands">WindowCommands</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/analogclock">AnalogClock</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/autosuggestbox">AutoSuggestBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/badged">Badged Control</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/colorpicker">ColorPicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/contentcontrolex">ContentControlEx</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/customvalidationpopup">CustomValidationPopup</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/datetimepicker">DateTimePicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/dropdownbutton">DropDownButton</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/flipview">FlipView</a>
-</div>
-<div class="sidebar-nav-item active">
-    <a href="/mahapps.com/docs/controls/flyouts">Flyouts</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/fonticon">FontIcon</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/hamburgermenu">HamburgerMenu</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/hotkeybox">HotKeyBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroanimatedsinglerowtabcontrol">MetroAnimatedSingleRowTabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroanimatedtabcontrol">MetroAnimatedTabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrocontentcontrol">MetroContentControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroheader">MetroHeader</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metronavigationwindow">MetroNavigationWindow</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroprogressbar">MetroProgressBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrotabcontrol">MetroTabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrotabitem">MetroTabItem</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/multiselectioncombobox">MultiSelectionComboBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/numericupdown">NumericUpDown</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/progressring">ProgressRing</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/rangeslider">RangeSlider</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/splitbutton">SplitButton</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/splitview">SplitView</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/tile">Tile</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/timepicker">TimePicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/toggleswitch">ToggleSwitch</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/windowbuttoncommands">WindowButtonCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/styles">Styles</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/styles/buttons">Buttons</a></li>
+                <li><a href="/docs/styles/calendar">Calendar</a></li>
+                <li><a href="/docs/styles/checkbox">CheckBox</a></li>
+                <li><a href="/docs/styles/combobox">ComboBox</a></li>
+                <li><a href="/docs/styles/datagrid">DataGrid</a></li>
+                <li><a href="/docs/styles/datagridcolumns">DataGrid Columns</a></li>
+                <li><a href="/docs/styles/datepicker">DatePicker</a></li>
+                <li><a href="/docs/styles/expander">Expander</a></li>
+                <li><a href="/docs/styles/gridsplitter">GridSplitter</a></li>
+                <li><a href="/docs/styles/groupbox">GroupBox</a></li>
+                <li><a href="/docs/styles/hyperlink">Hyperlink</a></li>
+                <li><a href="/docs/styles/listbox">ListBox</a></li>
+                <li><a href="/docs/styles/listview">ListView</a></li>
+                <li><a href="/docs/styles/menus">Menus</a></li>
+                <li><a href="/docs/styles/page">Page</a></li>
+                <li><a href="/docs/styles/passwordbox">PasswordBox</a></li>
+                <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
+                <li><a href="/docs/styles/radiobutton">RadioButton</a></li>
+                <li><a href="/docs/styles/scrollbars">ScrollBar</a></li>
+                <li><a href="/docs/styles/slider">Slider</a></li>
+                <li><a href="/docs/styles/statusbar">StatusBar</a></li>
+                <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
+                <li><a href="/docs/styles/text">Text</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
+                <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
+                <li><a href="/docs/styles/toolbar">ToolBar</a></li>
+                <li><a href="/docs/styles/tooltip">ToolTip</a></li>
+                <li><a href="/docs/styles/treeview">TreeView</a></li>
+                <li><a href="/docs/styles/validation">Validation</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/dialogs">Dialogs</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/stylevariants">Style Variants</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/stylevariants/clean">Clean</a></li>
+                <li><a href="/docs/stylevariants/vs">Visual Studio</a></li>
+                <li><a href="/docs/stylevariants/win10">Win 10 (UWP)</a></li>
+                <li><a href="/docs/stylevariants/winui">WinUI</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/message-dialog">Message Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/input-dialog">Input Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/login-dialogs">Login Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/progress-dialogs">Progress Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/mvvm-dialog">MVVM</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/custom-dialogs">Custom Dialogs</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialog Settings</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li><a href="/docs/helper">Helper Classes</a></li>
+                <li class="treeview">
+                    <a href="/docs/dialogs">Dialogs</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/dialogs/message-dialog">Message Dialog</a></li>
+                <li><a href="/docs/dialogs/input-dialog">Input Dialog</a></li>
+                <li><a href="/docs/dialogs/login-dialogs">Login Dialog</a></li>
+                <li><a href="/docs/dialogs/progress-dialogs">Progress Dialog</a></li>
+                <li><a href="/docs/dialogs/mvvm-dialog">MVVM</a></li>
+                <li><a href="/docs/dialogs/custom-dialogs">Custom Dialogs</a></li>
+                <li><a href="/docs/dialogs/dialogsettings">Dialogsettings</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/helper">Helper Classes</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/themes">Themes</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/themes/usage">Usage</a></li>
+                <li><a href="/docs/themes/thememanager">Thememanager</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/checkboxhelper">CheckBoxHelper</a>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/guides">Guides</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/guides/quick-start">Quick Start</a></li>
+                <li><a href="/docs/guides/migration-to-v2.0">Migration to v2.0</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="/docs/usage">Usage</a></li>
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+		<section class="content-header">
+			<h1>Flyouts</h1>
+		</section>
+	<section class="content">
+		<p>A <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> is an overlay for the <a href="metrowindow">MetroWindow</a> that can render custom contents.
+It's derived from <code>HeaderedContentControl</code> and has the ability to slide in and out from any side of the window.</p>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+It's strongly recommended to use any <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> within the <code><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></code>.</p>
 </div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/datagridhelper">DataGridHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/datepickerhelper">DatePickerHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/itemhelper">ItemHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/multiselectorhelper">MultiSelectorHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/scrollviewerhelper">ScrollViewerHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/sliderhelper">SliderHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/tabcontrolhelper">TabControlHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/textboxhelper">TextBoxHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/togglebuttonhelper">ToggleButtonHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/treeviewitemhelper">TreeViewItemHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/validationhelper">ValidationHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/visibilityhelper">VisibilityHelper</a>
-</div>                </div>
-    </div>
-                                            </div>
-                                        </div>
-                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>A <code>Flyout</code> is a panel that slides in over a <a href="metrowindow">MetroWindow</a> from any of its four sides. It derives from <code>HeaderedContentControl</code>, so it has a <code>Header</code> and arbitrary content.</p>
-<p><img src="images/flyout-basic.png" alt="A MetroWindow with a flyout open on the right" /></p>
+<h2 id="flyoutscontrol">FlyoutsControl</h2>
+<p>The <code><a href="/api/MahApps.Metro.Controls/FlyoutsControl">FlyoutsControl</a></code> is an <code>ItemsControl</code> which contains all <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> items for one <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code>. It must be assigned to the <code>Flyouts</code> property of the <a href="metrowindow">MetroWindow</a>.</p>
+<h2 id="example">Example</h2>
+<p>The following Xaml code creates two <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> controls with a header and the position on the right side of the window.
+To open or close a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> set the <code>IsOpen</code> property or use a property on your ModelView at the DataContext of the window.</p>
 <pre><code class="language-xml">&lt;mah:MetroWindow.Flyouts&gt;
     &lt;mah:FlyoutsControl&gt;
-        &lt;mah:Flyout Header=&quot;Settings&quot; Position=&quot;Right&quot; Width=&quot;190&quot; IsOpen=&quot;{Binding IsSettingsOpen}&quot;&gt;
-            &lt;!--  content  --&gt;
-        &lt;/mah:Flyout&gt;
+      &lt;mah:Flyout x:Name="FirstFlyout" Header="Settings" Position="Right" Width="250"&gt;
+          &lt;!-- The content goes here --&gt;
+      &lt;/mah:Flyout&gt;
+
+      &lt;mah:Flyout Header="About" IsOpen="{Binding IsAboutFlyoutOpen}" Position="Right" Width="300"&gt;
+          &lt;!-- The content goes here --&gt;
+      &lt;/mah:Flyout&gt;
     &lt;/mah:FlyoutsControl&gt;
 &lt;/mah:MetroWindow.Flyouts&gt;
 </code></pre>
-<p>Every figure on this page is a real <code>MetroWindow</code>, because a <code>Flyout</code> only behaves like one inside one: it looks up its parent window to position itself, to dim the modal overlay and to adapt its theme.</p>
-<h2 id="flyoutscontrol">FlyoutsControl</h2>
-<p><code>FlyoutsControl</code> is the <code>ItemsControl</code> that holds the flyouts for one window, and it belongs in the window's <code>Flyouts</code> property. A flyout outside one will not work properly.</p>
-<p>It is a real items control, so <code>ItemsSource</code> works and each item is wrapped in a <code>Flyout</code> container. <code>ItemTemplate</code>, <code>ItemTemplateSelector</code> and <code>ItemStringFormat</code> are pushed onto each container's <strong>content</strong> properties, and <code>HeaderTemplate</code>, <code>HeaderTemplateSelector</code> and <code>HeaderStringFormat</code> set on a flyout are preserved when the container is prepared.</p>
-<p>It adds exactly two properties of its own, both of which override every flyout below it:</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>OverrideIsPinned</code></td>
-<td><code>bool</code></td>
-<td><code>False</code></td>
-<td>when <code>True</code>, every flyout behaves as if <code>IsPinned</code> were <code>False</code></td>
-</tr>
-<tr>
-<td><code>OverrideExternalCloseButton</code></td>
-<td><code>MouseButton?</code></td>
-<td><code>null</code></td>
-<td>when set, every flyout closes on that button, whatever its own <code>ExternalCloseButton</code> says</td>
-</tr>
-</tbody>
-</table>
-<h2 id="opening-and-closing">Opening and closing</h2>
-<p><code>IsOpen</code> is the switch, and it is the one to bind. <code>IsShown</code> is a read-only companion, and <code>Owner</code> is the read-only back-reference to the <code>FlyoutsControl</code>.</p>
-<p>Three routed events mark the stages:</p>
-<table>
-<thead>
-<tr>
-<th>Event</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>IsOpenChanged</code></td>
-<td><code>IsOpen</code> has changed; the animation is just starting</td>
-</tr>
-<tr>
-<td><code>OpeningFinished</code></td>
-<td>the slide-in has finished</td>
-</tr>
-<tr>
-<td><code>ClosingFinished</code></td>
-<td>the slide-out has finished</td>
-</tr>
-</tbody>
-</table>
-<div class="alert alert-warning"><p><strong>A flyout does not close when you click outside it — by default.</strong> <code>IsPinned</code> defaults to <strong><code>True</code></strong>, which means pinned, which means clicks elsewhere in the window are ignored. The old documentation never mentioned the property.</p>
-<p>The window's handler reads:</p>
-<pre><code class="language-csharp">foreach (var flyout in Flyouts.GetFlyouts()
-                              .Where(x =&gt; x.IsOpen
-                                          &amp;&amp; x.ExternalCloseButton == e.ChangedButton
-                                          &amp;&amp; (!x.IsPinned || Flyouts.OverrideIsPinned)))
-{
-    flyout.IsOpen = false;
-}
-</code></pre>
-<p>So for click-away-to-close, set <code>IsPinned=&quot;False&quot;</code> on the flyout, or <code>OverrideIsPinned=&quot;True&quot;</code> on the <code>FlyoutsControl</code> to do it for all of them.</p>
-<p><code>ExternalCloseButton</code> picks which button counts, and defaults to <code>MouseButton.Left</code>. Clicks on a flyout, on the modal overlay, on a dialog, on the window icon or on the window commands never count as &quot;outside&quot;.</p>
-</div>
-<h3 id="the-close-button">The close button</h3>
-<p><code>CloseCommand</code> runs when the <strong>close button</strong> is clicked, with <code>CloseCommandParameter</code>. It does <strong>not</strong> run when <code>IsOpen</code> is set to <code>false</code> in code or by a binding — the XML documentation says so explicitly, and it is easy to trip over if you expect it as a general &quot;flyout closed&quot; hook. Use <code>ClosingFinished</code> for that.</p>
-<p><code>CloseButtonIsCancel</code> makes the button respond to <kbd>Esc</kbd>. Although <code>CloseCommand</code> is registered with <code>RegisterAttached</code>, there are no static <code>GetCloseCommand</code>/<code>SetCloseCommand</code> accessors, so it cannot actually be used as an attached property in XAML — set it on the flyout.</p>
-<h3 id="closing-itself">Closing itself</h3>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>IsAutoCloseEnabled</code></td>
-<td><code>bool</code></td>
-<td><code>False</code></td>
-<td>close after a delay</td>
-</tr>
-<tr>
-<td><code>AutoCloseInterval</code></td>
-<td><code>long</code></td>
-<td><code>5000</code></td>
-<td>milliseconds</td>
-</tr>
-</tbody>
-</table>
-<p>The timer starts when the flyout is open and the property is switched on, and stops when it is switched off.</p>
-<h2 id="position">Position</h2>
-<p><img src="images/flyout-positions.png" alt="Left, Right, Top and Bottom" /></p>
-<p><code>Position</code> is <code>Left</code>, <code>Right</code>, <code>Top</code> or <code>Bottom</code>, and <strong>defaults to <code>Left</code></strong>. Left and right flyouts take their <code>Width</code>, top and bottom ones their <code>Height</code>. The header row and its arrow button flip to match, so the arrow always points the way out.</p>
-<p><code>AnimateOnPositionChange</code> (default <code>True</code>) animates a change of <code>Position</code> while the flyout is open.</p>
-<h2 id="themes">Themes</h2>
-<p><img src="images/flyout-themes.png" alt="Dark, Light, Adapt, Inverse and Accent" /></p>
-<table>
+<p><img src="images/flyout-demo-dark.png" class="img-fluid" alt=""></p>
+<h2 id="position-enum">Position enum</h2>
+<p>Specifies the position fo the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>.</p>
+<table class="table">
 <thead>
 <tr>
 <th>Value</th>
 <th></th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>Dark</code></td>
-<td><strong>the default</strong></td>
+<td>Left</td>
+<td>0</td>
+<td>Shows the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> on the left side.</td>
 </tr>
 <tr>
-<td><code>Light</code></td>
-<td></td>
+<td>Right</td>
+<td>1</td>
+<td>Shows the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> on the right side.</td>
 </tr>
 <tr>
-<td><code>Adapt</code></td>
-<td>follows the host window's theme</td>
+<td>Top</td>
+<td>2</td>
+<td>Shows the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> on the top.</td>
 </tr>
 <tr>
-<td><code>Inverse</code></td>
-<td>follows it, inverted</td>
-</tr>
-<tr>
-<td><code>Accent</code></td>
-<td>the accent colour; you have to pick readable foregrounds yourself</td>
+<td>Bottom</td>
+<td>3</td>
+<td>Shows the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> on the bottom.</td>
 </tr>
 </tbody>
 </table>
-<p>The figure is rendered against a light application theme, which is why <code>Adapt</code> matches <code>Light</code> and <code>Inverse</code> matches <code>Dark</code>.</p>
-<div class="alert alert-info"><p><code>BorderThickness</code> on <code>MahApps.Styles.Flyout</code> is <strong><code>0</code></strong>. A <code>Light</code> or <code>Adapt</code> flyout over a light window therefore has no visible edge at all — in the figure above you can only tell where those two are by the text inside them. If that matters, give the flyout a <code>BorderThickness</code> and <code>BorderBrush</code>.</p>
-</div>
-<h2 id="modal">Modal</h2>
-<p><img src="images/flyout-modal.png" alt="A flyout and the same flyout modal" /></p>
-<p><code>IsModal</code> (default <code>False</code>) dims the rest of the window and blocks input to it. It also pushes the window icon and all three sets of window commands behind the overlay, which is why the minimise, maximise and close buttons are gone in the right-hand panel.</p>
-<h2 id="header-title-and-close-button">Header, title and close button</h2>
-<p><img src="images/flyout-chrome.png" alt="The default header row, without the close button, and without the title" /></p>
-<p><code>CloseButtonVisibility</code> and <code>TitleVisibility</code> are both <code>Visible</code> by default and each hides one part of the header row. Hiding the close button without giving the user another way out — a binding on <code>IsOpen</code>, <code>IsPinned=&quot;False&quot;</code>, or auto-close — leaves the flyout stuck open.</p>
-<h2 id="shadow">Shadow</h2>
-<div class="alert alert-info"><p>New on <code>develop</code>.</p>
-</div>
-<p><code>ShadowEffect</code> throws a shadow onto whatever the flyout covers. Nothing is thrown until one is set:</p>
-<pre><code class="language-xml">&lt;mah:Flyout Position=&quot;Left&quot; Header=&quot;Settings&quot;&gt;
-    &lt;mah:Flyout.ShadowEffect&gt;
-        &lt;DropShadowEffect BlurRadius=&quot;24&quot; Direction=&quot;0&quot; ShadowDepth=&quot;8&quot; Opacity=&quot;0.45&quot; /&gt;
-    &lt;/mah:Flyout.ShadowEffect&gt;
-&lt;/mah:Flyout&gt;
-</code></pre>
-<p>It takes any <code>Effect</code>, so a blur or a glow works the same way. <code>Direction</code> counts anticlockwise from the right, which for a flyout on the left means <code>0</code>.</p>
-<p>The effect is given to a pane of its own behind the content rather than to the flyout, and that is worth knowing if you are tempted to set <code>Effect</code> instead. An effect on a control takes everything inside it through a bitmap on the way to the screen: the text loses ClearType and every frame of the slide costs more to draw. <code>ShadowEffect</code> leaves the content alone.</p>
-<p>The shadow is drawn inside the window, so it falls on the page rather than past the window edge. <a href="https://github.com/MahApps/MahApps.Metro/issues/3306">#3306</a> asked for this, and until it shipped the answer was to copy the whole control template.</p>
-<h2 id="animation-and-focus">Animation and focus</h2>
-<table>
+<h2 id="flyouttheme-enum">FlyoutTheme enum</h2>
+<p>Specifies how a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> is being themed.</p>
+<h3 id="fields">Fields</h3>
+<table class="table">
 <thead>
 <tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
+<th>Value</th>
 <th></th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>AreAnimationsEnabled</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-<td>turn the slide off entirely</td>
+<td>Adapt</td>
+<td>0</td>
+<td>Adapts the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> theme to the theme of the host window or application.</td>
 </tr>
 <tr>
-<td><code>AnimateOpacity</code></td>
-<td><code>bool</code></td>
-<td><code>False</code></td>
-<td>fade as well as slide</td>
+<td>Inverse</td>
+<td>1</td>
+<td>Adapts the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> theme to the theme of the host window or application, but inverted. This theme can only be applied if the host window's theme abides the <code>Dark</code> and <code>Light</code> affix convention.</td>
 </tr>
 <tr>
-<td><code>AllowFocusElement</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-<td>move focus into the flyout when it opens</td>
+<td>Dark</td>
+<td>2</td>
+<td>Use the dark theme for the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>. This is the default theme.</td>
 </tr>
 <tr>
-<td><code>FocusedElement</code></td>
-<td><code>FrameworkElement</code></td>
-<td><code>null</code></td>
-<td>which element gets that focus</td>
+<td>Light</td>
+<td>3</td>
+<td>Use the light theme for the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>.</td>
+</tr>
+<tr>
+<td>Accent</td>
+<td>4</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> theme will match the host window's accent color. This option needs more action by the user, such as using the correct Foreground for the controls inside the <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>.</td>
 </tr>
 </tbody>
 </table>
-<h2 id="overlay-behaviour-on-the-window">Overlay behaviour on the window</h2>
-<p>These four live on the <a href="metrowindow">MetroWindow</a>, not on the flyout, and decide what stays visible above an open flyout:</p>
-<table>
+<p><img src="images/flyout-demo-accent.png" class="img-fluid" alt=""></p>
+<h2 id="overlay-behavior">Overlay Behavior</h2>
+<p>The overlay behavior properties of the <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> sets the visibility of the <code>Icon</code>, <code>LeftWindowCommands</code>, <code>RightWindowCommands</code> and <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> when a Flyout is shown.</p>
+<h3 id="metrowindow-properties">MetroWindow Properties</h3>
+<table class="table">
 <thead>
 <tr>
 <th>Property</th>
 <th>Type</th>
-<th>Default</th>
+<th>Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>LeftWindowCommandsOverlayBehavior</code></td>
-<td><code>WindowCommandsOverlayBehavior</code></td>
-<td><code>Never</code></td>
+<td>LeftWindowCommandsOverlayBehavior</td>
+<td>WindowCommandsOverlayBehavior</td>
+<td>Gets or sets the overlay behavior for the <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> on the left side of the title bar.</td>
 </tr>
 <tr>
-<td><code>RightWindowCommandsOverlayBehavior</code></td>
-<td><code>WindowCommandsOverlayBehavior</code></td>
-<td><code>Never</code></td>
+<td>RightWindowCommandsOverlayBehavior</td>
+<td>WindowCommandsOverlayBehavior</td>
+<td>Gets or sets the overlay behavior for the <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> on the right side of the title bar.</td>
 </tr>
 <tr>
-<td><code>WindowButtonCommandsOverlayBehavior</code></td>
-<td><code>OverlayBehavior</code></td>
-<td><strong><code>Always</code></strong></td>
+<td>WindowButtonCommandsOverlayBehavior</td>
+<td>OverlayBehavior</td>
+<td>Gets or sets the overlay behavior for the <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> (Min / Max / Restore / Close) on the title bar.</td>
 </tr>
 <tr>
-<td><code>IconOverlayBehavior</code></td>
-<td><code>OverlayBehavior</code></td>
-<td><code>Never</code></td>
+<td>IconOverlayBehavior</td>
+<td>OverlayBehavior</td>
+<td>Gets or sets the overlay behavior for the icon on the title bar.</td>
 </tr>
 </tbody>
 </table>
-<p><code>WindowCommandsOverlayBehavior</code> is <code>Never</code> or <code>HiddenTitleBar</code>. <code>OverlayBehavior</code> is a <code>[Flags]</code> enum, and <code>Always</code> is not a state of its own but the combination of the other two:</p>
-<pre><code class="language-csharp">[Flags]
-public enum OverlayBehavior
-{
-    Never = 0,
-    Flyouts = 1 &lt;&lt; 0,
-    HiddenTitleBar = 1 &lt;&lt; 1,
-    Always = ~(-1 &lt;&lt; 2)
-}
-</code></pre>
-<p>The minimise, maximise and close buttons default to <code>Always</code>, which carries the <code>Flyouts</code> flag, so they stay visible above an open flyout.</p>
-<div class="alert alert-info"><p>The left and right window commands can never be drawn over an open flyout — <code>WindowCommandsOverlayBehavior</code> has no value for it.</p>
-<p><strong>The icon can</strong>, though, which older documentation denied. <code>IconOverlayBehavior</code> is an <code>OverlayBehavior</code>, and the window checks it per flyout:</p>
-<pre><code class="language-csharp">this.icon?.SetValue(Panel.ZIndexProperty,
-    flyout.IsModal &amp;&amp; flyout.IsOpen
-        ? 0
-        : (this.IconOverlayBehavior.HasFlag(OverlayBehavior.Flyouts) ? zIndex : 1));
-</code></pre>
-<p>So <code>IconOverlayBehavior=&quot;Flyouts&quot;</code> does put the icon above one. A modal flyout still wins over both.</p>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+The <code>LeftWindowCommands</code>, <code>RightWindowCommands</code> and the <code>Icon</code> will never be shown over an opened <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>.</p>
 </div>
-<h2 id="what-it-means-for-an-inspection-tool">What it means for an inspection tool</h2>
-<p>The <code>FlyoutsControl</code> lies over the whole window, so a flyout can come in from any side. It paints nothing while every flyout is shut, and a mouse click goes straight through it to the content underneath.</p>
-<div class="alert alert-warning"><p><strong>On .NET 8 and later, in a released version, this leaves nothing in the window reachable for a UI automation tool.</strong> Accessibility Insights, inspect.exe, FlaUInspect and WinAppDriver all ask Windows what sits under the pointer, and that question goes by the box an element occupies rather than by what a click would hit. Point at a button in a <code>MetroWindow</code> and the answer is the flyouts control, whatever is actually drawn there. On .NET 7 the same window answers with the button, and so does a plain <code>Window</code> on either.</p>
-<p>Fixed on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>: the control answers a point only while a flyout is open, and reports itself off screen while none is. An open flyout is found the way it always was. Until that ships, a tool that picks the element by keyboard focus rather than by pointer gets through.</p>
-</div>
-<h2 id="related">Related</h2>
-<p><a href="metrowindow">MetroWindow</a> hosts them and owns the overlay behaviour. <a href="customvalidationpopup">CustomValidationPopup</a> suppresses itself while a flyout is animating, which is what <code>Flyout</code>'s animation state is used for elsewhere.</p>
+<h2 id="windowcommandsoverlaybehavior-enum">WindowCommandsOverlayBehavior enum</h2>
+<p>Specifies the visibility of the <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code>.</p>
+<h3 id="fields-1">Fields</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Never</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> will never be shown over a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> or hidden title bar.</td>
+</tr>
+<tr>
+<td>HiddenTitleBar</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowCommands">WindowCommands</a></code> will be shown even if a title bar is hidden.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="overlaybehavior-enum">OverlayBehavior enum</h2>
+<p>Specifies the visibility of the <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> (Min, Max/Restore and Close Buttons) and the <code>Icon</code>.</p>
+<h3 id="fields-2">Fields</h3>
+<table class="table">
+<thead>
+<tr>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Never</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> or the icon will never be shown over a <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code> or hidden title bar.</td>
+</tr>
+<tr>
+<td>Flyouts</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> or the icon overlays all opened <code><a href="/api/MahApps.Metro.Controls/Flyout">Flyout</a></code>.</td>
+</tr>
+<tr>
+<td>HiddenTitleBar</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> or the icon will be shown even if a title bar is hidden.</td>
+</tr>
+<tr>
+<td>Always</td>
+<td>The <code><a href="/api/MahApps.Metro.Controls/WindowButtonCommands">WindowButtonCommands</a></code> or the icon will always be shown.</td>
+</tr>
+</tbody>
+</table>
 
-
-                                        </div>
-                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
-                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
-        <div class="border-bottom mb-3 sidebar-root">
-            <div class="sidebar-nav-item sidebar-header">On This Page</div>
-            <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#flyoutscontrol">FlyoutsControl</a></div>
-                    <div class="sidebar-nav-item"><a href="#opening-and-closing">Opening and closing</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#the-close-button">The close button</a></div>
-                                <div class="sidebar-nav-item"><a href="#closing-itself">Closing itself</a></div>
-                        </div>
-                    <div class="sidebar-nav-item"><a href="#position">Position</a></div>
-                    <div class="sidebar-nav-item"><a href="#themes">Themes</a></div>
-                    <div class="sidebar-nav-item"><a href="#modal">Modal</a></div>
-                    <div class="sidebar-nav-item"><a href="#header-title-and-close-button">Header, title and close button</a></div>
-                    <div class="sidebar-nav-item"><a href="#shadow">Shadow</a></div>
-                    <div class="sidebar-nav-item"><a href="#animation-and-focus">Animation and focus</a></div>
-                    <div class="sidebar-nav-item"><a href="#overlay-behaviour-on-the-window">Overlay behaviour on the window</a></div>
-                    <div class="sidebar-nav-item"><a href="#what-it-means-for-an-inspection-tool">What it means for an inspection tool</a></div>
-                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
-            </div>
+	</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/flyouts.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div id="footer" class="p-3 text-white">
-            <div class="container-xl">
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
-    <br/>
-    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br/>
-    Generated by <a href="https://statiq.dev">Statiq</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
+    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
+    <br>
+    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br>
+    Generated by <a href="http://wyam.io">Wyam</a>
 </p>
 
-            </div>
+<script>
+	anchors.options.placement = 'left';
+	anchors.add();
+</script>
+
+<script>
+	var snippets = document.querySelectorAll('pre > code');
+	[].forEach.call(snippets, function (snippet) {
+	  snippet.insertAdjacentHTML(
+	    'beforebegin',
+	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
+	  );
+	});
+	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+	  container: document.getElementById('modal'),
+	  target: function (trigger) {
+	    return trigger.nextElementSibling;
+	  },
+	});
+	clipboardSnippets.on('success', function (e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		e.clearSelection();
+		// showTooltip(e.trigger, 'Copied!');
+	});
+	clipboardSnippets.on('error', function (e) {
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
+		// showTooltip(e.trigger, fallbackMessage(e.action));
+	});
+</script>
+            </footer>
         </div>
-
-        <!-- Scripts -->
-        <script>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
             $(document).ready(function() {
-                quicklink.listen();
-
-                // Bootstrap tooltips
-                $('[data-toggle="tooltip"]').tooltip();
-
-				// Keeps the sidebars in view on wider viewports
-				let left = null;
-				let leftParent = null;
-				let right = null;
-				let rightParent = null;
-                function stickSidebars()
-				{
-				    if (left == null) {
-                        left = $('#left-sidebar');
-                        right = $('#right-sidebar');
-                    }
-                    if (left.length) {
-                        if (window.innerWidth >= 768) {
-                            if (leftParent == null) {
-                                leftParent = left.parent()[0];
-                            }
-                            if (leftParent) {
-                                let leftRect = leftParent.getBoundingClientRect();
-                                stickSidebar(left,  leftRect);
-                            }
-                        } else {
-                            left.css('position', 'relative');
-                            if (left.css('bottom') != 0) {
-                                left.css('bottom', '0');
-                            }
-                        }
-                    }
-                    if (right.length) {
-                        if (window.innerWidth >= 768) {
-                            if (rightParent == null) {
-                                rightParent = right.parent()[0];
-                            }
-                            if (rightParent) {
-                                let rightRect = rightParent.getBoundingClientRect();
-                                stickSidebar(right,  rightRect);
-                            }
-                        } else {
-                            right.css('position', 'relative');
-                            if (right.css('bottom') != 0) {
-                                right.css('bottom', '0');
-                            }
-                        }
-                    }
-				}
-				function stickSidebar(sidebar, rect) {
-                    // Bottom
-                    if (rect.bottom > window.innerHeight) {
-                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
-                    } else {
-                        sidebar.css('bottom', 0);
-                    }
-                    // Top
-                    if (rect.top < 0) {
-                        sidebar.css('position', 'sticky');
-                    } else {
-                        sidebar.css('position', 'absolute');
-                    }
-				}
-				$(window).on("load", function() {
-				    stickSidebars();
-				});
-                $(window).scroll(function() {
-				    stickSidebars();
-				});
-				$(window).resize(function() {
-				    stickSidebars();
-				})
-
-                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -741,12 +484,12 @@ public enum OverlayBehavior
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });
+                });     
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-fluid');
+                mermaidSvg.addClass('img-responsive');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -760,68 +503,40 @@ public enum OverlayBehavior
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});
+					});			                          
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-
+                    
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
             });
         </script>
-
-        
-
-        <script>
-    anchors.options.placement = 'left';
-    anchors.add();
-
-    // Each <pre> is a horizontal scroll container (Bootstrap sets
-    // overflow: auto), so a button placed inside it scrolls out of view on long
-    // lines. Wrap the block instead and position the button against the
-    // wrapper, which never scrolls.
-    document.querySelectorAll('pre > code').forEach(function (code) {
-        var pre = code.parentNode;
-        var wrapper = document.createElement('div');
-        wrapper.className = 'code-block';
-        pre.parentNode.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
-
-        var button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'btn-copy';
-        button.title = 'Copy to clipboard';
-        button.setAttribute('aria-label', 'Copy to clipboard');
-        button.setAttribute('data-clipboard-snippet', '');
-        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        wrapper.appendChild(button);
-    });
-
-    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-        target: function (trigger) {
-            return trigger.parentNode.querySelector('pre > code');
-        },
-    });
-    clipboardSnippets.on('success', function (e) {
-        var button = e.trigger;
-        button.classList.add('copied');
-        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
-        window.setTimeout(function () {
-            button.classList.remove('copied');
-            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        }, 1500);
-        e.clearSelection();
-    });
-    clipboardSnippets.on('error', function (e) {
-        console.error('Copy failed:', e.action, e.trigger);
-    });
-</script>
-
-    </body>
-</html>
+    
+</body></html>

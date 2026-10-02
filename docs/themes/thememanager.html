@@ -1,543 +1,918 @@
-<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
-                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
-        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
-        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
-	    
-        <!-- Lunr search -->
-
-        
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
-
-<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
-<script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
-
-
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - Thememanager</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/assets/js/clipboard.min.js"></script>
+
     </head>
-    <body class="d-flex flex-column">
-        <div class="flex-grow-1 d-flex flex-column">
-            <div class="bg-nav">
-                <div class="container-xl py-3">
-                    <div class="row">
-                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
-                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
-    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
-            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
-        <span class="site-title text-primary">MahApps.Metro</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
-        <ul class="navbar-nav mr-auto">
-            
-        </ul>
-        <ul class="navbar-nav">
-            
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/about">About</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/controls">Controls</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/mahapps.com/docs/styles">Styles</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
-    </li>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
 
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/api">API</a>
-    </li>
-
-
-            <li class="nav-item">
-    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
-</li>
-
-        </ul>
-    </div>
-</nav>
-
-                        </div>
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
                     </div>
-                </div>
-            </div>
             
-            <div class="flex-grow-1 d-flex flex-column">
-                    <!-- Titlebar -->
-                    <div id="titlebar" class="py-4">
-                        <div class="container-xl">
-                            <div class="row">
-                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
-                                    <div class="flex-grow-1">
-                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
-
-        <span><a href="/mahapps.com/docs">Documentation</a></span>
-        <span><a href="/mahapps.com/docs/themes">Themes</a></span>
-                                        </div>
-                                        <div class="text-white m-0 text-break title">
-
-Thememanager
-                                        </div>
-                                    </div>
-                                        <div class="navbar navbar-expand-md navbar-dark p-0">
-                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                                                <span class="navbar-toggler-icon"></span>
-                                            </button>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/blog">Blog</a></li>
+        <li class="active"><a href="/docs">Documentation</a></li>
+        <li><a href="/api">API</a></li>
+        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
+ 
+                        </ul>       
                     </div>
-                    <!-- Under title -->
-                    <div id="undertitle">
-                        <div class="container-xl">
-                            <div class="row">
-                                    <div class="col-md-3 col-lg-2">
-                                    </div>
-                                    <div class="col-md-9 col-lg-8 bg-white">
-                                    </div>
-                                <div class="col-lg-2 d-none d-lg-block">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/themes/thememanager.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"></div>
 
-                <!-- Body -->
-                <div class="flex-grow-1 d-flex flex-column">
-                        <div class="container-xl flex-grow-1 d-flex flex-column">
-                            <div class="row flex-grow-1 align-items-stretch">
-                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
-                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+                </section>
+                <section class="sidebar">    
+                                     
+                    
 
-    <div class="sidebar-root">
+                    <ul class="sidebar-menu">
+                        
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/styles">Styles</a>
-</div>                <div class="sidebar-nav-children">
+                <li class="treeview">
+                    <a href="/docs/controls">Controls</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/controls/metrowindow">MetroWindow</a></li>
+                <li><a href="/docs/controls/Badged">Badged Control</a></li>
+                <li><a href="/docs/controls/ColorPicker">ColorPicker</a></li>
+                <li><a href="/docs/controls/ContentControlEx">ContentControlEx</a></li>
+                <li><a href="/docs/controls/CustomValidationPopup">CustomValidationPopup</a></li>
+                <li><a href="/docs/controls/DateTimePicker">DateTimePicker</a></li>
+                <li><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
+                <li><a href="/docs/controls/flipview">FlipView</a></li>
+                <li><a href="/docs/controls/flyouts">Flyouts</a></li>
+                <li><a href="/docs/controls/FontIcon">FontIcon</a></li>
+                <li><a href="/docs/controls/HamburgerMenu">HamburgerMenu</a></li>
+                <li><a href="/docs/controls/HotKeyBox">HotKeyBox</a></li>
+                <li><a href="/docs/controls/MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a></li>
+                <li><a href="/docs/controls/MetroAnimatedTabControl">MetroAnimatedTabControl</a></li>
+                <li><a href="/docs/controls/MetroContentControl">MetroContentControl</a></li>
+                <li><a href="/docs/controls/MetroHeader">MetroHeader</a></li>
+                <li><a href="/docs/controls/MetroNavigationWindow">MetroNavigationWindow</a></li>
+                <li><a href="/docs/controls/metroprogressbar">MetroProgressBar</a></li>
+                <li><a href="/docs/controls/MetroTabControl">MetroTabControl</a></li>
+                <li><a href="/docs/controls/MetroTabItem">MetroTabItem</a></li>
+                <li><a href="/docs/controls/MetroThumbContentControl">MetroThumbContentControl</a></li>
+                <li><a href="/docs/controls/MultiFrameImage">MultiFrameImage</a></li>
+                <li><a href="/docs/controls/MultiSelectionComboBox">MultiSelectionComboBox</a></li>
+                <li><a href="/docs/controls/numericupdown">NumericUpDown</a></li>
+                <li><a href="/docs/controls/progressring">ProgressRing</a></li>
+                <li><a href="/docs/controls/rangeslider">RangeSlider</a></li>
+                <li><a href="/docs/controls/splitbutton">SplitButton</a></li>
+                <li><a href="/docs/controls/SplitView">SplitView</a></li>
+                <li><a href="/docs/controls/tile">Tile</a></li>
+                <li><a href="/docs/controls/TimePicker">TimePicker</a></li>
+                <li><a href="/docs/controls/toggleswitch">ToggleSwitch</a></li>
+                <li><a href="/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
+                <li><a href="/docs/controls/WindowButtonCommands">WindowButtonCommands</a></li>
+                <li><a href="/docs/controls/WindowCommands">WindowCommands</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/buttons">Buttons</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/calendar">Calendar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/checkbox">CheckBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/combobox">ComboBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/datagrid">DataGrid</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/datagridcolumns">DataGrid Columns</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/datepicker">DatePicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/expander">Expander</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/gridsplitter">GridSplitter</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/groupbox">GroupBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/hyperlink">Hyperlink</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/listbox">ListBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/listview">ListView</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/menus">Menus</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/page">Page</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/passwordbox">PasswordBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/progressbar">ProgressBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/radiobutton">RadioButton</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/scrollbars">ScrollBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/slider">Slider</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/statusbar">StatusBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/tabcontrol">TabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/text">Text</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/textbox">TextBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/togglebutton">ToggleButton</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/toolbar">ToolBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/tooltip">ToolTip</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/treeview">TreeView</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/validation">Validation</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/styles">Styles</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/styles/buttons">Buttons</a></li>
+                <li><a href="/docs/styles/calendar">Calendar</a></li>
+                <li><a href="/docs/styles/checkbox">CheckBox</a></li>
+                <li><a href="/docs/styles/combobox">ComboBox</a></li>
+                <li><a href="/docs/styles/datagrid">DataGrid</a></li>
+                <li><a href="/docs/styles/datagridcolumns">DataGrid Columns</a></li>
+                <li><a href="/docs/styles/datepicker">DatePicker</a></li>
+                <li><a href="/docs/styles/expander">Expander</a></li>
+                <li><a href="/docs/styles/gridsplitter">GridSplitter</a></li>
+                <li><a href="/docs/styles/groupbox">GroupBox</a></li>
+                <li><a href="/docs/styles/hyperlink">Hyperlink</a></li>
+                <li><a href="/docs/styles/listbox">ListBox</a></li>
+                <li><a href="/docs/styles/listview">ListView</a></li>
+                <li><a href="/docs/styles/menus">Menus</a></li>
+                <li><a href="/docs/styles/page">Page</a></li>
+                <li><a href="/docs/styles/passwordbox">PasswordBox</a></li>
+                <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
+                <li><a href="/docs/styles/radiobutton">RadioButton</a></li>
+                <li><a href="/docs/styles/scrollbars">ScrollBar</a></li>
+                <li><a href="/docs/styles/slider">Slider</a></li>
+                <li><a href="/docs/styles/statusbar">StatusBar</a></li>
+                <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
+                <li><a href="/docs/styles/text">Text</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
+                <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
+                <li><a href="/docs/styles/toolbar">ToolBar</a></li>
+                <li><a href="/docs/styles/tooltip">ToolTip</a></li>
+                <li><a href="/docs/styles/treeview">TreeView</a></li>
+                <li><a href="/docs/styles/validation">Validation</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/themes">Themes</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/stylevariants">Style Variants</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/stylevariants/clean">Clean</a></li>
+                <li><a href="/docs/stylevariants/vs">Visual Studio</a></li>
+                <li><a href="/docs/stylevariants/win10">Win 10 (UWP)</a></li>
+                <li><a href="/docs/stylevariants/winui">WinUI</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/themes/usage">Usage</a>
-</div>
-<div class="sidebar-nav-item active">
-    <a href="/mahapps.com/docs/themes/thememanager">Thememanager</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li><a href="/docs/helper">Helper Classes</a></li>
+                <li class="treeview">
+                    <a href="/docs/dialogs">Dialogs</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/dialogs/message-dialog">Message Dialog</a></li>
+                <li><a href="/docs/dialogs/input-dialog">Input Dialog</a></li>
+                <li><a href="/docs/dialogs/login-dialogs">Login Dialog</a></li>
+                <li><a href="/docs/dialogs/progress-dialogs">Progress Dialog</a></li>
+                <li><a href="/docs/dialogs/mvvm-dialog">MVVM</a></li>
+                <li><a href="/docs/dialogs/custom-dialogs">Custom Dialogs</a></li>
+                <li><a href="/docs/dialogs/dialogsettings">Dialogsettings</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/stylevariants">Style Variants</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview active">
+                    <a href="/docs/themes">Themes</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/themes/usage">Usage</a></li>
+                <li class="selected"><a href="/docs/themes/thememanager">Thememanager</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/clean">Clean</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/vs">Visual Studio</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/win10">Win 10 (UWP)</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/winui">WinUI</a>
-</div>                </div>
-    </div>
-                                            </div>
-                                        </div>
-                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><code>ThemeManager</code> is the class behind everything a theme does after startup: switching, detecting, following the Windows setting, and building themes that are not in the box. It lives in <strong>ControlzEx</strong>, not in MahApps.Metro, so every snippet here starts with</p>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/guides">Guides</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/guides/quick-start">Quick Start</a></li>
+                <li><a href="/docs/guides/migration-to-v2.0">Migration to v2.0</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="/docs/usage">Usage</a></li>
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+		<section class="content-header">
+			<h1>Thememanager</h1>
+		</section>
+	<section class="content">
+		<p><code>MahApps.Metro</code> has a <a href="thememanager">ThemeManager</a> class that lets you change the theme using code-behind. It can be done in 1 line, like so:</p>
 <pre><code class="language-csharp">using ControlzEx.Theming;
-</code></pre>
-<p>and works through the singleton <code>ThemeManager.Current</code>. For the forty-six themes that ship with the library and how to pick one in <code>App.xaml</code>, see <a href="usage">Usage</a>.</p>
-<h2 id="changing-the-theme">Changing the theme</h2>
-<pre><code class="language-csharp">ThemeManager.Current.ChangeTheme(Application.Current, &quot;Dark.Green&quot;);
-</code></pre>
-<p>That swaps the theme for the whole application, and every control follows immediately — the styles reach their colours through <code>DynamicResource</code>, so nothing needs recreating.</p>
-<p>The same call takes a <code>FrameworkElement</code> instead, which is how one window, or one panel, gets a theme of its own while the rest of the application keeps the application theme:</p>
-<pre><code class="language-csharp">public partial class MainWindow : MetroWindow
-{
-    public MainWindow()
-    {
-        this.InitializeComponent();
 
-        ThemeManager.Current.ChangeTheme(this, &quot;Dark.Red&quot;);
+public partial class SampleApp : Application
+{
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+
+        // Set the application theme to Dark.Green
+        ThemeManager.Current.ChangeTheme(this, "Dark.Green");
     }
 }
 </code></pre>
-<p>In XAML the equivalent is merging the theme dictionary into the window's own resources:</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow.Resources&gt;
-    &lt;ResourceDictionary&gt;
-        &lt;ResourceDictionary.MergedDictionaries&gt;
-            &lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Themes/Dark.Red.xaml&quot; /&gt;
-        &lt;/ResourceDictionary.MergedDictionaries&gt;
-    &lt;/ResourceDictionary&gt;
-&lt;/mah:MetroWindow.Resources&gt;
-</code></pre>
-<h3 id="one-axis-at-a-time">One axis at a time</h3>
-<p>Two shortcuts change the base theme or the colour scheme and leave the other alone, which is what a light/dark toggle wants:</p>
-<pre><code class="language-csharp">ThemeManager.Current.ChangeThemeBaseColor(Application.Current, &quot;Dark&quot;);
-ThemeManager.Current.ChangeThemeColorScheme(Application.Current, &quot;Emerald&quot;);
-</code></pre>
-<h2 id="finding-out-what-is-applied">Finding out what is applied</h2>
-<table>
-<thead>
-<tr>
-<th>Member</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>DetectTheme()</code></td>
-<td>the theme currently applied to the application, or <code>null</code></td>
-</tr>
-<tr>
-<td><code>DetectTheme(element)</code></td>
-<td>the same for one element</td>
-</tr>
-<tr>
-<td><code>GetTheme(&quot;Dark.Red&quot;)</code></td>
-<td>look a theme up by name without applying it</td>
-</tr>
-<tr>
-<td><code>GetInverseTheme(theme)</code></td>
-<td>the same colour scheme on the other base — the light/dark toggle in one call</td>
-</tr>
-<tr>
-<td><code>Themes</code></td>
-<td>every theme known to the manager, the built-in ones and any you added</td>
-</tr>
-<tr>
-<td><code>ThemeChanged</code></td>
-<td>raised after a change, with the old and new theme</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-csharp">var current = ThemeManager.Current.DetectTheme(Application.Current);
+<h3 id="on-a-window-different-to-your-applications-main-window">On a window different to your application's main window</h3>
+<p>With <code>MahApps.Metro</code> you can have a different theme for a <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code>. The main window or any other <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> will keep the specified theme in the App.xaml or window xaml.</p>
+<p>You can do this with the ThemeManager, like so:</p>
+<pre><code class="language-csharp">using ControlzEx.Theming;
 
-if (current is not null)
+public partial class MainWindow : <a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a>
 {
-    ThemeManager.Current.ChangeTheme(Application.Current, ThemeManager.Current.GetInverseTheme(current));
+    public void MainWindow()
+    {
+        InitializeComponent();
+
+        // Set the window theme to Dark.Red
+        ThemeManager.Current.ChangeTheme(this, "Dark.Red");
+    }
 }
 </code></pre>
-<p><code>Themes</code> is what to bind a theme picker to; each <code>Theme</code> carries a <code>DisplayName</code>, a <code>BaseColorScheme</code>, a <code>ColorScheme</code> and a <code>ShowcaseBrush</code> for the swatch.</p>
-<h2 id="following-windows">Following Windows</h2>
-<p><code>ThemeSyncMode</code> decides how much of the Windows personalisation setting the application adopts. It is a flags enum:</p>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>DoNotSync</code></td>
-<td>ignore Windows entirely</td>
-</tr>
-<tr>
-<td><code>SyncWithAppMode</code></td>
-<td>follow the light/dark app mode</td>
-</tr>
-<tr>
-<td><code>SyncWithAccent</code></td>
-<td>follow the Windows accent colour</td>
-</tr>
-<tr>
-<td><code>SyncWithHighContrast</code></td>
-<td>follow the high-contrast setting</td>
-</tr>
-<tr>
-<td><code>SyncAll</code></td>
-<td>all three</td>
-</tr>
-</tbody>
-</table>
-<p>Set the mode, then sync once; after that the manager keeps up with changes on its own:</p>
-<pre><code class="language-csharp">protected override void OnStartup(StartupEventArgs e)
-{
-    base.OnStartup(e);
+<h3 id="theme-sync-mode">Theme sync mode</h3>
+<p>It's possible to sync the windows theme with our ThemeManager.</p>
+<pre><code class="language-csharp">using ControlzEx.Theming;
 
-    ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.SyncAll;
-    ThemeManager.Current.SyncTheme();
+public partial class MainWindow : <a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a>
+{
+    public void MainWindow()
+    {
+        InitializeComponent();
+
+        ThemeManager.Current.ThemeSyncMode = ThemeSyncMode.SyncWithAppMode;
+        ThemeManager.Current.SyncTheme();
+    }
 }
 </code></pre>
-<p><code>SyncWithAccent</code> generates a theme from whatever colour the user picked, which is the mechanism the next section uses directly.</p>
-<h2 id="a-theme-from-any-colour">A theme from any colour</h2>
-<p><code>RuntimeThemeGenerator</code> builds a complete theme — every brush, both the accent ramp and the greys — from a base theme and one colour. No dictionary to write:</p>
-<p><img src="images/thememanager-runtime.png" alt="Three runtime themes from three colours" /></p>
-<pre><code class="language-csharp">var theme = RuntimeThemeGenerator.Current.GenerateRuntimeTheme(&quot;Light&quot;, Color.FromRgb(0x6A, 0x1B, 0x9A));
-
-ThemeManager.Current.AddTheme(theme);
-ThemeManager.Current.ChangeTheme(Application.Current, theme);
-</code></pre>
-<p>Each panel in the figure is that call with a different colour, applied to the panel rather than to the application — <code>ChangeTheme</code> takes an element, so a theme can be scoped to as little as one <code>Border</code>.</p>
-<p>Generate both bases if the application has a light/dark toggle, so <code>GetInverseTheme</code> has somewhere to go:</p>
-<pre><code class="language-csharp">foreach (var baseTheme in new[] { &quot;Light&quot;, &quot;Dark&quot; })
-{
-    ThemeManager.Current.AddTheme(RuntimeThemeGenerator.Current.GenerateRuntimeTheme(baseTheme, brandColour));
-}
-</code></pre>
-<p><code>AddTheme</code> also takes a hand-built <code>Theme</code>, if you want to control the name and the showcase brush:</p>
-<pre><code class="language-csharp">ThemeManager.Current.AddTheme(new Theme(&quot;CustomDarkRed&quot;, &quot;CustomDarkRed&quot;, &quot;Dark&quot;, &quot;Red&quot;, Colors.DarkRed, Brushes.DarkRed, true, false));
-</code></pre>
-<h2 id="a-theme-written-by-hand">A theme written by hand</h2>
-<p>When the generated ramp is not what you want — a brand palette with its own greys, say — write the dictionary yourself and register it as a <em>library theme</em>:</p>
-<pre><code class="language-csharp">var theme = ThemeManager.Current.AddLibraryTheme(
-    new LibraryTheme(
-        new Uri(&quot;pack://application:,,,/SampleApp;component/CustomAccents/Light.Accent1.xaml&quot;),
-        MahAppsLibraryThemeProvider.DefaultInstance));
-
-ThemeManager.Current.ChangeTheme(this, theme);
-</code></pre>
-<p>The dictionary needs seven metadata keys at the top, and the manager reads them to place the theme:</p>
-<pre><code class="language-xml">&lt;system:String x:Key=&quot;Theme.Name&quot;&gt;Light.Accent1&lt;/system:String&gt;
-&lt;system:String x:Key=&quot;Theme.Origin&quot;&gt;MahAppsMetroThemesSample&lt;/system:String&gt;
-&lt;system:String x:Key=&quot;Theme.DisplayName&quot;&gt;Accent1 (Light)&lt;/system:String&gt;
-&lt;system:String x:Key=&quot;Theme.BaseColorScheme&quot;&gt;Light&lt;/system:String&gt;
-&lt;system:String x:Key=&quot;Theme.ColorScheme&quot;&gt;Accent1&lt;/system:String&gt;
-&lt;Color x:Key=&quot;Theme.PrimaryAccentColor&quot;&gt;#FFD80073&lt;/Color&gt;
-&lt;SolidColorBrush x:Key=&quot;Theme.ShowcaseBrush&quot; Color=&quot;#FFD80073&quot; options:Freeze=&quot;True&quot; /&gt;
-</code></pre>
-<p>Everything after that is colours and brushes. A <strong><a href="../../assets/xaml/Light.Accent1.xaml">complete worked example</a></strong> is available as a file — five hundred lines, which is why it is not printed here.</p>
-<div class="alert alert-info"><p>Two things to plan for.</p>
-<p>Write the <strong>dark counterpart</strong> as well, <code>Dark.Accent1.xaml</code> with <code>Theme.BaseColorScheme</code> set to <code>Dark</code>. A theme that exists in only one base leaves <code>GetInverseTheme</code> and <code>SyncWithAppMode</code> with nowhere to go.</p>
-<p>The authoritative list of what a theme can define is <a href="https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Styles/Themes/Theme.Template.xaml"><code>Theme.Template.xaml</code></a> in the library — 422 keys, of which 79 vary between themes. A dictionary that omits one falls back to whatever was there before, which is rarely what you meant. See <a href="usage">Usage</a> for how the shipped themes are generated from that template.</p>
+<h3 id="creating-custom-themes">Creating custom Themes</h3>
+<p>Another nice feature of <code>MahApps.Metro</code> <code>ThemeManager</code> is to use custom created themes or runtime created themes.</p>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+Please note that you should have a look at <a href="https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Styles/Themes/Theme.Template.xaml">https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Styles/Themes/Theme.Template.xaml</a> for a complete reference of all available theme resources.</p>
 </div>
-<p>A complete sample project is on <a href="https://github.com/punker76/code-samples#mahappsmetro-themes">GitHub</a>.</p>
-<h2 id="related">Related</h2>
-<p><a href="usage">Usage</a> for the themes that ship with the library and the naming, and the <a href="../guides/quick-start">quick start</a> for putting the first one in place.</p>
+<div class="alert alert-warning"><p><em><strong>Note</strong></em><br>
+Give a custom theme a name of its own, <code>Dark.Accent1</code> rather than <code>Dark.Blue</code>. A name that is already taken makes <code>AddTheme</code> hand back the theme that carries it and drop yours without a word, and the theme sync looks themes up by base color and accent in the same way, so the next settings change coming from Windows puts the built-in dictionary in place of yours.</p>
+</div>
+<p>Here is a sample for a light theme. In order to work correctly with the Thememanager it's better to add a dark theme as well.</p>
+<pre><code class="language-xml">&lt;ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:markup="clr-namespace:MahApps.Metro.Markup;assembly=MahApps.Metro"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:options="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    mc:Ignorable="options"&gt;
 
+    &lt;!--  Metadata  --&gt;
+    &lt;system:String x:Key="Theme.Name"&gt;Light.Accent1&lt;/system:String&gt;
+    &lt;system:String x:Key="Theme.Origin"&gt;MahAppsMetroThemesSample&lt;/system:String&gt;
+    &lt;system:String x:Key="Theme.DisplayName"&gt;Accent1 (Light)&lt;/system:String&gt;
+    &lt;system:String x:Key="Theme.BaseColorScheme"&gt;Light&lt;/system:String&gt;
+    &lt;system:String x:Key="Theme.ColorScheme"&gt;Accent1&lt;/system:String&gt;
+    &lt;Color x:Key="Theme.PrimaryAccentColor"&gt;#FFD80073&lt;/Color&gt;
+    &lt;SolidColorBrush x:Key="Theme.ShowcaseBrush" Color="#FFD80073" options:Freeze="True" /&gt;
 
-                                        </div>
-                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
-                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
-        <div class="border-bottom mb-3 sidebar-root">
-            <div class="sidebar-nav-item sidebar-header">On This Page</div>
-            <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#changing-the-theme">Changing the theme</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#one-axis-at-a-time">One axis at a time</a></div>
-                        </div>
-                    <div class="sidebar-nav-item"><a href="#finding-out-what-is-applied">Finding out what is applied</a></div>
-                    <div class="sidebar-nav-item"><a href="#following-windows">Following Windows</a></div>
-                    <div class="sidebar-nav-item"><a href="#a-theme-from-any-colour">A theme from any colour</a></div>
-                    <div class="sidebar-nav-item"><a href="#a-theme-written-by-hand">A theme written by hand</a></div>
-                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
-            </div>
+    &lt;!--  *************COLORS START*************  --&gt;
+
+    &lt;!--  Theme Base Colors  --&gt;
+
+    &lt;!--  ACCENT COLORS  --&gt;
+    &lt;Color x:Key="MahApps.Colors.Highlight"&gt;#FF9F0055&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.AccentBase"&gt;#FFD80073&lt;/Color&gt;
+    &lt;!--  80%  --&gt;
+    &lt;Color x:Key="MahApps.Colors.Accent"&gt;#CCD80073&lt;/Color&gt;
+    &lt;!--  60%  --&gt;
+    &lt;Color x:Key="MahApps.Colors.Accent2"&gt;#99D80073&lt;/Color&gt;
+    &lt;!--  40%  --&gt;
+    &lt;Color x:Key="MahApps.Colors.Accent3"&gt;#66D80073&lt;/Color&gt;
+    &lt;!--  20%  --&gt;
+    &lt;Color x:Key="MahApps.Colors.Accent4"&gt;#33D80073&lt;/Color&gt;
+
+    &lt;!--  BASE COLORS  --&gt;
+    &lt;Color x:Key="MahApps.Colors.ThemeForeground"&gt;#FF000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.ThemeBackground"&gt;#FFFFFFFF&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.IdealForeground"&gt;White&lt;/Color&gt;
+
+    &lt;Color x:Key="MahApps.Colors.Gray1"&gt;#FF333333&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.Gray2"&gt;#FF7F7F7F&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.Gray3"&gt;#FF9D9D9D&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.Gray4"&gt;#FFA59F93&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.Gray5"&gt;#FFB9B9B9&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.Gray6"&gt;#FFCCCCCC&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.Gray7"&gt;#FFD8D8D9&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.Gray8"&gt;#FFE0E0E0&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.Gray9"&gt;#5EC9C9C9&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.Gray10"&gt;#FFF7F7F7&lt;/Color&gt;
+
+    &lt;Color x:Key="MahApps.Colors.Gray"&gt;#FFBEBEBE&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.Gray.MouseOver"&gt;#FF333333&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.Gray.SemiTransparent"&gt;#40808080&lt;/Color&gt;
+
+    &lt;Color x:Key="MahApps.Colors.Flyout"&gt;#FFFFFFFF&lt;/Color&gt;
+
+    &lt;!--  CORE CONTROL COLORS  --&gt;
+    &lt;Color x:Key="MahApps.Colors.ProgressIndeterminate1"&gt;#33878787&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.ProgressIndeterminate2"&gt;#33959595&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.ProgressIndeterminate3"&gt;#4C000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.ProgressIndeterminate4"&gt;#4C000000&lt;/Color&gt;
+
+    &lt;!--  *************BRUSHES START*************  --&gt;
+    &lt;!--  PROJECT TEMPLATE BRUSHES  --&gt;
+
+    &lt;!--  UNIVERSAL CONTROL BRUSHES  --&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ThemeBackground" Color="{StaticResource MahApps.Colors.ThemeBackground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ThemeForeground" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Text" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.IdealForeground" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.IdealForegroundDisabled" Color="#FFADADAD" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Selected.Foreground" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.WindowTitle" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.WindowTitle.NonActive" Color="#808080" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Border.NonActive" Color="#808080" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Highlight" Color="{StaticResource MahApps.Colors.Highlight}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Transparent" Color="Transparent" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SemiTransparent" Color="#55000000" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.AccentBase" Color="{StaticResource MahApps.Colors.AccentBase}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Accent" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Accent2" Color="{StaticResource MahApps.Colors.Accent2}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Accent3" Color="{StaticResource MahApps.Colors.Accent3}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Accent4" Color="{StaticResource MahApps.Colors.Accent4}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray1" Color="{StaticResource MahApps.Colors.Gray1}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray2" Color="{StaticResource MahApps.Colors.Gray2}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray3" Color="{StaticResource MahApps.Colors.Gray3}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray4" Color="{StaticResource MahApps.Colors.Gray4}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray5" Color="{StaticResource MahApps.Colors.Gray5}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray6" Color="{StaticResource MahApps.Colors.Gray6}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray7" Color="{StaticResource MahApps.Colors.Gray7}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray8" Color="{StaticResource MahApps.Colors.Gray8}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray9" Color="{StaticResource MahApps.Colors.Gray9}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray10" Color="{StaticResource MahApps.Colors.Gray10}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray" Color="{StaticResource MahApps.Colors.Gray}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray.MouseOver" Color="{StaticResource MahApps.Colors.Gray.MouseOver}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Gray.SemiTransparent" Color="{StaticResource MahApps.Colors.Gray.SemiTransparent}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.TextBox.Border" Color="{StaticResource MahApps.Colors.Gray6}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.TextBox.Border.Focus" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.TextBox.Border.MouseOver" Color="{StaticResource MahApps.Colors.Gray2}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Control.Background" Color="{StaticResource MahApps.Colors.ThemeBackground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Control.Border" Color="{StaticResource MahApps.Colors.Gray6}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Control.Disabled" Color="#A5FFFFFF" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Control.Validation" Color="#FFDB000C" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.Border" Color="{StaticResource MahApps.Colors.Gray6}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.Border.Focus" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.Border.MouseOver" Color="{StaticResource MahApps.Colors.Gray6}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ComboBox.Border.MouseOver" Color="{StaticResource MahApps.Colors.Gray2}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ComboBox.Border.Focus" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ComboBox.PopupBorder" Color="{StaticResource MahApps.Colors.Gray4}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.CheckBox" Color="{StaticResource MahApps.Colors.Gray5}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.CheckBox.MouseOver" Color="{StaticResource MahApps.Colors.Gray2}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Thumb" Color="{StaticResource MahApps.Colors.Gray5}" options:Freeze="True" /&gt;
+
+    &lt;LinearGradientBrush x:Key="MahApps.Brushes.Progress" StartPoint="1.002,0.5" EndPoint="0.001,0.5" options:Freeze="True"&gt;
+        &lt;GradientStop Offset="0" Color="{StaticResource MahApps.Colors.Highlight}" /&gt;
+        &lt;GradientStop Offset="1" Color="{StaticResource MahApps.Colors.Accent3}" /&gt;
+    &lt;/LinearGradientBrush&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SliderValue.Disabled" Color="#FFBABABA" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SliderTrack.Disabled" Color="#FFDBDBDB" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SliderThumb.Disabled" Color="#FFA0A0A0" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SliderTrack.Hover" Color="#FFD0D0D0" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SliderTrack.Normal" Color="#FFC6C6C6" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Flyout.Background" Color="{StaticResource MahApps.Colors.Flyout}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Flyout.Foreground" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Window.FlyoutOverlay" Opacity="0.5" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Window.Background" Color="{StaticResource MahApps.Colors.ThemeBackground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Separator" Color="#FFC4C4C5" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.Flat.Background" Color="#D5D5D5" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.Flat.Foreground" Color="#222222" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.Flat.Background.MouseOver" Color="#A9A9A9" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.Flat.Background.Pressed" Color="#333333" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.Flat.Foreground.Pressed" Color="#FFFFFF" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.CleanWindow.Close.Background.MouseOver" Color="#EB2F2F" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.CleanWindow.Close.Foreground.MouseOver" Color="#FFFFFF" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.CleanWindow.Close.Background.Pressed" Color="#7C0000" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.Square.Background.MouseOver" Color="{StaticResource MahApps.Colors.Gray8}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.Square.Foreground.MouseOver" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.AccentedSquare.Background.MouseOver" Color="#66000000" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Button.AccentedSquare.Foreground.MouseOver" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" /&gt;
+
+    &lt;!--  CONTROL VALIDATION BRUSHES  --&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Validation1" Color="#052A2E31" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Validation2" Color="#152A2E31" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Validation3" Color="#252A2E31" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Validation4" Color="#352A2E31" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Validation5" Color="#FFDC000C" options:Freeze="True" /&gt;
+    &lt;!--  unused  --&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary1" Color="#FFDC020D" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary2" Color="#FFCA000C" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary3" Color="#FFFF9298" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary4" Color="#FFFDC8C8" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ValidationSummary5" Color="#DDD43940" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ValidationSummaryFill1" Color="#59F7D8DB" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ValidationSummaryFill2" Color="#FFF7D8DB" options:Freeze="True" /&gt;
+    &lt;!--  validation text foreground always white  --&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Text.Validation" Color="White" options:Freeze="True" /&gt;
+
+    &lt;!--  WPF default colors  --&gt;
+    &lt;SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="{StaticResource MahApps.Colors.ThemeBackground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+
+    &lt;!--  menu default colors  --&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Menu.Background" Color="{StaticResource MahApps.Colors.ThemeBackground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ContextMenu.Background" Color="{StaticResource MahApps.Colors.ThemeBackground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SubMenu.Background" Color="{StaticResource MahApps.Colors.ThemeBackground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.MenuItem.Background" Color="{StaticResource MahApps.Colors.ThemeBackground}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.ContextMenu.Border" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SubMenu.Border" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.MenuItem.SelectionFill" Color="#DEDEDE" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.MenuItem.SelectionStroke" Color="#DEDEDE" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.TopMenuItem.PressedFill" Color="#DEDEDE" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.TopMenuItem.PressedStroke" Color="#E0717070" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.TopMenuItem.SelectionStroke" Color="#90717070" options:Freeze="True" /&gt;
+
+    &lt;!--  original #FF9A9A9A"  --&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.MenuItem.Foreground.Disabled" Color="#FF7F7F7F" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.MenuItem.GlyphPanel.Disabled" Color="#848589" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="{x:Static SystemColors.MenuTextBrushKey}" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.CheckmarkFill" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.RightArrowFill" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" /&gt;
+
+    &lt;Color x:Key="MahApps.Colors.MenuShadow"&gt;#FF000000&lt;/Color&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.WindowButtonCommands.Background.MouseOver" Color="#66DCDCDC" options:Freeze="True" /&gt;
+
+    &lt;!--  DataGrid brushes  --&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Background" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Background.Disabled" Color="{StaticResource MahApps.Colors.Gray7}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Background.Inactive" Color="{StaticResource MahApps.Colors.Accent3}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Background.MouseOver" Color="{StaticResource MahApps.Colors.Accent2}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.BorderBrush" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.BorderBrush.Disabled" Color="{StaticResource MahApps.Colors.Gray7}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.BorderBrush.Focus" Color="{StaticResource MahApps.Colors.Accent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.BorderBrush.Inactive" Color="{StaticResource MahApps.Colors.Accent3}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.BorderBrush.MouseOver" Color="{StaticResource MahApps.Colors.Accent2}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Text" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Text.Disabled" Color="{StaticResource MahApps.Colors.Gray1}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Text.Inactive" Color="{StaticResource MahApps.Colors.ThemeForeground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.DataGrid.Selection.Text.MouseOver" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" /&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Badged.Background" Color="{StaticResource MahApps.Colors.AccentBase}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Badged.Background.Disabled" Color="#FF999999" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Badged.Foreground" Color="{StaticResource MahApps.Colors.IdealForeground}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.Badged.Foreground.Disabled" Color="#99000000" options:Freeze="True" /&gt;
+
+    &lt;!--  <a href="/api/MahApps.Metro.Controls/HamburgerMenu">HamburgerMenu</a>  --&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.HamburgerMenu.Pane.Background" Color="#FF444444" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.HamburgerMenu.Pane.Foreground" Color="#FFFFFFFF" options:Freeze="True" /&gt;
+
+    &lt;!--
+        ******************************************************************
+        DEFAULT COMMON CONTROL COLORS
+        ******************************************************************
+    --&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemAccent"&gt;#FFF0A30A&lt;/Color&gt;
+
+    &lt;Color x:Key="MahApps.Colors.SystemAltHigh"&gt;#FFFFFFFF&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemAltLow"&gt;#33FFFFFF&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemAltMedium"&gt;#99FFFFFF&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemAltMediumHigh"&gt;#CCFFFFFF&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemAltMediumLow"&gt;#66FFFFFF&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemBaseHigh"&gt;#FF000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemBaseLow"&gt;#33000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemBaseMedium"&gt;#99000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemBaseMediumHigh"&gt;#CC000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemBaseMediumLow"&gt;#66000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeAltLow"&gt;#FF171717&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeBlackHigh"&gt;#FF000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeBlackLow"&gt;#33000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeBlackMediumLow"&gt;#66000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeBlackMedium"&gt;#CC000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeDisabledHigh"&gt;#FFCCCCCC&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeDisabledLow"&gt;#FF7A7A7A&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeHigh"&gt;#FFCCCCCC&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeLow"&gt;#FFF2F2F2&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeMedium"&gt;#FFE6E6E6&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeMediumLow"&gt;#FFF2F2F2&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeWhite"&gt;#FFFFFFFF&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemChromeGray"&gt;#FF767676&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemListLow"&gt;#19000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemListMedium"&gt;#33000000&lt;/Color&gt;
+    &lt;Color x:Key="MahApps.Colors.SystemErrorText"&gt;#C50500&lt;/Color&gt;
+
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundAccent" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundAltHigh" Color="{StaticResource MahApps.Colors.SystemAltHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundAltMedium" Color="{StaticResource MahApps.Colors.SystemAltMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundAltMediumHigh" Color="{StaticResource MahApps.Colors.SystemAltMediumHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundAltMediumLow" Color="{StaticResource MahApps.Colors.SystemAltMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundBaseHigh" Color="{StaticResource MahApps.Colors.SystemBaseHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundBaseLow" Color="{StaticResource MahApps.Colors.SystemBaseLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundBaseMedium" Color="{StaticResource MahApps.Colors.SystemBaseMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundBaseMediumHigh" Color="{StaticResource MahApps.Colors.SystemBaseMediumHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundBaseMediumLow" Color="{StaticResource MahApps.Colors.SystemBaseMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeBlackHigh" Color="{StaticResource MahApps.Colors.SystemChromeBlackHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeBlackLow" Color="{StaticResource MahApps.Colors.SystemChromeBlackLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeBlackMedium" Color="{StaticResource MahApps.Colors.SystemChromeBlackMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeBlackMediumLow" Color="{StaticResource MahApps.Colors.SystemChromeBlackMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeMedium" Color="{StaticResource MahApps.Colors.SystemChromeMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeMediumLow" Color="{StaticResource MahApps.Colors.SystemChromeMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundChromeWhite" Color="{StaticResource MahApps.Colors.SystemChromeWhite}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundListLow" Color="{StaticResource MahApps.Colors.SystemListLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlBackgroundListMedium" Color="{StaticResource MahApps.Colors.SystemListMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledAccent" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledBaseHigh" Color="{StaticResource MahApps.Colors.SystemBaseHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledBaseLow" Color="{StaticResource MahApps.Colors.SystemBaseLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledBaseMediumLow" Color="{StaticResource MahApps.Colors.SystemBaseMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledChromeDisabledHigh" Color="{StaticResource MahApps.Colors.SystemChromeDisabledHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledChromeDisabledLow" Color="{StaticResource MahApps.Colors.SystemChromeDisabledLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledChromeHigh" Color="{StaticResource MahApps.Colors.SystemChromeHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledChromeMediumLow" Color="{StaticResource MahApps.Colors.SystemChromeMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledListMedium" Color="{StaticResource MahApps.Colors.SystemListMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlDisabledTransparent" Color="Transparent" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlErrorTextForeground" Color="{StaticResource MahApps.Colors.SystemErrorText}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlFocusVisualPrimary" Color="{StaticResource MahApps.Colors.SystemBaseHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlFocusVisualSecondary" Color="{StaticResource MahApps.Colors.SystemAltMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundAccent" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundAltHigh" Color="{StaticResource MahApps.Colors.SystemAltHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundAltMediumHigh" Color="{StaticResource MahApps.Colors.SystemAltMediumHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundBaseHigh" Color="{StaticResource MahApps.Colors.SystemBaseHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundBaseLow" Color="{StaticResource MahApps.Colors.SystemBaseLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundBaseMedium" Color="{StaticResource MahApps.Colors.SystemBaseMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundBaseMediumHigh" Color="{StaticResource MahApps.Colors.SystemBaseMediumHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundBaseMediumLow" Color="{StaticResource MahApps.Colors.SystemBaseMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeBlackHigh" Color="{StaticResource MahApps.Colors.SystemChromeBlackHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeBlackMedium" Color="{StaticResource MahApps.Colors.SystemChromeBlackMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeBlackMediumLow" Color="{StaticResource MahApps.Colors.SystemChromeBlackMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeDisabledLow" Color="{StaticResource MahApps.Colors.SystemChromeDisabledLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeGray" Color="{StaticResource MahApps.Colors.SystemChromeGray}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeHigh" Color="{StaticResource MahApps.Colors.SystemChromeHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeMedium" Color="{StaticResource MahApps.Colors.SystemChromeMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundChromeWhite" Color="{StaticResource MahApps.Colors.SystemChromeWhite}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundListLow" Color="{StaticResource MahApps.Colors.SystemListLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundListMedium" Color="{StaticResource MahApps.Colors.SystemListMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlForegroundTransparent" Color="Transparent" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAccent" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltAccent" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltAltHigh" Color="{StaticResource MahApps.Colors.SystemAltHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltAltMediumHigh" Color="{StaticResource MahApps.Colors.SystemAltMediumHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltBaseHigh" Color="{StaticResource MahApps.Colors.SystemBaseHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltBaseLow" Color="{StaticResource MahApps.Colors.SystemBaseLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltBaseMedium" Color="{StaticResource MahApps.Colors.SystemBaseMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltBaseMediumHigh" Color="{StaticResource MahApps.Colors.SystemBaseMediumHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltBaseMediumLow" Color="{StaticResource MahApps.Colors.SystemBaseMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltChromeWhite" Color="{StaticResource MahApps.Colors.SystemChromeWhite}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltListAccentHigh" Opacity="0.7" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltListAccentLow" Opacity="0.4" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltListAccentMedium" Opacity="0.6" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightAltTransparent" Color="Transparent" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightBaseHigh" Color="{StaticResource MahApps.Colors.SystemBaseHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightBaseLow" Color="{StaticResource MahApps.Colors.SystemBaseLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightBaseMedium" Color="{StaticResource MahApps.Colors.SystemBaseMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightBaseMediumHigh" Color="{StaticResource MahApps.Colors.SystemBaseMediumHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightBaseMediumLow" Color="{StaticResource MahApps.Colors.SystemBaseMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightChromeAltLow" Color="{StaticResource MahApps.Colors.SystemChromeAltLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightChromeHigh" Color="{StaticResource MahApps.Colors.SystemChromeHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightChromeWhite" Color="{StaticResource MahApps.Colors.SystemChromeWhite}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightListAccentHigh" Opacity="0.7" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightListAccentLow" Opacity="0.4" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightListAccentMedium" Opacity="0.6" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightListLow" Color="{StaticResource MahApps.Colors.SystemListLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightListMedium" Color="{StaticResource MahApps.Colors.SystemListMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHighlightTransparent" Color="Transparent" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHyperlinkBaseHigh" Color="{StaticResource MahApps.Colors.SystemBaseHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHyperlinkBaseMedium" Color="{StaticResource MahApps.Colors.SystemBaseMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHyperlinkBaseMediumHigh" Color="{StaticResource MahApps.Colors.SystemBaseMediumHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlHyperlinkText" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundAltHigh" Color="{StaticResource MahApps.Colors.SystemAltHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundAltMedium" Color="{StaticResource MahApps.Colors.SystemAltMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundBaseLow" Color="{StaticResource MahApps.Colors.SystemBaseLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundBaseMedium" Color="{StaticResource MahApps.Colors.SystemBaseMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundChromeLow" Color="{StaticResource MahApps.Colors.SystemChromeLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundChromeMediumLow" Color="{StaticResource MahApps.Colors.SystemChromeMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundListLow" Color="{StaticResource MahApps.Colors.SystemListLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundMediumAltMedium" Color="{StaticResource MahApps.Colors.SystemAltMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageBackgroundTransparent" Color="Transparent" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageTextBaseHigh" Color="{StaticResource MahApps.Colors.SystemBaseHigh}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageTextBaseMedium" Color="{StaticResource MahApps.Colors.SystemBaseMedium}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlPageTextChromeBlackMediumLow" Color="{StaticResource MahApps.Colors.SystemChromeBlackMediumLow}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlRevealFocusVisual" Color="{StaticResource MahApps.Colors.SystemAccent}" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlTransientBorder" Opacity="0.14" Color="#000000" options:Freeze="True" /&gt;
+    &lt;SolidColorBrush x:Key="MahApps.Brushes.SystemControlTransparent" Color="Transparent" options:Freeze="True" /&gt;
+
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.SystemControlDescriptionTextForeground" ResourceKey="MahApps.Brushes.SystemControlPageTextBaseMedium" /&gt;
+
+    &lt;!--  Resources for MahApps.Styles.CheckBox.Win10  --&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundUnchecked" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundUncheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundUncheckedPressed" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundUncheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundChecked" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundCheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundCheckedPressed" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundCheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundIndeterminate" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundIndeterminateMouseOver" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundIndeterminatePressed" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.ForegroundIndeterminateDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundUnchecked" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundUncheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundUncheckedPressed" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundUncheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundChecked" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundCheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundCheckedPressed" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundCheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundIndeterminate" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundIndeterminateMouseOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundIndeterminatePressed" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BackgroundIndeterminateDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushUnchecked" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushUncheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushUncheckedPressed" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushUncheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushChecked" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushCheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushCheckedPressed" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushCheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushIndeterminate" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushIndeterminateMouseOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushIndeterminatePressed" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.BorderBrushIndeterminateDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeUnchecked" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseMediumHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeUncheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeUncheckedPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeUncheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeChecked" ResourceKey="MahApps.Brushes.SystemControlHighlightTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeCheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeCheckedPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeCheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminate" ResourceKey="MahApps.Brushes.SystemControlForegroundAccent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminateMouseOver" ResourceKey="MahApps.Brushes.SystemControlHighlightAccent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminatePressed" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseMedium" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundStrokeIndeterminateDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillUnchecked" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillUncheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillUncheckedPressed" ResourceKey="MahApps.Brushes.SystemControlBackgroundBaseMedium" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillUncheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillChecked" ResourceKey="MahApps.Brushes.SystemControlHighlightAccent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillCheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlBackgroundAccent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillCheckedPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseMedium" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillCheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminate" ResourceKey="MahApps.Brushes.SystemControlHighlightTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminateMouseOver" ResourceKey="MahApps.Brushes.SystemControlHighlightTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminatePressed" ResourceKey="MahApps.Brushes.SystemControlHighlightTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckBackgroundFillIndeterminateDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundUnchecked" ResourceKey="MahApps.Brushes.SystemControlHighlightAltChromeWhite" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundUncheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlHighlightAltChromeWhite" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundUncheckedPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightAltChromeWhite" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundUncheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlHighlightAltChromeWhite" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundChecked" ResourceKey="MahApps.Brushes.SystemControlHighlightAltChromeWhite" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundCheckedMouseOver" ResourceKey="MahApps.Brushes.SystemControlForegroundChromeWhite" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundCheckedPressed" ResourceKey="MahApps.Brushes.SystemControlForegroundChromeWhite" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundCheckedDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminate" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseMediumHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminateMouseOver" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminatePressed" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseMedium" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.CheckBox.CheckGlyphForegroundIndeterminateDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+
+    &lt;!--  Resources for MahApps.Styles.RadioButton.Win10  --&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.Foreground" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.ForegroundPointerOver" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.ForegroundPressed" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.ForegroundDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.Background" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.BackgroundPointerOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.BackgroundPressed" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.BackgroundDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.BorderBrush" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.BorderBrushPointerOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.BorderBrushPressed" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.BorderBrushDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseStroke" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseMediumHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseStrokePointerOver" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseStrokePressed" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseMedium" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseStrokeDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseFill" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseFillPointerOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseFillPressed" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseFillDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedStroke" ResourceKey="MahApps.Brushes.SystemControlHighlightAccent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedStrokePointerOver" ResourceKey="MahApps.Brushes.SystemControlHighlightAccent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedStrokePressed" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseMedium" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedStrokeDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedFill" ResourceKey="MahApps.Brushes.SystemControlHighlightAltTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedFillPointerOver" ResourceKey="MahApps.Brushes.SystemControlHighlightTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedFillPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.OuterEllipseCheckedFillDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.CheckGlyphFill" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseMediumHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.CheckGlyphFillPointerOver" ResourceKey="MahApps.Brushes.SystemControlHighlightAltBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.CheckGlyphFillPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightAltBaseMedium" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.CheckGlyphFillDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.CheckGlyphStroke" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.CheckGlyphStrokePointerOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.CheckGlyphStrokePressed" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.RadioButton.CheckGlyphStrokeDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+
+    &lt;!--  Resources for MahApps.Styles.ToggleSwitch  --&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.ContentForeground" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.ContentForegroundDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.HeaderForeground" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.HeaderForegroundDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.ContainerBackground" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.ContainerBackgroundPointerOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.ContainerBackgroundPressed" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.ContainerBackgroundDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.FillOff" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.FillOffPointerOver" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.FillOffPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseMedium" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.FillOffDisabled" ResourceKey="MahApps.Brushes.SystemControlTransparent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.StrokeOff" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseMediumHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.StrokeOffPointerOver" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.StrokeOffPressed" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseMediumHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.StrokeOffDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.FillOn" ResourceKey="MahApps.Brushes.SystemControlHighlightAccent" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.FillOnPointerOver" ResourceKey="MahApps.Brushes.SystemControlHighlightAltListAccentHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.FillOnPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseMedium" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.FillOnDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.StrokeOn" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.StrokeOnPointerOver" ResourceKey="MahApps.Brushes.SystemControlHighlightListAccentHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.StrokeOnPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseMedium" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.StrokeOnDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOff" ResourceKey="MahApps.Brushes.SystemControlForegroundBaseMediumHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOffPointerOver" ResourceKey="MahApps.Brushes.SystemControlHighlightBaseHigh" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOffPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightAltChromeWhite" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOffDisabled" ResourceKey="MahApps.Brushes.SystemControlDisabledBaseMediumLow" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOn" ResourceKey="MahApps.Brushes.SystemControlHighlightAltChromeWhite" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOnPointerOver" ResourceKey="MahApps.Brushes.SystemControlHighlightChromeWhite" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOnPressed" ResourceKey="MahApps.Brushes.SystemControlHighlightAltChromeWhite" /&gt;
+    &lt;markup:StaticResource x:Key="MahApps.Brushes.ToggleSwitch.KnobFillOnDisabled" ResourceKey="MahApps.Brushes.SystemControlPageBackgroundBaseLow" /&gt;
+
+&lt;/ResourceDictionary&gt;
+</code></pre>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+It's necessary to use the <code>StaticResource</code> extension from MahApps with the following namespace <code>xmlns:markup="clr-namespace:MahApps.Metro.Markup;assembly=MahApps.Metro"</code></p>
+</div>
+<p>In order to use this custom theme, you need to add it to the <code>ThemeManager</code>.</p>
+<pre><code class="language-csharp">using ControlzEx.Theming;
+
+public partial class SampleApp : Application
+{
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+
+        // Add custom theme resource dictionaries
+        // You should replace SampleApp with your application name
+        // and the correct place where your custom theme lives
+        var theme = ThemeManager.Current.AddLibraryTheme(
+            new LibraryTheme(
+                new Uri("pack://application:,,,/SampleApp;component/CustomAccents/Light.Accent1.xaml"),
+                MahAppsLibraryThemeProvider.DefaultInstance
+                )
+            );
+
+        ThemeManager.Current.ChangeTheme(this, theme);
+    }
+}
+</code></pre>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+If the application also want to use a dark Theme then it's necessary to create it too, e.g. <code>Dark.Accent1.xaml</code></p>
+</div>
+<h3 id="sample">Sample</h3>
+<p>It is also possible to create a runtime resource dictionary by using a specific color.</p>
+<pre><code class="language-csharp">using ControlzEx.Theming;
+
+public partial class SampleApp : Application
+{
+    protected override void OnStartup(StartupEventArgs e)
+    {
+        base.OnStartup(e);
+
+        ThemeManager.Current.AddTheme(new Theme("CustomDarkRed", "CustomDarkRed", "Dark", "Red", Colors.DarkRed, Brushes.DarkRed, true, false));
+        ThemeManager.Current.AddTheme(new Theme("CustomLightRed", "CustomLightRed", "Light", "Red", Colors.DarkRed, Brushes.DarkRed, true, false));
+
+        ThemeManager.Current.AddTheme(RuntimeThemeGenerator.Current.GenerateRuntimeTheme("Dark", Colors.Red));
+        ThemeManager.Current.AddTheme(RuntimeThemeGenerator.Current.GenerateRuntimeTheme("Light", Colors.Red));
+    }
+}
+</code></pre>
+<p>A complete sample is available on <a href="https://github.com/punker76/code-samples#mahappsmetro-themes">GitHub</a>.</p>
+<p><img src="https://cloud.githubusercontent.com/assets/658431/13557016/9d7e23a4-e3e7-11e5-839a-177c39977e8e.gif" class="img-fluid" alt="mahapps_more_colors"></p>
+
+	</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/themes/thememanager.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div id="footer" class="p-3 text-white">
-            <div class="container-xl">
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
-    <br/>
-    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br/>
-    Generated by <a href="https://statiq.dev">Statiq</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
+    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
+    <br>
+    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br>
+    Generated by <a href="http://wyam.io">Wyam</a>
 </p>
 
-            </div>
+<script>
+	anchors.options.placement = 'left';
+	anchors.add();
+</script>
+
+<script>
+	var snippets = document.querySelectorAll('pre > code');
+	[].forEach.call(snippets, function (snippet) {
+	  snippet.insertAdjacentHTML(
+	    'beforebegin',
+	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
+	  );
+	});
+	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+	  container: document.getElementById('modal'),
+	  target: function (trigger) {
+	    return trigger.nextElementSibling;
+	  },
+	});
+	clipboardSnippets.on('success', function (e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		e.clearSelection();
+		// showTooltip(e.trigger, 'Copied!');
+	});
+	clipboardSnippets.on('error', function (e) {
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
+		// showTooltip(e.trigger, fallbackMessage(e.action));
+	});
+</script>
+            </footer>
         </div>
-
-        <!-- Scripts -->
-        <script>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
             $(document).ready(function() {
-                quicklink.listen();
-
-                // Bootstrap tooltips
-                $('[data-toggle="tooltip"]').tooltip();
-
-				// Keeps the sidebars in view on wider viewports
-				let left = null;
-				let leftParent = null;
-				let right = null;
-				let rightParent = null;
-                function stickSidebars()
-				{
-				    if (left == null) {
-                        left = $('#left-sidebar');
-                        right = $('#right-sidebar');
-                    }
-                    if (left.length) {
-                        if (window.innerWidth >= 768) {
-                            if (leftParent == null) {
-                                leftParent = left.parent()[0];
-                            }
-                            if (leftParent) {
-                                let leftRect = leftParent.getBoundingClientRect();
-                                stickSidebar(left,  leftRect);
-                            }
-                        } else {
-                            left.css('position', 'relative');
-                            if (left.css('bottom') != 0) {
-                                left.css('bottom', '0');
-                            }
-                        }
-                    }
-                    if (right.length) {
-                        if (window.innerWidth >= 768) {
-                            if (rightParent == null) {
-                                rightParent = right.parent()[0];
-                            }
-                            if (rightParent) {
-                                let rightRect = rightParent.getBoundingClientRect();
-                                stickSidebar(right,  rightRect);
-                            }
-                        } else {
-                            right.css('position', 'relative');
-                            if (right.css('bottom') != 0) {
-                                right.css('bottom', '0');
-                            }
-                        }
-                    }
-				}
-				function stickSidebar(sidebar, rect) {
-                    // Bottom
-                    if (rect.bottom > window.innerHeight) {
-                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
-                    } else {
-                        sidebar.css('bottom', 0);
-                    }
-                    // Top
-                    if (rect.top < 0) {
-                        sidebar.css('position', 'sticky');
-                    } else {
-                        sidebar.css('position', 'absolute');
-                    }
-				}
-				$(window).on("load", function() {
-				    stickSidebars();
-				});
-                $(window).scroll(function() {
-				    stickSidebars();
-				});
-				$(window).resize(function() {
-				    stickSidebars();
-				})
-
-                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -546,12 +921,12 @@ ThemeManager.Current.ChangeTheme(this, theme);
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });
+                });     
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-fluid');
+                mermaidSvg.addClass('img-responsive');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -565,68 +940,40 @@ ThemeManager.Current.ChangeTheme(this, theme);
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});
+					});			                          
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-
+                    
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
             });
         </script>
-
-        
-
-        <script>
-    anchors.options.placement = 'left';
-    anchors.add();
-
-    // Each <pre> is a horizontal scroll container (Bootstrap sets
-    // overflow: auto), so a button placed inside it scrolls out of view on long
-    // lines. Wrap the block instead and position the button against the
-    // wrapper, which never scrolls.
-    document.querySelectorAll('pre > code').forEach(function (code) {
-        var pre = code.parentNode;
-        var wrapper = document.createElement('div');
-        wrapper.className = 'code-block';
-        pre.parentNode.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
-
-        var button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'btn-copy';
-        button.title = 'Copy to clipboard';
-        button.setAttribute('aria-label', 'Copy to clipboard');
-        button.setAttribute('data-clipboard-snippet', '');
-        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        wrapper.appendChild(button);
-    });
-
-    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-        target: function (trigger) {
-            return trigger.parentNode.querySelector('pre > code');
-        },
-    });
-    clipboardSnippets.on('success', function (e) {
-        var button = e.trigger;
-        button.classList.add('copied');
-        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
-        window.setTimeout(function () {
-            button.classList.remove('copied');
-            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        }, 1500);
-        e.clearSelection();
-    });
-    clipboardSnippets.on('error', function (e) {
-        console.error('Copy failed:', e.action, e.trigger);
-    });
-</script>
-
-    </body>
-</html>
+    
+</body></html>

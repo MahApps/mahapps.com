@@ -1,745 +1,358 @@
-<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
-                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
-        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
-        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
-	    
-        <!-- Lunr search -->
-
-        
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
-
-<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
-<script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
-
-
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - FlipView</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/assets/js/clipboard.min.js"></script>
+
     </head>
-    <body class="d-flex flex-column">
-        <div class="flex-grow-1 d-flex flex-column">
-            <div class="bg-nav">
-                <div class="container-xl py-3">
-                    <div class="row">
-                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
-                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
-    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
-            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
-        <span class="site-title text-primary">MahApps.Metro</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
-        <ul class="navbar-nav mr-auto">
-            
-        </ul>
-        <ul class="navbar-nav">
-            
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/about">About</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/mahapps.com/docs/controls">Controls</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
-    </li>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
 
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/api">API</a>
-    </li>
-
-
-            <li class="nav-item">
-    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
-</li>
-
-        </ul>
-    </div>
-</nav>
-
-                        </div>
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
                     </div>
-                </div>
-            </div>
             
-            <div class="flex-grow-1 d-flex flex-column">
-                    <!-- Titlebar -->
-                    <div id="titlebar" class="py-4">
-                        <div class="container-xl">
-                            <div class="row">
-                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
-                                    <div class="flex-grow-1">
-                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
-
-        <span><a href="/mahapps.com/docs">Documentation</a></span>
-        <span><a href="/mahapps.com/docs/controls">Controls</a></span>
-                                        </div>
-                                        <div class="text-white m-0 text-break title">
-
-FlipView
-                                        </div>
-                                    </div>
-                                        <div class="navbar navbar-expand-md navbar-dark p-0">
-                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                                                <span class="navbar-toggler-icon"></span>
-                                            </button>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/blog">Blog</a></li>
+        <li class="active"><a href="/docs">Documentation</a></li>
+        <li><a href="/api">API</a></li>
+        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
+ 
+                        </ul>       
                     </div>
-                    <!-- Under title -->
-                    <div id="undertitle">
-                        <div class="container-xl">
-                            <div class="row">
-                                    <div class="col-md-3 col-lg-2">
-                                    </div>
-                                    <div class="col-md-9 col-lg-8 bg-white">
-                                    </div>
-                                <div class="col-lg-2 d-none d-lg-block">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/flipview.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"></div>
 
-                <!-- Body -->
-                <div class="flex-grow-1 d-flex flex-column">
-                        <div class="container-xl flex-grow-1 d-flex flex-column">
-                            <div class="row flex-grow-1 align-items-stretch">
-                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
-                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+                </section>
+                <section class="sidebar">    
+                                     
+                    
 
-    <div class="sidebar-root">
+                    <ul class="sidebar-menu">
+                        
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/controls">Controls</a>
-</div>                <div class="sidebar-nav-children">
+                <li class="treeview active">
+                    <a href="/docs/controls">Controls</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/controls/metrowindow">MetroWindow</a></li>
+                <li><a href="/docs/controls/Badged">Badged Control</a></li>
+                <li><a href="/docs/controls/ColorPicker">ColorPicker</a></li>
+                <li><a href="/docs/controls/ContentControlEx">ContentControlEx</a></li>
+                <li><a href="/docs/controls/CustomValidationPopup">CustomValidationPopup</a></li>
+                <li><a href="/docs/controls/DateTimePicker">DateTimePicker</a></li>
+                <li><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
+                <li class="selected"><a href="/docs/controls/flipview">FlipView</a></li>
+                <li><a href="/docs/controls/flyouts">Flyouts</a></li>
+                <li><a href="/docs/controls/FontIcon">FontIcon</a></li>
+                <li><a href="/docs/controls/HamburgerMenu">HamburgerMenu</a></li>
+                <li><a href="/docs/controls/HotKeyBox">HotKeyBox</a></li>
+                <li><a href="/docs/controls/MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a></li>
+                <li><a href="/docs/controls/MetroAnimatedTabControl">MetroAnimatedTabControl</a></li>
+                <li><a href="/docs/controls/MetroContentControl">MetroContentControl</a></li>
+                <li><a href="/docs/controls/MetroHeader">MetroHeader</a></li>
+                <li><a href="/docs/controls/MetroNavigationWindow">MetroNavigationWindow</a></li>
+                <li><a href="/docs/controls/metroprogressbar">MetroProgressBar</a></li>
+                <li><a href="/docs/controls/MetroTabControl">MetroTabControl</a></li>
+                <li><a href="/docs/controls/MetroTabItem">MetroTabItem</a></li>
+                <li><a href="/docs/controls/MetroThumbContentControl">MetroThumbContentControl</a></li>
+                <li><a href="/docs/controls/MultiFrameImage">MultiFrameImage</a></li>
+                <li><a href="/docs/controls/MultiSelectionComboBox">MultiSelectionComboBox</a></li>
+                <li><a href="/docs/controls/numericupdown">NumericUpDown</a></li>
+                <li><a href="/docs/controls/progressring">ProgressRing</a></li>
+                <li><a href="/docs/controls/rangeslider">RangeSlider</a></li>
+                <li><a href="/docs/controls/splitbutton">SplitButton</a></li>
+                <li><a href="/docs/controls/SplitView">SplitView</a></li>
+                <li><a href="/docs/controls/tile">Tile</a></li>
+                <li><a href="/docs/controls/TimePicker">TimePicker</a></li>
+                <li><a href="/docs/controls/toggleswitch">ToggleSwitch</a></li>
+                <li><a href="/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
+                <li><a href="/docs/controls/WindowButtonCommands">WindowButtonCommands</a></li>
+                <li><a href="/docs/controls/WindowCommands">WindowCommands</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/analogclock">AnalogClock</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/autosuggestbox">AutoSuggestBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/badged">Badged Control</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/colorpicker">ColorPicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/contentcontrolex">ContentControlEx</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/customvalidationpopup">CustomValidationPopup</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/datetimepicker">DateTimePicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/dropdownbutton">DropDownButton</a>
-</div>
-<div class="sidebar-nav-item active">
-    <a href="/mahapps.com/docs/controls/flipview">FlipView</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/flyouts">Flyouts</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/fonticon">FontIcon</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/hamburgermenu">HamburgerMenu</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/hotkeybox">HotKeyBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroanimatedsinglerowtabcontrol">MetroAnimatedSingleRowTabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroanimatedtabcontrol">MetroAnimatedTabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrocontentcontrol">MetroContentControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroheader">MetroHeader</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metronavigationwindow">MetroNavigationWindow</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroprogressbar">MetroProgressBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrotabcontrol">MetroTabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrotabitem">MetroTabItem</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/multiselectioncombobox">MultiSelectionComboBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/numericupdown">NumericUpDown</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/progressring">ProgressRing</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/rangeslider">RangeSlider</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/splitbutton">SplitButton</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/splitview">SplitView</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/tile">Tile</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/timepicker">TimePicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/toggleswitch">ToggleSwitch</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/windowbuttoncommands">WindowButtonCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/styles">Styles</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/styles/buttons">Buttons</a></li>
+                <li><a href="/docs/styles/calendar">Calendar</a></li>
+                <li><a href="/docs/styles/checkbox">CheckBox</a></li>
+                <li><a href="/docs/styles/combobox">ComboBox</a></li>
+                <li><a href="/docs/styles/datagrid">DataGrid</a></li>
+                <li><a href="/docs/styles/datagridcolumns">DataGrid Columns</a></li>
+                <li><a href="/docs/styles/datepicker">DatePicker</a></li>
+                <li><a href="/docs/styles/expander">Expander</a></li>
+                <li><a href="/docs/styles/gridsplitter">GridSplitter</a></li>
+                <li><a href="/docs/styles/groupbox">GroupBox</a></li>
+                <li><a href="/docs/styles/hyperlink">Hyperlink</a></li>
+                <li><a href="/docs/styles/listbox">ListBox</a></li>
+                <li><a href="/docs/styles/listview">ListView</a></li>
+                <li><a href="/docs/styles/menus">Menus</a></li>
+                <li><a href="/docs/styles/page">Page</a></li>
+                <li><a href="/docs/styles/passwordbox">PasswordBox</a></li>
+                <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
+                <li><a href="/docs/styles/radiobutton">RadioButton</a></li>
+                <li><a href="/docs/styles/scrollbars">ScrollBar</a></li>
+                <li><a href="/docs/styles/slider">Slider</a></li>
+                <li><a href="/docs/styles/statusbar">StatusBar</a></li>
+                <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
+                <li><a href="/docs/styles/text">Text</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
+                <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
+                <li><a href="/docs/styles/toolbar">ToolBar</a></li>
+                <li><a href="/docs/styles/tooltip">ToolTip</a></li>
+                <li><a href="/docs/styles/treeview">TreeView</a></li>
+                <li><a href="/docs/styles/validation">Validation</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/dialogs">Dialogs</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/stylevariants">Style Variants</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/stylevariants/clean">Clean</a></li>
+                <li><a href="/docs/stylevariants/vs">Visual Studio</a></li>
+                <li><a href="/docs/stylevariants/win10">Win 10 (UWP)</a></li>
+                <li><a href="/docs/stylevariants/winui">WinUI</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/message-dialog">Message Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/input-dialog">Input Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/login-dialogs">Login Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/progress-dialogs">Progress Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/mvvm-dialog">MVVM</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/custom-dialogs">Custom Dialogs</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialog Settings</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li><a href="/docs/helper">Helper Classes</a></li>
+                <li class="treeview">
+                    <a href="/docs/dialogs">Dialogs</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/dialogs/message-dialog">Message Dialog</a></li>
+                <li><a href="/docs/dialogs/input-dialog">Input Dialog</a></li>
+                <li><a href="/docs/dialogs/login-dialogs">Login Dialog</a></li>
+                <li><a href="/docs/dialogs/progress-dialogs">Progress Dialog</a></li>
+                <li><a href="/docs/dialogs/mvvm-dialog">MVVM</a></li>
+                <li><a href="/docs/dialogs/custom-dialogs">Custom Dialogs</a></li>
+                <li><a href="/docs/dialogs/dialogsettings">Dialogsettings</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/helper">Helper Classes</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/themes">Themes</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/themes/usage">Usage</a></li>
+                <li><a href="/docs/themes/thememanager">Thememanager</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/checkboxhelper">CheckBoxHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/datagridhelper">DataGridHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/datepickerhelper">DatePickerHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/itemhelper">ItemHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/multiselectorhelper">MultiSelectorHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/scrollviewerhelper">ScrollViewerHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/sliderhelper">SliderHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/tabcontrolhelper">TabControlHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/textboxhelper">TextBoxHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/togglebuttonhelper">ToggleButtonHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/treeviewitemhelper">TreeViewItemHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/validationhelper">ValidationHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/visibilityhelper">VisibilityHelper</a>
-</div>                </div>
-    </div>
-                                            </div>
-                                        </div>
-                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><code>FlipView</code> shows one item at a time and flips between them with animated transitions. It derives from <code>Selector</code>, so it is an items control with a selection — <code>ItemsSource</code>, <code>Items</code>, <code>SelectedItem</code> and <code>SelectedIndex</code> all work as usual.</p>
-<p><img src="images/flipview-basic.png" alt="A FlipView with its navigation buttons and banner" /></p>
-<pre><code class="language-xml">&lt;mah:FlipView Width=&quot;230&quot; Height=&quot;140&quot; BannerText=&quot;The second slide&quot;&gt;
-    &lt;Grid Background=&quot;#FF2E8DEF&quot; /&gt;
-    &lt;Grid Background=&quot;#FF00A600&quot; /&gt;
-    &lt;Grid Background=&quot;#FFBF1E4B&quot; /&gt;
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/guides">Guides</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/guides/quick-start">Quick Start</a></li>
+                <li><a href="/docs/guides/migration-to-v2.0">Migration to v2.0</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="/docs/usage">Usage</a></li>
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+		<section class="content-header">
+			<h1>FlipView</h1>
+		</section>
+	<section class="content">
+		<p>The <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> control behaves like an ItemsControl and shows items one by one on swipe gesture. Also navigation buttons will be available to navigate using mouse.</p>
+<p>It is inspired by Windows 8 / WinRT's control of the same name. However, ours was written from the ground-up to support the <code>MahApps.Metro</code> infrastructure.</p>
+<h2 id="getting-started">Getting started</h2>
+<p>The <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> control works similar to the regular <code>Selector</code> (<code>ItemsControl</code>) control. Place your content inside of it's <code>Items</code> property and it will allow to <em>flip</em> through them.</p>
+<p>The following code was taken from our main <a href="https://github.com/MahApps/MahApps.Metro">MetroDemo</a>.</p>
+<pre><code class="language-xml">&lt;mah:FlipView x:Name="FlipView1st"
+              Height="200"
+              Margin="0 0 5 0"
+              Foreground="{DynamicResource MahApps.Brushes.ThemeBackground}"
+              SelectionChanged="FlipView_SelectionChanged"&gt;
+    &lt;mah:FlipView.Items&gt;
+        &lt;Grid Background="#2E8DEF"&gt;
+            &lt;iconPacks:PackIconModern Width="60"
+                                      Height="60"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Kind="FoodCupcake" /&gt;
+        &lt;/Grid&gt;
+        &lt;Grid Background="#00A600"&gt;
+            &lt;iconPacks:PackIconModern Width="60"
+                                      Height="60"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Kind="Xbox" /&gt;
+        &lt;/Grid&gt;
+        &lt;Grid Background="#BF1E4B"&gt;
+            &lt;iconPacks:PackIconModern Width="60"
+                                      Height="60"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      Kind="ChessHorse" /&gt;
+        &lt;/Grid&gt;
+    &lt;/mah:FlipView.Items&gt;
 &lt;/mah:FlipView&gt;
 </code></pre>
-<p>It was inspired by the WinRT control of the same name but shares no code with it.</p>
-<h2 id="navigating">Navigating</h2>
-<p>The user flips with the two buttons or with the arrow keys. In code:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>GoBack()</code> / <code>GoForward()</code></td>
-<td>one item, honouring <code>CircularNavigation</code></td>
-</tr>
-<tr>
-<td><code>SelectedIndex</code></td>
-<td>jump anywhere; the transition direction is worked out from the old and new index</td>
-</tr>
-<tr>
-<td><code>CircularNavigation</code></td>
-<td><code>False</code> by default; when <code>True</code>, the ends wrap around</td>
-</tr>
-</tbody>
-</table>
-<p>Which button is visible is <strong>computed, not fixed</strong>. <code>DetectControlButtonsStatus</code> hides the back button on the first item and the forward button on the last, unless <code>CircularNavigation</code> is on.</p>
-<p><img src="images/flipview-buttons.png" alt="Buttons inside, outside, and switched off" /></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>IsNavigationEnabled</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-<td>hides both buttons when <code>False</code></td>
-</tr>
-<tr>
-<td><code>NavigationButtonsPosition</code></td>
-<td><code>NavigationButtonsPosition</code></td>
-<td><code>Inside</code></td>
-<td><code>Inside</code> or <code>Outside</code></td>
-</tr>
-<tr>
-<td><code>NavigationButtonStyle</code></td>
-<td><code>Style</code></td>
-<td><code>MahApps.Styles.Button.FlipView.Navigation</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>ButtonBackContent</code> / <code>ButtonForwardContent</code> / <code>ButtonUpContent</code> / <code>ButtonDownContent</code></td>
-<td><code>object</code></td>
-<td>chevrons</td>
-<td>each with a matching <code>…Template</code> and <code>…StringFormat</code></td>
-</tr>
-</tbody>
-</table>
-<p><code>Outside</code> puts the buttons beside the item instead of over it, which costs width — compare the second panel above with the first.</p>
-<div class="alert alert-info"><p><strong>There is no swipe gesture.</strong> <code>FlipView</code> handles <code>OnKeyDown</code> and <code>OnMouseDown</code> and nothing else — no manipulation or touch handling anywhere in the control. Older documentation said otherwise.</p>
-<p>The keyboard is also tied to the buttons: <code>OnKeyDown</code> only acts if the button for that direction is <strong>visible and enabled</strong>. So hiding the buttons — through <code>IsNavigationEnabled=&quot;False&quot;</code> or <code>HideControlButtons()</code> — takes the arrow keys with it. <code>Left</code>/<code>Right</code> flip when horizontal, <code>Up</code>/<code>Down</code> when vertical.</p>
-</div>
-<div class="alert alert-warning"><p><strong><code>HideControlButtons()</code> does not stick.</strong> It is a one-shot: it sets the buttons' visibility once and changes no state.</p>
-<pre><code class="language-csharp">public void HideControlButtons()
+<p><img src="images/flipview.png" class="img-fluid" alt="flipview"></p>
+<h2 id="the-banner">The Banner</h2>
+<p>The banner on the bottom of the <code><a href="/api/MahApps.Metro.Controls/FlipView">FlipView</a></code> can be shown and hidden using the <code>IsBannerEnabled</code> property. You may change the banner text using the <code>BannerText</code> property. We use that in code behind to change the banner based on the selected item.</p>
+<pre><code class="language-csharp">private void FlipView_SelectionChanged(object sender, SelectionChangedEventArgs e)
 {
-    this.ExecuteWhenLoaded(() =&gt; this.DetectControlButtonsStatus(Visibility.Hidden));
+    var flipview = ((FlipView)sender);
+    switch (flipview.SelectedIndex)
+    {
+        case 0:
+            flipview.BannerText = "Cupcakes!";
+            break;
+        case 1:
+            flipview.BannerText = "Xbox!";
+            break;
+        case 2:
+            flipview.BannerText = "Chess!";
+            break;
+    }
 }
 </code></pre>
-<p>Anything that recomputes the buttons afterwards brings them back — a selection change among them, which is exactly what an automatic slideshow does:</p>
-<p><img src="images/flipview-hidecontrolbuttons.png" alt="After HideControlButtons, and after HideControlButtons plus one flip" /></p>
-<p>Both panels called <code>HideControlButtons()</code>. The right one then flipped once, and the back button returned. (The forward button stays hidden because that panel is now on the last item.)</p>
-<p>Use <strong><code>IsNavigationEnabled=&quot;False&quot;</code></strong> instead. It is a dependency property, it is re-read on every recompute, and it survives.</p>
-</div>
-<h2 id="transitions">Transitions</h2>
-<p>The animation between items is a <code>TransitioningContentControl</code>, and there is one <code>TransitionType</code> per direction:</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>LeftTransition</code></td>
-<td><code>LeftReplace</code></td>
-</tr>
-<tr>
-<td><code>RightTransition</code></td>
-<td><code>RightReplace</code></td>
-</tr>
-<tr>
-<td><code>UpTransition</code></td>
-<td><code>Up</code></td>
-</tr>
-<tr>
-<td><code>DownTransition</code></td>
-<td><code>Down</code></td>
-</tr>
-</tbody>
-</table>
-<p><code>Orientation</code> decides which pair is used: <code>Horizontal</code> uses left/right, <code>Vertical</code> uses up/down, and it also moves the buttons.</p>
-<p><img src="images/flipview-orientation.png" alt="Horizontal and vertical" /></p>
-<h2 id="the-banner">The banner</h2>
-<p>The strip along the bottom. It is on by default and slides open and shut.</p>
-<p><img src="images/flipview-banner.png" alt="BannerText, no banner, and a restyled one" /></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>IsBannerEnabled</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>BannerText</code></td>
-<td><code>object</code></td>
-<td><code>null</code></td>
-<td>plus <code>BannerTextTemplate</code>, <code>BannerTextTemplateSelector</code>, <code>BannerTextStringFormat</code></td>
-</tr>
-<tr>
-<td><code>BannerBackground</code></td>
-<td><code>Brush</code></td>
-<td><code>MahApps.Brushes.ThemeForeground</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>BannerForeground</code></td>
-<td><code>Brush</code></td>
-<td><code>MahApps.Brushes.ThemeBackground</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>BannerOpacity</code></td>
-<td><code>double</code></td>
-<td><code>0.8</code></td>
-<td>applies to the whole strip, text included</td>
-</tr>
-</tbody>
-</table>
-<p>The banner does not follow the selection on its own. Bind it to the selected item:</p>
-<pre><code class="language-xml">&lt;mah:FlipView ItemsSource=&quot;{Binding Slides}&quot;
-              BannerText=&quot;{Binding SelectedItem.Caption, RelativeSource={RelativeSource Self}}&quot; /&gt;
-</code></pre>
-<div class="alert alert-info"><p>On <code>develop</code> an item can also name its own banner, by way of a <code>FlipViewItem</code> in the item template:</p>
-<pre><code class="language-xml">&lt;mah:FlipView ItemsSource=&quot;{Binding Slides}&quot;&gt;
-    &lt;mah:FlipView.ItemTemplate&gt;
-        &lt;DataTemplate&gt;
-            &lt;mah:FlipViewItem BannerText=&quot;{Binding Caption}&quot;&gt;
-                &lt;Image Source=&quot;{Binding Image}&quot; /&gt;
-            &lt;/mah:FlipViewItem&gt;
-        &lt;/DataTemplate&gt;
-    &lt;/mah:FlipView.ItemTemplate&gt;
-&lt;/mah:FlipView&gt;
-</code></pre>
-<p>That is the only place for it. A <code>FlipView</code> shows its selected item in a presenter and wraps nothing in a container of its own, so there are no <code>FlipViewItem</code> containers for an <code>ItemContainerStyle</code> to reach. In a released version the item never found the control it belongs to and the banner kept the text a <code>FlipViewItem</code> starts out with, which is <a href="https://github.com/MahApps/MahApps.Metro/issues/4447">#4447</a>.</p>
-<p>An item that names no banner leaves the one on the control alone, so the two ways can be mixed.</p>
-</div>
-<div class="alert alert-info"><p><strong>The banner's text colour is <code>BannerForeground</code>, not <code>Foreground</code>.</strong> Setting <code>Foreground</code> on the <code>FlipView</code> does nothing to the banner — the template binds the banner label to <code>BannerForeground</code>, which wins:</p>
-<p><img src="images/flipview-bannerforeground.png" alt="BannerForeground, Foreground, and both" /></p>
-<p>The middle panel sets <code>Foreground=&quot;Red&quot;</code> and shows nothing at all, because <code>BannerForeground</code> is still its default of <code>MahApps.Brushes.ThemeBackground</code> — white text on the white banner. The third sets <code>Foreground=&quot;Blue&quot;</code> and <code>BannerForeground=&quot;Red&quot;</code> and comes out red.</p>
-<p><code>Foreground</code> is not useless, though: the item container style binds each <code>FlipViewItem</code>'s foreground to its owner's, so <code>Foreground</code> reaches the <strong>items</strong>.</p>
-</div>
-<p>Changing <code>BannerText</code> fades the label out, swaps the text and fades it back in, so the new text does not appear instantly.</p>
-<h2 id="the-index">The index</h2>
-<p>A row of dots showing how many items there are and which one is current. It is <strong>off by default</strong>, and the old documentation never mentioned it.</p>
-<p><img src="images/flipview-index.png" alt="ShowIndex at the bottom, over the item at the top, and on the left" /></p>
-<pre><code class="language-xml">&lt;mah:FlipView ShowIndex=&quot;True&quot; IndexPlacement=&quot;TopOverItem&quot; ItemsSource=&quot;{Binding Slides}&quot; /&gt;
-</code></pre>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ShowIndex</code></td>
-<td><code>bool</code></td>
-<td><code>False</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>IndexPlacement</code></td>
-<td><code>NavigationIndexPlacement</code></td>
-<td><code>Bottom</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>IndexHorizontalAlignment</code> / <code>IndexVerticalAlignment</code></td>
-<td></td>
-<td><code>Center</code></td>
-<td>within the strip</td>
-</tr>
-<tr>
-<td><code>IndexItemContainerStyle</code></td>
-<td><code>Style</code></td>
-<td><code>MahApps.Styles.ListBoxItem.FlipView.Index</code></td>
-<td>the dots</td>
-</tr>
-</tbody>
-</table>
-<p><code>NavigationIndexPlacement</code> has eight values: <code>Left</code>, <code>Right</code>, <code>Top</code>, <code>Bottom</code>, and a <code>…OverItem</code> variant of each. The plain values give the index a strip of its own and shrink the item; the <code>OverItem</code> ones lay it over the item, as in the middle panel above.</p>
-<p>The index is a <code>ListBox</code> in the template and it is clickable, so it navigates as well as reports.</p>
-<h2 id="the-hover-border">The hover border</h2>
-<p>A border drawn over the item while the mouse is inside, to show the control has focus for the arrow keys.</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>MouseHoverBorderEnabled</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-</tr>
-<tr>
-<td><code>MouseHoverBorderBrush</code></td>
-<td><code>Brush</code></td>
-<td>theme</td>
-</tr>
-<tr>
-<td><code>MouseHoverBorderThickness</code></td>
-<td><code>Thickness</code></td>
-<td><code>4</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="an-automatic-slideshow">An automatic slideshow</h2>
-<p>Increment <code>SelectedIndex</code> on a timer, with <code>CircularNavigation</code> so it wraps and <code>IsNavigationEnabled=&quot;False&quot;</code> so the buttons stay away:</p>
-<pre><code class="language-xml">&lt;mah:FlipView x:Name=&quot;Slideshow&quot;
-              CircularNavigation=&quot;True&quot;
-              IsNavigationEnabled=&quot;False&quot;
-              ShowIndex=&quot;True&quot;
-              ItemsSource=&quot;{Binding Slides}&quot; /&gt;
-</code></pre>
-<pre><code class="language-csharp">var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(4) };
-timer.Tick += (_, _) =&gt; this.Slideshow.GoForward();
-timer.Start();
-</code></pre>
-<p><code>GoForward()</code> wraps by itself once <code>CircularNavigation</code> is on, so there is no index arithmetic to get wrong.</p>
-<h2 id="what-a-client-is-told">What a client is told</h2>
-<p>A flip view builds nothing for the pages it is not showing, so there is no list of pages to walk. It says which page is up and how many there are, as <code>1 / 3</code>, and the page itself with its banner is in the tree the way any content is.</p>
-<div class="alert alert-info"><p>New on <code>develop</code>. In a released version it arrives as an empty list. This is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>
-</div>
-<h2 id="related">Related</h2>
-<p><code>FlipViewItem</code> is the container, styled by <code>MahApps.Styles.FlipViewItem</code>. The transitions come from <a href="transitioningcontentcontrol">TransitioningContentControl</a>.</p>
+<h2 id="the-control-buttons">The Control Buttons</h2>
+<p>The <em>control buttons</em> (the next and previous buttons) allow the user to flip through the items using their mouse. The buttons can be disabled by calling <code>HideControlButtons</code> and renabled by calling <code>ShowControlButtons</code>.</p>
+<p>The user can also flip through the items using the arrows on their keyboard.</p>
+<h2 id="automated-scrolling-batteries-not-included">Automated scrolling (batteries not included)</h2>
+<p>Disabling the control buttons is useful when you want to provide an automated scrolling experience. This can be implemented by using a timer and by incrementing <code>SelectedIndex</code>.</p>
 
-
-                                        </div>
-                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
-                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
-        <div class="border-bottom mb-3 sidebar-root">
-            <div class="sidebar-nav-item sidebar-header">On This Page</div>
-            <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#navigating">Navigating</a></div>
-                    <div class="sidebar-nav-item"><a href="#transitions">Transitions</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-banner">The banner</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-index">The index</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-hover-border">The hover border</a></div>
-                    <div class="sidebar-nav-item"><a href="#an-automatic-slideshow">An automatic slideshow</a></div>
-                    <div class="sidebar-nav-item"><a href="#what-a-client-is-told">What a client is told</a></div>
-                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
-            </div>
+	</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/flipview.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div id="footer" class="p-3 text-white">
-            <div class="container-xl">
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
-    <br/>
-    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br/>
-    Generated by <a href="https://statiq.dev">Statiq</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
+    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
+    <br>
+    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br>
+    Generated by <a href="http://wyam.io">Wyam</a>
 </p>
 
-            </div>
+<script>
+	anchors.options.placement = 'left';
+	anchors.add();
+</script>
+
+<script>
+	var snippets = document.querySelectorAll('pre > code');
+	[].forEach.call(snippets, function (snippet) {
+	  snippet.insertAdjacentHTML(
+	    'beforebegin',
+	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
+	  );
+	});
+	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+	  container: document.getElementById('modal'),
+	  target: function (trigger) {
+	    return trigger.nextElementSibling;
+	  },
+	});
+	clipboardSnippets.on('success', function (e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		e.clearSelection();
+		// showTooltip(e.trigger, 'Copied!');
+	});
+	clipboardSnippets.on('error', function (e) {
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
+		// showTooltip(e.trigger, fallbackMessage(e.action));
+	});
+</script>
+            </footer>
         </div>
-
-        <!-- Scripts -->
-        <script>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
             $(document).ready(function() {
-                quicklink.listen();
-
-                // Bootstrap tooltips
-                $('[data-toggle="tooltip"]').tooltip();
-
-				// Keeps the sidebars in view on wider viewports
-				let left = null;
-				let leftParent = null;
-				let right = null;
-				let rightParent = null;
-                function stickSidebars()
-				{
-				    if (left == null) {
-                        left = $('#left-sidebar');
-                        right = $('#right-sidebar');
-                    }
-                    if (left.length) {
-                        if (window.innerWidth >= 768) {
-                            if (leftParent == null) {
-                                leftParent = left.parent()[0];
-                            }
-                            if (leftParent) {
-                                let leftRect = leftParent.getBoundingClientRect();
-                                stickSidebar(left,  leftRect);
-                            }
-                        } else {
-                            left.css('position', 'relative');
-                            if (left.css('bottom') != 0) {
-                                left.css('bottom', '0');
-                            }
-                        }
-                    }
-                    if (right.length) {
-                        if (window.innerWidth >= 768) {
-                            if (rightParent == null) {
-                                rightParent = right.parent()[0];
-                            }
-                            if (rightParent) {
-                                let rightRect = rightParent.getBoundingClientRect();
-                                stickSidebar(right,  rightRect);
-                            }
-                        } else {
-                            right.css('position', 'relative');
-                            if (right.css('bottom') != 0) {
-                                right.css('bottom', '0');
-                            }
-                        }
-                    }
-				}
-				function stickSidebar(sidebar, rect) {
-                    // Bottom
-                    if (rect.bottom > window.innerHeight) {
-                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
-                    } else {
-                        sidebar.css('bottom', 0);
-                    }
-                    // Top
-                    if (rect.top < 0) {
-                        sidebar.css('position', 'sticky');
-                    } else {
-                        sidebar.css('position', 'absolute');
-                    }
-				}
-				$(window).on("load", function() {
-				    stickSidebars();
-				});
-                $(window).scroll(function() {
-				    stickSidebars();
-				});
-				$(window).resize(function() {
-				    stickSidebars();
-				})
-
-                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -748,12 +361,12 @@ timer.Start();
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });
+                });     
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-fluid');
+                mermaidSvg.addClass('img-responsive');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -767,68 +380,40 @@ timer.Start();
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});
+					});			                          
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-
+                    
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
             });
         </script>
-
-        
-
-        <script>
-    anchors.options.placement = 'left';
-    anchors.add();
-
-    // Each <pre> is a horizontal scroll container (Bootstrap sets
-    // overflow: auto), so a button placed inside it scrolls out of view on long
-    // lines. Wrap the block instead and position the button against the
-    // wrapper, which never scrolls.
-    document.querySelectorAll('pre > code').forEach(function (code) {
-        var pre = code.parentNode;
-        var wrapper = document.createElement('div');
-        wrapper.className = 'code-block';
-        pre.parentNode.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
-
-        var button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'btn-copy';
-        button.title = 'Copy to clipboard';
-        button.setAttribute('aria-label', 'Copy to clipboard');
-        button.setAttribute('data-clipboard-snippet', '');
-        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        wrapper.appendChild(button);
-    });
-
-    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-        target: function (trigger) {
-            return trigger.parentNode.querySelector('pre > code');
-        },
-    });
-    clipboardSnippets.on('success', function (e) {
-        var button = e.trigger;
-        button.classList.add('copied');
-        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
-        window.setTimeout(function () {
-            button.classList.remove('copied');
-            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        }, 1500);
-        e.clearSelection();
-    });
-    clipboardSnippets.on('error', function (e) {
-        console.error('Copy failed:', e.action, e.trigger);
-    });
-</script>
-
-    </body>
-</html>
+    
+</body></html>

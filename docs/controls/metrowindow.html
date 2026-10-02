@@ -1,879 +1,410 @@
-<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
-                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
-        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
-        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
-	    
-        <!-- Lunr search -->
-
-        
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
-
-<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
-<script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
-
-
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - MetroWindow</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/assets/js/clipboard.min.js"></script>
+
     </head>
-    <body class="d-flex flex-column">
-        <div class="flex-grow-1 d-flex flex-column">
-            <div class="bg-nav">
-                <div class="container-xl py-3">
-                    <div class="row">
-                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
-                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
-    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
-            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
-        <span class="site-title text-primary">MahApps.Metro</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
-        <ul class="navbar-nav mr-auto">
-            
-        </ul>
-        <ul class="navbar-nav">
-            
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/about">About</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/mahapps.com/docs/controls">Controls</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/styles">Styles</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
-    </li>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
 
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/api">API</a>
-    </li>
-
-
-            <li class="nav-item">
-    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
-</li>
-
-        </ul>
-    </div>
-</nav>
-
-                        </div>
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
                     </div>
-                </div>
-            </div>
             
-            <div class="flex-grow-1 d-flex flex-column">
-                    <!-- Titlebar -->
-                    <div id="titlebar" class="py-4">
-                        <div class="container-xl">
-                            <div class="row">
-                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
-                                    <div class="flex-grow-1">
-                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
-
-        <span><a href="/mahapps.com/docs">Documentation</a></span>
-        <span><a href="/mahapps.com/docs/controls">Controls</a></span>
-                                        </div>
-                                        <div class="text-white m-0 text-break title">
-
-MetroWindow
-                                        </div>
-                                    </div>
-                                        <div class="navbar navbar-expand-md navbar-dark p-0">
-                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                                                <span class="navbar-toggler-icon"></span>
-                                            </button>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/blog">Blog</a></li>
+        <li class="active"><a href="/docs">Documentation</a></li>
+        <li><a href="/api">API</a></li>
+        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
+ 
+                        </ul>       
                     </div>
-                    <!-- Under title -->
-                    <div id="undertitle">
-                        <div class="container-xl">
-                            <div class="row">
-                                    <div class="col-md-3 col-lg-2">
-                                    </div>
-                                    <div class="col-md-9 col-lg-8 bg-white">
-                                    </div>
-                                <div class="col-lg-2 d-none d-lg-block">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/controls/metrowindow.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"><h6>On This Page</h6><p><a href="#window-borders">Window borders</a></p>
+<p><a href="#normal-border">Normal Border</a></p>
+<p><a href="#glow-border">Glow Border</a></p>
+<p><a href="#only-shadow">Only Shadow</a></p>
+<p><a href="#properties">Properties</a></p>
+<p><a href="#setting-a-custom-icon">Setting a custom Icon</a></p>
+<hr class="infobar-hidden">
+</div>
 
-                <!-- Body -->
-                <div class="flex-grow-1 d-flex flex-column">
-                        <div class="container-xl flex-grow-1 d-flex flex-column">
-                            <div class="row flex-grow-1 align-items-stretch">
-                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
-                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+                </section>
+                <section class="sidebar">    
+                                     
+                    
 
-    <div class="sidebar-root">
+                    <ul class="sidebar-menu">
+                        
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/controls">Controls</a>
-</div>                <div class="sidebar-nav-children">
+                <li class="treeview active">
+                    <a href="/docs/controls">Controls</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li class="selected"><a href="/docs/controls/metrowindow">MetroWindow</a></li>
+                <li><a href="/docs/controls/Badged">Badged Control</a></li>
+                <li><a href="/docs/controls/ColorPicker">ColorPicker</a></li>
+                <li><a href="/docs/controls/ContentControlEx">ContentControlEx</a></li>
+                <li><a href="/docs/controls/CustomValidationPopup">CustomValidationPopup</a></li>
+                <li><a href="/docs/controls/DateTimePicker">DateTimePicker</a></li>
+                <li><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
+                <li><a href="/docs/controls/flipview">FlipView</a></li>
+                <li><a href="/docs/controls/flyouts">Flyouts</a></li>
+                <li><a href="/docs/controls/FontIcon">FontIcon</a></li>
+                <li><a href="/docs/controls/HamburgerMenu">HamburgerMenu</a></li>
+                <li><a href="/docs/controls/HotKeyBox">HotKeyBox</a></li>
+                <li><a href="/docs/controls/MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a></li>
+                <li><a href="/docs/controls/MetroAnimatedTabControl">MetroAnimatedTabControl</a></li>
+                <li><a href="/docs/controls/MetroContentControl">MetroContentControl</a></li>
+                <li><a href="/docs/controls/MetroHeader">MetroHeader</a></li>
+                <li><a href="/docs/controls/MetroNavigationWindow">MetroNavigationWindow</a></li>
+                <li><a href="/docs/controls/metroprogressbar">MetroProgressBar</a></li>
+                <li><a href="/docs/controls/MetroTabControl">MetroTabControl</a></li>
+                <li><a href="/docs/controls/MetroTabItem">MetroTabItem</a></li>
+                <li><a href="/docs/controls/MetroThumbContentControl">MetroThumbContentControl</a></li>
+                <li><a href="/docs/controls/MultiFrameImage">MultiFrameImage</a></li>
+                <li><a href="/docs/controls/MultiSelectionComboBox">MultiSelectionComboBox</a></li>
+                <li><a href="/docs/controls/numericupdown">NumericUpDown</a></li>
+                <li><a href="/docs/controls/progressring">ProgressRing</a></li>
+                <li><a href="/docs/controls/rangeslider">RangeSlider</a></li>
+                <li><a href="/docs/controls/splitbutton">SplitButton</a></li>
+                <li><a href="/docs/controls/SplitView">SplitView</a></li>
+                <li><a href="/docs/controls/tile">Tile</a></li>
+                <li><a href="/docs/controls/TimePicker">TimePicker</a></li>
+                <li><a href="/docs/controls/toggleswitch">ToggleSwitch</a></li>
+                <li><a href="/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
+                <li><a href="/docs/controls/WindowButtonCommands">WindowButtonCommands</a></li>
+                <li><a href="/docs/controls/WindowCommands">WindowCommands</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/analogclock">AnalogClock</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/autosuggestbox">AutoSuggestBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/badged">Badged Control</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/colorpicker">ColorPicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/contentcontrolex">ContentControlEx</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/customvalidationpopup">CustomValidationPopup</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/datetimepicker">DateTimePicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/dropdownbutton">DropDownButton</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/flipview">FlipView</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/flyouts">Flyouts</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/fonticon">FontIcon</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/hamburgermenu">HamburgerMenu</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/hotkeybox">HotKeyBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroanimatedsinglerowtabcontrol">MetroAnimatedSingleRowTabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroanimatedtabcontrol">MetroAnimatedTabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrocontentcontrol">MetroContentControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroheader">MetroHeader</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metronavigationwindow">MetroNavigationWindow</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metroprogressbar">MetroProgressBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrotabcontrol">MetroTabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrotabitem">MetroTabItem</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/metrothumbcontentcontrol">MetroThumbContentControl</a>
-</div>
-<div class="sidebar-nav-item active">
-    <a href="/mahapps.com/docs/controls/metrowindow">MetroWindow</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/multiframeimage">MultiFrameImage</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/multiselectioncombobox">MultiSelectionComboBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/numericupdown">NumericUpDown</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/progressring">ProgressRing</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/rangeslider">RangeSlider</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/splitbutton">SplitButton</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/splitview">SplitView</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/tile">Tile</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/timepicker">TimePicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/toggleswitch">ToggleSwitch</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/windowbuttoncommands">WindowButtonCommands</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/controls/windowcommands">WindowCommands</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/styles">Styles</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/styles/buttons">Buttons</a></li>
+                <li><a href="/docs/styles/calendar">Calendar</a></li>
+                <li><a href="/docs/styles/checkbox">CheckBox</a></li>
+                <li><a href="/docs/styles/combobox">ComboBox</a></li>
+                <li><a href="/docs/styles/datagrid">DataGrid</a></li>
+                <li><a href="/docs/styles/datagridcolumns">DataGrid Columns</a></li>
+                <li><a href="/docs/styles/datepicker">DatePicker</a></li>
+                <li><a href="/docs/styles/expander">Expander</a></li>
+                <li><a href="/docs/styles/gridsplitter">GridSplitter</a></li>
+                <li><a href="/docs/styles/groupbox">GroupBox</a></li>
+                <li><a href="/docs/styles/hyperlink">Hyperlink</a></li>
+                <li><a href="/docs/styles/listbox">ListBox</a></li>
+                <li><a href="/docs/styles/listview">ListView</a></li>
+                <li><a href="/docs/styles/menus">Menus</a></li>
+                <li><a href="/docs/styles/page">Page</a></li>
+                <li><a href="/docs/styles/passwordbox">PasswordBox</a></li>
+                <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
+                <li><a href="/docs/styles/radiobutton">RadioButton</a></li>
+                <li><a href="/docs/styles/scrollbars">ScrollBar</a></li>
+                <li><a href="/docs/styles/slider">Slider</a></li>
+                <li><a href="/docs/styles/statusbar">StatusBar</a></li>
+                <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
+                <li><a href="/docs/styles/text">Text</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
+                <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
+                <li><a href="/docs/styles/toolbar">ToolBar</a></li>
+                <li><a href="/docs/styles/tooltip">ToolTip</a></li>
+                <li><a href="/docs/styles/treeview">TreeView</a></li>
+                <li><a href="/docs/styles/validation">Validation</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/dialogs">Dialogs</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/stylevariants">Style Variants</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/stylevariants/clean">Clean</a></li>
+                <li><a href="/docs/stylevariants/vs">Visual Studio</a></li>
+                <li><a href="/docs/stylevariants/win10">Win 10 (UWP)</a></li>
+                <li><a href="/docs/stylevariants/winui">WinUI</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/message-dialog">Message Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/input-dialog">Input Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/login-dialogs">Login Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/progress-dialogs">Progress Dialog</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/mvvm-dialog">MVVM</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/custom-dialogs">Custom Dialogs</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/dialogs/dialogsettings">Dialog Settings</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li><a href="/docs/helper">Helper Classes</a></li>
+                <li class="treeview">
+                    <a href="/docs/dialogs">Dialogs</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/dialogs/message-dialog">Message Dialog</a></li>
+                <li><a href="/docs/dialogs/input-dialog">Input Dialog</a></li>
+                <li><a href="/docs/dialogs/login-dialogs">Login Dialog</a></li>
+                <li><a href="/docs/dialogs/progress-dialogs">Progress Dialog</a></li>
+                <li><a href="/docs/dialogs/mvvm-dialog">MVVM</a></li>
+                <li><a href="/docs/dialogs/custom-dialogs">Custom Dialogs</a></li>
+                <li><a href="/docs/dialogs/dialogsettings">Dialogsettings</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/helper">Helper Classes</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/themes">Themes</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/themes/usage">Usage</a></li>
+                <li><a href="/docs/themes/thememanager">Thememanager</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/checkboxhelper">CheckBoxHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/contextmenuhelper">ContextMenuHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/controlshelper">ControlsHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/datagridhelper">DataGridHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/datepickerhelper">DatePickerHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/expanderhelper">ExpanderHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/groupitemhelper">GroupItemHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/headeredcontrolhelper">HeaderedControlHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/itemhelper">ItemHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/multiselectorhelper">MultiSelectorHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/passwordboxhelper">PasswordBoxHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/progressbarhelper">ProgressBarHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/radiobuttonhelper">RadioButtonHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/scrollviewerhelper">ScrollViewerHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/sliderhelper">SliderHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/tabcontrolhelper">TabControlHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/textboxhelper">TextBoxHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/togglebuttonhelper">ToggleButtonHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/treeviewitemhelper">TreeViewItemHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/validationhelper">ValidationHelper</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/helper/visibilityhelper">VisibilityHelper</a>
-</div>                </div>
-    </div>
-                                            </div>
-                                        </div>
-                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><code>MetroWindow</code> replaces WPF's <code>Window</code>. Using it is what gives an application the MahApps title bar, and it is the host for <a href="flyouts">flyouts</a>, dialogs and the title-bar commands. If you are starting out, read the <a href="../guides/quick-start">Quick Start</a> first.</p>
-<p>It has around fifty properties. They are grouped here by what they do rather than listed alphabetically.</p>
-<h2 id="the-title-bar">The title bar</h2>
-<p><img src="images/metrowindow-titlebar.png" alt="The defaults, a centred title, normal casing, and no title bar" /></p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ShowTitleBar</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>TitleBarHeight</code></td>
-<td><code>int</code></td>
-<td><code>30</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>TitleAlignment</code></td>
-<td><code>HorizontalAlignment</code></td>
-<td><code>Stretch</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>TitleCharacterCasing</code></td>
-<td><code>CharacterCasing</code></td>
-<td><strong><code>Upper</code></strong></td>
-<td>why titles shout by default</td>
-</tr>
-<tr>
-<td><code>TitleForeground</code></td>
-<td><code>Brush</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>TitleTemplate</code></td>
-<td><code>DataTemplate</code></td>
-<td><code>null</code></td>
-<td>replace the title's presentation entirely</td>
-</tr>
-<tr>
-<td><code>WindowTitleBrush</code></td>
-<td><code>Brush</code></td>
-<td><code>Transparent</code></td>
-<td>the bar's background</td>
-</tr>
-<tr>
-<td><code>NonActiveWindowTitleBrush</code></td>
-<td><code>Brush</code></td>
-<td><code>Gray</code></td>
-<td>the same while the window is inactive</td>
-</tr>
-</tbody>
-</table>
-<p><code>TitleCharacterCasing=&quot;Normal&quot;</code> is the one most people reach for first — the third panel above.</p>
-<div class="alert alert-info"><p><code>ShowTitleBar=&quot;False&quot;</code> removes the bar but <strong>not</strong> the window buttons: the fourth panel above still has minimise, maximise and close floating over the content. That is <code>WindowButtonCommandsOverlayBehavior</code>, which defaults to <code>Always</code> and so includes the hidden-title-bar case. Set it to <code>Never</code> if you want them gone with the bar.</p>
-</div>
-<p><code>WindowTitleBrush</code> being <code>Transparent</code> by default is worth knowing: the accent colour you see comes from the theme, not from this property, so setting it is how you get a title bar that ignores the theme.</p>
-<h2 id="borders-glow-and-shadow">Borders, glow and shadow</h2>
-<p><img src="images/metrowindow-borders.png" alt="A one-pixel border, no border, and a taller title bar" /></p>
-<p>A normal border is <code>BorderBrush</code> plus <code>BorderThickness</code>, inherited from <code>Window</code>:</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow BorderBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
-                 BorderThickness=&quot;1&quot; /&gt;
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/guides">Guides</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/guides/quick-start">Quick Start</a></li>
+                <li><a href="/docs/guides/migration-to-v2.0">Migration to v2.0</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="/docs/usage">Usage</a></li>
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+		<section class="content-header">
+			<h1>MetroWindow</h1>
+		</section>
+	<section class="content">
+		<p>The <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> is the main entry point of <code>MahApps</code> and replaces the normal <code>Window</code> to get the <code>MahApps</code> styles and themes to be work.</p>
+<p>If you don't know how to start with this then you can read the <a href="/docs/guides/quick-start">Quick Start</a> section.</p>
+<h1 id="window-borders">Window borders</h1>
+<p>The <code><a href="/api/MahApps.Metro.Controls/MetroWindow">MetroWindow</a></code> can be used with different borders. You can change the behavior by using the <code>BorderBrush</code>, <code>GlowBrush</code> and <code>BorderThickness</code> properties.</p>
+<h1 id="normal-border">Normal Border</h1>
+<p>A window with a normal border can be achieved by using the <code>BorderBrush</code> and <code>BorderThickness</code> property.</p>
+<pre><code class="language-xml">&lt;Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="MainWindow"
+                      Height="200"
+                      Width="600"
+
+                      BorderBrush="{DynamicResource MahApps.Brushes.Accent}"
+                      BorderThickness="1"
+
+                      WindowStartupLocation="CenterScreen"&gt;
+
+&lt;/Controls:MetroWindow&gt;
 </code></pre>
-<p><code>GlowColor</code> instead draws a soft glow around the frame. The default style sets it to the accent, so a window glows without being asked to:</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow GlowColor=&quot;{DynamicResource MahApps.Colors.Accent}&quot; /&gt;
+<p><img src="images/metrowindow_border.png" class="img-fluid" alt="MetroWindow with Border"></p>
+<h1 id="glow-border">Glow Border</h1>
+<p>A window with a border glow effect can be achieved with the <code>GlowBrush</code> property.</p>
+<pre><code class="language-xml">&lt;Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="MainWindow"
+                      Height="200"
+                      Width="600"
+
+                      GlowBrush="{DynamicResource MahApps.Brushes.Accent}"
+
+                      WindowStartupLocation="CenterScreen"&gt;
+
+&lt;/Controls:MetroWindow&gt;
 </code></pre>
-<p><img src="images/metrowindow_glow.png" alt="A window with a glow" /></p>
-<div class="alert alert-warning"><p><strong>The glow is a colour now, not a brush.</strong> <code>GlowBrush</code> and <code>NonActiveGlowBrush</code> were in 2.4.11; on <code>develop</code> they are <code>GlowColor</code> and <code>NonActiveGlowColor</code>, which came along when the window moved onto ControlzEx's <code>WindowChromeWindow</code>. Reach for a <code>MahApps.Colors.…</code> key rather than a <code>MahApps.Brushes.…</code> one, and set the colour to <code>{x:Null}</code> to take the glow away.</p>
-</div>
-<div class="alert alert-info"><p>The glow is painted by <strong>separate windows around the frame</strong>, not by the window's own visual tree. A <code>BorderThickness=&quot;0&quot;</code> window with no glow colour therefore has no edge at all — the middle panel of the first figure.</p>
-</div>
-<p>For a drop shadow and no border, set <code>BorderThickness=&quot;0&quot;</code> with a dark glow:</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow BorderThickness=&quot;0&quot;
-                 GlowColor=&quot;Black&quot;
-                 ResizeMode=&quot;CanResizeWithGrip&quot;
-                 WindowTransitionsEnabled=&quot;False&quot; /&gt;
+<p><img src="images/metrowindow_glow.png" class="img-fluid" alt="MetroWindow with Glow"></p>
+<h1 id="only-shadow">Only Shadow</h1>
+<p>The window can also used without a border to get only a shadow arround it.</p>
+<pre><code class="language-xml">&lt;Controls:MetroWindow x:Class="MahApps.Metro.Simple.Demo.MainWindow"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                      Title="MainWindow"
+                      Height="200"
+                      Width="600"
+
+                      BorderThickness="0"
+                      GlowBrush="Black"
+                      ResizeMode="CanResizeWithGrip"
+
+                      WindowTransitionsEnabled="False"
+                      WindowStartupLocation="CenterScreen"&gt;
+
+&lt;/Controls:MetroWindow&gt;
 </code></pre>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>GlowColor</code></td>
-<td><code>Color?</code></td>
-<td>the accent</td>
-<td>the glow while the window is active</td>
-</tr>
-<tr>
-<td><code>NonActiveGlowColor</code></td>
-<td><code>Color?</code></td>
-<td>the theme foreground</td>
-<td>the same while it is not</td>
-</tr>
-<tr>
-<td><code>GlowDepth</code></td>
-<td><code>int</code></td>
-<td></td>
-<td>how far the glow reaches</td>
-</tr>
-<tr>
-<td><code>IsGlowTransitionEnabled</code></td>
-<td><code>bool</code></td>
-<td></td>
-<td>whether it fades between the two colours</td>
-</tr>
-<tr>
-<td><code>PreferDWMBorderColor</code></td>
-<td><code>bool</code></td>
-<td></td>
-<td>let Windows draw the border itself where it can, instead of the glow windows</td>
-</tr>
-<tr>
-<td><code>CornerPreference</code></td>
-<td><code>WindowCornerPreference</code></td>
-<td><code>Default</code></td>
-<td><code>DoNotRound</code>, <code>Round</code> or <code>RoundSmall</code>, which is what Windows 11 rounds the corners by</td>
-</tr>
-<tr>
-<td><code>NonActiveBorderBrush</code></td>
-<td><code>Brush</code></td>
-<td><code>Gray</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>KeepBorderOnMaximize</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>ResizeBorderThickness</code></td>
-<td><code>Thickness</code></td>
-<td><code>6</code></td>
-<td>the invisible grab area for resizing</td>
-</tr>
-</tbody>
-</table>
-<p>Everything in that table down to <code>CornerPreference</code> comes from ControlzEx rather than from MahApps, since <code>MetroWindow</code> derives from <code>WindowChromeWindow</code> now. <code>IgnoreTaskbarOnMaximize</code>, <code>ShowMinButton</code> and <code>ShowMaxRestoreButton</code> moved there as well, and are set on a <code>MetroWindow</code> exactly as before.</p>
-<h2 id="the-window-buttons">The window buttons</h2>
-<p><img src="images/metrowindow-buttons.png" alt="All three, a disabled close button, and only the close button" /></p>
-<p>There are two pairs of properties, and they do different things:</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ShowMinButton</code>, <code>ShowMaxRestoreButton</code>, <code>ShowCloseButton</code></td>
-<td>remove the button</td>
-</tr>
-<tr>
-<td><code>IsMinButtonEnabled</code>, <code>IsMaxRestoreButtonEnabled</code>, <code>IsCloseButtonEnabled</code></td>
-<td>keep it, greyed out</td>
-</tr>
-</tbody>
-</table>
-<p>All six default to <code>True</code>. The middle panel above is a disabled close button — still there, still visibly a button; the right-hand one has the other two removed outright.</p>
-<p><code>WindowButtonCommands</code> is the control itself, should you want to reach it — see <a href="windowbuttoncommands">WindowButtonCommands</a>, which also has the cancellable <code>ClosingWindow</code> event.</p>
-<p><code>ShowSystemMenu</code> and <code>ShowSystemMenuOnRightClick</code> (both <code>True</code>) control the system menu.</p>
-<h2 id="title-bar-commands-and-the-icon">Title-bar commands and the icon</h2>
-<p><code>LeftWindowCommands</code> and <code>RightWindowCommands</code> take a <a href="windowcommands">WindowCommands</a> each, for your own buttons at either end of the bar. <code>OverrideDefaultWindowCommandsBrush</code> forces a brush onto all of them at once.</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ShowIconOnTitleBar</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>IconTemplate</code></td>
-<td><code>DataTemplate</code></td>
-<td><code>null</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>IconScalingMode</code></td>
-<td><code>MultiFrameImageMode</code></td>
-<td><code>ScaleDownLargerFrame</code></td>
-<td>see <a href="multiframeimage">MultiFrameImage</a></td>
-</tr>
-<tr>
-<td><code>IconBitmapScalingMode</code></td>
-<td><code>BitmapScalingMode</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>IconEdgeMode</code></td>
-<td><code>EdgeMode</code></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><code>IconOverlayBehavior</code></td>
-<td><code>OverlayBehavior</code></td>
-<td><code>Never</code></td>
-<td>whether the icon shows over a flyout</td>
-</tr>
-</tbody>
-</table>
-<div class="alert alert-info"><p><code>Icon</code> is inherited from <code>Window</code> and takes only an <code>ImageSource</code> (<a href="https://learn.microsoft.com/dotnet/api/system.windows.window.icon">Microsoft docs</a>). For anything else, use <code>IconTemplate</code> — the icon is bound to it, so <code>{Binding}</code> inside the template is the <code>Icon</code>.</p>
+<p><img src="images/metrowindow_shadow.png" class="img-fluid" alt="MetroWindow with Shadow"></p>
+<h1 id="properties">Properties</h1>
+<p>One property not detailed is the <code>SaveWindowPosition="True|False"</code> (default <code>False</code>) option. Setting this property to <code>True</code> will mean on next launch, it will automatically be positioned and sized to what it was on exit. This is designed to improve UX and speed development as its one of those "plumbing" UI things that is done regularly.</p>
+<p>Be careful though - if a monitor is detached during application exit and restart, or if certain circumstances arise, your application may launch off screen. Be sure to provide a 'reset' option or handle that in code.</p>
+<h1 id="setting-a-custom-icon">Setting a custom Icon</h1>
+<div class="alert alert-info"><p><em><strong>Note</strong></em><br>
+The <code>Icon</code>-Property can only contain content of type <code>ImageSource</code> (see <a href="https://docs.microsoft.com/en-us/dotnet/api/system.windows.window.icon">Microsoft Docs</a>). To show other content we have to use the <code>IconTemplate</code></p>
 </div>
-<pre><code class="language-xml">&lt;mah:MetroWindow Icon=&quot;app.ico&quot; ShowIconOnTitleBar=&quot;True&quot;&gt;
+<p>You can adjust the appereance of the Icon by editing the <code>IconTemplate</code>. The below code snippet shows how to configure the <code>Icon-Image</code>:</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow x:Class="MetroDemo.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 Icon="mahapps.metro.logo2.ico"
+                 ShowIconOnTitleBar="True"&gt;
     &lt;mah:MetroWindow.IconTemplate&gt;
         &lt;DataTemplate&gt;
-            &lt;Image Margin=&quot;4&quot; RenderOptions.BitmapScalingMode=&quot;HighQuality&quot; Source=&quot;{Binding}&quot; /&gt;
+            &lt;!-- Setting a Margin and enable hight-quality image --&gt;
+            &lt;Image Margin="4"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   Source="{Binding}" /&gt;
         &lt;/DataTemplate&gt;
     &lt;/mah:MetroWindow.IconTemplate&gt;
+    [...]
 &lt;/mah:MetroWindow&gt;
 </code></pre>
-<p>The template does not have to show the <code>Icon</code> at all — put an icon-pack glyph in it and the window has a vector icon:</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow.IconTemplate&gt;
-    &lt;DataTemplate&gt;
-        &lt;iconPacks:PackIconUnicons Width=&quot;30&quot; Height=&quot;30&quot; Margin=&quot;4&quot;
-                                   Kind=&quot;BatteryBolt&quot;
-                                   Foreground=&quot;{DynamicResource MahApps.Brushes.IdealForeground}&quot; /&gt;
-    &lt;/DataTemplate&gt;
-&lt;/mah:MetroWindow.IconTemplate&gt;
-</code></pre>
-<p>Because the icon is drawn by a <a href="multiframeimage">MultiFrameImage</a>, a multi-resolution <code>.ico</code> picks the frame that suits the title bar rather than being stretched — <code>IconScalingMode</code> is that control's mode.</p>
-<h3 id="clicking-the-icon">Clicking the icon</h3>
-<p>The icon behaves like the one on any other window: a left click opens the system menu, a double click closes the window. <code>ShowSystemMenu</code> and <code>CloseOnIconDoubleClick</code> (both <code>True</code>) turn either of those off.</p>
-<p>A right click is left to the template, so an icon of your own can bring a menu of its own:</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow.IconTemplate&gt;
-    &lt;DataTemplate&gt;
-        &lt;Image Margin=&quot;4&quot; Source=&quot;{Binding}&quot;&gt;
-            &lt;Image.ContextMenu&gt;
-                &lt;ContextMenu&gt;
-                    &lt;MenuItem Header=&quot;Settings&quot; /&gt;
-                    &lt;MenuItem Header=&quot;About&quot; /&gt;
-                &lt;/ContextMenu&gt;
-            &lt;/Image.ContextMenu&gt;
-        &lt;/Image&gt;
-    &lt;/DataTemplate&gt;
-&lt;/mah:MetroWindow.IconTemplate&gt;
-</code></pre>
-<p>Where the template has none, the right click falls back to the system menu, which is what Windows does on an icon, and <code>ShowSystemMenuOnRightClick</code> turns that off.</p>
-<div class="alert alert-warning"><p><strong>In a released version the system menu takes the right click either way</strong>, so a menu in the template never gets its turn. Fixed on <code>develop</code> by <a href="https://github.com/MahApps/MahApps.Metro/issues/4488">#4488</a>.</p>
-</div>
-<h2 id="flyouts-and-dialogs">Flyouts and dialogs</h2>
-<p><code>Flyouts</code> takes the <code>FlyoutsControl</code> holding the window's <a href="flyouts">flyouts</a>, and <code>FlyoutOverlayBrush</code> paints the dimming behind a modal one.</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>MetroDialogOptions</code></td>
-<td><code>MetroDialogSettings</code></td>
-<td></td>
-<td>defaults for the dialogs shown on this window</td>
-</tr>
-<tr>
-<td><code>ShowDialogsOverTitleBar</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>OverlayBrush</code></td>
-<td><code>Brush</code></td>
-<td></td>
-<td>the dialog overlay</td>
-</tr>
-<tr>
-<td><code>OverlayOpacity</code></td>
-<td><code>double</code></td>
-<td><code>0.7</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>OverlayFadeIn</code> / <code>OverlayFadeOut</code></td>
-<td><code>Storyboard</code></td>
-<td></td>
-<td>replace the fade</td>
-</tr>
-<tr>
-<td><code>IsAnyDialogOpen</code></td>
-<td><code>bool</code>, read-only</td>
-<td><code>False</code></td>
-<td></td>
-</tr>
-<tr>
-<td><code>IsCloseButtonEnabledWithDialog</code></td>
-<td><code>bool</code>, read-only</td>
-<td><code>True</code></td>
-<td>whether the close button works while a dialog is up</td>
-</tr>
-</tbody>
-</table>
-<p>The four overlay-behaviour properties — <code>LeftWindowCommandsOverlayBehavior</code>, <code>RightWindowCommandsOverlayBehavior</code>, <code>WindowButtonCommandsOverlayBehavior</code> and <code>IconOverlayBehavior</code> — decide what stays visible above an open flyout. They are documented with their defaults on the <a href="flyouts">Flyouts</a> page.</p>
-<h2 id="a-windowsformshost-over-a-dialog">A WindowsFormsHost over a dialog</h2>
-<p><strong>New on <code>develop</code></strong> with <a href="https://github.com/MahApps/MahApps.Metro/issues/3849">#3849</a>.</p>
-<p>A <code>WindowsFormsHost</code>, a <code>WebBrowser</code>, anything built on <code>HwndHost</code> is a window of its own sitting on top of yours. It paints over the WPF content around it whatever the z order says, so a dialog or a flyout drawn over it is cut in half. There is nothing to arrange your way out of, and it is a WPF thing rather than a MahApps one.</p>
-<p>The only way to show the dialog whole is for the hosted handle to be gone while it is up, which is what <code>CollapseHwndHosts</code> does:</p>
-<pre><code class="language-xml">&lt;mah:MetroWindow x:Class=&quot;Sample.MainWindow&quot;
-                 xmlns:mah=&quot;http://metro.mahapps.com/winfx/xaml/controls&quot;
-                 CollapseHwndHosts=&quot;True&quot;&gt;
-    &lt;DockPanel&gt;
-        &lt;TextBlock DockPanel.Dock=&quot;Top&quot; Text=&quot;a report&quot; /&gt;
-        &lt;WindowsFormsHost&gt;
-            &lt;wf:ReportViewer x:Name=&quot;Viewer&quot; /&gt;
-        &lt;/WindowsFormsHost&gt;
-    &lt;/DockPanel&gt;
+<p>You can also use any other content here as well. In the following snippet we will use an icon form the <a href="https://github.com/MahApps/MahApps.Metro.IconPacks">MahApps.Metro.IconPacks</a> but you can use any other content as well.</p>
+<pre><code class="language-xml">&lt;mah:MetroWindow x:Class="MetroDemo.MainWindow"
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+                 ShowIconOnTitleBar="True"&gt;
+    &lt;mah:MetroWindow.IconTemplate&gt;
+        &lt;DataTemplate&gt;
+            &lt;iconPacks:PackIconUnicons Kind="BatteryBolt" 
+                                       Width="30" 
+                                       Height="30"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Margin="4"
+                                       Foreground="{DynamicResource MahApps.Brushes.IdealForeground}"/&gt;
+        &lt;/DataTemplate&gt;
+    &lt;/mah:MetroWindow.IconTemplate&gt;
+    [...]
 &lt;/mah:MetroWindow&gt;
 </code></pre>
-<p>Every <code>HwndHost</code> in the window is collapsed for as long as a dialog or a <code>Flyout</code> is open, and gets back the visibility it had once the last of them is gone. A flyout counts as gone when it has finished sliding out, not when it is told to close, so nothing pops up in front of it on the way.</p>
-<div class="alert alert-warning"><p>The price is that the hosted control disappears and comes back. It is only hidden, not rebuilt: the window handle stays the same, and so does whatever the control holds, its text and its caret. But it is visibly gone while the dialog is up and it redraws when it returns, which for something like a video player or a browser is an interruption rather than a flicker. That is why this is off by default.</p>
-</div>
-<h2 id="position-dragging-and-startup">Position, dragging and startup</h2>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>SaveWindowPosition</code></td>
-<td><code>bool</code></td>
-<td><code>False</code></td>
-<td>restore size and position on next launch</td>
-</tr>
-<tr>
-<td><code>WindowPlacementSettings</code></td>
-<td><code>IWindowPlacementSettings</code></td>
-<td><code>null</code></td>
-<td>where that is stored</td>
-</tr>
-<tr>
-<td><code>IgnoreTaskbarOnMaximize</code></td>
-<td><code>bool</code></td>
-<td><code>False</code></td>
-<td>maximise over the taskbar</td>
-</tr>
-<tr>
-<td><code>IsWindowDraggable</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-<td>drag the window by its title bar</td>
-</tr>
-<tr>
-<td><code>WindowTransitionsEnabled</code></td>
-<td><code>bool</code></td>
-<td><code>True</code></td>
-<td>the content's entrance animation</td>
-</tr>
-</tbody>
-</table>
-<div class="alert alert-warning"><p><code>SaveWindowPosition=&quot;True&quot;</code> is a nice convenience and a real support risk. If a monitor is detached between exit and restart, the window can come back <strong>off screen</strong> with no way for the user to get at it. Provide a reset, or validate the restored placement against the current screens yourself.</p>
-</div>
-<h3 id="where-the-placement-is-stored">Where the placement is stored</h3>
-<p>Left alone, the placement goes into the application settings, through <code>ApplicationSettingsBase</code>. That store depends on the configuration system, and it does fail: on .NET 9 before 9.0.3 saving throws when the application runs from a network location, and the position is silently lost.</p>
-<p><code>WindowPlacementSettings</code> takes any <code>IWindowPlacementSettings</code>, so the storage is yours to pick. <code>WindowPlacementFileSettings</code> writes a file instead, either one you name or one under the local application data of the current user:</p>
-<pre><code class="language-csharp">public MainWindow()
-{
-    this.InitializeComponent();
-    this.WindowPlacementSettings = WindowPlacementFileSettings.ForWindow(this);
-}
-</code></pre>
-<p>It has no dependency on the configuration system, and it behaves the same on every target framework. Writing your own implementation is a small interface away if you would rather keep the placement in a database or next to the rest of your own settings.</p>
-<div class="alert alert-info"><p><code>WindowPlacementFileSettings</code> is on <code>develop</code> and ships with the next release. In a released version, write the interface yourself, it is <code>Placement</code>, <code>Reload</code>, <code>Save</code>, <code>Upgrade</code>, <code>UpgradeSettings</code> and <code>Reset</code>.</p>
-</div>
-<p><code>IsWindowDraggable</code> is what <a href="metrothumbcontentcontrol">MetroThumbContentControl</a> checks — the title bar is one of those, and dragging it is what moves the window.</p>
-<h2 id="related">Related</h2>
-<p><a href="windowcommands">WindowCommands</a> and <a href="windowbuttoncommands">WindowButtonCommands</a> for the title bar's two sets of buttons. <a href="flyouts">Flyouts</a> for the overlay panels and the overlay-behaviour table. <a href="metronavigationwindow">MetroNavigationWindow</a> is a <code>MetroWindow</code> with a navigation bar built in.</p>
 
-
-                                        </div>
-                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
-                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
-        <div class="border-bottom mb-3 sidebar-root">
-            <div class="sidebar-nav-item sidebar-header">On This Page</div>
-            <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#the-title-bar">The title bar</a></div>
-                    <div class="sidebar-nav-item"><a href="#borders-glow-and-shadow">Borders, glow and shadow</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-window-buttons">The window buttons</a></div>
-                    <div class="sidebar-nav-item"><a href="#title-bar-commands-and-the-icon">Title-bar commands and the icon</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#clicking-the-icon">Clicking the icon</a></div>
-                        </div>
-                    <div class="sidebar-nav-item"><a href="#flyouts-and-dialogs">Flyouts and dialogs</a></div>
-                    <div class="sidebar-nav-item"><a href="#a-windowsformshost-over-a-dialog">A WindowsFormsHost over a dialog</a></div>
-                    <div class="sidebar-nav-item"><a href="#position-dragging-and-startup">Position, dragging and startup</a></div>
-                        <div class="sidebar-nav-children">
-                                <div class="sidebar-nav-item"><a href="#where-the-placement-is-stored">Where the placement is stored</a></div>
-                        </div>
-                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
-            </div>
+	</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/metrowindow.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div id="footer" class="p-3 text-white">
-            <div class="container-xl">
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
-    <br/>
-    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br/>
-    Generated by <a href="https://statiq.dev">Statiq</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
+    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
+    <br>
+    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br>
+    Generated by <a href="http://wyam.io">Wyam</a>
 </p>
 
-            </div>
+<script>
+	anchors.options.placement = 'left';
+	anchors.add();
+</script>
+
+<script>
+	var snippets = document.querySelectorAll('pre > code');
+	[].forEach.call(snippets, function (snippet) {
+	  snippet.insertAdjacentHTML(
+	    'beforebegin',
+	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
+	  );
+	});
+	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+	  container: document.getElementById('modal'),
+	  target: function (trigger) {
+	    return trigger.nextElementSibling;
+	  },
+	});
+	clipboardSnippets.on('success', function (e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		e.clearSelection();
+		// showTooltip(e.trigger, 'Copied!');
+	});
+	clipboardSnippets.on('error', function (e) {
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
+		// showTooltip(e.trigger, fallbackMessage(e.action));
+	});
+</script>
+            </footer>
         </div>
-
-        <!-- Scripts -->
-        <script>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
             $(document).ready(function() {
-                quicklink.listen();
-
-                // Bootstrap tooltips
-                $('[data-toggle="tooltip"]').tooltip();
-
-				// Keeps the sidebars in view on wider viewports
-				let left = null;
-				let leftParent = null;
-				let right = null;
-				let rightParent = null;
-                function stickSidebars()
-				{
-				    if (left == null) {
-                        left = $('#left-sidebar');
-                        right = $('#right-sidebar');
-                    }
-                    if (left.length) {
-                        if (window.innerWidth >= 768) {
-                            if (leftParent == null) {
-                                leftParent = left.parent()[0];
-                            }
-                            if (leftParent) {
-                                let leftRect = leftParent.getBoundingClientRect();
-                                stickSidebar(left,  leftRect);
-                            }
-                        } else {
-                            left.css('position', 'relative');
-                            if (left.css('bottom') != 0) {
-                                left.css('bottom', '0');
-                            }
-                        }
-                    }
-                    if (right.length) {
-                        if (window.innerWidth >= 768) {
-                            if (rightParent == null) {
-                                rightParent = right.parent()[0];
-                            }
-                            if (rightParent) {
-                                let rightRect = rightParent.getBoundingClientRect();
-                                stickSidebar(right,  rightRect);
-                            }
-                        } else {
-                            right.css('position', 'relative');
-                            if (right.css('bottom') != 0) {
-                                right.css('bottom', '0');
-                            }
-                        }
-                    }
-				}
-				function stickSidebar(sidebar, rect) {
-                    // Bottom
-                    if (rect.bottom > window.innerHeight) {
-                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
-                    } else {
-                        sidebar.css('bottom', 0);
-                    }
-                    // Top
-                    if (rect.top < 0) {
-                        sidebar.css('position', 'sticky');
-                    } else {
-                        sidebar.css('position', 'absolute');
-                    }
-				}
-				$(window).on("load", function() {
-				    stickSidebars();
-				});
-                $(window).scroll(function() {
-				    stickSidebars();
-				});
-				$(window).resize(function() {
-				    stickSidebars();
-				})
-
-                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -882,12 +413,12 @@ MetroWindow
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });
+                });     
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-fluid');
+                mermaidSvg.addClass('img-responsive');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -901,68 +432,40 @@ MetroWindow
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});
+					});			                          
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-
+                    
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
             });
         </script>
-
-        
-
-        <script>
-    anchors.options.placement = 'left';
-    anchors.add();
-
-    // Each <pre> is a horizontal scroll container (Bootstrap sets
-    // overflow: auto), so a button placed inside it scrolls out of view on long
-    // lines. Wrap the block instead and position the button against the
-    // wrapper, which never scrolls.
-    document.querySelectorAll('pre > code').forEach(function (code) {
-        var pre = code.parentNode;
-        var wrapper = document.createElement('div');
-        wrapper.className = 'code-block';
-        pre.parentNode.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
-
-        var button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'btn-copy';
-        button.title = 'Copy to clipboard';
-        button.setAttribute('aria-label', 'Copy to clipboard');
-        button.setAttribute('data-clipboard-snippet', '');
-        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        wrapper.appendChild(button);
-    });
-
-    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-        target: function (trigger) {
-            return trigger.parentNode.querySelector('pre > code');
-        },
-    });
-    clipboardSnippets.on('success', function (e) {
-        var button = e.trigger;
-        button.classList.add('copied');
-        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
-        window.setTimeout(function () {
-            button.classList.remove('copied');
-            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        }, 1500);
-        e.clearSelection();
-    });
-    clipboardSnippets.on('error', function (e) {
-        console.error('Copy failed:', e.action, e.trigger);
-    });
-</script>
-
-    </body>
-</html>
+    
+</body></html>

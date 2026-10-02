@@ -1,490 +1,342 @@
-<!DOCTYPE html>
-<html>
-    <head>
+﻿<!DOCTYPE html><html><head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="description">
+        <meta name="keywords" content="static content generator,static site generator,static site,HTML,web development,.NET,C#,Razor,Markdown,YAML">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-        <link href="/mahapps.com/assets/bootstrap/bootstrap.css" rel="stylesheet" />
-                <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto+Slab:wght@400;700&family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet" data-no-mirror>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/themes/prism.css">
-        <link href="/mahapps.com/assets/css/theme.css" rel="stylesheet" />
-        <link href="/mahapps.com/assets/css/styles.css" rel="stylesheet" />
-
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-        <script src="https://kit.fontawesome.com/a1cad7ed9a.js" crossorigin="anonymous" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/mermaid@8.4.8/dist/mermaid.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/components/prism-core.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/prismjs@1.26.0/plugins/autoloader/prism-autoloader.min.js" data-no-mirror></script>
-        <script src="https://cdn.jsdelivr.net/npm/quicklink@2.0.0/dist/quicklink.umd.js"></script>
-	    
-        <!-- Lunr search -->
-
-        
-
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css">
-
-<script type="text/javascript" src="/mahapps.com/assets/js/anchor.min.js"></script>
-<script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
-
-
+        <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/img/favicon.ico" type="image/x-icon">
         <title>MahApps.Metro - DataGrid</title>
+        <link href="/assets/css/highlight.css" rel="stylesheet">
+        <link href="/assets/css/bootstrap/bootstrap.css" rel="stylesheet">
+        <link href="/assets/css/adminlte/AdminLTE.css" rel="stylesheet">
+        <link href="/assets/css/theme/theme.css" rel="stylesheet">
+        <link href="//fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto:400,400i,700,700i" rel="stylesheet">
+        <link href="/assets/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="/assets/css/override.css" rel="stylesheet">
+        <script src="/assets/js/jquery-2.2.3.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>        
+        <script src="/assets/js/app.min.js"></script>         
+        <script src="/assets/js/highlight.pack.js"></script>   
+        <script src="/assets/js/jquery.slimscroll.min.js"></script>
+        <script src="/assets/js/jquery.sticky-kit.min.js"></script>
+        <script src="/assets/js/mermaid.min.js"></script>
+        <script src="/assets/js/svg-pan-zoom.min.js"></script>
+        <!--[if lt IE 9]>
+        <script src="/assets/js/html5shiv.min.js"></script>
+        <script src="/assets/js/respond.min.js"></script>
+        <![endif]-->  
+
+        <script type="text/javascript" src="/assets/js/anchor.min.js"></script>
+<script type="text/javascript" src="/assets/js/clipboard.min.js"></script>
+
     </head>
-    <body class="d-flex flex-column">
-        <div class="flex-grow-1 d-flex flex-column">
-            <div class="bg-nav">
-                <div class="container-xl py-3">
-                    <div class="row">
-                        <div class="offset-lg-2 col-12 col-lg-8 px-0">
-                            <nav class="navbar navbar-expand-md navbar-light align-items-start">
-    <a class="navbar-brand d-flex align-items-center" href="/mahapps.com/">
-            <img id="logo" src="/mahapps.com/assets/img/mahapps.metro.logo.png" alt="">
-        <span class="site-title text-primary">MahApps.Metro</span>
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapse-topnav" aria-controls="collapse-topnav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div id="collapse-topnav" class="collapse navbar-collapse flex-wrap">
-        <ul class="navbar-nav mr-auto">
-            
-        </ul>
-        <ul class="navbar-nav">
-            
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/about">About</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/controls">Controls</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link active" href="/mahapps.com/docs/styles">Styles</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/docs/guides">Guides</a>
-    </li>
+    <body class="hold-transition wyam layout-boxed  ">    
+        <div class="top-banner"></div>
+        <div class="wrapper with-container">
+            <!-- Header -->
+            <header class="main-header">   
+                     
+                <a href="/" class="logo">
 
-    <li class="nav-item">
-        <a class="nav-link" href="/mahapps.com/api">API</a>
-    </li>
-
-
-            <li class="nav-item">
-    <a class="nav-link" href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> Source</a>
-</li>
-
-        </ul>
-    </div>
-</nav>
-
-                        </div>
+                                <!-- mini logo for sidebar mini 50x50 pixels -->
+                                <span class="logo-mini"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                <!-- logo for regular state and mobile devices -->
+                                <span class="logo-lg"><img src="/assets/img/mahapps.metro.logo.png"></span>
+                                            </a>   
+                         
+                <nav class="navbar navbar-static-top" role="navigation">
+                    <!-- Sidebar toggle button-->
+                        <a href="#" class="sidebar-toggle visible-xs-block" data-toggle="offcanvas" role="button">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-right"></i>
+                        </a>
+                                        
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <span class="sr-only">Toggle side menu</span>
+                            <i class="fa fa-chevron-circle-down"></i>
+                        </button>
                     </div>
-                </div>
-            </div>
             
-            <div class="flex-grow-1 d-flex flex-column">
-                    <!-- Titlebar -->
-                    <div id="titlebar" class="py-4">
-                        <div class="container-xl">
-                            <div class="row">
-                                <div class="offset-lg-2 col-12 col-lg-8 px-3 px-lg-0 w-100 d-flex flex-wrap align-items-end">
-                                    <div class="flex-grow-1">
-                                        <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
-
-        <span><a href="/mahapps.com/docs">Documentation</a></span>
-        <span><a href="/mahapps.com/docs/styles">Styles</a></span>
-                                        </div>
-                                        <div class="text-white m-0 text-break title">
-
-DataGrid
-                                        </div>
-                                    </div>
-                                        <div class="navbar navbar-expand-md navbar-dark p-0">
-                                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#left-sidebar" aria-controls="left-sidebar" aria-expanded="false" aria-label="Toggle navigation">
-                                                <span class="navbar-toggler-icon"></span>
-                                            </button>
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                        <ul class="nav navbar-nav">                            
+                                    <li><a href="/blog">Blog</a></li>
+        <li class="active"><a href="/docs">Documentation</a></li>
+        <li><a href="/api">API</a></li>
+        <li><a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> Source</a></li>
+ 
+                        </ul>       
                     </div>
-                    <!-- Under title -->
-                    <div id="undertitle">
-                        <div class="container-xl">
-                            <div class="row">
-                                    <div class="col-md-3 col-lg-2">
-                                    </div>
-                                    <div class="col-md-9 col-lg-8 bg-white">
-                                    </div>
-                                <div class="col-lg-2 d-none d-lg-block">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- /.navbar-collapse -->
+                
+                    <!-- Navbar Right Menu -->
+                </nav>
+            </header>
+            
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar ">
+                <section class="infobar" data-spy="affix" data-offset-top="60" data-offset-bottom="200"> 
+                    	
+        <div><p><a href="https://github.com/MahApps/mahapps.com/tree/master/input/docs/styles/datagrid.md"><i class="fa fa-pencil-square" aria-hidden="true"></i> Edit Content</a></p></div>
+    <div id="infobar-headings"></div>
 
-                <!-- Body -->
-                <div class="flex-grow-1 d-flex flex-column">
-                        <div class="container-xl flex-grow-1 d-flex flex-column">
-                            <div class="row flex-grow-1 align-items-stretch">
-                                        <div class="col-md-3 col-lg-2 p-md-0 m-md-0 bg-body">
-                                            <div id="left-sidebar" class="sidebar collapse px-0 px-md-3 pt-3">
+                </section>
+                <section class="sidebar">    
+                                     
+                    
 
-    <div class="sidebar-root">
+                    <ul class="sidebar-menu">
+                        
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/styles">Styles</a>
-</div>                <div class="sidebar-nav-children">
+                <li class="treeview">
+                    <a href="/docs/controls">Controls</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/controls/metrowindow">MetroWindow</a></li>
+                <li><a href="/docs/controls/Badged">Badged Control</a></li>
+                <li><a href="/docs/controls/ColorPicker">ColorPicker</a></li>
+                <li><a href="/docs/controls/ContentControlEx">ContentControlEx</a></li>
+                <li><a href="/docs/controls/CustomValidationPopup">CustomValidationPopup</a></li>
+                <li><a href="/docs/controls/DateTimePicker">DateTimePicker</a></li>
+                <li><a href="/docs/controls/dropdownbutton">DropDownButton</a></li>
+                <li><a href="/docs/controls/flipview">FlipView</a></li>
+                <li><a href="/docs/controls/flyouts">Flyouts</a></li>
+                <li><a href="/docs/controls/FontIcon">FontIcon</a></li>
+                <li><a href="/docs/controls/HamburgerMenu">HamburgerMenu</a></li>
+                <li><a href="/docs/controls/HotKeyBox">HotKeyBox</a></li>
+                <li><a href="/docs/controls/MetroAnimatedSingleRowTabControl">MetroAnimatedSingleRowTabControl</a></li>
+                <li><a href="/docs/controls/MetroAnimatedTabControl">MetroAnimatedTabControl</a></li>
+                <li><a href="/docs/controls/MetroContentControl">MetroContentControl</a></li>
+                <li><a href="/docs/controls/MetroHeader">MetroHeader</a></li>
+                <li><a href="/docs/controls/MetroNavigationWindow">MetroNavigationWindow</a></li>
+                <li><a href="/docs/controls/metroprogressbar">MetroProgressBar</a></li>
+                <li><a href="/docs/controls/MetroTabControl">MetroTabControl</a></li>
+                <li><a href="/docs/controls/MetroTabItem">MetroTabItem</a></li>
+                <li><a href="/docs/controls/MetroThumbContentControl">MetroThumbContentControl</a></li>
+                <li><a href="/docs/controls/MultiFrameImage">MultiFrameImage</a></li>
+                <li><a href="/docs/controls/MultiSelectionComboBox">MultiSelectionComboBox</a></li>
+                <li><a href="/docs/controls/numericupdown">NumericUpDown</a></li>
+                <li><a href="/docs/controls/progressring">ProgressRing</a></li>
+                <li><a href="/docs/controls/rangeslider">RangeSlider</a></li>
+                <li><a href="/docs/controls/splitbutton">SplitButton</a></li>
+                <li><a href="/docs/controls/SplitView">SplitView</a></li>
+                <li><a href="/docs/controls/tile">Tile</a></li>
+                <li><a href="/docs/controls/TimePicker">TimePicker</a></li>
+                <li><a href="/docs/controls/toggleswitch">ToggleSwitch</a></li>
+                <li><a href="/docs/controls/transitioningcontentcontrol">TransitioningContentControl</a></li>
+                <li><a href="/docs/controls/WindowButtonCommands">WindowButtonCommands</a></li>
+                <li><a href="/docs/controls/WindowCommands">WindowCommands</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/buttons">Buttons</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/calendar">Calendar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/checkbox">CheckBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/combobox">ComboBox</a>
-</div>
-<div class="sidebar-nav-item active">
-    <a href="/mahapps.com/docs/styles/datagrid">DataGrid</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/datagridcolumns">DataGrid Columns</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/datepicker">DatePicker</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/expander">Expander</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/gridsplitter">GridSplitter</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/groupbox">GroupBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/hyperlink">Hyperlink</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/listbox">ListBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/listview">ListView</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/menus">Menus</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/page">Page</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/passwordbox">PasswordBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/progressbar">ProgressBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/radiobutton">RadioButton</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/scrollbars">ScrollBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/slider">Slider</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/statusbar">StatusBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/tabcontrol">TabControl</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/text">Text</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/textbox">TextBox</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/togglebutton">ToggleButton</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/toolbar">ToolBar</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/tooltip">ToolTip</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/treeview">TreeView</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/styles/validation">Validation</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li class="treeview active">
+                    <a href="/docs/styles">Styles</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/styles/buttons">Buttons</a></li>
+                <li><a href="/docs/styles/calendar">Calendar</a></li>
+                <li><a href="/docs/styles/checkbox">CheckBox</a></li>
+                <li><a href="/docs/styles/combobox">ComboBox</a></li>
+                <li class="selected"><a href="/docs/styles/datagrid">DataGrid</a></li>
+                <li><a href="/docs/styles/datagridcolumns">DataGrid Columns</a></li>
+                <li><a href="/docs/styles/datepicker">DatePicker</a></li>
+                <li><a href="/docs/styles/expander">Expander</a></li>
+                <li><a href="/docs/styles/gridsplitter">GridSplitter</a></li>
+                <li><a href="/docs/styles/groupbox">GroupBox</a></li>
+                <li><a href="/docs/styles/hyperlink">Hyperlink</a></li>
+                <li><a href="/docs/styles/listbox">ListBox</a></li>
+                <li><a href="/docs/styles/listview">ListView</a></li>
+                <li><a href="/docs/styles/menus">Menus</a></li>
+                <li><a href="/docs/styles/page">Page</a></li>
+                <li><a href="/docs/styles/passwordbox">PasswordBox</a></li>
+                <li><a href="/docs/styles/progressbar">ProgressBar</a></li>
+                <li><a href="/docs/styles/radiobutton">RadioButton</a></li>
+                <li><a href="/docs/styles/scrollbars">ScrollBar</a></li>
+                <li><a href="/docs/styles/slider">Slider</a></li>
+                <li><a href="/docs/styles/statusbar">StatusBar</a></li>
+                <li><a href="/docs/styles/tabcontrol">TabControl</a></li>
+                <li><a href="/docs/styles/text">Text</a></li>
+                <li><a href="/docs/styles/textbox">TextBox</a></li>
+                <li><a href="/docs/styles/togglebutton">ToggleButton</a></li>
+                <li><a href="/docs/styles/toolbar">ToolBar</a></li>
+                <li><a href="/docs/styles/tooltip">ToolTip</a></li>
+                <li><a href="/docs/styles/treeview">TreeView</a></li>
+                <li><a href="/docs/styles/validation">Validation</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/themes">Themes</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/stylevariants">Style Variants</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/stylevariants/clean">Clean</a></li>
+                <li><a href="/docs/stylevariants/vs">Visual Studio</a></li>
+                <li><a href="/docs/stylevariants/win10">Win 10 (UWP)</a></li>
+                <li><a href="/docs/stylevariants/winui">WinUI</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/themes/usage">Usage</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/themes/thememanager">Thememanager</a>
-</div>                </div>
+                    </ul>
+                </li>
+                <li><a href="/docs/helper">Helper Classes</a></li>
+                <li class="treeview">
+                    <a href="/docs/dialogs">Dialogs</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/dialogs/message-dialog">Message Dialog</a></li>
+                <li><a href="/docs/dialogs/input-dialog">Input Dialog</a></li>
+                <li><a href="/docs/dialogs/login-dialogs">Login Dialog</a></li>
+                <li><a href="/docs/dialogs/progress-dialogs">Progress Dialog</a></li>
+                <li><a href="/docs/dialogs/mvvm-dialog">MVVM</a></li>
+                <li><a href="/docs/dialogs/custom-dialogs">Custom Dialogs</a></li>
+                <li><a href="/docs/dialogs/dialogsettings">Dialogsettings</a></li>
 
-<div class="sidebar-nav-item has-children">
-    <a href="/mahapps.com/docs/stylevariants">Style Variants</a>
-</div>                <div class="sidebar-nav-children">
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/themes">Themes</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/themes/usage">Usage</a></li>
+                <li><a href="/docs/themes/thememanager">Thememanager</a></li>
 
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/clean">Clean</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/vs">Visual Studio</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/win10">Win 10 (UWP)</a>
-</div>
-<div class="sidebar-nav-item">
-    <a href="/mahapps.com/docs/stylevariants/winui">WinUI</a>
-</div>                </div>
-    </div>
-                                            </div>
-                                        </div>
-                                        <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><code>DataGrid</code> ships with WPF; MahApps restyles it and everything inside it. There is one alternative look, one variant for long grids, and a set of properties for the parts of a grid that WPF gives you no other way to reach.</p>
-<p><img src="images/datagrid-styles.png" alt="The default DataGrid and the Azure variant" /></p>
-<h2 id="the-implicit-style">The implicit style</h2>
-<p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.DataGrid</code> to every <code>DataGrid</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
-<pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml&quot; /&gt;
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="/docs/guides">Guides</a> <a href="#" class="expand"></a>
+                    <ul class="treeview-menu">
+                        
+                <li><a href="/docs/guides/quick-start">Quick Start</a></li>
+                <li><a href="/docs/guides/migration-to-v2.0">Migration to v2.0</a></li>
+
+                    </ul>
+                </li>
+                <li><a href="/docs/usage">Usage</a></li>
+
+                    </ul>
+                            
+                </section>                
+            </aside>
+            
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                
+
+
+
+		<section class="content-header">
+			<h1>DataGrid</h1>
+		</section>
+	<section class="content">
+		<p>The <code>DataGrid</code> is a control that ships with .NET by default and provides support for filtering, grouping, sorting and other standard features that you would expect of a <code>DataGrid</code>.</p>
+<p>MahApps.Metro adds styles for a <code>Checkbox</code> on <code>DataGridCheckBoxColumn</code> and a custom <code>DataGridNumberNumericUpDownColumn</code>.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>In order for the style to be applied, you will have to include references to the styles and controls resource dictionary in your <code>App.xaml</code> and the namespace <code>xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"</code> in the window you are using. Instructions on how to do this can be found in the <a href="/docs/guides/quick-start">Quick Start Guide</a>.</p>
+<p>After including the references, any <code>DataGrid</code> that you place in XAML will follow the style displayed above.</p>
+<pre><code class="language-xml">&lt;DataGrid ItemsSource="{Binding People}" /&gt;
 </code></pre>
-<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding Albums}&quot; /&gt;
+<p><img src="images/default_datagrid_style.png" class="img-fluid" alt=""></p>
+<h2 id="alternative-style">Alternative Style</h2>
+<p>MahApps.Metro also provides an alternative style, <code>MahApps.Styles.DataGrid.Azure</code> that attempts to mimic the DataGrid found on Microsoft Azure. To use it instead of the default style, simple set the DataGrid's <code>Style</code> property to <code>{StaticResource MahApps.Styles.DataGrid.Azure}</code>. As usual, make sure that you have your references defined.</p>
+<pre><code class="language-xml">&lt;DataGrid ItemsSource="{Binding People}" Style="{StaticResource MahApps.Styles.DataGrid.Azure}" /&gt;
 </code></pre>
-<p>Only the <code>DataGrid</code> itself has an implicit style. Everything inside it — rows, cells, headers — is styled because the grid's style hands those styles down:</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Style</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>RowStyle</code></td>
-<td><code>MahApps.Styles.DataGridRow</code></td>
-</tr>
-<tr>
-<td><code>CellStyle</code></td>
-<td><code>MahApps.Styles.DataGridCell</code></td>
-</tr>
-<tr>
-<td><code>ColumnHeaderStyle</code></td>
-<td><code>MahApps.Styles.DataGridColumnHeader</code></td>
-</tr>
-<tr>
-<td><code>RowHeaderStyle</code></td>
-<td><code>MahApps.Styles.DataGridRowHeader</code></td>
-</tr>
-</tbody>
-</table>
-<p>So restyling one part means replacing that one property, not the grid:</p>
-<pre><code class="language-xml">&lt;DataGrid CellStyle=&quot;{StaticResource MyCell}&quot; /&gt;
-</code></pre>
-<p>Along with the look the style also sets some behaviour: <code>GridLinesVisibility</code> to <code>None</code>, <code>HeadersVisibility</code> to <code>Column</code> — so no row headers unless you ask — and <code>MinRowHeight</code> to 25.</p>
-<h2 id="the-azure-style">The Azure style</h2>
-<p><code>MahApps.Styles.DataGrid.Azure</code> is a variant modelled on the grids in the Azure portal. It swaps in Azure versions of the same four styles:</p>
-<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding Albums}&quot;
-          Style=&quot;{StaticResource MahApps.Styles.DataGrid.Azure}&quot; /&gt;
-</code></pre>
-<div class="alert alert-info"><p>The Azure look tints the <strong>first column</strong> with the accent colour, as a stand-in for a row header. It is keyed on <code>Column.DisplayIndex</code> being <code>0</code>, not on the order you declared the columns in — so if the user drags a column to the front, the tint follows it.</p>
-</div>
-<p>There is also <code>MahApps.Styles.DataGridRow.AzureWithMargin</code>, the Azure row with a one-pixel bottom margin, which separates the rows into cards rather than a continuous table:</p>
-<pre><code class="language-xml">&lt;DataGrid Style=&quot;{StaticResource MahApps.Styles.DataGrid.Azure}&quot;
-          RowStyle=&quot;{StaticResource MahApps.Styles.DataGridRow.AzureWithMargin}&quot; /&gt;
-</code></pre>
-<h2 id="padding-and-selection">Padding and selection</h2>
-<p><code>DataGridHelper</code> carries what WPF leaves out. The full table is on the <a href="../helper/datagridhelper">DataGridHelper</a> page; the four that matter most here:</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>CellPadding</code></td>
-<td><code>0</code></td>
-<td>padding inside every cell</td>
-</tr>
-<tr>
-<td><code>ColumnHeaderPadding</code></td>
-<td><code>10 0 4 0</code></td>
-<td>padding inside every column header</td>
-</tr>
-<tr>
-<td><code>SelectionUnit</code></td>
-<td><code>FullRow</code></td>
-<td>which unit the MahApps styles draw as selected</td>
-</tr>
-<tr>
-<td><code>EnableCellEditAssist</code></td>
-<td><code>false</code></td>
-<td>a click straight onto a cell's editing control uses it right away</td>
-</tr>
-</tbody>
-</table>
-<pre><code class="language-xml">&lt;DataGrid mah:DataGridHelper.CellPadding=&quot;10 6&quot;
-          mah:DataGridHelper.ColumnHeaderPadding=&quot;10 8&quot; /&gt;
-</code></pre>
-<p><code>EnableCellEditAssist</code> is the one that changes how the grid feels: without it, a check box column needs one click to select the cell and another to hit the box.</p>
-<div class="alert alert-warning"><p><code>DataGridHelper.SelectionUnit</code> is not <code>DataGrid.SelectionUnit</code>. The MahApps cell and row styles read the attached one to decide what to highlight; WPF's own property still decides what selection actually does. Set both when you change it.</p>
-</div>
-<h2 id="virtualisation">Virtualisation</h2>
-<p>A <code>DataGrid</code> virtualises its rows by itself — <code>EnableRowVirtualization</code> is <code>True</code> out of the box — and the MahApps style sets <code>ScrollViewer.CanContentScroll</code> to <code>True</code>, so it scrolls by item rather than by pixel. Two things are off until you ask for them: <code>EnableColumnVirtualization</code>, and <code>VirtualizingPanel.IsVirtualizingWhenGrouping</code>, which is the one that hurts. A grouped grid realises a row for every item it has, and the style's own trigger then switches <code>CanContentScroll</code> back off, because item scrolling and non-virtualised groups do not mix. A few hundred grouped rows take seconds to appear that way, and scroll no better afterwards.</p>
-<p><code>MahApps.Styles.DataGrid.Virtualized</code> is the base style with all of it turned on: rows, columns, item scrolling, recycled containers and virtualisation while grouping.</p>
-<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding GroupedAlbums}&quot;
-          Style=&quot;{StaticResource MahApps.Styles.DataGrid.Virtualized}&quot; /&gt;
-</code></pre>
-<div class="alert alert-info"><p><strong>The key is on <code>develop</code> and in no release yet.</strong> 2.4.11 does not have it; the four <code>.Virtualized</code> styles it does carry belong to <a href="listbox">ListBox</a>, <a href="listview">ListView</a>, <a href="combobox">ComboBox</a> and <a href="treeview">TreeView</a>. Until it ships, the two properties a grid lacks by default go onto the grid itself:</p>
-<pre><code class="language-xml">&lt;DataGrid VirtualizingPanel.IsVirtualizingWhenGrouping=&quot;True&quot;
-          VirtualizingPanel.VirtualizationMode=&quot;Recycling&quot; /&gt;
-</code></pre>
-</div>
-<p>Column virtualisation is the part of that style worth a thought before you use it, which is also why it is a style of its own rather than a change to the implicit one. An <code>Auto</code> column width needs every cell of that column measured, and not measuring the cells that are off screen is precisely what column virtualisation does, so the two work against each other. Explicit or star widths keep the layout still while the grid scrolls sideways; otherwise set <code>EnableColumnVirtualization</code> back to <code>False</code> on the grid and keep the rest.</p>
-<h2 id="grouping">Grouping</h2>
-<p>Grouping is WPF's own, and MahApps styles the group headers through <code>MahApps.Styles.GroupItem.DataGrid</code>, whose expander uses <code>MahApps.Styles.ToggleButton.ExpanderHeader.Down.DataGrid.GroupItem</code>. Point the grid's <code>GroupStyle</code> at it:</p>
-<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding GroupedAlbums}&quot;&gt;
-    &lt;DataGrid.GroupStyle&gt;
-        &lt;GroupStyle ContainerStyle=&quot;{StaticResource MahApps.Styles.GroupItem.DataGrid}&quot; /&gt;
-    &lt;/DataGrid.GroupStyle&gt;
+<p>The <code>AzureDataGrid</code> style will look something like this:</p>
+<p><img src="images/azure_datagrid_style.png" class="img-fluid" alt=""></p>
+<h2 id="datagrid-numericupdown-control">DataGrid NumericUpdown Control</h2>
+<p>In addition to styling the DataGrid, MahApps.Metro also provides a control that allows users to add a <code><a href="/api/MahApps.Metro.Controls/NumericUpDown">NumericUpDown</a></code> as one of their <code>DataGrid</code>'s columns. To add the custom column to your <code>DataGrid</code>, add <code><a href="/api/MahApps.Metro.Controls/DataGridNumericUpDownColumn">DataGridNumericUpDownColumn</a></code> under the MahApps namespace to your <code>DataGrid.Columns</code> properties. Be sure to set <code>AutoGenerateColumns</code> to <code>False</code> if you have not already done so.</p>
+<pre><code class="language-xml">&lt;DataGrid ItemsSource="{Binding Path=Albums}"
+          AutoGenerateColumns="False"&gt;
+  &lt;DataGrid.Columns&gt;
+    &lt;DataGridTextColumn Header="Genre"
+                        Binding="{Binding Genre.Name}" /&gt;
+    &lt;controls:DataGridNumericUpDownColumn Header="Price"
+                                          Binding="{Binding Price}"
+                                          StringFormat="C"
+                                          Minimum="0" /&gt;
+  &lt;/DataGrid.Columns&gt;
 &lt;/DataGrid&gt;
 </code></pre>
-<p>As with a <a href="combobox">ComboBox</a>, the grouping itself comes from the bound collection being a grouped view, not from the grid. The container style only dresses the headers; what grouping costs is the virtualisation above.</p>
-<h2 id="related">Related</h2>
-<p>The columns and the controls inside them have a page of their own: <a href="datagridcolumns">DataGrid Columns</a>.</p>
+<p>The end result will look something like this:</p>
+<p><img src="images/datagrid_numeric_up_down.png" class="img-fluid" alt=""></p>
+<h2 id="datagrid-checkbox">DataGrid Checkbox</h2>
+<p>Lastly, MahApps.Metro provides an <code>ElementStyle</code> for the <code>DataGridCheckBoxColumn</code>. In order to apply the style, you will have to set the <code>ElementStyle</code> property of the <code>DataGridCheckBoxColumn</code> to <code>{DynamicResource MetroDataGridCheckBox}</code> as shown in the code sample below.</p>
+<pre><code class="language-xml">&lt;DataGrid ItemsSource="{Binding Path=Albums}"
+          AutoGenerateColumns="False"&gt;
+  &lt;DataGrid.Columns&gt;
+    &lt;DataGridCheckBoxColumn ElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            EditingElementStyle="{DynamicResource MetroDataGridCheckBox}"
+                            Header="IsSelected"
+                            Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=OneWay}" /&gt;
+  &lt;/DataGrid.Columns&gt;
+&lt;/DataGrid&gt;
+</code></pre>
+<p>The end result will look something like this:</p>
+<p><img src="images/datagrid_checkbox.png" class="img-fluid" alt=""></p>
 
-
-                                        </div>
-                                <div class="col-lg-2 p-md-0 m-md-0 bg-body">
-                                    <div id="right-sidebar" class="sidebar px-0 px-md-3 pt-3">
-        <div class="border-bottom mb-3 sidebar-root">
-            <div class="sidebar-nav-item sidebar-header">On This Page</div>
-            <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
-                    <div class="sidebar-nav-item"><a href="#the-azure-style">The Azure style</a></div>
-                    <div class="sidebar-nav-item"><a href="#padding-and-selection">Padding and selection</a></div>
-                    <div class="sidebar-nav-item"><a href="#virtualisation">Virtualisation</a></div>
-                    <div class="sidebar-nav-item"><a href="#grouping">Grouping</a></div>
-                    <div class="sidebar-nav-item"><a href="#related">Related</a></div>
-            </div>
+	</section>
+                
+            </div>           
+            
+            <!-- Footer -->
+            <footer class="main-footer">
+            </footer>
+            
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/styles/datagrid.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Footer -->
-        <div id="footer" class="p-3 text-white">
-            <div class="container-xl">
+        <div class="wrapper bottom-wrapper">
+            <footer class="bottom-footer">
                 <p class="text-muted">
-    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fab fa-github"></i> GitHub</a> |
-    <a href="https://twitter.com/punker76"><i class="fab fa-twitter"></i> Twitter</a>
-    <br/>
-    Copyright &copy; <a href="https://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
-    <br/>
-    Generated by <a href="https://statiq.dev">Statiq</a>
+    <a href="https://github.com/MahApps/MahApps.Metro"><i class="fa fa-github"></i> GitHub</a> |
+    <a href="https://twitter.com/punker76"><i class="fa fa-twitter"></i> Twitter</a> |
+    <a href="https://gitter.im/MahApps/MahApps.Metro"><i class="fa fa-comment"></i> Gitter</a>
+    <br>
+    Copyright © <a href="http://dotnetfoundation.org">.NET Foundation</a> and Contributors. All rights reserved.
+    <br>
+    Generated by <a href="http://wyam.io">Wyam</a>
 </p>
 
-            </div>
+<script>
+	anchors.options.placement = 'left';
+	anchors.add();
+</script>
+
+<script>
+	var snippets = document.querySelectorAll('pre > code');
+	[].forEach.call(snippets, function (snippet) {
+	  snippet.insertAdjacentHTML(
+	    'beforebegin',
+	    "<button class='btn-copy' data-clipboard-snippet><img class='clippy' width=13 src='/assets/img/clippy.svg' alt='Copy to clipboard'></button>"
+	  );
+	});
+	var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
+	  container: document.getElementById('modal'),
+	  target: function (trigger) {
+	    return trigger.nextElementSibling;
+	  },
+	});
+	clipboardSnippets.on('success', function (e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
+		e.clearSelection();
+		// showTooltip(e.trigger, 'Copied!');
+	});
+	clipboardSnippets.on('error', function (e) {
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
+		// showTooltip(e.trigger, fallbackMessage(e.action));
+	});
+</script>
+            </footer>
         </div>
-
-        <!-- Scripts -->
-        <script>
+        <a href="javascript:" id="return-to-top"><i class="fa fa-chevron-up"></i></a>
+        
+        <script>           
+            // Close the sidebar if we select an anchor link
+            $(".main-sidebar a[href^='#']:not('.expand')").click(function(){
+                $(document.body).removeClass('sidebar-open');
+            });
+            
             $(document).ready(function() {
-                quicklink.listen();
-
-                // Bootstrap tooltips
-                $('[data-toggle="tooltip"]').tooltip();
-
-				// Keeps the sidebars in view on wider viewports
-				let left = null;
-				let leftParent = null;
-				let right = null;
-				let rightParent = null;
-                function stickSidebars()
-				{
-				    if (left == null) {
-                        left = $('#left-sidebar');
-                        right = $('#right-sidebar');
-                    }
-                    if (left.length) {
-                        if (window.innerWidth >= 768) {
-                            if (leftParent == null) {
-                                leftParent = left.parent()[0];
-                            }
-                            if (leftParent) {
-                                let leftRect = leftParent.getBoundingClientRect();
-                                stickSidebar(left,  leftRect);
-                            }
-                        } else {
-                            left.css('position', 'relative');
-                            if (left.css('bottom') != 0) {
-                                left.css('bottom', '0');
-                            }
-                        }
-                    }
-                    if (right.length) {
-                        if (window.innerWidth >= 768) {
-                            if (rightParent == null) {
-                                rightParent = right.parent()[0];
-                            }
-                            if (rightParent) {
-                                let rightRect = rightParent.getBoundingClientRect();
-                                stickSidebar(right,  rightRect);
-                            }
-                        } else {
-                            right.css('position', 'relative');
-                            if (right.css('bottom') != 0) {
-                                right.css('bottom', '0');
-                            }
-                        }
-                    }
-				}
-				function stickSidebar(sidebar, rect) {
-                    // Bottom
-                    if (rect.bottom > window.innerHeight) {
-                        sidebar.css('bottom', rect.bottom - window.innerHeight + "px");
-                    } else {
-                        sidebar.css('bottom', 0);
-                    }
-                    // Top
-                    if (rect.top < 0) {
-                        sidebar.css('position', 'sticky');
-                    } else {
-                        sidebar.css('position', 'absolute');
-                    }
-				}
-				$(window).on("load", function() {
-				    stickSidebars();
-				});
-                $(window).scroll(function() {
-				    stickSidebars();
-				});
-				$(window).resize(function() {
-				    stickSidebars();
-				})
-
-                // Mermaid diagrams
                 mermaid.initialize(
                 {
                     flowchart:
@@ -493,12 +345,12 @@ DataGrid
                     },
 					startOnLoad: false,
 					cloneCssStyles: false
-                });
+                });     
                 mermaid.init(undefined, ".mermaid");
 
                 // Remove the max-width setting that Mermaid sets
                 var mermaidSvg = $('.mermaid svg');
-                mermaidSvg.addClass('img-fluid');
+                mermaidSvg.addClass('img-responsive');
                 mermaidSvg.css('max-width', '');
 
                 // Make it scrollable
@@ -512,68 +364,40 @@ DataGrid
 						center: true,
                         maxZoom: 20,
                         zoomScaleSensitivity: 0.6
-					});
+					});			                          
 
                     // Do the reset once right away to fit the diagram
                     panZoom.resize();
                     panZoom.fit();
                     panZoom.center();
-
+                    
                     $(window).resize(function(){
                         panZoom.resize();
                         panZoom.fit();
                         panZoom.center();
                     });
 				}
+                
+                $('pre code').each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });  
+            });
+
+            hljs.initHighlightingOnLoad();
+
+            // Back to top
+            $(window).scroll(function() {
+                if ($(this).scrollTop() >= 200) {        // If page is scrolled more than 50px
+                    $('#return-to-top').fadeIn(1000);    // Fade in the arrow
+                } else {
+                    $('#return-to-top').fadeOut(1000);   // Else fade out the arrow
+                }
+            });
+            $('#return-to-top').click(function() {      // When arrow is clicked
+                $('body,html').animate({
+                    scrollTop : 0                       // Scroll to top of body
+                }, 500);
             });
         </script>
-
-        
-
-        <script>
-    anchors.options.placement = 'left';
-    anchors.add();
-
-    // Each <pre> is a horizontal scroll container (Bootstrap sets
-    // overflow: auto), so a button placed inside it scrolls out of view on long
-    // lines. Wrap the block instead and position the button against the
-    // wrapper, which never scrolls.
-    document.querySelectorAll('pre > code').forEach(function (code) {
-        var pre = code.parentNode;
-        var wrapper = document.createElement('div');
-        wrapper.className = 'code-block';
-        pre.parentNode.insertBefore(wrapper, pre);
-        wrapper.appendChild(pre);
-
-        var button = document.createElement('button');
-        button.type = 'button';
-        button.className = 'btn-copy';
-        button.title = 'Copy to clipboard';
-        button.setAttribute('aria-label', 'Copy to clipboard');
-        button.setAttribute('data-clipboard-snippet', '');
-        button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        wrapper.appendChild(button);
-    });
-
-    var clipboardSnippets = new ClipboardJS('[data-clipboard-snippet]', {
-        target: function (trigger) {
-            return trigger.parentNode.querySelector('pre > code');
-        },
-    });
-    clipboardSnippets.on('success', function (e) {
-        var button = e.trigger;
-        button.classList.add('copied');
-        button.innerHTML = '<i class="fas fa-check" aria-hidden="true"></i>';
-        window.setTimeout(function () {
-            button.classList.remove('copied');
-            button.innerHTML = '<i class="fas fa-copy" aria-hidden="true"></i>';
-        }, 1500);
-        e.clearSelection();
-    });
-    clipboardSnippets.on('error', function (e) {
-        console.error('Copy failed:', e.action, e.trigger);
-    });
-</script>
-
-    </body>
-</html>
+    
+</body></html>
