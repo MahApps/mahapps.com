@@ -357,7 +357,7 @@ MetroTabControl
     &lt;/mah:MetroTabItem&gt;
 &lt;/mah:MetroTabControl&gt;
 </code></pre>
-<p>Its style is based on <code>MahApps.Styles.TabControl</code>, so everything on the <a href="../styles/tabcontrol">TabControl styles</a> page applies: the placement triggers, the underline through <a href="../helper/tabcontrolhelper">TabControlHelper</a>, the large header font.</p>
+<p>Its style is based on <code>MahApps.Styles.TabControl</code>, so everything on the <a href="../styles/tabcontrol">TabControl styles</a> page applies: the placement triggers, the underline through <a href="../helper/tabcontrolhelper">TabControlHelper</a>, the large header font. On <code>develop</code> it has the two WinUI looks as well, under <code>MahApps.Styles.MetroTabControl.WinUI</code> and <code>MahApps.Styles.MetroTabControl.WinUI.SelectorBar</code>, each keeping the template this control brings.</p>
 <p>Bind <code>ItemsSource</code> and you do not have to make the items yourself — <code>GetContainerForItemOverride</code> hands back a <a href="metrotabitem">MetroTabItem</a>, not a plain <code>TabItem</code>, so the close button is available either way.</p>
 <h2 id="keeping-the-visual-tree">Keeping the visual tree</h2>
 <table>

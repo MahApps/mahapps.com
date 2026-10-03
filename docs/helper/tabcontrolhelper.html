@@ -346,7 +346,7 @@ TabControlHelper
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>Applies to <code>TabControl</code> and <code>TabItem</code>. Three groups: the underline that marks the selected tab, the animation when the content changes, and closable tabs.</p>
+<p>Applies to <code>TabControl</code> and <code>TabItem</code>. Four groups: the underline that marks the selected tab, the animation when the content changes, how wide a tab is, and closable tabs.</p>
 <h2 id="the-underline">The underline</h2>
 <p><img src="images/tabcontrolhelper-underlined.png" alt="The four values of Underlined" /></p>
 <table>
@@ -436,6 +436,30 @@ TabControlHelper
 <p><code>TransitionType</code> is <code>Default</code>, <code>Normal</code>, <code>Up</code>, <code>Down</code>, <code>Right</code>, <code>RightReplace</code>, <code>Left</code>, <code>LeftReplace</code> or <code>Custom</code>. It is the same enum the <code>TransitioningContentControl</code> uses, because that is what draws the content.</p>
 <pre><code class="language-xml">&lt;TabControl mah:TabControlHelper.Transition=&quot;Left&quot; /&gt;
 </code></pre>
+<h2 id="how-wide-a-tab-is">How wide a tab is</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TabWidthMode</code></td>
+<td><code>TabWidthMode</code></td>
+<td><code>SizeToContent</code></td>
+<td>whether the room is shared out between the tabs (on <code>develop</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><code>SizeToContent</code> is what a tab control has always done: every tab is as wide as what is written on it. <code>Equal</code> shares the room out instead, so each tab gets the width divided by the number of them, held between its own <code>MinWidth</code> and <code>MaxWidth</code>. Where that no longer fits, the strip runs past the edge of the control, which is where <code>MahApps.Styles.TabControl.AnimatedSingleRow</code> starts scrolling.</p>
+<pre><code class="language-xml">&lt;TabControl mah:TabControlHelper.TabWidthMode=&quot;Equal&quot; /&gt;
+</code></pre>
+<p>It is the <code>TabWidthMode</code> of the WinUI TabView, down to the hundred and the two hundred and forty the <a href="../styles/tabcontrol">WinUI card style</a> holds a tab between. <code>Compact</code>, the third mode WinUI has, is left out: it shrinks every tab but the one showing to its icon, and a tab item here has no icon to shrink to.</p>
+<p>A strip down either side and a strip that wraps onto a second row are laid out the way they always were, whatever this says.</p>
 <h2 id="closable-tabs">Closable tabs</h2>
 <table>
 <thead>
@@ -467,8 +491,10 @@ TabControlHelper
 </tr>
 </tbody>
 </table>
-<div class="alert alert-warning"><p>These three are only read by the Visual Studio tab styles — <code>MahApps.Styles.TabControl.VisualStudio</code> and <code>MahApps.Styles.TabItem.VisualStudio</code> in <code>Styles/VS/TabControl.xaml</code>, which <code>Controls.xaml</code> does <strong>not</strong> merge. On a tab control with the ordinary styles they have no effect at all.</p>
+<div class="alert alert-warning"><p><strong>In a released version these three are only read by the Visual Studio tab styles</strong> — <code>MahApps.Styles.TabControl.VisualStudio</code> and <code>MahApps.Styles.TabItem.VisualStudio</code> in <code>Styles/VS/TabControl.xaml</code>, which <code>Controls.xaml</code> does <strong>not</strong> merge. On a tab control with the ordinary styles they have no effect at all.</p>
+<p>On <code>develop</code> every tab style reads them, the one a control wears with nothing merged included. The button is the one <code>MetroTabItem</code> draws and it follows the same rules: out of the way until it is asked for, then showing itself on the tab that is showing and on the one under the pointer. The two WinUI styles put it on every tab instead, which is what the TabView does.</p>
 </div>
+<p><code>CloseButtonEnabled</code> is inherited, so one answer on the <code>TabControl</code> reaches every tab under it. A tab with something of its own to say beats it: <code>MetroTabItem</code> carries the answer on itself, and the Visual Studio item style sets it.</p>
 <p>Merge the dictionary and apply the styles to use them:</p>
 <pre><code class="language-xml">&lt;ResourceDictionary Source=&quot;pack://application:,,,/MahApps.Metro;component/Styles/VS/TabControl.xaml&quot; /&gt;
 </code></pre>
@@ -477,7 +503,7 @@ TabControlHelper
             mah:TabControlHelper.CloseTabCommand=&quot;{Binding CloseTabCommand}&quot; /&gt;
 </code></pre>
 <p>The VS tab item style sets <code>CloseButtonEnabled</code> to <code>True</code> itself, so the button is there as soon as the style is.</p>
-<p>For a closable tab without the Visual Studio look, use <code>MetroTabItem</code> instead — it has its own <code>CloseButtonEnabled</code> property, unrelated to this helper.</p>
+<p>For a closable tab without the Visual Studio look, use <code>MetroTabItem</code>, which has its own <code>CloseButtonEnabled</code>. On <code>develop</code> it hands that answer and the two about the command to the matching properties here, so a style written for a plain tab draws its button too.</p>
 <h2 id="related">Related</h2>
 <p><code>HeaderedControlHelper</code> styles the tab strip's header. See <a href="headeredcontrolhelper">HeaderedControlHelper</a>.</p>
 
@@ -490,6 +516,7 @@ TabControlHelper
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-underline">The underline</a></div>
                     <div class="sidebar-nav-item"><a href="#transitions">Transitions</a></div>
+                    <div class="sidebar-nav-item"><a href="#how-wide-a-tab-is">How wide a tab is</a></div>
                     <div class="sidebar-nav-item"><a href="#closable-tabs">Closable tabs</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
