@@ -17,7 +17,7 @@ Description: A TabControl with closable tabs and a choice about the visual tree
 </mah:MetroTabControl>
 ```
 
-Its style is based on `MahApps.Styles.TabControl`, so everything on the [TabControl styles](../styles/tabcontrol) page applies: the placement triggers, the underline through [TabControlHelper](../helper/tabcontrolhelper), the large header font.
+Its style is based on `MahApps.Styles.TabControl`, so everything on the [TabControl styles](../styles/tabcontrol) page applies: the placement triggers, the underline through [TabControlHelper](../helper/tabcontrolhelper), the large header font. On `develop` it has the two WinUI looks as well, under `MahApps.Styles.MetroTabControl.WinUI` and `MahApps.Styles.MetroTabControl.WinUI.SelectorBar`, each keeping the template this control brings.
 
 Bind `ItemsSource` and you do not have to make the items yourself — `GetContainerForItemOverride` hands back a [MetroTabItem](metrotabitem), not a plain `TabItem`, so the close button is available either way.
 

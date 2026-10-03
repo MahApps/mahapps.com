@@ -3,7 +3,7 @@ Title: TabControlHelper
 Description: The underline under a tab, the transition, and closable tabs
 ---
 
-Applies to `TabControl` and `TabItem`. Three groups: the underline that marks the selected tab, the animation when the content changes, and closable tabs.
+Applies to `TabControl` and `TabItem`. Four groups: the underline that marks the selected tab, the animation when the content changes, how wide a tab is, and closable tabs.
 
 ## The underline
 
@@ -52,6 +52,22 @@ The underline and the caption are painted separately, so a strip that answers th
 <TabControl mah:TabControlHelper.Transition="Left" />
 ```
 
+## How wide a tab is
+
+| Property | Type | Default | |
+| --- | --- | --- | --- |
+| `TabWidthMode` | `TabWidthMode` | `SizeToContent` | whether the room is shared out between the tabs (on `develop`) |
+
+`SizeToContent` is what a tab control has always done: every tab is as wide as what is written on it. `Equal` shares the room out instead, so each tab gets the width divided by the number of them, held between its own `MinWidth` and `MaxWidth`. Where that no longer fits, the strip runs past the edge of the control, which is where `MahApps.Styles.TabControl.AnimatedSingleRow` starts scrolling.
+
+```xml
+<TabControl mah:TabControlHelper.TabWidthMode="Equal" />
+```
+
+It is the `TabWidthMode` of the WinUI TabView, down to the hundred and the two hundred and forty the [WinUI card style](../styles/tabcontrol) holds a tab between. `Compact`, the third mode WinUI has, is left out: it shrinks every tab but the one showing to its icon, and a tab item here has no icon to shrink to.
+
+A strip down either side and a strip that wraps onto a second row are laid out the way they always were, whatever this says.
+
 ## Closable tabs
 
 | Property | Type | Default | |
@@ -61,8 +77,12 @@ The underline and the caption are painted separately, so a strip that answers th
 | `CloseTabCommandParameter` | `object` | `null` | passed to that command |
 
 :::{.alert .alert-warning}
-These three are only read by the Visual Studio tab styles — `MahApps.Styles.TabControl.VisualStudio` and `MahApps.Styles.TabItem.VisualStudio` in `Styles/VS/TabControl.xaml`, which `Controls.xaml` does **not** merge. On a tab control with the ordinary styles they have no effect at all.
+**In a released version these three are only read by the Visual Studio tab styles** — `MahApps.Styles.TabControl.VisualStudio` and `MahApps.Styles.TabItem.VisualStudio` in `Styles/VS/TabControl.xaml`, which `Controls.xaml` does **not** merge. On a tab control with the ordinary styles they have no effect at all.
+
+On `develop` every tab style reads them, the one a control wears with nothing merged included. The button is the one `MetroTabItem` draws and it follows the same rules: out of the way until it is asked for, then showing itself on the tab that is showing and on the one under the pointer. The two WinUI styles put it on every tab instead, which is what the TabView does.
 :::
+
+`CloseButtonEnabled` is inherited, so one answer on the `TabControl` reaches every tab under it. A tab with something of its own to say beats it: `MetroTabItem` carries the answer on itself, and the Visual Studio item style sets it.
 
 Merge the dictionary and apply the styles to use them:
 
@@ -78,7 +98,7 @@ Merge the dictionary and apply the styles to use them:
 
 The VS tab item style sets `CloseButtonEnabled` to `True` itself, so the button is there as soon as the style is.
 
-For a closable tab without the Visual Studio look, use `MetroTabItem` instead — it has its own `CloseButtonEnabled` property, unrelated to this helper.
+For a closable tab without the Visual Studio look, use `MetroTabItem`, which has its own `CloseButtonEnabled`. On `develop` it hands that answer and the two about the command to the matching properties here, so a style written for a plain tab draws its button too.
 
 ## Related
 
