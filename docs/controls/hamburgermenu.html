@@ -890,7 +890,7 @@ namespace MahAppsMetroHamburgerMenuNavigation.Navigation
 <p><code>ContentTransition</code> picks the animation the underlying <code>TransitioningContentControl</code> plays on every content change: <code>Default</code>, <code>Normal</code>, <code>Up</code>, <code>Down</code>, <code>Left</code>, <code>LeftReplace</code>, <code>Right</code> or <code>RightReplace</code>.</p>
 <p>Instead of handling events you can let each item carry a <code>Command</code>, or give the menu a single <code>ItemCommand</code> (and <code>OptionsItemCommand</code>) that receives the clicked item.</p>
 <h2 id="styling">Styling</h2>
-<p>MahApps ships two styles for the control:</p>
+<p>MahApps ships two styles for the control, and a third on <code>develop</code>:</p>
 <table>
 <thead>
 <tr>
@@ -907,8 +907,16 @@ namespace MahAppsMetroHamburgerMenuNavigation.Navigation
 <td><code>MahApps.Styles.HamburgerMenu.CreatorsUpdate</code></td>
 <td>pane in the theme background, selection marked by an accent bar (<code>ShowSelectionIndicator=&quot;True&quot;</code>)</td>
 </tr>
+<tr>
+<td><code>MahApps.Styles.HamburgerMenu.WinUI</code></td>
+<td>the NavigationView of Windows 11: rounded tiles inset in the pane, a short accent bar beside the row showing, the content as a card</td>
+</tr>
 </tbody>
 </table>
+<div class="alert alert-info"><p><strong><code>MahApps.Styles.HamburgerMenu.WinUI</code> is on <code>develop</code> and ships with the next release.</strong> 2.4.11 has only the first two.</p>
+</div>
+<p>The WinUI style is read off the NavigationView, the control Windows 11 draws a navigation down the side with. A row is a tile four units in from either side of the pane and two from its neighbours, rounded by <code>MahApps.CornerRadius.WinUI.Control</code>, with no fill until the pointer reaches it. The row showing keeps that fill and gets the bar of the accent at its left edge; the bar follows <code>ShowSelectionIndicator</code>, which this style turns on. The hamburger button is the forty by thirty-six one of the NavigationView, a header is forty units of quieter text that goes away while the pane is closed, and the content is laid on the ground of the window as a card, edged along the pane and the top and rounded where the two meet. With no pane beside it, in <code>Overlay</code> or a closed <code>Inline</code>, only the edge along the top is left. The <a href="../stylevariants/winui">WinUI set</a> applies the style to every <code>HamburgerMenu</code> it reaches.</p>
+<p>An item template written for the menu needs nothing new. The tile is drawn behind the content rather than around it, so the content keeps the whole width of the row, and an icon in a column as wide as <code>CompactPaneLength</code> stands where the NavigationView puts its own. While the pane is closed the tile keeps to the compact strip, on the side of the pane the strip shows. What WinUI animates, the bar sliding from one row to the next, is not animated here.</p>
 <p><img src="images/hamburgermenu-selectionindicator.png" alt="Selection indicator" /></p>
 <p><code>ShowSelectionIndicator</code> alone turns the indicator on for the default style too. <code>PaneBackground</code> and <code>PaneForeground</code> recolour the pane, <code>PaneMargin</code> and <code>PaneHeaderMargin</code> adjust its spacing.</p>
 <p>Per-row appearance is governed by <code>ItemContainerStyle</code>, <code>HeaderItemContainerStyle</code>, <code>SeparatorItemContainerStyle</code> and <code>OptionsItemContainerStyle</code>; all target <code>ListBoxItem</code>. Base your own on the MahApps ones so you keep the selection and hover brushes, which come from <code>ItemHelper</code> attached properties:</p>
