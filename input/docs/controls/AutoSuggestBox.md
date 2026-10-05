@@ -48,7 +48,14 @@ So there is no `FilterMode`, no `CustomFilter` and no `SearchMemberPath`. There 
 
 ## Properties
 
-The control adds none of its own. Everything it needs a `ComboBox` already has:
+The control adds two of its own, both off by default:
+
+| Property | |
+| --- | --- |
+| `OpenOnFocus` | the list comes up as soon as the user steps into the box, if there is something to show |
+| `SuggestsWhenEmpty` | the list stays up over an empty box and shows what the application hands over for it |
+
+Everything else it needs a `ComboBox` already has:
 
 | Property | |
 | --- | --- |
@@ -96,6 +103,23 @@ All three are bubbling routed events, so they can be handled further up or attac
 ## When the list shows itself
 
 The list comes up once there is text in the box and there is something to show, and it goes away when either of those stops being true. An empty list is never shown, because an empty popup is a sliver of border under a text box and nothing else.
+
+An empty box closes the list as well, unless `SuggestsWhenEmpty` is set. With it, the application decides what an empty box offers, everything or the last few searches, and the list keeps showing that after the user deletes the query. `OpenOnFocus` brings the list up the moment the user steps in, before a key is pressed. Together they give a box that shows all there is to pick from first and only starts narrowing once the user types. The suggestions for an empty box have to be in `ItemsSource` by then, so fill it once at the start as well as in `TextChanged`:
+
+```xml
+<mah:AutoSuggestBox x:Name="ArtistBox"
+                    OpenOnFocus="True"
+                    SuggestsWhenEmpty="True"
+                    TextChanged="OnTextChanged" />
+```
+
+```csharp
+public ArtistView()
+{
+    this.InitializeComponent();
+    this.ArtistBox.ItemsSource = this.artists;
+}
+```
 
 Suggestions do not have to be there by the time the text changes. An application that goes off to a database or a service hands them over later, and the list comes up when they arrive:
 
