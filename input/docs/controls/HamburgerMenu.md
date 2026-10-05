@@ -585,12 +585,21 @@ Instead of handling events you can let each item carry a `Command`, or give the 
 
 ## Styling
 
-MahApps ships two styles for the control:
+MahApps ships two styles for the control, and a third on `develop`:
 
 | Style | Look |
 | --- | --- |
 | `MahApps.Styles.HamburgerMenu` | the default: dark pane, selected entry filled with the accent colour |
 | `MahApps.Styles.HamburgerMenu.CreatorsUpdate` | pane in the theme background, selection marked by an accent bar (`ShowSelectionIndicator="True"`) |
+| `MahApps.Styles.HamburgerMenu.WinUI` | the NavigationView of Windows 11: rounded tiles inset in the pane, a short accent bar beside the row showing, the content as a card |
+
+:::{.alert .alert-info}
+**`MahApps.Styles.HamburgerMenu.WinUI` is on `develop` and ships with the next release.** 2.4.11 has only the first two.
+:::
+
+The WinUI style is read off the NavigationView, the control Windows 11 draws a navigation down the side with. A row is a tile four units in from either side of the pane and two from its neighbours, rounded by `MahApps.CornerRadius.WinUI.Control`, with no fill until the pointer reaches it. The row showing keeps that fill and gets the bar of the accent at its left edge; the bar follows `ShowSelectionIndicator`, which this style turns on. The hamburger button is the forty by thirty-six one of the NavigationView, a header is forty units of quieter text that goes away while the pane is closed, and the content is laid on the ground of the window as a card, edged along the pane and the top and rounded where the two meet. With no pane beside it, in `Overlay` or a closed `Inline`, only the edge along the top is left. The [WinUI set](../stylevariants/winui) applies the style to every `HamburgerMenu` it reaches.
+
+An item template written for the menu needs nothing new. The tile is drawn behind the content rather than around it, so the content keeps the whole width of the row, and an icon in a column as wide as `CompactPaneLength` stands where the NavigationView puts its own. While the pane is closed the tile keeps to the compact strip, on the side of the pane the strip shows. What WinUI animates, the bar sliding from one row to the next, is not animated here.
 
 ![Selection indicator](images/hamburgermenu-selectionindicator.png)
 
