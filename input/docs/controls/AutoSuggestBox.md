@@ -160,7 +160,7 @@ A suggestion the user lands on is written into the text box, and what gets writt
 
 | Key | |
 | --- | --- |
-| <kbd>↓</kbd> <kbd>↑</kbd> | walk the list. The box takes what they land on and marks it, so typing on replaces it and starts a fresh query |
+| <kbd>↓</kbd> <kbd>↑</kbd> | walk the list one suggestion at a time, the first <kbd>↓</kbd> from the top and the first <kbd>↑</kbd> from the bottom, stopping at either end. The box takes what they land on and marks it, so typing on replaces it and starts a fresh query |
 | <kbd>Enter</kbd> | submit. With a suggestion walked to, `ChosenSuggestion` is that suggestion; otherwise the typed text is the whole query |
 | <kbd>Esc</kbd> | close the list and submit nothing |
 
