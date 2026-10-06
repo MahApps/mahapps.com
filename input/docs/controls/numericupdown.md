@@ -133,6 +133,16 @@ Hiding the buttons does not make the control read-only — the arrow keys, the w
 
 `ParsingNumberStyle` (default `NumberStyles.Any`) is what typed text is parsed with, if you need to be stricter than that.
 
+### Where the number stands
+
+`TextAlignment` decides that, and it defaults to `Right` so numbers line up like in a column. `HorizontalContentAlignment` won't move the number, because the text box inside only looks at `TextAlignment` for it, same as a plain WPF `TextBox`.
+
+```xml
+<mah:NumericUpDown TextAlignment="Left" Value="42" />
+```
+
+The Win10 and WinUI styles already set it to `Left`.
+
 ### A hexadecimal StringFormat
 
 A format such as `X`, `X8` or `{}0x{0:X}` writes letters, and only a hexadecimal parse reads them back. The control therefore follows the format: it sets `ParsingNumberStyle` to `NumberStyles.HexNumber` and adds `NumericInput.Decimal` to the `NumericInputMode` for as long as the format stays hexadecimal.
