@@ -381,7 +381,26 @@ private void OnQuerySubmitted(object sender, RoutedEventArgs e)
 <p>The box does not filter anything. It says that the text changed and who changed it, and the application answers by filling <code>ItemsSource</code> with whatever it thinks fits. That is the whole contract, and it is deliberate: matching, sorting, casing, accents and the question of what counts as a hit all belong where the data is, not in a set of filter modes here. It is also how WinUI's <code>AutoSuggestBox</code> works.</p>
 <p>So there is no <code>FilterMode</code>, no <code>CustomFilter</code> and no <code>SearchMemberPath</code>. There is a <code>TextChanged</code> event and your own code.</p>
 <h2 id="properties">Properties</h2>
-<p>The control adds none of its own. Everything it needs a <code>ComboBox</code> already has:</p>
+<p>The control adds two of its own, both off by default:</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OpenOnFocus</code></td>
+<td>the list comes up as soon as the user steps into the box, if there is something to show</td>
+</tr>
+<tr>
+<td><code>SuggestsWhenEmpty</code></td>
+<td>the list stays up over an empty box and shows what the application hands over for it</td>
+</tr>
+</tbody>
+</table>
+<p>Everything else it needs a <code>ComboBox</code> already has:</p>
 <table>
 <thead>
 <tr>
@@ -499,6 +518,18 @@ private void OnQuerySubmitted(object sender, RoutedEventArgs e)
 <p><code>AutoSuggestBoxSuggestionChosenEventArgs.SelectedItem</code> is the suggestion the user landed on.</p>
 <h2 id="when-the-list-shows-itself">When the list shows itself</h2>
 <p>The list comes up once there is text in the box and there is something to show, and it goes away when either of those stops being true. An empty list is never shown, because an empty popup is a sliver of border under a text box and nothing else.</p>
+<p>An empty box closes the list as well, unless <code>SuggestsWhenEmpty</code> is set. With it, the application decides what an empty box offers, everything or the last few searches, and the list keeps showing that after the user deletes the query. <code>OpenOnFocus</code> brings the list up the moment the user steps in, before a key is pressed. Together they give a box that shows all there is to pick from first and only starts narrowing once the user types. The suggestions for an empty box have to be in <code>ItemsSource</code> by then, so fill it once at the start as well as in <code>TextChanged</code>:</p>
+<pre><code class="language-xml">&lt;mah:AutoSuggestBox x:Name=&quot;ArtistBox&quot;
+                    OpenOnFocus=&quot;True&quot;
+                    SuggestsWhenEmpty=&quot;True&quot;
+                    TextChanged=&quot;OnTextChanged&quot; /&gt;
+</code></pre>
+<pre><code class="language-csharp">public ArtistView()
+{
+    this.InitializeComponent();
+    this.ArtistBox.ItemsSource = this.artists;
+}
+</code></pre>
 <p>Suggestions do not have to be there by the time the text changes. An application that goes off to a database or a service hands them over later, and the list comes up when they arrive:</p>
 <pre><code class="language-csharp">private async void OnTextChanged(object sender, RoutedEventArgs e)
 {
@@ -536,7 +567,7 @@ private void OnQuerySubmitted(object sender, RoutedEventArgs e)
 <tbody>
 <tr>
 <td><kbd>↓</kbd> <kbd>↑</kbd></td>
-<td>walk the list. The box takes what they land on and marks it, so typing on replaces it and starts a fresh query</td>
+<td>walk the list one suggestion at a time, the first <kbd>↓</kbd> from the top and the first <kbd>↑</kbd> from the bottom, stopping at either end. The box takes what they land on and marks it, so typing on replaces it and starts a fresh query</td>
 </tr>
 <tr>
 <td><kbd>Enter</kbd></td>
