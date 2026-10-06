@@ -570,6 +570,11 @@ NumericUpDown
 </table>
 <p><code>Culture</code> (default <code>null</code>, meaning the thread's culture) decides the separators and the currency symbol. The examples above are <code>en-US</code>.</p>
 <p><code>ParsingNumberStyle</code> (default <code>NumberStyles.Any</code>) is what typed text is parsed with, if you need to be stricter than that.</p>
+<h3 id="where-the-number-stands">Where the number stands</h3>
+<p><code>TextAlignment</code> decides that, and it defaults to <code>Right</code> so numbers line up like in a column. <code>HorizontalContentAlignment</code> won't move the number, because the text box inside only looks at <code>TextAlignment</code> for it, same as a plain WPF <code>TextBox</code>.</p>
+<pre><code class="language-xml">&lt;mah:NumericUpDown TextAlignment=&quot;Left&quot; Value=&quot;42&quot; /&gt;
+</code></pre>
+<p>The Win10 and WinUI styles already set it to <code>Left</code>.</p>
 <h3 id="a-hexadecimal-stringformat">A hexadecimal StringFormat</h3>
 <p>A format such as <code>X</code>, <code>X8</code> or <code>{}0x{0:X}</code> writes letters, and only a hexadecimal parse reads them back. The control therefore follows the format: it sets <code>ParsingNumberStyle</code> to <code>NumberStyles.HexNumber</code> and adds <code>NumericInput.Decimal</code> to the <code>NumericInputMode</code> for as long as the format stays hexadecimal.</p>
 <p><strong>This changed on <code>develop</code></strong> with <a href="https://github.com/MahApps/MahApps.Metro/issues/4499">#4499</a>. In a released version there was no way out again: once a hexadecimal format had been set the parsing stayed hexadecimal even after the format changed back, and a typed <code>10</code> came out as <code>16</code>. On <code>develop</code> the control gives back what the format took over. A parsing style or input mode you changed in the meantime is yours and is left alone.</p>
@@ -663,6 +668,7 @@ NumericUpDown
                     <div class="sidebar-nav-item"><a href="#the-windows-looks">The Windows looks</a></div>
                     <div class="sidebar-nav-item"><a href="#formatting">Formatting</a></div>
                         <div class="sidebar-nav-children">
+                                <div class="sidebar-nav-item"><a href="#where-the-number-stands">Where the number stands</a></div>
                                 <div class="sidebar-nav-item"><a href="#a-hexadecimal-stringformat">A hexadecimal StringFormat</a></div>
                                 <div class="sidebar-nav-item"><a href="#without-a-stringformat">Without a StringFormat</a></div>
                                 <div class="sidebar-nav-item"><a href="#decimals">Decimals</a></div>
