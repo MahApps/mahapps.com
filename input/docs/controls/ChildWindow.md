@@ -56,4 +56,4 @@ The close command used to run on every close. Now it runs for the close button a
 
 ## Related
 
-[MetroWindow](metrowindow) hosts it, and its `IsAnyDialogOpen` is true while a child window is open. The [dialogs](../dialogs/custom-dialogs) share the same container, and whichever opens last lies on top.
+[MetroWindow](metrowindow) hosts it, and its `IsAnyDialogOpen` is true while a child window is open. The [dialogs](../dialogs/custom-dialogs) share the same container, and whichever opens last lies on top. [ContentDialog](contentdialog) builds on it, with the buttons and the result of the WinUI dialog.
