@@ -31,7 +31,7 @@
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
 
-        <title>MahApps.Metro - ComboBoxHelper</title>
+        <title>MahApps.Metro - ContentDialog</title>
     </head>
     <body class="d-flex flex-column">
         <div class="flex-grow-1 d-flex flex-column">
@@ -94,11 +94,11 @@
                                         <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
 
         <span><a href="/mahapps.com/docs">Documentation</a></span>
-        <span><a href="/mahapps.com/docs/helper">Helper Classes</a></span>
+        <span><a href="/mahapps.com/docs/controls">Controls</a></span>
                                         </div>
                                         <div class="text-white m-0 text-break title">
 
-ComboBoxHelper
+ContentDialog
                                         </div>
                                     </div>
                                         <div class="navbar navbar-expand-md navbar-dark p-0">
@@ -155,7 +155,7 @@ ComboBoxHelper
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/contentcontrolex">ContentControlEx</a>
 </div>
-<div class="sidebar-nav-item">
+<div class="sidebar-nav-item active">
     <a href="/mahapps.com/docs/controls/contentdialog">ContentDialog</a>
 </div>
 <div class="sidebar-nav-item">
@@ -285,7 +285,7 @@ ComboBoxHelper
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/checkboxhelper">CheckBoxHelper</a>
 </div>
-<div class="sidebar-nav-item active">
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -352,75 +352,85 @@ ComboBoxHelper
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>Applies to <code>ComboBox</code>. Two properties are about the text an editable combo box accepts — a <code>ComboBox</code> has no <code>MaxLength</code> or <code>CharacterCasing</code> of its own, so these fill the gap that <code>TextBox</code> does not have. Three more are about the list that drops out of it.</p>
-<p><img src="images/comboboxhelper.png" alt="CharacterCasing on an editable ComboBox" /></p>
+<p><code>ContentDialog</code> is the dialog of WinUI for a <a href="metrowindow">MetroWindow</a>. It is a <a href="childwindow">ChildWindow</a>, so it opens in the container the dialogs use, over an overlay, and it brings what the WinUI dialog has: a title, any content, a primary, a secondary and a close button, and a result that says which of them closed it.</p>
+<div class="alert alert-info"><p><strong><code>ContentDialog</code> is new on <code>develop</code>.</strong> It is not in 2.4.11.</p>
+</div>
+<pre><code class="language-xml">&lt;mah:ContentDialog x:Key=&quot;SaveDialog&quot;
+                   Title=&quot;Save the answer?&quot;
+                   PrimaryButtonText=&quot;Save&quot;
+                   SecondaryButtonText=&quot;Don't save&quot;
+                   CloseButtonText=&quot;Cancel&quot;
+                   DefaultButton=&quot;Primary&quot;&gt;
+    &lt;TextBlock Text=&quot;The answer is 42. Do you want to keep it for the next question?&quot; TextWrapping=&quot;Wrap&quot; /&gt;
+&lt;/mah:ContentDialog&gt;
+</code></pre>
+<pre><code class="language-csharp">var dialog = (ContentDialog)this.FindResource(&quot;SaveDialog&quot;);
+var result = await dialog.ShowAsync();
+</code></pre>
+<p><code>ShowAsync()</code> opens the dialog in the active <code>MetroWindow</code> of the application, or in its main window, and <code>ShowAsync(window)</code> in the one you name. <code>window.ShowContentDialogAsync(dialog)</code> does the same as an extension method. A second dialog opens over the first one, where WinUI would throw.</p>
+<h2 id="the-buttons-and-the-result">The buttons and the result</h2>
+<p>A button shows only when it has a text. <code>IsPrimaryButtonEnabled</code> and <code>IsSecondaryButtonEnabled</code> switch the two of them off, and each button has a command with a parameter and a style of its own.</p>
 <table>
 <thead>
 <tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
+<th>Closed by</th>
+<th>Result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>MaxLength</code></td>
-<td><code>int</code></td>
-<td><code>0</code></td>
-<td>how many characters may be typed; <code>0</code> means no limit</td>
+<td>the primary button</td>
+<td><code>ContentDialogResult.Primary</code></td>
 </tr>
 <tr>
-<td><code>CharacterCasing</code></td>
-<td><code>CharacterCasing</code></td>
-<td><code>Normal</code></td>
-<td><code>Upper</code> or <code>Lower</code> converts as the user types</td>
+<td>the secondary button</td>
+<td><code>ContentDialogResult.Secondary</code></td>
+</tr>
+<tr>
+<td>the close button, Escape, the close button in the title bar, <code>Hide()</code>, anything else</td>
+<td><code>ContentDialogResult.None</code></td>
 </tr>
 </tbody>
 </table>
-<pre><code class="language-xml">&lt;ComboBox IsEditable=&quot;True&quot;
-          mah:ComboBoxHelper.CharacterCasing=&quot;Upper&quot;
-          mah:ComboBoxHelper.MaxLength=&quot;10&quot; /&gt;
-</code></pre>
-<p>Both only apply while <code>IsEditable</code> is <code>True</code>. On a drop-down-only combo box there is no text box for them to reach.</p>
-<h2 id="the-drop-down">The drop-down</h2>
-<p>On <code>develop</code> the fill, the frame and the corners of the list are the box's own rather than three keys everything else reads too. A list hangs over whatever is behind it, so it needs a chrome that can differ from the one the box wears, and a set that gives its boxes a look of its own wants the same one here:</p>
+<p>A click goes through the click event first, <code>PrimaryButtonClick</code> and so on, where <code>Cancel</code> keeps the dialog open. Then the command runs, if its CanExecute allows it, and the dialog closes. <code>Closing</code> comes last and carries the <code>Result</code>; setting <code>Cancel</code> there keeps the dialog open as well. <code>ClosingFinished</code> from ChildWindow takes the place of the <code>Closed</code> event of WinUI.</p>
+<h2 id="keyboard-and-focus">Keyboard and focus</h2>
+<p>Escape is the close button, also when that button has no text and does not show: it raises <code>CloseButtonClick</code> and runs <code>CloseButtonCommand</code>. Enter clicks the <code>DefaultButton</code>, as long as it shows and is enabled, unless the focus is on a button or in a text box that takes Return. The default button also wears the accent style of its set, and it gets the focus when the content has nothing that can take it.</p>
+<h2 id="the-three-looks">The three looks</h2>
+<p>Each style set has its own dialog, and the dialog follows the set it is in.</p>
 <table>
 <thead>
 <tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
+<th>Set</th>
+<th>Style</th>
+<th>Look</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>DropDownBackground</code></td>
-<td><code>Brush</code></td>
-<td><code>null</code></td>
-<td>what the list is filled with</td>
+<td>Metro, <code>Styles/Controls.xaml</code></td>
+<td><code>MahApps.Styles.ContentDialog</code></td>
+<td>the child window with its title bar and the dialog buttons in a row under the content</td>
 </tr>
 <tr>
-<td><code>DropDownBorderBrush</code></td>
-<td><code>Brush</code></td>
-<td><code>null</code></td>
-<td>the frame around it</td>
+<td>Windows 10, <code>Styles/Win10/Controls.xaml</code></td>
+<td><code>MahApps.Styles.ContentDialog.Win10</code></td>
+<td>square, one surface, three buttons in thirds, after the Windows 10 SDK</td>
 </tr>
 <tr>
-<td><code>DropDownCornerRadius</code></td>
-<td><code>CornerRadius</code></td>
-<td><code>0</code></td>
-<td>how far its corners are rounded</td>
+<td>WinUI, <code>Styles/WinUI/Controls.xaml</code></td>
+<td><code>MahApps.Styles.ContentDialog.WinUI</code></td>
+<td>rounded, the content on a lighter layer above the buttons, after WinUI</td>
 </tr>
 </tbody>
 </table>
-<p><code>MahApps.Styles.ComboBox</code> sets the first two from <code>MahApps.Brushes.ComboBox.PopupBackground</code> and <code>MahApps.Brushes.ComboBox.PopupBorder</code>, so overriding either key in a theme still does what it always did.</p>
-<pre><code class="language-xml">&lt;ComboBox mah:ComboBoxHelper.DropDownBorderBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
-          mah:ComboBoxHelper.DropDownCornerRadius=&quot;8&quot; /&gt;
-</code></pre>
+<p>The colours of the two Microsoft looks are aliases you can override, <code>MahApps.Brushes.ContentDialog.Win10.Background</code>, <code>.Foreground</code>, <code>.Border</code> and <code>.Overlay</code>, and for WinUI <code>MahApps.Brushes.ContentDialog.WinUI.Background</code>, <code>.TopOverlay</code>, <code>.Foreground</code>, <code>.Border</code>, <code>.Separator</code> and <code>.Overlay</code>.</p>
+<h2 id="title-bar-moving-and-the-close-button">Title bar, moving and the close button</h2>
+<p>Windows 10 and WinUI draw the dialog without a title bar, so their styles set <code>ShowTitleBar</code>, <code>AllowMove</code> and <code>ShowTitleBarCloseButton</code> to false. Switched on, they do what they say. The title moves into a bar, the dialog can be dragged by its title, with or without the bar, and a close button sits in the bar or in the corner of the content.</p>
+<p><code>CloseButtonText</code>, <code>CloseButtonCommand</code> and <code>CloseButtonStyle</code> belong to the close button in the row, as in WinUI. The close button in the title bar is styled by <code>TitleBarCloseButtonStyle</code>, and clicking it is one more way to the close button of the row. <code>TitleBarCloseButtonCommand</code> from ChildWindow is not used by the content dialog.</p>
+<h2 id="differences-to-winui">Differences to WinUI</h2>
+<p>Dialogs stack instead of throwing. There is no <code>Placement</code>, no <code>FullSizeDesired</code>, no deferral, and no <code>Opened</code> or <code>Closed</code> event. The title bar is an option WinUI does not have.</p>
 <h2 id="related">Related</h2>
-<p>Most of what else a <code>ComboBox</code> offers comes from other helpers: the watermark and the clear button from <a href="textboxhelper">TextBoxHelper</a>, the corner radius and focus brushes from <a href="controlshelper">ControlsHelper</a>, and the brushes for the items in the drop-down from <a href="itemhelper">ItemHelper</a>.</p>
+<p><a href="childwindow">ChildWindow</a> is what it builds on. <a href="../dialogs/mvvm-dialog">IDialogCoordinator</a> opens one from a view model with <code>ShowContentDialogAsync</code>, and the <a href="../dialogs/custom-dialogs">dialogs</a> share its container.</p>
 
 
                                         </div>
@@ -429,11 +439,15 @@ ComboBoxHelper
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#the-drop-down">The drop-down</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-buttons-and-the-result">The buttons and the result</a></div>
+                    <div class="sidebar-nav-item"><a href="#keyboard-and-focus">Keyboard and focus</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-three-looks">The three looks</a></div>
+                    <div class="sidebar-nav-item"><a href="#title-bar-moving-and-the-close-button">Title bar, moving and the close button</a></div>
+                    <div class="sidebar-nav-item"><a href="#differences-to-winui">Differences to WinUI</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/helper/comboboxhelper.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/ContentDialog.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
                             </div>

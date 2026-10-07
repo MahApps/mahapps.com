@@ -31,7 +31,7 @@
 <script type="text/javascript" src="/mahapps.com/assets/js/clipboard.min.js"></script>
 
 
-        <title>MahApps.Metro - ComboBoxHelper</title>
+        <title>MahApps.Metro - ChildWindow</title>
     </head>
     <body class="d-flex flex-column">
         <div class="flex-grow-1 d-flex flex-column">
@@ -94,11 +94,11 @@
                                         <div class="breadcrumbs d-flex flex-column flex-md-row text-break">
 
         <span><a href="/mahapps.com/docs">Documentation</a></span>
-        <span><a href="/mahapps.com/docs/helper">Helper Classes</a></span>
+        <span><a href="/mahapps.com/docs/controls">Controls</a></span>
                                         </div>
                                         <div class="text-white m-0 text-break title">
 
-ComboBoxHelper
+ChildWindow
                                         </div>
                                     </div>
                                         <div class="navbar navbar-expand-md navbar-dark p-0">
@@ -146,7 +146,7 @@ ComboBoxHelper
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/badged">Badged Control</a>
 </div>
-<div class="sidebar-nav-item">
+<div class="sidebar-nav-item active">
     <a href="/mahapps.com/docs/controls/childwindow">ChildWindow</a>
 </div>
 <div class="sidebar-nav-item">
@@ -285,7 +285,7 @@ ComboBoxHelper
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/checkboxhelper">CheckBoxHelper</a>
 </div>
-<div class="sidebar-nav-item active">
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/helper/comboboxhelper">ComboBoxHelper</a>
 </div>
 <div class="sidebar-nav-item">
@@ -352,75 +352,66 @@ ComboBoxHelper
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>Applies to <code>ComboBox</code>. Two properties are about the text an editable combo box accepts — a <code>ComboBox</code> has no <code>MaxLength</code> or <code>CharacterCasing</code> of its own, so these fill the gap that <code>TextBox</code> does not have. Three more are about the list that drops out of it.</p>
-<p><img src="images/comboboxhelper.png" alt="CharacterCasing on an editable ComboBox" /></p>
+<p><code>ChildWindow</code> is a window that opens inside a <a href="metrowindow">MetroWindow</a>. It is a <code>ContentControl</code> with a title bar of its own, and it sits over an overlay in the container the <a href="../dialogs/custom-dialogs">dialogs</a> use, where it can be moved and closed. It brings no buttons and no result type of its own, so the content and what the window hands back are up to you.</p>
+<div class="alert alert-info"><p><strong><code>ChildWindow</code> is new on <code>develop</code>.</strong> In 2.4.11 it is the separate package MahApps.Metro.SimpleChildWindow. The last section says what changes when you move over.</p>
+</div>
+<pre><code class="language-xml">&lt;mah:ChildWindow Title=&quot;A question&quot; ChildWindowWidth=&quot;360&quot;&gt;
+    &lt;StackPanel Margin=&quot;16&quot;&gt;
+        &lt;TextBlock Text=&quot;What is the answer?&quot; /&gt;
+        &lt;Button Content=&quot;42&quot; Click=&quot;OnAnswer&quot; /&gt;
+    &lt;/StackPanel&gt;
+&lt;/mah:ChildWindow&gt;
+</code></pre>
+<pre><code class="language-csharp">var answer = await this.ShowChildWindowAsync&lt;string&gt;(new QuestionChildWindow());
+</code></pre>
+<p><code>ShowChildWindowAsync</code> is an extension method on the window. It puts the child window into the dialog container, opens it and completes once it is closed and gone again.</p>
+<h2 id="closing-it-and-the-result">Closing it and the result</h2>
+<p><code>Close(result)</code> closes the window, and <code>ShowChildWindowAsync&lt;TResult&gt;</code> returns that <code>result</code>. Closed without one, by Escape, by the close button or by a click on the overlay, the task returns the <code>CloseReason</code> instead if <code>TResult</code> can hold it, and the default otherwise. <code>ClosedBy</code> says which of these it was. The <code>Closing</code> event can cancel a close.</p>
+<p>Escape closes the window unless <code>CloseByEscape</code> is off. A click on the overlay closes it only with <code>CloseOnOverlay</code>, and <code>IsAutoCloseEnabled</code> closes it on its own after <code>AutoCloseInterval</code> milliseconds.</p>
+<h2 id="the-overlay-and-the-title-bar">The overlay and the title bar</h2>
+<p><code>ShowChildWindowAsync</code> takes an <code>OverlayFillBehavior</code>. <code>WindowContent</code>, the default, leaves the title bar of the window free, <code>FullWindow</code> covers it as well. <code>IsModal</code> set to false takes the veil away, while the overlay still catches the click that <code>CloseOnOverlay</code> asks for. Its brush is <code>MahApps.Brushes.ChildWindow.Overlay</code> and follows the theme.</p>
+<p><code>AllowMove</code> lets the title bar move the window around, as long as it is not stretched across. <code>ShowTitleBarCloseButton</code> puts a close button into the title bar, and <code>ShowTitleBar</code> set to false leaves the bar out altogether. <code>TitleBarCloseButtonCommand</code> runs when that button is clicked, and its CanExecute can keep the window open. Closing the window any other way does not run it.</p>
+<h2 id="from-a-view-model">From a view model</h2>
+<p><code>IDialogCoordinator.ShowChildWindowAsync</code> does the same for a view model that is registered with <code>DialogParticipation.Register</code>, the way the <a href="../dialogs/mvvm-dialog">MVVM dialogs</a> do it.</p>
+<h2 id="coming-from-simplechildwindow">Coming from SimpleChildWindow</h2>
+<p>Replace the <code>http://metro.mahapps.com/winfx/xaml/simplechildwindow</code> namespace with the controls one, <code>http://metro.mahapps.com/winfx/xaml/controls</code>, and drop the package. The title bar has names of its own now:</p>
 <table>
 <thead>
 <tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
+<th>SimpleChildWindow</th>
+<th>MahApps.Metro</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>MaxLength</code></td>
-<td><code>int</code></td>
-<td><code>0</code></td>
-<td>how many characters may be typed; <code>0</code> means no limit</td>
+<td><code>ShowCloseButton</code></td>
+<td><code>ShowTitleBarCloseButton</code></td>
 </tr>
 <tr>
-<td><code>CharacterCasing</code></td>
-<td><code>CharacterCasing</code></td>
-<td><code>Normal</code></td>
-<td><code>Upper</code> or <code>Lower</code> converts as the user types</td>
+<td><code>CloseButtonStyle</code></td>
+<td><code>TitleBarCloseButtonStyle</code></td>
+</tr>
+<tr>
+<td><code>CloseButtonCommand</code>, <code>CloseButtonCommandParameter</code></td>
+<td><code>TitleBarCloseButtonCommand</code>, <code>TitleBarCloseButtonCommandParameter</code></td>
+</tr>
+<tr>
+<td><code>Icon</code>, <code>IconTemplate</code></td>
+<td><code>TitleBarIcon</code>, <code>TitleBarIconTemplate</code></td>
+</tr>
+<tr>
+<td><code>TitleForeground</code></td>
+<td><code>TitleBarForeground</code></td>
+</tr>
+<tr>
+<td><code>PART_Header</code>, <code>PART_HeaderThumb</code>, <code>PART_Icon</code>, <code>PART_CloseButton</code></td>
+<td><code>PART_TitleBar</code>, <code>PART_TitleBarThumb</code>, <code>PART_TitleBarIcon</code>, <code>PART_TitleBarCloseButton</code></td>
 </tr>
 </tbody>
 </table>
-<pre><code class="language-xml">&lt;ComboBox IsEditable=&quot;True&quot;
-          mah:ComboBoxHelper.CharacterCasing=&quot;Upper&quot;
-          mah:ComboBoxHelper.MaxLength=&quot;10&quot; /&gt;
-</code></pre>
-<p>Both only apply while <code>IsEditable</code> is <code>True</code>. On a drop-down-only combo box there is no text box for them to reach.</p>
-<h2 id="the-drop-down">The drop-down</h2>
-<p>On <code>develop</code> the fill, the frame and the corners of the list are the box's own rather than three keys everything else reads too. A list hangs over whatever is behind it, so it needs a chrome that can differ from the one the box wears, and a set that gives its boxes a look of its own wants the same one here:</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Default</th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>DropDownBackground</code></td>
-<td><code>Brush</code></td>
-<td><code>null</code></td>
-<td>what the list is filled with</td>
-</tr>
-<tr>
-<td><code>DropDownBorderBrush</code></td>
-<td><code>Brush</code></td>
-<td><code>null</code></td>
-<td>the frame around it</td>
-</tr>
-<tr>
-<td><code>DropDownCornerRadius</code></td>
-<td><code>CornerRadius</code></td>
-<td><code>0</code></td>
-<td>how far its corners are rounded</td>
-</tr>
-</tbody>
-</table>
-<p><code>MahApps.Styles.ComboBox</code> sets the first two from <code>MahApps.Brushes.ComboBox.PopupBackground</code> and <code>MahApps.Brushes.ComboBox.PopupBorder</code>, so overriding either key in a theme still does what it always did.</p>
-<pre><code class="language-xml">&lt;ComboBox mah:ComboBoxHelper.DropDownBorderBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
-          mah:ComboBoxHelper.DropDownCornerRadius=&quot;8&quot; /&gt;
-</code></pre>
+<p>The close command used to run on every close. Now it runs for the close button alone. <code>TitleBarHeight</code> is a <code>double</code> now instead of an <code>int</code>, and <code>ShowChildWindowAsync&lt;TResult&gt;</code> returns <code>Task&lt;TResult?&gt;</code>. Setting <code>CornerRadius</code> from code reaches the window as well, where the package wrote the attached property of <code>Border</code> instead.</p>
 <h2 id="related">Related</h2>
-<p>Most of what else a <code>ComboBox</code> offers comes from other helpers: the watermark and the clear button from <a href="textboxhelper">TextBoxHelper</a>, the corner radius and focus brushes from <a href="controlshelper">ControlsHelper</a>, and the brushes for the items in the drop-down from <a href="itemhelper">ItemHelper</a>.</p>
+<p><a href="metrowindow">MetroWindow</a> hosts it, and its <code>IsAnyDialogOpen</code> is true while a child window is open. The <a href="../dialogs/custom-dialogs">dialogs</a> share the same container, and whichever opens last lies on top. <a href="contentdialog">ContentDialog</a> builds on it, with the buttons and the result of the WinUI dialog.</p>
 
 
                                         </div>
@@ -429,11 +420,14 @@ ComboBoxHelper
         <div class="border-bottom mb-3 sidebar-root">
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
-                    <div class="sidebar-nav-item"><a href="#the-drop-down">The drop-down</a></div>
+                    <div class="sidebar-nav-item"><a href="#closing-it-and-the-result">Closing it and the result</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-overlay-and-the-title-bar">The overlay and the title bar</a></div>
+                    <div class="sidebar-nav-item"><a href="#from-a-view-model">From a view model</a></div>
+                    <div class="sidebar-nav-item"><a href="#coming-from-simplechildwindow">Coming from SimpleChildWindow</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
-        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/helper/comboboxhelper.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
+        <p class="small font-weight-bold"><a href="https://github.com/MahApps/mahapps.com/edit/main/input/docs/controls/ChildWindow.md" data-no-validate><i class="fas fa-pencil"></i> Edit This Page</a></p>
                                     </div>
                                 </div>
                             </div>
