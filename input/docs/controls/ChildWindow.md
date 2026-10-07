@@ -33,7 +33,7 @@ Escape closes the window unless `CloseByEscape` is off. A click on the overlay c
 
 `ShowChildWindowAsync` takes an `OverlayFillBehavior`. `WindowContent`, the default, leaves the title bar of the window free, `FullWindow` covers it as well. `IsModal` set to false takes the veil away, while the overlay still catches the click that `CloseOnOverlay` asks for. Its brush is `MahApps.Brushes.ChildWindow.Overlay` and follows the theme.
 
-`AllowMove` lets the title bar move the window around, as long as it is not stretched across. `ShowCloseButton` puts a close button into the title bar, and `ShowTitleBar` set to false leaves the bar out altogether.
+`AllowMove` lets the title bar move the window around, as long as it is not stretched across. `ShowTitleBarCloseButton` puts a close button into the title bar, and `ShowTitleBar` set to false leaves the bar out altogether. `TitleBarCloseButtonCommand` runs when that button is clicked, and its CanExecute can keep the window open. Closing the window any other way does not run it.
 
 ## From a view model
 
@@ -41,7 +41,18 @@ Escape closes the window unless `CloseByEscape` is off. A click on the overlay c
 
 ## Coming from SimpleChildWindow
 
-The control kept its names. Replace the `http://metro.mahapps.com/winfx/xaml/simplechildwindow` namespace with the controls one, `http://metro.mahapps.com/winfx/xaml/controls`, and drop the package. `TitleBarHeight` is a `double` now instead of an `int`, and `ShowChildWindowAsync<TResult>` returns `Task<TResult?>`. Setting `CornerRadius` from code reaches the window as well, where the package wrote the attached property of `Border` instead.
+Replace the `http://metro.mahapps.com/winfx/xaml/simplechildwindow` namespace with the controls one, `http://metro.mahapps.com/winfx/xaml/controls`, and drop the package. The title bar has names of its own now:
+
+| SimpleChildWindow | MahApps.Metro |
+|---|---|
+| `ShowCloseButton` | `ShowTitleBarCloseButton` |
+| `CloseButtonStyle` | `TitleBarCloseButtonStyle` |
+| `CloseButtonCommand`, `CloseButtonCommandParameter` | `TitleBarCloseButtonCommand`, `TitleBarCloseButtonCommandParameter` |
+| `Icon`, `IconTemplate` | `TitleBarIcon`, `TitleBarIconTemplate` |
+| `TitleForeground` | `TitleBarForeground` |
+| `PART_Header`, `PART_HeaderThumb`, `PART_Icon`, `PART_CloseButton` | `PART_TitleBar`, `PART_TitleBarThumb`, `PART_TitleBarIcon`, `PART_TitleBarCloseButton` |
+
+The close command used to run on every close. Now it runs for the close button alone. `TitleBarHeight` is a `double` now instead of an `int`, and `ShowChildWindowAsync<TResult>` returns `Task<TResult?>`. Setting `CornerRadius` from code reaches the window as well, where the package wrote the attached property of `Border` instead.
 
 ## Related
 
