@@ -215,7 +215,7 @@ await this.ShowMessageAsync("Deep Thought", "Come back in seven and a half milli
 `Styles/Win10/Dialogs.xaml` does the same for Windows 10. A few settings behave differently in these two looks:
 
 - `ColorScheme.Accented` looks like `Theme`. `Inverted` works as before.
-- `DialogContentWidth` and `DialogContentMargin` belong to the Metro band. The card is between 320 and 548 wide.
+- `DialogContentWidth` and `DialogContentMargin` belong to the Metro band. The card is between 320 and 548 wide, like the content dialog. A dialog that needs more room, a custom dialog with a grid in it for instance, puts a larger width under `MahApps.Sizes.Dialogs.Card.MaxWidth` into its own resources or into the dictionary it hands over.
 - The password box of a login dialog shows its eye anyway, the way Windows does, so `EnablePasswordPreview` changes nothing there.
 - The overlay behind the dialog is still the one of the window, set through `OverlayBrush` on the `MetroWindow`.
 
