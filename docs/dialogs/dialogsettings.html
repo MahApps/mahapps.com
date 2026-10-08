@@ -574,6 +574,27 @@ dialog, the way it always has.</p>
                };
 </code></pre>
 <p>The <a href="message-dialog">message dialog</a> page shows what this looks like in practice.</p>
+<h2 id="the-windows-10-and-the-winui-look">The Windows 10 and the WinUI look</h2>
+<div class="alert alert-info"><p><strong>The two looks are new on <code>develop</code>.</strong> They are not in 2.4.11.</p>
+</div>
+<p>Next to the Metro band there is a look after the content dialog of Windows 10 and one after WinUI: a card in the middle of the window, with the buttons sharing one row. An application that merges <code>Styles/Win10/Controls.xaml</code> or <code>Styles/WinUI/Controls.xaml</code> gets that look for every dialog. A single call gets it by handing the matching dictionary over as its custom resources:</p>
+<pre><code class="language-csharp">var settings = new MetroDialogSettings
+               {
+                   CustomResourceDictionary = new ResourceDictionary
+                                              {
+                                                  Source = new Uri(&quot;pack://application:,,,/MahApps.Metro;component/Styles/WinUI/Dialogs.xaml&quot;)
+                                              }
+               };
+
+await this.ShowMessageAsync(&quot;Deep Thought&quot;, &quot;Come back in seven and a half million years.&quot;, settings: settings);
+</code></pre>
+<p><code>Styles/Win10/Dialogs.xaml</code> does the same for Windows 10. Both dictionaries hold only the styles of the dialogs and take everything they stand on from the application, so the application has to merge <code>Styles/Controls.xaml</code> or one of the two sets, as every MahApps application does. A few settings behave differently in these two looks:</p>
+<ul>
+<li><code>ColorScheme.Accented</code> looks like <code>Theme</code>. <code>Inverted</code> works as before.</li>
+<li><code>DialogContentWidth</code> and <code>DialogContentMargin</code> belong to the Metro band. The card is between 320 and 548 wide, like the content dialog. A dialog that needs more room, a custom dialog with a grid in it for instance, puts a larger width under <code>MahApps.Sizes.Dialogs.Card.MaxWidth</code> into its own resources or into the dictionary it hands over.</li>
+<li><code>EnablePasswordPreview</code> decides whether the password box of a login dialog shows its eye, through <code>PasswordBoxHelper.ShowRevealButton</code>.</li>
+<li>The overlay behind the dialog is still the one of the window, set through <code>OverlayBrush</code> on the <code>MetroWindow</code>.</li>
+</ul>
 <h2 id="login-dialogs">Login dialogs</h2>
 <p><code>LoginDialogSettings</code> derives from <code>MetroDialogSettings</code> and adds the username, password and remember-checkbox settings. Everything on this page applies to it as well, with the fallback caveat noted above. One thing stays true either way: the constructor sets <code>AffirmativeButtonText</code> to <code>Login</code> after copying, so that label comes from the login settings and not from the window. See <a href="login-dialogs">Login Dialog</a>.</p>
 
@@ -597,6 +618,7 @@ dialog, the way it always has.</p>
                     <div class="sidebar-nav-item"><a href="#cancellation">Cancellation</a></div>
                     <div class="sidebar-nav-item"><a href="#closing-the-window-while-a-dialog-is-open">Closing the window while a dialog is open</a></div>
                     <div class="sidebar-nav-item"><a href="#custom-resources">Custom resources</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-windows-10-and-the-winui-look">The Windows 10 and the WinUI look</a></div>
                     <div class="sidebar-nav-item"><a href="#login-dialogs">Login dialogs</a></div>
             </div>
         </div>
