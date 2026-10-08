@@ -222,6 +222,9 @@ Text
     <a href="/mahapps.com/docs/styles/treeview">TreeView</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/styles/typography">Typography</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/styles/validation">Validation</a>
 </div>                </div>
 
@@ -285,7 +288,7 @@ Text
 </tr>
 </tbody>
 </table>
-<p>A plain <code>Window</code> sets neither, which is worth knowing if a dialog of yours comes out in the wrong size or colour.</p>
+<p>A plain <code>Window</code> sets neither, which is worth knowing if a dialog of yours comes out in the wrong size or colour. On <code>develop</code> the Windows 10 and the WinUI set bring a window style of their own, which sets 14 and the font of the set instead; <a href="typography">Typography</a> has it, together with the type ramps of all three looks.</p>
 <p>To style your own text blocks, give them an <code>x:Key</code>ed style and apply it where you mean to. <code>MahApps.Styles.TextBlock</code> exists to be the <code>BasedOn</code> for those:</p>
 <pre><code class="language-xml">&lt;Style x:Key=&quot;MyCaption&quot; BasedOn=&quot;{StaticResource MahApps.Styles.TextBlock}&quot; TargetType=&quot;{x:Type TextBlock}&quot;&gt;
     &lt;Setter Property=&quot;FontSize&quot; Value=&quot;{DynamicResource MahApps.Font.Size.Default}&quot; /&gt;

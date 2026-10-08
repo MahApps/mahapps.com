@@ -222,6 +222,9 @@ WinUI
     <a href="/mahapps.com/docs/styles/treeview">TreeView</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/styles/typography">Typography</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/styles/validation">Validation</a>
 </div>                </div>
 
@@ -269,6 +272,7 @@ WinUI
 &lt;/ResourceDictionary.MergedDictionaries&gt;
 </code></pre>
 <p>Merge it into a window or a panel rather than into <code>App.xaml</code> and it reaches that part of the tree alone.</p>
+<p>The controls of the set write in Segoe UI Variable at 14, and the set brings a window style that does the same for plain text. A window derived from <code>MetroWindow</code> has to name that style itself; <a href="../styles/typography">Typography</a> has the keys, the type ramp of the look and the window.</p>
 <h2 id="what-the-library-has-of-its-own">What the library has of its own</h2>
 <p><code>MahApps.Styles.TextBox.WinUI</code> is a light translucent fill, a border you have to look for that is a touch stronger along its bottom edge, and with the caret a solid fill, a line of accent underneath and rounded corners. The delete button comes and goes with the caret the way the UWP box does, while a button carrying a command of your own stays where it is.</p>
 <p>What it is made of sits in the theme as <code>MahApps.Colors.WinUI.*</code> and <code>MahApps.Brushes.TextControl.WinUI.*</code>, taken from the WinUI values themselves, and the border thicknesses and the padding are resources a style of your own can answer differently without replacing the template. <a href="../styles/textbox">TextBox</a> covers it.</p>
