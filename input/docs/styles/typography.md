@@ -68,14 +68,14 @@ Metro, made of the keys `Styles/Fonts.xaml` already had:
 | `MahApps.Styles.TextBlock.Caption` | 12, `MahApps.Font.Size.Content` | `MahApps.Fonts.Family.Control` |
 | `MahApps.Styles.TextBlock.Body` | 14, `MahApps.Font.Size.Default` | `MahApps.Fonts.Family.Control` |
 | `MahApps.Styles.TextBlock.Subtitle` | 20, `MahApps.Font.Size.Flyout.Header` | `MahApps.Fonts.Family.Control` |
-| `MahApps.Styles.TextBlock.SubHeader` | 29.333, `MahApps.Font.Size.SubHeader` | `MahApps.Fonts.Family.Header` (Segoe UI Light) |
+| `MahApps.Styles.TextBlock.Subheader` | 29.333, `MahApps.Font.Size.SubHeader` | `MahApps.Fonts.Family.Header` (Segoe UI Light) |
 | `MahApps.Styles.TextBlock.Header` | 40, `MahApps.Font.Size.Header` | `MahApps.Fonts.Family.Header` (Segoe UI Light) |
 
 None of the ramps sets a line height. WinUI does not either; the line heights in Microsoft's type ramp come from the font.
 
 ## The window
 
-A plain `TextBlock` takes its font from the window it is in. The [Windows 10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set therefore bring a window style each, `MahApps.Styles.MetroWindow.Win10` and `MahApps.Styles.MetroWindow.WinUI`. The content of the window gets the font of the set at 14, and the title the font Windows writes its title bars in, at 12.
+A plain `TextBlock` takes its font from the window it is in. The [Windows 10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set therefore bring a window style each, `MahApps.Styles.MetroWindow.Win10` and `MahApps.Styles.MetroWindow.WinUI`. The content of the window gets the font of the set at 14, and the title the font Windows writes its title bars in, at 12. The title has keys of its own, `MahApps.Font.Size.Window.Title.Win10` and `.WinUI` and the families `MahApps.Fonts.Family.Window.Title.Win10` and `.WinUI`, which the title bar of the [ContentDialog](../controls/contentdialog) reads as well.
 
 A set hands these out by type, and WPF gives a style handed out that way only to that exact type. A window of your own that derives from `MetroWindow`, which is nearly every window, does not get it and has to name the style itself:
 
@@ -86,4 +86,4 @@ A set hands these out by type, and WPF gives a style handed out that way only to
 
 ## Related
 
-[Text](text) covers the `TextBlock` and `Label` styles and why there is no implicit `TextBlock` style. The dialogs of both looks, the [ContentDialog](../controls/contentdialog) and the [old dialogs](../dialogs/dialogsettings), take their title and their message from these ramps.
+[Text](text) covers the `TextBlock` and `Label` styles and why there is no implicit `TextBlock` style. The dialogs of both looks, the [ContentDialog](../controls/contentdialog) and the [old dialogs](../dialogs/dialogsettings), take their title and their message from these ramps. Since every key is read as a dynamic resource, a single dialog can be given another title font by putting the key into its `CustomResourceDictionary`.
