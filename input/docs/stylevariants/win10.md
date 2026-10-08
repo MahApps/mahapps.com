@@ -28,6 +28,8 @@ Everything the library has is still there. What comes out in the Windows 10 look
 
 Merge it into a window or a panel rather than into `App.xaml` and it reaches that part of the tree alone. The demo does exactly that, to stand the three sets next to each other.
 
+The controls of the set write in Segoe UI at 14, and the set brings a window style that does the same for plain text. A window derived from `MetroWindow` has to name that style itself; [Typography](../styles/typography) has the keys, the type ramp of the look and the window. The demo does exactly that, to stand the three sets next to each other.
+
 The pickers of the set carry two habits its text box already had: the clear button is there only while the caret is in the field and something is written in it, and a picker that is switched off says so with the disabled colours rather than with a veil over it. [DatePicker](../styles/datepicker) has the detail. The combo box of the set takes the second of the two.
 
 One thing about the set changes layout rather than looks. Its scrollbar is the two-state one a UWP window draws, a two-unit line until the pointer arrives, so the set also applies a scroll viewer that lays the bars *over* the content instead of beside it. Leave sixteen units of padding at the edge of anything interactive, or an expanded bar will cover it. [ScrollBars](../styles/scrollbars) has the whole story.

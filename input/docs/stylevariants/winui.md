@@ -24,6 +24,8 @@ It goes *in place of* `Styles/Controls.xaml`, because it merges `Styles/Win10/Co
 
 Merge it into a window or a panel rather than into `App.xaml` and it reaches that part of the tree alone.
 
+The controls of the set write in Segoe UI Variable at 14, and the set brings a window style that does the same for plain text. A window derived from `MetroWindow` has to name that style itself; [Typography](../styles/typography) has the keys, the type ramp of the look and the window.
+
 ## What the library has of its own
 
 `MahApps.Styles.TextBox.WinUI` is a light translucent fill, a border you have to look for that is a touch stronger along its bottom edge, and with the caret a solid fill, a line of accent underneath and rounded corners. The delete button comes and goes with the caret the way the UWP box does, while a button carrying a command of your own stays where it is.

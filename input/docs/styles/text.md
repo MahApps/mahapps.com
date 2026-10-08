@@ -28,7 +28,7 @@ So why does plain text look right without a style? Because the `MetroWindow` sty
 | `Foreground` | `MahApps.Brushes.ThemeForeground` |
 | `TextElement.FontSize` | `MahApps.Font.Size.Content`, which is 12 |
 
-A plain `Window` sets neither, which is worth knowing if a dialog of yours comes out in the wrong size or colour.
+A plain `Window` sets neither, which is worth knowing if a dialog of yours comes out in the wrong size or colour. On `develop` the Windows 10 and the WinUI set bring a window style of their own, which sets 14 and the font of the set instead; [Typography](typography) has it, together with the type ramps of all three looks.
 
 To style your own text blocks, give them an `x:Key`ed style and apply it where you mean to. `MahApps.Styles.TextBlock` exists to be the `BasedOn` for those:
 
