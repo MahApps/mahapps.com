@@ -192,6 +192,33 @@ var settings = new MetroDialogSettings
 
 The [message dialog](message-dialog) page shows what this looks like in practice.
 
+## The Windows 10 and the WinUI look
+
+:::{.alert .alert-info}
+**The two looks are new on `develop`.** They are not in 2.4.11.
+:::
+
+Next to the Metro band there is a look after the content dialog of Windows 10 and one after WinUI: a card in the middle of the window, with the buttons sharing one row. An application that merges `Styles/Win10/Controls.xaml` or `Styles/WinUI/Controls.xaml` gets that look for every dialog. A single call gets it by handing the matching dictionary over as its custom resources:
+
+```csharp
+var settings = new MetroDialogSettings
+               {
+                   CustomResourceDictionary = new ResourceDictionary
+                                              {
+                                                  Source = new Uri("pack://application:,,,/MahApps.Metro;component/Styles/WinUI/Dialogs.xaml")
+                                              }
+               };
+
+await this.ShowMessageAsync("Deep Thought", "Come back in seven and a half million years.", settings: settings);
+```
+
+`Styles/Win10/Dialogs.xaml` does the same for Windows 10. A few settings behave differently in these two looks:
+
+- `ColorScheme.Accented` looks like `Theme`. `Inverted` works as before.
+- `DialogContentWidth` and `DialogContentMargin` belong to the Metro band. The card is between 320 and 548 wide.
+- The password box of a login dialog shows its eye anyway, the way Windows does, so `EnablePasswordPreview` changes nothing there.
+- The overlay behind the dialog is still the one of the window, set through `OverlayBrush` on the `MetroWindow`.
+
 ## Login dialogs
 
 `LoginDialogSettings` derives from `MetroDialogSettings` and adds the username, password and remember-checkbox settings. Everything on this page applies to it as well, with the fallback caveat noted above. One thing stays true either way: the constructor sets `AffirmativeButtonText` to `Login` after copying, so that label comes from the login settings and not from the window. See [Login Dialog](login-dialogs).
