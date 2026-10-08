@@ -3,7 +3,7 @@ Title: PasswordBoxHelper
 Description: Caps lock warning and reveal button of a PasswordBox
 ---
 
-Applies to `PasswordBox`. Four properties, covering the two things MahApps adds to a password box: the warning that caps lock is on, and the button that reveals what has been typed.
+Applies to `PasswordBox`. Five properties, covering the two things MahApps adds to a password box: the warning that caps lock is on, and the button that reveals what has been typed.
 
 | Property | Type | Default | |
 | --- | --- | --- | --- |
@@ -11,6 +11,7 @@ Applies to `PasswordBox`. Four properties, covering the two things MahApps adds 
 | `CapsLockWarningToolTip` | `object` | `Caps lock is on` | its tooltip |
 | `RevealButtonContent` | `object` | an eye icon | content of the reveal button |
 | `RevealButtonContentTemplate` | `DataTemplate` | `null` | template for that content |
+| `ShowRevealButton` | `bool` | `true` | whether a box that carries the reveal button shows it, `develop` only |
 
 Both content properties are typed `object`, so they take a string, a `Path`, or a whole `Grid`.
 
@@ -43,6 +44,13 @@ On `develop` the Windows 10 and the WinUI password box carry it as well, as the 
 <PasswordBox Style="{StaticResource MahApps.Styles.PasswordBox.Win10}"
              mah:PasswordBoxHelper.RevealButtonContent="Show"
              mah:PasswordBoxHelper.RevealButtonContentTemplate="{x:Null}" />
+```
+
+Since the Windows 10 and the WinUI box carry the eye whether you asked for it or not, `ShowRevealButton` takes it away again, for a screen other people can see. It works on the revealed style as well:
+
+```xml
+<PasswordBox Style="{StaticResource MahApps.Styles.PasswordBox.Win10}"
+             mah:PasswordBoxHelper.ShowRevealButton="False" />
 ```
 
 ![The PasswordBox styles](../styles/images/passwordbox-styles.png)

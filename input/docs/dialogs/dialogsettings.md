@@ -212,11 +212,11 @@ var settings = new MetroDialogSettings
 await this.ShowMessageAsync("Deep Thought", "Come back in seven and a half million years.", settings: settings);
 ```
 
-`Styles/Win10/Dialogs.xaml` does the same for Windows 10. A few settings behave differently in these two looks:
+`Styles/Win10/Dialogs.xaml` does the same for Windows 10. Both dictionaries hold only the styles of the dialogs and take everything they stand on from the application, so the application has to merge `Styles/Controls.xaml` or one of the two sets, as every MahApps application does. A few settings behave differently in these two looks:
 
 - `ColorScheme.Accented` looks like `Theme`. `Inverted` works as before.
 - `DialogContentWidth` and `DialogContentMargin` belong to the Metro band. The card is between 320 and 548 wide, like the content dialog. A dialog that needs more room, a custom dialog with a grid in it for instance, puts a larger width under `MahApps.Sizes.Dialogs.Card.MaxWidth` into its own resources or into the dictionary it hands over.
-- The password box of a login dialog shows its eye anyway, the way Windows does, so `EnablePasswordPreview` changes nothing there.
+- `EnablePasswordPreview` decides whether the password box of a login dialog shows its eye, through `PasswordBoxHelper.ShowRevealButton`.
 - The overlay behind the dialog is still the one of the window, set through `OverlayBrush` on the `MetroWindow`.
 
 ## Login dialogs
