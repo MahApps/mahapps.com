@@ -10,7 +10,7 @@ One style, applied implicitly, that turns WPF's tooltip into a flat bordered car
 <Button Content="Save" ToolTip="Save the current document" />
 ```
 
-`Styles/Controls.xaml` applies `MahApps.Styles.ToolTip` to every `ToolTip`, so the [quick start](../guides/quick-start) is all the setup there is. There is no second style and no variant.
+`Styles/Controls.xaml` applies `MahApps.Styles.ToolTip` to every `ToolTip`, so the [quick start](../guides/quick-start) is all the setup there is. In 2.4.11 there is no second style. On `develop` the two Windows sets bring one each, see [The Windows looks](#the-windows-looks).
 
 ## What the style sets
 
@@ -83,6 +83,33 @@ Being a `ContentControl`, a tooltip is not limited to a string. `ContentTemplate
 ```
 
 A tooltip does not size itself, so give a wrapping block a `MaxWidth` or a long sentence turns into one very long line.
+
+## The Windows looks
+
+:::{.alert .alert-info}
+Both styles are on `develop` and ship with the next release.
+:::
+
+`MahApps.Styles.ToolTip.Win10` and `MahApps.Styles.ToolTip.WinUI` are the tool tips Windows draws, read off the ToolTip style of the UWP `generic.xaml` and off `ToolTip_themeresources.xaml` of WinUI 3. The [Win10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set apply them by type, so merging a set is all it takes.
+
+| | Win10 | WinUI |
+| --- | --- | --- |
+| `Background` | `MahApps.Brushes.ToolTip.Win10.Background`, the chrome of a flyout | `MahApps.Brushes.ToolTip.WinUI.Background`, see below |
+| `BorderBrush` | `MahApps.Brushes.ToolTip.Win10.BorderBrush` | `MahApps.Brushes.ToolTip.WinUI.BorderBrush` |
+| `Foreground` | `MahApps.Brushes.ToolTip.Win10.Foreground` | `MahApps.Brushes.ToolTip.WinUI.Foreground` |
+| `FontFamily` | `MahApps.Fonts.Family.Control.Win10` | `MahApps.Fonts.Family.Caption.WinUI`, the Small cut |
+| `FontSize` | `MahApps.Font.Size.Caption.Win10`, 12 | `MahApps.Font.Size.Caption.WinUI`, 12 |
+| `Padding` | `8 5 8 7` | `9 6 9 8` |
+| `ControlsHelper.CornerRadius` | none | `MahApps.CornerRadius.WinUI.Control`, 4 |
+| `HasDropShadow` | `False` | `True`, the shadow of a WinUI flyout |
+
+Both write at the Caption step of the [type ramp](typography), so making that step larger makes the tool tips larger too. Neither fades in or out: Windows shows its tool tip at once, so these two templates have no `OpenStates` group, and the warning about the fade below is about the Metro template only.
+
+A plain string breaks into lines at 320, the width Microsoft gives its tool tip, so a long sentence needs no `MaxWidth` of its own in these two looks. Anything else in the content is laid out as before. A number with a `ContentStringFormat` is formatted and stays on one line.
+
+Windows lays acrylic under the WinUI tool tip. WPF cannot draw that, so the style takes the colour the acrylic falls back to, `#F9F9F9` in the light theme and `#2C2C2C` in the dark one. That colour is `MahApps.Colors.WinUI.AcrylicInAppFillDefault` in the theme.
+
+The shadow needs room around the tip, so the WinUI style moves the popup back by its `HorizontalOffset` and `VerticalOffset` and sets a `MaxWidth` of 336, which is 320 for the tip and 8 either side for the shadow. Keep that in mind when you change either.
 
 ## Timing and placement
 

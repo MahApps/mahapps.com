@@ -56,6 +56,7 @@ Nothing forces the whole set on you. Every style in it has a key, and always has
 | `MahApps.Styles.ScrollBar.Win10`, `…ScrollViewer.Win10` (on `develop`) | [ScrollBars](../styles/scrollbars) |
 | `MahApps.Styles.NumericUpDown.Win10` (on `develop`) | [NumericUpDown](../controls/numericupdown) |
 | `MahApps.Styles.TabControl.Win10`, `…TabItem.Win10` (on `develop`) | [TabControl](../styles/tabcontrol) |
+| `MahApps.Styles.ToolTip.Win10` (on `develop`) | [ToolTip](../styles/tooltip) |
 | `MahApps.Styles.Slider.Win10` | [Slider](../styles/slider) |
 | `MahApps.Styles.RangeSlider.Win10` | [RangeSlider](../controls/rangeslider) |
 | `MahApps.Styles.WindowButtonCommands.Win10` | [WindowButtonCommands](../controls/windowbuttoncommands) |
