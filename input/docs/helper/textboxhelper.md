@@ -38,6 +38,8 @@ public string Query { get; set; }
 <TextBox Text="{Binding Query}" mah:TextBoxHelper.AutoWatermark="True" />
 ```
 
+In the Metro look the watermark fades further while the caret is in an empty control. `FadeWatermarkOnFocus`, a `bool` that defaults to `true`, turns that off. It is handed down, so on a combo box or a picker it reaches the text box inside it as well. The WinUI styles set it to `false`, because there the watermark takes a quieter colour with the caret instead, the same in every input control of that set. `FadeWatermarkOnFocus` is new in `develop` and is not in 2.4.11.
+
 ## Buttons
 
 ![Clear button, on the left, and with its own content](../styles/images/textbox-buttons.png)
