@@ -23,8 +23,9 @@ One style, applied implicitly, that turns WPF's tooltip into a flat bordered car
 | `FontSize` | `MahApps.Font.Size.Tooltip`, which is 12 |
 | `Padding` | `6 3` |
 | `SnapsToDevicePixels` | `True` |
+| `ToolTipHelper.CloseOnScroll` | `True` (on `develop`), so the tip closes when the page under it scrolls; see [ToolTipHelper](../helper/tooltiphelper) |
 
-All seven are ordinary properties on a border the template draws, so all seven can be changed on the control:
+The first seven are ordinary properties on a border the template draws, so all of them can be changed on the control:
 
 ![The default tooltip, a recoloured one, and one without a border](images/tooltip-colours.png)
 
@@ -109,7 +110,9 @@ A plain string breaks into lines at 320, the width Microsoft gives its tool tip,
 
 Windows lays acrylic under the WinUI tool tip. WPF cannot draw that, so the style takes the colour the acrylic falls back to, `#F9F9F9` in the light theme and `#2C2C2C` in the dark one. That colour is `MahApps.Colors.WinUI.AcrylicInAppFillDefault` in the theme.
 
-The shadow needs room around the tip, so the WinUI style moves the popup back by its `HorizontalOffset` and `VerticalOffset` and sets a `MaxWidth` of 336, which is 320 for the tip and 8 either side for the shadow. Keep that in mind when you change either.
+The shadow needs room around the tip, so while there is one the WinUI template raises the `MaxWidth` to 336, which is 320 for the tip and 8 either side for the shadow. Where Windows draws no shadows it stays at 320.
+
+Both looks put the tip where Windows puts it: above the pointer and centred on it, and below where there is no room above. That is [`ToolTipHelper.PlaceLikeWindows`](../helper/tooltiphelper), which the two styles turn on. What is in the tip is clipped to the rounded corners, as everywhere else in the library.
 
 ## Timing and placement
 
