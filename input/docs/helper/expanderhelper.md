@@ -81,4 +81,6 @@ The circle and the arrow in the header are drawn in the foreground of the header
 
 The helper's own default for both is `null`, but the `Expander` style fills them in — `MahApps.Storyboard.Expander.Expand` and `.Collapse`, a quarter-second opacity fade on the content site. So an expander already animates, and setting these replaces that animation rather than adding one. Set them to `{x:Null}` to have the content switch over in a single frame instead.
 
+On `develop` the Windows 10 and WinUI expanders play `MahApps.Storyboard.Expander.Win10.Expand` and `.Collapse` instead, the slide of the WinUI expander. The content comes out from behind the header by the whole of its height over a third of a second and goes back over a sixth, without fading. A storyboard cannot know how tall the content is, so these two animate `ContentSlide`, a `double` on the content site that says how much of the content still stands behind the header: 1 for all of it, 0 for none. The template moves the site by that part of its height, or of its width when the expander opens sideways, towards the header. A storyboard of your own can animate it the same way. `ContentSlide` is new in `develop` and is not in 2.4.11.
+
 `ExpandSiteControl` is read-only and exists for the template's own use; it gives the content site the storyboards are applied to.
