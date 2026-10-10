@@ -37,6 +37,20 @@ On `develop` the fill, the frame and the corners of the list are the box's own r
           mah:ComboBoxHelper.DropDownCornerRadius="8" />
 ```
 
+## Opening with Enter
+
+| Property | Type | Default | |
+| --- | --- | --- | --- |
+| `OpenDropDownOnEnterAndSpace` | `bool` | `false` | Enter and the space bar open the list of a closed box |
+
+WPF opens the list of a combo box with F4 or with Alt and an arrow key. The combo box of UWP and WinUI also opens it with Enter and the space bar, and with this property set a MahApps box does the same. It only applies to a box that cannot be typed into: an editable one takes the space as a character and Enter as the end of what was typed. A key held together with Alt or Ctrl is left alone too. It works on a `MultiSelectionComboBox` as well.
+
+The [Win10](../stylevariants/win10) and [WinUI](../stylevariants/winui) styles of both boxes turn it on, while the Metro style keeps the WPF behaviour. The property is new in `develop` and not in 2.4.11.
+
+```xml
+<ComboBox mah:ComboBoxHelper.OpenDropDownOnEnterAndSpace="True" />
+```
+
 ## Related
 
 Most of what else a `ComboBox` offers comes from other helpers: the watermark and the clear button from [TextBoxHelper](textboxhelper), the corner radius and focus brushes from [ControlsHelper](controlshelper), and the brushes for the items in the drop-down from [ItemHelper](itemhelper).
