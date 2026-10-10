@@ -422,6 +422,29 @@ ComboBoxHelper
 <pre><code class="language-xml">&lt;ComboBox mah:ComboBoxHelper.DropDownBorderBrush=&quot;{DynamicResource MahApps.Brushes.Accent}&quot;
           mah:ComboBoxHelper.DropDownCornerRadius=&quot;8&quot; /&gt;
 </code></pre>
+<h2 id="opening-with-enter">Opening with Enter</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>OpenDropDownOnEnterAndSpace</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>Enter and the space bar open the list of a closed box</td>
+</tr>
+</tbody>
+</table>
+<p>WPF opens the list of a combo box with F4 or with Alt and an arrow key. The combo box of UWP and WinUI also opens it with Enter and the space bar, and with this property set a MahApps box does the same. It only applies to a box that cannot be typed into: an editable one takes the space as a character and Enter as the end of what was typed. A key held together with Alt or Ctrl is left alone too. It works on a <code>MultiSelectionComboBox</code> as well.</p>
+<p>The <a href="../stylevariants/win10">Win10</a> and <a href="../stylevariants/winui">WinUI</a> styles of both boxes turn it on, while the Metro style keeps the WPF behaviour. The property is new in <code>develop</code> and not in 2.4.11.</p>
+<pre><code class="language-xml">&lt;ComboBox mah:ComboBoxHelper.OpenDropDownOnEnterAndSpace=&quot;True&quot; /&gt;
+</code></pre>
 <h2 id="related">Related</h2>
 <p>Most of what else a <code>ComboBox</code> offers comes from other helpers: the watermark and the clear button from <a href="textboxhelper">TextBoxHelper</a>, the corner radius and focus brushes from <a href="controlshelper">ControlsHelper</a>, and the brushes for the items in the drop-down from <a href="itemhelper">ItemHelper</a>.</p>
 
@@ -433,6 +456,7 @@ ComboBoxHelper
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-drop-down">The drop-down</a></div>
+                    <div class="sidebar-nav-item"><a href="#opening-with-enter">Opening with Enter</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
