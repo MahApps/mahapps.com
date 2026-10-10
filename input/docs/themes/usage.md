@@ -73,6 +73,8 @@ There is no `Light.Blue.xaml` in the MahApps source tree, and looking for one is
 | `Styles/Themes/Theme.Template.xaml` | every brush and colour a theme defines, with `{{Placeholders}}` for the parts that vary |
 | `Styles/Themes/GeneratorParameters.json` | the two base themes and the twenty-three schemes, each supplying values for those placeholders |
 
+On `develop` most of that has moved into a second template. Whatever does not change with the accent is the same in every theme of one base colour, and that covers most of a theme and nearly all of the Windows 10 and WinUI resources. So it is generated once per base colour, from `Styles/ThemeBase/Theme.Base.Template.xaml` and `GeneratorParameters.Base.json`, into `Styles/ThemeBase/Light.xaml` and `Dark.xaml`. Each theme merges the one of its base colour and keeps only the keys that depend on the accent. Merging `Light.Blue.xaml` works as before and a key is found the same way, but the theme dictionary's own `Keys` now hold only the accent part; walk its `MergedDictionaries` as well if you list them. 2.4.11 still has one self-contained file per theme.
+
 That template is the reference for what a theme can set. It defines over four hundred keyed colours and brushes, of which seventy-nine are placeholders that vary by theme; the rest are the same everywhere. It is the file to read when you want to know which brush a control is actually using. The [ThemeManager](thememanager) page shows how to build a theme of your own from the same template without rebuilding the library.
 
 ## Related
