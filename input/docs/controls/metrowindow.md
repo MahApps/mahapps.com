@@ -180,6 +180,8 @@ Where the template has none, the right click falls back to the system menu, whic
 
 The four overlay-behaviour properties — `LeftWindowCommandsOverlayBehavior`, `RightWindowCommandsOverlayBehavior`, `WindowButtonCommandsOverlayBehavior` and `IconOverlayBehavior` — decide what stays visible above an open flyout. They are documented with their defaults on the [Flyouts](flyouts) page.
 
+`InfoBars` takes an `InfoBarsControl` whose [info bars](infobar) lie over the top of the content, under the title bar and under the flyouts, the overlay and the dialogs. It is new on `develop` and not in 2.4.11.
+
 ## A WindowsFormsHost over a dialog
 
 **New on `develop`** with [#3849](https://github.com/MahApps/MahApps.Metro/issues/3849).
