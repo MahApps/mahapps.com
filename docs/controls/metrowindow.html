@@ -183,6 +183,9 @@ MetroWindow
     <a href="/mahapps.com/docs/controls/hotkeybox">HotKeyBox</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/infobar">InfoBar</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/metroanimatedsinglerowtabcontrol">MetroAnimatedSingleRowTabControl</a>
 </div>
 <div class="sidebar-nav-item">
@@ -680,6 +683,7 @@ MetroWindow
 </tbody>
 </table>
 <p>The four overlay-behaviour properties — <code>LeftWindowCommandsOverlayBehavior</code>, <code>RightWindowCommandsOverlayBehavior</code>, <code>WindowButtonCommandsOverlayBehavior</code> and <code>IconOverlayBehavior</code> — decide what stays visible above an open flyout. They are documented with their defaults on the <a href="flyouts">Flyouts</a> page.</p>
+<p><code>InfoBars</code> takes an <code>InfoBarsControl</code> whose <a href="infobar">info bars</a> lie over the top of the content, under the title bar and under the flyouts, the overlay and the dialogs. It is new on <code>develop</code> and not in 2.4.11.</p>
 <h2 id="a-windowsformshost-over-a-dialog">A WindowsFormsHost over a dialog</h2>
 <p><strong>New on <code>develop</code></strong> with <a href="https://github.com/MahApps/MahApps.Metro/issues/3849">#3849</a>.</p>
 <p>A <code>WindowsFormsHost</code>, a <code>WebBrowser</code>, anything built on <code>HwndHost</code> is a window of its own sitting on top of yours. It paints over the WPF content around it whatever the z order says, so a dialog or a flyout drawn over it is cut in half. There is nothing to arrange your way out of, and it is a WPF thing rather than a MahApps one.</p>
