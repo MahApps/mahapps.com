@@ -51,6 +51,25 @@ To make links read as links in the browser sense, override the foreground — ei
 
 Keep the `BasedOn`, or the underline, the hover colour and the hand cursor go with it.
 
+## Windows 10 and WinUI
+
+:::{.alert .alert-info}
+**The two styles below are on `develop`.** They are not in 2.4.11.
+:::
+
+The [Win10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set each bring a link of their own, and apply it to every `Hyperlink` in their part of the tree. Both stand on `MahApps.Styles.Hyperlink`, so the hand cursor stays.
+
+| | `MahApps.Styles.Hyperlink.Win10` | `MahApps.Styles.Hyperlink.WinUI` |
+| --- | --- | --- |
+| at rest | the accent | the accent |
+| under the mouse | the medium base colour | the accent at 90 percent |
+| disabled | the disabled base colour | the disabled text colour |
+| underline | yes | no |
+
+The values are the ones of `generic.xaml` of the Windows SDK and of WinUI, where `HyperlinkUnderlineVisible` is False and the link only gets its line in high contrast. WinUI takes a darker or lighter step of the accent there; the themes do not have those steps yet, so the WinUI link is the accent fill. The colours are aliases you can override, `MahApps.Brushes.Hyperlink.Win10.Foreground`, `.ForegroundPointerOver` and `.ForegroundDisabled`, and the same for `WinUI`. A WPF `Hyperlink` has no pressed state, so the `.ForegroundPressed` of each set only colours the [HyperlinkButton](../controls/hyperlinkbutton).
+
+For a link that stands on its own rather than in running text, the [HyperlinkButton](../controls/hyperlinkbutton) is a button with the same colours.
+
 ## Navigating
 
 The style does nothing about navigation — that is WPF's job, and WPF does not open a browser for you. Handle `RequestNavigate`:
