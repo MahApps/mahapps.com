@@ -13,6 +13,8 @@ A MahApps theme is two choices: a **base theme**, which decides whether the appl
 
 Each one sets six colours: `MahApps.Colors.AccentBase` — the swatch above — then `Accent`, `Accent2`, `Accent3` and `Accent4`, which are the same colour at 80, 60, 40 and 20 per cent, and a darker `MahApps.Colors.Highlight`. Everything accent-coloured in the library comes from those six.
 
+On `develop` each scheme also carries the three lighter and three darker shades Windows derives from an accent, the ones WinUI calls `SystemAccentColorLight1` to `Dark3`: `MahApps.Colors.SystemAccentLight1`, `Light2`, `Light3`, `SystemAccentDark1`, `Dark2` and `Dark3`, each with a brush of the same name under `MahApps.Brushes`. The [WinUI](../stylevariants/winui) set paints with them. `MahApps.Metro.Theming.AccentPalette` works them out, and you can call it yourself: `AccentPalette.Create(color)` gives the shades of any colour, `AccentPalette.FromWindows()` reads the ones Windows keeps for the accent of the user. A theme that follows the Windows accent takes those, so its shades are exactly the ones of Windows. For every other accent they are calculated the way Windows does it, which comes close but not always to the last bit.
+
 ## The base themes
 
 `Light` and `Dark`. The base theme changes the backgrounds, the greys and the text colour; it does **not** change the accent:

@@ -100,7 +100,7 @@ protected override void OnStartup(StartupEventArgs e)
 }
 ```
 
-`SyncWithAccent` generates a theme from whatever colour the user picked, which is the mechanism the next section uses directly.
+`SyncWithAccent` generates a theme from whatever colour the user picked, which is the mechanism the next section uses directly. On `develop` such a theme also takes the shades of the accent from Windows itself, so the [WinUI](../stylevariants/winui) controls come out in the colours a Windows 11 app has.
 
 ## A theme from any colour
 
@@ -168,7 +168,7 @@ Give the theme a **name of its own**, `Accent1` rather than `Blue`. A name one o
 
 The authoritative list of what a theme can define is [`Theme.Template.xaml`](https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Styles/Themes/Theme.Template.xaml) in the library — 422 keys, of which 79 vary between themes. A dictionary that omits one falls back to whatever was there before, which is rarely what you meant. See [Usage](usage) for how the shipped themes are generated from that template.
 
-On `develop` the keys that do not change with the accent live in [`Theme.Base.Template.xaml`](https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Styles/ThemeBase/Theme.Base.Template.xaml) instead, and every shipped theme merges `pack://application:,,,/MahApps.Metro;component/Styles/ThemeBase/Light.xaml` or `Dark.xaml`. A theme of your own can merge the same base and define only the keys of `Theme.Template.xaml`. A theme made by `RuntimeThemeGenerator` does that by itself.
+On `develop` the keys that do not change with the accent live in [`Theme.Base.Template.xaml`](https://github.com/MahApps/MahApps.Metro/blob/develop/src/MahApps.Metro/Styles/ThemeBase/Theme.Base.Template.xaml) instead, and every shipped theme merges `pack://application:,,,/MahApps.Metro;component/Styles/ThemeBase/Light.xaml` or `Dark.xaml`. A theme of your own can merge the same base and define only the keys of `Theme.Template.xaml`. A theme made by `RuntimeThemeGenerator` does that by itself. Those keys now include the six shades of the accent, `MahApps.Colors.SystemAccentLight1` to `SystemAccentDark3`, and the foreground that reads on two of them, `MahApps.Colors.IdealForeground.SystemAccentDark1` and `.SystemAccentLight2`. `AccentPalette.Create` gives you the shades for your colour.
 :::
 
 A complete sample project is on [GitHub](https://github.com/punker76/code-samples#mahappsmetro-themes).

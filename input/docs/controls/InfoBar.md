@@ -88,7 +88,7 @@ Each style set has its own bar, and the bar follows the set it is in.
 | Windows 10, `Styles/Win10/Controls.xaml` | `MahApps.Styles.InfoBar.Win10` | square with a border, the close button of the Windows 10 SDK |
 | WinUI, `Styles/WinUI/Controls.xaml` | `MahApps.Styles.InfoBar.WinUI` | rounded with a border, the close button of WinUI |
 
-The colours come from the theme and are the ones of WinUI, in a light and a dark version: `MahApps.Brushes.InfoBar.Informational.Background`, `.Success.Background`, `.Warning.Background` and `.Error.Background`, with an `.IconBackground` and an `.IconForeground` for each severity, plus `MahApps.Brushes.InfoBar.Border` and `.Foreground`. The informational icon takes the accent of the theme. The close buttons are `MahApps.Styles.Button.InfoBar.Close`, `.Close.Win10` and `.Close.WinUI`, and `CloseButtonStyle` sets one per bar.
+The colours come from the theme and are the ones of WinUI, in a light and a dark version: `MahApps.Brushes.InfoBar.Informational.Background`, `.Success.Background`, `.Warning.Background` and `.Error.Background`, with an `.IconBackground` and an `.IconForeground` for each severity, plus `MahApps.Brushes.InfoBar.Border` and `.Foreground`. The informational icon takes the accent of the theme, on `develop` in the shade WinUI gives it: a darker one in the light theme, a lighter one in the dark theme. The close buttons are `MahApps.Styles.Button.InfoBar.Close`, `.Close.Win10` and `.Close.WinUI`, and `CloseButtonStyle` sets one per bar.
 
 ## Differences to WinUI
 

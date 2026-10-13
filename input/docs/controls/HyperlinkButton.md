@@ -45,13 +45,13 @@ Each style set has its own button, and the button follows the set it is in.
 |---|---|---|
 | Metro, `Styles/Controls.xaml` | `MahApps.Styles.HyperlinkButton` | the text colour, underlined, `MahApps.Brushes.Highlight` under the mouse, no padding |
 | Windows 10, `Styles/Win10/Controls.xaml` | `MahApps.Styles.HyperlinkButton.Win10` | the accent, underlined, the medium base colour under the mouse, the padding of the Windows SDK |
-| WinUI, `Styles/WinUI/Controls.xaml` | `MahApps.Styles.HyperlinkButton.WinUI` | the accent, no underline, the padding and the rounded corners of a button, a subtle fill under the mouse and while pressed |
+| WinUI, `Styles/WinUI/Controls.xaml` | `MahApps.Styles.HyperlinkButton.WinUI` | a darker shade of the accent in a light theme and a lighter one in a dark theme, no underline, the padding and the rounded corners of a button, a subtle fill under the mouse and while pressed |
 
 The text colours are the ones of the [link](../styles/hyperlink) in the same set: `MahApps.Brushes.Hyperlink.Win10.Foreground`, `.ForegroundPointerOver`, `.ForegroundPressed` and `.ForegroundDisabled`, and the same four for `WinUI`. Overriding them colours the inline link and the button alike.
 
 ## Differences to WinUI
 
-The URI goes through `RequestNavigate` first, so the app can take it, and only web and mail URIs open by themselves. `IsUnderlineVisible` is a property rather than a theme resource. WinUI writes the link in a darker step of the accent in the light theme and a lighter one in the dark theme; the themes here do not have those steps yet, so it is the accent itself.
+The URI goes through `RequestNavigate` first, so the app can take it, and only web and mail URIs open by themselves. `IsUnderlineVisible` is a property rather than a theme resource. The shades of the accent the WinUI look writes in are the ones [every theme carries](../themes/usage), which match Windows exactly only when the theme follows the Windows accent.
 
 ## Related
 

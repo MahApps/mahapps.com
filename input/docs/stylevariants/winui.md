@@ -4,6 +4,8 @@ Description: The look Windows 11 draws, as a set that is only getting started
 
 WinUI is what Windows 11 draws: rounded corners, the accent used sparingly, chrome that recedes until you point at it.
 
+Where the set fills something with the accent, it takes the shade WinUI takes, a darker one in a light theme and a lighter one in a dark theme, and text in the accent goes one step further out. The shades are listed under [Themes](../themes/usage).
+
 :::{.alert .alert-info}
 **`Styles/WinUI/Controls.xaml` is on `develop` and ships with the next release.** 2.4.11 has no WinUI style at all; there, the drop-in dictionaries further down this page are the whole of it.
 :::
@@ -62,7 +64,7 @@ The three pickers of the set follow the two habits the text box has: the clear b
 
 `MahApps.Styles.ToolTip.WinUI` is the tool tip of WinUI 3: corners of 4, the shadow of a flyout and Segoe UI Variable in its small cut at 12. Windows lays acrylic under it, which WPF cannot draw, so it takes the colour that acrylic falls back to, `MahApps.Colors.WinUI.AcrylicInAppFillDefault`. A plain string wraps at 320. [ToolTip](../styles/tooltip) covers it.
 
-`MahApps.Styles.CheckBox.WinUI` and `MahApps.Styles.RadioButton.WinUI` are the Fluent 2 pair: a rounded box and a ring of twenty, each with a hairline round a fill a shade off the page, each turning accent once it is ticked or picked. What sits on that accent is the ideal foreground the theme works out for it rather than a fixed black or white. [CheckBox](../styles/checkbox) and [RadioButton](../styles/radiobutton) cover them.
+`MahApps.Styles.CheckBox.WinUI` and `MahApps.Styles.RadioButton.WinUI` are the Fluent 2 pair: a rounded box and a ring of twenty, each with a hairline round a fill a shade off the page, each turning accent once it is ticked or picked. What sits on that accent is the foreground that reads on its shade rather than a fixed black or white. [CheckBox](../styles/checkbox) and [RadioButton](../styles/radiobutton) cover them.
 
 `MahApps.Styles.ScrollBar.WinUI` is the Fluent bar in both its visualisations: a two-unit line at the edge of the content that grows inwards into a thumb with a chevron at either end once the pointer is on it. The set applies `MahApps.Styles.ScrollViewer.WinUI` with it, which lays the bars over the content rather than beside it, so the sixteen units the expanded bar needs cost no layout while nobody is pointing at it. Leave that much padding at the edge of anything interactive. The [Win10](win10) bar works the same way in square shape, and both take their timings from the platform; [ScrollBars](../styles/scrollbars) covers all of it.
 

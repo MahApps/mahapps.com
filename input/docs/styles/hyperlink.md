@@ -61,12 +61,12 @@ The [Win10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set 
 
 | | `MahApps.Styles.Hyperlink.Win10` | `MahApps.Styles.Hyperlink.WinUI` |
 | --- | --- | --- |
-| at rest | the accent | the accent |
-| under the mouse | the medium base colour | the accent at 90 percent |
+| at rest | the accent | a darker shade of the accent in a light theme, a lighter one in a dark theme |
+| under the mouse | the medium base colour | the next shade out |
 | disabled | the disabled base colour | the disabled text colour |
 | underline | yes | no |
 
-The values are the ones of `generic.xaml` of the Windows SDK and of WinUI, where `HyperlinkUnderlineVisible` is False and the link only gets its line in high contrast. WinUI takes a darker or lighter step of the accent there; the themes do not have those steps yet, so the WinUI link is the accent fill. The colours are aliases you can override, `MahApps.Brushes.Hyperlink.Win10.Foreground`, `.ForegroundPointerOver` and `.ForegroundDisabled`, and the same for `WinUI`. A WPF `Hyperlink` has no pressed state, so the `.ForegroundPressed` of each set only colours the [HyperlinkButton](../controls/hyperlinkbutton).
+The values are the ones of `generic.xaml` of the Windows SDK and of WinUI, where `HyperlinkUnderlineVisible` is False and the link only gets its line in high contrast. On `develop` the WinUI link takes the [shades of the accent](../themes/usage) WinUI writes text in, `MahApps.Brushes.WinUI.AccentTextFillPrimary`, `Secondary` and `Tertiary`. The colours are aliases you can override, `MahApps.Brushes.Hyperlink.Win10.Foreground`, `.ForegroundPointerOver` and `.ForegroundDisabled`, and the same for `WinUI`. A WPF `Hyperlink` has no pressed state, so the `.ForegroundPressed` of each set only colours the [HyperlinkButton](../controls/hyperlinkbutton).
 
 For a link that stands on its own rather than in running text, the [HyperlinkButton](../controls/hyperlinkbutton) is a button with the same colours.
 
