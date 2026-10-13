@@ -9,7 +9,7 @@ Description: A button that looks like a link, in the Metro, the Windows 10 and t
 :::
 
 ```xml
-<mah:HyperlinkButton Content="mahapps.com" NavigateUri="https://mahapps.com/" />
+<mah:HyperlinkButton Content="MahApps.Metro on GitHub" NavigateUri="https://github.com/MahApps/MahApps.Metro" />
 ```
 
 ## Navigating

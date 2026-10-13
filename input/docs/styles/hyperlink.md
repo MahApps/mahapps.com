@@ -83,7 +83,7 @@ private void OnRequestNavigate(object sender, RequestNavigateEventArgs e)
 ```
 
 ```xml
-<Hyperlink NavigateUri="https://mahapps.com" RequestNavigate="OnRequestNavigate">mahapps.com</Hyperlink>
+<Hyperlink NavigateUri="https://github.com/MahApps/MahApps.Metro" RequestNavigate="OnRequestNavigate">MahApps.Metro on GitHub</Hyperlink>
 ```
 
 ## In a DataGrid
