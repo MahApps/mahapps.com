@@ -312,6 +312,43 @@ Hyperlink
 &lt;/Style&gt;
 </code></pre>
 <p>Keep the <code>BasedOn</code>, or the underline, the hover colour and the hand cursor go with it.</p>
+<h2 id="windows-10-and-winui">Windows 10 and WinUI</h2>
+<div class="alert alert-info"><p><strong>The two styles below are on <code>develop</code>.</strong> They are not in 2.4.11.</p>
+</div>
+<p>The <a href="../stylevariants/win10">Win10</a> and the <a href="../stylevariants/winui">WinUI</a> set each bring a link of their own, and apply it to every <code>Hyperlink</code> in their part of the tree. Both stand on <code>MahApps.Styles.Hyperlink</code>, so the hand cursor stays.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>MahApps.Styles.Hyperlink.Win10</code></th>
+<th><code>MahApps.Styles.Hyperlink.WinUI</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>at rest</td>
+<td>the accent</td>
+<td>a darker shade of the accent in a light theme, a lighter one in a dark theme</td>
+</tr>
+<tr>
+<td>under the mouse</td>
+<td>the medium base colour</td>
+<td>the next shade out</td>
+</tr>
+<tr>
+<td>disabled</td>
+<td>the disabled base colour</td>
+<td>the disabled text colour</td>
+</tr>
+<tr>
+<td>underline</td>
+<td>yes</td>
+<td>no</td>
+</tr>
+</tbody>
+</table>
+<p>The values are the ones of <code>generic.xaml</code> of the Windows SDK and of WinUI, where <code>HyperlinkUnderlineVisible</code> is False and the link only gets its line in high contrast. On <code>develop</code> the WinUI link takes the <a href="../themes/usage">shades of the accent</a> WinUI writes text in, <code>MahApps.Brushes.WinUI.AccentTextFillPrimary</code>, <code>Secondary</code> and <code>Tertiary</code>. The colours are aliases you can override, <code>MahApps.Brushes.Hyperlink.Win10.Foreground</code>, <code>.ForegroundPointerOver</code> and <code>.ForegroundDisabled</code>, and the same for <code>WinUI</code>. A WPF <code>Hyperlink</code> has no pressed state, so the <code>.ForegroundPressed</code> of each set only colours the <a href="../controls/hyperlinkbutton">HyperlinkButton</a>.</p>
+<p>For a link that stands on its own rather than in running text, the <a href="../controls/hyperlinkbutton">HyperlinkButton</a> is a button with the same colours.</p>
 <h2 id="navigating">Navigating</h2>
 <p>The style does nothing about navigation — that is WPF's job, and WPF does not open a browser for you. Handle <code>RequestNavigate</code>:</p>
 <pre><code class="language-csharp">private void OnRequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -320,7 +357,7 @@ Hyperlink
     e.Handled = true;
 }
 </code></pre>
-<pre><code class="language-xml">&lt;Hyperlink NavigateUri=&quot;https://mahapps.com&quot; RequestNavigate=&quot;OnRequestNavigate&quot;&gt;mahapps.com&lt;/Hyperlink&gt;
+<pre><code class="language-xml">&lt;Hyperlink NavigateUri=&quot;https://github.com/MahApps/MahApps.Metro&quot; RequestNavigate=&quot;OnRequestNavigate&quot;&gt;MahApps.Metro on GitHub&lt;/Hyperlink&gt;
 </code></pre>
 <h2 id="in-a-datagrid">In a DataGrid</h2>
 <p><code>MahApps.Styles.Hyperlink.DataGrid</code> is what a <code>DataGridHyperlinkColumn</code> uses for its cells. Despite the name it targets <strong><code>TextBlock</code></strong>, not <code>Hyperlink</code>: a hyperlink column puts a <code>TextBlock</code> in the cell and the link inside it, so the style dresses the block and carries a nested <code>Hyperlink</code> style in its <code>Style.Resources</code> for the link itself.</p>
@@ -335,6 +372,7 @@ Hyperlink
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
                     <div class="sidebar-nav-item"><a href="#what-the-style-does">What the style does</a></div>
+                    <div class="sidebar-nav-item"><a href="#windows-10-and-winui">Windows 10 and WinUI</a></div>
                     <div class="sidebar-nav-item"><a href="#navigating">Navigating</a></div>
                     <div class="sidebar-nav-item"><a href="#in-a-datagrid">In a DataGrid</a></div>
             </div>

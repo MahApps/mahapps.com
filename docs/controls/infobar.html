@@ -182,6 +182,9 @@ InfoBar
 <div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/hotkeybox">HotKeyBox</a>
 </div>
+<div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/hyperlinkbutton">HyperlinkButton</a>
+</div>
 <div class="sidebar-nav-item active">
     <a href="/mahapps.com/docs/controls/infobar">InfoBar</a>
 </div>
@@ -436,7 +439,7 @@ InfoBar
 </tr>
 </tbody>
 </table>
-<p>The colours come from the theme and are the ones of WinUI, in a light and a dark version: <code>MahApps.Brushes.InfoBar.Informational.Background</code>, <code>.Success.Background</code>, <code>.Warning.Background</code> and <code>.Error.Background</code>, with an <code>.IconBackground</code> and an <code>.IconForeground</code> for each severity, plus <code>MahApps.Brushes.InfoBar.Border</code> and <code>.Foreground</code>. The informational icon takes the accent of the theme. The close buttons are <code>MahApps.Styles.Button.InfoBar.Close</code>, <code>.Close.Win10</code> and <code>.Close.WinUI</code>, and <code>CloseButtonStyle</code> sets one per bar.</p>
+<p>The colours come from the theme and are the ones of WinUI, in a light and a dark version: <code>MahApps.Brushes.InfoBar.Informational.Background</code>, <code>.Success.Background</code>, <code>.Warning.Background</code> and <code>.Error.Background</code>, with an <code>.IconBackground</code> and an <code>.IconForeground</code> for each severity, plus <code>MahApps.Brushes.InfoBar.Border</code> and <code>.Foreground</code>. The informational icon takes the accent of the theme, and on <code>develop</code> the lighter shade WinUI gives it in the dark theme. The close buttons are <code>MahApps.Styles.Button.InfoBar.Close</code>, <code>.Close.Win10</code> and <code>.Close.WinUI</code>, and <code>CloseButtonStyle</code> sets one per bar.</p>
 <h2 id="differences-to-winui">Differences to WinUI</h2>
 <p>There is no <code>IconSource</code>; <code>Icon</code> takes any element and <code>IconTemplate</code> covers the rest. The events are routed events and bubble. <code>InfoBarsControl</code> and <code>MetroWindow.InfoBars</code> have no counterpart in WinUI, where a bar always stands in the layout.</p>
 <h2 id="related">Related</h2>
