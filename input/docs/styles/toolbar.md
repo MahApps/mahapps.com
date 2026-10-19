@@ -97,6 +97,50 @@ The popup itself is a bordered panel in `MahApps.Brushes.Control.Background` wit
 <Button Content="Rarely used" ToolBar.OverflowMode="Always" />
 ```
 
+## The Windows 10 and the WinUI look
+
+:::{.alert .alert-info}
+**The Windows 10 and the WinUI toolbar are on `develop`.** They are not in 2.4.11.
+:::
+
+WPF has no `CommandBar`, and the `ToolBar` is the same thing: a row of commands with the rest behind the dots. `MahApps.Styles.ToolBar.Win10` and `MahApps.Styles.ToolBar.WinUI` give it the look of the CommandBar of UWP and of WinUI 3, and the [Win10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set apply them by type, together with `MahApps.Styles.ToolBarTray.Win10` and `.WinUI`.
+
+```xml
+<ToolBar ToolBarTray.IsLocked="True">
+    <Button ToolTip="Add">
+        <mah:FontIcon Glyph="&#xE710;" />
+    </Button>
+    <Button>
+        <StackPanel Orientation="Horizontal">
+            <mah:FontIcon Glyph="&#xE74E;" />
+            <TextBlock Margin="8 0 0 0" VerticalAlignment="Center" Text="Save" />
+        </StackPanel>
+    </Button>
+    <Separator />
+    <ToggleButton IsChecked="True" ToolTip="Bold">
+        <mah:FontIcon Glyph="&#xE8DD;" />
+    </ToggleButton>
+    <Button Content="Delete" ToolBar.OverflowMode="Always" />
+</ToolBar>
+```
+
+The bar carries the style keys for its items in its own resources, so a Windows 10 bar has Windows 10 buttons even in a window of the default set. Seven of the eight keys are filled in. The separator gets a look of its own here, `MahApps.Styles.Separator.ToolBar.Win10` and `.WinUI`, and only `MenuStyleKey` stays empty.
+
+| | Windows 10 | WinUI |
+| --- | --- | --- |
+| Bar | 40 high, in the chrome colour of the theme | 48 high and transparent, the buttons six units in from either edge |
+| Button | the AppBarButton without its label, the pointer as a veil over the fill | the same with corners of 4 |
+| Checked button | the accent, with the text in the colour it has under the pointer, as UWP does it | the accent button of the set, frame and bottom edge included |
+| Dots | `&#xE10C;` at 16, 48 wide | `&#xE712;` at 20, 40 wide |
+| Drop-down | a list in the colour of the menu flyout | rounded, in the acrylic colour of WinUI, with the shadow of the menus |
+| Open | the bar stays as it is | the bar takes the colour of the drop-down and a frame, so the two read as one surface |
+
+A few things differ from the Metro bar. The bar takes the `Background` it is given. The dots are only there while something has gone into the drop-down, as with the CommandBar, instead of sitting there disabled. And the drop-down is a list: the commands stand one under the other, each as wide as the widest, where the panel WPF has there would put short ones side by side. It opens below the dots and ends where they end.
+
+An icon and a label are content like any other, so a label next to the icon is a `StackPanel`. There is no label below the icon the way AppBarButton draws one, and no `IsOpen` that folds the labels in and out.
+
+The colours are in the theme as `MahApps.Brushes.ToolBar.Win10.*` and `MahApps.Brushes.ToolBar.WinUI.*`: `Background`, `Foreground`, `BackgroundOpen` and `BorderBrushOpen` (WinUI only), `OverflowBackground`, `OverflowBorderBrush`, `Separator`, `Gripper`, `ButtonBackground`, `ButtonForeground` with its `PointerOver`, `Pressed` and `Disabled` steps, and the `ToggleButton…Checked` steps of a checked button.
+
 ## Related
 
 The toolbar button styles are variants of the ones on the [Buttons](buttons) page, and the text box and combo box inside a toolbar are the ordinary [TextBox](textbox) and [ComboBox](combobox) styles.
