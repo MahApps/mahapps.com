@@ -344,6 +344,72 @@ ToolBar
 <p>The popup itself is a bordered panel in <code>MahApps.Brushes.Control.Background</code> with a <code>ToolBarOverflowPanel</code> that wraps at 200 units. Mark an item as always overflowing, or never, with WPF's own attached property:</p>
 <pre><code class="language-xml">&lt;Button Content=&quot;Rarely used&quot; ToolBar.OverflowMode=&quot;Always&quot; /&gt;
 </code></pre>
+<h2 id="the-windows-10-and-the-winui-look">The Windows 10 and the WinUI look</h2>
+<div class="alert alert-info"><p><strong>The Windows 10 and the WinUI toolbar are on <code>develop</code>.</strong> They are not in 2.4.11.</p>
+</div>
+<p>WPF has no <code>CommandBar</code>, and the <code>ToolBar</code> is the same thing: a row of commands with the rest behind the dots. <code>MahApps.Styles.ToolBar.Win10</code> and <code>MahApps.Styles.ToolBar.WinUI</code> give it the look of the CommandBar of UWP and of WinUI 3, and the <a href="../stylevariants/win10">Win10</a> and the <a href="../stylevariants/winui">WinUI</a> set apply them by type, together with <code>MahApps.Styles.ToolBarTray.Win10</code> and <code>.WinUI</code>.</p>
+<pre><code class="language-xml">&lt;ToolBar ToolBarTray.IsLocked=&quot;True&quot;&gt;
+    &lt;Button ToolTip=&quot;Add&quot;&gt;
+        &lt;mah:FontIcon Glyph=&quot;&amp;#xE710;&quot; /&gt;
+    &lt;/Button&gt;
+    &lt;Button&gt;
+        &lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+            &lt;mah:FontIcon Glyph=&quot;&amp;#xE74E;&quot; /&gt;
+            &lt;TextBlock Margin=&quot;8 0 0 0&quot; VerticalAlignment=&quot;Center&quot; Text=&quot;Save&quot; /&gt;
+        &lt;/StackPanel&gt;
+    &lt;/Button&gt;
+    &lt;Separator /&gt;
+    &lt;ToggleButton IsChecked=&quot;True&quot; ToolTip=&quot;Bold&quot;&gt;
+        &lt;mah:FontIcon Glyph=&quot;&amp;#xE8DD;&quot; /&gt;
+    &lt;/ToggleButton&gt;
+    &lt;Button Content=&quot;Delete&quot; ToolBar.OverflowMode=&quot;Always&quot; /&gt;
+&lt;/ToolBar&gt;
+</code></pre>
+<p>The bar carries the style keys for its items in its own resources, so a Windows 10 bar has Windows 10 buttons even in a window of the default set. Seven of the eight keys are filled in. The separator gets a look of its own here, <code>MahApps.Styles.Separator.ToolBar.Win10</code> and <code>.WinUI</code>, and only <code>MenuStyleKey</code> stays empty.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Windows 10</th>
+<th>WinUI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bar</td>
+<td>40 high, in the chrome colour of the theme</td>
+<td>48 high and transparent, the buttons six units in from either edge</td>
+</tr>
+<tr>
+<td>Button</td>
+<td>the AppBarButton without its label, the pointer as a veil over the fill</td>
+<td>the same with corners of 4</td>
+</tr>
+<tr>
+<td>Checked button</td>
+<td>the accent, with the text in the colour it has under the pointer, as UWP does it</td>
+<td>the accent button of the set, frame and bottom edge included</td>
+</tr>
+<tr>
+<td>Dots</td>
+<td><code>&amp;#xE10C;</code> at 16, 48 wide</td>
+<td><code>&amp;#xE712;</code> at 20, 40 wide</td>
+</tr>
+<tr>
+<td>Drop-down</td>
+<td>a list in the colour of the menu flyout</td>
+<td>rounded, in the acrylic colour of WinUI, with the shadow of the menus</td>
+</tr>
+<tr>
+<td>Open</td>
+<td>the bar stays as it is</td>
+<td>the bar takes the colour of the drop-down and a frame, so the two read as one surface</td>
+</tr>
+</tbody>
+</table>
+<p>A few things differ from the Metro bar. The bar takes the <code>Background</code> it is given. The dots are only there while something has gone into the drop-down, as with the CommandBar, instead of sitting there disabled. And the drop-down is a list: the commands stand one under the other, each as wide as the widest, where the panel WPF has there would put short ones side by side. It opens below the dots and ends where they end.</p>
+<p>An icon and a label are content like any other, so a label next to the icon is a <code>StackPanel</code>. There is no label below the icon the way AppBarButton draws one, and no <code>IsOpen</code> that folds the labels in and out.</p>
+<p>The colours are in the theme as <code>MahApps.Brushes.ToolBar.Win10.*</code> and <code>MahApps.Brushes.ToolBar.WinUI.*</code>: <code>Background</code>, <code>Foreground</code>, <code>BackgroundOpen</code> and <code>BorderBrushOpen</code> (WinUI only), <code>OverflowBackground</code>, <code>OverflowBorderBrush</code>, <code>Separator</code>, <code>Gripper</code>, <code>ButtonBackground</code>, <code>ButtonForeground</code> with its <code>PointerOver</code>, <code>Pressed</code> and <code>Disabled</code> steps, and the <code>ToggleButton…Checked</code> steps of a checked button.</p>
 <h2 id="related">Related</h2>
 <p>The toolbar button styles are variants of the ones on the <a href="buttons">Buttons</a> page, and the text box and combo box inside a toolbar are the ordinary <a href="textbox">TextBox</a> and <a href="combobox">ComboBox</a> styles.</p>
 
@@ -358,6 +424,7 @@ ToolBar
                     <div class="sidebar-nav-item"><a href="#background-belongs-on-the-tray">Background belongs on the tray</a></div>
                     <div class="sidebar-nav-item"><a href="#the-drag-grip">The drag grip</a></div>
                     <div class="sidebar-nav-item"><a href="#overflow">Overflow</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-windows-10-and-the-winui-look">The Windows 10 and the WinUI look</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
         </div>
