@@ -151,7 +151,11 @@ A row of dots showing how many items there are and which one is current. It is *
 
 `NavigationIndexPlacement` has eight values: `Left`, `Right`, `Top`, `Bottom`, and a `…OverItem` variant of each. The plain values give the index a strip of its own and shrink the item; the `OverItem` ones lay it over the item, as in the middle panel above.
 
-The index is a `ListBox` in the template and it is clickable, so it navigates as well as reports.
+The index is a `ListBox` in the template and it is clickable, so it navigates as well as reports. It shows every page, so with more pages than fit the dots share the row.
+
+:::{.alert .alert-info}
+On `develop` a dot of the Metro index stays whole when the row is too short for all of them and reaches into the space beside it. In a released version the padding of the theme cut it to a sliver. The WinUI look shows a [PipsPager](pipspager) as its index instead, with at most five dots that slide along with the selection, and there `IndexItemContainerStyle` has no effect.
+:::
 
 ## The hover border
 
@@ -183,6 +187,20 @@ timer.Start();
 
 `GoForward()` wraps by itself once `CircularNavigation` is on, so there is no index arithmetic to get wrong.
 
+## The three looks
+
+| Set | Style | Look |
+|---|---|---|
+| Metro, `Themes/Generic.xaml` | `MahApps.Styles.FlipView` | the half transparent buttons, the hover border and the dots in the accent |
+| Windows 10, `Styles/Win10/Controls.xaml` | `MahApps.Styles.FlipView.Win10` | the square buttons of UWP, 20 by 36, with the chevrons of the symbol font |
+| WinUI, `Styles/WinUI/Controls.xaml` | `MahApps.Styles.FlipView.WinUI` | narrow buttons of 16 by 38 on the acrylic colour, rounded corners that also clip the item, and a [PipsPager](pipspager) as the index |
+
+In both of the newer looks the buttons only show while the pointer is over the flip view, as in WinUI, and they are no tab stops; the arrow keys still flip. There is no hover border, and the index of the Windows 10 look draws the dots of the PipsPager.
+
+:::{.alert .alert-info}
+**The Windows 10 and the WinUI look are new on `develop`.** They are not in 2.4.11. Changing the template of a flip view at run time, by a set or by its `Style`, also needs `develop`: in 2.4.11 the banner animation throws when the template changes.
+:::
+
 ## What a client is told
 
 A flip view builds nothing for the pages it is not showing, so there is no list of pages to walk. It says which page is up and how many there are, as `1 / 3`, and the page itself with its banner is in the tree the way any content is.
@@ -193,4 +211,4 @@ New on `develop`. In a released version it arrives as an empty list. This is [#4
 
 ## Related
 
-`FlipViewItem` is the container, styled by `MahApps.Styles.FlipViewItem`. The transitions come from [TransitioningContentControl](transitioningcontentcontrol).
+`FlipViewItem` is the container, styled by `MahApps.Styles.FlipViewItem`. The transitions come from [TransitioningContentControl](transitioningcontentcontrol). A [PipsPager](pipspager) is the index of the WinUI look and can stand next to any flip view.
