@@ -228,6 +228,9 @@ FlipView
     <a href="/mahapps.com/docs/controls/numericupdown">NumericUpDown</a>
 </div>
 <div class="sidebar-nav-item">
+    <a href="/mahapps.com/docs/controls/pipspager">PipsPager</a>
+</div>
+<div class="sidebar-nav-item">
     <a href="/mahapps.com/docs/controls/progressring">ProgressRing</a>
 </div>
 <div class="sidebar-nav-item">
@@ -591,7 +594,9 @@ FlipView
 </tbody>
 </table>
 <p><code>NavigationIndexPlacement</code> has eight values: <code>Left</code>, <code>Right</code>, <code>Top</code>, <code>Bottom</code>, and a <code>…OverItem</code> variant of each. The plain values give the index a strip of its own and shrink the item; the <code>OverItem</code> ones lay it over the item, as in the middle panel above.</p>
-<p>The index is a <code>ListBox</code> in the template and it is clickable, so it navigates as well as reports.</p>
+<p>The index is a <code>ListBox</code> in the template and it is clickable, so it navigates as well as reports. It shows every page, so with more pages than fit the dots share the row.</p>
+<div class="alert alert-info"><p>On <code>develop</code> a dot of the Metro index stays whole when the row is too short for all of them and reaches into the space beside it. In a released version the padding of the theme cut it to a sliver. The WinUI look shows a <a href="pipspager">PipsPager</a> as its index instead, with at most five dots that slide along with the selection, and there <code>IndexItemContainerStyle</code> has no effect.</p>
+</div>
 <h2 id="the-hover-border">The hover border</h2>
 <p>A border drawn over the item while the mouse is inside, to show the control has focus for the arrow keys.</p>
 <table>
@@ -633,12 +638,42 @@ timer.Tick += (_, _) =&gt; this.Slideshow.GoForward();
 timer.Start();
 </code></pre>
 <p><code>GoForward()</code> wraps by itself once <code>CircularNavigation</code> is on, so there is no index arithmetic to get wrong.</p>
+<h2 id="the-three-looks">The three looks</h2>
+<table>
+<thead>
+<tr>
+<th>Set</th>
+<th>Style</th>
+<th>Look</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Metro, <code>Themes/Generic.xaml</code></td>
+<td><code>MahApps.Styles.FlipView</code></td>
+<td>the half transparent buttons, the hover border and the dots in the accent</td>
+</tr>
+<tr>
+<td>Windows 10, <code>Styles/Win10/Controls.xaml</code></td>
+<td><code>MahApps.Styles.FlipView.Win10</code></td>
+<td>the square buttons of UWP, 20 by 36, with the chevrons of the symbol font</td>
+</tr>
+<tr>
+<td>WinUI, <code>Styles/WinUI/Controls.xaml</code></td>
+<td><code>MahApps.Styles.FlipView.WinUI</code></td>
+<td>narrow buttons of 16 by 38 on the acrylic colour, rounded corners that also clip the item, and a <a href="pipspager">PipsPager</a> as the index</td>
+</tr>
+</tbody>
+</table>
+<p>In both of the newer looks the buttons only show while the pointer is over the flip view, as in WinUI, and they are no tab stops; the arrow keys still flip. There is no hover border, and the index of the Windows 10 look draws the dots of the PipsPager.</p>
+<div class="alert alert-info"><p><strong>The Windows 10 and the WinUI look are new on <code>develop</code>.</strong> They are not in 2.4.11. Changing the template of a flip view at run time, by a set or by its <code>Style</code>, also needs <code>develop</code>: in 2.4.11 the banner animation throws when the template changes.</p>
+</div>
 <h2 id="what-a-client-is-told">What a client is told</h2>
 <p>A flip view builds nothing for the pages it is not showing, so there is no list of pages to walk. It says which page is up and how many there are, as <code>1 / 3</code>, and the page itself with its banner is in the tree the way any content is.</p>
 <div class="alert alert-info"><p>New on <code>develop</code>. In a released version it arrives as an empty list. This is <a href="https://github.com/MahApps/MahApps.Metro/issues/4454">#4454</a>.</p>
 </div>
 <h2 id="related">Related</h2>
-<p><code>FlipViewItem</code> is the container, styled by <code>MahApps.Styles.FlipViewItem</code>. The transitions come from <a href="transitioningcontentcontrol">TransitioningContentControl</a>.</p>
+<p><code>FlipViewItem</code> is the container, styled by <code>MahApps.Styles.FlipViewItem</code>. The transitions come from <a href="transitioningcontentcontrol">TransitioningContentControl</a>. A <a href="pipspager">PipsPager</a> is the index of the WinUI look and can stand next to any flip view.</p>
 
 
                                         </div>
@@ -653,6 +688,7 @@ timer.Start();
                     <div class="sidebar-nav-item"><a href="#the-index">The index</a></div>
                     <div class="sidebar-nav-item"><a href="#the-hover-border">The hover border</a></div>
                     <div class="sidebar-nav-item"><a href="#an-automatic-slideshow">An automatic slideshow</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-three-looks">The three looks</a></div>
                     <div class="sidebar-nav-item"><a href="#what-a-client-is-told">What a client is told</a></div>
                     <div class="sidebar-nav-item"><a href="#related">Related</a></div>
             </div>
