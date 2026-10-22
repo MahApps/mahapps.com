@@ -40,9 +40,7 @@ Which button is visible is **computed, not fixed**. `DetectControlButtonsStatus`
 `Outside` puts the buttons beside the item instead of over it, which costs width — compare the second panel above with the first.
 
 :::{.alert .alert-info}
-**There is no swipe gesture.** `FlipView` handles `OnKeyDown` and `OnMouseDown` and nothing else — no manipulation or touch handling anywhere in the control. Older documentation said otherwise.
-
-The keyboard is also tied to the buttons: `OnKeyDown` only acts if the button for that direction is **visible and enabled**. So hiding the buttons — through `IsNavigationEnabled="False"` or `HideControlButtons()` — takes the arrow keys with it. `Left`/`Right` flip when horizontal, `Up`/`Down` when vertical.
+The keyboard is tied to the buttons: `OnKeyDown` only acts if the button for that direction is **visible and enabled**. So hiding the buttons — through `IsNavigationEnabled="False"` or `HideControlButtons()` — takes the arrow keys with it. `Left`/`Right` flip when horizontal, `Up`/`Down` when vertical.
 :::
 
 :::{.alert .alert-warning}
@@ -62,6 +60,24 @@ Anything that recomputes the buttons afterwards brings them back — a selection
 Both panels called `HideControlButtons()`. The right one then flipped once, and the back button returned. (The forward button stays hidden because that panel is now on the last item.)
 
 Use **`IsNavigationEnabled="False"`** instead. It is a dependency property, it is re-read on every recompute, and it survives.
+:::
+
+## Swiping
+
+The item can also be dragged aside, with the mouse, a pen or a finger. Nothing moves until the pointer has gone the drag distance of the system along the `Orientation`, as with drag and drop, so a click or a tap still reaches the item. A move that goes across first is left alone, since that is somebody scrolling.
+
+Let go past half the item, or with a quick flick the same way, and it flips. Anything less and the item springs back. At an end without `CircularNavigation` the item only gives a little and never flips. The old item leaves to the side it was dragged to and the next one comes in from the other.
+
+A drag that starts on a button in the item, or on content that scrolls in the same direction itself, stays with that content.
+
+| Property | Type | Default |
+| --- | --- | --- |
+| `IsSwipeEnabled` | `bool` | `True` |
+
+`IsNavigationEnabled="False"` hides the buttons but leaves swiping on. Set `IsSwipeEnabled="False"` as well where only code should flip.
+
+:::{.alert .alert-info}
+New on `develop`, it is not in 2.4.11. A released `FlipView` has no swipe gesture, only the buttons and the arrow keys. This is [#2508](https://github.com/MahApps/MahApps.Metro/issues/2508).
 :::
 
 ## Transitions
@@ -169,7 +185,7 @@ A border drawn over the item while the mouse is inside, to show the control has 
 
 ## An automatic slideshow
 
-Increment `SelectedIndex` on a timer, with `CircularNavigation` so it wraps and `IsNavigationEnabled="False"` so the buttons stay away:
+Increment `SelectedIndex` on a timer, with `CircularNavigation` so it wraps and `IsNavigationEnabled="False"` so the buttons stay away. On `develop` add `IsSwipeEnabled="False"` too, or the slides can still be dragged:
 
 ```xml
 <mah:FlipView x:Name="Slideshow"
