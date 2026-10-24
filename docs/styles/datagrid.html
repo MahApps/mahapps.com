@@ -259,7 +259,7 @@ DataGrid
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p><code>DataGrid</code> ships with WPF; MahApps restyles it and everything inside it. There is one alternative look, one variant for long grids, and a set of properties for the parts of a grid that WPF gives you no other way to reach.</p>
+<p><code>DataGrid</code> ships with WPF; MahApps restyles it and everything inside it. There is one alternative look, a Windows 10 and a WinUI look on <code>develop</code>, one variant for long grids, and a set of properties for the parts of a grid that WPF gives you no other way to reach.</p>
 <p><img src="images/datagrid-styles.png" alt="The default DataGrid and the Azure variant" /></p>
 <h2 id="the-implicit-style">The implicit style</h2>
 <p><code>Styles/Controls.xaml</code> applies <code>MahApps.Styles.DataGrid</code> to every <code>DataGrid</code>. Merging that dictionary — which the <a href="../guides/quick-start">quick start</a> does — is all it takes:</p>
@@ -309,6 +309,51 @@ DataGrid
 <pre><code class="language-xml">&lt;DataGrid Style=&quot;{StaticResource MahApps.Styles.DataGrid.Azure}&quot;
           RowStyle=&quot;{StaticResource MahApps.Styles.DataGridRow.AzureWithMargin}&quot; /&gt;
 </code></pre>
+<h2 id="the-windows-10-and-the-winui-look">The Windows 10 and the WinUI look</h2>
+<div class="alert alert-info"><p><strong>The Windows 10 and the WinUI grid are on <code>develop</code>.</strong> They are not in 2.4.11. On <code>develop</code> the header row of every grid style, the Metro and the Azure one included, also goes on over the vertical scroll bar, where 2.4.11 leaves the corner above the bar empty.</p>
+</div>
+<p><code>MahApps.Styles.DataGrid.Win10</code> follows the DataGrid of the Windows Community Toolkit, the one UWP had, and <code>MahApps.Styles.DataGrid.WinUI</code> the TableView of WinUI 3. The <a href="../stylevariants/win10">Win10</a> and the <a href="../stylevariants/winui">WinUI</a> set apply them by type. Each grid hands its headers, rows and cells their look itself, and its columns the boxes of its set to show and edit values in, so a grid with the key looks the same in a window of the default set, and a grid whose style stands on the Metro one keeps the Metro rows inside a set.</p>
+<pre><code class="language-xml">&lt;DataGrid ItemsSource=&quot;{Binding Albums}&quot;
+          Style=&quot;{StaticResource MahApps.Styles.DataGrid.WinUI}&quot; /&gt;
+</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Windows 10</th>
+<th>WinUI</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Frame</td>
+<td>none, with square corners</td>
+<td>1, rounded, with the content clipped to the corners</td>
+</tr>
+<tr>
+<td>Row</td>
+<td>32 high, the text in 15 with 12 on either side</td>
+<td>40 high, the text in 14 with <code>8,4,8,4</code> around it</td>
+</tr>
+<tr>
+<td>Header</td>
+<td>the name in 12, written as it was given rather than in capitals, and the sort glyph behind it</td>
+<td>the name in SemiBold 14 on a tinted row, and a small chevron at the right edge where the column can sort</td>
+</tr>
+<tr>
+<td>Selected row</td>
+<td>the accent at 60 percent</td>
+<td>a subtle tint and the accent pill, 3 by 16, at its left edge</td>
+</tr>
+<tr>
+<td>Group header</td>
+<td>a band of 32 with the chevron and the name</td>
+<td>a band with the chevron, the key in SemiBold and how many rows the group holds</td>
+</tr>
+</tbody>
+</table>
+<p>The template is the Metro one, so sorting, resizing, frozen columns and the row details work as in the Metro grid; only the parts look different. Both styles set <code>DataGridHelper.CellPadding</code> and <code>ColumnHeaderPadding</code> to the spacing of their originals, so set those on the grid to change it.</p>
+<p>The colours are in the theme as <code>MahApps.Brushes.DataGrid.Win10.*</code> and <code>MahApps.Brushes.DataGrid.WinUI.*</code>, the row heights as <code>MahApps.Sizes.DataGrid.RowHeight.Win10</code> and <code>.WinUI</code>, and the cell padding as <code>MahApps.Thickness.DataGrid.CellPadding.Win10</code> and <code>.WinUI</code>.</p>
 <h2 id="padding-and-selection">Padding and selection</h2>
 <p><code>DataGridHelper</code> carries what WPF leaves out. The full table is on the <a href="../helper/datagridhelper">DataGridHelper</a> page; the four that matter most here:</p>
 <table>
@@ -368,6 +413,8 @@ DataGrid
     &lt;/DataGrid.GroupStyle&gt;
 &lt;/DataGrid&gt;
 </code></pre>
+<div class="alert alert-info"><p><strong>On <code>develop</code> the grid brings the group header along.</strong> All three grid styles hand it over through <code>GroupContainerStyle</code> of <a href="../helper/groupitemhelper">GroupItemHelper</a> while the view is grouped and the grid has no <code>GroupStyle</code> of its own, so the <code>GroupStyle</code> above is only needed in 2.4.11. The Metro grid takes <code>MahApps.Styles.GroupItem.DataGrid</code>, which shows the name of the group when there is no <code>HeaderTemplate</code>; the Windows 10 and the WinUI grid take <code>MahApps.Styles.GroupItem.DataGrid.Win10</code> and <code>.WinUI</code>. The setters are dynamic resources, so a style of your own under one of those keys takes the place of the header.</p>
+</div>
 <p>As with a <a href="combobox">ComboBox</a>, the grouping itself comes from the bound collection being a grouped view, not from the grid. The container style only dresses the headers; what grouping costs is the virtualisation above.</p>
 <h2 id="related">Related</h2>
 <p>The columns and the controls inside them have a page of their own: <a href="datagridcolumns">DataGrid Columns</a>.</p>
@@ -381,6 +428,7 @@ DataGrid
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#the-implicit-style">The implicit style</a></div>
                     <div class="sidebar-nav-item"><a href="#the-azure-style">The Azure style</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-windows-10-and-the-winui-look">The Windows 10 and the WinUI look</a></div>
                     <div class="sidebar-nav-item"><a href="#padding-and-selection">Padding and selection</a></div>
                     <div class="sidebar-nav-item"><a href="#virtualisation">Virtualisation</a></div>
                     <div class="sidebar-nav-item"><a href="#grouping">Grouping</a></div>

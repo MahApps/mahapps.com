@@ -439,8 +439,7 @@ FlipView
 </tbody>
 </table>
 <p><code>Outside</code> puts the buttons beside the item instead of over it, which costs width — compare the second panel above with the first.</p>
-<div class="alert alert-info"><p><strong>There is no swipe gesture.</strong> <code>FlipView</code> handles <code>OnKeyDown</code> and <code>OnMouseDown</code> and nothing else — no manipulation or touch handling anywhere in the control. Older documentation said otherwise.</p>
-<p>The keyboard is also tied to the buttons: <code>OnKeyDown</code> only acts if the button for that direction is <strong>visible and enabled</strong>. So hiding the buttons — through <code>IsNavigationEnabled=&quot;False&quot;</code> or <code>HideControlButtons()</code> — takes the arrow keys with it. <code>Left</code>/<code>Right</code> flip when horizontal, <code>Up</code>/<code>Down</code> when vertical.</p>
+<div class="alert alert-info"><p>The keyboard is tied to the buttons: <code>OnKeyDown</code> only acts if the button for that direction is <strong>visible and enabled</strong>. So hiding the buttons — through <code>IsNavigationEnabled=&quot;False&quot;</code> or <code>HideControlButtons()</code> — takes the arrow keys with it. <code>Left</code>/<code>Right</code> flip when horizontal, <code>Up</code>/<code>Down</code> when vertical.</p>
 </div>
 <div class="alert alert-warning"><p><strong><code>HideControlButtons()</code> does not stick.</strong> It is a one-shot: it sets the buttons' visibility once and changes no state.</p>
 <pre><code class="language-csharp">public void HideControlButtons()
@@ -452,6 +451,29 @@ FlipView
 <p><img src="images/flipview-hidecontrolbuttons.png" alt="After HideControlButtons, and after HideControlButtons plus one flip" /></p>
 <p>Both panels called <code>HideControlButtons()</code>. The right one then flipped once, and the back button returned. (The forward button stays hidden because that panel is now on the last item.)</p>
 <p>Use <strong><code>IsNavigationEnabled=&quot;False&quot;</code></strong> instead. It is a dependency property, it is re-read on every recompute, and it survives.</p>
+</div>
+<h2 id="swiping">Swiping</h2>
+<p>The item can also be dragged aside, with the mouse, a pen or a finger. Nothing moves until the pointer has gone the drag distance of the system along the <code>Orientation</code>, as with drag and drop, so a click or a tap still reaches the item. A move that goes across first is left alone, since that is somebody scrolling.</p>
+<p>Let go past half the item, or with a quick flick the same way, and it flips. Anything less and the item springs back. At an end without <code>CircularNavigation</code> the item only gives a little and never flips. The old item leaves to the side it was dragged to and the next one comes in from the other.</p>
+<p>A drag that starts on a button in the item, or on content that scrolls in the same direction itself, stays with that content.</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IsSwipeEnabled</code></td>
+<td><code>bool</code></td>
+<td><code>True</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>IsNavigationEnabled=&quot;False&quot;</code> hides the buttons but leaves swiping on. Set <code>IsSwipeEnabled=&quot;False&quot;</code> as well where only code should flip.</p>
+<div class="alert alert-info"><p>New on <code>develop</code>, it is not in 2.4.11. A released <code>FlipView</code> has no swipe gesture, only the buttons and the arrow keys. This is <a href="https://github.com/MahApps/MahApps.Metro/issues/2508">#2508</a>.</p>
 </div>
 <h2 id="transitions">Transitions</h2>
 <p>The animation between items is a <code>TransitioningContentControl</code>, and there is one <code>TransitionType</code> per direction:</p>
@@ -626,7 +648,7 @@ FlipView
 </tbody>
 </table>
 <h2 id="an-automatic-slideshow">An automatic slideshow</h2>
-<p>Increment <code>SelectedIndex</code> on a timer, with <code>CircularNavigation</code> so it wraps and <code>IsNavigationEnabled=&quot;False&quot;</code> so the buttons stay away:</p>
+<p>Increment <code>SelectedIndex</code> on a timer, with <code>CircularNavigation</code> so it wraps and <code>IsNavigationEnabled=&quot;False&quot;</code> so the buttons stay away. On <code>develop</code> add <code>IsSwipeEnabled=&quot;False&quot;</code> too, or the slides can still be dragged:</p>
 <pre><code class="language-xml">&lt;mah:FlipView x:Name=&quot;Slideshow&quot;
               CircularNavigation=&quot;True&quot;
               IsNavigationEnabled=&quot;False&quot;
@@ -683,6 +705,7 @@ timer.Start();
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#navigating">Navigating</a></div>
+                    <div class="sidebar-nav-item"><a href="#swiping">Swiping</a></div>
                     <div class="sidebar-nav-item"><a href="#transitions">Transitions</a></div>
                     <div class="sidebar-nav-item"><a href="#the-banner">The banner</a></div>
                     <div class="sidebar-nav-item"><a href="#the-index">The index</a></div>

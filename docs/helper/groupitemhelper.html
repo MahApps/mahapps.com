@@ -367,7 +367,7 @@ GroupItemHelper
                                             </div>
                                         </div>
                                         <div id="content" class="col-md-9 col-lg-8 p-4 pt-md-0 bg-white">
-<p>Applies to a grouped <code>ListView</code> or <code>ListBox</code>. It gives a group of items two things beyond standing there: a header that holds at the top while its own items pass under it, and a box in that header picking the whole group at once.</p>
+<p>Applies to a grouped <code>ListView</code>, <code>ListBox</code> or <code>DataGrid</code>. It gives a group of items two things beyond standing there: a header that holds at the top while its own items pass under it, and a box in that header picking the whole group at once.</p>
 <div class="alert alert-info"><p><code>GroupItemHelper</code> is new in <code>develop</code> and is not in 2.4.11.</p>
 </div>
 <table>
@@ -421,6 +421,7 @@ GroupItemHelper
           mah:ItemHelper.IsMultiSelectCheckBoxEnabled=&quot;True&quot; /&gt;
 </code></pre>
 <p><code>MahApps.Styles.ListView.Win10</code> asks for both already, and <code>MahApps.Styles.ListView.WinUI</code> brings the two group styles along without the sticky header.</p>
+<p>The helper hands <code>GroupContainerStyle</code> over only while the view of the list is grouped and the list has no <code>GroupStyle</code> of its own, and takes it back once the view is ungrouped; a <code>GroupStyle</code> the application adds wins. The three <a href="../styles/datagrid">DataGrid</a> styles set it to their group headers.</p>
 <h2 id="the-header-that-stays">The header that stays</h2>
 <p>WPF lays a group out as one <code>GroupItem</code> holding a header with the items under it, and scrolls the two together, so the header of the group you are reading leaves the top of the view before its own items do.</p>
 <p>Holding it means moving it down by as much as the group has already passed the top edge, and no further than the bottom of that group, so the next group pushes it out of the way rather than drawing over it. The move is a render transform, so nothing is laid out again while the list scrolls.</p>

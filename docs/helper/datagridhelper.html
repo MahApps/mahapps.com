@@ -412,6 +412,34 @@ DataGridHelper
 <p><code>EnableCellEditAssist</code> is the one that changes how the grid feels. It hooks <code>PreviewMouseLeftButtonDown</code> and, when the click landed directly on a cell's editing control, puts the cell into edit mode and passes the click on — so a check box column toggles on the first click instead of needing one to select the cell and another to hit the box. Read-only cells are left alone.</p>
 <div class="alert alert-info"><p><code>DataGridHelper.SelectionUnit</code> is not <code>DataGrid.SelectionUnit</code>. The MahApps cell and row styles read the attached one to decide what to highlight; WPF's own property still decides what selection actually does. Set both when you change it.</p>
 </div>
+<h2 id="the-first-column-on-screen">The first column on screen</h2>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Type</th>
+<th>Default</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TracksFirstVisibleColumn</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>the grid marks the column that is first on screen</td>
+</tr>
+<tr>
+<td><code>IsFirstVisibleColumn</code></td>
+<td><code>bool</code></td>
+<td><code>false</code></td>
+<td>read only, on a <code>DataGridColumn</code>: whether it is that column</td>
+</tr>
+</tbody>
+</table>
+<p>A header style knows its place only by <code>DisplayIndex</code>, and a first column that is collapsed still has 0, so the header after it cannot tell that it now stands first. With <code>TracksFirstVisibleColumn</code> on the grid, the grid follows its columns as they are added, moved, shown and hidden, and marks the one in front. <code>MahApps.Styles.DataGrid.WinUI</code> turns it on, so its first header draws no line on its left.</p>
+<div class="alert alert-info"><p>Both properties are new on <code>develop</code> and not in 2.4.11.</p>
+</div>
 <h2 id="styling-auto-generated-columns">Styling auto-generated columns</h2>
 <p><code>AutoGenerateColumns=&quot;True&quot;</code> builds columns from the bound type, which leaves nowhere to hang a style. These properties give the generated columns one, in pairs — a display style and an editing style:</p>
 <table>
@@ -480,6 +508,7 @@ DataGridHelper
             <div class="sidebar-nav-item sidebar-header">On This Page</div>
             <div class="sidebar-nav-children">
                     <div class="sidebar-nav-item"><a href="#layout-and-behaviour">Layout and behaviour</a></div>
+                    <div class="sidebar-nav-item"><a href="#the-first-column-on-screen">The first column on screen</a></div>
                     <div class="sidebar-nav-item"><a href="#styling-auto-generated-columns">Styling auto-generated columns</a></div>
             </div>
         </div>
