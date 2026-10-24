@@ -3,7 +3,7 @@ Title: GroupItemHelper
 Description: A group header that stays at the top, and one that picks its whole group
 ---
 
-Applies to a grouped `ListView` or `ListBox`. It gives a group of items two things beyond standing there: a header that holds at the top while its own items pass under it, and a box in that header picking the whole group at once.
+Applies to a grouped `ListView`, `ListBox` or `DataGrid`. It gives a group of items two things beyond standing there: a header that holds at the top while its own items pass under it, and a box in that header picking the whole group at once.
 
 :::{.alert .alert-info}
 `GroupItemHelper` is new in `develop` and is not in 2.4.11.
@@ -29,6 +29,8 @@ Both of the first two are set on the **list**, not on the group, because a group
 ```
 
 `MahApps.Styles.ListView.Win10` asks for both already, and `MahApps.Styles.ListView.WinUI` brings the two group styles along without the sticky header.
+
+The helper hands `GroupContainerStyle` over only while the view of the list is grouped and the list has no `GroupStyle` of its own, and takes it back once the view is ungrouped; a `GroupStyle` the application adds wins. The three [DataGrid](../styles/datagrid) styles set it to their group headers.
 
 ## The header that stays
 

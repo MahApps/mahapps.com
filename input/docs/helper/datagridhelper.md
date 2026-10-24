@@ -27,6 +27,19 @@ Applies to `DataGrid`, `DataGridRow` and `DataGridCell`. Two halves: a few prope
 `DataGridHelper.SelectionUnit` is not `DataGrid.SelectionUnit`. The MahApps cell and row styles read the attached one to decide what to highlight; WPF's own property still decides what selection actually does. Set both when you change it.
 :::
 
+## The first column on screen
+
+| Property | Type | Default | |
+| --- | --- | --- | --- |
+| `TracksFirstVisibleColumn` | `bool` | `false` | the grid marks the column that is first on screen |
+| `IsFirstVisibleColumn` | `bool` | `false` | read only, on a `DataGridColumn`: whether it is that column |
+
+A header style knows its place only by `DisplayIndex`, and a first column that is collapsed still has 0, so the header after it cannot tell that it now stands first. With `TracksFirstVisibleColumn` on the grid, the grid follows its columns as they are added, moved, shown and hidden, and marks the one in front. `MahApps.Styles.DataGrid.WinUI` turns it on, so its first header draws no line on its left.
+
+:::{.alert .alert-info}
+Both properties are new on `develop` and not in 2.4.11.
+:::
+
 ## Styling auto-generated columns
 
 `AutoGenerateColumns="True"` builds columns from the bound type, which leaves nowhere to hang a style. These properties give the generated columns one, in pairs — a display style and an editing style:

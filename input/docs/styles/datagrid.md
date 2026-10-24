@@ -2,7 +2,7 @@ Title: DataGrid
 Description: The DataGrid styles
 ---
 
-`DataGrid` ships with WPF; MahApps restyles it and everything inside it. There is one alternative look, one variant for long grids, and a set of properties for the parts of a grid that WPF gives you no other way to reach.
+`DataGrid` ships with WPF; MahApps restyles it and everything inside it. There is one alternative look, a Windows 10 and a WinUI look on `develop`, one variant for long grids, and a set of properties for the parts of a grid that WPF gives you no other way to reach.
 
 ![The default DataGrid and the Azure variant](images/datagrid-styles.png)
 
@@ -54,6 +54,31 @@ There is also `MahApps.Styles.DataGridRow.AzureWithMargin`, the Azure row with a
 <DataGrid Style="{StaticResource MahApps.Styles.DataGrid.Azure}"
           RowStyle="{StaticResource MahApps.Styles.DataGridRow.AzureWithMargin}" />
 ```
+
+## The Windows 10 and the WinUI look
+
+:::{.alert .alert-info}
+**The Windows 10 and the WinUI grid are on `develop`.** They are not in 2.4.11. On `develop` the header row of every grid style, the Metro and the Azure one included, also goes on over the vertical scroll bar, where 2.4.11 leaves the corner above the bar empty.
+:::
+
+`MahApps.Styles.DataGrid.Win10` follows the DataGrid of the Windows Community Toolkit, the one UWP had, and `MahApps.Styles.DataGrid.WinUI` the TableView of WinUI 3. The [Win10](../stylevariants/win10) and the [WinUI](../stylevariants/winui) set apply them by type. Each grid hands its headers, rows and cells their look itself, and its columns the boxes of its set to show and edit values in, so a grid with the key looks the same in a window of the default set, and a grid whose style stands on the Metro one keeps the Metro rows inside a set.
+
+```xml
+<DataGrid ItemsSource="{Binding Albums}"
+          Style="{StaticResource MahApps.Styles.DataGrid.WinUI}" />
+```
+
+| | Windows 10 | WinUI |
+| --- | --- | --- |
+| Frame | none, with square corners | 1, rounded, with the content clipped to the corners |
+| Row | 32 high, the text in 15 with 12 on either side | 40 high, the text in 14 with `8,4,8,4` around it |
+| Header | the name in 12, written as it was given rather than in capitals, and the sort glyph behind it | the name in SemiBold 14 on a tinted row, and a small chevron at the right edge where the column can sort |
+| Selected row | the accent at 60 percent | a subtle tint and the accent pill, 3 by 16, at its left edge |
+| Group header | a band of 32 with the chevron and the name | a band with the chevron, the key in SemiBold and how many rows the group holds |
+
+The template is the Metro one, so sorting, resizing, frozen columns and the row details work as in the Metro grid; only the parts look different. Both styles set `DataGridHelper.CellPadding` and `ColumnHeaderPadding` to the spacing of their originals, so set those on the grid to change it.
+
+The colours are in the theme as `MahApps.Brushes.DataGrid.Win10.*` and `MahApps.Brushes.DataGrid.WinUI.*`, the row heights as `MahApps.Sizes.DataGrid.RowHeight.Win10` and `.WinUI`, and the cell padding as `MahApps.Thickness.DataGrid.CellPadding.Win10` and `.WinUI`.
 
 ## Padding and selection
 
@@ -110,6 +135,10 @@ Grouping is WPF's own, and MahApps styles the group headers through `MahApps.Sty
     </DataGrid.GroupStyle>
 </DataGrid>
 ```
+
+:::{.alert .alert-info}
+**On `develop` the grid brings the group header along.** All three grid styles hand it over through `GroupContainerStyle` of [GroupItemHelper](../helper/groupitemhelper) while the view is grouped and the grid has no `GroupStyle` of its own, so the `GroupStyle` above is only needed in 2.4.11. The Metro grid takes `MahApps.Styles.GroupItem.DataGrid`, which shows the name of the group when there is no `HeaderTemplate`; the Windows 10 and the WinUI grid take `MahApps.Styles.GroupItem.DataGrid.Win10` and `.WinUI`. The setters are dynamic resources, so a style of your own under one of those keys takes the place of the header.
+:::
 
 As with a [ComboBox](combobox), the grouping itself comes from the bound collection being a grouped view, not from the grid. The container style only dresses the headers; what grouping costs is the virtualisation above.
 
